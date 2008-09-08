@@ -1,55 +1,25 @@
 \name{rinvgamma}
 \alias{rinvgamma}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{Generate inverse gamma distribution}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+  Generate inverse gamma distribution given n, df, and sigma estimate
 }
 \usage{
 rinvgamma(n, df, sigma)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{n}{ ~~Describe \code{n} here~~ }
-  \item{df}{ ~~Describe \code{df} here~~ }
-  \item{sigma}{ ~~Describe \code{sigma} here~~ }
+  \item{n}{the number of values to return}
+  \item{df}{the degrees of freedom for the distribution. This value reflects the uncertainity in the distribution. A reasonable starting estimate would be a value between the number of patients and the number of observations used to obtain the sigma estimates}
+  \item{sigma}{vector of sigma estimates}
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+ The \code{rinvgamma} function returns \code{n} sigma estimates for use as simulation parameters.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
+\references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
+\author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
+\examples{}
+\keyword{utilities}
 
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(n,df,sigma) {
-# shape=alpha=DF
-# rate = beta
-# mode(rinvgamma)=beta/(alpha+1)
-# mean(rinvgamma)=beta/(alpha-1)
-# var(rinvgamma)=beta^2/(alpha-1)^2/(alpha-2)
-
-	shape <- df
-	rate <- sigma*df
-	return(1/rgamma(n, shape, rate))
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ manip }
 

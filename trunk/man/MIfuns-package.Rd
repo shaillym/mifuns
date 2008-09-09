@@ -38,8 +38,8 @@ Pharmacometric tools for common data preparation tasks, stratified bootstrap res
 \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.2.4\cr
-Date: \tab 2008-09-05\cr
+Version: \tab 3.2.5\cr
+Date: \tab 2008-09-08\cr
 License: \tab GPL\cr
 }
 

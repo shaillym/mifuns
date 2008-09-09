@@ -2,7 +2,7 @@
 function (NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, 
             checkrunno, diag, fdata, epilog, dvname, logtrans, 
             covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
-            missing, dosbox, nochecksum, grid) 
+            missing, dosbox, nochecksum, grid, nice) 
 {
   delim <- "/"
   ndir <- paste(ProjectDir, delim, i, sep = "")
@@ -38,11 +38,23 @@ function (NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs,
     system(oldtab)
     oldpdf <- paste("rm -rf *", i, ".pdf", sep = "")
     system(oldpdf)
+    if(nice){
+    	delcon1 <- paste("rm -rf ", ndir,"/cwtab*",sep="")
+    	delcon2 <- paste("rm -rf ", ndir,"/*.*",sep="")
+    	system(delcon1)
+    	system(delcon2)
+    	delcon3 <- paste("rm -rf ", rdir,"/cwtab*",sep="")
+    	delcon4 <- paste("rm -rf ", rdir,"/*.*",sep="")
+    	system(delcon3)
+    	system(delcon4)    	
+    }else
+    { 
     deldir <- paste("rm -rf ", ndir, sep = "")#'nice' target
     system(deldir)
     delrdir <- paste("rm -rf ", rdir, sep= "")#'nice' target
     system(delrdir)
-    dir.create(rdir, showWarnings = FALSE)#'nice' target
+    }
+    dir.create(rdir, showWarnings = FALSE)
     file.copy(ctl1, ctl2, overwrite = TRUE)
     setwd(rdir)
   }
@@ -53,10 +65,20 @@ function (NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs,
     system(oldtab)
     oldpdf <- paste("cmd /C del /F /Q *", i, ".pdf", sep = "")
     system(oldpdf)
+    if(nice){
+    	setwd(ndir)
+    	cl.dir <- paste("cmd /C del *", 
+                     sep = "")#'nice' target
+        message(cl.dir)
+        system(cl.dir)  
+        setwd(ProjectDir)  	
+    }else
+    {
     del.dir <- paste("cmd /C rmdir /S /Q ", "\"", ndir, "\"", 
                      sep = "")#'nice' target
     message(del.dir)
     system(del.dir)
+    }
     dir.create(ndir, showWarnings = FALSE)#'nice' target
     file.copy(ctl1, ctl2, overwrite = TRUE)
     setwd(rdir)
@@ -83,6 +105,7 @@ function (NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs,
       #   try(cwres_1(i, rdir))
       mv.lock <- paste("mv ", rdir, " ", ndir, sep = "")
       system(mv.lock)
+      #setwd(ndir)
       if(!diag)
          try(cwres_1(i, ProjectDir))
       perm3 <- paste("chmod 664 ", ProjectDir, "/", i, 
@@ -143,8 +166,17 @@ function (NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs,
       try(system(perm2a))
       mv.log <- paste("mv ",rdir,"/Run* ","nonmem.log",sep="")
       try(system(mv.log))
-      mv.lock <- paste("mv ", rdir, " ", ndir, sep = "")
-      system(mv.lock)
+      if(nice){
+      	mv.lock <- paste("mv ", rdir, "/* ", ndir, sep = "")
+      	rm.lock <- paste("rm -rf ",rdir, sep="")
+      	system(mv.lock)
+      	system(rm.lock)
+      }else
+      {
+      	mv.lock <- paste("mv ", rdir, " ", ndir, sep = "")
+      	system(mv.lock)
+      }
+      setwd(ndir)
       perm3 <- paste("chmod 664 ", ProjectDir, "/", i, 
                      "/*.*", sep = "")
       system(perm3)

@@ -26,14 +26,26 @@ as.miDate(x, ...)
   are converted to miDates that are interpreted accordingly. When
   constructing from character, a format argument can be passed, as per 
   \link{as.Date}.
+  
+  Comparisons are handled specially for class miDate.  Even though stored as a 
+  numeric with arbitrary precision, comparisons (<, > , ==, etc) are based only
+  on the information visible in the default format (the "day" portion).
 }
 \value{
   An object of the class miDate, useful for its display behaviors.
 }
-\seealso{\code{\link{format.miDate}},\code{\link{as.miTime}},\code{\link{as.miDateTime}}, \code{\link{strftime}}}
+\seealso{
+\code{\link{format.miDate}},
+\code{\link{as.miTime}},
+\code{\link{as.miDateTime}}, 
+\code{\link{strftime}},
+\code{\link{Ops.miDate}},
+}
 \examples{
 	as.miDate(1)
 	as.miDate("6-7-2007",format="\%m-\%d-\%Y")
+	as.miDate(1) == as.miDate(1.5)#TRUE
+	as.miDate(1) < as.miDate(Inf)#TRUE
 }
 \keyword{ manip }
 

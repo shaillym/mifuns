@@ -1,41 +1,42 @@
 \name{Ops.miDate}
 \alias{Ops.miDate}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\alias{Ops.miDateTime}
+\alias{Ops.miTime}
+\title{ Limit temporal comparisons to displayed precision. }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+ miDate, miDateTime, and miTime store values with arbitrary precision, yet typically
+ display fixed precision (days or minutes). The 'Ops' functions ensure that 
+ comparisons (<, >, ==, etc.) are based on the displayed precision so that 
+ behavior is consistent with appearance.  Finer comparisons are possible by converting
+ to numeric.
+ 
+ The 'Ops' functions are not normally called by the user.
 }
 \usage{
-Ops.miDate(e1, e2)
+	\method{Ops}{miDate}(e1, e2)
+	\method{Ops}{miDateTime}(e1, e2)
+	\method{Ops}{miTime}(e1, e2)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{e1}{ ~~Describe \code{e1} here~~ }
-  \item{e2}{ ~~Describe \code{e2} here~~ }
+  \item{e1}{ first argument }
+  \item{e2}{ second argument }
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+  When a comparison is made, the arguments are literally converted to their character
+  representations and then back to temporal classes.  Elements that can't be 
+  represented in the default formats (NA, Inf, -Inf, others?) are left untouched.
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  logical
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
+\author{Tim Bergsma }
+\seealso{
+\code{\link{as.miDate}},
+\code{\link{as.miDateTime}},
+\code{\link{as.miTime}},
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
+## Ops.miDate is currently defined as
 function(e1,e2){
 	f1 <- as.miDate(as.character(e1),format="\%m/\%d/\%Y")
 	f2 <- as.miDate(as.character(e2),format="\%m/\%d/\%Y")
@@ -43,8 +44,7 @@ function(e1,e2){
 	e2[!is.na(f2)] <- f2[!is.na(f2)]
 	NextMethod()
   }
+## The other two are similar.
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }
+

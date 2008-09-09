@@ -17,6 +17,7 @@
 	\item{parameter.array}{3-way array of MCMC simulations with dimensions number of simulations per chain, number of chains, 
 		and number of parameters. This is consistent with the \code{parameters.array} element of the list object returned by the \code{bugs}
 		function of the \code{R2WinBUGS} package.}
+	\item{sims.array}{Output item containing results from WinBUGS fit}
 	\item{n}{the number of equally spaced points at which the density is to be estimated.}
 }
 \details{

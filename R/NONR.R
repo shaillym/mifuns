@@ -3,7 +3,7 @@ function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE,
     SGEflgs = "", checkrunno = TRUE, diag = TRUE, fdata = FALSE, 
     epilog = NULL, dvname = NULL, logtrans = FALSE, covplt = FALSE, 
     grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
-    par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum = FALSE, grid = FALSE) 
+    par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum = FALSE, grid = FALSE, nice=FALSE) 
 {
     start <- getwd()
     Platform <- "Windows"
@@ -46,7 +46,7 @@ function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE,
             fdata = fdata, epilog = epilog, dvname = dvname, 
             logtrans = logtrans, covplt = covplt, grp = grp, 
             grpnames = grpnames, cont.cov = cont.cov, cat.cov = cat.cov, 
-            par.list = par.list, eta.list = eta.list, missing = missing, dosbox = dosbox, nochecksum = nochecksum, grid = grid)
+            par.list = par.list, eta.list = eta.list, missing = missing, dosbox = dosbox, nochecksum = nochecksum, grid = grid, nice=nice)
         if (!concurrent) 
             do.call("runmsge", run.args)
         if (concurrent & (boot == 1 | boot == 3)) 

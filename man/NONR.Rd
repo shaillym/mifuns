@@ -23,18 +23,18 @@ NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "",
 checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog =
 NULL, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL,
 grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL,
-eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE)
+eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=FALSE)
 PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99)
 diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt)
 doCov(ParFileName, par.list, eta.list, CovFile, ProjectDir, b, cont.cov, cat.cov, covariates, dataObs, missing)
-runmsge(NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, checkrunno, diag, fdata, epilog, dvname, logtrans, covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, missing, dosbox, nochecksum, grid)
+runmsge(NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, checkrunno, diag, fdata, epilog, dvname, logtrans, covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, missing, dosbox, nochecksum, grid, nice)
 runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid)
 startDevice(ProjectDir, base, b)
 stopDevice()
 }
 
 \usage{
-NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "", checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE)
+NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "", checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=F)
 PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99)
 }
 
@@ -78,6 +78,7 @@ PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL
     \item{dosbox}{Whether to capture all MS DOS box info when using NONR on MS Windows. If set to TRUE, all output to DOS box during NONMEM run will be shown on R console. Options only functions on MS Windows and is a good diagnostic tool to use if NONMEM run fails prior to execution.  Default: TRUE. }
     \item{nochecksum}{Turn nmqual checksum on or off. There is no good reason to set this to true unless MItools code development is taking place. Default: FALSE}
     \item{grid}{Whether NONMEM execution is taking place on an appropriately configured (Sun Grid Engine) Nix/Apple grid or locally. Default: FALSE}  
+    \item{nice}{Whether the NONMEM run directory, based on \code{b}, is deleted or simply emptied prior to the execution of NONMEM. If \code{nice=TRUE}, standard NONMEM files (cwtab1, *.ctl, *.lst, etc..) are deleted but non-standard files/directories are not deleted prior to a NONMEM execution. Using \code{nice=TRUE} will preserve .svn directories. Default: FALSE} 
 }
 \details{
   Generally 0 and 1 can be used in place of FALSE and TRUE.
@@ -94,6 +95,7 @@ of syntax requirements are as follows:
 3. Comments should be indicated with one semicolon (;) only.  
 4. The NONMEM datafile must contain a "C" column containing only C's or periods(".").
 5. The *.TAB file in the $TABLE step must contain an EVID column for plotting to function. In the case of $PRED models, this can be a dummy column in the datafile. 
+6. The NOPNMEM datafile must contain a column with a header of "ID" for plotting to function correctly. 
 
  PLOTR will automatically generate CWRES plots if required files are present in 
  NONMEM run directory. See help for \code{compute.cwres} for instructions on generating the files

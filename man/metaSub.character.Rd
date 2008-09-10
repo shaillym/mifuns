@@ -26,7 +26,7 @@
 
 \arguments{
   \item{x}{Atomic character, or (second form) filename(s). Multi-element character
-  will be collapsed to one element, with "\n" as the separator.}
+  will be collapsed to one element, with newline as the separator.}
   \item{names}{A list of (unique) names for resulting output elements.
   A vector of names will be coerced to character and to list.}
   \item{pattern}{a character vector of text fragments to replace, optionally

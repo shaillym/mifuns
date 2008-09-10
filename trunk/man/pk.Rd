@@ -26,7 +26,7 @@ auc(cl, dose, ...)
 \arguments{
   \item{cl}{Apparent clearance (L/h)}
   \item{v}{Apparent volume (L)}
-  \item{ka}{Absorption constant (h^-1)}
+  \item{ka}{Absorption constant (h\^-1)}
   \item{tau}{Steady-state trough-to-trough interval (h)}
   \item{dose}{Dose (arbitrary units)}
   \item{time}{Arbitrary time point, <= tau}
@@ -34,7 +34,7 @@ auc(cl, dose, ...)
 }
 \details{
 acr() calculates accumulation ratio (unitless, called by css()).
-ke() calculates the elimination constant (h^-1, called by css()).
+ke() calculates the elimination constant (h\^-1, called by css()).
 css() calculates steady-state compartment concentration (dose units per L) 
 at a given time.
 cmin() and cmax() calculate minimum and maximum steady-state concentrations; they

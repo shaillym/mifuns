@@ -35,6 +35,7 @@ Pharmacometric tools for common data preparation tasks, stratified bootstrap res
 \code{\link{accept}} \tab Document acceptance of an R installation (acceptance, packageCheck).\cr
 }
 
+
 \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr

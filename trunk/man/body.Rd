@@ -26,8 +26,8 @@ crcl(age, wt, male, scr)
 }
 \details{
 	Units of return values are as follows....
-	bmi - kg/m^2
-	bsa - m^2
+	bmi - kg/m\^2
+	bsa - m\^2
 	lbm - kg 
 	ibw - kg
 	crcl - mL/min
@@ -37,11 +37,11 @@ crcl(age, wt, male, scr)
 }
 \references{
 	\describe{
-		\item{bmi}{\url{http://www.halls.md/body-mass-index/bmirefs.htm}}
+		\item{bmi}{[\url{http://www.halls.md/body-mass-index/bmirefs.htm}]}
 		\item{bsa}{(BSA: Gehan & George variation) \url{http://www.halls.md/body-surface-area/refs.htm}}
 		\item{lbm}{\url{http://www.halls.md/body-mass-index/leanbody.htm}}
 		\item{ibw}{\url{http://www.halls.md/ideal-weight/devine.htm}}
-		\item{crcl}{\url{http://en.wikipedia.org/wiki/Renal_function#Cockroft-Gault_formula}}
+		\item{crcl}{\url{http://en.wikipedia.org/wiki/Renal_function}}
 	}
 }
 \author{ Tim Bergsma}

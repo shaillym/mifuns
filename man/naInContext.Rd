@@ -14,13 +14,16 @@ naInContext(x, context, search)
   \item{search}{Character vector of column names representing search fields.}
 }
 \details{
-	Often one wants to view not just records with missing values, but other
-	related records as well, e.g. "view all the records for any subject with
-	missing doses".  \code{naInContext} searches for NAs in columns of x 
-	named by \code{search}.  It then determines keys for these rows, using
-	columns in x named by \code{context}.  Finally, it displays all rows
-	with matching keys.
+  Often one wants to view not just records with missing values, but
+  other
+  related records as well, e.g. "view all the records for any subject
+  with
+  missing doses".  \code{naInContext} searches for NAs in columns of x
+  named by \code{search}.  It then determines keys for these rows, using
+  columns in x named by \code{context}.  Finally, it displays all rows
+  with matching keys.
 }
+
 \value{
   A data.frame.
 }

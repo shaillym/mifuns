@@ -20,18 +20,27 @@ constant(x,within)
   \item{within}{ An object like \code{b}, or just column names in x for the data.frame version.}
 }
 \details{
-  \code{nests} tests whether the factor(s) on the right are nested within the
-  factor(s) on the left: i.e. \code{b} implies \code{a}.  \code{nested.in} tests 
-  the opposite: i.e., for unique interaction-wise levels of \code{a}, is there 
-  exactly one interaction-wise corresponding level in \code{b} (\code{a} implies 
-  \code{b})?  \code{constant}, by default, tests whether \code{within} implies 
+  \code{nests} tests whether the factor(s) on the right are nested
+  within the
+  factor(s) on the left: i.e. \code{b} implies \code{a}.
+  \code{nested.in} tests 
+  the opposite: i.e., for unique interaction-wise levels of \code{a}, is
+  there 
+  exactly one interaction-wise corresponding level in \code{b} (\code{a}
+  implies 
+  \code{b})?  \code{constant}, by default, tests whether \code{within}
+  implies 
   \code{x}.
   
-  \code{crosses} is the basis for all other functions.  For each level in \code{b},
-  it checks for corresponding levels of \code{a}, returning FALSE for the first
-  and TRUE for any others, in which cases \code{a} crosses \code{b}, or \code{b}
+  \code{crosses} is the basis for all other functions.  For each level
+  in \code{b},
+  it checks for corresponding levels of \code{a}, returning FALSE for
+  the first
+  and TRUE for any others, in which cases \code{a} crosses \code{b}, or
+  \code{b}
   is crossed on (not nested in) \code{a}.
 }
+
 \value{
 	Logical vector for \code{crosses}; atomic logical for all others.
 }

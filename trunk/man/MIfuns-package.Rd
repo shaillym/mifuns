@@ -62,14 +62,6 @@ as beta.
     \code{\link{accept}} \tab Document acceptance of an R installation
     (acceptance, packageCheck).\cr
     }
-
-    \tabular{ll}{
-      Package: \tab MIfuns\cr
-      Type: \tab Package\cr
-      Version: \tab 3.2.5\cr
-      Date: \tab 2008-09-08\cr
-      License: \tab GPL\cr
-    }
   }
   
   \author{

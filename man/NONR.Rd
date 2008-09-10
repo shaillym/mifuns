@@ -10,7 +10,7 @@
 
 \title{Run NONMEM and create diagnostic plots}
 \description{
-  NONR executes a NONMEM run from R on MS Windows or the Nix grid.  NONMEM needs to be installed on either OS using NMQual. 
+  NONR executes a NONMEM run from R on MS Windows or the Nix grid.  NONMEM needs to be installed on either OS using NMQual (http://nmqual.googlecode.com).
   Execution on the Nix grid requires the installation of Sun Grid Engine v6.  Following a successful NONMEM run NONR can call PLOTR 
   to create diagnostic plots (pdf format) and/or run a user-written script.  
 
@@ -90,12 +90,16 @@ PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL
 }
 \note{ Specific control stream syntax is expected when running NONR and the other functions present in the MIfuns package.  The list
 of syntax requirements are as follows:
-1. \$PROB should be followed by "RUN\#" then a number representing the control stream number. No commas should be used in the \$PROB statement. 
-2. The datafile name and relative path needs to be on the first line of the \$DATA record immediately following "\$DATA". 
-3. Comments should be indicated with one semicolon (;) only.  
-4. The NONMEM datafile must contain a "C" column containing only C's or periods(".").
-5. The *.TAB file in the $TABLE step must contain an EVID column for plotting to function. In the case of $PRED models, this can be a dummy column in the datafile. 
-6. The NOPNMEM datafile must contain a column with a header of "ID" for plotting to function correctly. 
+(1) \$PROB should be followed by "RUN\#" then a number representing the control stream number. No commas should be used in the \$PROB statement. 
+(2) The datafile name and relative path needs to be on the first line of the \$DATA record immediately following "\$DATA". 
+(3) The datafile relative path must be one directory deeper than actual. anticipating the fact that a COPY of the
+control stream will be exectuted from within a dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
+then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because 3/3.ctl is the copy that will be executed, and needs
+to find the data in its parent directory.
+(4) Comments should be indicated with one semicolon (;) only.  
+(5) The NONMEM datafile must contain a "C" column containing only C's or periods(".").
+(6) The *.TAB file in the $TABLE step must contain an EVID column for plotting to function. In the case of $PRED models, this can be a dummy column in the datafile. 
+(7) The NOPNMEM datafile must contain a column with a header of "ID" for plotting to function correctly. 
 
  PLOTR will automatically generate CWRES plots if required files are present in 
  NONMEM run directory. See help for \code{compute.cwres} for instructions on generating the files

@@ -22,7 +22,7 @@ as beta.
     \code{\link{compute.cwres}} \tab Compute the conditional weighted
     residuals (ind.cwres,read.cwres.data,is.cwres.readable).\cr
     \code{\link{CWRES}} \tab Generate conditional weighted residual
-    (CWRES) diagnostic plots as a pdf (cwres_1).\cr
+    (CWRES) diagnostic plots as a pdf (cwres\_1).\cr
     \code{\link{NONR}} \tab Run NONMEM and create diagnostic plots.\cr
     \code{\link{PLOTR}} \tab Generate diagnostic and/or covariate
     evaluation plots as a pdf or multiple pngs.\cr
@@ -60,8 +60,18 @@ as beta.
     \code{\link{bin}} \tab Calculate bin sizes and limits for a
     vector.\cr
     \code{\link{accept}} \tab Document acceptance of an R installation
-    (acceptance, packageCheck).\cr
-    }
+    (acceptance, packageCheck).
+    
+  }
+    
+    \tabular{ll}{
+Package: \tab MIfuns\cr
+Type: \tab Package\cr
+Version: \tab 3.2.5\cr
+Date: \tab 2008-09-08\cr
+License: \tab GPL\cr
+}
+
   }
   
   \author{

@@ -21,19 +21,19 @@ PlotPredictiveCheck(PCData, Parameters = c("min", "max", "mean", "median", "Tmin
    the \code{ComputePredictiveCheck} function call that created \code{PCData}.}
   \item{plot.hist}{equal to TRUE (default value) if histogram plot is requested and FALSE otherwise.}
   \item{plot.qq}{equal to TRUE (default value) if QQ-plot is requested and FALSE otherwise.}
-  \item{DrugName}{Name of the drug (default value is “DV”) that will be used in the  plots. Limited control
+  \item{DrugName}{Name of the drug (default value is \dQuote{DV}) that will be used in the  plots. Limited control
    over plot labels and title exist. The function needs to be modified in order to create more precise 
    titles and labels.}
   \item{plotType}{Character name (in quotes) that assigns the device for the output plots. Supported 
-  names are "wmf", "pdf", "ps", "png", "jpeg", and "bmp" that initiate the appropriate R graphic 
-  device and create one or several output files. The default value “pdf” is suitable for the exploratory 
-  investigation of the data. For report-quality plots “wmf” is recommended.  If \code{PlotType} is “pdf” 
-  or “ps”, one file with all the figures is created. For all other PlotType’s, one file per plot is 
+  names are \dQuote{wmf}, \dQuote{pdf}, \dQuote{ps}, \dQuote{png}, \dQuote{fpeg}, and \dQuote{bmp} that initiate the appropriate R graphic 
+  device and create one or several output files. The default value \dQuote{pdf} is suitable for the exploratory 
+  investigation of the data. For report-quality plots, on MSWindows only, \dQuote{wmf} is recommended.  If \code{PlotType} is \dQuote{pdf} 
+  or \dQuote{ps}, one file with all the figures is created. For any other \code{PlotType}, one file per plot is 
   created. Extension of the file coincides with the \code{PlotType}.}
   \item{FileTemplate}{File name template that will be used to create the output file name. If one file 
-  with all the plots is created (\code{PlotType} is “pdf” or “ps”) then the \code{PlotType} extension will 
+  with all the plots is created (\code{PlotType} is \dQuote{pdf} or \dQuote{ps}) then the \code{PlotType} extension will 
   be added to the \code{FileTemplate} name to create the name of the output file. If one file per plot is created 
-  (\code{PlotType} is not equal to “pdf” or “ps”) then the three-digit order number will be added to the 
+  (\code{PlotType} is not equal to \dQuote{pdf} or \dQuote{ps}) then the three-digit order number will be added to the 
   \code{FileTemplate} name. Then the \code{PlotType} extension will be added to create the name of the output file.}
 }
 \details{

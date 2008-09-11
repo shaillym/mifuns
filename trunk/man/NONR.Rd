@@ -92,7 +92,7 @@ PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL
 of syntax requirements are as follows:
 (1) \$PROB should be followed by "RUN\#" then a number representing the control stream number. No commas should be used in the \$PROB statement. 
 (2) The datafile name and relative path needs to be on the first line of the \$DATA record immediately following "\$DATA". 
-(3) The datafile relative path must be one directory deeper than actual. anticipating the fact that a COPY of the
+(3) The datafile relative path must be one directory deeper than actual, anticipating the fact that a COPY of the
 control stream will be exectuted from within a dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
 then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because 3/3.ctl is the copy that will be executed, and needs
 to find the data in its parent directory.

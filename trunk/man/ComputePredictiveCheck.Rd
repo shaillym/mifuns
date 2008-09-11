@@ -1,6 +1,6 @@
 \name{ComputePredictiveCheck}
 \alias{ComputePredictiveCheck}
-\title{Computes individual parameters for observed and simiulated 
+\title{Computes individual parameters for observed and simulated 
  data}
 \description{
  Computes individual patient parameters for 
@@ -28,19 +28,19 @@ ComputePredictiveCheck(NonmemData, SimulatedData, SimpleFun = c("min", "max", "m
   a scalar. These functions will be used to compute study statistics. Examples of this type of function
   are \code{Q25} and \code{Q75}. The user can also create custom functions and use those with 
   \code{ComputePredictiveCheck}.}
-  \item{IDname}{Name of the column that assigns unique patient ID. Default value is “ID”. Each of the data 
+  \item{IDname}{Name of the column that assigns unique patient ID. Default value is \dQuote{ID}. Each of the data 
   frames \code{NonmemData} and code{SimulatedData} should have \code{IDname} column.}
-  \item{TimeName}{Name of the column that assigns time of the observation. Default value is “TIME”. Each of 
+  \item{TimeName}{Name of the column that assigns time of the observation. Default value is \dQuote{TIME}. Each of 
   the data frames \code{NonmemData} and code{SimulatedData} should have \code{TimeName} column.}
-  \item{DVname}{Name of the column that assigns dependent variable value. Default value is “DV”. Each of the 
+  \item{DVname}{Name of the column that assigns dependent variable value. Default value is \dQuote{DV}. Each of the 
   data frames \code{NonmemData} and \code{SimulatedData} should have \code{DVname} column. \code{DVname} 
   column of \code{NonmemData} data frame should contain observed values. \code{DVname} column of 
   \code{SimulatedData} data frame should contain simulated values.}
-  \item{CName}{Name of the column that assigns the comment field. Default value is “C”. The data frame 
+  \item{CName}{Name of the column that assigns the comment field. Default value is \dQuote{C}. The data frame 
   \code{NonmemData} should have \code{Cname} column. Records with the character assigned by \code{Ignore}
   parameter in the \code{Cname} column will be removed from the analysis.}
   \item{Ignore}{The character that denotes the record of the \code{NonmemData} data frame that should be 
-  removed from the analysis. Default value is “C”.}
+  removed from the analysis. Default value is \dQuote{C}.}
 }
 \details{
   ~~ If necessary, more details than the description above ~~

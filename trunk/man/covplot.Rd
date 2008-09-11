@@ -8,7 +8,7 @@ way to construct "Forest Plots", which consist largely of horizontal boxes and
 whiskers that show the effects, for instance, of covariates on model parameters.
 }
 \usage{
-	\method{bwplot}{distribution}(data, x, coef = 1.5, stats = covplot.stats, panel = panel.covplot, prepanel = prepanel.covplot, transform = "x*1", pch = 1, xlab = NULL, ref = NULL, ...)
+	\method{bwplot}{distribution}(x,data,coef = 1.5, stats = covplot.stats, panel = panel.covplot, prepanel = prepanel.covplot, transform = "x*1", pch = 1, xlab = NULL, ref = NULL, ...)
 	\method{boxplot}{prestats}(x, coef, ...)
 }
 \arguments{
@@ -100,7 +100,7 @@ boot <- as.distribution(
 	influence=z.influence[c(FALSE,TRUE)]	#(just the even elements)
 )
 
-bwplot(boot,CL~CL+AGE+WT+MALE,rlim=0.2)
+bwplot(CL~CL+AGE+WT+MALE,boot,rlim=0.2)
 }
 
 \keyword{manip}

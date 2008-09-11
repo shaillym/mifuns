@@ -64,8 +64,8 @@ function(ProjectDir,i,concurrent=1,boot=0,bootres=NULL,
     for (k in 1:length(tempf$Estimate)){
       if(!is.na(tempf$COV[k])){
         tempf$COR[k]<-tempf$COV[k]/(
-		 ((tempf$ISV[tempf$ind==noquote(sub("([0-9])\.(.*)","\\1",tempf$ind[k]))])**0.5)
-		*((tempf$ISV[tempf$ind==noquote(sub("([0-9])\.(.*)","\\2",tempf$ind[k]))])**0.5))
+		 ((tempf$ISV[tempf$ind==noquote(sub("([0-9]).(.*)","\\1",tempf$ind[k]))])**0.5)
+		*((tempf$ISV[tempf$ind==noquote(sub("([0-9]).(.*)","\\2",tempf$ind[k]))])**0.5))
       }else{
       	tempf$COR[k]<-as.double("NA")
       }

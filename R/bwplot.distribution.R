@@ -1,7 +1,7 @@
 `bwplot.distribution` <-
 function(
-	data, 
 	x,
+	data, 
 	coef=1.5,
 	stats=covplot.stats,
 	panel=panel.covplot,

@@ -34,16 +34,25 @@ stopDevice()
 }
 
 \usage{
-NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "", checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=F)
-PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99)
+NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "",
+checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, dvname =
+NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL,
+cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL,
+missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=F)
+
+PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE,
+grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list =
+NULL, eta.list = NULL, missing = -99)
 }
 
 \arguments{
-  \item{NMcom}{The complete name of the perl script created by NMQual when running on the cluster or the complete path
-  plus perl script name when running on Windows. On Windows with NONMEM 6 installed using 
-  NMQual 6 in  C:/nm6, the command would be \code{NMcom="C:/nm6/test/nm6.pl"}}
-  \item{b}{Vector of (NONR) or single (PLOTR) control stream number(s) to run in NONMEM. Should be numeric with no placeholder zeros to left of number, i.e., "1" not "001".
-  Example: \code{b=c(1,2,5)}}
+  \item{NMcom}{The complete name of the perl script created by NMQual
+    when running on the cluster or the complete path plus perl script
+    name when running on Windows. On Windows with NONMEM 6 installed
+    using NMQual 6 in  C:/nm6, the command would be \code{NMcom="C:/nm6/test/nm6.pl"}}
+  \item{b}{Vector of (NONR) or single (PLOTR) control stream number(s)
+    to run in NONMEM. Should be numeric with no placeholder zeros to
+    left of number, i.e., "1" not "001". Example: \code{b=c(1,2,5)}}
   \item{ProjectDir}{Full system path to the directory containing the NONMEM control (*.ctl) streams.}
   \item{boot}{Flag to describe type of NONMEM run with (0)-normal, (1)-bootstrap, (2)-long runs, and (3)-bootstrap runs across entire cluster.} 
   \item{concurrent}{Tell NONR to whether to run control streams concurrently in NONMEM (default: TRUE). Coerced to FALSE in Windows.}

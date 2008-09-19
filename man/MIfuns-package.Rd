@@ -48,7 +48,7 @@ properties of vectors and data frames(maxChar, prev, sorted).\cr
     \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.2.5\cr
+Version: \tab 3.2.6\cr
 Date: \tab 2008-09-08\cr
 License: \tab GPL\cr
 }

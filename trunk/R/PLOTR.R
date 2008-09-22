@@ -91,27 +91,52 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
         dataObs$PRED <- exp(dataObs$PRED)
         dataObs$IPRE <- exp(dataObs$IPRE)
     }
-    
+    pdf(
+    paste(ProjectDir, "/","DiagnosticPlotReview_", b,".pdf",sep=""),
+  	height=6,
+  	width=6
+  )
     #Do the standard diagnostic plots.
-    diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt)
+    lapply(
+    	diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt),
+    	print
+    )
 	
     #Consider covariate plots.
-    canDoCov <- file.exists(ParFileName) & file.exists(TabFileName)
-    if (!covplt) 
-        message(paste("No Covariate Plots requested for Run ", 
-            b, ".", sep = ""))
-    if (covplt & !file.exists(ParFileName)) 
-        warning(paste("Cov. plots requested but can't find", 
-            ParFileName))
-    if (covplt & !file.exists(TabFileName)) 
-        warning(paste("Cov. plots requested but can't find", 
-            TabFileName))
-    #Do the covariate plotting.
-    if (covplt & canDoCov) 
-        doCov(ParFileName, par.list, eta.list, CovFile, 
-            ProjectDir, b, cont.cov, cat.cov, covariates, dataObs, 
-            missing)
+    if (!covplt) message(paste("No Covariate Plots requested for Run ", b, ".", sep = ""))
+    if (covplt & !file.exists(ParFileName)) warning(paste("Cov. plots requested but can't find",ParFileName))
+    if (covplt & !file.exists(TabFileName)) warning(paste("Cov. plots requested but can't find",TabFileName))
+    if (covplt & file.exists(ParFileName) & file.exists(TabFileName))lapply(
+        doCov(ParFileName, par.list, eta.list, CovFile, ProjectDir, b, cont.cov, cat.cov, covariates, dataObs,missing),
+        print
+    )
+    dev.off()
     message(paste("Plotting for run ", b, " complete.", sep = ""))
     setwd(start)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

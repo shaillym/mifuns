@@ -1,6 +1,7 @@
 `diagnostics` <-
 function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt) 
 {
+  plots <-list()
   data <- dataObs
   if (is.null(grp)) {
     data$plotrGroup <- "all"
@@ -35,19 +36,17 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   	levels=c("PRED","IPRE"),
   	labels=c("population","individual")
   )
-  pdf(
-    paste(ProjectDir, "/","DiagnosticPlotReview_", b,".pdf",sep=""),
-  	height=6,
-  	width=6
-  )
   groupSubtitle <- function(grp){
   	if(grp[[1]] == "plotrGroup")return(NULL)
   	paste("by",paste(grp,collapse=", "))
   }
   #Observed vs. Predicted 
-  print(xyplot(
+  plots$obsPred <- xyplot(
   	DV ~ value | grpnames + variable, 
   	observed,
+  	as.table=TRUE,
+  	aspect=1,
+  	layout=c(2,2),
   	xlim = with(data,c(min(0, DV, PRED), max(0, DV, PRED))),
   	ylim = with(data,c(min(0, DV, PRED), max(0, DV, PRED))),
   	ylab = paste("Observed", dvname), 
@@ -57,14 +56,16 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   		panel.abline(0,1)
   	},
   	main=paste("Model",b,"\nObserved vs. Predicted",groupSubtitle(grp))
-  ))
+  )
   #Residuals vs. Predicted
   resvar <- intersect(c("RES","WRES","CWRES"),names(data))
   resid <- intersect(c("PRED","TIME","grpnames","TAD"),names(data))
   res <- melt(data,measure.var=resvar,id.var=resid)
-  print(xyplot(
+  plots$resPred <- xyplot(
   	value ~ PRED | grpnames + variable, 
   	res,
+  	as.table=TRUE,
+  	layout=c(2,2),
   	ylab = "residuals", 
   	xlab = paste("Predicted", dvname),
   	panel= function(x,y,lty=1,...){
@@ -74,11 +75,13 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   	},
   	scales=list(y=list(relation="free")),
   	main=paste("Model",b,"\nResiduals vs. Predicted",groupSubtitle(grp))
-  ))
+  )
   #Residuals vs. Time
-  print(xyplot(
+  plots$resTime <- xyplot(
   	value ~ TIME | grpnames + variable, 
   	res,
+  	as.table=TRUE,
+  	layout=c(2,2),
   	ylab = "residuals", 
   	xlab = paste("Time (hr)"),
   	panel= function(x,y,lty=1,...){
@@ -88,11 +91,13 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   	},
   	scales=list(y=list(relation="free")),
   	main=paste("Model",b,"\nResiduals vs. Time by",groupSubtitle(grp))
-  ))
+  )
   #Residuals vs. TAD
-  if("TAD" %in% names(res))print(xyplot(
+  if("TAD" %in% names(res))plots$resTad <- xyplot(
   	value ~ TAD | grpnames + variable, 
   	res,
+  	as.table=TRUE,
+  	layout=c(2,2),
   	ylab = "residuals", 
   	xlab = paste("Time (hr)"),
   	panel= function(x,y,lty=1,...){
@@ -102,11 +107,14 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   	},
   	scales=list(y=list(relation="free")),
   	main=paste("Model",b,"\nResiduals vs. TAD",groupSubtitle(grp))
-  ))
+  )
   #QQ-Norm
-  print(qqmath(
+  plots$resQ <- qqmath(
   	~ value | grpnames + variable, 
   	res,
+  	as.table=TRUE,
+  	layout=c(2,2),
+  	aspect=1,
   	ylab = "residuals", 
   	xlab = paste("theoretical quantiles"),
   	panel = function(x, ...) {
@@ -115,25 +123,28 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
     },
   	scales=list(y=list(relation="free")),
   	main=paste("Model",b,"\nNormal Q-Q Plot Residuals",groupSubtitle(grp))
-  ))
+  )
   #QQ-Res
-  if("CWRES" %in% names(data))print(qq(
+  if("CWRES" %in% names(data))plots$resCwresQ <- qq(
   	variable ~ value | grpnames,
   	res,
+  	as.table=TRUE,
+  	layout=c(2,2),
+  	aspect=1,
   	subset=variable %in% c("WRES","CWRES"),
   	panel = function(...) {
     	panel.qq(...)
     	panel.abline(0,1)
     },
   	main=paste("Model",b,"\nQ-Q Plot of CWRES vs. WRES",groupSubtitle(grp))
-  ))
+  )
   #Residuals
-  print(bwplot(
+  plotsRes <- bwplot(
   	value ~ variable | grpnames,
   	res,
   	main="Boxplots of Residuals",
   	ylab="residuals"
-  ))
-  if(covplt==0) dev.off()
+  )
+  plots
 }
 

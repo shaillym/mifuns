@@ -30,11 +30,11 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   		"grpnames (ignored)." 
   	)
   )
-  observed <- melt(data,measure.var=c("PRED","IPRE"),id.var=c("DV","grpnames"))
+  observed <- melt(data,measure.var=intersect(c("PRED","IPRE"),names(data)),id.var=c("DV","grpnames"))
   observed$variable <- factor(
   	observed$variable,
-  	levels=c("PRED","IPRE"),
-  	labels=c("population","individual")
+  	levels=intersect(c("PRED","IPRE"),names(data)),
+  	labels=c("population","individual")[c("PRED","IPRE") %in% names(data)]
   )
   groupSubtitle <- function(grp){
   	if(grp[[1]] == "plotrGroup")return(NULL)

@@ -19,7 +19,6 @@ accept(
 		"lattice",
 		"locfit",
 		"MASS",
-		"MItools",
 		"nlme",
 		"R2WinBUGS",
 		"reshape",

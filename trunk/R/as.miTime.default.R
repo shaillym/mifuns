@@ -7,7 +7,6 @@ hr <- as.numeric(strftime(tm,format="%H"))#extract character hours and coerce to
 mn <- as.numeric(strftime(tm,format="%M"))#extract character mins and coerce to number
 hr <- hr + mn/60#sum hours with mins as part of hour
 dy <- hr/24#convert to days
-class(dy) <- c("miTime")#add class name.
-return(dy)
+as.miTime(dy)
 }
 

@@ -1,3 +1,2 @@
 `as.miDate.miDateTime` <-
-function(x,...)as.miDate(as.numeric(x,...))
-
+function(x,...)as.miDate(trunc(as.numeric(x,...)))

@@ -1,6 +1,5 @@
 `as.miDateTime.numeric` <-
 function(x,...){
-class(x) <- c("miDateTime")
-return(x)
+as.miDateTime(as.miDate(x),as.miTime(x))
 }
 

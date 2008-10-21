@@ -8,7 +8,7 @@
 \description{
 	\code{as.miDateTime} is generic.  The class is stored internally
 	as numeric, interpreted as decimal days (fractional portion is time).
-	Display of seconds is not currently supported.
+	Storage and display of seconds is currentl disallowed.
 }
 
 \usage{
@@ -21,7 +21,7 @@
   \item{x}{ character, numeric, or miDate. }
   \item{format}{format string }
   \item{y}{ miTime, when x is miDate. }
-  \item{\dots}{Extra arguments, such as 'format' (see \code{strptime}.}
+  \item{\dots}{Extra arguments, such as 'format' (see \link{strptime}).}
 }
 \details{
   Typical usages are
@@ -35,10 +35,10 @@
   The default method coerces to character, and applies a format string using 
   strftime() syntax.
 
-  Comparisons are handled specially for class miDateTime.  Even though stored as a 
-  numeric with arbitrary precision, comparisons (<, > , ==, etc) are based on the 
-  information visible in the default format (i.e, nearest minute).  For finer 
-  comparisons, coerce to numeric first.
+  Comparisons (<, > , ==, etc) are handled specially for class miDateTime. They
+  are based on the information visible in the default format (i.e, nearest minute).
+  Since miDateTime is no longer stored with arbitrary precision, this precaution 
+  should be redundant in most cases.
 }
 \value{
   Object of class miDateTime, useful for its display behaviors.

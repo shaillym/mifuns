@@ -6,8 +6,8 @@
 \description{
 	\code{as.miDate} is generic.  The default method is just a
 	wrapper for \code{as.Date()} that adds 'miDate' to the classpath.
-	The method for numeric simply coerces the class to 'Date' and then
-	calls the generic.
+	The method for numeric, though, truncates x before calling the generic.
+
 }
 \synopsis{
 as.miDate(x, ...)
@@ -27,9 +27,10 @@ as.miDate(x, ...)
   constructing from character, a format argument can be passed, as per 
   \link{as.Date}.
   
-  Comparisons are handled specially for class miDate.  Even though stored as a 
-  numeric with arbitrary precision, comparisons (<, > , ==, etc) are based only
-  on the information visible in the default format (the "day" portion).
+  Comparisons (<, > , ==, etc) are handled specially for class miDate. They are
+  based on the information visible in the default format (the "day" portion). Since
+  miDate is no longer stored with arbitrary precision, this precaution should be
+  redundant in most cases.
 }
 \value{
   An object of the class miDate, useful for its display behaviors.

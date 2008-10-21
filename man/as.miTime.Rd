@@ -9,8 +9,8 @@
 	miTime is stored as numeric, and interpreted as fractional days.
 	miTime objects can be constructed from real numbers of arbitrary
 	precision, or from character strings with arbitrary formal elements
-	(e.g. including seconds) but display of seconds is not currently 
-	supported.
+	(e.g. including seconds) but storage and display of seconds is currently
+	disallowed.
 }
 \usage{
 	\method{as.miTime}{default}(x, format = "\%H:\%M", ...)
@@ -30,10 +30,10 @@
 		as.miTime(x, format = "\%H:\%M", ...)
 	}
 	
-  Comparisons are handled specially for class miTime.  Even though stored as a 
-  numeric with arbitrary precision, comparisons (<, > , ==, etc) are based on the 
-  information visible in the default format (i.e, nearest minute).  For finer 
-  comparisons, coerce to numeric first.
+  Comparisons (<, > , ==, etc) are handled specially for class miTime. They are 
+  based on the information visible in the default format (i.e, nearest minute).
+  Since miTime is no longer stored with arbitrary precision, this precaution
+  should be redundant in most cases.
 }
 \value{
   An object of the class miTime, useful for its display behaviors.

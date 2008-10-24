@@ -109,7 +109,7 @@ boot <- as.distribution(
 	influence=z.influence[c(FALSE,TRUE)]	#(just the even elements)
 )
 
-bwplot(CL~CL+AGE+WT+MALE,boot,rlim=0.2)
+covplot(CL~CL+AGE+WT+MALE,boot,rlim=0.2)
 }
 
 \keyword{manip}

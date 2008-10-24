@@ -51,7 +51,7 @@ as beta.
     safely.\cr
     \code{\link{css}} \tab Calculate One-Compartment Model Properties
     (acr, cavg, cmax, cmin, ke, tmax, auc).\cr
-    \code{\link{bwplot.distribution}} \tab Make "forest plots" of
+    \code{\link{covplot}} \tab Make "forest plots" of
     covariate effects, etc.\cr
     \code{\link{forbak}} \tab Impute missing vector values(locf,
     nocb).\cr

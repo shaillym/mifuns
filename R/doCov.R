@@ -78,7 +78,7 @@ function (ParFileName, par.list, eta.list, CovFile,
         	covariates[, par.list], 
         	panel = function(x, y) {
             	panel.splom(x, y)
-            	panel.loess(x,y)
+            	panel.lines(lowess(x,y))
         	},
         	main="Parameter Scatterplots",
         	xlab=""

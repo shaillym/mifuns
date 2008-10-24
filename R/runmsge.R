@@ -66,7 +66,7 @@ function (
   #Clean up.
   purge.files("^F[ISRC].*")
   purge.files("^OU.*")
-  purge.files("^nonm.*")
+  purge.files("nonmem.exe")
   if(!fdata)purge.files("^FD*")
   if(!fdata)purge.files("^PR*")
   Sys.chmod(grep(paste("^",i,"\\.",sep=""),dir(),value=TRUE),mode="0664")

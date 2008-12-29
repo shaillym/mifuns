@@ -90,7 +90,7 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   		panel.loess(x,y,lty=2,...)
   	},
   	scales=list(y=list(relation="free")),
-  	main=paste("Model",b,"\nResiduals vs. Time by",groupSubtitle(grp))
+  	main=paste("Model",b,"\nResiduals vs. Time",groupSubtitle(grp))
   )
   #Residuals vs. TAD
   if("TAD" %in% names(res))plots$resTad <- xyplot(

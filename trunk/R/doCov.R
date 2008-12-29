@@ -35,10 +35,11 @@ function (ParFileName, par.list, eta.list, CovFile,
     	covariates[, cont], 
     	panel = function(x, y) {
         	panel.splom(x, y)
-            panel.loess(x,y)
+            panel.lines(lowess(x,y))
         },
         main="Covariate Scatterplots",
-        xlab=""
+        xlab="",
+        pscales=0
     )
     #Cont vs cat bwpots
     if (length(cont) & length(cat)) {
@@ -49,14 +50,16 @@ function (ParFileName, par.list, eta.list, CovFile,
     	names(plasma)[names(plasma)=="variable"] <- "cat"
     	names(plasma)[names(plasma)=="value"] <- "x"
     	plots$contCat <- bwplot(
-    		y ~ as.factor(x) | cont + cat,
+    		y ~ factor(x) | cont + cat,
     		plasma,
     		as.table=TRUE,
     		layout=c(2,2),
     		horizontal=FALSE,
     		ylab="continuous covariate",
     		xlab="categorical covariate",
-    		scales=list(y=list(relation="free")),
+    		scales=list(relation="free"),
+    		prepanel=function(x,y,...)prepanel.default.bwplot(factor(x),y,...),
+    		panel=function(x,y,...)panel.bwplot(factor(x),y,...),
     		main="Continuous Covariates vs. Categorical Covariates"
     	)
     }
@@ -69,7 +72,8 @@ function (ParFileName, par.list, eta.list, CovFile,
             	panel.lines(lowess(x,y))
         	},
         	main="ETA Scatterplots",
-        	xlab=""
+        	xlab="",
+        	pscales=0
         )
     }
     #Parmater SPLOM
@@ -81,7 +85,8 @@ function (ParFileName, par.list, eta.list, CovFile,
             	panel.lines(lowess(x,y))
         	},
         	main="Parameter Scatterplots",
-        	xlab=""
+        	xlab="",
+        	pscales=0
         )
     }
     #ETA Histograms
@@ -103,13 +108,15 @@ function (ParFileName, par.list, eta.list, CovFile,
     	names(etas)[names(etas)=="value"] <- "delta"
     	condEtas <- melt(id.var=c("eta","delta"),etas)
     	plots$etaCat <- bwplot(
-    		delta ~ as.factor(value) | variable + eta,
+    		delta ~ factor(value) | variable + eta,
     		condEtas,
     		as.table=TRUE,
     		layout=c(2,2),
     		main="Boxplots of Etas by Categorical Covariate",
     		horizontal=FALSE,
     		scales=list(relation="free"),
+    		prepanel=function(x,y,...)prepanel.default.bwplot(factor(x),y,...),
+    		panel=function(x,y,...)panel.bwplot(factor(x),y,...),
     		ylab="ETA",
     		xlab="categorical covariate level"
     	)
@@ -132,7 +139,7 @@ function (ParFileName, par.list, eta.list, CovFile,
     		panel=function(x,y,...){
     			panel.xyplot(x,y,...)
     			panel.abline(h=0)
-    			panel.loess(x,y,lty=2,col="red",...)
+    			panel.lines(lowess(x,y),lty=2,col="red",...)
     		}
     	)
     }
@@ -142,14 +149,16 @@ function (ParFileName, par.list, eta.list, CovFile,
     if("CWRES" %in% names(data) && length(cat)){
     	res <- melt(data,id.var="CWRES",measure.var=cat)
     	plots$cwresCat <- bwplot(
-    		CWRES ~ as.factor(value) | variable,
+    		CWRES ~ factor(value) | variable,
     		res,
     		as.table=TRUE,
     		layout=c(2,2),
     		main="CWRES vs. Categorical Covariates",
     		xlab="categorical Covariate",
     		ylab="conditional weighted residuals",
-    		scales=list(relation="free")
+    		scales=list(relation="free"),
+    		prepanel=function(x,y,...)prepanel.default.bwplot(factor(x),y,...),
+    		panel=function(x,y,...)panel.bwplot(factor(x),y,...)
     	)
     }
     #CWRES vs. Continuous
@@ -167,11 +176,10 @@ function (ParFileName, par.list, eta.list, CovFile,
     		panel=function(x,y,...){
     			panel.xyplot(x,y,...)
     			panel.abline(h=0)
-    			panel.loess(x,y,lty=2,col="red",...)
+    			panel.lines(lowess(x,y),lty=2,col="red",...)
     		}
     	)
     }
     if (file.exists(CovFile)) file.remove(CovFile)
     plots
 }
-

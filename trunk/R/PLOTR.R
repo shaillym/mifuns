@@ -76,6 +76,12 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
     	}
     }
     dataObs <- data.table[data.table$EVID == 0, ]
+    
+    # check operation of code below. What should happen is that the "grp"
+    # variable should be taken from dataObs or the original dataset.
+    # However, if the variable exists in the data set only, the merge below limits 
+    # to only one line per individual for "grp" which may or may not be true. 
+    # Possiby, change "covariates" in merge step to data.file.nC 
     if (!is.null(grp)) {
     	need <- grp[!grp %in% names(dataObs)]
     	have <- grp[grp  %in% names(covariates)]

@@ -6,15 +6,23 @@ Given a numeric vector, calculate bin limits, place each value in a bin, and
 return the number of values in each bin.
 }
 \usage{
-bin(x, population = x, breaks = quantile(population,
-                                probs = c(0, 0.25, 0.5, 0.75, 1), ...), ...)
+bin(
+	x, 
+	population = x, 
+	breaks = quantile(
+		population,
+                probs = c(0, 0.25, 0.5, 0.75, 1),
+		...
+	),
+	...
+)
 }
 \arguments{
   \item{x}{A vector of numeric values, to be placed in bins.}
   \item{population}{A vector of numeric values serving as the reference
   population for constructing bins.}
   \item{breaks}{Bin limits (boundaries) to pass to cut().}
-  \item{\dots}{Other arguments to pass to quantile(), table(), or cut().}
+  \item{\dots}{Other arguments to pass to quantile() and cut().}
 }
 \details{
 By default, the population used to calculate bin limits is the same as the

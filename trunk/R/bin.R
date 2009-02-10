@@ -14,7 +14,6 @@ function(
 		breaks=breaks,
 		include.lowest=TRUE,
 		...
-	),
-	...
+	)
 )
 

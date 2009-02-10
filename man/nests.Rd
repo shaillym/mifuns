@@ -3,6 +3,8 @@
 \alias{crosses}
 \alias{\%nested.in\%}
 \alias{constant}
+\alias{constant.default}
+\alias{constant.data.frame}
 \title{ Test for Nested Factors (beta)}
 \description{
   Various Tests for Nested Factors.
@@ -11,26 +13,24 @@
 a \%nests\% b
 a \%nested.in\% b
 crosses(a,b)
-constant(x,within)
+\method{constant}{default}(x,within,...)
+\method{constant}{data.frame}(x,within=NULL,...)
 }
 \arguments{
   \item{a}{ A list of equal length factors, or one factor. }
   \item{b}{ A list of factors, or one factor, same length as \code{a}. }
   \item{x}{ An object like \code{a}, or a dataframe.}
   \item{within}{ An object like \code{b}, or just column names in x for the data.frame version.}
+  \item{\dots}{ Extra arguments passed to other methods.}
 }
 \details{
-  \code{nests} tests whether the factor(s) on the right are nested
-  within the
-  factor(s) on the left: i.e. \code{b} implies \code{a}.
-  \code{nested.in} tests 
-  the opposite: i.e., for unique interaction-wise levels of \code{a}, is
-  there 
-  exactly one interaction-wise corresponding level in \code{b} (\code{a}
-  implies 
-  \code{b})?  \code{constant}, by default, tests whether \code{within}
-  implies 
-  \code{x}.
+  \code{nests} tests whether the factor(s) on the right are nested within the
+  factor(s) on the left: i.e. \code{b} implies \code{a}. \code{nested.in} tests 
+  the opposite: i.e., for unique interaction-wise levels of \code{a}, is there 
+  exactly one interaction-wise corresponding level in \code{b} (\code{a} implies 
+  \code{b})?  \code{constant}, by default, tests whether \code{within} implies 
+  \code{x}.\code{constant.data.frame} returns unique rows for the columns of a data.frame that
+  do not vary (optionally nested by 'within' columns).
   
   \code{crosses} is the basis for all other functions.  For each level
   in \code{b},
@@ -56,6 +56,8 @@ with(CO2,constant(list(Type,Treatment),within=Plant)) #TRUE
 with(ChickWeight,constant(Diet,within=Chick)) #TRUE
 with(ChickWeight,constant(weight,within=list(Chick,Time))) #TRUE
 crosses(c(1,1,1,NA,NA,4),c(2,3,3,NA,5,5)) #FALSE FALSE FALSE FALSE FALSE TRUE
+constant(Theoph$Wt,within=Theoph$Subject)#TRUE
+constant(Theoph, within='Subject')
 }
 \keyword{ manip }
 

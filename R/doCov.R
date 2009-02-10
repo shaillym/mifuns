@@ -98,6 +98,19 @@ function (ParFileName, par.list, eta.list, CovFile,
     		as.table=TRUE,
     		layout=c(2,2),
     		main="Histograms of Etas",
+    		breaks=NULL,
+    		scales=list(relation="free")
+    	)
+	}
+    #ETA Densityplots
+    if(length(eta.list)){
+    	etas <- melt(covariates,measure.var=eta.list)
+    	plots$etaDens <- densityplot(
+    		~ value | variable,
+    		etas,
+    		as.table=TRUE,
+    		layout=c(2,2),
+    		main="Density of Etas",
     		scales=list(relation="free")
     	)
 	}

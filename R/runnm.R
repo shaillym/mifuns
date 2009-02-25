@@ -1,5 +1,5 @@
 `runnm` <-
-function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid) 
+function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, compileonly, executeonly) 
 {
   NMloc <- gsub(".pl?", "", NMcom)
   nmhome <- "/sawmill/comp/NONMEM"
@@ -37,6 +37,16 @@ function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, gri
   shelby <- "-shell n -b y"
   cwd <- paste("-cwd ", nmhome, lim, NMloc, lim, "test", lim, 
                NMcom, sep = "")
+  if(compileonly){
+    cwd <- paste("-cwd ", nmhome, lim, NMloc, lim, "test", lim, 
+               NMcom, " c ",sep = "")
+  }
+
+  if(executeonly){
+    cwd <- paste("-cwd ", nmhome, lim, NMloc, lim, "test", lim, 
+               NMcom, " e ",sep = "")
+  }     
+
   files <- paste(i, ".ctl ", i, ".lst", sep = "")
   end <- ""
   if (concurrent & (boot == 1 | boot == 2)) 

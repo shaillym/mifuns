@@ -3,7 +3,7 @@ function (
 	NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, 
     checkrunno, diag, fdata, epilog, dvname, logtrans, 
     covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
-    missing, dosbox, nochecksum, grid, nice
+    missing, dosbox, nochecksum, grid, nice, compileonly, executeonly
 ){
 
   #Set NONMEM output directory.
@@ -56,16 +56,16 @@ function (
   purge.files(paste("^",i,"[^0-9]*\\.TAB$",sep=""))
   purge.files(paste("^[^0-9]*",i,"\\.PDF$",sep=""))
   purge.dir(ndir,nice)
-  if(contains("\\.lock$",rdir))purge.dir(rdir)
+  if(!compileonly & !executeonly & contains("\\.lock$",rdir))purge.dir(rdir)
   dir.create(rdir, showWarnings = FALSE)
   file.copy(ctl1, ctl2, overwrite = TRUE)
   setwd(rdir)
   
   #Run NONMEM.
-  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid)
+  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, compileonly, executeonly)
   
   #Clean up (if not bootstrap run).
-  if(!bootstrap){
+  if(!bootstrap & !compileonly){
   	purge.files("^F[ISRC].*")
   	purge.files("^OU.*")
   	purge.files("nonmem.exe")
@@ -87,14 +87,14 @@ function (
   }
   
   #Diagnostics
-  if(diag & !bootstrap)try(
+  if(diag & !bootstrap & !compileonly)try(
     	PLOTR(
     		i, ProjectDir, dvname, logtrans, covplt, 
             grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
             missing
         )
     )
-  if(!diag & !bootstrap)try(cwres_1(i, ProjectDir))   
+  if(!diag & !bootstrap & !compileonly)try(cwres_1(i, ProjectDir))   
   if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
   setwd(origin)
 }

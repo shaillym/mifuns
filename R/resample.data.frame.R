@@ -5,6 +5,8 @@ dat <- x
 if(!is.null(out))out <- sub("/$","",out)
 if(is.null(key))dat$resample.rownames <- rownames(dat)
 if(is.null(key))key <- "resample.rownames"
+if(length(key)!=1)stop('length of key must be one')
+if(!key %in% names(dat))stop('key must name a column in x')
 if(is.null(stratify))stratify <- rep(0, nrow(dat))
 if(is.character(stratify) && all(stratify %in% names(dat)))stratify <- dat[stratify]
 if(!is.list(stratify)) stratify <- list(stratify)

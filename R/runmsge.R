@@ -40,7 +40,7 @@ function (
   		files <- dir(dir,full.names=TRUE,all.files=!nice)
   		files <- files[!files %in% grep("\\.$",files,value=TRUE)]
   		if(length(files))file.remove(files)
-  		if(!nice)file.remove(dir)
+  		if(!nice)unlink(dir)
   	}
   }
   purge.files <- function(pattern,dir="."){

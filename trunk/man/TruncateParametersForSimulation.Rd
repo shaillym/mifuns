@@ -12,7 +12,7 @@ TruncateParametersForSimulation(parameters, bounds)
   \item{parameters}{R dataframe containing the set of parameters that needs to be truncated.}
   \item{bounds}{R dataframe used to assign the parameter bounds. The dataframe should contain
   one row for each parameter that will be truncated and three columns with columns for parameter number (1,2,3, etc. 
-  corresponding to the column in /code{parameters} that needs to be truncated), the lower, and upper bound}
+  corresponding to the column in \code{parameters} that needs to be truncated), the lower, and upper bound}
 }
 \details{
   The function returns the \code{parameters} dataframe containing the truncated set of parameters and a message 

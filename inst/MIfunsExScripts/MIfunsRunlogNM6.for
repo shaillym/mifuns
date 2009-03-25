@@ -43,13 +43,26 @@ c      integer maxids
       unitp = 42
       UNITO = 43
 C Assign number of theta,eta,omega that will be written to the file:
-C       NTH1 = ntheta
-       NTH1 = 10
-C       NOM1 = neta
-       NOM1 = 5
-C       NSI1 = neps
-       NSI1 = 4
+       NTH1 = ntheta
+C       NTH1 = 10
+       NOM1 = neta
+C       NOM1 = 5
+       NSI1 = neps
+C       NSI1 = 4
 
+C     This INFN provides var-cov results assuming full block omega and sigma
+C     elements that are not estimated are output as 0.10000E+11
+       NTC = ntheta
+       NEC = neta
+       NSC = neps
+       NPAR = NTC+((NSC*NSC)-NSC)/2+NSC+((NEC*NEC)-NEC)/2+NEC
+       NPR = ((NPAR*NPAR)-NPAR)/2+NPAR 
+       OPEN(70,FILE='varcov.est')
+
+       write(70,300) (COV(I),I=1,NPR)
+  300  format(E12.6,",") 
+
+       CLOSE(70)
 
 C      IF (ICALL.EQ.3) THEN
        OPEN(50,FILE='cwtab1.est')

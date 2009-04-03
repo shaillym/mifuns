@@ -54,7 +54,8 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
             )
         }
     }
-    data.file.nC <- data.file[data.file$C != "C", ]
+	runIDs <- unique(data.table$ID)
+    data.file.nC <- data.file[data.file$C != "C" & is.element(data.file$ID, runIDs), ]
     covariates <- data.file.nC[!duplicated(data.file.nC$ID), 
         ]
 	
@@ -98,7 +99,7 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
         dataObs$IPRE <- exp(dataObs$IPRE)
     }
     pdf(
-    paste(ProjectDir, "/","DiagnosticPlotReview_", b,".pdf",sep=""),
+    paste(ProjectDir, "/","DiagnosticPlotReview",grp,"_", b,".pdf",sep=""),
   	height=6,
   	width=6
   )

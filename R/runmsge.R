@@ -3,7 +3,7 @@ function (
 	NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, 
     checkrunno, diag, fdata, epilog, dvname, logtrans, 
     covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
-    missing, dosbox, nochecksum, grid, nice, udef, SGEcom
+    missing, dosbox, nochecksum, grid, nice, udef, UDEFcom
 ){
 
   #Set NONMEM output directory.
@@ -62,7 +62,7 @@ function (
   setwd(rdir)
   
   #Run NONMEM.
-  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, udef, SGEcom)
+  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, udef, UDEFcom)
   
   #Clean up (if not bootstrap run).
   if(!bootstrap){

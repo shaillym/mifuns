@@ -18,7 +18,7 @@
   PLOTR is a function to generate diagnostic plots and/or covariate
   evaluation plots following a successful NONMEM run. It is called by
   NONR if diagnostic plots are requested or can be called independently
-  following a NONMEM run. Plots are output as one pdf.  }
+  following a NONMEM run. Plots are output as one pdf or multiple pdfs.  }
 
 \synopsis{
   NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "",
@@ -26,17 +26,19 @@
   NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL,
   cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL,
   missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE,
-  nice=FALSE) PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE,
+  nice=FALSE, udef=FALSE, UDEFcom=NULL, onefile=TRUE) 
+  PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE,
   covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov
-  = NULL, par.list = NULL, eta.list = NULL, missing = -99)
+  = NULL, par.list = NULL, eta.list = NULL, missing = -99, onefile=TRUE)
   diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt)
   doCov(ParFileName, par.list, eta.list, CovFile, ProjectDir, b,
-  cont.cov, cat.cov, covariates, dataObs, missing) runmsge(NMcom,
-  ProjectDir, i, boot, concurrent, Platform, SGEflgs, checkrunno, diag,
+  cont.cov, cat.cov, covariates, dataObs, missing) 
+  runmsge(NMcom,ProjectDir, i, boot, concurrent, Platform, SGEflgs, checkrunno, diag,
   fdata, epilog, dvname, logtrans, covplt, grp, grpnames, cont.cov,
-  cat.cov, par.list, eta.list, missing, dosbox, nochecksum, grid, nice)
+  cat.cov, par.list, eta.list, missing, dosbox, nochecksum, grid, nice,
+  udef, UDEFcom, onefile)
   runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox,
-  nochecksum, grid) startDevice(ProjectDir, base, b) stopDevice()
+  nochecksum, grid, udef, UDEFcom) startDevice(ProjectDir, base, b) stopDevice()
  }
 
 \usage{
@@ -44,11 +46,12 @@ NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "",
 checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, dvname =
 NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL,
 cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL,
-missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=F)
+missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=F, 
+udef=FALSE, UDEFcom=NULL, onefile=TRUE)
 
 PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE,
 grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list =
-NULL, eta.list = NULL, missing = -99)
+NULL, eta.list = NULL, missing = -99, onefile=TRUE)
 }
 
 \arguments{ \item{NMcom}{The complete name of the perl script created by
@@ -121,7 +124,14 @@ NULL, eta.list = NULL, missing = -99)
   \code{nice=TRUE}, standard NONMEM files (cwtab1, *.ctl, *.lst, etc..)
   are deleted but non-standard files/directories are not deleted prior
   to a NONMEM execution. Using \code{nice=TRUE} will preserve .svn
-  directories. Default: FALSE} } \details{ Generally 0 and 1 can be used
+  directories. Default: FALSE} \item{udef}{Whether the user will supply a 
+  custom command to run NONMEM. If set to TRUE, \code{UDEFcom} must be defined. 
+  Default: FALSE} \item{UDEFcom}{User supplied custom command to run NONMEM. 
+  This must be character.  The command in \code{UDEFcom} is wrapped in a 
+  system call and passed to the command-line. Default: NULL} 
+  \item{onefile}{Whether diagnostic plots should be many single page 
+  pdfs or one multi-page pdf. Defaults to one multi-page pdf. Set \code{onefile}=FALSE
+  to get to multiple pdfs. Default: TRUE}} \details{ Generally 0 and 1 can be used
   in place of FALSE and TRUE.
   
   The plotting device is pdf().  } \value{ NONR and PLOTR are used for

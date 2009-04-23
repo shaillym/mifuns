@@ -94,7 +94,7 @@ function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt)
   	main=paste("Model",b,"\nResiduals vs. Time",groupSubtitle(group))
   )
   #Residuals vs. TAD
-  if("TAD" %in% names(res))plot[[paste('resTad',group)]] <- xyplot(
+  if("TAD" %in% names(res))plots[[paste('resTad',group)]] <- xyplot(
   	value ~ TAD |  variable, 
   	res[res$grpnames==group,],
   	as.table=TRUE,

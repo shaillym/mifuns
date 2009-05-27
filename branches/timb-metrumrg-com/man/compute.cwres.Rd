@@ -61,7 +61,7 @@ compute.cwres(run.number,
   \item{\dots}{Other arguments passed to basic functions in code.}
 }
 \details{
-  \item{compute.cwres}{This function is the computational 'brains' of
+  \code{compute.cwres}This function is the computational 'brains' of
     the CWRES computation.  The function simply reads in the following two files:
     
     \preformatted{
@@ -88,7 +88,7 @@ compute.cwres(run.number,
     \preformatted{
       cwtab1
     }
-  }    
+     
   
   }
 \section{Setting up the NONMEM model file}{In order for this function to 

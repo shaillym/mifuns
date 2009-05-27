@@ -1,6 +1,7 @@
 `runnm` <-
-function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid) 
+  function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, udef, UDEFcom) 
 {
+  
   NMloc <- gsub(".pl?", "", NMcom)
   nmhome <- "/sawmill/comp/NONMEM"
   lim <- "/"
@@ -21,7 +22,6 @@ function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, gri
     end <- "&"
   nm1 <- paste(lead, que, SGEflgs, run, sync, shelby, cwd, 
                files, end)
-               
   if (Platform == "Mac" & grid==FALSE) 
     nm1 <- paste("perl -S ", NMcom, " ", i, ".ctl ", i, ".lst", 
                  sep = "")
@@ -48,10 +48,11 @@ function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, gri
   nm1 <- paste(lead, que, SGEflgs, run, sync, shelby, cwd, 
                files, end)
   }
-
-  if (Platform == "Windows"){
-  if(!nochecksum){
-  if(!dosbox){
+  
+  if(!udef){
+    if (Platform == "Windows"){
+      if(!nochecksum){
+        if(!dosbox){
   	nm1 <- paste("cmd /C perl -S ", NMcom, " ", i, ".ctl ", 
                  i, ".lst", sep = "")
                  }else {
@@ -59,7 +60,7 @@ function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, gri
                  i, ".lst", sep = "")
                  }
                  }else
-                 { 
+      { 
 				 
   	if(!dosbox){
   	nm1 <- paste("cmd /C perl -S ", NMcom, " ", i, ".ctl ", 
@@ -87,6 +88,24 @@ function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, gri
     else {
       system(nm1)
     }
+  }
+  }else
+  {
+    if(Platform == "Windows"){
+   nm1 <- paste(UDEFcom)
+   system(nm1, intern = FALSE, invisible = FALSE)
+    }
+    else
+      {
+    nm1 <- paste(UDEFcom)
+    if(concurrent){
+      pid <-fork(function() system(nm1))
+      wait(pid)
+    }
+    else {
+      system(nm1)
+    }
+  }
   }
 }
 

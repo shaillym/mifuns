@@ -116,7 +116,6 @@
 	udef, 
 	UDEFcom, 
 	onefile,
-	epilog,
 	plotName
   )
   runnm(
@@ -128,8 +127,8 @@
 	SGEflgs, 
 	dosbox,
 	nochecksum, 
-	grid, 
-	udef, 
+	grid,
+	udef,
 	UDEFcom
   ) 
  }

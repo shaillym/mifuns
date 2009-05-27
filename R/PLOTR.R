@@ -99,7 +99,7 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
     enumerator <- NULL
     if(!onefile) enumerator='_%d'
     if(is.null(plotName))plotName <- paste(ProjectDir, "/", "DiagnosticPlotReview", grp, "_",b,enumerator, ".pdf", sep = "")
-    pdf(plotName,onefile=onefile, height = 6, width = 6)}
+    pdf(plotName,onefile=onefile, height = 6, width = 6)
     
     #Do the standard diagnostic plots.
     lapply(

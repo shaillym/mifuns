@@ -69,8 +69,8 @@ function (
   	purge.files("^F[ISRC].*")
   	purge.files("^OU.*")
   	purge.files("nonmem.exe")
-  	if(!fdata)purge.files("^FD*")
-  	if(!fdata)purge.files("^PR*")
+  	if(!fdata)purge.files("^FD.*")
+  	if(!fdata)purge.files("^PR.*")
   	Sys.chmod(grep(paste("^",i,"\\.",sep=""),dir(),value=TRUE),mode="0664")
   	Sys.chmod(grep("n.*\\.",dir(),value=TRUE),mode="0664")
   	try(file.rename(grep("^Run",dir(),value=TRUE),"nonmem.log"),silent=TRUE)
@@ -87,6 +87,7 @@ function (
   }
   
   #Diagnostics
+  if(!bootstrap)try(cwres_1(i, ProjectDir))
   if(diag & !bootstrap)try(
     	PLOTR(
     		i, ProjectDir, dvname, logtrans, covplt, 
@@ -94,7 +95,7 @@ function (
             missing
         )
     )
-  if(!diag & !bootstrap)try(cwres_1(i, ProjectDir))   
+  #if(!diag & !bootstrap)try(cwres_1(i, ProjectDir))   
   if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
   setwd(origin)
 }

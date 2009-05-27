@@ -1,8 +1,12 @@
 `PLOTR` <-
 function (b, ProjectDir, dvname = NULL, logtrans = FALSE, 
     covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, 
-    cat.cov = NULL, par.list = NULL, eta.list = NULL, missing = -99) 
+    cat.cov = NULL, par.list = NULL, eta.list = NULL, 
+    missing = -99,epilog=NULL) 
 {
+    #Run epilog, if PLOTR called independently
+    if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
+
     #Main Plot function, called independently or by NONR.
     
     #Initialize some variables.

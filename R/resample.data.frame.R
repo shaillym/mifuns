@@ -1,5 +1,18 @@
 `resample.data.frame` <-
-function(x, names, key=NULL, rekey=FALSE, out=NULL, stratify=NULL, seed=0, ...){
+function(
+	x, 
+	names, 
+	key=NULL, 
+	rekey=FALSE, 
+	out=NULL, 
+	stratify=NULL, 
+	seed=0,
+	ext='.csv',
+	row.names=FALSE,
+	quote=FALSE,
+	sep=',',
+	...
+){
 set.seed(seed)
 dat <- x
 if(!is.null(out))out <- sub("/$","",out)
@@ -31,8 +44,8 @@ doBin <- function(bin){
         sample.dataset$resample.rownames <- NULL
         if (is.null(out)) 
             return(sample.dataset)
-        write.csv(sample.dataset, file = paste(out, "/", name, 
-            ".csv", sep = ""), row.names = FALSE, quote = FALSE)
+        write.table(sample.dataset, file = paste(out, "/", name, 
+            ext, sep = ""), row.names = row.names, quote = quote, sep=sep,...)
         return(nrow(sample.dataset))
     }
     invisible(lapply(as.list(as.character(names)), doName))

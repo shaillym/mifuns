@@ -2,7 +2,7 @@
 function (b, ProjectDir, dvname = NULL, logtrans = FALSE, 
     covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, 
     cat.cov = NULL, par.list = NULL, eta.list = NULL, 
-    missing = -99,epilog=NULL) 
+    missing = -99,onefile=TRUE,epilog=NULL,plotName=NULL) 
 {
     #Run epilog, if PLOTR called independently
     if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
@@ -58,7 +58,8 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
             )
         }
     }
-    data.file.nC <- data.file[data.file$C != "C", ]
+    runIDs <- unique(data.table$ID)
+    data.file.nC <- data.file[data.file$C != "C" & is.element(data.file$ID, runIDs), ]
     covariates <- data.file.nC[!duplicated(data.file.nC$ID), 
         ]
 	
@@ -80,12 +81,6 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
     	}
     }
     dataObs <- data.table[data.table$EVID == 0, ]
-    
-    # check operation of code below. What should happen is that the "grp"
-    # variable should be taken from dataObs or the original dataset.
-    # However, if the variable exists in the data set only, the merge below limits 
-    # to only one line per individual for "grp" which may or may not be true. 
-    # Possiby, change "covariates" in merge step to data.file.nC 
     if (!is.null(grp)) {
     	need <- grp[!grp %in% names(dataObs)]
     	have <- grp[grp  %in% names(covariates)]
@@ -101,11 +96,11 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
         dataObs$PRED <- exp(dataObs$PRED)
         dataObs$IPRE <- exp(dataObs$IPRE)
     }
-    pdf(
-    paste(ProjectDir, "/","DiagnosticPlotReview_", b,".pdf",sep=""),
-  	height=6,
-  	width=6
-  )
+    enumerator <- NULL
+    if(!onefile) enumerator='_%d'
+    if(is.null(plotName))plotName <- paste(ProjectDir, "/", "DiagnosticPlotReview", grp, "_",b,enumerator, ".pdf", sep = "")
+    pdf(plotName,onefile=onefile, height = 6, width = 6)}
+    
     #Do the standard diagnostic plots.
     lapply(
     	diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt),
@@ -124,29 +119,3 @@ function (b, ProjectDir, dvname = NULL, logtrans = FALSE,
     message(paste("Plotting for run ", b, " complete.", sep = ""))
     setwd(start)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -9,7 +9,7 @@ resample(dat,...)
 
 `resample.filename` <-
 function(x,...){
-extras <- list(...)
+extras <- attr(x,'extras')
 file <- list(file=x)
 valid <- c(file,extras[names(extras) %in% names(formals(read.table))])
 dat <- do.call("read.table",args=valid)

@@ -40,8 +40,9 @@ function (x, names, pattern = NULL, replacement = NULL, out = NULL,
         	)
         )
         replacement <- sapply(replacement, as.character)
-        replacement <- gsub(pattern = "\\*", replacement = name, 
-            x = replacement)
+        replacement <- gsub(pattern = "\\\\\\*", replacement = '_star_', x = replacement)
+        replacement <- gsub(pattern = "\\*", replacement = name, x = replacement)
+        replacement <- gsub(pattern = "_star_", replacement = '*', x = replacement)
         for (i in seq(pattern)) result <- do.call(
         	gsub,
         	c(

@@ -21,22 +21,40 @@
   following a NONMEM run. Plots are output as one pdf.  }
 
 \synopsis{
-  NONR(NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "",
-  checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, dvname =
-  NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, grpnames = NULL,
-  cont.cov = NULL, cat.cov = NULL, par.list = NULL, eta.list = NULL,
-  missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE,
-  nice=FALSE) PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE,
-  covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov
-  = NULL, par.list = NULL, eta.list = NULL, missing = -99)
+  NONR(
+  	NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, SGEflgs = "",
+	checkrunno = TRUE, diag = TRUE, fdata = FALSE, epilog = NULL, 
+	dvname =NULL, logtrans = FALSE, covplt = FALSE, grp = NULL, 
+	grpnames = NULL,cont.cov = NULL, cat.cov = NULL, par.list = NULL, 
+	eta.list = NULL,missing = -99, dosbox = TRUE, nochecksum=FALSE, 
+	grid=FALSE,nice=FALSE
+  ) 
+  
+  PLOTR(
+  	b, ProjectDir, dvname = NULL, logtrans = FALSE,covplt = FALSE, 
+	grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov= NULL, 
+	par.list = NULL, eta.list = NULL, missing = -99, epilog=NULL
+  )
+  
   diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt)
-  doCov(ParFileName, par.list, eta.list, CovFile, ProjectDir, b,
-  cont.cov, cat.cov, covariates, dataObs, missing) runmsge(NMcom,
-  ProjectDir, i, boot, concurrent, Platform, SGEflgs, checkrunno, diag,
-  fdata, epilog, dvname, logtrans, covplt, grp, grpnames, cont.cov,
-  cat.cov, par.list, eta.list, missing, dosbox, nochecksum, grid, nice)
-  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox,
-  nochecksum, grid) startDevice(ProjectDir, base, b) stopDevice()
+  
+  doCov(
+  	ParFileName, par.list, eta.list, CovFile, ProjectDir, b,
+	cont.cov, cat.cov, covariates, dataObs, missing
+  ) 
+  
+  runmsge(
+  	NMcom,ProjectDir, i, boot, concurrent, Platform, SGEflgs, 
+	checkrunno, diag,fdata, epilog, dvname, logtrans, covplt, grp, 
+	grpnames, cont.cov,cat.cov, par.list, eta.list, missing, 
+	dosbox, nochecksum, grid, nice
+  )
+  
+  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox,nochecksum, grid) 
+  
+  %startDevice(ProjectDir, base, b) 
+  
+  %stopDevice()
  }
 
 \usage{
@@ -48,7 +66,7 @@ missing = -99, dosbox = TRUE, nochecksum=FALSE, grid=FALSE, nice=F)
 
 PLOTR(b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE,
 grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, par.list =
-NULL, eta.list = NULL, missing = -99)
+NULL, eta.list = NULL, missing = -99,epilog=NULL)
 }
 
 \arguments{ \item{NMcom}{The complete name of the perl script created by

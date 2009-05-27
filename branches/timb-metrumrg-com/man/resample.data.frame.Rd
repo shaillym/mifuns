@@ -3,11 +3,12 @@
 \alias{as.csv.filename}
 \alias{as.csv.filename.character}
 \alias{resample.csv.filename}
+\alias{resample.filename}
 \alias{resample.data.frame}
 \title{Create Replicate Data Sets by Stratified Sampling With Replacement}
 \description{
 	\code{resample()} is generic.  A Methods is defined for data.frame; 
-	a convienience wrapper is provided for passing names of csv files 
+	a convienience wrapper is provided for passing names of files 
 	to be read and then resampled.
 }
 \usage{
@@ -18,24 +19,28 @@
 }
 
 \arguments{
-  \item{x}{A data.frame, or (second form) a file name for a CSV file to read.}
+  \item{x}{A data.frame, or (second/third form) a file name for a file to read.}
   \item{names}{A list of names for replicate data sets; can be a simple vector.}
   \item{key}{An atomic character value naming the column in x that distinguishes
   unique individuals, (resampling targets). Defaults to row names.}
   \item{rekey}{If true, key values in resampled data sets will have unique values 
   of key replaced with consecutive integers, starting at 1.}
-  \item{out}{A (path and) directory in which to write resulting data sets as CSV files.}
+  \item{out}{A (path and) directory in which to write resulting data sets.}
   \item{stratify}{A list of factors, the interactions of which will be the levels of 
   stratification.  Each factor must have the same length as nrow(x).  Or a character vector
   of names in names(x).}
   \item{seed}{A number to use as the seed for the random number generator.}
-  \item{\dots}{Extra arguments, currently ignored.}
+  \item{ext}{A file extension.}
+  \item{row.names}{Passed to \code{write.table()}.}
+  \item{quote}{Passed to \code{write.table()}.}
+  \item{\dots}{Extra arguments, passed to \code{write.table()}.}
 }
 \details{
 	Typical usages are
 	\preformatted{
 		resample(x, names, ...)
 		resample(as.csv.filename(x), names, ...)
+		resample(as.filename(x), names, ...)
 	}
 	The argument \code{key} gives the name of the column in x to identify
 	unique experimental units (individuals). If not supplied, a temporary

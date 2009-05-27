@@ -25,7 +25,7 @@ as beta.
     (CWRES) diagnostic plots as a pdf (cwres\_1).\cr
     \code{\link{NONR}} \tab Run NONMEM and create diagnostic plots.\cr
     \code{\link{PLOTR}} \tab Generate diagnostic and/or covariate
-    evaluation plots as a pdf or multiple pngs.\cr
+    evaluation plots as a pdf or multiple single page pdfs.\cr
     \code{\link{rlog}} \tab Generate a combined run log from multiple
     NONMEM runs.\cr
     \code{\link{resample.data.frame}} \tab Create replicate datasets by
@@ -82,7 +82,7 @@ as beta.
     \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.2.15.1\cr
+Version: \tab 3.2.16.1\cr
 Date: \tab 2009-05-27\cr
 License: \tab GPL\cr
 }

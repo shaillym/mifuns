@@ -33,9 +33,9 @@ IDname = "ID", TimeName = "TIME", DVname = "DV", CName = "C", Ignore = "C")
   are \code{Q25} and \code{Q75}. The user can also create custom functions and use those with 
   \code{ComputePredictiveCheck}.}
   \item{IDname}{Name of the column that assigns unique patient ID. Default value is \dQuote{ID}. Each of the data 
-  frames \code{NonmemData} and code{SimulatedData} should have \code{IDname} column.}
+  frames \code{NonmemData} and \code{SimulatedData} should have \code{IDname} column.}
   \item{TimeName}{Name of the column that assigns time of the observation. Default value is \dQuote{TIME}. Each of 
-  the data frames \code{NonmemData} and code{SimulatedData} should have \code{TimeName} column.}
+  the data frames \code{NonmemData} and \code{SimulatedData} should have \code{TimeName} column.}
   \item{DVname}{Name of the column that assigns dependent variable value. Default value is \dQuote{DV}. Each of the 
   data frames \code{NonmemData} and \code{SimulatedData} should have \code{DVname} column. \code{DVname} 
   column of \code{NonmemData} data frame should contain observed values. \code{DVname} column of 
@@ -57,7 +57,7 @@ IDname = "ID", TimeName = "TIME", DVname = "DV", CName = "C", Ignore = "C")
   called as \code{Stats[[k]]} where \code{k} is the order of the desired data frame in the \code{StatFun} list. The 
   same element can be called by name as \code{Stats[ StutFun[k] ]}. Each data frame (element of Stats list) contains
   summaries of individual parameters by study. It has STUDY column and one column for each element of the \code{SimpleFun}
-  and code{CombFun} vectors. STUDY column give the order number of the simulated study. STUDY=0 record describes 
+  and \code{CombFun} vectors. STUDY column give the order number of the simulated study. STUDY=0 record describes 
   observed data.  
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }

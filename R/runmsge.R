@@ -63,7 +63,7 @@ function (
   setwd(rdir)
   
   #Run NONMEM.
-  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid)
+  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid,udef,UDEFcom)
   
   #Clean up (if not bootstrap run).
   if(!bootstrap){

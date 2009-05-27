@@ -34,6 +34,7 @@
   \item{ext}{A file extension.}
   \item{row.names}{Passed to \code{write.table()}.}
   \item{quote}{Passed to \code{write.table()}.}
+  \item{sep}{Passed to \code{write.table()}.}
   \item{\dots}{Extra arguments, passed to \code{write.table()}.}
 }
 \details{

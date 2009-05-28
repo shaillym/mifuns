@@ -1,0 +1,58 @@
+\name{comment}
+\alias{[.comment}
+\alias{[[.comment}
+\alias{as.character.comment}
+\alias{as.comment.comment}
+\alias{as.comment.default}
+\alias{as.comment}
+\alias{as.data.frame.comment}
+\alias{c.comment}
+\alias{format.comment}
+\alias{hide.data.frame}
+\alias{hide}
+\alias{print.comment}
+\alias{rep.comment}
+
+\title{Create and Manipulate Comment Objects}
+\description{Some conventions include the use of 'C' or '.' as the 
+first element in a row. 'C' is typically used to identify a row to be 
+ignored ("commented-out"). Here, a comment is really a logical that should 
+never be \code{NA}, and prints as 'C' or '.' (\code{TRUE,FALSE}).
+}
+
+\usage{
+\method{[}{comment}(x, ..., drop = TRUE)
+\method{[[}{comment}(x, ..., drop = TRUE)
+%as.comment(x, ...)
+\method{as.comment}{default}(x, ...)
+\method{as.data.frame}{comment}(x, row.names = NULL, optional = FALSE, ...)
+\method{c}{comment}(..., recursive = FALSE)
+\method{format}{comment}(x, ...)
+%hide(x, ...)
+\method{hide}{data.frame}(x, where, why, ...)
+\method{print}{comment}(x, ...)
+\method{rep}{comment}(x, ...)
+}
+
+\arguments{
+  \item{x}{the comment object, or something coercible to \code{logical}}
+  \item{\dots}{extra arguments, generally ignored}
+  \item{drop}{coerce to lowest possible dimension}
+  \item{row.names}{row names for the result}
+  \item{optional}{optional to use the object name as the column name?}
+  \item{recursive}{unused, present for historical reasons}
+  \item{where}{\code{logical} with length \code{nrow(x)}, indicating rows to hide}
+  \item{why}{a column name suggesting the reason for hiding}
+}
+
+\details{
+Objects of class \code{comment} can be used exactly like \code{logical}s, but look like
+traditional comments.  \code{hide.data.frame()} implements consistent
+commenting of rows, including a reason for the comment.
+}
+\value{\code{comment}, or \code{data.frame} for \code{hide.data.frame()}}
+\examples{
+hide(Theoph, where=Theoph$conc < 1,why='BLQ')
+}
+\keyword{manip}
+

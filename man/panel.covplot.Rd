@@ -1,10 +1,15 @@
 \name{panel.covplot}
 \alias{as.double.immutable}
-\alias{panel.covplot}
 \alias{prepanel.covplot}
+\alias{panel.old.covplot}
 
 \title{Control Plotting of Default "Forest Plots"}
 \description{
+This mechanism for generating forest plots is deprecated.  In fact, 
+\code{panel.covplot} has been redefined. The old definition is now in 
+panel.old.covplot(), for reference.  These functions are not maintained 
+and will likely be removed in a future version.
+
 prepanel.covplot() calls the default stats function to set up 'xlim'.
 panel.covplot() lays out the basic form of a "Forest Plot", and calls panel.bwplot().
 as.double.immutable() (called by panel.covplot()) prevents as.double() from stripping
@@ -12,7 +17,7 @@ names from the values of x.
 }
 \usage{
 	\method{as.double}{immutable}(x, ...)
-	panel.covplot(x, ref, rlim = NULL, rcol = "grey90", pcol = "green", ...)
+	panel.old.covplot(x, ref, rlim = NULL, rcol = "grey90", pcol = "green", ...)
 	prepanel.covplot(x,...)
 }
 \arguments{

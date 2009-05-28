@@ -1,0 +1,280 @@
+read.nm <- function(x){
+	tran <- as.keyed(read.csv(x,na='.',as.is=TRUE),key=key(nm()))
+	miscol <- setdiff(names(nm()),names(tran))
+	if(length(miscol))stop(paste('file is missing columns ',paste(miscol,collapse=', ')))
+	tran$C <- as.comment(!is.na(tran$C))
+	if(any(naKeys(tran) & !tran$C))warning('file has na Keys')
+	if(any(dupKeys(tran)))warning('file has duplicate keys')
+	if(!is.integer(tran$ID))stop('ID should be integer')
+	if('DATETIME' %in% names(tran)){
+		tran$DATETIME <- as.miDateTime(tran$DATETIME,format='%m/%d/%Y %H:%M')
+		tran$TIME[!is.na(tran$DATETIME)] <- NA
+	}
+	a <- tran[!is.na(tran$TIME),]
+	b <- tran[is.na(tran$TIME),]
+	key(b) <- c('SUBJ','DATETIME','SEQ')
+	x <- nm()
+	if(nrow(a)) x <- x + a
+	if(nrow(b)) x <- x + b
+	x
+}
+
+badDv <- function(x,...)UseMethod('badDv')
+badDv.nm <- function(x,...){
+	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,is.na(DV) & EVID==0)
+}
+
+falseDv <- function(x,...)UseMethod('falseDv')
+falseDv.nm <- function(x,...){
+	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,!is.na(DV) & EVID!=0)
+}
+
+zeroDv <- function(x,...)UseMethod('zeroDv')
+zeroDv.nm <- function(x,...){
+	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,!is.na(DV) & EVID==0 & DV==0)
+}
+predoseDv <- function(x,...)UseMethod('predoseDv')
+predoseDv.nm <- function(x,...){
+	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,!is.na(DV) & distance(EVID==1,within=SUBJ) < 0)
+}
+
+badAmt <- function(x,...)UseMethod('badAmt')
+badAmt.nm <- function(x,...){
+	if(!all(c('AMT','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,is.na(AMT) & EVID==1)
+}
+
+falseAmt <- function(x,...)UseMethod('falseAmt')
+falseAmt.nm <- function(x,...){
+	if(!all(c('AMT','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,!is.na(AMT) & EVID!=1)
+}
+
+zeroAmt <- function(x,...)UseMethod('zeroAmt')
+zeroAmt.nm <- function(x,...){
+	if(!all(c('AMT','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
+	with(x,!is.na(AMT) & AMT==0 & EVID==1)
+}
+
+noPk <- function(x,...)UseMethod('noPk')
+noPk.nm <- function(x,...){
+	if(!'EVID' %in% names(x))return(rep(FALSE,nrow(x)))
+	with(x,is.na(first(EVID==0,within=SUBJ)))
+}
+
+badII <- function(x,...)UseMethod('badII')
+badII.nm <- function (x, ...){
+    if (!all(c("ADDL", "II") %in% names(x))) 
+        return(rep(FALSE, nrow(x)))
+    with(
+    	x, 
+    	!is.na(II) & 
+    	II > 0 & 
+    	!(exists('SS') & SS > 0) &
+    	(
+    		is.na(ADDL) | 
+    		!is.na(ADDL) & 
+        	ADDL == 0
+        )
+    )
+}
+
+`summary.nm` <- function(object,by=NULL,...){
+	#FUN <- function(x,y)data.frame(item=x,value=y,stringsAsFactors=FALSE)
+	x<-object
+	z <- list()
+	z['rows'] <- nrow(x)
+	z['records'] <- sum(!x$C)
+	z['comments'] <- sum(x$C)
+	x <- x[!x$C,]
+	z['subjects'] <- length(unique(x$ID))
+	z['longestCase'] <- round(max(tapply(x$TIME,x$ID,function(x,...)max(x)-min(x))))
+	for(test in c(
+		'naKeys',
+		'dupKeys',
+		'badDv',
+		'falseDv',
+		'zeroDv',
+		'predoseDv',
+		'badAmt',
+		'falseAmt',
+		'zeroAmt',
+		'noPk',
+		'badII'
+	))z[test] <- sum(match.fun(test)(x))
+	if(length(by))z <- c(z,list(table=table(x[,by,drop=FALSE])))
+	class(z) <- 'nm.summary'
+	z	
+}
+
+`print.nm.summary` <- function(x,...){
+	print(data.frame(value=unlist(x[!sapply(x,inherits,'table')])))
+	writeLines('')
+	lapply(
+		x[sapply(x,inherits,'table')],
+		print
+	)
+}
+
+
+`write.nm` <- function(
+	x,
+	file,
+	na='.',
+	row.names=FALSE,
+	quote=FALSE,
+	...
+	)write.csv(
+	x=x,
+	file=file,
+	na=na,
+	row.names=row.names,
+	quote=quote,
+	...
+)
+
+merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
+
+`nm` <- function()as.nm(
+	data.frame(
+		SUBJ=vector('character'),
+		TIME=vector('numeric')
+	)
+)
+`as.nm` <- function(x,...)UseMethod('as.nm')
+`as.nm.data.frame` <- function(x,...){		
+	#SUBJ must be present and defined, even for commented records.
+	if(!'SUBJ' %in% names(x)) stop('nm candidate must have SUBJ')
+	if(any(is.na(x$SUBJ))) stop('SUBJ cannot contain NA')
+	#ID
+	#SUBJ is known to be present and fully defined.
+	#SUBJ and ID must have the same sort order.
+	#The default levels of factor() give ID corresponding to sorted SUBJ.
+	x$ID <- as.numeric(factor(x$SUBJ))
+	
+	#Comment will be imputed if not present.
+	if(!'C' %in% names(x))x$C <- rep(FALSE,nrow(x))
+	x$C <- as.comment(x$C)
+	#Comment cannot be NA
+	x$C[is.na(x$C)] <- FALSE
+	
+	#Every active source record should define exactly one of TIME or DATETIME.
+	#TIME is received as-is, taken to represent relative accumulation of hours from arbitrary origin.
+	#DATETIME is understood as seconds, coercible to miDateTime, and trumps TIME with warning.
+	#If DATETIME is present, definition (or not) should be constant within subject (for active records).
+	if('DATETIME' %in% names(x))with(
+		x[!x$C,],
+		if(!constant(is.na(DATETIME),within=SUBJ))stop(
+			paste(
+				'DATETIME intermittent for SUBJ',
+				SUBJ[crosses(is.na(DATETIME),SUBJ)][1]
+			)
+		)
+	)
+	#Coerce even in commented records
+	if(!'TIME' %in% names(x))x$TIME <- NA
+	if('DATETIME' %in% names(x)){
+		clash <- with(x,!is.na(TIME) & !is.na(DATETIME))
+		if(any(clash))warning(paste('DATETIME overrides TIME, e.g. for SUBJ',x$SUBJ[clash][[1]]))
+		x$TIME[!is.na(x$DATETIME)] <- as.numeric(as.miDateTime(x$DATETIME[!is.na(x$DATETIME)]))/60/60
+	}
+	
+	#At this point, active TIME should be completely defined.
+	if(any(is.na(x$TIME[!x$C])))stop('TIME not completely defined.')
+	
+	#SEQ will be imputed if not present
+	if(!'SEQ' %in% names(x))x$SEQ <- rep(0,nrow(x))
+	x$SEQ <- as.flag(x$SEQ)
+	
+	#x may be a data.frame, but now has enough information to define the nm key.
+	x <- as.keyed(x,key=c('SUBJ','TIME','SEQ'))
+	
+	#Time is either relative hours from arbitrary origins, or hours since DATETIME origin.
+	#Relativize to earliest value.
+	
+	x <- sort(x) #NAs will be last
+	x <- within(x,TIME <- signif(TIME - TIME[first(!is.na(TIME),within=ID)],7))
+	
+	#PRIME
+	#If data set contains AMT, prime can be calculated as the first dose at any
+	#given time within Subject.
+	prime <- logical(0)
+	if('AMT' %in% names(x))prime <- with(x,where(!is.na(AMT),within=list(ID,TIME)))
+	prime[is.na(prime)] <- FALSE
+	
+	#TAFD
+	#Time After First Dose. The time of the first defined amount per subject is a local origin.
+	#Domain is active records.  Range is all records.
+	if(length(prime))x <- within(x,TAFD <- signif(TIME - TIME[first(prime & !C,within=ID)],6))
+	
+	#TAD
+	#Time After Dose.  
+	#Each prime is a local origin.
+	#Domain is active prime records.  Range is all records.
+	#Where ADDL and II are present, TAD is calculated as well.
+	tMostRecentDose <- function(x,y,a,i){
+		#returns max value of y + (0:a)*i that is < x
+		z <- y
+		hi <- max(a,na.rm=TRUE) 
+		if(is.na(hi) | is.nan(hi) | is.infinite(hi)) return(z)
+		for(trial in 0:hi){
+			candidate <- y + trial*i
+			updatable <- !is.na(candidate) & !is.na(x) & !is.na(a) & candidate < x & trial <= a  
+			z[updatable] <- candidate[updatable]
+		}
+		z							
+	}
+	s <- suppressWarnings
+	if(length(prime))x <- within(x,TAD <- signif(TIME - TIME[s(first(prime & !C,within=list(ID,cumsum(prime))))],5))
+	if(length(prime) & all(c('ADDL','II') %in% names(x)))x <- within(
+		x,
+		TAD <- signif(
+			TIME - tMostRecentDose(
+				TIME,#ceiling reference
+				TIME[s(first(prime        & !C,within=list(ID,cumsum(prime))))], # most recent dose record
+				ADDL[s(first(!is.na(ADDL) & !C,within=list(ID,cumsum(prime))))], # most recent ADDL value
+				  II[s(first(!is.na(II)   & !C,within=list(ID,cumsum(prime))))]  # most recent II value
+			),
+			5
+		)
+	)
+		
+	#Impute flags.  Check whether merge drops flag status.
+	flags <- names(x)[sapply(names(x),function(col)inherits(x[[col]],'flag'))]
+	x <- as.keyed(
+		cbind(
+			x[,names(x)[!names(x) %in% flags],drop=FALSE],
+			data.frame(
+				lapply(
+					x[,flags,drop=FALSE],
+					function(col){
+						col[is.na(col)] <- 0
+						return(col)
+					}
+				)
+			)			
+		)[names(x)],
+		key=key(x)
+	)
+	#for(f in flags)x[[f]][is.na(x[[f]])] <- 0
+		
+	#LDOS
+	#AMT from prime records is carried forward.
+	#Domain is active prime records.  Range is all records.
+	if(length(prime))x <- within(x, LDOS <- AMT[s(first(prime & !C,within=list(ID,cumsum(prime))))])
+	
+	#MDV
+	if('DV' %in% names(x))x$MDV <- as.flag(as.numeric(is.na(x$DV)))
+	
+	#Order
+	nonkey <- setdiff(setdiff(names(x),key(x)),'C')
+	row.names(x) <- NULL
+	x <- x[c('C',key(x),nonkey)]
+	if(!inherits(x,'nm'))class(x) <- c('nm',class(x))
+	x
+}
+

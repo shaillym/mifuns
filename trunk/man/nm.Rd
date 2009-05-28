@@ -38,7 +38,7 @@ write.nm(x, file, na = ".", row.names = FALSE, quote = FALSE, ...)
 \details{
 \code{as.nm.data.frame()} is the only method that creates an \code{nm} classification.  It 
 alone enforces all qualities of class \code{nm}.
-
+\itemize{
   \item \code{SUBJ} must be present and defined, even for commented records.
   \item \code{C} (class \code{comment}) will be created if not present.
   \item \code{NA} \code{C} will be imputed \code{FALSE}.
@@ -55,13 +55,15 @@ alone enforces all qualities of class \code{nm}.
   \item \code{NA} flags will be imputed as zero.
   \item \code{MDV} (missing dependent value) will be calculated if \code{DV} is present.
   \item resulting column order will lead with \code{C} followed by key columns.
-  
+}
+
   Column summary:
+\itemize{
   \item required inputs: SUBJ, TIME or DATETIME
   \item optional inputs: AMT, ADDL, II, DV, 
   \item enforced outputs: SUBJ, ID, C, TIME, SEQ
   \item conditional outputs: TAFD, TAD, LDOS, MDV
-
+}
 }
 \value{
 \code{write.nm} is used for side effects. Others return an object with class 

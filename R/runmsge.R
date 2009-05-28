@@ -96,8 +96,7 @@ function (
             missing, onefile,plotName= plotName
         )
     )
-  #if(!diag & !bootstrap)try(cwres_1(i, ProjectDir))   
-  if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
   setwd(origin)
+  if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
 }
 

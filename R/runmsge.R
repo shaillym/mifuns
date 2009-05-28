@@ -93,7 +93,7 @@ function (
     	PLOTR(
     		i, ProjectDir, dvname, logtrans, covplt, 
             grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
-            missing, onefile, plotName
+            missing, onefile,plotName= plotName
         )
     )
   #if(!diag & !bootstrap)try(cwres_1(i, ProjectDir))   

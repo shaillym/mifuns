@@ -16,6 +16,7 @@
 \alias{format.miTime}
 \alias{format.miDate}
 \alias{format.miDateTime}
+\alias{Ops.miTemporal}
 
 
 \title{Temporal Classes with Selective Defaults}

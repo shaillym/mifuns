@@ -127,7 +127,7 @@ panel.covplot(
 \author{ Tim Bergsma }
 \seealso{  \code{\link{densityplot}},\code{\link{bin}}}
 \examples{
-soup <- melt(crabs)
+soup <- melt(crabs,id.var=c('sp','sex','index'))
 soup$relative <- with(soup,value/mean(value[variable=='CL']))
 soup$grp <- 'depth'
 soup$grp[contains('W',soup$variable)] <- 'width'

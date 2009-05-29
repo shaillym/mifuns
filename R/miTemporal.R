@@ -98,11 +98,11 @@ Ops.miTemporal <- function (e1, e2){
         stop("unary ", .Generic, " not defined for miTemporal objects")
     boolean <- switch(.Generic, `<` = , `>` = , `==` = , `!=` = , 
         `<=` = , `>=` = TRUE, FALSE)
-    if (boolean) e1 <- as.integer(e1)
-    if (boolean) e2 <- as.integer(e2)
+    if (boolean) e1 <- as.numeric(e1)
+    if (boolean) e2 <- as.numeric(e2)
     NextMethod(.Generic)
 }
-
+xtfrm.miTemporal <- function(x)xtfrm(as.numeric(x))
 
 
 

@@ -94,7 +94,8 @@ aggregate.keyed <- function(
 	molten <- melt(dups,id.var=names(by))
 	frozen <- cast(molten,fun=FUN,...)
 	frozen <- as.keyed(frozen,names(by))
-	x <- merge(unique,frozen,all=TRUE)
+	#x <- merge(unique,frozen,all=TRUE)
+	x <- as.keyed(rbind(unique,frozen),names(by))
 	x[['_superkey']] <- NULL
 	key(x) <- setdiff(key(x),'_superkey')
 	if(!length(key(x))){

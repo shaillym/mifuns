@@ -1,10 +1,10 @@
 `hash` <-
-function(x){
+function(x,char='#'){
 	con <- file()
 	sink(con)
 	result <- try(x)
 	if(!inherits(result,"try-error"))print(result)
-	comments <- paste("#",readLines(con))
+	comments <- paste(char,readLines(con))
 	sink(NULL)
 	close(con)
 	writeLines(comments)	

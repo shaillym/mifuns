@@ -1,0 +1,176 @@
+\name{panel.densitystrip}
+\alias{panel.densitystrip}
+\alias{panel.covplot}
+\alias{panel.cuts}
+\alias{panel.ref}
+\title{Display Distributions with Respect to Reference Values}
+\description{
+  These are panel functions that compare distributions with respect to 
+  reference values.  \code{panel.densitystrip} plots a filled polygon for
+  each unique value of \code{y}.  \code{panel.cuts} calculates the portion of
+  each distribution (unique \code{y}) falling within specified limits.
+  \code{panel.ref} shades a swath of the panel between specified limits of the 
+  primary axis.  \code{covplot} uses the other panel functions to assemble 
+  a sample display of covariate data.
+}
+\usage{
+panel.densitystrip(
+    x, 
+    y, 
+    scale = 0.5, 
+    horizontal = TRUE, 
+    groups = NULL,
+    col='grey',
+    border='black',
+    ...
+)
+panel.ref(
+    x, 
+    y, 
+    col = "grey90", 
+    horizontal, 
+    rlim, 
+    ...
+)
+panel.cuts(
+    x, 
+    y, 
+    cuts, 
+    horizontal = TRUE, 
+    groups = NULL, 
+    offset = -0.2, 
+    format = function(x) as.numeric(round(x/sum(x) * 100)), 
+    include.range = TRUE, 
+    zero.rm = TRUE, 
+    cex=0.7,
+    ...
+)
+panel.covplot(
+    x,
+    y,
+    groups=NULL,
+    ref=1,
+    rlim=ref * c(0.75,1.25),
+    cuts=ref * c(0.75,1,1.25),
+    horizontal=TRUE,
+    border='black',
+    fill='grey',
+    text='black',
+    shade='grey90',
+    col='white',
+    ...
+)
+}
+\arguments{
+  \item{x}{ numeric vector }
+  \item{y}{ numeric vector }
+  \item{scale}{ relative height of the density polygon }
+  \item{horizontal}{ if TRUE, strips run horizontally (x is primary axis) }
+  \item{groups}{ vector/factor for grouping of strips, used by panel.superpose }
+  \item{col}{ 
+  	\code{panel.densitystrip}:polygon fill color; 
+	\code{panel.ref}:reference area fill color;
+	\code{panel.covplot}:color of cut lines	
+  }
+  \item{border}{ polygon border color }
+  \item{\dots}{ extra arguments passed to other functions }
+  \item{rlim}{ length 2 vector: the limits of the shaded region }
+  \item{cuts}{ the values at which to divide the primary axis }
+  \item{offset}{ distance from nominal value on secondary axis, at which to plot cut statistics}
+  \item{format}{ a function to post-process counts of elements between cuts }
+  \item{include.range}{ if TRUE, \code{cuts} is supplemented with the range of the data }
+  \item{zero.rm}{ If TRUE, zeros are not printed } 
+  \item{cex}{ scale factor for text }
+  \item{ref}{ position of a black reference line; may be NULL }
+  \item{fill}{ polygon fill color }
+  \item{text}{ text color for cut statistics }
+  \item{shade}{ reference fill color }
+}
+\details{
+  Unlike \code{panel.densityplot}, \code{panel.densitystrip} has both \code{x}
+  and \code{y} arguments.  Like \code{panel.stripplot} and \code{panel.bwplot},
+  panel data is implicitly subset by the discrete values on the secondary axis.
+  I.e, visual elements are panel subsets.  (The same pertains to 
+  \code{panel.cuts}).  Densities are calculated using the default arguments
+  of \code{density()}.  Alternatives will be passed to \code{density()} if
+  supplied.
+  
+  A grouping variable can be used at the "panel subset" level to give the same
+  graphical parameters to several subsets, e.g., several polygons can share a color.
+  
+  
+  For \code{panel.cuts}, calculated values are by default converted to character
+  and printed below (horizontal:TRUE) the density strips.  Zeros are not printed
+  by default, for less visual clutter; zeros are stripped before the conversion
+  to character.  The actual values calculated are "bin counts", i.e., the number
+  of elements in each vector that fall between adjacent cut points.  Only inner
+  cuts need be specified, as the limits of the data are included by default as
+  the outer limits.  Cuts are converted to percent by default; use 
+  \code{format=function(x)x} to get actual counts. \code{cex} will control
+  the size of the text.
+  
+  \code{panel.covplot} is optimized for a sample presentation of covariate effects.
+  Values are assumed to be relative, so the center cut is 1 with +/- 25% reference
+  region.  Five colors features are specifiable.  \code{ref}, \code{rlim}, and \code{cuts}
+  can be specified independently.  
+  
+  Formally, these panel functions are alternatives to \code{panel.stripplot}, and thus
+  can be passed to \code{stripplot()}. \code{xyplot()} gives similar 
+  results, and \code{bwplot()} seems to give identical results.
+  
+  
+}
+\value{
+  Panel functions are used for side-effects.
+}
+\references{ http://metruminstitute.org; http://mifuns.googlecode.com }
+\author{ Tim Bergsma }
+\seealso{  \code{\link{densityplot}},\code{\link{bin}}}
+\examples{
+soup <- melt(crabs,id.var=c('sp','sex','index'))
+soup$relative <- with(soup,value/mean(value[variable=='CL']))
+soup$grp <- 'depth'
+soup$grp[contains('W',soup$variable)] <- 'width'
+soup$grp[contains('L',soup$variable)] <- 'length'
+stripplot(variable~value,soup,panel=panel.densitystrip)
+stripplot(
+	variable~relative|sp+sex,
+	soup,
+	panel=panel.densitystrip,
+	auto.key=TRUE
+)
+stripplot(
+	variable~relative|sp+sex,
+	soup,
+	panel=panel.covplot,
+	auto.key=TRUE
+)
+stripplot(
+	variable~relative|sp+sex,
+	soup,
+	panel=panel.covplot,
+	groups=grp,
+	auto.key=TRUE,
+	cex=0.5,
+	offset=0.2
+)
+stripplot(
+	value~variable|sp+sex,
+	soup,
+	groups=grp,
+	panel=panel.covplot,
+	auto.key=TRUE,
+	horizontal=FALSE,
+	ref=NULL,
+	rlim=c(10,50),
+	lty=3,
+	lwd=2,
+	border='transparent',
+	text='blue',
+	shade='turquoise',
+	col='magenta',
+	cuts=c(10,20,30,40,50)
+)
+}
+\keyword{ manip }
+

@@ -5,7 +5,7 @@ subclass <- function(x,class,...){
 as.numeric.chartime <- function(x,format,...)as.numeric(unclass(as.POSIXct(strptime(x,format),tz="GMT")))
 as.chartime <- function(x,...)UseMethod("as.chartime")
 as.chartime.numeric <- function(x,format,mark=TRUE,...){
-	y <- as.character(strftime(as.POSIXlt(x,tz="GMT",origin="1970-01-01"),format))
+	y <- as.character(strftime(as.POSIXlt(as.numeric(x),tz="GMT",origin="1970-01-01"),format))
 	y[is.infinite(x)] <- x[is.infinite(x)]
 	z <- rep("",length(y))
 	if(mark){
@@ -93,7 +93,16 @@ as.miDateTime.miDateTime <- function(x,...)x
     class(x) <- cl
     x
 }
-
+Ops.miTemporal <- function (e1, e2){
+    if (nargs() == 1) 
+        stop("unary ", .Generic, " not defined for miTemporal objects")
+    boolean <- switch(.Generic, `<` = , `>` = , `==` = , `!=` = , 
+        `<=` = , `>=` = TRUE, FALSE)
+    if (boolean) e1 <- as.numeric(e1)
+    if (boolean) e2 <- as.numeric(e2)
+    NextMethod(.Generic)
+}
+xtfrm.miTemporal <- function(x)xtfrm(as.numeric(x))
 
 
 

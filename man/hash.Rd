@@ -6,10 +6,11 @@
   output will be returned, with a hash character at the start of each line.
 }
 \usage{
-hash(x)
+hash(x,char='#')
 }
 \arguments{
   \item{x}{an R expression}
+  \item{char}{text to prepend to each line}
 }
 \details{
   This is useful for embedding the result of an expression in a script.
@@ -28,12 +29,12 @@ used for side effects
 \code{\link{file}},
 \code{\link{sink}}}
 \examples{
-function(x){
+function(x,char='#'){
 	con <- file()
 	sink(con)
 	result <- try(x)
 	if(!inherits(result,"try-error"))print(result)
-	comments <- paste("#",readLines(con))
+	comments <- paste(char,readLines(con))
 	sink(NULL)
 	close(con)
 	writeLines(comments)	

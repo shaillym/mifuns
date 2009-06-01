@@ -4,7 +4,7 @@ function(
 	data, 
 	coef=1.5,
 	stats=covplot.stats,
-	panel=panel.covplot,
+	panel=panel.old.covplot,
 	prepanel=prepanel.covplot,
 	transform="x*1",
 	pch=1,

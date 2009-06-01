@@ -3,6 +3,8 @@
 \alias{covplot}
 \title{Make "Forest Plots" of Covariate Effects, etc.}
 \description{
+This mechanism of generating covplots is deprecated, and will likely be removed soon.
+
 covplot() customizes bwplot() for a distribution object.  It gives an easy and flexible 
 way to construct "Forest Plots", which consist largely of horizontal boxes and 
 whiskers that show the effects, for instance, of covariates on model parameters.
@@ -13,7 +15,7 @@ whiskers that show the effects, for instance, of covariates on model parameters.
 		data,
 		coef = 1.5, 
 		stats =covplot.stats, 
-		panel = panel.covplot,
+		panel = panel.old.covplot,
 		prepanel = prepanel.covplot, 
 		transform = "x*1", 
 		pch = 1, 

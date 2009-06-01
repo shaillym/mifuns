@@ -69,7 +69,7 @@
 	(same meaning as "*" above) and all other \dots arguments. This is useful
 	if extra arguments have a dimension indexed, at least loosely, by \code{names}.
 	The evaluated expression is treated as character, and wildcard substitution
-	is attempted.
+	is attempted. Use \code{\*} for a literal asterisk: in R: "\\*".
 	
 	NOTE:  be very careful not to have trailing commas in your lists!  An 
 	error results that is very hard to track.  e.g. \code{c(a,b,c,)}.

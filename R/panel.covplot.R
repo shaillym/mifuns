@@ -1,4 +1,4 @@
-`panel.covplot` <-
+`panel.old.covplot` <-
 function(
 	x,
 	ref,

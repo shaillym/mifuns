@@ -16,7 +16,8 @@
 \alias{format.miTime}
 \alias{format.miDate}
 \alias{format.miDateTime}
-
+\alias{Ops.miTemporal}
+\alias{xtfrm.miTemporal}
 
 \title{Temporal Classes with Selective Defaults}
 \description{

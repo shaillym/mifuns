@@ -3,7 +3,8 @@ function (
 	NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, 
     checkrunno, diag, fdata, epilog, dvname, logtrans, 
     covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
-    missing, dosbox, nochecksum, grid, nice, udef, UDEFcom, onefile
+    missing, dosbox, nochecksum, grid, nice, udef, UDEFcom, onefile,
+    plotName
 ){
 
   #Set NONMEM output directory.
@@ -62,15 +63,15 @@ function (
   setwd(rdir)
   
   #Run NONMEM.
-  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, udef, UDEFcom)
+  runnm(NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid,udef,UDEFcom)
   
   #Clean up (if not bootstrap run).
   if(!bootstrap){
   	purge.files("^F[ISRC].*")
   	purge.files("^OU.*")
   	purge.files("nonmem.exe")
-  	if(!fdata)purge.files("^FD*")
-  	if(!fdata)purge.files("^PR*")
+  	if(!fdata)purge.files("^FD.*")
+  	if(!fdata)purge.files("^PR.*")
   	Sys.chmod(grep(paste("^",i,"\\.",sep=""),dir(),value=TRUE),mode="0664")
   	Sys.chmod(grep("n.*\\.",dir(),value=TRUE),mode="0664")
   	try(file.rename(grep("^Run",dir(),value=TRUE),"nonmem.log"),silent=TRUE)
@@ -87,15 +88,15 @@ function (
   }
   
   #Diagnostics
+  if(!bootstrap)try(cwres_1(i, ProjectDir))
   if(diag & !bootstrap)try(
     	PLOTR(
     		i, ProjectDir, dvname, logtrans, covplt, 
             grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
-            missing, onefile
+            missing, onefile,plotName= plotName
         )
     )
-  if(!diag & !bootstrap)try(cwres_1(i, ProjectDir))   
-  if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
   setwd(origin)
+  if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
 }
 

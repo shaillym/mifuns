@@ -18,7 +18,7 @@ as.miTime <- function(x,...)UseMethod("as.miTime")
 as.miTime.numeric <- function(x,...){
 	x <- round(x)
 	x[is.finite(x)] <- x[is.finite(x)]%%(60*60*24)
-	subclass(x,c("miTime","miTemporal"))
+	subclass(x,c("miTime"))
 }
 as.miTime.character <- function(x,format="%H:%M",...)as.miTime(as.numeric.chartime(x,format))
 
@@ -27,34 +27,42 @@ as.miDate.numeric <- function(x,...){
 	x <- round(x)
 	f <- is.finite(x)
 	x[f] <- x[f] - x[f]%%(60*60*24)
-	subclass(x,c("miDate","miTemporal"))
+	subclass(x,c("miDate"))
 }
 as.miDate.character <- function(x,format="%Y-%m-%d",...)as.miDate(as.numeric.chartime(x,format))
 
 as.miDateTime <- function(x,...)UseMethod("as.miDateTime")
 as.miDateTime.numeric <- function(x,...){
 	x <- round(x)
-	subclass(x,c("miDateTime","miTemporal"))
+	subclass(x,c("miDateTime"))
 }
 as.miDateTime.character <- function(x,format="%Y-%m-%d %H:%M",...)as.miDateTime(as.numeric.chartime(x,format))
 as.miDateTime.miDate <- function(x,y=0,...)as.miDateTime(as.numeric(x)+as.numeric(y))
 format.miTime <- function(x,format="%H:%M",mark=TRUE,...)as.chartime(x,format,mark)
 format.miDate <- function(x,format="%m/%d/%Y",mark=TRUE,...)as.chartime(x,format,mark)
 format.miDateTime <- function(x,format="%m/%d/%Y %H:%M",mark=TRUE,...)as.chartime(x,format,mark)
-as.character.miTemporal <- function(x,...)format(x,...)
-print.miTemporal <-function(x,...){
+as.character.miDate <- 
+as.character.miTime <- 
+as.character.miDateTime <- 
+function(x,...)format(x,...)
+print.miDate <- 
+print.miTime <- 
+print.miDateTime <-
+function(x,...){
 	print(format(x,...),quote=FALSE)
 	invisible(x)
 }
-c.miTemporal <- function (..., recursive = FALSE){
+c.miDate <- 
+c.miTime <- 
+c.miDateTime <- 
+function (..., recursive = FALSE){
 	args <- list(...)
 	oldclass <- class(args[[1]])	
 	structure(c(unlist(lapply(args, unclass))), class = oldclass)
 }
-seq.miTemporal <- function (from, to, by=NULL,length.out = NULL, along.with = NULL, ...){
-	if(is.null(by))if(inherits(from,"miTime"))by=60*60
-	if(is.null(by))if(inherits(from,"miDate"))by=60*60*24
-	if(is.null(by))if(inherits(from,"miDateTime"))by=60*60*24
+seq.miDate <- 
+seq.miDateTime <- function (from, to, by=NULL,length.out = NULL, along.with = NULL, ...){
+	if(is.null(by))by=60*60*24
 	x <- seq(
 		from=as.numeric(from),
 		to=as.numeric(to),
@@ -64,36 +72,46 @@ seq.miTemporal <- function (from, to, by=NULL,length.out = NULL, along.with = NU
 	class(x) <- class(from)
 	x
 }
-as.miTime.miTime <- function(x,...)x
-as.miDate.miDate <- function(x,...)x
-as.miDateTime.miDateTime <- function(x,...)x
-`[.miTemporal` <- function (x, ..., drop = TRUE){
-    cl <- oldClass(x)
-    class(x) <- NULL
-    val <- NextMethod("[")
-    class(val) <- cl
-    val
+seq.miTime  <- function (from, to, by=NULL,length.out = NULL, along.with = NULL, ...){
+	if(is.null(by))by=60*60
+	x <- seq(
+		from=as.numeric(from),
+		to=as.numeric(to),
+		by=by,
+		...
+	)
+	class(x) <- class(from)
+	x
 }
-`[[.miTemporal` <- function (x, ..., drop = TRUE){
+as.miTime.miTime <- 
+as.miDate.miDate <- 
+as.miDateTime.miDateTime <- 
+function(x,...)x
+
+`[.miDate` <- 
+`[.miTime` <-
+`[.miDateTime` <-
+`[[.miDate` <- 
+`[[.miTime` <-
+`[[.miDateTime` <-
+function (x, ..., drop = TRUE){
     cl <- oldClass(x)
-    class(x) <- NULL
-    val <- NextMethod("[[")
-    class(val) <- cl
-    val
+    x <- unclass(x)
+    structure(NextMethod(.Generic),class= cl)
 }
-`[<-.miTemporal` <- function (x, ..., value){
-    if (!(length(value)))return(x)
-    if(all(is.na(value)))value <- as.numeric(value)
-    if(inherits(x,"miTime"))value <- as.miTime(value)
-    if(inherits(x,"miDate"))value <- as.miDate(value)
-    if(inherits(x,"miDateTime"))value <- as.miDateTime(value)
-    cl <- oldClass(x)
-    class(x) <- class(value) <- NULL
-    x <- NextMethod(.Generic)
-    class(x) <- cl
-    x
+`[<-.miDate` <- 
+`[<-.miTime` <- 
+`[<-.miDateTime` <- 
+function (x, ..., value){
+	cl <- oldClass(x)
+	x <- unclass(x)
+	value <- unclass(value)
+	structure(NextMethod(.Generic),class = cl)
 }
-Ops.miTemporal <- function (e1, e2){
+Ops.miDate <- 
+Ops.miTime <-
+Ops.miDateTime <- 
+function (e1, e2){
     if (nargs() == 1) 
         stop("unary ", .Generic, " not defined for miTemporal objects")
     boolean <- switch(.Generic, `<` = , `>` = , `==` = , `!=` = , 
@@ -102,7 +120,6 @@ Ops.miTemporal <- function (e1, e2){
     if (boolean) e2 <- as.numeric(e2)
     NextMethod(.Generic)
 }
-xtfrm.miTemporal <- function(x)xtfrm(as.numeric(x))
 
 
 

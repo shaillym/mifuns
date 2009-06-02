@@ -16,8 +16,31 @@
 \alias{format.miTime}
 \alias{format.miDate}
 \alias{format.miDateTime}
-\alias{Ops.miTemporal}
-\alias{xtfrm.miTemporal}
+\alias{Ops.miDate}
+\alias{Ops.miTime}
+\alias{Ops.miDateTime}
+\alias{[.miDate}
+\alias{[.miDateTime}
+\alias{[.miTime}
+\alias{[[.miDate}
+\alias{[[.miTime}
+\alias{[[.miDateTime}
+\alias{[<-.miDate}
+\alias{[<-.miTime}
+\alias{[<-.miDateTime}
+\alias{as.character.miDate}
+\alias{as.character.miTime}
+\alias{as.character.miDateTime}
+\alias{c.miDate}
+\alias{c.miTime}
+\alias{c.miDateTime}
+\alias{print.miDate}
+\alias{print.miTime}
+\alias{print.miDateTime}
+\alias{seq.miDate}
+\alias{seq.miTime}
+\alias{seq.miDateTime}
+
 
 \title{Temporal Classes with Selective Defaults}
 \description{
@@ -85,7 +108,7 @@ as.miDateTime(x, ...)
 \references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
 \seealso{ 
-	\code{\link{c.miTemporal}} 
+	\code{\link{as.chartime}} 
 }
 \examples{
 #numeric to temporal

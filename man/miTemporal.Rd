@@ -16,51 +16,7 @@
 \alias{format.miTime}
 \alias{format.miDate}
 \alias{format.miDateTime}
-\alias{[.miDate}
-\alias{[.miDateTime}
-\alias{[.miTime}
-\alias{[[.miDate}
-\alias{[[.miTime}
-\alias{[[.miDateTime}
-\alias{[<-.miDate}
-\alias{[<-.miTime}
-\alias{[<-.miDateTime}
-\alias{as.character.miDate}
-\alias{as.character.miTime}
-\alias{as.character.miDateTime}
-\alias{c.miDate}
-\alias{c.miTime}
-\alias{c.miDateTime}
-\alias{print.miDate}
-\alias{print.miTime}
-\alias{print.miDateTime}
-\alias{seq.miDate}
-\alias{seq.miTime}
-\alias{seq.miDateTime}
-\alias{+.miDate}
-\alias{+.miTime}
-\alias{+.miDateTime}
-\alias{-.miDate} 
-\alias{-.miTime} 
-\alias{-.miDateTime}
-\alias{==.miDate} 
-\alias{==.miTime} 
-\alias{==.miDateTime}
-\alias{<.miDate} 
-\alias{<.miTime} 
-\alias{<.miDateTime}
-\alias{>.miDate} 
-\alias{>.miTime} 
-\alias{>.miDateTime}
-\alias{<=.miDate} 
-\alias{<=.miTime} 
-\alias{<=.miDateTime}
-\alias{>=.miDate} 
-\alias{>=.miTime} 
-\alias{>=.miDateTime}
-\alias{!=.miDate} 
-\alias{!=.miTime} 
-\alias{!=.miDateTime}
+
 
 \title{Temporal Classes with Selective Defaults}
 \description{
@@ -128,7 +84,7 @@ as.miDateTime(x, ...)
 \references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
 \seealso{ 
-	\code{\link{as.chartime}} 
+	\code{\link{c.miTemporal}} 
 }
 \examples{
 #numeric to temporal
@@ -242,11 +198,11 @@ as.numeric(as.miDateTime("01/02/1970 12:30:15",format="\%m/\%d/\%Y \%H:\%M:\%S")
 # 131415
 
 #temporal to character
-format(as.miTime(0))
+as.character(as.miTime(0))
 # "00:00"
-format(as.miDate(0))
+as.character(as.miDate(0))
 # "01/01/1970"
-format(as.miDateTime(0))
+as.character(as.miDateTime(0))
 # "01/01/1970 00:00"
 
 #non-default printout
@@ -314,9 +270,5 @@ as.miDateTime(0) + as.miTime(60)
 # 01/01/1970 00:01
 as.miTime(60) + as.miDateTime(0)
 # 00:01
-
-a <- as.miDateTime(1:10000)
-b <- data.frame(x=a,y=a)
-system.time(x<- merge(b,b))# < 1 second
 }
 \keyword{ manip }

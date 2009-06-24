@@ -11,7 +11,7 @@
 \alias{format.flag}
 \alias{print.flag}
 \alias{rep.flag}
-
+\alias{xtfrm.flag}
 
 \title{Create and Manipulate Flags}
 \description{

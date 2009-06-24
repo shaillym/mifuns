@@ -66,3 +66,5 @@ function (x, row.names = NULL, optional = FALSE, ...)
 
 `as.character.flag` <- function(x,...)as.character(format(x))
 
+xtfrm.flag <- function(x)as.numeric(x)
+

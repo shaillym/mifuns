@@ -62,6 +62,8 @@
 	print(format(x),...,quote=FALSE)
 	invisible(x)
 }
+xtfrm.comment <- function(x)as.numeric(x)
+
 
 `hide.data.frame` <- function(x,where,why,...){
 	if(!"C" %in% names(x))x$C <- as.comment(FALSE)

@@ -67,20 +67,11 @@ seq.miTemporal <- function (from, to, by=NULL,length.out = NULL, along.with = NU
 as.miTime.miTime <- function(x,...)x
 as.miDate.miDate <- function(x,...)x
 as.miDateTime.miDateTime <- function(x,...)x
-`[.miTemporal` <- function (x, ..., drop = TRUE){
-    cl <- oldClass(x)
-    class(x) <- NULL
-    val <- NextMethod("[")
-    class(val) <- cl
-    val
-}
-`[[.miTemporal` <- function (x, ..., drop = TRUE){
-    cl <- oldClass(x)
-    class(x) <- NULL
-    val <- NextMethod("[[")
-    class(val) <- cl
-    val
-}
+
+
+`[.miTemporal` <- function (x, ..., drop = TRUE)structure(NextMethod(.Generic), class = oldClass(x))
+`[[.miTemporal` <- function (x, ..., drop = TRUE)structure(NextMethod(.Generic), class = oldClass(x))
+
 `[<-.miTemporal` <- function (x, ..., value){
     if (!(length(value)))return(x)
     if(all(is.na(value)))value <- as.numeric(value)
@@ -93,6 +84,7 @@ as.miDateTime.miDateTime <- function(x,...)x
     class(x) <- cl
     x
 }
+xtfrm.miTemporal <- function(x)as.numeric(x)
 
 
 

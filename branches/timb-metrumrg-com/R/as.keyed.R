@@ -69,7 +69,6 @@ constant.keyed <- function(x,...)constant.data.frame(x,within=key(x))
 	do.call(paste,x[,key,drop=FALSE])
 }
 
-
 aggregate.keyed <- function(
 	x,
 	by=x[,setdiff(key(x),across),drop=FALSE],
@@ -85,13 +84,18 @@ aggregate.keyed <- function(
 	by <- c(by,list(`_superkey`=rep(1,nrow(x)))) #guarantee a key
 	x <- cbind(by,x)
 	x <- as.keyed(x,names(by))
-	if(!any(dupKeys(x)))return(x[,setdiff(names(x),'_superkey')])
+	if(!any(dupKeys(x))){
+		key(x) <- setdiff(key(x),'_superkey')
+		x <- x[,setdiff(names(x),'_superkey')]
+		return(x)
+	}
 	unique <- x[!dupKeys(x),]
 	dups <- x[dupKeys(x),]
 	molten <- melt(dups,id.var=names(by))
 	frozen <- cast(molten,fun=FUN,...)
 	frozen <- as.keyed(frozen,names(by))
-	x <- merge(unique,frozen,all=TRUE)
+	#x <- merge(unique,frozen,all=TRUE)
+	x <- as.keyed(rbind(unique,frozen),names(by))
 	x[['_superkey']] <- NULL
 	key(x) <- setdiff(key(x),'_superkey')
 	if(!length(key(x))){
@@ -100,7 +104,6 @@ aggregate.keyed <- function(
 	}
 	x
 }
-
 
 `sort.keyed` <- function(x,decreasing=FALSE,...){
 	if(!inherits(x,"data.frame"))stop(

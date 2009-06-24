@@ -278,8 +278,10 @@ PLOTR(
 
   \item{plotName}{File name for diagnostic plots, if any.  Default combines
   'DiagnosticPlotReview with the run number, grp if present, and a counter if 
-  onefile is FALSE.}
+  onefile is FALSE. NOTE: If \code{onefile}=FALSE and \code{plotName} is provided the user must add counter (\code{\%d}) to 
+  \code{plotName}. }
  } 
+
   
   
   \details{ Generally 0 and 1 can be used

@@ -1,6 +1,7 @@
 \name{panel.densitystrip}
 \alias{panel.densitystrip}
 \alias{panel.covplot}
+\alias{covplot}
 \alias{panel.cuts}
 \alias{panel.ref}
 \title{Display Distributions with Respect to Reference Values}

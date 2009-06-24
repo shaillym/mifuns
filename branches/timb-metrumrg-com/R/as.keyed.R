@@ -10,8 +10,6 @@
 	x
 }
 
-constant.keyed <- function(x,...)constant.data.frame(x,within=key(x))
-
 `dupKeys` <- function(x,...){
 	if(!all(key(x) %in% names(x)))stop('nonexistent key field(s)')
 	y <- x[,key(x),drop=FALSE]

@@ -1,7 +1,3 @@
-subclass <- function(x,class,...){
-	class(x) <- c(class,class(x))
-	x
-}
 as.numeric.chartime <- function(x,format,...)as.numeric(unclass(as.POSIXct(strptime(x,format),tz="GMT")))
 as.chartime <- function(x,...)UseMethod("as.chartime")
 as.chartime.numeric <- function(x,format,mark=TRUE,...){
@@ -18,7 +14,7 @@ as.miTime <- function(x,...)UseMethod("as.miTime")
 as.miTime.numeric <- function(x,...){
 	x <- round(x)
 	x[is.finite(x)] <- x[is.finite(x)]%%(60*60*24)
-	subclass(x,c("miTime","miTemporal"))
+	structure(x, class = c("miTime","miTemporal"))
 }
 as.miTime.character <- function(x,format="%H:%M",...)as.miTime(as.numeric.chartime(x,format))
 
@@ -27,14 +23,14 @@ as.miDate.numeric <- function(x,...){
 	x <- round(x)
 	f <- is.finite(x)
 	x[f] <- x[f] - x[f]%%(60*60*24)
-	subclass(x,c("miDate","miTemporal"))
+	structure(x, class = c("miDate","miTemporal"))
 }
 as.miDate.character <- function(x,format="%Y-%m-%d",...)as.miDate(as.numeric.chartime(x,format))
 
 as.miDateTime <- function(x,...)UseMethod("as.miDateTime")
 as.miDateTime.numeric <- function(x,...){
 	x <- round(x)
-	subclass(x,c("miDateTime","miTemporal"))
+	structure(x, class = c("miDateTime","miTemporal"))
 }
 as.miDateTime.character <- function(x,format="%Y-%m-%d %H:%M",...)as.miDateTime(as.numeric.chartime(x,format))
 as.miDateTime.miDate <- function(x,y=0,...)as.miDateTime(as.numeric(x)+as.numeric(y))

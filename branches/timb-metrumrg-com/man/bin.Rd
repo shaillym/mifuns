@@ -20,6 +20,7 @@ bin(
   \item{population}{A vector of numeric values serving as the reference
   population for constructing bins.}
   \item{breaks}{Bin limits (boundaries) to pass to cut().}
+  \item{include.lowest}{Limit qualifier to pass to cut().}
   \item{probs}{Default probabilities for calculating breaks.}
   \item{\dots}{Other arguments to pass to quantile() and cut().}
 }

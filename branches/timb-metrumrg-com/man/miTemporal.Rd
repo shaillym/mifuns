@@ -271,5 +271,9 @@ as.miDateTime(0) + as.miTime(60)
 # 01/01/1970 00:01
 as.miTime(60) + as.miDateTime(0)
 # 00:01
+
+#unary operations
+-as.miTime(1)
+# 23:59+
 }
 \keyword{ manip }

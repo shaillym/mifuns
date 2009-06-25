@@ -94,6 +94,7 @@ aggregate.keyed <- function(
 	frozen <- as.keyed(frozen,names(by))
 	#x <- merge(unique,frozen,all=TRUE)
 	x <- as.keyed(rbind(unique,frozen),names(by))
+	sort(x)
 	x[['_superkey']] <- NULL
 	key(x) <- setdiff(key(x),'_superkey')
 	if(!length(key(x))){

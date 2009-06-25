@@ -63,6 +63,7 @@ seq.miTemporal <- function (from, to, by=NULL,length.out = NULL, along.with = NU
 as.miTime.miTime <- function(x,...)x
 as.miDate.miDate <- function(x,...)x
 as.miDateTime.miDateTime <- function(x,...)x
+rep.miTemporal <- function (x, ...) structure(rep(as.numeric(x),...),class=class(x))
 
 
 `[.miTemporal` <- function (x, ..., drop = TRUE)structure(NextMethod(.Generic), class = oldClass(x))

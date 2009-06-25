@@ -9,6 +9,7 @@
 \alias{as.numeric.chartime}
 \alias{print.miTemporal}
 \alias{seq.miTemporal}
+\alias{rep.miTemporal}
 
 
 
@@ -27,6 +28,7 @@ as.chartime(x, ...)
 \method{as.chartime}{numeric}(x, format, mark=TRUE,...)
 \method{as.numeric}{chartime}(x, format,...)
 \method{print}{miTemporal}(x, ...)
+\method{rep}{miTemporal}(x, ...)
 \method{seq}{miTemporal}(from, to, by = NULL, length.out = NULL, along.with = NULL, ...)
 }
 
@@ -119,5 +121,9 @@ as.miDate(as.miDate(0))
 # 01/01/1970
 as.miDateTime(as.miDateTime(0))
 # 01/01/1970 00:00
+
+#repetition
+rep(as.miTime(86340),2)
+# 23:59 23:59
 }
 \keyword{ manip }

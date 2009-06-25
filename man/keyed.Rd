@@ -28,7 +28,6 @@ take advantage of this information.
 \method{aggregate}{keyed}(x, by=x[,setdiff(key(x),across),drop=FALSE], FUN, across=character(0), ...)
 %as.keyed(x, ...)
 \method{as.keyed}{data.frame}(x, key, ...)
-\method{constant}{keyed}(x, ...)
 dupKeys(x, ...)
 key(x, ...)
 key(x) <- value

@@ -43,8 +43,7 @@ as.chartime(x, ...)
   \item{by}{ as for \code{\link{seq.default}} }
   \item{length.out}{ as for \code{\link{seq.default}} }
   \item{along.with}{ as for \code{\link{seq.default}} }
-  \item{class}{ class to prepend to class attribute of x }
-}
+s}
 \details{
   Normally you shouldn't need to worry about these functions.  c() and the '[' 
   variants exist just so that class information is not lost on invocation of the 

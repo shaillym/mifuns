@@ -9,7 +9,7 @@
 \alias{as.numeric.chartime}
 \alias{print.miTemporal}
 \alias{seq.miTemporal}
-\alias{subclass}
+
 
 
 \title{ Support for miTemporal Classes }
@@ -28,7 +28,6 @@ as.chartime(x, ...)
 \method{as.numeric}{chartime}(x, format,...)
 \method{print}{miTemporal}(x, ...)
 \method{seq}{miTemporal}(from, to, by = NULL, length.out = NULL, along.with = NULL, ...)
-subclass(x, class,...)
 }
 
 \arguments{
@@ -52,11 +51,9 @@ subclass(x, class,...)
   generic.  as.character.miTemporal() and print.miTemporal() just call format().
   'chartime' variants are used internally by other functions.  seq.miTemporal() 
   requires 'from' and 'to', sets smart defaults for 'by' (if null), and preserves
-  class information, relative to seq.default(). subclass() returns its first 
-  argument with 'class' prepended to its class list.
+  class information, relative to seq.default().
 }
 \value{
-  \item{subclass}{see above}
   \item{print}{an invisible object with same class as x}
   \item{as.chartime}{generic: does not return}
   \item{as.chartime.numeric}{character (time)}

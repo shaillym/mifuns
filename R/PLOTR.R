@@ -1,121 +1,127 @@
 `PLOTR` <-
-function (b, ProjectDir, dvname = NULL, logtrans = FALSE, 
-    covplt = FALSE, grp = NULL, grpnames = NULL, cont.cov = NULL, 
+function (b, ProjectDir=getwd(), dvname = 'DV', logtrans = FALSE, 
+    grp = NULL, grpnames = NULL, cont.cov = NULL, 
     cat.cov = NULL, par.list = NULL, eta.list = NULL, 
-    missing = -99,onefile=TRUE,epilog=NULL,plotName=NULL) 
+    missing = -99,epilog=NULL,file=NULL,...) 
 {
-    #Run epilog, if PLOTR called independently
-    if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
-
-    #Main Plot function, called independently or by NONR.
-    
-    #Initialize some variables.
-    start <- getwd()
-    ndir <- paste(ProjectDir, "/", b, sep = "")
-    TabFileName <- paste(ProjectDir, "/", b, ".TAB", sep = "")
-    ParFileName <- paste(ProjectDir, "/", b, "par.TAB", sep = "")
-    CovFile <- paste(ndir, "/", "cov.datat", sep = "")
-    OutFile <- paste(ndir, "/", b, ".lst", sep = "")
-    ctl1 <- paste(ndir, "/", b, ".ctl", sep = "")
-    ab <- "^\\$DATA +([^ ]+).*$"
-    ab1 <- scan(file = ctl1, what = "", comment.char = "", allowEscapes = TRUE, 
-        sep = "\n", quiet = TRUE)
-    ab2 <- grep("\\$DATA", ab1, value = TRUE)
-    DataFileName <- sub(ab, "\\1", ab2)
+    if(is.null(file))file <- paste(ProjectDir, '/', 'DiagnosticPlotReview', grp, '_',b, '.pdf', sep = '')
     missing <- as.numeric(as.character(missing))
-    WorkingDir <- getwd()
-    cwtab1 <- paste(ndir, "/cwtab1.deriv", sep = "")
-    if (is.null(dvname)) {
-        dvname <- "DV"
-        message("Name of dependent variable is assumed to be 'DV'.")
-    }
-    
-    #Test for some prerequisites.
-    if (!file.exists(OutFile)) 
-        stop(paste("Can't find", OutFile, ". \n For *nix check nmv.p.o* file in ", 
-            b, " directory. ", "Working directory is ", getwd(), 
-            "."))
-    if (!file.exists(TabFileName)) 
-        stop(paste("*.TAB file does not exist in ", ProjectDir, 
-            ". \n For *nix check nmv.p.o* file in ", b, " directory. ", 
-            "Working directory is ", getwd(), ".", sep = ""))
-    setwd(ndir)
-    data.file <- read.table(file = DataFileName, header = TRUE, 
-        sep = ",", as.is=TRUE)
-    data.table <- read.table(TabFileName, skip = 1, header = TRUE, 
-        as.is = TRUE, comment.char = "")
-    if (!is.null(grp)){
-    	available <- union(names(data.file),names(data.table))
-    	ignore <- setdiff(grp,available)
-        if (length(ignore)) {
-            grp <- setdiff(grp,ignore)
-            warning(
-            	paste(
-            		"ignoring grp variable",
-            		paste(grp,collapse=", "),
-            		"(not exist in *.TAB file or in data set)"
-            	)
-            )
-        }
-    }
-    runIDs <- unique(data.table$ID)
-    data.file.nC <- data.file[data.file$C != "C" & is.element(data.file$ID, runIDs), ]
-    covariates <- data.file.nC[!duplicated(data.file.nC$ID), 
-        ]
-	
-    #Data preparation.
-    data.table$ID <- as.character(data.table$ID)
-    if (!file.exists(cwtab1)) 
-        message(paste("No CWRES plots because file",cwtab1,"not found in NONMEM run directory."))
-    if (file.exists(cwtab1)) {
-    	# if CWRES already exists in data.table do not recalculate it
-    	if(!"CWRES" %in% names(data.table)) {
-    		tab.prefix.nm <- paste(ProjectDir,"/", b, "/cwtab",sep="")
-    		cwres.all<-compute.cwres(run.number=1,tab.prefix=tab.prefix.nm,printToOutfile=TRUE)
-            data.cwres <- read.table(file = paste(ndir, "/cwtab1", sep = ""), skip = 1, header = TRUE)
-        data.table$CWRES <- data.cwres$CWRES
-        write(paste("Table output from NONMEM for Run ", b, " with CWRES as last column on", format(Sys.time(), "%a %b %d, %X, %Y"), sep=""),file=TabFileName,ncolumns=1)
-        suppressWarnings(write.table(data.table, file = TabFileName, 
-            sep = " ", quote = FALSE, row.names = FALSE, col.names = TRUE, 
-            append = TRUE, na = "."))
-    	}
-    }
-    dataObs <- data.table[data.table$EVID == 0, ]
-    if (!is.null(grp)) {
-    	need <- grp[!grp %in% names(dataObs)]
-    	have <- grp[grp  %in% names(covariates)]
-    	can <- intersect(need,have)
-        if (length(can)) dataObs <- merge(
-        	dataObs, 
-        	covariates[, c("ID", can)], 
-        	by = "ID"
-        )
-    }   
-    if (logtrans) {
-        dataObs$DV <- exp(dataObs$DV)
-        dataObs$PRED <- exp(dataObs$PRED)
-        dataObs$IPRE <- exp(dataObs$IPRE)
-    }
-    enumerator <- NULL
-    if(!onefile) enumerator='_%d'
-    if(is.null(plotName))plotName <- paste(ProjectDir, "/", "DiagnosticPlotReview", grp, "_",b,enumerator, ".pdf", sep = "")
-    pdf(plotName,onefile=onefile, height = 6, width = 6)
-    
-    #Do the standard diagnostic plots.
-    lapply(
-    	diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt),
-    	print
-    )
-	
-    #Consider covariate plots.
-    if (!covplt) message(paste("No Covariate Plots requested for Run ", b, ".", sep = ""))
-    if (covplt & !file.exists(ParFileName)) warning(paste("Cov. plots requested but can't find",ParFileName))
-    if (covplt & !file.exists(TabFileName)) warning(paste("Cov. plots requested but can't find",TabFileName))
-    if (covplt & file.exists(ParFileName) & file.exists(TabFileName))lapply(
-        doCov(ParFileName, par.list, eta.list, CovFile, ProjectDir, b, cont.cov, cat.cov, covariates, dataObs,missing),
-        print
-    )
+    if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))
+    nonmdir <- filename(ProjectDir, b)
+    tabfile <- filename(ProjectDir, b, '.TAB')
+    outfile <- filename(nonmdir, b, '.lst')
+    ctlfile <- filename(nonmdir, b, '.ctl')
+    datfile <- getdname(ctlfile)
+    if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
+    if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
+    tabfile <- getTabs(tabfile,b,ProjectDir)    
+    covfile <- getCovs(datfile,nonmdir)
+    covfile <- covfile[covfile$ID %in% tabfile$ID), ]#partial support for NONMEM 'ignore' ?moot due to stableMerge below
+    grp <- limitGrp(grp,union(names(covfile),names(tabfile)))
+    if (!is.null(grp)) tabfile <- stableMerge(tabfile, covfile[, c('ID', grp[!grp %in% names(tabfile)])])
+    if (logtrans) tabfile <- transform(tabfile,DV =exp(DV),PRED=exp(PRED),IPRE=exp(IPRE))
+    safe.call(pdf,file=file,...)
+    lapply(diagnostics(grp, grpnames, ProjectDir, b, tabfile, dvname,...),print)
+    lapply(doCov(b,ProjectDir,cont.cov,cat.cov,par.list,eta.list,covfile,tabfile,NULL,missing,...),print)
     dev.off()
-    message(paste("Plotting for run ", b, " complete.", sep = ""))
-    setwd(start)
+    message(paste('Plotting for run ', b, ' complete.', sep = ''))
 }
+
+safe.call <- function(what,...){
+	extras <- list(...)
+	legal <- names(formals(what))
+	extras <- extras[names(extras) %in% legal]
+	do.call(what=what,args=extras)
+}
+filename <- function(dir,b=NULL,ext=NULL)paste(dir,'/',b,ext,sep='')
+getCwres <- function(b,ProjectDir){
+    	nonmdir <- filename(ProjectDir, b)
+        cwrtab1 <- filename(nonmdir, NULL, '/cwtab1.deriv')
+        if (!file.exists(cwrtab1)) message(paste(cwrtab1,'does not exist.'))
+        if (!file.exists(cwrtab1)) return(NULL)
+	tab.prefix <- filename(ProjectDir, b, '/cwtab')
+	cwres.all<-compute.cwres(
+		run.number=1,
+		tab.prefix=tab.prefix,
+		printToOutfile=TRUE
+	)
+	data.cwres <- read.table(
+		file = filename(nonmdir,NULL, '/cwtab1'), 
+		skip = 1, 
+		header = TRUE
+	)
+        data.cwres$CWRES
+}
+setCwres <- function(b,ProjectDir,cwres=getCwres(b,ProjectDir)){
+	if(!is.null(cwres)){
+		write(
+			paste(
+				'Table output from NONMEM for Run ', 
+				b, 
+				' with CWRES as last column on', 
+				format(
+					Sys.time(), 
+					'%a %b %d, %X, %Y'
+				), 
+				sep=''
+			),
+			file=filename(ProjectDir, b, '.TAB'),
+			ncolumns=1
+		)
+		suppressWarnings(
+			write.table(
+				tabfile, 
+				file = filename(ProjectDir, b, '.TAB'), 
+				sep = ' ', 
+				quote = FALSE, 
+				row.names = FALSE, 
+				col.names = TRUE, 
+				append = TRUE, 
+				na = '.'
+			)
+		)
+	}
+}       
+getCovs <- function(file,dir){
+	    here <- getwd()
+	    setwd(dir)
+	    covfile <- NULL
+	    try(covfile <- read.table(file = file, header = TRUE, as.is = TRUE, sep = ','))
+	    setwd(here)
+	    if(is.null(covfile))return(covfile)
+	    covfile <- covfile[covfile$C != 'C',]
+	    covfile <- covfile[!duplicated(covfile$ID),]
+	    return(covfile)
+}
+getPars <- function(file){ 
+	    if (!file.exists(file))warning(paste(filename,'does not exist.'))
+	    if (!file.exists(file))return(NULL)
+	    file <- read.table(file = file, header = TRUE, skip = 1)
+            file <- file[!duplicated(file$ID),]
+	    return(file)
+}  
+limitGrp <- function(grp,options){
+	if(is.null(grp))return(grp)
+	notfound <- setdiff(grp,options)
+        if (length(notfound)) warning(paste('ignoring grp variable',paste(notfound,collapse=', '),'.'))
+        grp <- intersect(grp,options)
+	if(!length(grp))return(NULL)
+	grp
+}
+getdname <- function(filename){
+	    datamod <- '^\\$DATA +([^ ]+).*$'
+	    control <- scan(file = filename, what = '', comment.char = '', allowEscapes = TRUE, sep = '\n', quiet = TRUE)
+	    dablock <- grep('\\$DATA', control, value = TRUE)
+	    datfile <- sub(datamod, '\\1', dablock)
+	    return(datfile)
+}
+getTabs <- function(file,b,ProjectDir){
+	    tabfile <- read.table(file = file, header = TRUE, as.is = TRUE, skip = 1, comment.char = ''))
+	    tabfile$ID <- as.character(tabfile$ID)
+	    if(!'CWRES' %in% names(tabfile))tabfile$CWRES <- getCwres(b,ProjectDir)
+	    if(!is.null(tabfile$CWRES))setCwres(b,ProjectDir,tabfile$CWRES)
+	    tabfile <- tabfile[tabfile$EVID == 0, ]
+	    tabfile
+}    
+    
+

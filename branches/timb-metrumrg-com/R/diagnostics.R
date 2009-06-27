@@ -1,5 +1,5 @@
 `diagnostics` <-
-function (grp, grpnames, ProjectDir, b, dataObs, dvname,  covplt) 
+function (grp, grpnames, ProjectDir, b, dataObs, dvname,...) 
 {
   plots <-list()
   data <- dataObs

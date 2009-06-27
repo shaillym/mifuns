@@ -1,24 +1,40 @@
 `doCov` <-
-function (ParFileName, par.list, eta.list, CovFile, 
-    ProjectDir, b, cont.cov, cat.cov, covariates, dataObs, missing) 
+function (
+	b,
+	ProjectDir=getwd(),
+	cont.cov=NULL, 
+	cat.cov=NULL,
+	par.list=NULL, 
+	eta.list=NULL, 
+	covfile=NULL, 
+	tabfile=NULL,
+	parfile=NULL,
+	missing=-99,
+	...
+) 
 {
-	plots <- list()
-    data <- dataObs
-    cont <- cont.cov
-    cat <- cat.cov
-    parfile <- read.table(file = ParFileName, header = TRUE, skip = 1)
-    parfile <- parfile[!duplicated(parfile$ID),]
+    plots <- list()
+    missing <- as.numeric(as.character(missing))
+    nonmdir <- filename(ProjectDir, b)
+    covplt = !!length(c(cat.cov,cont.cov))
+    if (!covplt) message(paste('No covariates specified for run ', b, '.', sep = ''))
+    if (!covplt) return(plots)
+    if (is.null(tabfile)) tabfile <- getTabs(filename(ProjectDir, b, '.TAB'),b,ProjectDir)
+    if (is.null(covfile)) covfile <- getCovs(getdname(filename(nonmdir,b,'.ctl'),nonmdir)
+    if (is.null(parfile)) parfile <- getPars(filename(ProjectDir, b, 'par.TAB'))
+    if (is.null(parfile)) return(plots)
     par.list <- intersect(par.list,names(parfile))
     eta.list <- intersect(eta.list,names(parfile))
-    cont <- intersect(cont, names(covariates))
-    cat <- intersect(cat, names(covariates))
-    if(length(union(par.list,eta.list)))covariates <- stableMerge(
-    	covariates, 
-    	parfile[, c("ID",union(par.list,eta.list))]
-    )
+    all <- union(par.list,eta.list)
+    if(length(all))covfile <- stableMerge(covfile,parfile[, c("ID",all)])
+    cont <- cont.cov
+    cat <- cat.cov
+    cont <- intersect(cont, names(covfile))
+    cat <- intersect(cat, names(covfile))
+    temp <- filename(nonmdir, NULL, 'cov.datat')
     write.table(
-    	covariates, 
-        file = CovFile, 
+    	covfile,
+	file=temp,
         sep = ",", 
         quote = FALSE, 
         row.names = FALSE, 
@@ -27,12 +43,12 @@ function (ParFileName, par.list, eta.list, CovFile,
         na = "."
     )
     for(col in cont){
-    	covariates[[col]] <- as.numeric(as.character(covariates[[col]]))
-    	covariates[[col]][!is.na(covariates[[col]]) & covariates[[col]]==missing] <- NA
+    	covfile[[col]] <- as.numeric(as.character(covfile[[col]]))
+    	covfile[[col]][!is.na(covfile[[col]]) & covfile[[col]]==missing] <- NA
     }
     #Covariate SPLOM
     if (length(cont) >= 2)plots$covSplom <- splom(
-    	covariates[, cont], 
+    	covfile[, cont], 
     	panel = function(x, y) {
         	panel.splom(x, y)
             panel.lines(lowess(x,y))
@@ -43,7 +59,7 @@ function (ParFileName, par.list, eta.list, CovFile,
     )
     #Cont vs cat bwpots
     if (length(cont) & length(cat)) {
-        molten <- melt(covariates,measure.var=cont,id.var=cat)
+        molten <- melt(covfile,measure.var=cont,id.var=cat)
         names(molten)[names(molten)=="variable"] <- "cont"
     	names(molten)[names(molten)=="value"] <- "y"
     	plasma <- melt(molten,measure.var=cat)
@@ -66,7 +82,7 @@ function (ParFileName, par.list, eta.list, CovFile,
     #ETA SPLOM
 	if (length(eta.list) >= 2) {
         plots$etaSplom <- splom(
-        	covariates[, eta.list], 
+        	covfile[, eta.list], 
         	panel = function(x, y) {
             	panel.splom(x, y)
             	panel.lines(lowess(x,y))
@@ -79,7 +95,7 @@ function (ParFileName, par.list, eta.list, CovFile,
     #Parmater SPLOM
     if (length(par.list) >= 2) {
         plots$paramSplom <- splom(
-        	covariates[, par.list], 
+        	covfile[, par.list], 
         	panel = function(x, y) {
             	panel.splom(x, y)
             	panel.lines(lowess(x,y))
@@ -91,7 +107,7 @@ function (ParFileName, par.list, eta.list, CovFile,
     }
     #ETA Histograms
     if(length(eta.list)){
-    	etas <- melt(covariates,measure.var=eta.list)
+    	etas <- melt(covfile,measure.var=eta.list)
     	plots$etaHist <- histogram(
     		~ value | variable,
     		etas,
@@ -104,7 +120,7 @@ function (ParFileName, par.list, eta.list, CovFile,
 	}
     #ETA Densityplots
     if(length(eta.list)){
-    	etas <- melt(covariates,measure.var=eta.list)
+    	etas <- melt(covfile,measure.var=eta.list)
     	plots$etaDens <- densityplot(
     		~ value | variable,
     		etas,
@@ -116,7 +132,7 @@ function (ParFileName, par.list, eta.list, CovFile,
 	}
     #ETA vs Categoricals
     if(length(cat) && length(eta.list)){
-    	etas <- melt(covariates,measure.var=eta.list,id.var=cat)
+    	etas <- melt(covfile,measure.var=eta.list,id.var=cat)
     	names(etas)[names(etas)=="variable"] <- "eta"
     	names(etas)[names(etas)=="value"] <- "delta"
     	condEtas <- melt(id.var=c("eta","delta"),etas)
@@ -136,7 +152,7 @@ function (ParFileName, par.list, eta.list, CovFile,
     }
     #ETAS vs. Continuous
     if (length(cont) && length(eta.list)) {
-    	etas <- melt(covariates,measure.var=eta.list,id.var=cont)
+    	etas <- melt(covfile,measure.var=eta.list,id.var=cont)
     	names(etas)[names(etas)=="variable"] <- "eta"
     	names(etas)[names(etas)=="value"] <- "delta"
     	condEtas <- melt(id.var=c("eta","delta"),etas)
@@ -157,10 +173,10 @@ function (ParFileName, par.list, eta.list, CovFile,
     	)
     }
     #CWRES
-    if(length(union(cont,cat)))data <- stableMerge(data,covariates[,c("ID",union(cont,cat))])
+    if(length(union(cont,cat)))tabfile <- stableMerge(tabfile,covfile[,c("ID",union(cont,cat))])
     #CWRES vs. Categoricals
-    if("CWRES" %in% names(data) && length(cat)){
-    	res <- melt(data,id.var="CWRES",measure.var=cat)
+    if("CWRES" %in% names(tabfile) && length(cat)){
+    	res <- melt(tabfile,id.var="CWRES",measure.var=cat)
     	plots$cwresCat <- bwplot(
     		CWRES ~ factor(value) | variable,
     		res,
@@ -175,8 +191,8 @@ function (ParFileName, par.list, eta.list, CovFile,
     	)
     }
     #CWRES vs. Continuous
-    if("CWRES" %in% names(data) && length(cont)){
-    	res <- melt(data,id.var="CWRES",measure.var=cont)
+    if("CWRES" %in% names(tabfile) && length(cont)){
+    	res <- melt(tabfile,id.var="CWRES",measure.var=cont)
     	plots$cwresCont <- xyplot(
     		CWRES ~ value | variable,
     		res,
@@ -193,6 +209,6 @@ function (ParFileName, par.list, eta.list, CovFile,
     		}
     	)
     }
-    if (file.exists(CovFile)) file.remove(CovFile)
+    if (file.exists(temp)) file.remove(temp)
     plots
 }

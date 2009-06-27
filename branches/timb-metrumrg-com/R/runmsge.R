@@ -2,7 +2,7 @@
 function (
 	NMcom, ProjectDir, i, boot, concurrent, Platform, SGEflgs, 
     checkrunno, diag, fdata, epilog, dvname, logtrans, 
-    covplt, grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
+     grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
     missing, dosbox, nochecksum, grid, nice, udef, UDEFcom, onefile,
     plotName
 ){
@@ -91,7 +91,7 @@ function (
   if(!bootstrap)try(cwres_1(i, ProjectDir))
   if(diag & !bootstrap)try(
     	PLOTR(
-    		i, ProjectDir, dvname, logtrans, covplt, 
+    		i, ProjectDir, dvname, logtrans, 
             grp, grpnames, cont.cov, cat.cov, par.list, eta.list, 
             missing, onefile,plotName= plotName
         )

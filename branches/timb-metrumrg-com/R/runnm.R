@@ -1,5 +1,5 @@
 `runnm` <-
-  function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, udef, UDEFcom) 
+  function (NMcom, i, boot, concurrent, Platform, SGEflgs, dosbox, nochecksum, grid, udef) 
 {
   
   NMloc <- gsub(".pl?", "", NMcom)
@@ -49,7 +49,7 @@
                files, end)
   }
   
-  if(!udef){
+  if(is.null(udef)){
     if (Platform == "Windows"){
       if(!nochecksum){
         if(!dosbox){
@@ -92,12 +92,12 @@
   }else
   {
     if(Platform == "Windows"){
-   nm1 <- paste(UDEFcom)
+   nm1 <- paste(udef)
    system(nm1, intern = FALSE, invisible = FALSE)
     }
     else
       {
-    nm1 <- paste(UDEFcom)
+    nm1 <- paste(udef)
     if(concurrent){
       pid <-fork(function() system(nm1))
       wait(pid)

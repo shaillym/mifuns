@@ -1,7 +1,23 @@
 `rlog` <-
-  function (b, boot, ProjectDir, runlog) 
+  function (
+  	b, 
+	boot=0, 
+	ProjectDir=getwd(), 
+	runlog=NULL, 
+	append=TRUE,
+	file='NonmemRunLog.csv',
+	out='CombRunLog.csv',
+	...
+) 
 {
   k <- 0
+  if(is.null(runlog)){
+	  runlog <- 1
+	  if(is.na(append))runlog <- 0
+          if(is.null(append))runlog <- 0
+          if(append==FALSE)runlog <- 2
+  }
+		  
   Platform <- "Windows"
   z <- regexpr("bsd", version$platform)
   z1 <- regexpr("apple", version$platform)
@@ -40,14 +56,14 @@
     if (Platform == "Windows") {
       rdir <- paste(ProjectDir, "/", j, sep = "")
     }
-    FileName <- paste(rdir, "/NonmemRunLog.csv", sep = "")
+    FileName <- paste(rdir, "/",file, sep = "")
     if (file.exists(FileName) == "TRUE") {
       temp <- read.table(FileName, sep = ",", comment.char = "", 
                          )
       temp.num <- cbind(temp, j)
       prefinal <- temp.num
       CombRunLog <- data.frame(prefinal)
-      CombRunLogName <- paste(ProjectDir, "/", "CombRunLog.csv", 
+      CombRunLogName <- paste(ProjectDir, "/", out, 
                               sep = "")
       if (runlog == 1) {
         write.table(CombRunLog, file = CombRunLogName, 

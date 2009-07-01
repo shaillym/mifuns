@@ -1,65 +1,30 @@
-`doCov` <-
+`covariatePlots` <-
 function (
-	b,
-	ProjectDir=getwd(),
+	data=NULL,
 	cont.cov=NULL, 
 	cat.cov=NULL,
 	par.list=NULL, 
 	eta.list=NULL, 
-	covfile=NULL, 
-	tabfile=NULL,
-	parfile=NULL,
-	missing=-99,
 	...
 ) 
 {
     plots <- list()
-    missing <- as.numeric(as.character(missing))
-    nonmdir <- filename(ProjectDir, b)
-    covplt = !!length(c(cat.cov,cont.cov))
-    if (!covplt) message(paste('No covariates specified for run ', b, '.', sep = ''))
-    if (!covplt) return(plots)
-    if (is.null(tabfile)) tabfile <- getTabs(filename(ProjectDir, b, '.TAB'),b,ProjectDir)
-    if (is.null(covfile)) covfile <- getCovs(getdname(filename(nonmdir,b,'.ctl'),nonmdir)
-    if (is.null(parfile)) parfile <- getPars(filename(ProjectDir, b, 'par.TAB'))
-    if (is.null(parfile)) return(plots)
-    par.list <- intersect(par.list,names(parfile))
-    eta.list <- intersect(eta.list,names(parfile))
-    all <- union(par.list,eta.list)
-    if(length(all))covfile <- stableMerge(covfile,parfile[, c("ID",all)])
-    cont <- cont.cov
-    cat <- cat.cov
-    cont <- intersect(cont, names(covfile))
-    cat <- intersect(cat, names(covfile))
-    temp <- filename(nonmdir, NULL, 'cov.datat')
-    write.table(
-    	covfile,
-	file=temp,
-        sep = ",", 
-        quote = FALSE, 
-        row.names = FALSE, 
-        col.names = TRUE, 
-        append = FALSE, 
-        na = "."
-    )
-    for(col in cont){
-    	covfile[[col]] <- as.numeric(as.character(covfile[[col]]))
-    	covfile[[col]][!is.na(covfile[[col]]) & covfile[[col]]==missing] <- NA
-    }
-    #Covariate SPLOM
-    if (length(cont) >= 2)plots$covSplom <- splom(
-    	covfile[, cont], 
+  
+   #Covariate SPLOM
+    if (length(cont.cov) >= 2)plots$covSplom <- splom(
+    	data[, cont.cov], 
     	panel = function(x, y) {
         	panel.splom(x, y)
             panel.lines(lowess(x,y))
         },
         main="Covariate Scatterplots",
         xlab="",
-        pscales=0
+        pscales=0,
+	...
     )
     #Cont vs cat bwpots
-    if (length(cont) & length(cat)) {
-        molten <- melt(covfile,measure.var=cont,id.var=cat)
+    if (length(cont.cov) & length(cat.cov)) {
+        molten <- melt(data,measure.var=cont.cov, id.var=cat.cov)
         names(molten)[names(molten)=="variable"] <- "cont"
     	names(molten)[names(molten)=="value"] <- "y"
     	plasma <- melt(molten,measure.var=cat)
@@ -76,38 +41,41 @@ function (
     		scales=list(relation="free"),
     		prepanel=function(x,y,...)prepanel.default.bwplot(factor(x),y,...),
     		panel=function(x,y,...)panel.bwplot(factor(x),y,...),
-    		main="Continuous Covariates vs. Categorical Covariates"
+    		main="Continuous Covariates vs. Categorical Covariates",
+		...
     	)
     }
     #ETA SPLOM
 	if (length(eta.list) >= 2) {
         plots$etaSplom <- splom(
-        	covfile[, eta.list], 
+        	data[, eta.list], 
         	panel = function(x, y) {
             	panel.splom(x, y)
             	panel.lines(lowess(x,y))
         	},
         	main="ETA Scatterplots",
         	xlab="",
-        	pscales=0
+        	pscales=0,
+		...
         )
     }
     #Parmater SPLOM
     if (length(par.list) >= 2) {
         plots$paramSplom <- splom(
-        	covfile[, par.list], 
+        	data[, par.list], 
         	panel = function(x, y) {
             	panel.splom(x, y)
             	panel.lines(lowess(x,y))
         	},
         	main="Parameter Scatterplots",
         	xlab="",
-        	pscales=0
+        	pscales=0,
+		...
         )
     }
     #ETA Histograms
     if(length(eta.list)){
-    	etas <- melt(covfile,measure.var=eta.list)
+    	etas <- melt(data,measure.var=eta.list)
     	plots$etaHist <- histogram(
     		~ value | variable,
     		etas,
@@ -115,24 +83,26 @@ function (
     		layout=c(2,2),
     		main="Histograms of Etas",
     		breaks=NULL,
-    		scales=list(relation="free")
+    		scales=list(relation="free"),
+		...
     	)
 	}
     #ETA Densityplots
     if(length(eta.list)){
-    	etas <- melt(covfile,measure.var=eta.list)
+    	etas <- melt(data,measure.var=eta.list)
     	plots$etaDens <- densityplot(
     		~ value | variable,
     		etas,
     		as.table=TRUE,
     		layout=c(2,2),
     		main="Density of Etas",
-    		scales=list(relation="free")
+    		scales=list(relation="free"),
+		...
     	)
 	}
     #ETA vs Categoricals
     if(length(cat) && length(eta.list)){
-    	etas <- melt(covfile,measure.var=eta.list,id.var=cat)
+    	etas <- melt(data,measure.var=eta.list,id.var=cat.cov)
     	names(etas)[names(etas)=="variable"] <- "eta"
     	names(etas)[names(etas)=="value"] <- "delta"
     	condEtas <- melt(id.var=c("eta","delta"),etas)
@@ -147,12 +117,13 @@ function (
     		prepanel=function(x,y,...)prepanel.default.bwplot(factor(x),y,...),
     		panel=function(x,y,...)panel.bwplot(factor(x),y,...),
     		ylab="ETA",
-    		xlab="categorical covariate level"
+    		xlab="categorical covariate level",
+		...
     	)
     }
     #ETAS vs. Continuous
     if (length(cont) && length(eta.list)) {
-    	etas <- melt(covfile,measure.var=eta.list,id.var=cont)
+    	etas <- melt(data,measure.var=eta.list,id.var=cont.cov)
     	names(etas)[names(etas)=="variable"] <- "eta"
     	names(etas)[names(etas)=="value"] <- "delta"
     	condEtas <- melt(id.var=c("eta","delta"),etas)
@@ -169,14 +140,26 @@ function (
     			panel.xyplot(x,y,...)
     			panel.abline(h=0)
     			panel.lines(lowess(x,y),lty=2,col="red",...)
-    		}
+    		},
+		...
     	)
     }
+
+    plots
+}
+`cwresPlots` <-
+function (
+	data=NULL,
+	cont.cov=NULL, 
+	cat.cov=NULL,
+	...
+) 
+{
+    plots <- list()
     #CWRES
-    if(length(union(cont,cat)))tabfile <- stableMerge(tabfile,covfile[,c("ID",union(cont,cat))])
     #CWRES vs. Categoricals
-    if("CWRES" %in% names(tabfile) && length(cat)){
-    	res <- melt(tabfile,id.var="CWRES",measure.var=cat)
+    if("CWRES" %in% names(data) && length(cat.cov)){
+    	res <- melt(data,id.var="CWRES",measure.var=cat.cov)
     	plots$cwresCat <- bwplot(
     		CWRES ~ factor(value) | variable,
     		res,
@@ -187,12 +170,13 @@ function (
     		ylab="conditional weighted residuals",
     		scales=list(relation="free"),
     		prepanel=function(x,y,...)prepanel.default.bwplot(factor(x),y,...),
-    		panel=function(x,y,...)panel.bwplot(factor(x),y,...)
+    		panel=function(x,y,...)panel.bwplot(factor(x),y,...),
+		...
     	)
     }
     #CWRES vs. Continuous
-    if("CWRES" %in% names(tabfile) && length(cont)){
-    	res <- melt(tabfile,id.var="CWRES",measure.var=cont)
+    if("CWRES" %in% names(data) && length(cont.cov)){
+    	res <- melt(data,id.var="CWRES",measure.var=cont.cov)
     	plots$cwresCont <- xyplot(
     		CWRES ~ value | variable,
     		res,
@@ -206,9 +190,9 @@ function (
     			panel.xyplot(x,y,...)
     			panel.abline(h=0)
     			panel.lines(lowess(x,y),lty=2,col="red",...)
-    		}
+    		},
+		...
     	)
     }
-    if (file.exists(temp)) file.remove(temp)
     plots
 }

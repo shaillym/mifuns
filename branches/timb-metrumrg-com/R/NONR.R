@@ -4,8 +4,8 @@ function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE,
     epilog = NULL, dvname = NULL, logtrans = FALSE,
     grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
     par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE,
-    nochecksum = FALSE, grid = FALSE, nice=FALSE, udef=FALSE, UDEFcom=NULL, 
-    onefile=TRUE,plotName=NULL) 
+    nochecksum = FALSE, grid = FALSE, nice=FALSE, udef=NULL, 
+    file=NULL) 
 {
     start <- getwd()
     Platform <- "Windows"

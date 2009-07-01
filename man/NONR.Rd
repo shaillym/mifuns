@@ -1,7 +1,7 @@
 \name{NONR}
 \alias{NONR}
-\alias{diagnostics}
-\alias{doCov}
+\alias{diagnosticPlots}
+\alias{covariatePlots}
 \alias{PLOTR}
 \alias{runmsge}
 \alias{runnm}
@@ -69,9 +69,9 @@
 	plotName=NULL
   )
   
-  diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname,...)
+  diagnosticPlots(grp, grpnames, ProjectDir, b, dataObs, dvname,...)
 
-  doCov(
+  covariatePlots(
   	ParFileName, 
 	par.list, 
 	eta.list, 
@@ -80,7 +80,7 @@
 	b,
 	cont.cov, 
 	cat.cov, 
-	covariates, 
+	covariatePlots, 
 	dataObs, 
 	missing
   ) 

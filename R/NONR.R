@@ -5,17 +5,12 @@ function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE,
     grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
     par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE,
     nochecksum = FALSE, grid = FALSE, nice=FALSE, udef=NULL, 
-    file=NULL) 
+    file=NULL,...) 
 {
-    start <- getwd()
     Platform <- "Windows"
     if (.Platform$OS.type == "unix" & regexpr("apple", version$platform) > 
         1) {
         Platform <- "Mac"
-    }
-    if (.Platform$OS.type == "unix" & regexpr("bsd", version$platform) > 
-        1) {
-        Platform <- "Nix"
     }
     if (Platform == "Windows") {
         concurrent <- FALSE
@@ -50,7 +45,7 @@ function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE,
             grpnames = grpnames, cont.cov = cont.cov, cat.cov = cat.cov, 
             par.list = par.list, eta.list = eta.list, missing = missing,
             dosbox = dosbox, nochecksum = nochecksum, grid = grid, nice=nice,
-            udef = udef, UDEFcom = UDEFcom, onefile = onefile,plotName=plotName)
+            udef = udef, file=file,...)
         if (!concurrent) 
             do.call("runmsge", run.args)
         if (concurrent & (boot == 1 | boot == 3)) 
@@ -64,7 +59,6 @@ function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE,
         }
         message(paste("Run ", i, " complete.", sep = ""))
     }
-    setwd(start)
     message("NONR complete.")
 }
 

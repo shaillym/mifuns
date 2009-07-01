@@ -1,6 +1,6 @@
 `covariatePlots` <-
 function (
-	data=NULL,
+	data,
 	cont.cov=NULL, 
 	cat.cov=NULL,
 	par.list=NULL, 
@@ -9,8 +9,8 @@ function (
 ) 
 {
     plots <- list()
-  
-   #Covariate SPLOM
+    data <- data[!duplicated(data$ID),]
+    #Covariate SPLOM
     if (length(cont.cov) >= 2)plots$covSplom <- splom(
     	data[, cont.cov], 
     	panel = function(x, y) {
@@ -149,7 +149,7 @@ function (
 }
 `cwresPlots` <-
 function (
-	data=NULL,
+	data,
 	cont.cov=NULL, 
 	cat.cov=NULL,
 	...

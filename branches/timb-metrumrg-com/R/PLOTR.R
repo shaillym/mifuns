@@ -36,23 +36,21 @@ function (
     parfile <- getPars(parfile)
     
     #process data
-    tabfile <- plotr(tabfile,covfile,parfile,logtrans,dvname,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
-    covfile <- tabfile[!duplicated(tabfile$ID),]
-    temp <- filename(nonmdir, NULL, 'cov.datat')
-    safe.call(write.table,covfile,file=temp,sep = ",",quote = FALSE,row.names = FALSE,col.names = TRUE,append = FALSE,na = ".",...)
-
+    synthesis <- plotr(tabfile,covfile,parfile,logtrans,dvname,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    write.csv(synthesis,filename(ProjectDir,b,'_syn.csv'),row.names=FALSE)
+    
     #open device
     if(is.null(file))file <- paste(ProjectDir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
     safe.call(pdf,file=file,...)
 
     #make plots
-    apply(diagnosticPlots(tabfile, dvname=dvname, group='grpnames', model= paste('Model',b),...),print)
-    lapply(covariatePlots(covfile,cont.cov,cat.cov,par.list,eta.list,...),print)
-    lapply(cwresPlots(tabfile,cont.cov,cat.cov,...),print)
+    apply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',b),...),print)
+    lapply(covariatePlots(synthesis,cont.cov,cat.cov,par.list,eta.list,...),print)
+    lapply(cwresPlots(synthesis,cont.cov,cat.cov,...),print)
     
     #cleanup
-    if (file.exists(temp)) file.remove(temp)
     dev.off()
+    unlink(filename(ProjectDir,b,'_syn.csv'))
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
 }
 
@@ -89,31 +87,22 @@ getCwres <- function(b,ProjectDir){
 
 #loads non-null cwres onto tab file
 setCwres <- function(
-	b,
-	ProjectDir,
-	cwres=getCwres(b,ProjectDir),
-	file=filename(ProjectDir, b, '.TAB')
+	b=NULL,
+	ProjectDir=NULL,
+	cwres=NULL,
+	file=NULL
 ){
+	if((is.null(cwres)|is.null(file)) & (is.null(b)|is.null(ProjectDir)))stop('Specify crwes and file, or b and ProjectDir.')
+	if(is.null(cwres))cwres=getCwres(b,ProjectDir)
 	if(is.null(cwres))return(NULL)
+	if(is.null(file))file=filename(ProjectDir, b, '.TAB')
 	cwres <- c('CWRES',cwres)
 	tabfile <- readLines(file)[-1]
 	if(length(tabfile)!=length(cwres))stop()
+	msg <- paste('CWRES added', format(Sys.time(), '%a %b %d, %X, %Y'))
 	tabfile <- paste(tabfile,cwres)
-	write(
-	    paste(
-		'Table output from NONMEM for Run ', 
-		b, 
-		' with CWRES as last column on', 
-		format(
-			Sys.time(), 
-			'%a %b %d, %X, %Y'
-		), 
-	        sep=''
-	    ),
-	    file=file,
-	    ncolumns=1
-       )
-       writeLines(tabfile,file = file)
+	tabfile <- c(msg,tabfile)
+	writeLines(tabfile,con = file)
 }
 
 
@@ -157,8 +146,8 @@ getTabs <- function(file=filename(ProjectDir, b, '.TAB'),b,ProjectDir){
 }   
 
 #melds the grpnames columns into one, renaming levels conditionally
-grpnames <- function(data,grp,grpnames){
-	    data$grpnames <- factor(
+grpnames <- function(data,grp,grpnames=NULL){
+	    result <- factor(
 	    	do.call(
   			paste,
 				c(
@@ -167,8 +156,8 @@ grpnames <- function(data,grp,grpnames){
 				)
 			)
 		)
-	   nlevs <- length(levels(data$grpnames))
-	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(data$grpnames) <- grpnames
+	   nlevs <- length(levels(result))
+	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- grpnames
 	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(
 		   paste(
   			"Run", 
@@ -180,6 +169,7 @@ grpnames <- function(data,grp,grpnames){
 			"grpnames (ignored)." 
 		)
 	  )
+	  result
 }
 
 #combines any number of tables using left join to load the columns specified in x
@@ -213,7 +203,21 @@ backtrans <- function(x,cols){
 }
 
 #converts data.frames, using other args, to a single data.frame passed to diagnosticPlots
-plotr <- function(tabfile,covfile,parfile,logtrans,dvname,grp,grpnames,cont.cov,cat,cov,par.list,eta.list,missing,...){
+plotr <- function(
+	tabfile,
+	covfile,
+	parfile,
+	logtrans=FALSE,
+	dvname='DV',
+	grp=NULL,
+	grpnames=NULL,
+	cont.cov=NULL,
+	cat.cov=NULL,
+	par.list=NULL,
+	eta.list=NULL,
+	missing=-99,
+	...
+){
     if (logtrans) tabfile <- backtrans(tabfile,c(dvname,'PRED','IPRE'))    
     available <- unique(c(names(tabfile),names(covfile),names(parfile)))
     grp <- filter(grp,available)
@@ -225,11 +229,11 @@ plotr <- function(tabfile,covfile,parfile,logtrans,dvname,grp,grpnames,cont.cov,
     par.list <- filter(par.list,available)
     eta.list <- filter(eta.list,available)
     requests <- c(grp,cont.cov,cat.cov,par.list,eta.list)
-    tabfile <- synthesis(requests, key='ID',frames=list(tabfile,covfile,parfile),...)
+    synthesis <- synthesis(requests, key='ID',frames=list(tabfile,covfile,parfile),...)
     missing <- as.numeric(as.character(missing))
-    for(col in cont.cov) tabfile[[col]] <- as.numeric(as.character(tabfile[[col]]))
-    for(col in cont.cov) tabfile[[col]][!is.na(tabfile[[col]]) & tabfile[[col]]==missing] <- NA
-    tabfile
+    for(col in cont.cov) synthesis[[col]] <- as.numeric(as.character(synthesis[[col]]))
+    for(col in cont.cov) synthesis[[col]][!is.na(synthesis[[col]]) & synthesis[[col]]==missing] <- NA
+    synthesis
 }    
    
 

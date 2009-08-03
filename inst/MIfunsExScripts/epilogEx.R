@@ -10,79 +10,50 @@
 # cat.cov - if defined in NONR
 # par.list - if defined in NONR
 # eta.list - if defined in NONR
-# i  - ctl stream number 
+# b  - ctl stream number 
 
+#Both NONR(runmsge) and PLOTR can call epilog, and both define everything needed
+#for dataSynthesis().  dataSynthesis scavenges columns from the TAB file, the par.TAB
+#file, and the underlying dataset, reporting just observation records that are
+#not commented.  Limiting to one record per ID is appropriate for some types of plotting.
+#Columns to scavenge are supplied by grp, cont.cov, cat.cov, par.list, and eta.list.
+#All TAB file columns are returned, plus first instance of 'scavenge' columns from 
+#either the parent data set or the par file (in that order) unless already present.
 
-# Define Table File, Parameter File, and Data File name then
-# import the files
-TabFileName<-paste(ProjectDir,"/",i,".TAB",sep="") # *.TAB file defined in $TABLE record
-ParFileName<-paste(ProjectDir,"/",i,"par.TAB",sep="") # *par.TAB file defined in $TABLE record
-runno <- i
-# block of code below gets data file name out of NONMNEM control stream.
-ndir <- paste(ProjectDir, "/", i, sep = "")
-ctl1 <- paste(ndir, "/", i, ".ctl", sep = "")
-ab <- "^\\$DATA +([^ ]+).*$"
-ab1 <- scan(file = ctl1, what = "", comment.char = "", allowEscapes = T,
-       sep = "\n", quiet = T)
-ab2 <- grep("\\$DATA", ab1, value = T)
-DataFileNm <- sub(ab, "\\1", ab2)
+#dataSynthesis() returns precisely the dataset that is passed to the standard plots.
 
-# end of code block to get NONMEM data file name
-setwd(ndir)
-DataFileName<-paste(DataFileNm) # data file used for NONMEM execution
+data <- dataSynthesis(
+	b,
+	ProjectDir,
+	dvname=dvname,
+	logtrans=logtrans,
+	grp=grp,
+	grpnames=grpnames,
+	cont.cov=cont.cov,
+	cat.cov=cat.cov,
+	par.list=par.list,
+	eta.list=eta.list,
+	missing=missing
+)
 
-# Check if NONMEM run completed by checking for *.TAB file. If it did, then move on, otherwise stop
-# and provide an error messgae
-# Check for *.TAB run file then 
-# read in if it exists else return error message.
-if(file.exists(TabFileName)=="TRUE"){
-data<-read.table(TabFileName,skip=1,header=TRUE,as.is=T)
-
-dataObs<-data[data$EVID==0,] # limit to observations only.  Could substitute WRES==0 if no EVID in data set
-
-# Read Dataset, remove commented rows, and create 
-# additional file with one line/individual:
-dataset<-read.table(file=DataFileName,header=TRUE, sep=",", as.is=T)
-dataNM<-dataset[dataset$C != "C",]
-
-
-numDV<-c("DV","LDV","AMT")  # vector of variable names that should be numeric in dataNM
+numDV<-c("DV","LDV","AMT")  # vector of variable names that should be numeric in data
 # loop to change variables in numDV to numeric
 for(k in numDV){
-	dataNM[[k]]<-as.numeric(as.character(dataNM[[k]]))
+	data[[k]]<-as.numeric(as.character(data[[k]]))
 }
 
-DataNMi<-dataNM[!duplicated(dataNM$ID),]
+subj<-data[!duplicated(data$ID),]
 
-#Read in *par.TAB file from NONMEM run
-dataPar<-read.table(ParFileName,skip=1,header=TRUE,as.is=T)
-Parind <- dataPar[!duplicated(dataPar$ID),]
+# user supplied name of output pdf file
+pdf(file=paste(ProjectDir,"/TestPlots_",b,".pdf",sep=""))
 
-# header row in NONMEM data file indicates what dataset variables are available for plotting from dataNM
-# covariates can be taken from dataNMi assumming one covariate measure per individual (not time related)
-# $TABLE record in control stream indicates what variables are available in dataObs (*.TAB) and Parind (*par.TAB) for plotting
-
-# add plotting code below before "}else" to generate relevant graphs
-
-
-pdfname<-paste(ProjectDir,"/TestPlots_",i,".pdf",sep=""); # user supplied name of output pdf file
-pdf(file=pdfname);
-
-# The plotting code below can be as complicated or as simple as is required. The first few examples below are relatiovely simple and
-# the last example is more complex.
+#The plotting code below can be as complicated or as simple as is required. 
 
 # plot of observed PK vs Time based on Nonmem data set
-plot(dataNM$TIME, dataNM$DV, main="PK obs", xlab="Time",
+plot(data$TIME, data$DV, main="PK obs", xlab="Time",
      ylab="PK measure")
      
 # histogram of ETA1 based on Nonmem table file (XXpar.TAB)       
-hist(Parind$ETA1, main="Histogram of ETA1")
-
+hist(subj$ETA1, main="Histogram of ETA1")
 
 dev.off()
-
-}else
-
-{cat (paste("NO *.TAB FILE EXISTS FOR RUN ",runno,"\n",sep=""))} 
-
-

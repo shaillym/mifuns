@@ -88,7 +88,7 @@
   runmsge(
   	NMcom,
 	ProjectDir, 
-	i, 
+	b, 
 	boot, 
 	concurrent, 
 	Platform, 
@@ -117,7 +117,7 @@
   )
   runnm(
   	NMcom, 
-	i, 
+	b, 
 	boot, 
 	concurrent, 
 	Platform, 

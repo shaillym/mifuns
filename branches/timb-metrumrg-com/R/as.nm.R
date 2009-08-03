@@ -278,11 +278,3 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	x
 }
 
-#This function not (yet) integrated into nm object model.
-`maxChar` <-
-function(x){
-	x <- as.character(x)
-	len <- nchar(x)
-	max(len)
-}
-

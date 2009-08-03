@@ -23,8 +23,8 @@
   #organize arguments
   if(!is.null(udef))dosbox <- FALSE
   if(is.null(intern))intern <- if(Platform=='Windows') !dosbox else FALSE
-  if(is.null(minimized)minimized <- if(Platform=='Windows') !dosbox else FALSE
-  if(is.null(invisible)invisible <- if(Platform=='Windows') !dosbox else TRUE
+  if(is.null(minimized))minimized <- if(Platform=='Windows') !dosbox else FALSE
+  if(is.null(invisible))invisible <- if(Platform=='Windows') !dosbox else TRUE
   if(is.null(option))option <- if(nochecksum) 'nochecksum'     else  NULL
   if(is.null(perl))  perl   <- if(dosbox)     'cmd /K perl -S' else 'cmd /C perl -S'
 
@@ -52,7 +52,7 @@ grdCommand <- function(
 	ProjectDir,
 	b,
 	concurrent,
-	boot
+	boot,
   	NMloc = gsub('.pl?', '', NMcom),
 	nmhome = '/common/NONMEM',
 	lim = '/',
@@ -63,7 +63,7 @@ grdCommand <- function(
 	shelby = '-shell n -b y',
 	cwd = paste('-cwd ', nmhome, lim, NMloc, lim, 'test', lim,NMcom, sep = ''),
 	files = paste(filename(ProjectDir,b,'.ctl'),filename(ProjectDir, b,'.lst')),
-	end = '',
+	end = ''
 ){	
   if (concurrent & (boot == 1 | boot == 2))que <- '-q bootstrap.q'
   if (concurrent & (boot == 1 | boot == 3))sync <- ''

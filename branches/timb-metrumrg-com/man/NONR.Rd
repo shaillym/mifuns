@@ -5,6 +5,25 @@
 \alias{PLOTR}
 \alias{runmsge}
 \alias{runnm}
+\alias{backtrans}
+\alias{cwresPlots}
+\alis{filename}
+\alis{filter}
+\alis{getCovs}
+\alis{getCwres}
+\alis{getPars}
+\alis{getTabs}
+\alis{getdname}
+\alis{getcommand}
+\alis{grpnames}
+\alis{plotr}
+\alis{purge.dir}
+\alis{purge.files}
+\alis{regCommand}
+\alis{safe.call}
+\alis{setCwres}
+\alis{synthesis}
+
 
 \title{Run NONMEM and create diagnostic plots}
 
@@ -18,7 +37,14 @@
   PLOTR is a function to generate diagnostic plots and/or covariate
   evaluation plots following a successful NONMEM run. It is called by
   NONR if diagnostic plots are requested or can be called independently
-  following a NONMEM run. Plots are output as one pdf or multiple pdfs.  }
+  following a NONMEM run. Plots are output as one pdf or multiple pdfs.  
+  
+  PLOTR creates a plotting dataset using dataSynthesis(). It passes this dataset
+  to each of diagnosticPlots(), covariatePlots(), and cwresPlots().  It then 
+  calls the script named by the epilog argument, if any.  The example epilog 
+  (epilogEx.R) calls dataSynthesis() itself, and does additional plotting.
+  
+  }
 
 \synopsis{
   NONR(
@@ -84,6 +110,8 @@
 	dataObs, 
 	missing
   ) 
+  
+  cwresPlots(data,cont.cov=NULL,cat.cov=NULL,...)
   
   runmsge(
   	NMcom,

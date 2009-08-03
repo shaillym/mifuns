@@ -1,3 +1,4 @@
+    
 `PLOTR` <-
 function (
 	b, 
@@ -15,28 +16,9 @@ function (
 	file=NULL,
 	...
 ){
-    #try epilog
-    if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))#match NONR data environment
 
-    #dereference directory context
-    nonmdir <- filename(ProjectDir, b)
-    tabfile <- filename(ProjectDir, b, '.TAB')
-    outfile <- filename(nonmdir, b, '.lst')
-    ctlfile <- filename(nonmdir, b, '.ctl')
-    datfile <- getdname(ctlfile)
-    parfile <- filename(ProjectDir, b, 'par.TAB')
-    if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
-    if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
-    if (!file.exists(parfile)) stop(paste(parfile,'does not exist.'))
-    if (!length(c(cat.cov,cont.cov))) message(paste('No covariates specified for run ', b, '.', sep = ''))
-
-    #acquire data
-    tabfile <- getTabs(tabfile,b,ProjectDir)    
-    covfile <- getCovs(datfile,nonmdir)
-    parfile <- getPars(parfile)
-    
     #process data
-    synthesis <- plotr(tabfile,covfile,parfile,logtrans,dvname,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    synthesis <- dataSynthesis(b,ProjectDir,logtrans,dvname,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
     write.csv(synthesis,filename(ProjectDir,b,'_syn.csv'),row.names=FALSE)
     
     #open device
@@ -52,6 +34,10 @@ function (
     dev.off()
     unlink(filename(ProjectDir,b,'_syn.csv'))
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
+    
+    #try epilog
+    if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))#match NONR data environment
+
 }
 
 #filters elipses for functions that do not accept them
@@ -207,8 +193,8 @@ plotr <- function(
 	tabfile,
 	covfile,
 	parfile,
-	logtrans=FALSE,
 	dvname='DV',
+	logtrans=FALSE,
 	grp=NULL,
 	grpnames=NULL,
 	cont.cov=NULL,
@@ -235,5 +221,40 @@ plotr <- function(
     for(col in cont.cov) synthesis[[col]][!is.na(synthesis[[col]]) & synthesis[[col]]==missing] <- NA
     synthesis
 }    
+dataSynthesis <-
+function (
+	b, 
+	ProjectDir=getwd(), 
+	dvname = 'DV', 
+	logtrans = FALSE, 
+	grp = NULL, 
+	grpnames = NULL, 
+	cont.cov = NULL, 
+	cat.cov = NULL, 
+	par.list = NULL, 
+	eta.list = NULL, 
+	missing = -99,
+	...
+){
+    #dereference directory context
+    nonmdir <- filename(ProjectDir, b)
+    tabfile <- filename(ProjectDir, b, '.TAB')
+    outfile <- filename(nonmdir, b, '.lst')
+    ctlfile <- filename(nonmdir, b, '.ctl')
+    datfile <- getdname(ctlfile)
+    parfile <- filename(ProjectDir, b, 'par.TAB')
+    if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
+    if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
+    if (!file.exists(parfile)) stop(paste(parfile,'does not exist.'))
+
+    #acquire data
+    tabfile <- getTabs(tabfile,b,ProjectDir)    
+    covfile <- getCovs(datfile,nonmdir)
+    parfile <- getPars(parfile)
+    
+    #process data
+    synthesis <- plotr(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    synthesis
+}
    
 

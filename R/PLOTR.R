@@ -25,7 +25,7 @@ function (
     safe.call(pdf,file=file,...)
 
     #make plots
-    apply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',b),...),print)
+    lapply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',b),...),print)
     lapply(covariatePlots(synthesis,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(synthesis,cont.cov,cat.cov,...),print)
     

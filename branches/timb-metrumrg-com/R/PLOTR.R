@@ -1,4 +1,3 @@
-    
 `PLOTR` <-
 function (
 	b, 

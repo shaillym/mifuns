@@ -1,3 +1,5 @@
+`resample` <-
+function(x,...)UseMethod("resample")
 `resample.data.frame` <-
 function(
 	x, 
@@ -49,5 +51,22 @@ doBin <- function(bin){
         return(nrow(sample.dataset))
     }
     invisible(lapply(as.list(as.character(names)), doName))
+}
+`resample.csv.filename` <-
+function(x,...){
+extras <- list(...)
+file <- list(file=x)
+valid <- c(file,extras[names(extras) %in% names(formals(read.table))])
+dat <- do.call("read.csv",args=valid)
+resample(dat,...)
+}
+
+`resample.filename` <-
+function(x,...){
+extras <- attr(x,'extras')
+file <- list(file=x)
+valid <- c(file,extras[names(extras) %in% names(formals(read.table))])
+dat <- do.call("read.table",args=valid)
+resample(dat,...)
 }
 

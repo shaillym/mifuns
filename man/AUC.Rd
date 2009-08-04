@@ -22,5 +22,4 @@ AUC(data, time = "TIME", id = "ID", dv = "DV")
 }
 \references{ MIfun package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\examples{}
 \keyword{ manip }

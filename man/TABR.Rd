@@ -46,5 +46,4 @@ NULL, btcoll = NULL, btcolh = NULL, outname)
   NONMEM control stream specified \code{i}. 
 
 }
-\examples{}
 \keyword{ manip }

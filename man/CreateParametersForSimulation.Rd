@@ -27,15 +27,9 @@ OmegaModeList, OmegaDfList, SigmaModeList, SigmaDfList, digits = 4)
   \code{SigmaDfList} vector should be equal. }
   \item{digits}{number of significant digits in the output (the default value is 4)}
 }
-\details{
- 
-}
 \value{
   The output of the function is the data frame that contains the parameter data set. }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\seealso{ }
-\examples{
-}
 \keyword{ manip }
 

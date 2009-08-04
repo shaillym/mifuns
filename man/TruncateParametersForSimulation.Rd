@@ -20,5 +20,4 @@ TruncateParametersForSimulation(parameters, bounds)
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Leonid Gibiansky, Bill Knebel, Tim Bergsma, and others). }
-\examples{}
 \keyword{ manip }

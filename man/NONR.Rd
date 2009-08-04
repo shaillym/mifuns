@@ -7,7 +7,7 @@
 \alias{safe.call}
 \alias{backtrans}
 \alias{filename}
-\alias{filter}
+\alias{strain}
 \alias{getCovs}
 \alias{getCwres}
 \alias{setCwres}
@@ -72,49 +72,68 @@
 	nochecksum=FALSE, 
 	grid=FALSE,
 	nice=FALSE, 
-	udef=FALSE, 
+	udef=NULL, 
 	file=NULL,
-	plotName=NULL,
 	...
   ) 
-  
- 
+
   PLOTR(
-  	b, 
-	ProjectDir, 
-	dvname = NULL, 
-	logtrans = FALSE,
+	b, 
+	ProjectDir=getwd(), 
+	dvname = 'DV', 
+	logtrans = FALSE, 
 	grp = NULL, 
 	grpnames = NULL, 
 	cont.cov = NULL, 
-	cat.cov= NULL, 
+	cat.cov = NULL, 
 	par.list = NULL, 
 	eta.list = NULL, 
-	missing = -99, 
-	onefile=TRUE,
+	missing = -99,
 	epilog=NULL,
-	plotName=NULL
+	file=NULL,
+	...
   )
-  
-  diagnosticPlots(grp, grpnames, ProjectDir, b, dataObs, dvname,...)
+
+  dataSynthesis(
+	b, 
+	ProjectDir=getwd(), 
+	dvname = 'DV', 
+	logtrans = FALSE, 
+	grp = NULL, 
+	grpnames = NULL, 
+	cont.cov = NULL, 
+	cat.cov = NULL, 
+	par.list = NULL, 
+	eta.list = NULL, 
+	missing = -99,
+	...
+  )
+
+  diagnosticPlots(
+        data, 
+	dvname='DV', 
+	group=NULL, 
+	model=NULL, 
+	...
+  )
 
   covariatePlots(
-  	ParFileName, 
-	par.list, 
-	eta.list, 
-	CovFile, 
-	ProjectDir, 
-	b,
-	cont.cov, 
-	cat.cov, 
-	covariatePlots, 
-	dataObs, 
-	missing
-  ) 
-  
-  cwresPlots(data,cont.cov=NULL,cat.cov=NULL,...)
+	data,
+	cont.cov=NULL, 
+	cat.cov=NULL,
+	par.list=NULL, 
+	eta.list=NULL, 
+	...
+  )
 
- }
+  cwresPlots(
+	data,
+	cont.cov=NULL, 
+	cat.cov=NULL,
+	...
+  )
+
+}
 
 \arguments{ 
 
@@ -135,10 +154,6 @@
   \item{boot}{Flag to describe type of NONMEM run with (0)-normal,
   (1)-bootstrap, (2)-long runs, and (3)-bootstrap runs across entire
   cluster.}  
-
-  \item{concurrent}{Tell NONR to whether to run control
-  streams concurrently in NONMEM (default: TRUE). Coerced to FALSE in
-  Windows.}  
 
   \item{SGEflgs}{Flags to pass to Sun Grid Engine when
   running on the Nix grid. Example: To set a run length of maximum one
@@ -225,32 +240,34 @@
   to a NONMEM execution. Using \code{nice=TRUE} will preserve .svn
   directories. Default: FALSE} 
 
-  \item{udef}{Whether the user will supply a 
-  custom command to run NONMEM. If set to TRUE, \code{UDEFcom} must be defined. 
-  Default: FALSE} 
-
-  \item{UDEFcom}{User supplied custom command to run NONMEM. 
-  This must be character.  The command in \code{UDEFcom} is wrapped in a 
+  \item{udef}{User supplied custom command to run NONMEM. 
+  This must be character.  The command in \code{udef} is wrapped in a 
   system call and passed to the command-line. Default: NULL} 
   
-
-  \item{onefile}{Whether diagnostic plots should be many single page 
-  pdfs or one multi-page pdf. Defaults to one multi-page pdf. Set \code{onefile}=FALSE
-  to get to multiple pdfs. Default: TRUE}
-
-  \item{plotName}{File name for diagnostic plots, if any.  Default combines
-  'DiagnosticPlotReview with the run number, grp if present, and a counter if 
-  onefile is FALSE. NOTE: If \code{onefile}=FALSE and \code{plotName} is provided the user must add counter (\code{\%d}) to 
-  \code{plotName}. }
+  \item{file}{File name for diagnostic plots, if any.  Default combines
+  'DiagnosticPlotReview with the run number, grp if present.  You can specify 
+  an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
  } 
 
+  \item{\dots}{Additional arguments passed to functions that accept them. For example,
+  you can pass \code{onefile=FALSE} to pdf(), called by PLOTR().  You can also pass
+  additional lattice arguments to modify the diagnostic plots.}
   
+  \item{data}{A data.frame, typically created by dataSynthesis().}
+  
+  \item{group}{Optionally, a column name in \code{data} used to condition the 
+  output of diagnosticPlots().}
+  
+  \item{model}{If supplied, this text argument will be prepended to the title for
+  figures created by diagnosticPlots().}
+}
   
   \details{ Generally 0 and 1 can be used
   in place of FALSE and TRUE.The plotting device is pdf().  } 
   
-  \value{ NONR and PLOTR are used for
-their side effects.  } 
+  \value{ NONR() and PLOTR() are used for their side effects. dataSynthesis() 
+  returns a data.frame.  diagnosticPlots(), covariatePlots(), and cwresPlots()
+  return lists of trellis objects.} 
 
 \note{ Specific control stream syntax is expected
 when running NONR and the other functions present in the MIfuns package.
@@ -286,6 +303,6 @@ plotting to function correctly.
    website (\code{http://metruminstitute.org/}). }
  \author{ Developed by
  Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
- \seealso{\code{\link{CWRES}},\code{\link{compute.cwres}} } 
+ \seealso{\code{\link{compute.cwres}} } 
  \keyword{ manip }
 

@@ -50,7 +50,8 @@ function (data, dvname='DV', group=NULL, model=NULL, ...)
   		panel.loess(x,y,lty=2,...)
   	},
   	scales=list(y=list(relation="free")),
-  	main=paste(model,"\nResiduals vs. Predicted",groupSubtitle(group))
+  	main=paste(model,"\nResiduals vs. Predicted",groupSubtitle(group)),
+	...
   )
   #Residuals vs. Time
   plots[[paste('resTime',group)]] <- xyplot(

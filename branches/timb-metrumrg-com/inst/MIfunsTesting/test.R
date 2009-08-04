@@ -9,7 +9,7 @@ absdir <- function(x){
 	result
 }
 twig <- function(x){
-	splits <- split(x,'/')
+	splits <- strsplit(x,'/')[[1]]
 	len <- length(splits)
 	splits[len]
 }
@@ -23,12 +23,12 @@ battery <- function(
 ){
 	InstDir <- absdir(InstDir)
 	NonmemDir <- absdir(NonmemDir)
-	ProjectDir <- absdir(Projectdir)
+	ProjectDir <- absdir(ProjectDir)
 	twig <- twig(NonmemDir)
-	if(is.null(NMcom)) NMcom <- paste(NonmemDir,'test',twig,'.pl') 
+	if(is.null(NMcom)) NMcom <- paste(NonmemDir,'/test/',twig,'.pl',sep='') 
 	infn <- paste(InstDir,'MIfunsExScripts/MIfunsRunlogNM6.for',sep='/')
 	file.copy(infn,ProjectDir)
-	infn <- paste(ProjectDir,'MIfunsExScripts/MIfunsRunlogNM6.for',sep='/')
+	infn <- paste(ProjectDir,'MIfunsRunlogNM6.for',sep='/')
 	infText <- readLines(infn)
 	infText <- sub('/common/NONMEM/nm6osx1',NonmemDir,infText)
 	writeLines(infText,infn)
@@ -36,7 +36,7 @@ battery <- function(
 	file.copy(epilog,ProjectDir)
 	NONR(
 		NMcom=NMcom,
-		b=1:2,
+		b=1,
 		ProjectDir=ProjectDir,
 		epilog=paste(ProjectDir,'epilogEx.R',sep='/'),
 		dvname='Response',
@@ -49,6 +49,7 @@ battery <- function(
 	)		
 }
 
+#battery(InstDir='..',NonmemDir='~/NONMEM/nm6osx1')
 
 
 

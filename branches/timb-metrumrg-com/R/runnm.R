@@ -62,7 +62,7 @@ grdCommand <- function(
 	sync = '-sync y',
 	shelby = '-shell n -b y',
 	cwd = paste('-cwd ', nmhome, lim, NMloc, lim, 'test', lim,NMcom, sep = ''),
-	files = paste(filename(ProjectDir,b,'.ctl'),filename(ProjectDir, b,'.lst')),
+	files = paste(filename(filename(ProjectDir,b),b,'.ctl'),filename(filename(ProjectDir,b), b,'.lst')),
 	end = '',
 	...
 ){	
@@ -76,8 +76,8 @@ grdCommand <- function(
 regCommand <- function(NMcom,ProjectDir,b,perl='perl -S',option=NULL,...)paste(
 	perl,
 	NMcom,
-	filename(ProjectDir,b,'.ctl'),
-	filename(ProjectDir,b,'.lst'),
+	filename(filename(ProjectDir,b),b,'.ctl'),
+	filename(filename(ProjectDir,b),b,'.lst'),
 	option=NULL
 )
 

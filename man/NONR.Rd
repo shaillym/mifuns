@@ -1,28 +1,30 @@
 \name{NONR}
 \alias{NONR}
+\alias{PLOTR}
 \alias{diagnosticPlots}
 \alias{covariatePlots}
-\alias{PLOTR}
-\alias{runmsge}
-\alias{runnm}
-\alias{backtrans}
 \alias{cwresPlots}
-\alis{filename}
-\alis{filter}
-\alis{getCovs}
-\alis{getCwres}
-\alis{getPars}
-\alis{getTabs}
-\alis{getdname}
-\alis{getcommand}
-\alis{grpnames}
-\alis{plotr}
-\alis{purge.dir}
-\alis{purge.files}
-\alis{regCommand}
-\alis{safe.call}
-\alis{setCwres}
-\alis{synthesis}
+\alias{safe.call}
+\alias{backtrans}
+\alias{filename}
+\alias{filter}
+\alias{getCovs}
+\alias{getCwres}
+\alias{setCwres}
+\alias{getPars}
+\alias{getTabs}
+\alias{getdname}
+\alias{getcommand}
+\alias{grpnames}
+\alias{synthesis}
+\alias{dataFormat}
+\alias{dataSynthesis}
+\alias{runmsge}
+\alias{purge.dir}
+\alias{purge.files}
+\alias{runnm}
+\alias{grdCommand}
+\alias{regCommand}
 
 
 \title{Run NONMEM and create diagnostic plots}
@@ -46,13 +48,12 @@
   
   }
 
-\synopsis{
+\usage{
   NONR(
   	NMcom, 
 	b, 
 	ProjectDir, 
 	boot = 0, 
-	concurrent = TRUE, 
 	SGEflgs = "",
 	checkrunno = TRUE, 
 	diag = TRUE, 
@@ -72,9 +73,9 @@
 	grid=FALSE,
 	nice=FALSE, 
 	udef=FALSE, 
-	UDEFcom=NULL, 
-	onefile=TRUE,
-	plotName=NULL
+	file=NULL,
+	plotName=NULL,
+	...
   ) 
   
  
@@ -112,69 +113,8 @@
   ) 
   
   cwresPlots(data,cont.cov=NULL,cat.cov=NULL,...)
-  
-  runmsge(
-  	NMcom,
-	ProjectDir, 
-	b, 
-	boot, 
-	concurrent, 
-	Platform, 
-	SGEflgs, 
-	checkrunno, 
-	diag,
-	fdata, 
-	epilog, 
-	dvname, 
-	logtrans, 
-	grp, 
-	grpnames, 
-	cont.cov,
-	cat.cov, 
-	par.list, 
-	eta.list, 
-	missing, 
-	dosbox, 
-	nochecksum, 
-	grid, 
-	nice,
-	udef, 
-	UDEFcom, 
-	onefile,
-	plotName
-  )
-  runnm(
-  	NMcom, 
-	b, 
-	boot, 
-	concurrent, 
-	Platform, 
-	SGEflgs, 
-	dosbox,
-	nochecksum, 
-	grid,
-	udef,
-	UDEFcom
-  ) 
+
  }
-
-\usage{
-NONR(
-	NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, 
-	SGEflgs = "",checkrunno = TRUE, diag = TRUE, fdata = FALSE, 
-	epilog = NULL, dvname =NULL, logtrans = FALSE, 
-	grp = NULL, grpnames = NULL,cont.cov = NULL, cat.cov = NULL, 
-	par.list = NULL, eta.list = NULL,missing = -99, dosbox = TRUE, 
-	nochecksum=FALSE, grid=FALSE, nice=F, udef=FALSE, UDEFcom=NULL, 
-	onefile=TRUE,plotName=NULL)
-
-PLOTR(
-	b, ProjectDir, dvname = NULL, logtrans = FALSE, 
-	grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
-	par.list =NULL, eta.list = NULL, missing = -99, onefile=TRUE,
-	epilog=NULL,plotName=NULL
-)
-}
 
 \arguments{ 
 

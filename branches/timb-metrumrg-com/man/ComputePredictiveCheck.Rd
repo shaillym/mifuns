@@ -62,7 +62,4 @@ IDname = "ID", TimeName = "TIME", DVname = "DV", CName = "C", Ignore = "C")
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\seealso{ }
-\examples{
-}
 \keyword{ manip }

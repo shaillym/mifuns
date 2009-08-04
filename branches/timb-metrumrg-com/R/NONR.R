@@ -1,12 +1,31 @@
 `NONR` <-  
-function (NMcom, b, ProjectDir, boot = 0, 
-    SGEflgs = "", checkrunno = TRUE, diag = TRUE, fdata = FALSE, 
-    epilog = NULL, dvname = NULL, logtrans = FALSE,
-    grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
-    par.list = NULL, eta.list = NULL, missing = -99, dosbox=TRUE,
-    nochecksum = FALSE, grid = FALSE, nice=FALSE, udef=NULL, 
-    file=NULL,...) 
-{
+function (
+	NMcom, 
+	b, 
+	ProjectDir, 
+	boot = 0, 
+	SGEflgs = "", 
+	checkrunno = TRUE, 
+	diag = TRUE, 
+	fdata = FALSE, 
+	epilog = NULL, 
+	dvname = NULL, 
+	logtrans = FALSE,
+	grp = NULL, 
+	grpnames = NULL, 
+	cont.cov = NULL, 
+	cat.cov = NULL, 
+	par.list = NULL, 
+	eta.list = NULL, 
+	missing = -99, 
+	dosbox=TRUE,
+	nochecksum = FALSE, 
+	grid = FALSE, 
+	nice=FALSE, 
+	udef=NULL, 
+	file=NULL,
+	...
+){
     Platform <- "Windows"
     if (.Platform$OS.type == "unix" & regexpr("apple", version$platform) > 1) Platform <- "Mac"
    

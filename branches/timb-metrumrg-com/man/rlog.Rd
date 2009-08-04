@@ -8,7 +8,16 @@
   in the call to rlog.
 }
 \usage{
-rlog(b, boot, ProjectDir, runlog)
+rlog(
+  	b, 
+	boot=0, 
+	ProjectDir=getwd(), 
+	runlog=NULL, 
+	append=TRUE,
+	file='NonmemRunLog.csv',
+	out='CombRunLog.csv',
+	...
+)
 }
 \arguments{
   \item{b}{ Vector of control stream numbers to use to generate a combined run log.
@@ -21,12 +30,15 @@ rlog(b, boot, ProjectDir, runlog)
   \item{runlog}{ Flag to describe process used to generate the combined run log with
   (0)-no combined run log (0), (1)-generate combined run log of ctl streams in b by 
   appending to existing combined run log, or (2)-generate combined run log of all ctl streams 
-  in b by overwriting existing combined run log. }
-}
-\details{
- 
+  in b by overwriting existing combined run log. If NULL (default), behavior
+  is determined by \code{append}.}
+  \item{append}{No effect unless \code{runlog} is NULL, in which case it is alternative
+  argumentation.  TRUE builds the runlog by appending; FALSE causes the runlog to 
+  be overwritten; NA or NULL suppresses the runlog.}
+  \item{file}{The file name for which to search in each subdirectory corresponding to \code{b}.}
+  \item{out}{The name for the output file, to be written in \code{ProjectDir}.}
+  \item{\dots}{Extra arguments, currently ignored.}
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\examples{}
 \keyword{ manip }

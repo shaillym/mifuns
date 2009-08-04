@@ -176,7 +176,7 @@ synthesis <- function(x,key=character(0),frames,...){
 }
 
 #reduces a character vector to the subset found in options
-filter <- function(x,options){
+strain <- function(x,options){
 	    if(!is.null(x))x <- intersect(x,options)
             x
 }
@@ -187,8 +187,8 @@ backtrans <- function(x,cols){
 	    x
 }
 
-#converts data.frames, using other args, to a single data.frame passed to diagnosticPlots
-plotr <- function(
+#generates the plotting data set, given actual data frames, etc.
+dataFormat <- function(
 	tabfile,
 	covfile,
 	parfile,
@@ -205,21 +205,23 @@ plotr <- function(
 ){
     if (logtrans) tabfile <- backtrans(tabfile,c(dvname,'PRED','IPRE'))    
     available <- unique(c(names(tabfile),names(covfile),names(parfile)))
-    grp <- filter(grp,available)
+    grp <- strain(grp,available)
     if(is.null(grp))tabfile$grpnames <- 'all'
     if(is.null(grp))grp <- 'grpnames'
     tabfile$grpnames <- grpnames(tabfile,grp,grpnames)
-    cont.cov <- filter(cont.cov,available)
-    cat.cov <- filter(cat.cov,available)
-    par.list <- filter(par.list,available)
-    eta.list <- filter(eta.list,available)
+    cont.cov <- strain(cont.cov,available)
+    cat.cov <- strain(cat.cov,available)
+    par.list <- strain(par.list,available)
+    eta.list <- strain(eta.list,available)
     requests <- c(grp,cont.cov,cat.cov,par.list,eta.list)
     synthesis <- synthesis(requests, key='ID',frames=list(tabfile,covfile,parfile),...)
     missing <- as.numeric(as.character(missing))
     for(col in cont.cov) synthesis[[col]] <- as.numeric(as.character(synthesis[[col]]))
     for(col in cont.cov) synthesis[[col]][!is.na(synthesis[[col]]) & synthesis[[col]]==missing] <- NA
     synthesis
-}    
+}
+
+#generates the plotting data set, given ProjectDir, b, etc.
 dataSynthesis <-
 function (
 	b, 
@@ -252,7 +254,7 @@ function (
     parfile <- getPars(parfile)
     
     #process data
-    synthesis <- plotr(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    synthesis <- dataFormat(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
     synthesis
 }
    

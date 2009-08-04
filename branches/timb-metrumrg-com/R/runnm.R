@@ -30,7 +30,7 @@
 
   #draft a command
   if(Platform == 'Mac' & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b)              
-  if(Platform == 'Mac' & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjctDir,b,concurrent,boot,...)
+  if(Platform == 'Mac' & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,concurrent,boot,...)
   if(Platform == 'Windows')nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,...)
   if(!is.null(udef))nm1 <- udef #trumps above
 	  
@@ -63,7 +63,8 @@ grdCommand <- function(
 	shelby = '-shell n -b y',
 	cwd = paste('-cwd ', nmhome, lim, NMloc, lim, 'test', lim,NMcom, sep = ''),
 	files = paste(filename(ProjectDir,b,'.ctl'),filename(ProjectDir, b,'.lst')),
-	end = ''
+	end = '',
+	...
 ){	
   if (concurrent & (boot == 1 | boot == 2))que <- '-q bootstrap.q'
   if (concurrent & (boot == 1 | boot == 3))sync <- ''

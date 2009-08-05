@@ -5,17 +5,17 @@
   rlog will generate a combined run log for all run numbers
   requested.  rlog will append to or overwrite any existing
   combined run log depending on the user options specified 
-  in the call to rlog.
+  in the call to rlog.  On 'Nix systems, certain files are 
+  gratuitously purged, especially for bootstrap directories.
 }
 \usage{
 rlog(
   	b, 
 	boot=0, 
 	ProjectDir=getwd(), 
-	runlog=NULL, 
 	append=TRUE,
-	file='NonmemRunLog.csv',
-	out='CombRunLog.csv',
+	file=NULL,
+	out=NULL,
 	...
 )
 }
@@ -24,20 +24,20 @@ rlog(
   Should be numeric with no placeholder zeros to left of number, i.e., "1" not "001".
   Example: \code{b=c(1,2,5)} }
   \item{boot}{ Flag to describe type of NONMEM run with (0)-normal, (1)-bootstrap, 
-  (2)-long runs, and (3)-bootstrap runs across entire cluster. 
-  Flag should be "0" on Windows. }
+  (2)-long runs, and (3)-bootstrap runs across entire cluster. Coerced to integer,
+  so FALSE/TRUE give 0/1.  Should be "0" on Windows. }
   \item{ProjectDir}{System path to the directory containing the NONMEM control (*.ctl) streams. }
-  \item{runlog}{ Flag to describe process used to generate the combined run log with
-  (0)-no combined run log (0), (1)-generate combined run log of ctl streams in b by 
-  appending to existing combined run log, or (2)-generate combined run log of all ctl streams 
-  in b by overwriting existing combined run log. If NULL (default), behavior
-  is determined by \code{append}.}
-  \item{append}{No effect unless \code{runlog} is NULL, in which case it is alternative
-  argumentation.  TRUE builds the runlog by appending; FALSE causes the runlog to 
-  be overwritten; NA or NULL suppresses the runlog.}
-  \item{file}{The file name for which to search in each subdirectory corresponding to \code{b}.}
-  \item{out}{The name for the output file, to be written in \code{ProjectDir}.}
+  \item{append}{TRUE builds the runlog by appending; FALSE causes the runlog to 
+  be overwritten.}
+  \item{file}{The run-specific input file to read. See details.}
+  \item{out}{The run-generic output file to write. See details.}
   \item{\dots}{Extra arguments, currently ignored.}
+}
+
+\details{
+  \code{file} is ProjectDir/*/NonmemRunLog.csv by default.  \code{out}
+  is ProjectDir/CombRunLog.csv by default.  '*', if present, will be replaced 
+  with run number when \code{file} is user-specified.
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }

@@ -262,8 +262,29 @@
   figures created by diagnosticPlots().}
 }
   
-  \details{ Generally 0 and 1 can be used
-  in place of FALSE and TRUE.The plotting device is pdf().  } 
+  \details{ 
+  
+  Generally 0 and 1 can be usedin place of FALSE and TRUE.  
+  
+  The plotting device is pdf().  
+  
+  The \dots argument can be used creatively, with appropriate caution.
+  Extra arguments are generally passed to secondary functions that accept them, 
+  and even some that don't.  All the lattice plotting functions accept extra 
+  arguments, so you may be able to modify the the diagnostic plots judiciously
+  (with the caviat that the same arguments will be passed to diagnosticPlots(),
+  covariatePlots(), and cwresPlots()). pdf() technically does not accept extra 
+  arguments, but any specified argument that it does accept will be passed.  
+  
+  File names deserve special consideration.  \code{file} is explicit and gives
+  the name (or naming strategy) for the diagnostic plots.  It is passed to pdf().
+  \code{infile} is implicit (declared by runnm()) and gives the path/name of the
+  NONMEM control stream.  \code{outfile} is implicit (declared by runnm()) and 
+  gives the path/name of the NONMEM output file.  All three have suitable defaults.
+  If alternatives are specified, '*' will be replaced with \code{b}, the run number.
+  For example, the default pdf name is ProjectDir/DiagnosticPlotReview_*.pdf, but
+  you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
+  } 
   
   \value{ NONR() and PLOTR() are used for their side effects. dataSynthesis() 
   returns a data.frame.  diagnosticPlots(), covariatePlots(), and cwresPlots()
@@ -277,17 +298,17 @@ number. No commas should be used in the \$PROB statement.  (2) The
 datafile name and relative path needs to be on the first line of the
 \$DATA record immediately following "\$DATA".  (3) The datafile relative
 path must be one directory deeper than actual, anticipating the fact
-that a COPY of the control stream will be exectuted from within a
+that a COPY of the control stream will be executed from within a
 dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
 then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because
 3/3.ctl is the copy that will be executed, and needs to find the data in
 its parent directory.  (4) Comments should be indicated with one
 semicolon (;) only.  (5) The NONMEM datafile must contain a "C" column
 containing only C's or periods(".").  (6) The *.TAB file in the \dQuote{\$TABLE}
-step must contain an EVID column for plotting to function. In the case
+step must contain an EVID column for plotting purposes. In the case
 of \dQuote{\$PRED} models, this can be a dummy column in the datafile.  (7) The
 NONMEM datafile must contain a column with a header of "ID" for
-plotting to function correctly.
+plotting purposes.
 
 
  PLOTR will automatically generate CWRES plots if required files are

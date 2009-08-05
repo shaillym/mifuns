@@ -122,7 +122,7 @@ function (
     	)
     }
     #ETAS vs. Continuous
-    if (length(cont) && length(eta.list)) {
+    if (length(cont.cov) && length(eta.list)) {
     	etas <- melt(data,measure.var=eta.list,id.var=cont.cov)
     	names(etas)[names(etas)=="variable"] <- "eta"
     	names(etas)[names(etas)=="value"] <- "delta"

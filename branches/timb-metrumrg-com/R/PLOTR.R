@@ -132,7 +132,7 @@ getTabs <- function(file=filename(ProjectDir, b, '.TAB'),b,ProjectDir){
 }   
 
 #melds the grpnames columns into one, renaming levels conditionally
-groupnames <- function(data,grp,grpnames=NULL){
+groupnames <- function(data,grp,grpnames=NULL,b){
 	    result <- factor(
 	    	do.call(
   			paste,
@@ -143,7 +143,7 @@ groupnames <- function(data,grp,grpnames=NULL){
 			)
 		)
 	   nlevs <- length(levels(result))
-	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- nms
+	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- groupnames
 	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(
 		   paste(
   			"Run", 
@@ -202,6 +202,7 @@ dataFormat <- function(
 	par.list=NULL,
 	eta.list=NULL,
 	missing=-99,
+	b,
 	...
 ){
     if (logtrans) tabfile <- backtrans(tabfile,c(dvname,'PRED','IPRE'))    
@@ -218,7 +219,7 @@ dataFormat <- function(
     for(col in cont.cov) synthesis[[col]][!is.na(synthesis[[col]]) & synthesis[[col]]==missing] <- NA
     if(is.null(grp))synthesis$grpnames <- 'all'
     if(is.null(grp))grp <- 'grpnames'
-    synthesis$grpnames <- groupnames(synthesis,grp,grpnames)
+    synthesis$grpnames <- groupnames(synthesis,grp,grpnames,b)
     synthesis
 }
 
@@ -255,7 +256,7 @@ function (
     parfile <- getPars(parfile)
     
     #process data
-    synthesis <- dataFormat(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    synthesis <- dataFormat(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,b,...)
     synthesis
 }
    

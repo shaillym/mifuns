@@ -111,12 +111,12 @@ function (data, dvname='DV', group=NULL, model=NULL, ...)
   	as.table=TRUE,
   	layout=c(2,2),
   	aspect=1,
-  	subset=variable %in% c("WRES","CWRES"),
+  	subset=res$variable[res$grpnames==group] %in% c("WRES","CWRES"),
   	panel = function(...) {
     	panel.qq(...)
     	panel.abline(0,1)
     },
-  	main=paste(Model,"\nQ-Q Plot of CWRES vs. WRES",groupSubtitle(group)),
+  	main=paste(model,"\nQ-Q Plot of CWRES vs. WRES",groupSubtitle(group)),
 	...
   )
   #Residuals

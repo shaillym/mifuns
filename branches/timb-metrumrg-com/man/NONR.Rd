@@ -15,7 +15,7 @@
 \alias{getTabs}
 \alias{getdname}
 \alias{getcommand}
-\alias{grpnames}
+\alias{groupnames}
 \alias{synthesis}
 \alias{dataFormat}
 \alias{dataSynthesis}

@@ -29,15 +29,15 @@
   if(is.null(invisible))invisible <- if(Platform=='Windows') !dosbox else TRUE
   if(is.null(option))option <- if(nochecksum) 'nochecksum'     else  NULL
   if(is.null(perl))  perl   <- if(dosbox)     'cmd /K perl -S' else 'cmd /C perl -S'
-  if(is.null(infile)) infile <- paste(filename(filename(ProjectDir,b),b,'.ctl')
-  if(is.null(outfile)) outfile <- paste(filename(filename(ProjectDir,b),b,'.lst')
+  if(is.null(infile)) infile <- paste(filename(filename(ProjectDir,b),b,'.ctl'))
+  if(is.null(outfile)) outfile <- paste(filename(filename(ProjectDir,b),b,'.lst'))
   infile <- sub('*', b, infile)
   outfile <- sub('*', b, outfile)
 
   #draft a command
-  if(Platform == 'Mac' & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b)              
-  if(Platform == 'Mac' & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,concurrent,boot,...)
-  if(Platform == 'Windows')nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,...)
+  if(Platform == 'Mac' & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b,infile=infile,outfile=outfile)              
+  if(Platform == 'Mac' & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,concurrent,boot,infile=infile,outfile=outfile,...)
+  if(Platform == 'Windows')nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,infile=infile,outfile=outfile,...)
   if(!is.null(udef))nm1 <- udef #trumps above
 	  
   #run the command
@@ -64,22 +64,24 @@ grdCommand <- function(
 	lim = '/',
 	lead = 'qsub -V -j y',
 	que = '-q all.q',
+	SGEflgs=NULL,
 	run = paste('-N Run', b, sep = ''),
 	sync = '-sync y',
 	shelby = '-shell n -b y',
 	cwd = paste('-cwd ', nmhome, lim, NMloc, lim, 'test', lim,NMcom, sep = ''),
-	files = paste(infile,outfile),
+	infile,
+	outfile,
 	end = '',
 	...
-){	
+){
   if (concurrent & (boot == 1 | boot == 2))que <- '-q bootstrap.q'
   if (concurrent & (boot == 1 | boot == 3))sync <- ''
   if (concurrent & (boot == 1 | boot == 3))end <- '&'
-  command <- paste(lead, que, SGEflgs, run, sync, shelby, cwd, files, end)
+  command <- paste(lead, que, SGEflgs, run, sync, shelby, cwd, infile, outfile, end)
   command
 }
 
-regCommand <- function(NMcom,ProjectDir,b,perl='perl -S',option=NULL,...)paste(
+regCommand <- function(NMcom,ProjectDir,b,perl='perl -S',option=NULL,infile,outfile,...)paste(
 	perl,
 	NMcom,
 	infile,

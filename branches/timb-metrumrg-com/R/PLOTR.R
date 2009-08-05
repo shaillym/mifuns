@@ -17,7 +17,7 @@ function (
 ){
 
     #process data
-    synthesis <- dataSynthesis(b,ProjectDir,logtrans,dvname,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    synthesis <- dataSynthesis(b,ProjectDir,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
     write.csv(synthesis,filename(ProjectDir,b,'_syn.csv'),row.names=FALSE)
     
     #open device

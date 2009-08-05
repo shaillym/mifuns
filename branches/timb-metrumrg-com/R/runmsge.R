@@ -88,7 +88,7 @@ function (
   	if(file_test('-d',dir)){
   		files <- dir(dir)
   		files <- grep(pattern,files,value=TRUE,ignore.case=TRUE)
-  		if(length(files))file.remove(files)
+  		if(length(files))file.remove(paste(dir,files,sep='/'))
   	}
   }
 

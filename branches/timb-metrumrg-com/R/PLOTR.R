@@ -19,6 +19,12 @@ function (
     #process data
     synthesis <- dataSynthesis(b,ProjectDir,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
     write.csv(synthesis,filename(ProjectDir,b,'_syn.csv'),row.names=FALSE)
+    available <- names(synthesis)
+    cont.cov <- strain(cont.cov,available)
+    cat.cov <- strain(cat.cov,available)
+    par.list <- strain(par.list,available)
+    eta.list <- strain(eta.list,available)
+    
     
     #open device
     if(is.null(file))file <- paste(ProjectDir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')

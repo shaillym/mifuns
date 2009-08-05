@@ -43,14 +43,15 @@ test <- function(
 		dvname='Response',
 		grp='SEX',
 		grpnames=c('female','male'),
-		cont.cov=c('AGE','HT','WT','CRCL'),
+		cont.cov=c('AGE','HT','WT','CRCL','CLCR'),
 		cat.cov='SEX',
-		par.list=c('CL','V','V2','KA'),
-		eta.list=paste('ETA',1:5,sep='')
+		par.list=c('CL','V','V2','V3','KA','CLCM','CLCB','CLHC'),
+		eta.list=paste('ETA',1:6,sep='')
 	)		
 }
 
-test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1)
+test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1)#okay
+test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=2)
 
 
 

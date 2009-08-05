@@ -131,7 +131,7 @@ getTabs <- function(file=filename(ProjectDir, b, '.TAB'),b,ProjectDir){
 }   
 
 #melds the grpnames columns into one, renaming levels conditionally
-grpnames <- function(data,grp,grpnames=NULL){
+groupnames <- function(data,grp,grpnames=NULL){
 	    result <- factor(
 	    	do.call(
   			paste,
@@ -142,7 +142,7 @@ grpnames <- function(data,grp,grpnames=NULL){
 			)
 		)
 	   nlevs <- length(levels(result))
-	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- grpnames
+	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- nms
 	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(
 		   paste(
   			"Run", 
@@ -208,7 +208,7 @@ dataFormat <- function(
     grp <- strain(grp,available)
     if(is.null(grp))tabfile$grpnames <- 'all'
     if(is.null(grp))grp <- 'grpnames'
-    tabfile$grpnames <- grpnames(tabfile,grp,grpnames)
+    tabfile$grpnames <- groupnames(tabfile,grp,grpnames)
     cont.cov <- strain(cont.cov,available)
     cat.cov <- strain(cat.cov,available)
     par.list <- strain(par.list,available)

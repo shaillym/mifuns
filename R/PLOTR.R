@@ -60,7 +60,7 @@ filename <- function(dir,b=NULL,ext=NULL)paste(dir,'/',b,ext,sep='')
 #calculates a vector of cwres
 getCwres <- function(b,ProjectDir){
     	nonmdir <- filename(ProjectDir, b)
-        cwrtab1 <- filename(nonmdir, NULL, '/cwtab1.deriv')
+        cwrtab1 <- filename(nonmdir, NULL, 'cwtab1.deriv')
         if (!file.exists(cwrtab1)) message(paste(cwrtab1,'does not exist.'))
         if (!file.exists(cwrtab1)) return(NULL)
 	tab.prefix <- filename(ProjectDir, b, '/cwtab')
@@ -234,14 +234,14 @@ dataSynthesis <-
 function (
 	b, 
 	ProjectDir=getwd(), 
-	dvname = 'DV', 
-	logtrans = FALSE, 
+	dvname = 'DV',
+	logtrans = FALSE,
 	grp = NULL, 
-	grpnames = NULL, 
-	cont.cov = NULL, 
-	cat.cov = NULL, 
-	par.list = NULL, 
-	eta.list = NULL, 
+	grpnames = NULL,
+	cont.cov = NULL,
+	cat.cov = NULL,
+	par.list = NULL,
+	eta.list = NULL,
 	missing = -99,
 	...
 ){

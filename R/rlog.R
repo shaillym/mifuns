@@ -3,90 +3,34 @@
   	b, 
 	boot=0, 
 	ProjectDir=getwd(), 
-	runlog=NULL, 
 	append=TRUE,
-	file='NonmemRunLog.csv',
-	out='CombRunLog.csv',
+	file=NULL,
+	out=NULL,
 	...
-) 
-{
-  k <- 0
-  if(is.null(runlog)){
-	  runlog <- 1
-	  if(is.na(append))runlog <- 0
-          if(is.null(append))runlog <- 0
-          if(append==FALSE)runlog <- 2
-  }
-		  
-  Platform <- "Windows"
-  z <- regexpr("bsd", version$platform)
-  z1 <- regexpr("apple", version$platform)
-  if (z > 0|z1 >0) {
-    Platform <- "Nix"
-  }
-  else {
-    Platform <- "Windows"
-  }
-  for (j in b) {
-    k <- k + 1
-    if (Platform == "Nix") {
-      if (boot == 0 | boot == 2) {
-        rdir <- paste(ProjectDir, "/", j, sep = "")
-        delfd <- paste("rm -rf ", rdir, "/FD*", sep = "")
-        system(delfd)
-      }
-      else {
-        rdir <- paste(ProjectDir, "/", j, ".boot", sep = "")
-        testf <- paste(rdir, "/FILE10", sep = "")
-        if (!file.exists(testf)) {
-          delfd <- paste("rm -rf ", rdir, "/F*", sep = "")
-          delfd2 <- paste("rm -rf ", rdir, "/nonmem.exe", 
-                          sep = "")
-          delfd3 <- paste("rm -rf ", rdir, "/P*", sep = "")
-          delfd4 <- paste("rm -rf ", rdir, "/O*", sep = "")
-          delfd5 <- paste("rm -rf ", rdir, "/Run*", sep = "")
-          system(delfd)
-          system(delfd2)
-          system(delfd3)
-          system(delfd4)
-          system(delfd5)
-        }
-      }
-    }
-    if (Platform == "Windows") {
-      rdir <- paste(ProjectDir, "/", j, sep = "")
-    }
-    FileName <- paste(rdir, "/",file, sep = "")
-    if (file.exists(FileName) == "TRUE") {
-      temp <- read.table(FileName, sep = ",", comment.char = "", 
-                         )
-      temp.num <- cbind(temp, j)
-      prefinal <- temp.num
-      CombRunLog <- data.frame(prefinal)
-      CombRunLogName <- paste(ProjectDir, "/", out, 
-                              sep = "")
-      if (runlog == 1) {
-        write.table(CombRunLog, file = CombRunLogName, 
-                    sep = ",", quote = FALSE, row.names = FALSE, 
-                    col.names = FALSE, append = TRUE, na = ".")
-      }
-      else {
-        if (k <= 1) {
-          write.table(CombRunLog, file = CombRunLogName, 
-                      sep = ",", quote = FALSE, row.names = FALSE, 
-                      col.names = FALSE, append = FALSE, na = ".")
-        }
-        else {
-          write.table(CombRunLog, file = CombRunLogName, 
-                      sep = ",", quote = FALSE, row.names = FALSE, 
-                      col.names = FALSE, append = TRUE, na = ".")
-        }
-      }
-    }
-    else {
-      cat(paste("Run Log for Run ", j, " does not exist", 
-                "\n", sep = ""))
-      next
-    }
-  }
+){
+  nix <- contains('bsd|apple|unix',version$platform)
+  boot <- as.integer(boot)
+  boot <- boot %in% c(1,3)
+  if(nix) boot <- FALSE
+  if(is.null(out)) out <- paste(ProjectDir,'CombRunLog.csv',sep='/')
+  if(!append) if(file.exists(out)) file.remove(out)
+  for(i in b){
+      #identify objects
+      rdir <- paste(ProjectDir, '/', i, sep = '')    
+      if(boot)rdir <- paste(ProjectDir, '/', i, '.boot', sep = '')
+      if(is.null(file)) file <- paste(rdir,'NonmemRunLog.csv',sep='/')
+      file <- sub('*',i,file)
+      #cleanup
+      if (nix) if(!boot) system(paste('rm -rf ', rdir, '/FD*', sep = '')) 
+      if (nix) if( boot) if (!file.exists(paste(rdir, '/FILE10', sep = ''))) {
+          system(paste('rm -rf ', rdir, '/F*', sep = ''))
+          system(paste('rm -rf ', rdir, '/nonmem.exe', sep = ''))
+          system(paste('rm -rf ', rdir, '/P*', sep = ''))
+          system(paste('rm -rf ', rdir, '/O*', sep = ''))
+          system(paste('rm -rf ', rdir, '/Run*', sep = ''))
+      } 
+      #append log
+      if(!file.exists(file)) cat(paste('Log for Run ', i, ' does not exist', '\n', sep = ''))
+      else cat(paste(readLines(file),'\n',sep=''),file=out,append=TRUE)
 }
+

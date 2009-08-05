@@ -22,6 +22,7 @@ function (
     
     #open device
     if(is.null(file))file <- paste(ProjectDir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
+    file <- sub('*', b, file)
     safe.call(pdf,file=file,...)
 
     #make plots
@@ -206,9 +207,6 @@ dataFormat <- function(
     if (logtrans) tabfile <- backtrans(tabfile,c(dvname,'PRED','IPRE'))    
     available <- unique(c(names(tabfile),names(covfile),names(parfile)))
     grp <- strain(grp,available)
-    if(is.null(grp))tabfile$grpnames <- 'all'
-    if(is.null(grp))grp <- 'grpnames'
-    tabfile$grpnames <- groupnames(tabfile,grp,grpnames)
     cont.cov <- strain(cont.cov,available)
     cat.cov <- strain(cat.cov,available)
     par.list <- strain(par.list,available)
@@ -218,6 +216,9 @@ dataFormat <- function(
     missing <- as.numeric(as.character(missing))
     for(col in cont.cov) synthesis[[col]] <- as.numeric(as.character(synthesis[[col]]))
     for(col in cont.cov) synthesis[[col]][!is.na(synthesis[[col]]) & synthesis[[col]]==missing] <- NA
+    if(is.null(grp))synthesis$grpnames <- 'all'
+    if(is.null(grp))grp <- 'grpnames'
+    synthesis$grpnames <- groupnames(synthesis,grp,grpnames)
     synthesis
 }
 

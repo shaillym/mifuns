@@ -22,7 +22,7 @@ function (
     
     #open device
     if(is.null(file))file <- paste(ProjectDir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
-    file <- sub('*', b, file)
+    file <- sub('*', b, file,fixed=TRUE)
     safe.call(pdf,file=file,...)
 
     #make plots
@@ -143,7 +143,7 @@ groupnames <- function(data,grp,grpnames=NULL,b){
 			)
 		)
 	   nlevs <- length(levels(result))
-	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- groupnames
+	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- grpnames
 	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(
 		   paste(
   			"Run", 

@@ -13,12 +13,13 @@ twig <- function(x){
 	len <- length(splits)
 	splits[len]
 }
-battery <- function(
+test <- function(
 	InstDir,
 	NonmemDir,
 	ProjectDir=getwd(),
 	grid=FALSE,
 	NMcom=NULL,
+	b,
 	...
 ){
 	InstDir <- absdir(InstDir)
@@ -36,7 +37,7 @@ battery <- function(
 	file.copy(epilog,ProjectDir)
 	NONR(
 		NMcom=NMcom,
-		b=1,
+		b=b,
 		ProjectDir=ProjectDir,
 		epilog=paste(ProjectDir,'epilogEx.R',sep='/'),
 		dvname='Response',
@@ -49,7 +50,7 @@ battery <- function(
 	)		
 }
 
-#battery(InstDir='..',NonmemDir='~/NONMEM/nm6osx1')
+test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1)
 
 
 

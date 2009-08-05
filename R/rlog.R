@@ -19,7 +19,7 @@
       rdir <- paste(ProjectDir, '/', i, sep = '')    
       if(boot)rdir <- paste(ProjectDir, '/', i, '.boot', sep = '')
       if(is.null(file)) file <- paste(rdir,'NonmemRunLog.csv',sep='/')
-      file <- sub('*',i,file)
+      file <- sub('*',i,file,fixed=TRUE)
       #cleanup
       if (nix) if(!boot) system(paste('rm -rf ', rdir, '/FD*', sep = '')) 
       if (nix) if( boot) if (!file.exists(paste(rdir, '/FILE10', sep = ''))) {

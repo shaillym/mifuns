@@ -31,8 +31,8 @@
   if(is.null(perl))  perl   <- if(dosbox)     'cmd /K perl -S' else 'cmd /C perl -S'
   if(is.null(infile)) infile <- paste(filename(filename(ProjectDir,b),b,'.ctl'))
   if(is.null(outfile)) outfile <- paste(filename(filename(ProjectDir,b),b,'.lst'))
-  infile <- sub('*', b, infile)
-  outfile <- sub('*', b, outfile)
+  infile <- sub('*', b, infile,fixed=TRUE)
+  outfile <- sub('*', b, outfile,fixed=TRUE)
 
   #draft a command
   if(Platform == 'Mac' & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b,infile=infile,outfile=outfile)              

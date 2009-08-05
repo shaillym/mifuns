@@ -27,7 +27,7 @@ function (
         molten <- melt(data,measure.var=cont.cov, id.var=cat.cov)
         names(molten)[names(molten)=="variable"] <- "cont"
     	names(molten)[names(molten)=="value"] <- "y"
-    	plasma <- melt(molten,measure.var=cat)
+    	plasma <- melt(molten,measure.var=cat.cov)
     	names(plasma)[names(plasma)=="variable"] <- "cat"
     	names(plasma)[names(plasma)=="value"] <- "x"
     	plots$contCat <- bwplot(

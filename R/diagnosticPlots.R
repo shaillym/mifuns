@@ -15,7 +15,7 @@ function (data, dvname='DV', group=NULL, model=NULL, ...)
   res <- melt(data,measure.var=resvar,id.var=resid)
  groupSubtitle <- function(grp){
   	if(grp[[1]] == "plotrGroup")return(NULL)
-  	paste("for",paste(grp,collapse=", "," data"))
+  	paste("for",paste(grp,collapse=", "),"data")
   }
   #Observed vs. Predicted 
   for (group in levels(observed$grpnames)){

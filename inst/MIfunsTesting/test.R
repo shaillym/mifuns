@@ -46,12 +46,12 @@ test <- function(
 		cont.cov=c('AGE','HT','WT','CRCL','CLCR'),
 		cat.cov='SEX',
 		par.list=c('CL','V','V2','V3','KA','CLCM','CLCB','CLHC'),
-		eta.list=paste('ETA',1:6,sep='')
+		eta.list=paste('ETA',1:6,sep=''),
+		file=paste(ProjectDir,*,'diagnostics.pdf',sep='/')
 	)		
 }
 
-test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1)#okay
-test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=2)
+test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1:2)
 
 
 

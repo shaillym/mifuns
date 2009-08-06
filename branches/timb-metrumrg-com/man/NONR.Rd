@@ -19,6 +19,7 @@
 \alias{synthesis}
 \alias{dataFormat}
 \alias{dataSynthesis}
+\alias{star}
 \alias{runmsge}
 \alias{purge.dir}
 \alias{purge.files}
@@ -97,17 +98,22 @@
   dataSynthesis(
 	b, 
 	ProjectDir=getwd(), 
-	dvname = 'DV', 
-	logtrans = FALSE, 
+	dvname = 'DV',
+	logtrans = FALSE,
 	grp = NULL, 
-	grpnames = NULL, 
-	cont.cov = NULL, 
-	cat.cov = NULL, 
-	par.list = NULL, 
-	eta.list = NULL, 
+	grpnames = NULL,
+	cont.cov = NULL,
+	cat.cov = NULL,
+	par.list = NULL,
+	eta.list = NULL,
 	missing = -99,
+	tabfile <- filename(ProjectDir, b, '.TAB'),
+	ctlfile <- filename(filename(ProjectDir,b),b,'.ctl'),
+	outfile <- filename(filename(ProjectDir,b),b,'.lst'),
+	datfile <- getdname(ctlfile),
+	parfile <- filename(ProjectDir, b, 'par.TAB'),
 	...
-  )
+)
 
   diagnosticPlots(
         data, 
@@ -217,6 +223,16 @@
 
   \item{missing}{Numeric item that defines value used to represent
   missing items in the NONMEM data file. Default value is "-99".}
+  
+  \item{tabfile}{Path and filename for the NONMEM output table (*.TAB).}
+
+  \item{outfile}{Path and filename for the NONMEM output file (*.lst).}
+
+  \item{ctlfile}{Path and filename for the NONMEM control stream (*.ctl).}
+
+  \item{datfile}{Path and filename for the source dataset, as in DATA record in *.ctl.}
+
+  \item{parfile}{Path and filename for the NONMEM parameter file (*par.TAB).}
 
   \item{dosbox}{Whether to capture all MS DOS box info when using NONR
   on MS Windows. If set to TRUE, all output to DOS box during NONMEM run
@@ -278,12 +294,11 @@
   
   File names deserve special consideration.  \code{file} is explicit and gives
   the name (or naming strategy) for the diagnostic plots.  It is passed to pdf().
-  \code{infile} is implicit (declared by runnm()) and gives the path/name of the
-  NONMEM control stream.  \code{outfile} is implicit (declared by runnm()) and 
-  gives the path/name of the NONMEM output file.  All three have suitable defaults.
-  If alternatives are specified, '*' will be replaced with \code{b}, the run number.
-  For example, the default pdf name is ProjectDir/DiagnosticPlotReview_*.pdf, but
-  you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
+  \code{file}, \code{tabfile}, \code{ctlfile}, \code{outfile}, \code{datfile}, 
+  and \code{parfile} have suitable defaults; if alternatives are specified, '*' 
+  will be replaced with \code{b}, the run number.  For example, the default pdf 
+  name is ProjectDir/DiagnosticPlotReview_*.pdf, but you could change it to 
+  ProjectDir/*/DiagnosticPlotReview.pdf.
   } 
   
   \value{ NONR() and PLOTR() are used for their side effects. dataSynthesis() 

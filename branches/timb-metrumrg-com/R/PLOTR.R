@@ -28,7 +28,7 @@ function (
     
     #open device
     if(is.null(file))file <- paste(ProjectDir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
-    file <- sub('*', b, file,fixed=TRUE)
+    file <- star(file,b)
     safe.call(pdf,file=file,...)
 
     #make plots
@@ -130,7 +130,7 @@ getdname <- function(filename){
 }
 
 #finds the tab file and reduces it to observation rows
-getTabs <- function(file=filename(ProjectDir, b, '.TAB'),b,ProjectDir){
+getTabs <- function(file){
 	    tabfile <- read.table(file = file, header = TRUE, as.is = TRUE, skip = 1, comment.char = '')
 	    #tabfile$ID <- as.character(tabfile$ID)
 	    tabfile <- tabfile[tabfile$EVID == 0, ]
@@ -243,27 +243,32 @@ function (
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
+	tabfile <- filename(ProjectDir, b, '.TAB'),
+	ctlfile <- filename(filename(ProjectDir,b),b,'.ctl'),
+	outfile <- filename(filename(ProjectDir,b),b,'.lst'),
+	datfile <- getdname(ctlfile),
+	parfile <- filename(ProjectDir, b, 'par.TAB'),
 	...
 ){
     #dereference directory context
-    nonmdir <- filename(ProjectDir, b)
-    tabfile <- filename(ProjectDir, b, '.TAB')
-    outfile <- filename(nonmdir, b, '.lst')
-    ctlfile <- filename(nonmdir, b, '.ctl')
-    datfile <- getdname(ctlfile)
-    parfile <- filename(ProjectDir, b, 'par.TAB')
+    tabfile <- star(tabfile,b)
+    ctlfile <- star(ctlfile,b)
+    outfile <- star(outfile,b)
+    datfile <- star(datfile)
+    parfile <- star(parfile,b)
     if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
     if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
     if (!file.exists(parfile)) stop(paste(parfile,'does not exist.'))
 
     #acquire data
-    tabfile <- getTabs(tabfile,b,ProjectDir)    
-    covfile <- getCovs(datfile,nonmdir)
+    tabfile <- getTabs(tabfile)    
+    covfile <- getCovs(datfile,filename(ProjectDir, b))
     parfile <- getPars(parfile)
     
     #process data
     synthesis <- dataFormat(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,b,...)
     synthesis
 }
-   
+
+star <- function(x,y)gsub('*', y, fixed=TRUE)
 

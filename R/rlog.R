@@ -17,8 +17,8 @@
       #identify objects
       rdir <- paste(ProjectDir, '/', i, sep = '')    
       if(boot)rdir <- paste(ProjectDir, '/', i, '.boot', sep = '')
-      if(is.null(file)) file <- paste(rdir,'NonmemRunLog.csv',sep='/')
-      file <- star(file,i)
+      if(is.null(file)) f <- paste(rdir,'NonmemRunLog.csv',sep='/')
+      f <- star(f,i)
       #cleanup
       if (nix()) if(!boot) system(paste('rm -rf ', rdir, '/FD*', sep = '')) 
       if (nix()) if( boot) if (!file.exists(paste(rdir, '/FILE10', sep = ''))) {
@@ -29,11 +29,11 @@
           system(paste('rm -rf ', rdir, '/Run*', sep = ''))
       } 
       #append log
-      if(!file.exists(file)) cat(paste('Log for Run ', i, ' does not exist', '\n', sep = ''))
+      if(!file.exists(f)) cat(paste('Log for Run ', i, ' does not exist', '\n', sep = ''))
       else {
-	  dat <- readLines(file)
+	  dat <- readLines(f)
 	  dat <- dat[nchar(dat)>0]
-          cat(paste(dat,'\n',sep=''),file=out,append=TRUE)
+          cat(dat,sep='\n',file=out,append=TRUE)
       }
   }
  }

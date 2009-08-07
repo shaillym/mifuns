@@ -30,7 +30,11 @@
       } 
       #append log
       if(!file.exists(file)) cat(paste('Log for Run ', i, ' does not exist', '\n', sep = ''))
-      else cat(paste(readLines(file),'\n',sep=''),file=out,append=TRUE)
+      else {
+	  dat <- readLines(file)
+	  dat <- dat[nchar(dat)>0]
+          cat(paste(dat,'\n',sep=''),file=out,append=TRUE)
+      }
   }
  }
 

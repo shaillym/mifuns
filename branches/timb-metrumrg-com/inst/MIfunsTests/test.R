@@ -28,8 +28,10 @@ test <- function(
 	twig <- twig(NonmemDir)
 	if(is.null(NMcom)) NMcom <- paste(NonmemDir,'/test/',twig,'.pl',sep='') 
 	infn <- paste(InstDir,'MIfunsExamples/MIfunsRunlogNM6.for',sep='/')
-	file.copy(infn,ProjectDir)
-	infn <- paste(ProjectDir,'MIfunsRunlogNM6.for',sep='/')
+	misc <- paste(ProjectDir,'0',sep='/')
+	dir.create(misc)
+	file.copy(infn,misc)
+	infn <- paste(misc,'MIfunsRunlogNM6.for',sep='/')
 	infText <- readLines(infn)
 	infText <- sub('/common/NONMEM/nm6osx1',NonmemDir,infText)
 	writeLines(infText,infn)
@@ -39,6 +41,7 @@ test <- function(
 		b=b,
 		ProjectDir=ProjectDir,
 		epilog=epilog,
+		checkrunno=FALSE,
 		dvname='Response',
 		grp='SEX',
 		grpnames=c('female','male'),
@@ -53,11 +56,6 @@ test <- function(
 }
 
 getwd()#...MIfunsTests
+
 test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1:2)
-rlog(1:2,out='runlog.csv')
-
-
-
-
-
-
+rlog(1:2,out='0/runlog.csv',append=FALSE)

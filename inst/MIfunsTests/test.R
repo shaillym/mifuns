@@ -53,7 +53,7 @@ test <- function(
 }
 
 getwd()#...MIfunsTests
-test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=2)
+test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1:2)
 rlog(1:2,out='runlog.csv')
 
 

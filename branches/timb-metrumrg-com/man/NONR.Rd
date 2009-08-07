@@ -46,7 +46,7 @@
   
   PLOTR creates a plotting dataset using dataSynthesis(). It passes this dataset
   to each of diagnosticPlots(), covariatePlots(), and cwresPlots().  It then 
-  calls the script named by the epilog argument, if any.  The example epilog 
+  calls the function named by the epilog argument, if any.  The example epilog 
   (epilogEx.R) calls dataSynthesis() itself, and does additional plotting.
   
   }
@@ -178,9 +178,7 @@
   \item{fdata}{Whether to request deletion of NONMEM files: FDATA,
   PRDERR, and nonmem executable. Default: FALSE.}  
   
-  \item{epilog}{Path to
-  user-defined script that will be sourced at completion of NONMEM
-  run. Default value is NULL.}  
+  \item{epilog}{User-defined function to run at end of NONR or PLOTR.}  
   
   \item{dvname}{Name of the dependent
   variable to use as a label for the diagnostic plots. Default: DV.}
@@ -299,7 +297,7 @@
   \code{tabfile}, \code{ctlfile}, \code{outfile}, \code{datfile}, 
   and \code{parfile} are passed to dataSynthesis().  All have suitable defaults.
   If alternatives are specified, '*' will be replaced with \code{b}, the run number.  
-  For example, the default pdf name is ProjectDir/DiagnosticPlotReview_*.pdf, 
+  For example, the default pdf name is ProjectDir/DiagnosticPlotReview\_*.pdf, 
   but you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
   } 
   

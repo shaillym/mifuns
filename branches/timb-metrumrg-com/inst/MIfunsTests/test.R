@@ -27,19 +27,18 @@ test <- function(
 	ProjectDir <- absdir(ProjectDir)
 	twig <- twig(NonmemDir)
 	if(is.null(NMcom)) NMcom <- paste(NonmemDir,'/test/',twig,'.pl',sep='') 
-	infn <- paste(InstDir,'MIfunsExScripts/MIfunsRunlogNM6.for',sep='/')
+	infn <- paste(InstDir,'MIfunsExamples/MIfunsRunlogNM6.for',sep='/')
 	file.copy(infn,ProjectDir)
 	infn <- paste(ProjectDir,'MIfunsRunlogNM6.for',sep='/')
 	infText <- readLines(infn)
 	infText <- sub('/common/NONMEM/nm6osx1',NonmemDir,infText)
 	writeLines(infText,infn)
-	epilog <- paste(InstDir,'MIfunsExScripts/epilogEx.R',sep='/')
-	file.copy(epilog,ProjectDir)
+	source(paste(InstDir,'MIfunsExamples/epilogEx.R',sep='/'))
 	NONR(
 		NMcom=NMcom,
 		b=b,
 		ProjectDir=ProjectDir,
-		epilog=paste(ProjectDir,'epilogEx.R',sep='/'),
+		epilog=epilog,
 		dvname='Response',
 		grp='SEX',
 		grpnames=c('female','male'),
@@ -53,7 +52,9 @@ test <- function(
 	)		
 }
 
-test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1)
+getwd()#...MIfunsTests
+test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=2)
+rlog(1:2,out='runlog.csv')
 
 
 

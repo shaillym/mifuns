@@ -42,22 +42,22 @@ function (
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
     
     #try epilog
-    if (!is.null(epilog))try(match.fun(epilog)(
-        b=b,
-    	ProjectDir=ProjectDir,
-	dvname=dvname,
-	logtrans=logtrans,
-	grp=grp,
-	grpames=grpnames,
-	cont.cov=cont.cov,
-	cat.cov=cat.cov,
-	par.list=par.list,
-	eta.list=eta.list,
-	missing=missing,
-	...
+    if (!is.null(epilog))try(
+        match.fun(epilog)(
+            b=b,
+    	    ProjectDir=ProjectDir,
+	    dvname=dvname,
+	    logtrans=logtrans,
+	    grp=grp,
+	    grpames=grpnames,
+	    cont.cov=cont.cov,
+	    cat.cov=cat.cov,
+	    par.list=par.list,
+	    eta.list=eta.list,
+	    missing=missing,
+	    ...
+	)
     )
-            
-
 }
 
 #filters elipses for functions that do not accept them

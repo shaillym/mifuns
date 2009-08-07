@@ -8,10 +8,9 @@
 	out=NULL,
 	...
 ){
-  nix <- contains('bsd|apple|unix',version$platform)
   boot <- as.integer(boot)
   boot <- boot %in% c(1,3)
-  if(nix) boot <- FALSE
+  if(nix()) boot <- FALSE
   if(is.null(out)) out <- paste(ProjectDir,'CombRunLog.csv',sep='/')
   if(!append) if(file.exists(out)) file.remove(out)
   for(i in b){

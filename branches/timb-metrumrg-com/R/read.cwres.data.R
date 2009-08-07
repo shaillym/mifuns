@@ -2,7 +2,7 @@
 function (filename) 
 {
     if (is.null(version$language)) {
-        if (platform() == "WIN386") {
+        if (win()) {
             access(filename, 4) == 0
         }
         else {

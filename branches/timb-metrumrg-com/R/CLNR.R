@@ -1,10 +1,6 @@
 `CLNR` <-
 function (Dir, ProjectDir, note = "Files removed", test = TRUE) 
 {
-    Platform <- "Windows"
-    z<-regexpr("bsd",version$platform)
-    if (z>0){Platform <- "Nix"}else{
-         Platform <- "Windows"}
     FilesToRemove <- dir(path = Dir, full.names = TRUE, recursive = TRUE)
     FilesToRemoveComplete <- file.info(FilesToRemove)
     if (test == FALSE) {
@@ -22,12 +18,12 @@ function (Dir, ProjectDir, note = "Files removed", test = TRUE)
                 " and all it's subdirectories removed? ", sep = ""))
             if (answer2 == "y" | answer2 == "Y") {
                 setwd(ProjectDir)
-                if (Platform == "Windows") {
+                if (win()) {
                   del.dir <- paste("cmd /C rmdir /S /Q ", "\"", 
                     Dir, "\"", sep = "")
                   system(del.dir)
                 }
-                else {
+                if (nix()){
                   deldir <- paste("rm -rf ", Dir, sep = "")
                   system(deldir)
                 }

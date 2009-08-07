@@ -1,4 +1,5 @@
-#User script to plot structural/statistical diagnostic plots and/or 
+epilog <- function(...){
+#User code to plot structural/statistical diagnostic plots and/or 
 #plots to evaluate covariate-parameter relationships and/or
 #any plots user would like to create with their own code
 
@@ -12,7 +13,7 @@
 # eta.list - if defined in NONR
 # b  - ctl stream number 
 
-#Both NONR(runmsge) and PLOTR can call epilog, and both define everything needed
+#Both NONR (runmsge) and PLOTR can call epilog, and both supply everything needed
 #for dataSynthesis().  dataSynthesis scavenges columns from the TAB file, the par.TAB
 #file, and the underlying dataset, reporting just observation records that are
 #not commented.  Limiting to one record per ID is appropriate for some types of plotting.
@@ -21,11 +22,10 @@
 #either the parent data set or the par file (in that order) unless already present.
 
 #dataSynthesis() returns precisely the dataset that is passed to the standard plots.
-
-data <- dataSynthesis(
-	b,
-	ProjectDir,
-	dvname=dvname,
+    data <- dataSynthesis(...)
+        b,
+        ProjectDir,
+        dvname=dvname,
 	logtrans=logtrans,
 	grp=grp,
 	grpnames=grpnames,
@@ -33,27 +33,24 @@ data <- dataSynthesis(
 	cat.cov=cat.cov,
 	par.list=par.list,
 	eta.list=eta.list,
-	missing=missing
-)
+	missing=missing,
+	...
+    )
+    numDV<-c("DV","LDV","AMT")  # vector of variable names that should be numeric in data
+    # loop to change variables in numDV to numeric
+    for(k in numDV) data[[k]]<-as.numeric(as.character(data[[k]]))
+    subj<-data[!duplicated(data$ID),]
 
-numDV<-c("DV","LDV","AMT")  # vector of variable names that should be numeric in data
-# loop to change variables in numDV to numeric
-for(k in numDV){
-	data[[k]]<-as.numeric(as.character(data[[k]]))
-}
+    # user supplied name of output pdf file
+    pdf(file=paste(ProjectDir,"/TestPlots_",b,".pdf",sep=""))
 
-subj<-data[!duplicated(data$ID),]
+    #The plotting code below can be as complicated or as simple as is required. 
 
-# user supplied name of output pdf file
-pdf(file=paste(ProjectDir,"/TestPlots_",b,".pdf",sep=""))
-
-#The plotting code below can be as complicated or as simple as is required. 
-
-# plot of observed PK vs Time based on Nonmem data set
-plot(data$TIME, data$DV, main="PK obs", xlab="Time",
-     ylab="PK measure")
+    # plot of observed PK vs Time based on Nonmem data set
+    plot(data$TIME, data$DV, main="PK obs", xlab="Time", ylab="PK measure")
      
-# histogram of ETA1 based on Nonmem table file (XXpar.TAB)       
-hist(subj$ETA1, main="Histogram of ETA1")
+    # histogram of ETA1 based on Nonmem table file (XXpar.TAB)       
+    hist(subj$ETA1, main="Histogram of ETA1")
 
-dev.off()
+    dev.off()
+}

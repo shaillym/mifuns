@@ -136,6 +136,7 @@ function (
 	parfile=parfile,
 	...
     )
+  )
 }
   purge.dir <- function(dir,nice=FALSE){
   	if(file_test('-d',dir)){

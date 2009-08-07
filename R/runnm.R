@@ -4,8 +4,6 @@
 	ProjectDir,
 	b, 
 	boot, 
-	concurrent, 
-	Platform, 
 	SGEflgs, 
 	dosbox, 
 	nochecksum, 
@@ -19,14 +17,13 @@
 	ctlfile=NULL,
 	outfile=NULL,
 	...
-) 
-{
+){
 	
   #organize arguments
   if(!is.null(udef))dosbox <- FALSE
-  if(is.null(intern))intern <- if(Platform=='Windows') !dosbox else FALSE
-  if(is.null(minimized))minimized <- if(Platform=='Windows') !dosbox else FALSE
-  if(is.null(invisible))invisible <- if(Platform=='Windows') !dosbox else TRUE
+  if(is.null(intern))intern <- if(win()) !dosbox else FALSE
+  if(is.null(minimized))minimized <- if(win()) !dosbox else FALSE
+  if(is.null(invisible))invisible <- if(win()) !dosbox else TRUE
   if(is.null(option))option <- if(nochecksum) 'nochecksum'     else  NULL
   if(is.null(perl))  perl   <- if(dosbox)     'cmd /K perl -S' else 'cmd /C perl -S'
   if(is.null(ctlfile)) ctlfile <- filename(filename(ProjectDir,b),b,'.ctl')
@@ -35,9 +32,9 @@
   outfile <- star(outfile,b)
 
   #draft a command
-  if(Platform == 'Mac' & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b,ctlfile=ctlfile,outfile=outfile)              
-  if(Platform == 'Mac' & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,concurrent,boot,ctlfile=ctlfile,outfile=outfile,...)
-  if(Platform == 'Windows')nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,ctlfile=ctlfile,outfile=outfile,...)
+  if(nix() & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b,ctlfile=ctlfile,outfile=outfile)              
+  if(nix() & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,concurrent,boot,ctlfile=ctlfile,outfile=outfile,...)
+  if(win()) nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,ctlfile=ctlfile,outfile=outfile,...)
   if(!is.null(udef))nm1 <- udef #trumps above
 	  
   #run the command

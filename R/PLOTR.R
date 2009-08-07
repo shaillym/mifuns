@@ -42,7 +42,21 @@ function (
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
     
     #try epilog
-    if (!is.null(epilog))try(source(epilog, local = TRUE, print.eval = TRUE))#match NONR data environment
+    if (!is.null(epilog))try(match.fun(epilog)(
+        b=b,
+    	ProjectDir=ProjectDir,
+	dvname=dvname,
+	logtrans=logtrans,
+	grp=grp,
+	grpames=grpnames,
+	cont.cov=cont.cov,
+	cat.cov=cat.cov,
+	par.list=par.list,
+	eta.list=eta.list,
+	missing=missing,
+	...
+    )
+            
 
 }
 
@@ -79,15 +93,10 @@ getCwres <- function(b,ProjectDir){
 
 #loads non-null cwres onto tab file
 setCwres <- function(
-	b=NULL,
-	ProjectDir=NULL,
-	cwres=NULL,
-	file=NULL
+	cwres,
+	file
 ){
-	if((is.null(cwres)|is.null(file)) & (is.null(b)|is.null(ProjectDir)))stop('Specify crwes and file, or b and ProjectDir.')
-	if(is.null(cwres))cwres=getCwres(b,ProjectDir)
 	if(is.null(cwres))return(NULL)
-	if(is.null(file))file=filename(ProjectDir, b, '.TAB')
 	cwres <- c('CWRES',cwres)
 	tabfile <- readLines(file)[-1]
 	if(length(tabfile)!=length(cwres))stop()
@@ -243,18 +252,18 @@ function (
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile <- filename(ProjectDir, b, '.TAB'),
-	ctlfile <- filename(filename(ProjectDir,b),b,'.ctl'),
-	outfile <- filename(filename(ProjectDir,b),b,'.lst'),
-	datfile <- getdname(ctlfile),
-	parfile <- filename(ProjectDir, b, 'par.TAB'),
+	tabfile = filename(ProjectDir, b, '.TAB'),
+	ctlfile = filename(filename(ProjectDir,b),b,'.ctl'),
+	outfile = filename(filename(ProjectDir,b),b,'.lst'),
+	datfile = getdname(ctlfile),
+	parfile = filename(ProjectDir, b, 'par.TAB'),
 	...
 ){
-    #dereference directory context
+    #cleanup arguments
     tabfile <- star(tabfile,b)
     ctlfile <- star(ctlfile,b)
     outfile <- star(outfile,b)
-    datfile <- star(datfile)
+    datfile <- star(datfile,b)
     parfile <- star(parfile,b)
     if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
     if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
@@ -270,5 +279,5 @@ function (
     synthesis
 }
 
-star <- function(x,y)gsub('*', y, fixed=TRUE)
+star <- function(x,y)gsub('*', y, x, fixed=TRUE)
 

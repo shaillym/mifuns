@@ -1,5 +1,7 @@
 \name{NONR}
 \alias{NONR}
+\alias{nix}
+\alias{win}
 \alias{PLOTR}
 \alias{diagnosticPlots}
 \alias{covariatePlots}
@@ -107,11 +109,11 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile <- filename(ProjectDir, b, '.TAB'),
-	ctlfile <- filename(filename(ProjectDir,b),b,'.ctl'),
-	outfile <- filename(filename(ProjectDir,b),b,'.lst'),
-	datfile <- getdname(ctlfile),
-	parfile <- filename(ProjectDir, b, 'par.TAB'),
+	tabfile = filename(ProjectDir, b, '.TAB'),
+	ctlfile = filename(filename(ProjectDir,b),b,'.ctl'),
+	outfile = filename(filename(ProjectDir,b),b,'.lst'),
+	datfile = getdname(ctlfile),
+	parfile = filename(ProjectDir, b, 'par.TAB'),
 	...
 )
 
@@ -261,7 +263,7 @@
   system call and passed to the command-line. Default: NULL} 
   
   \item{file}{File name for diagnostic plots, if any.  Default combines
-  'DiagnosticPlotReview with the run number, grp if present.  You can specify 
+  DiagnosticPlotReview with the run number, and sgrp if present.  You can specify 
   an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
  } 
 
@@ -292,13 +294,13 @@
   covariatePlots(), and cwresPlots()). pdf() technically does not accept extra 
   arguments, but any specified argument that it does accept will be passed.  
   
-  File names deserve special consideration.  \code{file} is explicit and gives
-  the name (or naming strategy) for the diagnostic plots.  It is passed to pdf().
-  \code{file}, \code{tabfile}, \code{ctlfile}, \code{outfile}, \code{datfile}, 
-  and \code{parfile} have suitable defaults; if alternatives are specified, '*' 
-  will be replaced with \code{b}, the run number.  For example, the default pdf 
-  name is ProjectDir/DiagnosticPlotReview_*.pdf, but you could change it to 
-  ProjectDir/*/DiagnosticPlotReview.pdf.
+  File names deserve special consideration.  \code{file} gives
+  the name (or naming strategy) for the diagnostic plots; it is passed to pdf().
+  \code{tabfile}, \code{ctlfile}, \code{outfile}, \code{datfile}, 
+  and \code{parfile} are passed to dataSynthesis().  All have suitable defaults.
+  If alternatives are specified, '*' will be replaced with \code{b}, the run number.  
+  For example, the default pdf name is ProjectDir/DiagnosticPlotReview_*.pdf, 
+  but you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
   } 
   
   \value{ NONR() and PLOTR() are used for their side effects. dataSynthesis() 

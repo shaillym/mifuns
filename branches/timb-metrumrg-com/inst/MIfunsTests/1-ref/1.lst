@@ -2,7 +2,7 @@
 <nonmem>
 <text><![CDATA[
 /Users/timb/project/mifuns-timb/inst/MIfunsTests/1/1.lst
-2009.08.07.1534.02
+2009.08.07.1543.30
 $PROB RUN# 1 ESTIMATE PK W/COVARIATE RELATIONSHIPS
 $INPUT C ID DV AMT II ADDL TIME RATE HT WT CLCR SEX AGE
 $DATA  ../prob1.csv IGNORE=C 
@@ -243,7 +243,7 @@ COM(4)=H21 IPRED MDV NOPRINT ONEHEADER FILE=cwtab1.deriv
  EPS2
 +        0.00E+00  1.41E-02
  
-2009.08.07.1534.04
+2009.08.07.1543.32
 ........................................
 NONMEM run with /Users/timb/NONMEM/nm6osx1/test/nm6osx1.pl
 ........................................

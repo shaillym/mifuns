@@ -33,7 +33,7 @@
 
   #draft a command
   if(nix() & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b,ctlfile=ctlfile,outfile=outfile)              
-  if(nix() & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,concurrent,boot,ctlfile=ctlfile,outfile=outfile,...)
+  if(nix() & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,boot,ctlfile=ctlfile,outfile=outfile,...)
   if(win()) nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,ctlfile=ctlfile,outfile=outfile,...)
   if(!is.null(udef))nm1 <- udef #trumps above
 	  
@@ -54,7 +54,6 @@ grdCommand <- function(
         NMcom,
 	ProjectDir,
 	b,
-	concurrent,
 	boot,
   	NMloc = gsub('.pl?', '', NMcom),
 	nmhome = '/common/NONMEM',
@@ -71,9 +70,9 @@ grdCommand <- function(
 	end = '',
 	...
 ){
-  if (concurrent & (boot == 1 | boot == 2))que <- '-q bootstrap.q'
-  if (concurrent & (boot == 1 | boot == 3))sync <- ''
-  if (concurrent & (boot == 1 | boot == 3))end <- '&'
+  if (boot %in% c(1,2))que <- '-q bootstrap.q'
+  if (boot %in% c(1,3))sync <- ''
+  if (boot %in% c(1,3))end <- '&'
   command <- paste(lead, que, SGEflgs, run, sync, shelby, cwd, ctlfile, outfile, end)
   command
 }

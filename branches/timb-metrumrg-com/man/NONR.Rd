@@ -146,10 +146,17 @@
 \arguments{ 
 
   \item{NMcom}{The complete name of the perl script created by
-  NMQual when running on the cluster or the complete path plus perl
+  NMQual when running on the grid or the complete path plus perl
   script name when running on Windows. On Windows with NONMEM 6
   installed using NMQual 6 in C:/nm6, the command would be
-  \code{NMcom="C:/nm6/test/nm6.pl"}} 
+  \code{NMcom="C:/nm6/test/nm6.pl"}.  Other invocations may work.
+  By default, perl is invoked with \code{-S}, so path-registered
+  executable names may be discovered.  \code{-S} is not available
+  in the grid environment; NMcom is accepted as-is if the indicated
+  file exists, else an NMcom is assumed to be file-only and the path
+  is guessed.  Guessing uses a hidden argument \code{nmhome} 
+  ('/common/NONMEM' by default') which can be supplied explicitly to NONR().
+  } 
   
   \item{b}{Vector of (NONR) or single
   (PLOTR) control stream number(s) to run in NONMEM. Should be numeric

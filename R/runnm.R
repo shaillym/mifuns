@@ -55,25 +55,45 @@ grdCommand <- function(
 	ProjectDir,
 	b,
 	boot,
-  	NMloc = gsub('.pl?', '', NMcom),
-	nmhome = '/common/NONMEM',
-	lim = '/',
-	lead = 'qsub -V -j y',
-	que = '-q all.q',
+  	nmhome = '/common/NONMEM',
+	V='',
+	j='y',
+	q='all.q',
 	SGEflgs=NULL,
-	run = paste('-N Run', b, sep = ''),
-	sync = '-sync y',
-	shelby = '-shell n -b y',
-	cwd = paste('-cwd ', nmhome, lim, NMloc, lim, 'test', lim,NMcom, sep = ''),
+	N=paste('Run',b,sep=''),
+	sync = 'n',
+	shell='n',
+	b='y',
 	ctlfile,
 	outfile,
-	end = '',
 	...
 ){
-  if (boot %in% c(1,2))que <- '-q bootstrap.q'
-  if (boot %in% c(1,3))sync <- ''
-  if (boot %in% c(1,3))end <- '&'
-  command <- paste(lead, que, SGEflgs, run, sync, shelby, cwd, ctlfile, outfile, end)
+  if(!file.exists(NMcom)){
+      #grab the last path element.
+      exec <- rev(strsplit(NMcom,'/')[[1]])[[1]]
+      #guess the nonmemdir
+      nmdr <- gsub('.pl?','',exec)
+      #guess the full path and command
+      full <- paste(nmhome,nmdir,test,NMcom,sep='/')
+      if(!file.exists(full))stop(paste('not found:\n',NMcom,'\n',full,'\n'))
+      NMcom <- full
+  }
+  if (boot %in% c(1,2))que <- 'bootstrap.q'
+  if (boot %in% c(0,2))sync <- 'y'
+  command <- paste(
+  	'qsub -V',
+	'-j',j,
+	'-q',q,
+	SGEflgs,
+	'-N',N,
+	'-sync',sync,
+	'-shell',shell,
+	'-b',b,
+	'-cwd',NMcom,
+	ctlfile,
+	outfile
+  )
+  if(boot %in% c(1,3)) command <- paste(command,'&')
   command
 }
 

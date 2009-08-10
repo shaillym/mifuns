@@ -1,5 +1,5 @@
 $PROB RUN# 2 Parent-Metabolite-Urine Model
-$DATA ../data8.csv IGNORE=C
+$DATA ../2.csv IGNORE=C
 $INPUT C ID TIME AMT DV CRCL SEX WT AGE CMT EVID
 $SUB ADVAN5 TRANS1 INFN=../0/MIfunsRunlogNM6.for
 $ABB COMRES=12

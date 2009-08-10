@@ -25,30 +25,31 @@ function (
 	udef, 
 	file, 
 	ctlfile = NULL,
+	outfile = NULL,
 	tabfile = NULL,
 	msffile = NULL,
 	parfile = NULL,
 	...
 ){
   #Set NONMEM output directory.
-  ndir <- filename(ProjectDir, b)
   bootstrap <- boot %in% c(1,3)
+  ndir <- filename(ProjectDir, b)
+  rdir <- ndir
   
   #Set runtime directory.
   if (grid & !bootstrap) rdir <- filename(ProjectDir, b, '.lock')
   if (grid & bootstrap)  rdir <- filename(ProjectDir, b, '.boot')
-  if (!grid) rdir <- ndir
   
   #Check arguments.
-  #ctlorig <- filename(ProjectDir, b, '.ctl')
-  #if(is.null(ctlfile)) ctlfile <- filename(rdir, b, '.ctl')
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
   ctlfile <- star(ctlfile,b)
   newfile <- rev(strsplit(ctlfile,'/')[[1]])[[1]]
   newfile <- paste(rdir,newfile,sep='/')
+  if(is.null(outfile)) outfile <- sub('\\.ctl$','.lst',newfile)
   if(is.null(tabfile)) tabfile <- filename(ProjectDir, b, '.TAB')
   if(is.null(parfile)) parfile <- filename(ProjectDir, b, 'par.TAB')
   if(is.null(msffile)) msffile <- filename(ProjectDir, b, '.MSF')
+  outfile <- star(outfile,b)
   tabfile <- star(tabfile,b)
   parfile <- star(parfile,b)
   msffile <- star(msffile,b)
@@ -65,6 +66,7 @@ function (
   #Prepare the file environment.
   purge.files(paste('^',b,'[^0-9]*\\.TAB$',sep=''),ProjectDir)
   purge.files(paste('^[^0-9]*',b,'\\.PDF$',sep=''),ProjectDir)
+  if(file.exists(outfile))file.remove(outfile)
   if(file.exists(tabfile))file.remove(tabfile)
   if(file.exists(parfile))file.remove(parfile)
   if(file.exists(msffile))file.remove(msffile)
@@ -75,7 +77,20 @@ function (
   ctlfile <- newfile
   
   #Run NONMEM.
-  runCommand(NMcom, ProjectDir, b, boot, SGEflgs, dosbox, nochecksum, grid, udef, ctlfile,...)
+  runCommand(
+  	NMcom, 
+	ProjectDir, 
+	b, 
+	boot, 
+	SGEflgs, 
+	dosbox, 
+	nochecksum, 
+	grid, 
+	udef, 
+	ctlfile, 
+	outfile,
+	...
+  )
   
   #Clean up (if not bootstrap run).
   if(bootstrap)return()

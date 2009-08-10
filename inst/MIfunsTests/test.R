@@ -64,8 +64,5 @@ test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1:2)
 rlog(1:2,out='0/runlog.csv',append=FALSE)
 
 #nix grid
-test(InstDir='..',NonmemDir='/common/NONMEM/nm6osx1',b=1:2)
-rlog(1:2,out='0/runlog.csv',append=FALSE)
-
 test(InstDir='..',NonmemDir='/common/NONMEM/nm6osx1',b=1,grid=TRUE,NMcom='nm6osx1.pl')
 

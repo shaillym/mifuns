@@ -63,7 +63,7 @@ grdCommand <- function(
 	N=paste('Run',b,sep=''),
 	sync = 'n',
 	shell='n',
-	b='y',
+	B='y',
 	ctlfile,
 	outfile,
 	...
@@ -88,7 +88,7 @@ grdCommand <- function(
 	'-N',N,
 	'-sync',sync,
 	'-shell',shell,
-	'-b',b,
+	'-b',B,
 	'-cwd',NMcom,
 	ctlfile,
 	outfile

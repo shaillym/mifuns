@@ -9,13 +9,13 @@
 	nochecksum, 
 	grid, 
 	udef,
+	ctlfile,
+	outfile,
 	perl=NULL,
 	option=NULL,
 	intern=NULL,
 	minimized=NULL,
 	invisible=NULL,
-	ctlfile=NULL,
-	outfile=NULL,
 	...
 ){
 	
@@ -24,17 +24,13 @@
   if(is.null(intern))intern <- if(win()) !dosbox else FALSE
   if(is.null(minimized))minimized <- if(win()) !dosbox else FALSE
   if(is.null(invisible))invisible <- if(win()) !dosbox else TRUE
-  if(is.null(option))option <- if(nochecksum) 'nochecksum'     else  NULL
-  if(is.null(perl))  perl   <- if(dosbox)     'cmd /K perl -S' else 'cmd /C perl -S'
-  if(is.null(ctlfile)) ctlfile <- filename(filename(ProjectDir,b),b,'.ctl')
-  if(is.null(outfile)) outfile <- filename(filename(ProjectDir,b),b,'.lst')
-  ctlfile <- star(ctlfile,b)
-  outfile <- star(outfile,b)
+  if(is.null(option))option <- if(nochecksum) 'nochecksum' else  NULL
+  if(is.null(perl)) if(nix()) perl <- 'perl -S'
+  if(is.null(perl)) if(win()) perl <- if(dosbox) 'cmd /K perl -S' else 'cmd /C perl -S'
 
   #draft a command
-  if(nix() & grid==FALSE) command <- regCommand(NMcom,ProjectDir,b,ctlfile=ctlfile,outfile=outfile)              
-  if(nix() & grid==TRUE ) command <- grdCommand(NMcom,ProjectDir,b,boot,ctlfile=ctlfile,outfile=outfile,...)
-  if(win()) command <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,ctlfile=ctlfile,outfile=outfile,...)
+  command <- regCommand(NMcom,ProjectDir,b,ctlfile,outfile,perl,option,...)
+  if(grid) command <- grdCommand(NMcom,ProjectDir,b,ctlfile,outfile,boot,...)
   if(!is.null(udef))command <- udef #trumps above
 	  
   #run the command
@@ -54,6 +50,8 @@ grdCommand <- function(
         NMcom,
 	ProjectDir,
 	b,
+	ctlfile,
+	outfile,
 	boot,
   	nmhome = '/common/NONMEM',
 	V='',
@@ -64,8 +62,6 @@ grdCommand <- function(
 	sync = 'n',
 	shell='n',
 	B='y',
-	ctlfile,
-	outfile,
 	...
 ){
   if(!file.exists(NMcom)){
@@ -97,11 +93,20 @@ grdCommand <- function(
   command
 }
 
-regCommand <- function(NMcom,ProjectDir,b,perl='perl -S',option=NULL,ctlfile,outfile,...)paste(
+regCommand <- function(
+	NMcom,
+	ProjectDir,
+	b,
+	ctlfile,
+	outfile,
+	perl,
+	option,
+	...
+)paste(
 	perl,
 	NMcom,
 	ctlfile,
 	outfile,
-	option=NULL
+	option
 )
 

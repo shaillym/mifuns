@@ -74,7 +74,7 @@ grdCommand <- function(
       #guess the nonmemdir
       nmdr <- gsub('.pl?','',exec)
       #guess the full path and command
-      full <- paste(nmhome,nmdr,test,NMcom,sep='/')
+      full <- paste(nmhome,nmdr,'test',NMcom,sep='/')
       if(!file.exists(full))stop(paste('not found:\n',NMcom,'\n',full,'\n'))
       NMcom <- full
   }

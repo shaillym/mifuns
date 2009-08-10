@@ -43,8 +43,8 @@ function (
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
   ctlfile <- star(ctlfile,b)
-  newfile <- rev(strsplit(ctlfile,'/')[[1]])[[1]]
-  newfile <- paste(rdir,newfile,sep='/')
+  newstub <- rev(strsplit(ctlfile,'/')[[1]])[[1]]
+  newfile <- paste(rdir,newstub,sep='/')
   if(is.null(outfile)) outfile <- sub('\\.ctl$','.lst',newfile)
   if(is.null(tabfile)) tabfile <- filename(ProjectDir, b, '.TAB')
   if(is.null(parfile)) parfile <- filename(ProjectDir, b, 'par.TAB')
@@ -101,11 +101,13 @@ function (
   if(!fdata)purge.files('^PR.*',rdir)
   Sys.chmod(dir(rdir,paste('^',b,'\\.',sep=''),full.names=TRUE),mode='0664')
   Sys.chmod(dir(rdir,'n.*\\.',full.names=TRUE),mode='0664')
+  
   try(file.rename(dir(rdir,'^Run',full.names=TRUE),'nonmem.log'),silent=TRUE)
   if(contains('\\.lock$',rdir)){ 
   	dir.create(ndir, showWarnings = FALSE)
   	file.copy(from=dir(rdir,full.names=TRUE),to=ndir,overwrite=TRUE)
    	purge.dir(rdir)
+	ctlfile <- paste(ndir,newstub,sep='/')
   }
   Sys.chmod(dir(ndir), mode='0664')
   Sys.chmod(tabfile, mode='0664')

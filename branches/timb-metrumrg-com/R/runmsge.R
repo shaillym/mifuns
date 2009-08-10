@@ -1,4 +1,4 @@
-`runmsge` <-
+`runNonmem` <-
 function (
 	NMcom, 
 	ProjectDir, 
@@ -75,7 +75,7 @@ function (
   ctlfile <- newfile
   
   #Run NONMEM.
-  runnm(NMcom, ProjectDir, b, boot, SGEflgs, dosbox, nochecksum, grid, udef, ctlfile,...)
+  runCommand(NMcom, ProjectDir, b, boot, SGEflgs, dosbox, nochecksum, grid, udef, ctlfile,...)
   
   #Clean up (if not bootstrap run).
   if(bootstrap)return()

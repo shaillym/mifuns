@@ -1,4 +1,4 @@
-`runnm` <-
+`runCommand` <-
   function (
   	NMcom, 
 	ProjectDir,
@@ -32,13 +32,13 @@
   outfile <- star(outfile,b)
 
   #draft a command
-  if(nix() & grid==FALSE) nm1 <- regCommand(NMcom,ProjectDir,b,ctlfile=ctlfile,outfile=outfile)              
-  if(nix() & grid==TRUE ) nm1 <- grdCommand(NMcom,ProjectDir,b,boot,ctlfile=ctlfile,outfile=outfile,...)
-  if(win()) nm1 <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,ctlfile=ctlfile,outfile=outfile,...)
-  if(!is.null(udef))nm1 <- udef #trumps above
+  if(nix() & grid==FALSE) command <- regCommand(NMcom,ProjectDir,b,ctlfile=ctlfile,outfile=outfile)              
+  if(nix() & grid==TRUE ) command <- grdCommand(NMcom,ProjectDir,b,boot,ctlfile=ctlfile,outfile=outfile,...)
+  if(win()) command <- regCommand(NMcom,ProjectDir, b, perl=perl,option=option,ctlfile=ctlfile,outfile=outfile,...)
+  if(!is.null(udef))command <- udef #trumps above
 	  
   #run the command
-  suppressWarnings(system(nm1, intern = intern, minimized = minimized, invisible = invisible))
+  suppressWarnings(system(command, intern = intern, minimized = minimized, invisible = invisible))
   
 #  Tim,
 #'minimized' and 'invisible' have no effect on the mac but do on windows. On a Mac, values for minimized and invisible are accepted but yield a warning.  intern=FALSE is the default and I believe we simply set intern=F on the Windows platform.  I just set this variable (intern) to be explicit about it.

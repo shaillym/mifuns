@@ -22,10 +22,10 @@
 \alias{dataFormat}
 \alias{dataSynthesis}
 \alias{star}
-\alias{runmsge}
+\alias{runNonmem}
 \alias{purge.dir}
 \alias{purge.files}
-\alias{runnm}
+\alias{runCommand}
 \alias{grdCommand}
 \alias{regCommand}
 

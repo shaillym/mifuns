@@ -62,10 +62,10 @@ function (
         if (grid & boot %in% c(0,2)) {
             pid <- fork(NULL)
             if (pid == 0) {
-                do.call("runmsge", args)
+                do.call("runNonmem", args)
                 exit()
             }
-        } else do.call('runmsge', args)
+        } else do.call('runNonmem', args)
         message(paste("Run ", i, " complete.", sep = ""))
     }
     message("NONR complete.")

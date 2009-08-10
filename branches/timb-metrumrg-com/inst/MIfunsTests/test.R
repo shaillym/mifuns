@@ -29,7 +29,7 @@ test <- function(
 	if(is.null(NMcom)) NMcom <- paste(NonmemDir,'/test/',twig,'.pl',sep='') 
 	infn <- paste(InstDir,'MIfunsExamples/MIfunsRunlogNM6.for',sep='/')
 	misc <- paste(ProjectDir,'0',sep='/')
-	dir.create(misc)
+	if(!file.exists(misc))dir.create(misc)
 	file.copy(infn,misc)
 	infn <- paste(misc,'MIfunsRunlogNM6.for',sep='/')
 	infText <- readLines(infn)
@@ -41,6 +41,7 @@ test <- function(
 		b=b,
 		ProjectDir=ProjectDir,
 		epilog=epilog,
+                grid=grid,
 		checkrunno=FALSE,
 		dvname='Response',
 		grp='SEX',
@@ -51,11 +52,20 @@ test <- function(
 		eta.list=paste('ETA',1:6,sep=''),
 		file=paste(ProjectDir,'*','diagnostics.pdf',sep='/'),
 		tabfile=paste(ProjectDir,'*','*.TAB',sep='/'),
-		parfile=paste(ProjectDir,'*','*par.TAB',sep='/')
+		parfile=paste(ProjectDir,'*','*par.TAB',sep='/'),
+                ...
 	)		
 }
 
 getwd()#...MIfunsTests
 
+#nix workstation
 test(InstDir='..',NonmemDir='~/NONMEM/nm6osx1',b=1:2)
 rlog(1:2,out='0/runlog.csv',append=FALSE)
+
+#nix grid
+test(InstDir='..',NonmemDir='/common/NONMEM/nm6osx1',b=1:2)
+rlog(1:2,out='0/runlog.csv',append=FALSE)
+
+test(InstDir='..',NonmemDir='/common/NONMEM/nm6osx1',b=1,grid=TRUE,NMcom='nm6osx1.pl')
+

@@ -1,7 +1,7 @@
 `runCommand` <-
   function (
   	NMcom, 
-	ProjectDir,
+	rdir,
 	b, 
 	boot, 
 	SGEflgs, 
@@ -29,8 +29,8 @@
   if(is.null(perl)) if(win()) perl <- if(dosbox) 'cmd /K perl -S' else 'cmd /C perl -S'
 
   #draft a command
-  command <- regCommand(NMcom,ProjectDir,b,ctlfile,outfile,perl,option,...)
-  if(grid) command <- grdCommand(NMcom,ProjectDir,b,ctlfile,outfile,boot,...)
+  command <- regCommand(NMcom,ctlfile,outfile,perl,option,...)
+  if(grid) command <- grdCommand(NMcom,ctlfile,outfile,boot,N=paste('Run',b,sep=''),o=rdir,e=rdir,...)
   if(!is.null(udef))command <- udef #trumps above
 	  
   #run the command
@@ -48,20 +48,20 @@
 
 grdCommand <- function(
         NMcom,
-	ProjectDir,
-	b,
 	ctlfile,
 	outfile,
 	boot,
-  	nmhome = '/common/NONMEM',
+  	N,
+	o,
+	e,
+	nmhome = '/common/NONMEM',
 	V='',
 	j='y',
 	q='all.q',
 	SGEflgs=NULL,
-	N=paste('Run',b,sep=''),
 	sync = 'n',
 	shell='n',
-	B='y',
+	b='y',
 	...
 ){
   if(!file.exists(NMcom)){
@@ -79,12 +79,14 @@ grdCommand <- function(
   command <- paste(
   	'qsub -V',
 	'-j',j,
+	'-e',e,
+	'-o',o,
 	'-q',q,
 	SGEflgs,
 	'-N',N,
 	'-sync',sync,
 	'-shell',shell,
-	'-b',B,
+	'-b',b,
 	'-cwd',NMcom,
 	ctlfile,
 	outfile
@@ -95,8 +97,6 @@ grdCommand <- function(
 
 regCommand <- function(
 	NMcom,
-	ProjectDir,
-	b,
 	ctlfile,
 	outfile,
 	perl,

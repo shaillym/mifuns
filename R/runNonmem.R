@@ -34,9 +34,9 @@ function (
   #Set NONMEM output directory.
   bootstrap <- boot %in% c(1,3)
   ndir <- filename(ProjectDir, b)
-  rdir <- ndir
   
   #Set runtime directory.
+  rdir <- ndir
   if (grid & !bootstrap) rdir <- filename(ProjectDir, b, '.lock')
   if (grid & bootstrap)  rdir <- filename(ProjectDir, b, '.boot')
   
@@ -79,7 +79,7 @@ function (
   #Run NONMEM.
   runCommand(
   	NMcom, 
-	ProjectDir, 
+	rdir, 
 	b, 
 	boot, 
 	SGEflgs, 

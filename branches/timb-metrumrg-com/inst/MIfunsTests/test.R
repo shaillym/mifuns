@@ -65,4 +65,31 @@ rlog(1:2,out='0/runlog.csv',append=FALSE)
 
 #nix grid
 test(InstDir='..',NonmemDir='/common/NONMEM/nm6osx1',b=1,grid=TRUE,NMcom='nm6osx1.pl')
-
+data <- read.csv('1.csv',strip.white=TRUE,as.is=TRUE)
+nms <- 1:5
+dir.create('1.boot')
+dir.create('1.boot/0')
+file.copy('0/MIfunsRunlogNM6.for','1.boot/0',overwrite=TRUE)
+t <- metaSub(
+    as.filename('1.ctl'),
+    names=nms,
+    pattern=c(
+        'RUN# 1',
+        '../1.csv'
+    ),
+    replacement=c(
+        'RUN# *',
+        '../*.csv'
+    ),
+    out='1.boot',
+    suffix='.ctl',
+    fixed=TRUE
+)
+r <- resample(
+    data,
+    names=nms,
+    key='ID',
+    rekey=TRUE,
+    out='1.boot'
+)
+NONR(NMcom='nm6osx1.pl', nms,'1.boot',boot=1,diag=0,grid=TRUE)

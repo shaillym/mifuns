@@ -32,7 +32,9 @@
 
 \title{Run NONMEM and create diagnostic plots}
 
-\description{ NONR executes a NONMEM run from R on MS Windows or the Nix
+\description{ 
+
+  NONR executes a NONMEM run from R on MS Windows or the Nix
   grid.  NONMEM needs to be installed on either OS using NMQual
   (http://nmqual.googlecode.com).  Execution on the Nix grid requires
   the installation of Sun Grid Engine v6.  Following a successful NONMEM
@@ -42,12 +44,19 @@
   PLOTR is a function to generate diagnostic plots and/or covariate
   evaluation plots following a successful NONMEM run. It is called by
   NONR if diagnostic plots are requested or can be called independently
-  following a NONMEM run. Plots are output as one pdf or multiple pdfs.  
+  following a NONMEM run. Plots use the pdf device.  
   
   PLOTR creates a plotting dataset using dataSynthesis(). It passes this dataset
   to each of diagnosticPlots(), covariatePlots(), and cwresPlots().  It then 
   calls the function named by the epilog argument, if any.  The example epilog 
   (epilogEx.R) calls dataSynthesis() itself, and does additional plotting.
+  
+  dataSynthesis() scavenges columns from the TAB file, the par.TAB file, and the 
+  underlying dataset, returning just observation records (EVID==0) that are  not
+  commented.  The second two files are limited to the first record per ID. Columns 
+  to scavenge are supplied by grp, cont.cov, cat.cov, par.list, and eta.list.
+  All TAB file columns are returned, plus first instance of 'scavenge' columns from 
+  either the parent data set or the par file (in that order) unless already present.
   
   }
 
@@ -321,9 +330,6 @@
   
   \details{ 
   
-  Generally 0 and 1 can be usedin place of FALSE and TRUE.  
-  
-  The plotting device is pdf().  
   
   The \dots argument can be used creatively, with appropriate caution.
   Extra arguments are generally passed to secondary functions that accept them, 
@@ -346,26 +352,26 @@
   returns a data.frame.  diagnosticPlots(), covariatePlots(), and cwresPlots()
   return lists of trellis objects.} 
 
-\note{ Specific control stream syntax is expected
-when running NONR and the other functions present in the MIfuns package.
-The list of syntax requirements are as follows: (1) \$PROB should be
-followed by "RUN\#" then a number representing the control stream
-number. No commas should be used in the \$PROB statement.  (2) The
-datafile name and relative path needs to be on the first line of the
-\$DATA record immediately following "\$DATA".  (3) The datafile relative
-path must be one directory deeper than actual, anticipating the fact
-that a COPY of the control stream will be executed from within a
-dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
-then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because
-3/3.ctl is the copy that will be executed, and needs to find the data in
-its parent directory.  (4) Comments should be indicated with one
-semicolon (;) only.  (5) The NONMEM datafile must contain a "C" column
-containing only C's or periods(".").  (6) The *.TAB file in the \dQuote{\$TABLE}
-step must contain an EVID column for plotting purposes. In the case
-of \dQuote{\$PRED} models, this can be a dummy column in the datafile.  (7) The
-NONMEM datafile must contain a column with a header of "ID" for
-plotting purposes.
-
+\note{ 
+  Specific control stream syntax is expected
+  when running NONR and the other functions present in the MIfuns package.
+  The list of syntax requirements are as follows: (1) \$PROB should be
+  followed by "RUN\#" then a number representing the control stream
+  number. No commas should be used in the \$PROB statement.  (2) The
+  datafile name and relative path needs to be on the first line of the
+  \$DATA record immediately following "\$DATA".  (3) The datafile relative
+  path must be one directory deeper than actual, anticipating the fact
+  that a COPY of the control stream will be executed from within a
+  dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
+  then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because
+  3/3.ctl is the copy that will be executed, and needs to find the data in
+  its parent directory.  (4) Comments should be indicated with one
+  semicolon (;) only.  (5) The NONMEM datafile must contain a "C" column
+  containing only C's or periods(".").  (6) The *.TAB file in the \dQuote{\$TABLE}
+  step must contain an EVID column for plotting purposes. In the case
+  of \dQuote{\$PRED} models, this can be a dummy column in the datafile.  (7) The
+  NONMEM datafile must contain a column with a header of "ID" for
+  plotting purposes.
 
  PLOTR will automatically generate CWRES plots if required files are
  present in NONMEM run directory. See help for \code{compute.cwres} for
@@ -374,7 +380,8 @@ plotting purposes.
  variables for diagnostic plots to be output in the *.TAB file, where
  "*" represents the control stream number.  Additional \$TABLE records
  can be present in the control stream but these are not used/needed by
- PLOTR.  }
+ PLOTR.  
+ }
 
  \references{ MIfuns package available from Metrum Institute
    website (\code{http://metruminstitute.org/}). }

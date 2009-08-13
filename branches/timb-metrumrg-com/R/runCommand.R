@@ -69,7 +69,7 @@ grdCommand <- function(
 	j='y',
 	q='all.q',
 	SGEflgs=NULL,
-	sync = 'n',
+	sync = 'y',
 	shell='n',
 	b='y',
 	...
@@ -85,7 +85,7 @@ grdCommand <- function(
       NMcom <- full
   }
   if (!urgent) q <- 'bootstrap.q'
-  if (!boot) sync <- 'y'
+  if (boot) sync <- 'n'
   command <- paste(
   	'qsub -V',
 	'-j',j,

@@ -93,8 +93,8 @@ function (
 	...
   )
   
-  #Clean up (if not bootstrap run).
-  if(boot)return()
+  #Clean up.
+  if(boot & grid)return() #boot runs on grid have sync=n by definition, so run poss. not complete.
   purge.files('^F[ISRC].*',rdir)
   purge.files('^OU.*',rdir)
   purge.files('nonmem.exe',rdir)

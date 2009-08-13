@@ -4,6 +4,7 @@ function (
 	b, 
 	ProjectDir, 
 	boot = FALSE,
+	concurrent = grid,
 	urgent = !boot,
 	SGEflgs = "", 
 	checkrunno = TRUE, 
@@ -21,15 +22,15 @@ function (
 	missing = -99, 
 	dosbox=TRUE,
 	nochecksum = FALSE, 
-	grid = FALSE, 
+	grid = boot, 
 	nice=FALSE, 
 	udef=NULL, 
 	file=NULL,
 	...
 ){
     if (win())  grid <- FALSE
-    if (!grid) boot <- FALSE
-    
+    if (win())  concurrent <- FALSE
+	    
     if (any(!file.exists(filename(ProjectDir, b, ".ctl")))) 
         stop("One or more control stream(s) missing.")
     for (i in b) {
@@ -61,8 +62,7 @@ function (
 		file = file,
 		...
 	)
-#        if (grid & !boot) {
-        if (grid){
+        if (concurrent){
             pid <- fork(NULL)
             if (pid == 0) {
                 do.call("runNonmem", args)

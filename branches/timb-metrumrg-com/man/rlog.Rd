@@ -11,7 +11,7 @@
 \usage{
 rlog(
   	b, 
-	boot=0, 
+	boot=FALSE, 
 	ProjectDir=getwd(), 
 	append=TRUE,
 	file=NULL,

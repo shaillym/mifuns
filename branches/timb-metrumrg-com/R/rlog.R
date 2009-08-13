@@ -8,7 +8,7 @@
 	out=NULL,
 	...
 ){
-  if(win()) boot <- FALSE
+  #if(win()) boot <- FALSE
   if(is.null(out)) out <- paste(ProjectDir,'CombRunLog.csv',sep='/')
   if(!append) if(file.exists(out)) file.remove(out)
   for(i in b){

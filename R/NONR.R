@@ -3,7 +3,8 @@ function (
 	NMcom, 
 	b, 
 	ProjectDir, 
-	boot = 0, 
+	boot = FALSE,
+	urgent = !boot,
 	SGEflgs = "", 
 	checkrunno = TRUE, 
 	diag = TRUE, 
@@ -27,7 +28,7 @@ function (
 	...
 ){
     if (win())  grid <- FALSE
-    if (!grid) boot <- 0
+    if (!grid) boot <- FALSE
     
     if (any(!file.exists(filename(ProjectDir, b, ".ctl")))) 
         stop("One or more control stream(s) missing.")
@@ -36,7 +37,8 @@ function (
 		NMcom = NMcom, 
 		ProjectDir = ProjectDir, 
 		b = i, 
-		boot = boot, 
+		boot = boot,
+		urgent = urgent,
 		SGEflgs = SGEflgs, 
 		checkrunno = checkrunno, 
 		diag = diag, 
@@ -59,14 +61,14 @@ function (
 		file = file,
 		...
 	)
-        if (grid & boot %in% c(0,2)) {
+#        if (grid & !boot) {
+        if (grid){
             pid <- fork(NULL)
             if (pid == 0) {
                 do.call("runNonmem", args)
                 exit()
             }
         } else do.call('runNonmem', args)
-        message(paste("Run ", i, " complete.", sep = ""))
     }
     message("NONR complete.")
 }

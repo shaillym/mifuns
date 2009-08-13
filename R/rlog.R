@@ -1,16 +1,14 @@
 `rlog` <-
   function (
   	b, 
-	boot=0, 
+	boot=FALSE, 
 	ProjectDir=getwd(), 
 	append=TRUE,
 	file=NULL,
 	out=NULL,
 	...
 ){
-  boot <- as.integer(boot)
-  boot <- boot %in% c(1,3)
-  if(nix()) boot <- FALSE
+  if(win()) boot <- FALSE
   if(is.null(out)) out <- paste(ProjectDir,'CombRunLog.csv',sep='/')
   if(!append) if(file.exists(out)) file.remove(out)
   for(i in b){

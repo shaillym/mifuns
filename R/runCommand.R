@@ -1,13 +1,14 @@
 `runCommand` <-
   function (
-  	NMcom, 
+  	NMcom,
 	rdir,
-	b, 
-	boot, 
-	SGEflgs, 
-	dosbox, 
-	nochecksum, 
-	grid, 
+	b,
+	boot,
+	urgent,
+	SGEflgs,
+	dosbox,
+	nochecksum,
+	grid,
 	udef,
 	ctlfile,
 	outfile,
@@ -30,12 +31,20 @@
 
   #draft a command
   command <- regCommand(NMcom,ctlfile,outfile,perl,option,...)
-  if(grid) command <- grdCommand(NMcom,ctlfile,outfile,boot,N=paste('Run',b,sep=''),o=rdir,e=rdir,...)
+  if(grid) command <- grdCommand(NMcom,ctlfile,outfile,boot,urgent,N=paste('Run',b,sep=''),o=rdir,e=rdir,...)
   if(!is.null(udef))command <- udef #trumps above
-	  
+
+  #set up the call
+  run <- function(command, intern, minimized, invisible)suppressWarnings(system(command, intern=intern, minimized=minimized, invisible=invisible))
+  runcall <- call('run', command, intern, minimized, invisible)
   #run the command
-  suppressWarnings(system(command, intern = intern, minimized = minimized, invisible = invisible))
-  
+#  if(grid){
+#      pid <- fork(function()eval(runcall)
+#      wait(pid)
+#  }
+#  else eval(runcall)
+eval(runcall)
+
 #  Tim,
 #'minimized' and 'invisible' have no effect on the mac but do on windows. On a Mac, values for minimized and invisible are accepted but yield a warning.  intern=FALSE is the default and I believe we simply set intern=F on the Windows platform.  I just set this variable (intern) to be explicit about it.
 #Bill
@@ -51,6 +60,7 @@ grdCommand <- function(
 	ctlfile,
 	outfile,
 	boot,
+	urgent,
   	N,
 	o,
 	e,
@@ -74,8 +84,8 @@ grdCommand <- function(
       if(!file.exists(full))stop(paste('not found:\n',NMcom,'\n',full,'\n'))
       NMcom <- full
   }
-  if (boot %in% c(1,2))que <- 'bootstrap.q'
-  if (boot %in% c(0,2))sync <- 'y'
+  if (!urgent)q <- 'bootstrap.q'
+  if (!boot))sync <- 'y'
   command <- paste(
   	'qsub -V',
 	'-j',j,
@@ -91,7 +101,7 @@ grdCommand <- function(
 	ctlfile,
 	outfile
   )
-  if(boot %in% c(1,3)) command <- paste(command,'&')
+  if(boot) command <- paste(command,'&')
   command
 }
 

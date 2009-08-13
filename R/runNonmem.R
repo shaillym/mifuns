@@ -155,7 +155,7 @@ function (
 	...
     )
   )
-  message(paste("Run ", i, " complete.", sep = ""))
+  message(paste("Run ", b, " complete.", sep = ""))
 }
   purge.dir <- function(dir,nice=FALSE){
   	if(file_test('-d',dir)){

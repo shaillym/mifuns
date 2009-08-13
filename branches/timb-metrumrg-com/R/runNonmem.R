@@ -103,7 +103,7 @@ function (
   Sys.chmod(dir(rdir,paste('^',b,'\\.',sep=''),full.names=TRUE),mode='0664')
   Sys.chmod(dir(rdir,'n.*\\.',full.names=TRUE),mode='0664')
   
-  try(file.rename(dir(rdir,'^Run',full.names=TRUE),'nonmem.log'),silent=TRUE)
+  #try(file.rename(dir(rdir,'^Run',full.names=TRUE),'nonmem.log'),silent=TRUE)
   if(contains('\\.lock$',rdir)){ 
   	dir.create(ndir, showWarnings = FALSE)
   	file.copy(from=dir(rdir,full.names=TRUE),to=ndir,overwrite=TRUE)

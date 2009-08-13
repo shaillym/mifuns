@@ -64,7 +64,7 @@
   NONR(
 	NMcom, 
 	b, 
-	ProjectDir, 
+	ProjectDir=getwd(), 
 	boot = FALSE,
 	concurrent = grid,
 	urgent = !boot,

@@ -67,7 +67,7 @@ grdCommand <- function(
 	nmhome = '/common/NONMEM',
 	V='',
 	j='y',
-	q='all.q',
+	q=NULL,
 	SGEflgs=NULL,
 	sync = 'y',
 	shell='n',
@@ -84,7 +84,9 @@ grdCommand <- function(
       if(!file.exists(full))stop(paste('not found:\n',NMcom,'\n',full,'\n'))
       NMcom <- full
   }
-  if (!urgent) q <- 'bootstrap.q'
+  que <- 'all.q'
+  if (!urgent) que <- 'bootstrap.q'
+  if(is.null(q)) q <- que	  
   if (boot) sync <- 'n'
   command <- paste(
   	'qsub -V',

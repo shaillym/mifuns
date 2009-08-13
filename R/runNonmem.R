@@ -37,8 +37,8 @@ function (
   
   #Set runtime directory.
   rdir <- ndir
-  if (grid & !boot) rdir <- filename(ProjectDir, b, '.lock')
-  if (grid & boot)  rdir <- filename(ProjectDir, b, '.boot')
+  if (grid) rdir <- filename(ProjectDir, b, '.lock')
+  if (boot)  rdir <- filename(ProjectDir, b, '.boot')
   
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')

@@ -1,13 +1,10 @@
 `TABR` <-
-function(ProjectDir,i,concurrent=TRUE,boot=FALSE,bootres=NULL,
+function(ProjectDir,i,boot=FALSE,bootres=NULL,
                btcol=NULL,btcoll=NULL,btcolh=NULL,outname){
     delim <- "/"
     ndir<-paste(ProjectDir,delim,i,sep="")
-    if(concurrent & !boot){
-	    rdir<-paste(ProjectDir,delim,i,sep="")
-    }else{
-	    rdir<-paste(ProjectDir,delim,i,".boot",sep="")
-    }
+    if(boot)rdir<-paste(ProjectDir,delim,i,".boot",sep="")
+    else rdir<-paste(ProjectDir,delim,i,sep="")
     ctl1<-paste(rdir,delim,i,".ctl",sep="")
     
      a<-scan(file=ctl1,what="",comment.char="",allowEscapes=TRUE,sep="\n",quiet=TRUE)

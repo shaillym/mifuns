@@ -84,8 +84,8 @@ grdCommand <- function(
       if(!file.exists(full))stop(paste('not found:\n',NMcom,'\n',full,'\n'))
       NMcom <- full
   }
-  if (!urgent)q <- 'bootstrap.q'
-  if (!boot))sync <- 'y'
+  if (!urgent) q <- 'bootstrap.q'
+  if (!boot) sync <- 'y'
   command <- paste(
   	'qsub -V',
 	'-j',j,

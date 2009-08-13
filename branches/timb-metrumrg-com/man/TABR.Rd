@@ -8,7 +8,7 @@ NONMEM run }
   TABR can also be used to add 95% CI estimates generated from bootstrap 
   analysis of final NONMEM model. }
 \usage{
-TABR(ProjectDir, i, concurrent = 1, boot = 0, bootres = NULL, btcol =
+TABR(ProjectDir, i, boot = FALSE, bootres = NULL, btcol =
 NULL, btcoll = NULL, btcolh = NULL, outname)
 }
 \arguments{
@@ -16,11 +16,7 @@ NULL, btcoll = NULL, btcolh = NULL, outname)
   \item{i}{ Control stream number used to generate table file. Should be numeric with no placeholder 
   zeros to left of number, i.e., "1" not "001".
   Example: \code{i=c(1)}}
-  \item{concurrent}{Flag to tell TABR how control streams were executed with (1)- or (0)-sequentially(0). 
-  Flag should be "0" in Windows.  Default value is "1". Example: \code{concurrent=1}}
-  \item{boot}{Flag to describe type of NONMEM run with (0)-normal, (1)-bootstrap, (2)-long runs, 
-  and (3)-bootstrap runs across entire cluster. Flag should be "0" on Windows.
-  Example: \code{boot=0}}
+  \item{boot}{Do subdirectories end in '.boot'?  Normally FALSE on Windows.}
   \item{bootres}{Complete path plus name of bootstrap results file. Default is NULL. 
    Example: \code{bootres="/Path/to/results/file/filename"}}
   \item{btcol}{ Columns to read from \code{bootres} and import into R. Must be numeric vector of numbers.

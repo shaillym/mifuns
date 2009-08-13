@@ -102,8 +102,8 @@ function (
   if(!fdata)purge.files('^PR.*',rdir)
   Sys.chmod(dir(rdir,paste('^',b,'\\.',sep=''),full.names=TRUE),mode='0664')
   Sys.chmod(dir(rdir,'n.*\\.',full.names=TRUE),mode='0664')
-  runfilename <- function(rdir)dir(rdir,'^RUN',full.names=TRUE)
-  try(file.rename(runfilename(rdir),sub('\\.o[0-9]*','.out',runfilename(rdir))),silent=TRUE)
+  runfilename <- function(rdir)dir(rdir,'^Run',full.names=TRUE)
+  try(file.rename(runfilename(rdir),sub('\\.o[0-9]*$','.out',runfilename(rdir))),silent=TRUE)
   if(contains('\\.lock$',rdir)){ 
   	dir.create(ndir, showWarnings = FALSE)
   	file.copy(from=dir(rdir,full.names=TRUE),to=ndir,overwrite=TRUE)

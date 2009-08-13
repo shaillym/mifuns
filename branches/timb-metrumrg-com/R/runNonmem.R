@@ -3,7 +3,8 @@ function (
 	NMcom, 
 	ProjectDir, 
 	b, 
-	boot, 
+	boot,
+	urgent,
 	SGEflgs, 
 	checkrunno, 
 	diag, 
@@ -32,13 +33,12 @@ function (
 	...
 ){
   #Set NONMEM output directory.
-  bootstrap <- boot %in% c(1,3)
   ndir <- filename(ProjectDir, b)
   
   #Set runtime directory.
   rdir <- ndir
-  if (grid & !bootstrap) rdir <- filename(ProjectDir, b, '.lock')
-  if (grid & bootstrap)  rdir <- filename(ProjectDir, b, '.boot')
+  if (grid & !boot) rdir <- filename(ProjectDir, b, '.lock')
+  if (grid & boot)  rdir <- filename(ProjectDir, b, '.boot')
   
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
@@ -78,22 +78,23 @@ function (
   
   #Run NONMEM.
   runCommand(
-  	NMcom, 
-	rdir, 
-	b, 
-	boot, 
-	SGEflgs, 
-	dosbox, 
-	nochecksum, 
-	grid, 
-	udef, 
-	ctlfile, 
+  	NMcom,
+	rdir,
+	b,
+	boot,
+	urgent,
+	SGEflgs,
+	dosbox,
+	nochecksum,
+	grid,
+	udef,
+	ctlfile,
 	outfile,
 	...
   )
   
   #Clean up (if not bootstrap run).
-  if(bootstrap)return()
+  if(boot)return()
   purge.files('^F[ISRC].*',rdir)
   purge.files('^OU.*',rdir)
   purge.files('nonmem.exe',rdir)
@@ -154,6 +155,7 @@ function (
 	...
     )
   )
+  message(paste("Run ", i, " complete.", sep = ""))
 }
   purge.dir <- function(dir,nice=FALSE){
   	if(file_test('-d',dir)){

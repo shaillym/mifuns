@@ -1,9 +1,9 @@
 `TABR` <-
-function(ProjectDir,i,concurrent=1,boot=FALSE,bootres=NULL,
+function(ProjectDir,i,concurrent=TRUE,boot=FALSE,bootres=NULL,
                btcol=NULL,btcoll=NULL,btcolh=NULL,outname){
     delim <- "/"
     ndir<-paste(ProjectDir,delim,i,sep="")
-    if(concurrent==1 & !boot){
+    if(concurrent & !boot){
 	    rdir<-paste(ProjectDir,delim,i,sep="")
     }else{
 	    rdir<-paste(ProjectDir,delim,i,".boot",sep="")

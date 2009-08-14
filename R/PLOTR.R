@@ -16,9 +16,24 @@
 	outdir=ProjectDir,
 	...
 ){
-
+    
     #process data
-    synthesis <- dataSynthesis(b,ProjectDir,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
+    synthesis <- dataSynthesis(
+    	b,
+	ProjectDir,
+	dvname,
+	logtrans,
+	grp,
+	grpnames,
+	cont.cov,
+	cat.cov,
+	par.list,
+	eta.list,
+	missing,
+	rundir=rundir,
+	outdir=outdir,
+	...
+    )
     write.csv(synthesis,filename(rundir,ext='_syn.csv'),row.names=FALSE)
     available <- names(synthesis)
     cont.cov <- strain(cont.cov,available)

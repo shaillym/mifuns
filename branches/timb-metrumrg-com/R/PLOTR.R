@@ -1,5 +1,4 @@
-`PLOTR` <-
-function (
+`PLOTR` <-function(
 	b, 
 	ProjectDir=getwd(), 
 	dvname = 'DV', 
@@ -13,12 +12,14 @@ function (
 	missing = -99,
 	epilog=NULL,
 	file=NULL,
+	rundir=filename(ProjectDir,b),
+	outdir=ProjectDir,
 	...
 ){
 
     #process data
     synthesis <- dataSynthesis(b,ProjectDir,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,...)
-    write.csv(synthesis,filename(ProjectDir,b,'_syn.csv'),row.names=FALSE)
+    write.csv(synthesis,filename(rundir,ext='_syn.csv'),row.names=FALSE)
     available <- names(synthesis)
     cont.cov <- strain(cont.cov,available)
     cat.cov <- strain(cat.cov,available)
@@ -27,7 +28,7 @@ function (
     
     
     #open device
-    if(is.null(file))file <- paste(ProjectDir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
+    if(is.null(file))file <- paste(outdir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
     file <- star(file,b)
     safe.call(pdf,file=file,...)
 
@@ -38,7 +39,7 @@ function (
     
     #cleanup
     dev.off()
-    unlink(filename(ProjectDir,b,'_syn.csv'))
+    unlink(filename(rundir,ext='_syn.csv'))
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
     
     #try epilog
@@ -55,6 +56,8 @@ function (
 	    par.list=par.list,
 	    eta.list=eta.list,
 	    missing=missing,
+	    rundir=rundir,
+	    outdir=outdir,
 	    ...
 	)
     )
@@ -251,7 +254,7 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(outdir, b, '.TAB'),
+	tabfile = filename(outdir, b,'.TAB'),
 	ctlfile = filename(rundir,b,'.ctl'),
 	outfile = filename(rundir,b,'.lst'),
 	datfile = getdname(ctlfile),

@@ -288,7 +288,8 @@
   \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).}
 
   \item{outdir}{Path for the NONMEM output directory (ProjectDir). Not related
-  to \code{outfile}.}
+  to \code{outfile}.  Controls defaults for where to look for \code{tabfile} and
+  \code{outfile}, as well as where to put \code{file}.}
 
   \item{dosbox}{Whether to capture all MS DOS box info when using NONR
   on MS Windows. If set to TRUE, all output to DOS box during NONMEM run

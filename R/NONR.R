@@ -30,6 +30,7 @@ function (
 ){
     if (win())  grid <- FALSE
     if (win())  concurrent <- FALSE
+    b <- unique(b)
 	    
     if (any(!file.exists(filename(ProjectDir, b, ".ctl")))) 
         stop("One or more control stream(s) missing.")

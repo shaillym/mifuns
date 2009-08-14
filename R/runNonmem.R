@@ -137,6 +137,7 @@ function (
 		tabfile=tabfile,
 		ctlfile=ctlfile,
 		parfile=parfile,
+		outfile=outfile,
 		...
         )
   )
@@ -155,6 +156,7 @@ function (
 	tabfile=tabfile,
 	ctlfile=ctlfile,
 	parfile=parfile,
+	outfile=outfile,
 	...
     )
   )

@@ -33,12 +33,14 @@ function (
 	...
 ){
   #Set NONMEM output directory.
-  ndir <- filename(ProjectDir, b)
+  #ndir <- filename(ProjectDir, b)
   
   #Set runtime directory.
-  rdir <- ndir
+  #rdir <- ndir
+  rdir <-   ndir <- filename(ProjectDir,b)
   if (grid) rdir <- filename(ProjectDir, b, '.lock')
-  if (boot)  rdir <- filename(ProjectDir, b, '.boot')
+  if (grid) ndir <- filename(ProjectDir, b)
+  if (boot) rdir <- ndir <- filename(ProjectDir, b, '.boot')
   
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
@@ -64,14 +66,15 @@ function (
   }
     
   #Prepare the file environment.
-  purge.files(paste('^',b,'[^0-9]*\\.TAB$',sep=''),ProjectDir)
-  purge.files(paste('^[^0-9]*',b,'\\.PDF$',sep=''),ProjectDir)
+  #purge.files(paste('^',b,'[^0-9]*\\.TAB$',sep=''),ProjectDir)
+  #purge.files(paste('^[^0-9]*',b,'\\.PDF$',sep=''),ProjectDir)
+  if(file.exists(   file))file.remove(   file)
   if(file.exists(outfile))file.remove(outfile)
   if(file.exists(tabfile))file.remove(tabfile)
   if(file.exists(parfile))file.remove(parfile)
   if(file.exists(msffile))file.remove(msffile)
   purge.dir(ndir,nice)
-  if(contains('\\.lock$',rdir))purge.dir(rdir)
+  if(grid)purge.dir(rdir)
   dir.create(rdir, showWarnings = FALSE)
   file.copy(ctlfile, newfile, overwrite = TRUE)
   ctlfile <- newfile
@@ -94,7 +97,7 @@ function (
   )
   
   #Clean up.
-  if(boot & grid)return() #boot runs on grid have sync=n by definition, so run poss. not complete.
+  if(boot & grid)return() #boot runs on grid have sync=n by definition, so run perh. not complete.
   purge.files('^F[ISRC].*',rdir)
   purge.files('^OU.*',rdir)
   purge.files('nonmem.exe',rdir)
@@ -104,7 +107,7 @@ function (
   Sys.chmod(dir(rdir,'n.*\\.',full.names=TRUE),mode='0664')
   runfilename <- function(rdir)dir(rdir,'^Run',full.names=TRUE)
   try(file.rename(runfilename(rdir),sub('\\.o[0-9]*$','.out',runfilename(rdir))),silent=TRUE)
-  if(contains('\\.lock$',rdir)){ 
+  if(grid){ 
   	dir.create(ndir, showWarnings = FALSE)
   	file.copy(from=dir(rdir,full.names=TRUE),to=ndir,overwrite=TRUE)
    	purge.dir(rdir)
@@ -116,7 +119,7 @@ function (
   Sys.chmod(msffile, mode='0664')
   
   #Diagnostics
-  try(setCwres(cwres=getCwres(b,ProjectDir),file=tabfile))
+  try(setCwres(cwres=getCwres(directory=ndir),file=tabfile))
   if(diag)try(
     	PLOTR(
     		b, 

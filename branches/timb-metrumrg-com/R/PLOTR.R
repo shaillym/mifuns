@@ -72,19 +72,19 @@ safe.call <- function(what,...){
 filename <- function(dir,b=NULL,ext=NULL)paste(dir,'/',b,ext,sep='')
 
 #calculates a vector of cwres
-getCwres <- function(b,ProjectDir){
-    	nonmdir <- filename(ProjectDir, b)
-        cwrtab1 <- filename(nonmdir, NULL, 'cwtab1.deriv')
+getCwres <- function(directory){
+    	#nonmdir <- filename(ProjectDir, b)
+        cwrtab1 <- filename(directory, NULL, 'cwtab1.deriv')
         if (!file.exists(cwrtab1)) message(paste(cwrtab1,'does not exist.'))
         if (!file.exists(cwrtab1)) return(NULL)
-	tab.prefix <- filename(ProjectDir, b, '/cwtab')
+	tab.prefix <- filename(directory,NULL, '/cwtab')
 	cwres.all<-compute.cwres(
 		run.number=1,
 		tab.prefix=tab.prefix,
 		printToOutfile=TRUE
 	)
 	data.cwres <- read.table(
-		file = filename(nonmdir,NULL, '/cwtab1'), 
+		file = filename(directory,NULL, '/cwtab1'), 
 		skip = 1, 
 		header = TRUE
 	)

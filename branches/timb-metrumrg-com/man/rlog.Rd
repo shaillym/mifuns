@@ -15,7 +15,8 @@ rlog(
 	ProjectDir=getwd(), 
 	append=TRUE,
 	file=NULL,
-	out=NULL,
+	out=filename(ProjectDir,'CombRunLog.csv'),
+	pattern=if(boot)'/FD*'else c('/F*','/nonmem.exe','/P*','/O*','/Run*'),
 	...
 )
 }
@@ -23,20 +24,18 @@ rlog(
   \item{b}{ Vector of control stream numbers to use to generate a combined run log.
   Should be numeric with no placeholder zeros to left of number, i.e., "1" not "001".
   Example: \code{b=c(1,2,5)} }
-  \item{boot}{ Flag to describe type of NONMEM run with (0)-normal, (1)-bootstrap, 
-  (2)-long runs, and (3)-bootstrap runs across entire cluster. Coerced to integer,
-  so FALSE/TRUE give 0/1.  Should be "0" on Windows. }
+  \item{boot}{ Were these runs in '.boot' directories?}
   \item{ProjectDir}{System path to the directory containing the NONMEM control (*.ctl) streams. }
   \item{append}{TRUE builds the runlog by appending; FALSE causes the runlog to 
   be overwritten.}
   \item{file}{The run-specific input file to read. See details.}
   \item{out}{The run-generic output file to write. See details.}
+  \item{pattern}{Search patterns for files to delete.}
   \item{\dots}{Extra arguments, currently ignored.}
 }
 
 \details{
-  \code{file} is ProjectDir/*/NonmemRunLog.csv by default.  \code{out}
-  is ProjectDir/CombRunLog.csv by default.  '*', if present, will be replaced 
+  \code{file} is ProjectDir/*/NonmemRunLog.csv by default.  '*', if present, will be replaced 
   with run number when \code{file} is user-specified.
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }

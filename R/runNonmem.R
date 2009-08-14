@@ -138,6 +138,7 @@ function (
 		ctlfile=ctlfile,
 		parfile=parfile,
 		outfile=outfile,
+		rundir=ndir,
 		...
         )
   )
@@ -157,6 +158,7 @@ function (
 	ctlfile=ctlfile,
 	parfile=parfile,
 	outfile=outfile,
+	rundir=ndir,
 	...
     )
   )

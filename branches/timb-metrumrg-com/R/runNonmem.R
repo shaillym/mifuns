@@ -69,7 +69,7 @@ function (
   #Prepare the file environment.
   #purge.files(paste('^',b,'[^0-9]*\\.TAB$',sep=''),ProjectDir)
   #purge.files(paste('^[^0-9]*',b,'\\.PDF$',sep=''),ProjectDir)
-  if(!is.null(file)if(file.exists(file))file.remove(file)
+  if(!is.null(file) & file.exists(file))file.remove(file)
   if(file.exists(outfile))file.remove(outfile)
   if(file.exists(tabfile))file.remove(tabfile)
   if(file.exists(parfile))file.remove(parfile)

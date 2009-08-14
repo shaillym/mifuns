@@ -257,6 +257,7 @@ function (
 	outfile = filename(filename(ProjectDir,b),b,'.lst'),
 	datfile = getdname(ctlfile),
 	parfile = filename(ProjectDir, b, 'par.TAB'),
+	rundir  = filename(ProjectDir, b),
 	...
 ){
     #cleanup arguments
@@ -271,7 +272,7 @@ function (
 
     #acquire data
     tabfile <- getTabs(tabfile)    
-    covfile <- getCovs(datfile,filename(ProjectDir, b))
+    covfile <- getCovs(datfile,rundir)
     parfile <- getPars(parfile)
     
     #process data

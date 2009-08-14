@@ -125,6 +125,7 @@
 	outfile = filename(filename(ProjectDir,b),b,'.lst'),
 	datfile = getdname(ctlfile),
 	parfile = filename(ProjectDir, b, 'par.TAB'),
+	rundir  = filename(ProjectDir, b),	
 	...
 )
 
@@ -280,6 +281,8 @@
   \item{datfile}{Path and filename for the source dataset, as in DATA record in *.ctl.}
 
   \item{parfile}{Path and filename for the NONMEM parameter file (*par.TAB).}
+
+  \item{rundir}{Path for the NONMEM run directory (ProjectDir/*}
 
   \item{dosbox}{Whether to capture all MS DOS box info when using NONR
   on MS Windows. If set to TRUE, all output to DOS box during NONMEM run

@@ -1,7 +1,7 @@
-epilog <- function(b,ProjectDir,...){
+epilog <- function(b,outdir,...){
 
     #See R help. dataSynthesis() gives the same dataset that is used by PLOTR.
-    data <- dataSynthesis(b=b,ProjectDir=ProjectDir,...)
+    data <- dataSynthesis(b=b,outdir=outdir,...)
     
     numDV<-c('DV','LDV','AMT') 
     # loop to change variables in numDV to numeric
@@ -9,7 +9,7 @@ epilog <- function(b,ProjectDir,...){
     subj<-data[!duplicated(data$ID),]
 
     # user supplied name of output pdf file
-    pdf(file=paste(ProjectDir,'/', b,'/TestPlots_',b,'.pdf',sep=''))
+    pdf(file=paste(outdir,'/TestPlots_',b,'.pdf',sep=''))
 
     #The plotting code below can be as complicated or as simple as is required. 
 

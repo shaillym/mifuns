@@ -30,10 +30,11 @@ function (
 	tabfile = NULL,
 	msffile = NULL,
 	parfile = NULL,
+	outdir  = ProjectDir,
 	...
 ){
-  #Set NONMEM output directory.
-  #ndir <- filename(ProjectDir, b)
+  #Groom arguments
+  outdir <- star(outdir,b)
   
   #Set runtime directory.
   #rdir <- ndir
@@ -139,6 +140,7 @@ function (
 		parfile=parfile,
 		outfile=outfile,
 		rundir=ndir,
+		outdir=outdir,
 		...
         )
   )
@@ -159,6 +161,7 @@ function (
 	parfile=parfile,
 	outfile=outfile,
 	rundir=ndir,
+	outdir=outdir,
 	...
     )
   )

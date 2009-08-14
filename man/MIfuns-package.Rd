@@ -81,8 +81,8 @@ as beta.
     \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.2.16.9\cr
-Date: \tab 2009-08-10\cr
+Version: \tab 3.2.16.11\cr
+Date: \tab 2009-08-14\cr
 License: \tab GPL\cr
 }
 

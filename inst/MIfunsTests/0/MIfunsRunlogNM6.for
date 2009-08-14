@@ -9,7 +9,7 @@ C Generates a running table file to summarize the output of NONMEM runs.
       end
 	  
       subroutine runlog(NEWIND)
-      include '/common/NONMEM/nm6osxbeta/SIZES'
+      include 'SIZES'
       common /cm1/ ntheta,nth
       common /cm2/ neta,neps,nre2
 	  common /cm34/ ie

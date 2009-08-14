@@ -239,8 +239,7 @@ dataFormat <- function(
 }
 
 #generates the plotting data set, given ProjectDir, b, etc.
-dataSynthesis <-
-function (
+dataSynthesis <- function(
 	b, 
 	ProjectDir=getwd(), 
 	dvname = 'DV',
@@ -252,12 +251,13 @@ function (
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(ProjectDir, b, '.TAB'),
-	ctlfile = filename(filename(ProjectDir,b),b,'.ctl'),
-	outfile = filename(filename(ProjectDir,b),b,'.lst'),
+	tabfile = filename(outdir, b, '.TAB'),
+	ctlfile = filename(rundir,b,'.ctl'),
+	outfile = filename(rundir,b,'.lst'),
 	datfile = getdname(ctlfile),
-	parfile = filename(ProjectDir, b, 'par.TAB'),
+	parfile = filename(outdir, b, 'par.TAB'),
 	rundir  = filename(ProjectDir, b),
+	outdir  = ProjectDir,
 	...
 ){
     #cleanup arguments

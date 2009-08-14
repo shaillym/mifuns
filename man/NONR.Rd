@@ -120,12 +120,13 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(ProjectDir, b, '.TAB'),
-	ctlfile = filename(filename(ProjectDir,b),b,'.ctl'),
-	outfile = filename(filename(ProjectDir,b),b,'.lst'),
+	tabfile = filename(outdir, b, '.TAB'),
+	ctlfile = filename(rundir,b,'.ctl'),
+	outfile = filename(rundir,b,'.lst'),
 	datfile = getdname(ctlfile),
-	parfile = filename(ProjectDir, b, 'par.TAB'),
-	rundir  = filename(ProjectDir, b),	
+	parfile = filename(outdir, b, 'par.TAB'),
+	rundir  = filename(ProjectDir, b),
+	outdir  = ProjectDir,
 	...
 )
 
@@ -282,7 +283,9 @@
 
   \item{parfile}{Path and filename for the NONMEM parameter file (*par.TAB).}
 
-  \item{rundir}{Path for the NONMEM run directory (ProjectDir/*}
+  \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).}
+
+  \item{outdir}{Path for the NONMEM output directory (ProjectDir).}
 
   \item{dosbox}{Whether to capture all MS DOS box info when using NONR
   on MS Windows. If set to TRUE, all output to DOS box during NONMEM run

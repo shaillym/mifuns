@@ -49,9 +49,9 @@ function (
   newstub <- rev(strsplit(ctlfile,'/')[[1]])[[1]]
   newfile <- paste(rdir,newstub,sep='/')
   if(is.null(outfile)) outfile <- sub('\\.ctl$','.lst',newfile)
-  if(is.null(tabfile)) tabfile <- filename(ProjectDir, b, '.TAB')
-  if(is.null(parfile)) parfile <- filename(ProjectDir, b, 'par.TAB')
-  if(is.null(msffile)) msffile <- filename(ProjectDir, b, '.MSF')
+  if(is.null(tabfile)) tabfile <- filename(outdir, b, '.TAB')
+  if(is.null(parfile)) parfile <- filename(outdir, b, 'par.TAB')
+  if(is.null(msffile)) msffile <- filename(outdir, b, '.MSF')
   outfile <- star(outfile,b)
   tabfile <- star(tabfile,b)
   parfile <- star(parfile,b)

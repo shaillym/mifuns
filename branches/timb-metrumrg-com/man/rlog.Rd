@@ -16,7 +16,7 @@ rlog(
 	append=TRUE,
 	file=NULL,
 	out=filename(ProjectDir,'CombRunLog.csv'),
-	pattern=if(boot)'/FD*'else c('/F*','/nonmem.exe','/P*','/O*','/Run*'),
+	pattern=if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
 	...
 )
 }
@@ -30,7 +30,7 @@ rlog(
   be overwritten.}
   \item{file}{The run-specific input file to read. See details.}
   \item{out}{The run-generic output file to write. See details.}
-  \item{pattern}{Search patterns for files to delete.}
+  \item{pattern}{Search patterns for files to delete (regular expressions).}
   \item{\dots}{Extra arguments, currently ignored.}
 }
 

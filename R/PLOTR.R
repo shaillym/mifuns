@@ -58,8 +58,11 @@
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
     
     #try epilog
-    if (!is.null(epilog))try(
-        match.fun(epilog)(
+    epimatch <- try(match.fun(epilog),silent=TRUE)
+    if(is.function(epimatch))epilog <- epimatch
+
+    if (!is.null(epilog))if(is.function(epilog))try(
+        epilog(
             b=b,
     	    ProjectDir=ProjectDir,
 	    dvname=dvname,
@@ -76,6 +79,25 @@
 	    ...
 	)
     )
+    else try(
+	episcript(
+            script=epilog,
+            b=b,
+    	    ProjectDir=ProjectDir,
+	    dvname=dvname,
+	    logtrans=logtrans,
+	    grp=grp,
+	    grpames=grpnames,
+	    cont.cov=cont.cov,
+	    cat.cov=cat.cov,
+	    par.list=par.list,
+	    eta.list=eta.list,
+	    missing=missing,
+	    rundir=rundir,
+	    outdir=outdir,
+	    ...
+	)
+    )	    
 }
 
 #filters elipses for functions that do not accept them

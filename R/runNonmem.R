@@ -34,13 +34,28 @@ function (
 	pattern = c('^F[ISRC]','^OU','^nonmem.exe',if(fdata)c('^FD','^PR')),
 	...
 ){
-  #Groom arguments
-  outdir <- star(outdir,b)
+  #Define some functions.
   final <- function(x)sub('\\.lock','',x)
   runtime <- function(x,rundir){
 	  file <- rev(strsplit(x,'/')[[1]])[[1]]
 	  paste(rundir,file,sep='/')
   }
+  episcript <- function(script,...){
+	 extras <- list(...)
+	 args <- names(extras)
+	 lapply(
+	 	args,
+		function(x,extras)assign(x,extras[[x]]),
+		extras
+	)
+	try(source(script))
+  }
+	
+  #Groom arguments
+  outdir <- star(outdir,b)
+  epimatch <- try(match.fun(epilog),silent=TRUE)
+  if(is.function(epimatch))epilog <- epimatch
+	  
   #Set runtime directory.
   rundir <- filename(ProjectDir,b)
   if (grid) rundir <- filename(ProjectDir, b, '.lock')
@@ -139,27 +154,52 @@ function (
 		...
         )
   )
-  if (!is.null(epilog))try(match.fun(epilog)(
-        b=b,
-    	ProjectDir=ProjectDir,
-	dvname=dvname,
-	logtrans=logtrans,
-	grp=grp,
-	grpames=grpnames,
-	cont.cov=cont.cov,
-	cat.cov=cat.cov,
-	par.list=par.list,
-	eta.list=eta.list,
-	missing=missing,
-	tabfile=tabfile,
-	ctlfile=ctlfile,
-	parfile=parfile,
-	outfile=final(outfile),
-	rundir=final(rundir),
-	outdir=outdir,
-	...
-    )
+  if (!is.null(epilog))if(is.function(epilog))try(
+	  epilog(
+		b=b,
+		ProjectDir=ProjectDir,
+		dvname=dvname,
+		logtrans=logtrans,
+		grp=grp,
+		grpames=grpnames,
+		cont.cov=cont.cov,
+		cat.cov=cat.cov,
+		par.list=par.list,
+		eta.list=eta.list,
+		missing=missing,
+		tabfile=tabfile,
+		ctlfile=ctlfile,
+		parfile=parfile,
+		outfile=final(outfile),
+		rundir=final(rundir),
+		outdir=outdir,
+		...
+	)
   )
+  else try(
+	  episcript(
+  		script=epilog,
+		b=b,
+		ProjectDir=ProjectDir,
+		dvname=dvname,
+		logtrans=logtrans,
+		grp=grp,
+		grpames=grpnames,
+		cont.cov=cont.cov,
+		cat.cov=cat.cov,
+		par.list=par.list,
+		eta.list=eta.list,
+		missing=missing,
+		tabfile=tabfile,
+		ctlfile=ctlfile,
+		parfile=parfile,
+		outfile=final(outfile),
+		rundir=final(rundir),
+		outdir=outdir,
+		...
+	)
+  )
+
   message(paste("Run ", b, " complete.", sep = ""))
 }
   purge.dir <- function(dir,nice=FALSE){
@@ -178,4 +218,14 @@ function (
   	}
   }
 
-  
+   episcript <- function(script,...){
+	 extras <- list(...)
+	 args <- names(extras)
+	 lapply(
+	 	args,
+		function(x,extras)assign(x,extras[[x]]),
+		extras
+	)
+	try(source(script))
+  }
+ 

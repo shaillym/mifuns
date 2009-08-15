@@ -25,6 +25,7 @@
 \alias{runNonmem}
 \alias{purge.dir}
 \alias{purge.files}
+\alias{episcript}
 \alias{runCommand}
 \alias{grdCommand}
 \alias{regCommand}
@@ -221,14 +222,14 @@
   PRDERR, and nonmem executable. Default: FALSE.}  
   
   \item{epilog}{
-  User-defined function to call at end of NONR or PLOTR.
-  If you would rather run a script, e.g. 'my.R', try 
-    epilog=function(b,ProjectDir,...)source('my.R'). The following 
-    arguments will be passed by name to your function, whether called 
-    from PLOTR or NONR:  b, ProjectDir, dvname, logtrans, grp, 
-    grpnames, cont.cov, cat.cov, par.list, eta.list, missing. Your
-    function can declare any of these, but should at minimum contain the 
-    \dots argument.  See also inst/MIfunsExamples/epilogEx.R in this package.
+  User-defined function or script to call at end of NONR or PLOTR.
+  A non-null argument that cannot be coerced by match.fun() to a function
+  will be treated as a filename to be sourced.  The following 
+  arguments will be passed by name to your function or available to 
+  your script, whether called from PLOTR or NONR:  b, ProjectDir, dvname, logtrans, 
+  grp, grpnames, cont.cov, cat.cov, par.list, eta.list, missing. Your
+  function can declare any of these, but should at minimum contain the 
+  \dots argument.  See also inst/MIfunsExamples/epilog.R in this package.
   }  
   
   \item{dvname}{Name of the dependent

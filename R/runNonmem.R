@@ -31,24 +31,13 @@ function (
 	msffile = NULL,
 	parfile = NULL,
 	outdir  = ProjectDir,
+	pattern = c('^F[ISRC].*','^OU.*','nonmem.exe',if(fdata)c('^FD.*','^PR.*')),
 	...
 ){
-  #Groom arguments
-  outdir <- star(outdir,b)
-  
-  #Set runtime directory.
-  #rdir <- ndir
-  rdir <-   ndir <- filename(ProjectDir,b)
-  if (grid) rdir <- filename(ProjectDir, b, '.lock')
-  if (grid) ndir <- filename(ProjectDir, b)
-  if (boot) rdir <- ndir <- filename(ProjectDir, b, '.boot')
-  
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
   ctlfile <- star(ctlfile,b)
-  newstub <- rev(strsplit(ctlfile,'/')[[1]])[[1]]
-  newfile <- paste(rdir,newstub,sep='/')
-  if(is.null(outfile)) outfile <- sub('\\.ctl$','.lst',newfile)
+  if(is.null(outfile)) outfile <- filename(rundir,b,'.lst')
   if(is.null(tabfile)) tabfile <- filename(outdir, b, '.TAB')
   if(is.null(parfile)) parfile <- filename(outdir, b, 'par.TAB')
   if(is.null(msffile)) msffile <- filename(outdir, b, '.MSF')
@@ -74,16 +63,15 @@ function (
   if(file.exists(tabfile))file.remove(tabfile)
   if(file.exists(parfile))file.remove(parfile)
   if(file.exists(msffile))file.remove(msffile)
-  purge.dir(ndir,nice)
-  if(grid)purge.dir(rdir)
-  dir.create(rdir, showWarnings = FALSE)
-  file.copy(ctlfile, newfile, overwrite = TRUE)
-  ctlfile <- newfile
+  purge.dir(final(rundir),nice)
+  if(grid)purge.dir(rundir)
+  dir.create(rundir, showWarnings = FALSE)
+  file.copy(ctlfile, runtime(ctlfile,rundir), overwrite = TRUE)
   
   #Run NONMEM.
   runCommand(
   	NMcom,
-	rdir,
+	rundir,
 	b,
 	boot,
 	urgent,
@@ -92,35 +80,30 @@ function (
 	nochecksum,
 	grid,
 	udef,
-	ctlfile,
+	runtime(ctlfile,rundir),
 	outfile,
 	...
   )
   
   #Clean up.
   if(boot & grid)return() #boot runs on grid have sync=n by definition, so run perh. not complete.
-  purge.files('^F[ISRC].*',rdir)
-  purge.files('^OU.*',rdir)
-  purge.files('nonmem.exe',rdir)
-  if(!fdata)purge.files('^FD.*',rdir)
-  if(!fdata)purge.files('^PR.*',rdir)
-  Sys.chmod(dir(rdir,paste('^',b,'\\.',sep=''),full.names=TRUE),mode='0664')
-  Sys.chmod(dir(rdir,'n.*\\.',full.names=TRUE),mode='0664')
-  runfilename <- function(rdir)dir(rdir,'^Run',full.names=TRUE)
-  try(file.rename(runfilename(rdir),sub('\\.o[0-9]*$','.out',runfilename(rdir))),silent=TRUE)
+  lapply(pattern,purge.files,rundir)
+  Sys.chmod(dir(rundir,paste('^',b,'\\.',sep=''),full.names=TRUE),mode='0664')
+  Sys.chmod(dir(rundir,'n.*\\.',full.names=TRUE),mode='0664')
+  runfilename <- function(rundir)dir(rundir,'^Run',full.names=TRUE)
+  try(file.rename(runfilename(rundir),sub('\\.o[0-9]*$','.out',runfilename(rundir))),silent=TRUE)
   if(grid){ 
-  	dir.create(ndir, showWarnings = FALSE)
-  	file.copy(from=dir(rdir,full.names=TRUE),to=ndir,overwrite=TRUE)
-   	purge.dir(rdir)
-	ctlfile <- paste(ndir,newstub,sep='/')
+  	dir.create(final(rundir), showWarnings = FALSE)
+  	file.copy(from=dir(rundir,full.names=TRUE),to=final(rundir),overwrite=TRUE)
+   	purge.dir(rundir)
   }
-  Sys.chmod(dir(ndir), mode='0664')
+  Sys.chmod(dir(final(rundir)), mode='0664')
   Sys.chmod(tabfile, mode='0664')
   Sys.chmod(parfile, mode='0664')
   Sys.chmod(msffile, mode='0664')
   
   #Diagnostics
-  try(setCwres(cwres=getCwres(directory=ndir),file=tabfile))
+  try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
   if(diag)try(
     	PLOTR(
     		b, 
@@ -138,8 +121,8 @@ function (
 		tabfile=tabfile,
 		ctlfile=ctlfile,
 		parfile=parfile,
-		outfile=outfile,
-		rundir=ndir,
+		outfile=final(outfile),
+		rundir=final(rundir),
 		outdir=outdir,
 		...
         )
@@ -159,8 +142,8 @@ function (
 	tabfile=tabfile,
 	ctlfile=ctlfile,
 	parfile=parfile,
-	outfile=outfile,
-	rundir=ndir,
+	outfile=final(outfile),
+	rundir=final(rundir),
 	outdir=outdir,
 	...
     )

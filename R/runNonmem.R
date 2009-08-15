@@ -44,7 +44,7 @@ function (
   #Set runtime directory.
   rundir <- filename(ProjectDir,b)
   if (grid) rundir <- filename(ProjectDir, b, '.lock')
-  if (boot) rundir < filename(ProjectDir, b, '.boot')
+  if (boot) rundir <- filename(ProjectDir, b, '.boot')
   
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')

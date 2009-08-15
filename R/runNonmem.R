@@ -53,8 +53,13 @@ function (
 	
   #Groom arguments
   outdir <- star(outdir,b)
+  script <- NULL
   epimatch <- try(match.fun(epilog),silent=TRUE)
   if(is.function(epimatch))epilog <- epimatch
+  else if (class(epilog)=='character'){
+	  script <- epilog
+	  epilog <- episcript
+  }
 	  
   #Set runtime directory.
   rundir <- filename(ProjectDir,b)
@@ -173,30 +178,8 @@ function (
 		outfile=final(outfile),
 		rundir=final(rundir),
 		outdir=outdir,
-		...
-	)
-  )
-  else try(
-	  episcript(
-  		script=epilog,
-		b=b,
-		ProjectDir=ProjectDir,
-		dvname=dvname,
-		logtrans=logtrans,
-		grp=grp,
-		grpames=grpnames,
-		cont.cov=cont.cov,
-		cat.cov=cat.cov,
-		par.list=par.list,
-		eta.list=eta.list,
-		missing=missing,
-		tabfile=tabfile,
-		ctlfile=ctlfile,
-		parfile=parfile,
-		outfile=final(outfile),
-		rundir=final(rundir),
-		outdir=outdir,
-		...
+		...,
+		script=script
 	)
   )
 

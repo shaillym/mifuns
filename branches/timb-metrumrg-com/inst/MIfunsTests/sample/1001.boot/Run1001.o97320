@@ -1,0 +1,39 @@
+
+this is /common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl is confirming checksums
+checking 8 items
+/common/NONMEM/nm6osxbeta/test/checksum.2009.08.12.0938.xml
+
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl is testing environment variables
+'SHELL' exists
+'USER' exists
+'PATH' exists
+
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl is testing system commands
+'perl -e "use POSIX; print join qq(,\n),uname"' was executed
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl:  home directory is /common/NONMEM/nm6osxbeta/test
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl:  default in/out directory is /Users/timb/project/mifuns-timb/inst/MIfunsTests
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl:  execution directory is /Users/timb/project/mifuns-timb/inst/MIfunsTests/1001.boot
+  
+ WARNINGS AND ERRORS (IF ANY) FOR PROBLEM    1
+             
+ (WARNING  2) NM-TRAN INFERS THAT THE DATA ARE POPULATION.
+
+ld: warning for symbol _cm41_ tentative definition of size 32 from /common/NONMEM/nm6osxbeta/nm/nonmem.a(INITL.o) is is smaller than the real definition of size 28 from /common/NONMEM/nm6osxbeta/nm/BLKDAT.o
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl is starting /Users/timb/project/mifuns-timb/inst/MIfunsTests/1001.boot/nonmem.exe
+ 
+ MONITORING OF SEARCH:
+
+0ITERATION NO.:    0    OBJECTIVE VALUE:  0.89946E+03    NO. OF FUNC. EVALS.: 6
+ CUMULATIVE NO. OF FUNC. EVALS.:        6
+ PARAMETER:  0.1000E+00  0.1000E+00  0.1000E+00  0.1000E+00  0.1000E+00  0.1000E+00  0.1000E+00
+ GRADIENT:   0.7021E+03 -0.4951E+03 -0.2082E+03  0.7016E+03 -0.8503E+02  0.7028E+02  0.2925E+03
+0ITERATION NO.:   10    OBJECTIVE VALUE:  0.60923E+03    NO. OF FUNC. EVALS.:10
+ CUMULATIVE NO. OF FUNC. EVALS.:       85
+ PARAMETER: -0.5180E-02  0.2856E+00  0.4929E+00  0.4276E-01  0.1346E+00  0.2637E+00 -0.1560E+01
+ GRADIENT:  -0.2829E+02 -0.3433E+02 -0.4004E+01  0.2521E+02 -0.1707E+01  0.8932E+02  0.2195E+02
+0ITERATION NO.:   20    OBJECTIVE VALUE:  0.60294E+03    NO. OF FUNC. EVALS.: 0
+ CUMULATIVE NO. OF FUNC. EVALS.:      158
+ PARAMETER: -0.3406E-01  0.2917E+00  0.4836E+00  0.3454E-01  0.1852E+00  0.1830E+00 -0.1805E+01
+ GRADIENT:  -0.1273E+00  0.5113E-03  0.4525E-02  0.2284E-01 -0.3264E-02  0.6657E-01  0.9943E-02
+/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl is complete

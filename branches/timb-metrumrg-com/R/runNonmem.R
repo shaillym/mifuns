@@ -34,6 +34,18 @@ function (
 	pattern = c('^F[ISRC].*','^OU.*','nonmem.exe',if(fdata)c('^FD.*','^PR.*')),
 	...
 ){
+  #Groom arguments
+  outdir <- star(outdir,b)
+  final <- function(x)sub('\\.lock','',x)
+  runtime <- function(x,rundir){
+	  file <- rev(strsplit(x,'/')[[1]])[[1]]
+	  paste(rundir,file,sep='/')
+  }
+  #Set runtime directory.
+  rundir <- filename(ProjectDir,b)
+  if (grid) rundir <- filename(ProjectDir, b, '.lock')
+  if (boot) rundir < filename(ProjectDir, b, '.boot')
+  
   #Check arguments.
   if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
   ctlfile <- star(ctlfile,b)

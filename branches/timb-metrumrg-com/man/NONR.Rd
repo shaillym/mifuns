@@ -224,12 +224,14 @@
   \item{epilog}{
   User-defined function or script to call at end of NONR or PLOTR.
   A non-null argument that cannot be coerced by match.fun() to a function
-  will be treated as a filename to be sourced.  The following 
-  arguments will be passed by name to your function or available to 
-  your script, whether called from PLOTR or NONR:  b, ProjectDir, dvname, logtrans, 
-  grp, grpnames, cont.cov, cat.cov, par.list, eta.list, missing. Your
+  will be treated as a filename to be sourced.  All the arguments normally
+  available to PLOTR (b, ProjectDir, dvname, logtrans, grp, grpnames, cont.cov, 
+  at.cov, par.list, eta.list, missing, etc) will be available to epilog, as well
+  as any extra arguments you pass to NONR() or PLOTR(). A
   function can declare any of these, but should at minimum contain the 
-  \dots argument.  See also inst/MIfunsExamples/epilog.R in this package.
+  \dots argument. A script can expect them to be present.  See also 
+  inst/MIfunsExamples/epilog.R in this package.  To see exactly what is available,
+  try \code{epilog=function(...)cat(names(list(...)))}.
   }  
   
   \item{dvname}{Name of the dependent

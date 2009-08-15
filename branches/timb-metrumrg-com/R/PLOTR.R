@@ -58,9 +58,13 @@
     message(paste('Plotting for run ', b, ' complete.', sep = ''))
     
     #try epilog
+    script <- NULL
     epimatch <- try(match.fun(epilog),silent=TRUE)
     if(is.function(epimatch))epilog <- epimatch
-
+    else if (class(epilog)=='character'){
+	    script <- epilog
+	    epilog <- episcript
+    }
     if (!is.null(epilog))if(is.function(epilog))try(
         epilog(
             b=b,
@@ -76,26 +80,8 @@
 	    missing=missing,
 	    rundir=rundir,
 	    outdir=outdir,
-	    ...
-	)
-    )
-    else try(
-	episcript(
-            script=epilog,
-            b=b,
-    	    ProjectDir=ProjectDir,
-	    dvname=dvname,
-	    logtrans=logtrans,
-	    grp=grp,
-	    grpames=grpnames,
-	    cont.cov=cont.cov,
-	    cat.cov=cat.cov,
-	    par.list=par.list,
-	    eta.list=eta.list,
-	    missing=missing,
-	    rundir=rundir,
-	    outdir=outdir,
-	    ...
+	    ...,
+	    script=script
 	)
     )	    
 }

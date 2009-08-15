@@ -2,9 +2,9 @@ library(MIfuns)
 getwd()#...MIfunsTests
 source('../MIfunsExamples/epilog.R')
 metaSub(
-        as.filename('0/MIfunsRunlogNM6.for'),
+        as.filename('MIfunsRunlogNM6.for'),
         names='MIfunsRunlogNM6',
-        out='0',
+        out='.',
         suffix='.for',
         pattern='SIZES',
         replacement='/common/NONMEM/nm6osxbeta/SIZES'

@@ -5,7 +5,7 @@
 	append=TRUE,
 	file=NULL,
 	out=filename(ProjectDir,'CombRunLog.csv'),
-	pattern=if(boot)c('/F*','/nonmem.exe','/P*','/O*','/Run*') else '/FD*',
+	pattern=if(boot)c('^F*','^nonmem.exe','^P*','^O*','^Run*') else '^FD*',
 	...
 ){
   if(!append) if(file.exists(out)) file.remove(out)

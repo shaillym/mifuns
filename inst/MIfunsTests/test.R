@@ -35,17 +35,19 @@ nonr <- function(
         
 #nix workstation
 nonr(b=1:2)
-rlog(1:2,out='0/runlog.csv',append=FALSE)
+rlog(1:2,out='runlog.csv',append=FALSE)
 
 #nix grid
 bootdir <- paste(getwd(),'*.boot',sep='/')
+rundir  <- paste(getwd(),'*',sep='/')
 nms <- 1001:1005
-nonr(b=nms,boot=FALSE,concurrent=FALSE,grid=FALSE)#conventional
-nonr(b=nms,boot=FALSE,concurrent=FALSE,grid=TRUE )#unnecessary chaining
-nonr(b=nms,boot=FALSE,concurrent=TRUE ,grid=FALSE)#cross-chatter on stdout
-nonr(b=nms,boot=FALSE,concurrent=TRUE ,grid=TRUE )#conventional grid
+nonr(b=nms,boot=FALSE,concurrent=FALSE,grid=FALSE,outdir=rundir )#conventional
+nonr(b=nms,boot=FALSE,concurrent=FALSE,grid=TRUE ,outdir=rundir )#unnecessary chaining
+nonr(b=nms,boot=FALSE,concurrent=TRUE ,grid=FALSE,outdir=rundir )#cross-chatter on stdout
+nonr(b=nms,boot=FALSE,concurrent=TRUE ,grid=TRUE ,outdir=rundir )#conventional grid
 nonr(b=nms,boot=TRUE ,concurrent=FALSE,grid=FALSE,outdir=bootdir)#boot-style directories
-nonr(b=nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots, no plotting (outdir irrelevant)
+nonr(b=nms,boot=TRUE ,concurrent=FALSE,grid=TRUE ,outdir=bootdir)#chained boots, no plotting (outdir irrelevant)
 nonr(b=nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE,outdir=bootdir)#concurrent non-grid boots (chatter)
-nonr(b=nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
-rlog(nms,boot=TRUE,append=FALSE,out='0/boots.log')
+nonr(b=nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,outdir=bootdir)#conventional boots
+nonr(b=nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,urgent=TRUE   )#urgent boots
+rlog(nms,boot=TRUE,append=FALSE,out='bootlog.csv')

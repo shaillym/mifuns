@@ -1,6 +1,6 @@
 library(MIfuns)
 getwd()#...MIfunsTests
-source('../MIfunsExamples/epilogEx.R')
+source('../MIfunsExamples/epilog.R')
 metaSub(
         as.filename('0/MIfunsRunlogNM6.for'),
         names='MIfunsRunlogNM6',

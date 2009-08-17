@@ -20,11 +20,7 @@
 ){
 	
   #organize arguments
-  if(nix()){#defaults
-	  internal <- FALSE
-	  minimized <- FALSE
-	  invisible <- TRUE
-  }
+  if(nix())internal <- FALSE
   if(is.null(option))option <- if(nochecksum) 'nochecksum' else  NULL
   if(is.null(perl)) if(nix()) perl <- 'perl -S'
   if(is.null(perl)) if(win()) perl <- if(!invisible) 'cmd /K perl -S' else 'cmd /C perl -S'
@@ -35,7 +31,9 @@
   if(!is.null(udef))command <- udef #trumps above
 
   #set up the call
-  system(command, intern=intern, minimized=minimized, invisible=invisible)
+  args <- list(command, intern=intern)
+  if (win()) args <- c(args,list(minimized=minimized, invisible=invisible))
+  do.call(system,args)
 }
 
 grdCommand <- function(

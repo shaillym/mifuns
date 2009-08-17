@@ -6,7 +6,6 @@
 	boot,
 	urgent,
 	SGEflgs,
-	invisible,
 	nochecksum,
 	grid,
 	udef,
@@ -36,7 +35,7 @@
   if(!is.null(udef))command <- udef #trumps above
 
   #set up the call
-  system(command, intern=intern, minimized=minimized, invisible=invisible))
+  system(command, intern=intern, minimized=minimized, invisible=invisible)
 }
 
 grdCommand <- function(

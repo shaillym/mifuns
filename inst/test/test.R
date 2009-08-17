@@ -54,3 +54,8 @@ nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE,outdir=bootdir)#concurrent non-g
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,outdir=bootdir)#conventional boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,urgent=TRUE   )#urgent boots
 rlog(nms,boot=TRUE,append=FALSE,out='bootlog.csv')
+
+#windows
+nonr(1)
+nonr(1,invisible=TRUE)
+

@@ -3,7 +3,7 @@ epilog <- function(b,outdir,...){
     #See R help. dataSynthesis() gives the same dataset that is used by PLOTR.
     data <- dataSynthesis(b=b,outdir=outdir,...)
     
-    numDV<-c('DV','LDV','AMT') 
+    numDV<-intersect(c('DV','LDV','AMT'),names(data)) 
     # loop to change variables in numDV to numeric
     for(k in numDV) data[[k]]<-as.numeric(as.character(data[[k]]))
     subj<-data[!duplicated(data$ID),]

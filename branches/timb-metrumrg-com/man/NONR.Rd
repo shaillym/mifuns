@@ -83,14 +83,14 @@
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99, 
-	dosbox=TRUE,
+	invisible=!is.null(udef),
 	nochecksum = FALSE, 
 	grid = boot, 
 	nice=FALSE, 
 	udef=NULL, 
 	file=NULL,
 	...
-) 
+)
 
   PLOTR(
 	b, 
@@ -294,11 +294,13 @@
   to \code{outfile}.  Controls defaults for where to look for \code{tabfile} and
   \code{outfile}, as well as where to put \code{file}.}
 
-  \item{dosbox}{Whether to capture all MS DOS box info when using NONR
-  on MS Windows. If set to TRUE, all output to DOS box during NONMEM run
-  will be shown on R console. Options only functions on MS Windows and
-  is a good diagnostic tool to use if NONMEM run fails prior to
-  execution.  Default: TRUE. } 
+  \item{invisible}{\code{intern}, \code{minimized}, and
+  \code{invisible} can be specified for the system call that runs NONMEM.  MIfuns
+  will ignore these on a unix-like platform.  For Windows, \code{invisible} is
+  TRUE by default when \code{udef} is defined, and FALSE otherwise.  If FALSE, 
+  NONMEM output will be displayed in a command window during the run.  Set 
+  \code{invisible=TRUE} to suppress this display.  Se the Windows help for
+  \code{system()}.  To explore interactively, use \code{debug(runCommand)}.} 
 
   \item{nochecksum}{Turn nmqual checksum on
   or off. There is no good reason to set this to true unless MItools

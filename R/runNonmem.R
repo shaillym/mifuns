@@ -108,12 +108,12 @@ function (
 	boot,
 	urgent,
 	SGEflgs,
-	invisible,
 	nochecksum,
 	grid,
 	udef,
 	runtime(ctlfile,rundir),
 	outfile,
+	invisible=invisible,
 	...
   )
   

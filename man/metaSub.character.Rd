@@ -75,7 +75,7 @@
 	error results that is very hard to track.  e.g. \code{c(a,b,c,)}.
 }
 \value{
-	an invisble named character vector.
+	an invisible named character vector.
 	If \code{out} is supplied, Elements are written as files with corresponding
 	names.
 }

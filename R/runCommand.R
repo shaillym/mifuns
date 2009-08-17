@@ -6,7 +6,7 @@
 	boot,
 	urgent,
 	SGEflgs,
-	dosbox,
+	invisible,
 	nochecksum,
 	grid,
 	udef,
@@ -14,20 +14,21 @@
 	outfile,
 	perl=NULL,
 	option=NULL,
-	intern=NULL,
-	minimized=NULL,
-	invisible=NULL,
+	intern=invisible,
+	minimized=invisible,
+	invisible=FALSE,
 	...
 ){
 	
   #organize arguments
-  if(!is.null(udef))dosbox <- FALSE
-  if(is.null(intern))intern <- if(win()) !dosbox else FALSE
-  if(is.null(minimized))minimized <- if(win()) !dosbox else FALSE
-  if(is.null(invisible))invisible <- if(win()) !dosbox else TRUE
+  if(nix()){#defaults
+	  internal <- FALSE
+	  minimized <- FALSE
+	  invisible <- TRUE
+  }
   if(is.null(option))option <- if(nochecksum) 'nochecksum' else  NULL
   if(is.null(perl)) if(nix()) perl <- 'perl -S'
-  if(is.null(perl)) if(win()) perl <- if(dosbox) 'cmd /K perl -S' else 'cmd /C perl -S'
+  if(is.null(perl)) if(win()) perl <- if(!invisible) 'cmd /K perl -S' else 'cmd /C perl -S'
 
   #draft a command
   command <- regCommand(NMcom,ctlfile,outfile,perl,option,...)
@@ -35,24 +36,7 @@
   if(!is.null(udef))command <- udef #trumps above
 
   #set up the call
-  run <- function(command, intern, minimized, invisible)suppressWarnings(system(command, intern=intern, minimized=minimized, invisible=invisible))
-  runcall <- call('run', command, intern, minimized, invisible)
-  #run the command
-#  if(grid){
-#      pid <- fork(function()eval(runcall)
-#      wait(pid)
-#  }
-#  else eval(runcall)
-eval(runcall)
-
-#  Tim,
-#'minimized' and 'invisible' have no effect on the mac but do on windows. On a Mac, values for minimized and invisible are accepted but yield a warning.  intern=FALSE is the default and I believe we simply set intern=F on the Windows platform.  I just set this variable (intern) to be explicit about it.
-#Bill
-#- Hide quoted text -
-#On Jul 2, 2009, at 11:17 AM, Tim Bergsma wrote:
-#    Bill, are the defaults the same on Windows as on Mac for the system()
-#    args 'intern', 'minimized', and 'invisible'?
-
+  system(command, intern=intern, minimized=minimized, invisible=invisible))
 }
 
 grdCommand <- function(

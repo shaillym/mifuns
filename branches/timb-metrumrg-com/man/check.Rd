@@ -7,7 +7,7 @@
 \description{
 maxChar() returns the number of printed characters for the widest element of x.
 prev() calculates the previous element for each element in x.
-runhead() determines whether each element is the "head" (start) of a run
+runhead() determines whether each element is the "head" (start) of a run.
 sorted() checks whether x (data.frame) is sorted on the columns specified.
 }
 \usage{

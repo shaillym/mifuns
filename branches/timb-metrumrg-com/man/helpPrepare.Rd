@@ -4,6 +4,7 @@
 \title{
 MIfuns: Data Assembly
 }
+\description{Tools for manipulating and assembling data for pharmacometric analysis.}
 \details{
 I want to ....
 \itemize{

@@ -4,6 +4,8 @@
 \title{
 MIfuns: Administrative Tasks
 }
+\description{Tools for administrative tasks.}
+
 \details{
 I want to ....
 \itemize{

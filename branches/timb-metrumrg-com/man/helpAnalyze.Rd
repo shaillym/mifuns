@@ -4,6 +4,8 @@
 \title{
 MIfuns: NONMEM Analysis
 }
+\description{Tools for preparing, executing, and analyzing NONMEM runs.}
+
 \details{
 I want to ....
 \itemize{

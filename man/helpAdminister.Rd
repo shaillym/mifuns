@@ -1,0 +1,15 @@
+\name{helpAdminister}
+\alias{helpAdminister}
+\docType{package}
+\title{
+MIfuns: Administrative Tasks
+}
+\details{
+I want to ....
+\itemize{
+\item \link[=CLNR]{Delete} files and directories; log what was deleted to a text file
+\item \link[=rlog]{Generate} a combined run log from multiple NONMEM runs
+\item \link[=accept]{Document} acceptance of an R installation
+  }
+}
+

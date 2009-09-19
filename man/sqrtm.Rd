@@ -2,7 +2,7 @@
 \alias{sqrtm}
 \title{ Called from compute.cwres to calculated CWRES. }
 \description{
-  A function called by \code{compte.cwres} to calculate CWRES. 
+  A function called by \code{\link{compute.cwres}} to calculate CWRES. 
 }
 \usage{
 sqrtm(x)

@@ -4,6 +4,7 @@
 \title{
 MIfuns: Reporting
 }
+\description{Tools for summarizing and reporting pharmacometric analyses.}
 \details{
 I want to ....
 \itemize{

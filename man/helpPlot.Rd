@@ -4,6 +4,7 @@
 \title{
 MIfuns: Plotting
 }
+\description{Tools for creating plots.}
 \details{
 I want to ....
 \itemize{

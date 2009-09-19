@@ -4,6 +4,7 @@
 \title{
 MIfuns: Simulation
 }
+\description{Tools for conducting simulations.}
 \details{
 I want to ....
 \itemize{

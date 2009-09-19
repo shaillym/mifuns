@@ -2,7 +2,7 @@
 \alias{accept}
 \title{Document acceptance of an R installation.}
 \description{
-  Execution of accept() is a procedural act pertininent to installation qualification
+  Execution of accept() is a procedural act pertininent to installation qualification.
   The function logs an act of acceptance of the current installation, noting the 
   conditions of acceptance.  Currently, the conditions include the login of the 
   acceptor, the time of acceptance (GMT) and any contingent packages that 

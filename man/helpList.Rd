@@ -122,6 +122,7 @@ Functions defined by MIfuns
 \item \link{filename} generate standard file name (internal)
 \item \link{first} generic
 \item \link{first.logical} repeat for each element the position of the first TRUE element (usually, within levels of an index)
+\item \link{fixedwidth} convert a data.frame to fixed-width format
 \item \link{forbak} impute NAs using last observation carried forward and then next observation carried backward
 \item \link{format.comment} format comment 
 \item \link{format.flag} format flag
@@ -135,7 +136,7 @@ Functions defined by MIfuns
 \item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)
 \item \link{grdCommand} construct the version of the NONMEM execution command designed for the grid (internal)
 \item \link{groupnames} construct a single vector of group names from possibly multiple indicies to the plotting data set (internal)
-\item \link{hash} prepend a character (typ. '#') to each line of output
+\item \link{hash} prepend a character to each line of output
 \item \link{hide} generic
 \item \link{hide.data.frame} comment out the specified rows of a data frame, appending a flag that suggests the reason
 \item \link{ibw} calculate ideal body weight

@@ -32,5 +32,6 @@ I want to ....
 \item \link[=nmPlots]{Characterize} 'nm' objects with diagnostic plots
 \item \link[=plot.nm]{Plot} 'nm' objects
 \item \link[=summary.nm]{Summarize} an 'nm' object
+\item \link[=fixedwidth]{Format} a data.frame as fixed-width
 }
 }

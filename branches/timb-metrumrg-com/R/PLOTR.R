@@ -209,9 +209,9 @@ synthesis <- function(x,key=character(0),frames,...){
     while (length(x) & length(frames)){
 	    z <- frames[[1]]
 	    frames[[1]] <- NULL
-	    z <- z[,union(key,intersect(x,names(z)))]
-	    z <- z[!duplicated(z[,intersect(names(z),names(y))]),]
-	    y <- stableMerge(y,z)
+	    z <- z[, union(key, intersect(x, names(z))),drop=FALSE]
+        z <- z[!duplicated(z[, intersect(names(z), names(y))]),,drop=FALSE]
+        y <- stableMerge(y,z)
 	    x <- setdiff(x,names(y))
     }
     y

@@ -39,25 +39,25 @@ zeroDv.nm <- function(x,...){
 predoseDv <- function(x,...)UseMethod('predoseDv')
 predoseDv.nm <- function(x,...){
 	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
-	with(x,!is.na(DV) & distance(EVID==1,within=SUBJ) < 0)
+	with(x,!is.na(DV) & distance(EVID %in% c(1,4),within=SUBJ) < 0)
 }
 
 badAmt <- function(x,...)UseMethod('badAmt')
 badAmt.nm <- function(x,...){
 	if(!all(c('AMT','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
-	with(x,is.na(AMT) & EVID==1)
+	with(x,is.na(AMT) & EVID==1 %in% c(1,4))
 }
 
 falseAmt <- function(x,...)UseMethod('falseAmt')
 falseAmt.nm <- function(x,...){
 	if(!all(c('AMT','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
-	with(x,!is.na(AMT) & EVID!=1)
+	with(x,!is.na(AMT) & !EVID %in% c(1,4))
 }
 
 zeroAmt <- function(x,...)UseMethod('zeroAmt')
 zeroAmt.nm <- function(x,...){
 	if(!all(c('AMT','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
-	with(x,!is.na(AMT) & AMT==0 & EVID==1)
+	with(x,!is.na(AMT) & AMT==0 & EVID %in% c(1,4))
 }
 
 noPk <- function(x,...)UseMethod('noPk')
@@ -200,16 +200,16 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	x <- within(x,TIME <- signif(TIME - TIME[first(!is.na(TIME),within=ID)],7))
 	
 	#PRIME
-	#If data set contains AMT, prime can be calculated as the first dose at any
+	#If data set contains AMT, prime can be calculated as the first non(commented) dose at any
 	#given time within Subject.
 	prime <- logical(0)
-	if('AMT' %in% names(x))prime <- with(x,where(!is.na(AMT),within=list(ID,TIME)))
+	if('AMT' %in% names(x))prime <- with(x,where(!is.na(AMT) & !C,within=list(ID,TIME)))
 	prime[is.na(prime)] <- FALSE
 	
 	#TAFD
 	#Time After First Dose. The time of the first defined amount per subject is a local origin.
 	#Domain is active records.  Range is all records.
-	if(length(prime))x <- within(x,TAFD <- signif(TIME - TIME[first(prime & !C,within=ID)],6))
+	if(length(prime))x <- within(x,TAFD <- signif(TIME - TIME[first(prime,within=ID)],6))
 	
 	#TAD
 	#Time After Dose.  
@@ -235,7 +235,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 		TAD <- signif(
 			TIME - tMostRecentDose(
 				TIME,#ceiling reference
-				TIME[s(first(prime        & !C,within=list(ID,cumsum(prime))))], # most recent dose record
+				TIME[s(first(prime            ,within=list(ID,cumsum(prime))))], # most recent dose record
 				ADDL[s(first(!is.na(ADDL) & !C,within=list(ID,cumsum(prime))))], # most recent ADDL value
 				  II[s(first(!is.na(II)   & !C,within=list(ID,cumsum(prime))))]  # most recent II value
 			),

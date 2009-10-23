@@ -101,7 +101,7 @@ function (
     	)
 	}
     #ETA vs Categoricals
-    if(length(cat) && length(eta.list)){
+    if(length(cat.cov) && length(eta.list)){
     	etas <- melt(data,measure.var=eta.list,id.var=cat.cov)
     	names(etas)[names(etas)=="variable"] <- "eta"
     	names(etas)[names(etas)=="value"] <- "delta"

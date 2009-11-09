@@ -67,6 +67,7 @@ nmPlots <- list(
 		scales=list(x=list(relation='free')),
 		...
 	){
+	    formula <- as.formula(format(formula))
 	    if (!'ADDL' %in% names(data))data$ADDL <- NA
 	    if (!'II' %in% names(data))data$II <- NA
 	    if (!'SS' %in% names(data))data$SS <- NA

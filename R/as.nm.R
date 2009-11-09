@@ -68,19 +68,14 @@ noPk.nm <- function(x,...){
 
 badII <- function(x,...)UseMethod('badII')
 badII.nm <- function (x, ...){
-    if (!all(c("ADDL", "II") %in% names(x))) 
-        return(rep(FALSE, nrow(x)))
-    with(
-    	x, 
-    	!is.na(II) & 
-    	II > 0 & 
-    	!(exists('SS') & SS > 0) &
-    	(
-    		is.na(ADDL) | 
-    		!is.na(ADDL) & 
-        	ADDL == 0
-        )
-    )
+    if (!all(c("ADDL", "II") %in% names(x))) return(rep(FALSE, nrow(x)))
+    goodADDL <- FALSE
+    goodSS <- FALSE
+    goodII <- FALSE
+    if('ADDL' %in% names(x)) goodADDL <- with(x,!is.na(ADDL) & ADDL > 0)
+    if('SS'   %in% names(x))   goodSS <- with(x,  !is.na(SS) &   SS > 0)
+    if('II'   %in% names(x))   goodII <- with(x,  !is.na(II) &   II > 0)
+    goodII & !(goodADDL | goodSS)
 }
 
 `summary.nm` <- function(object,by=NULL,...){

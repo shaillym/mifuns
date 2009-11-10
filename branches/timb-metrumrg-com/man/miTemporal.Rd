@@ -17,7 +17,12 @@
 \alias{format.miDate}
 \alias{format.miDateTime}
 \alias{xtfrm.miTemporal}
-
+\alias{as.miDate.Date}
+\alias{as.miDate.dates}
+\alias{as.miDateTime.POSIXct}
+\alias{as.miDateTime.POSIXlt}
+\alias{as.miDateTime.chron}
+\alias{as.miTime.times}
 
 \title{Temporal Classes with Selective Defaults}
 \description{
@@ -37,17 +42,23 @@ as.miTime(x, ...)
 \method{as.miTime}{character}(x, format = "\%H:\%M",...)
 \method{as.miTime}{numeric}(x,...)
 \method{as.miTime}{miTime}(x, ...)
+\method{as.miTime}{times}(x, ...)
 as.miDate(x, ...)
 \method{as.miDate}{character}(x, format = "\%Y-\%m-\%d",...)
 \method{as.miDate}{numeric}(x,...)
+\method{as.miDate}{Date}(x,...)
+\method{as.miDate}{dates}(x,...)
 as.miDateTime(x, ...)
 \method{as.miDateTime}{character}(x, format = "\%Y-\%m-\%d \%H:\%M",...)
 \method{as.miDateTime}{numeric}(x,...)
 \method{as.miDateTime}{miDate}(x, y = 0,...)
 \method{as.miDateTime}{miDateTime}(x, ...)
+\method{as.miDateTime}{POSIXct}(x, ...)
+\method{as.miDateTime}{POSIXlt}(x, ...)
+\method{as.miDateTime}{chron}(x, ...)
 \method{format}{miTime}(x, format = "\%H:\%M", mark=TRUE,...)
-\method{format}{miDate}(x, format = "\%m/\%d/\%Y", mark=TRUE,...)
-\method{format}{miDateTime}(x, format = "\%m/\%d/\%Y \%H:\%M", mark=TRUE,...)
+\method{format}{miDate}(x, format = "\%Y-\%m-\%d", mark=TRUE,...)
+\method{format}{miDateTime}(x, format = "\%Y-\%m-\%d \%H:\%M", mark=TRUE,...)
 }
 
 \arguments{

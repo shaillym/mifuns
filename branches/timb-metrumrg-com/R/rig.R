@@ -4,7 +4,7 @@ rig.nm <- function(x,n=50,dateTime=FALSE,noDups=FALSE,...){
 	x <- x[!x$C,]
 	if('EVID' %in% names(x)) x <- x[x$ID %in% x$ID[x$EVID==1],]
 	if('DATETIME' %in% names(x))if(!constant(is.na(x$DATETIME),within=x$ID))stop(
-		'mixed TIME/DATETIME within ID'
+		'mixed HOUR/DATETIME within ID'
 	)
 	if(dateTime  & !'DATETIME' %in% names(x))x <- x[0,]
 	if(dateTime  &  'DATETIME' %in% names(x))x <- x[!is.na(x$DATETIME),]
@@ -39,9 +39,9 @@ rig.nm <- function(x,n=50,dateTime=FALSE,noDups=FALSE,...){
         			SUBJ=rep(
         				x$SUBJ[[1]],n
         			),
-        			TIME=seq(
-        				from=min(x$TIME), 
-       					to=max(x$TIME),
+        			HOUR=seq(
+        				from=min(x$HOUR), 
+       					to=max(x$HOUR),
        					length.out=n
        				)
        			)
@@ -70,7 +70,7 @@ as.rigged <- function(...){
 
 `moot` <- function(x,...)UseMethod("moot")
 
-`moot.nm` <- function(x,scope=EVID==2,disregard=c("TIME","DATETIME","DATE","TAFD","TAD"),...){
+`moot.nm` <- function(x,scope=EVID==2,disregard=c("TIME","DATETIME","DATE","TAFD","TAD","HOUR"),...){
 	y <- x[,names(x)[!names(x) %in% disregard]]#cols with potentially relevant changes
 	target <- do.call(paste,y)#one super col
 	suspect <- duplicated(target,fromLast=TRUE)#could be unnecessary

@@ -72,7 +72,7 @@
 	SGEflgs = "", 
 	checkrunno = TRUE, 
 	diag = TRUE, 
-	fdata = FALSE, 
+	fdata = TRUE, 
 	epilog = NULL, 
 	dvname = NULL, 
 	logtrans = FALSE,

@@ -218,8 +218,8 @@
   \item{diag}{Whether
   to plot standard diagnostic plots. Default: TRUE.}
   
-  \item{fdata}{Whether to request deletion of NONMEM files: FDATA,
-  PRDERR, and nonmem executable. Default: FALSE.}  
+  \item{fdata}{Whether to attempt deletion of NONMEM files FDATA and
+  PRDERR. Default: TRUE.}  
   
   \item{epilog}{
   User-defined function or script to call at end of NONR or PLOTR.

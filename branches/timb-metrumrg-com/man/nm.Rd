@@ -39,13 +39,14 @@ write.nm(x, file, na = ".", row.names = FALSE, quote = FALSE, ...)
 \code{as.nm.data.frame()} is the only method that creates an \code{nm} classification.  It 
 alone enforces all qualities of class \code{nm}.
 \itemize{
-  \item \code{SUBJ} must be present and defined, even for commented records.
+  \item \code{SUBJ} must be present and defined, even for commented records. ID is (re)calculated as \code{as.numeric(factor(SUBJ))}.
   \item \code{C} (class \code{comment}) will be created if not present.
   \item \code{NA} \code{C} will be imputed \code{FALSE}.
-  \item Every active (non-commented) source record should define exactly one of \code{TIME} or \code{DATETIME}.
-  \item \code{TIME} is received as-is, taken to represent relative accumulation of hours from arbitrary origin.
-  \item \code{DATETIME} is understood as seconds, coercible to \code{miDateTime}, and trumps \code{TIME} with warning.
-  \item If \code{DATETIME} is present, definition (or not) should be constant within subject (for active records).
+  \item Every active (non-commented) source record should define exactly one of \code{HOUR} or \code{DATETIME}.
+  \item \code{HOUR} is taken to represent relative accumulation of hours from arbitrary origin.
+  \item \code{DATETIME} is understood as seconds, coercible to \code{miDateTime}.
+  \item \code{TIME} is calculated from either \code{HOUR} or \code{DATETIME}.
+  \item Definition (or not) of \code{HOUR} vs. \code{DATETIME} should be constant within subject (for active records).
   \item \code{SEQ} (class \code{flag}) will be created if not present.
   \item \code{nm} will be keyed on \code{SUBJ}, \code{TIME}, and \code{SEQ}. \code{SEQ} determines sort order for rows with matching \code{TIME}.
   \item Result will be sorted.
@@ -59,8 +60,8 @@ alone enforces all qualities of class \code{nm}.
 
   Column summary:
 \itemize{
-  \item required inputs: SUBJ, TIME or DATETIME
-  \item optional inputs: AMT, ADDL, II, DV, 
+  \item required inputs: SUBJ; HOUR or DATETIME
+  \item optional inputs: AMT, ADDL, II, DV 
   \item enforced outputs: SUBJ, ID, C, TIME, SEQ
   \item conditional outputs: TAFD, TAD, LDOS, MDV
 }
@@ -84,16 +85,16 @@ generic \code{moot()}.
 \examples{
 dose <- data.frame( 
 	SUBJ = rep(letters[1:3], each = 2), 
-	TIME = rep(c(0,20),3), 
+	HOUR = rep(c(0,20),3), 
 	AMT = rep(c(40,60,80), each = 2) 
 ) 
-dose <- as.keyed(dose,key=c('SUBJ','TIME'))
+dose <- as.keyed(dose,key=c('SUBJ','HOUR'))
 samp <- data.frame( 
 	SUBJ = rep(letters[1:3], each = 4), 
-	TIME = rep(c(0,10,20,30),3), 
+	HOUR = rep(c(0,10,20,30),3), 
 	DV = signif(rnorm(12),2) + 2 
 ) 
-samp <- as.keyed(samp,key=c('SUBJ','TIME'))
+samp <- as.keyed(samp,key=c('SUBJ','HOUR'))
 demo <- data.frame( 
 	SUBJ = letters[2:5], 
 	RACE = c('asian','white','black','other'), 
@@ -104,11 +105,11 @@ demo <- as.keyed(demo,key=c('SUBJ'))
 meds <- as.keyed(
 	data.frame(
 		SUBJ=c('a','c'),
-		TIME=c(0,15),
+		HOUR=c(0,15),
 		STOP=c(10,25),
 		C3A4=as.flag(c(1,1))
 	),
-	key=c('SUBJ','TIME')
+	key=c('SUBJ','HOUR')
 )
 
 dose + samp
@@ -125,7 +126,7 @@ as.nm(dose + samp | demo) #as.nm executes once
 nm() + dose + samp | demo #same result, but as.nm executes 4 times
 
 meds
-long <- deranged(meds,start='TIME',stop='STOP')
+long <- deranged(meds,start='HOUR',stop='STOP')
 long$EVID <- 2
 nm() + dose + samp + long
 nm() + dose + samp + long - as.moot() 

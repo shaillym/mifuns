@@ -35,8 +35,8 @@ as.miDateTime.numeric <- function(x,...){
 as.miDateTime.character <- function(x,format='%Y-%m-%d %H:%M',...)as.miDateTime(as.numeric.chartime(x,format))
 as.miDateTime.miDate <- function(x,y=0,...)as.miDateTime(as.numeric(x)+as.numeric(y))
 format.miTime <- function(x,format='%H:%M',mark=TRUE,...)as.chartime(x,format,mark)
-format.miDate <- function(x,format='%m/%d/%Y',mark=TRUE,...)as.chartime(x,format,mark)
-format.miDateTime <- function(x,format='%m/%d/%Y %H:%M',mark=TRUE,...)as.chartime(x,format,mark)
+format.miDate <- function(x,format='%Y-%m-%d',mark=TRUE,...)as.chartime(x,format,mark)
+format.miDateTime <- function(x,format='%Y-%m-%d %H:%M',mark=TRUE,...)as.chartime(x,format,mark)
 as.character.miTemporal <- function(x,...)format(x,...)
 print.miTemporal <-function(x,...){
 	print(format(x,...),quote=FALSE)
@@ -81,8 +81,10 @@ rep.miTemporal <- function (x, ...) structure(rep(as.numeric(x),...),class=class
     class(x) <- cl
     x
 }
-xtfrm.miTemporal <- function(x)as.numeric(x)
-
-
-
-
+xtfrm.miTemporal <- function(x,...)as.numeric(x)
+as.miDate.Date <- function(x,...)as.miDate(round(as.numeric(x))*86400)
+as.miDateTime.POSIXct <- function(x,...)as.miDateTime(round(as.numeric(x)))
+as.miDateTime.POSIXlt <- function(x,...)as.miDateTime(as.POSIXct(x))
+as.miTime.times <- function(x,...)as.miTime(as.numeric(x)*86400)
+as.miDate.dates <- function(x,...)as.miDate(as.numeric(x)*86400)
+as.miDateTime.chron <- function(x,...)as.miDateTime(as.numeric(x)*86400)

@@ -189,7 +189,7 @@ Functions defined by MIfuns
 \item \link{purge.files} purge files (internal)
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
-\item \link{reapply} repeat cell aggregates once per cell member
+\item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
 \item \link{regCommand} construct the default version of the NONMEM execution command (internal)
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag

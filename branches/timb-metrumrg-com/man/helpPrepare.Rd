@@ -11,7 +11,7 @@ I want to ....
 \item \link[=resample.data.frame]{Create} replicate datasets by stratified sampling with replacement    
 \item \link[=metaSub.character]{Make} multiple, systematic substitutions in text files
 \item \link[=miTemporal]{Create} date, time, and date-time objects with default behaviors appropriate for NMTRAN datasets
-\item \link[=reapply]{Calculate} cell aggregates once per cell member
+\item \link[=reapply]{Apply} a function across cells of an indexed vector, giving an identically-indexed result
 \item \link[=text2decimal]{Convert} mixed text to decimal
 \item \link[=forbak]{Impute} missing vector values
 \item \link[=runhead]{Check} some properties of vectors and dataframes

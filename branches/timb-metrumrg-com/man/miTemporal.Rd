@@ -104,23 +104,23 @@ as.miTime(86400)
 as.miTime(86460)
 # 00:01
 as.miDate(0)
-# 01/01/1970
+# 1970-01-01
 as.miDate(1)
-# 01/01/1970
+# 1970-01-01
 as.miDate(-1)
-# 12/31/1969
+# 1969-12-31
 as.miDate(-86400)
-# 12/31/1969
+# 1969-12-31
 as.miDate(-86401)
-# 12/30/1969
+# 1969-12-30
 as.miDateTime(0)
-# 01/01/1970 00:00
+# 1970-01-01 00:00
 as.miDateTime(60)
-# 01/01/1970 00:01 
+# 1970-01-01 00:01 
 as.miDateTime(61)
-# 01/01/1970 00:01+
+# 1970-01-01 00:01+
 as.miDateTime(-1)
-# 12/31/1969 23:59+
+# 1969-12-31 23:59+
 
 #character to temporal
 as.miTime("00:00")
@@ -136,13 +136,13 @@ as.miTime("23:59:01",format="\%H:\%M:\%S")
 as.miTime("24:00")
 # NA
 as.miDate("1970-01-02")
-# 01/02/1970
+# 1970-01-02
 as.miDate("01/02/1970",format="\%m/\%d/\%Y")
-# 01/02/1970
+# 1970-01-02
 as.miDateTime("01/02/1970 12:30",format="\%m/\%d/\%Y \%H:\%M")
-# 01/02/1970 12:30
+# 1970-01-02 12:30
 as.miDateTime("01/02/1970 12:30:15",format="\%m/\%d/\%Y \%H:\%M:\%S")
-# 01/02/1970 12:30+
+# 1970-01-02 12:30+
 
 #temporal to numeric
 as.numeric(as.miTime(0))
@@ -202,9 +202,9 @@ as.numeric(as.miDateTime("01/02/1970 12:30:15",format="\%m/\%d/\%Y \%H:\%M:\%S")
 as.character(as.miTime(0))
 # "00:00"
 as.character(as.miDate(0))
-# "01/01/1970"
+# "1970-01-01"
 as.character(as.miDateTime(0))
-# "01/01/1970 00:00"
+# "1970-01-01 00:00"
 
 #non-default printout
 format(as.miTime(30000),format="\%H")
@@ -222,7 +222,7 @@ format(as.miTime(1),mark=FALSE)
 seq(from=as.miTime("8:00"),to=as.miTime("12:00"))
 # 08:00 09:00 10:00 11:00 12:00
 seq(from=as.miDate("2008-01-01"),to=as.miDate("2008-01-04"))
-# 01/01/2008 01/02/2008 01/03/2008 01/04/2008
+# 2008-01-01 2008-01-02 2008-01-03 2008-01-04
 seq(from=as.miDateTime("2008-01-01 12:00"),to=as.miDateTime("2008-01-04 12:30"))
 # 01/01/2008 12:00 01/02/2008 12:00 01/03/2008 12:00 01/04/2008 12:00
 
@@ -232,13 +232,28 @@ as.miTime(as.miDate("2008-10-14"))
 as.miTime(as.miDateTime("2008-10-14 08:00"))
 # 08:00
 as.miDate(as.miTime("23:59"))
-# 01/01/1970
+# 1970-01-01
 as.miDate(as.miDateTime("2008-10-14 08:00"))
-# 10/14/2008
+# 2008-10-14
 as.miDateTime(as.miTime(6000000))
-# 01/01/1970 10:40
+# 1970-01-01 10:40
 as.miDateTime(as.miDate("2008-10-14"))
 # 10/14/2008 00:00
+
+#intercoversion from other systems
+as.miDate(as.Date('1970-01-01'))
+# 1970-01-01
+as.miDateTime(as.POSIXct('1970-01-01',tz='GMT'))
+# 1970-01-01 00:00
+as.miDateTime(as.POSIXlt('1970-01-01',tz='GMT'))
+# 1970-01-01 00:00
+library(chron)
+as.miTime(times('12:30:00'))
+# 12:30
+as.miDate(dates('01/01/1970'))
+# 1970-01-01
+as.miDateTime(chron(dates='01/01/1970',times='12:30:00'))
+# 1970-01-01 12:30
 
 #infinity
 as.miTime(Inf)

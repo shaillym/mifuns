@@ -7,11 +7,47 @@ function(pattern,text,...){
 `text2decimal` <-
 function(x)as.numeric(sub("[^0-9.+-]*([+|-]?[0-9]+\\.?[0-9]*).*","\\1",as.character(x)))
 
-reapply <- function(x, INDEX, FUN, ...){ 
-	y <- tapply(x,INDEX) 
-	z <- tapply(x,INDEX, FUN,...) 
-	z[y] 
+reapply <- 
+function (x, INDEX, FUN, ...,simplify=TRUE) 
+{
+    form <- tapply(x, INDEX)
+    calc <- tapply(x, INDEX, FUN, ...,simplify=FALSE)
+    need <- table(form)
+    calc <- lapply(
+    	seq(
+    		length.out=length(calc)
+    	),
+    	function(cell)if(
+    		is.null(
+    			calc[[cell]]
+    		)
+    	) NULL else rep(
+    		calc[[cell]],
+    		length.out=need[[
+    			as.character(cell)
+    		]]
+    	)
+    )
+	grps <- split(form,form)
+	grps <- lapply(
+		grps, 
+		function(grp)seq(
+			length.out=length(grp)
+		)
+	)
+	elem <- unsplit(grps,form)
+	sapply(
+		seq(
+			length.out=length(form)
+		),
+		function(i)calc[[
+			form[[i]]
+		]][[
+			elem[[i]]
+		]]
+	)
 }
+
 aug <- function(x,...){
 	extras <- list(...)
 	nms <- names(extras)

@@ -1,16 +1,16 @@
 `runCommand` <-
   function (
-  	NMcom,
+  	#NMcom,
 	rdir,
 	b,
-	boot,
-	urgent,
-	SGEflgs,
+	#boot,
+	#urgent,
+	#SGEflgs,
 	nochecksum,
 	grid,
 	udef,
-	ctlfile,
-	outfile,
+	#ctlfile,
+	#outfile,
 	perl=NULL,
 	option=NULL,
 	intern=invisible,
@@ -26,8 +26,8 @@
   if(is.null(perl)) if(win()) perl <- if(!invisible) 'cmd /K perl -S' else 'cmd /C perl -S'
 
   #draft a command
-  command <- regCommand(NMcom,ctlfile,outfile,perl,option,...)
-  if(grid) command <- grdCommand(NMcom,ctlfile,outfile,boot,urgent,N=paste('Run',b,sep=''),o=rdir,e=rdir,...)
+  command <- regCommand(perl=perl,option=option,...)
+  if(grid) command <- grdCommand(N=paste('Run',b,sep=''),o=rdir,e=rdir,...)
   if(!is.null(udef))command <- udef #trumps above
 
   #set up the call

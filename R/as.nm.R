@@ -157,9 +157,11 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	#Comment cannot be NA
 	x$C[is.na(x$C)] <- FALSE
 	
-	#Every active source record should define exactly one of TIME or DATETIME.
-	#TIME is received as-is, taken to represent relative accumulation of hours from arbitrary origin.
-	#DATETIME is understood as seconds, coercible to miDateTime, and trumps TIME with warning.
+	#Every active source record should define exactly one of HOUR or DATETIME.
+	if(!('HOUR' %in% names(x)) | 'DATETIME' %in% names(x))stop('HOUR or DATETIME must be specified.')
+	with(x[!x$C,], if(any(is.na(HOUR) & is.na(DATETIME)))stop(paste('HOUR or DATETIME must be specified, e.g.',x[is.na(HOUR) & is.na(DATETIME),][1,])))
+	with(x[!x$C,], if(any(!is.na(HOUR) & !is.na(DATETIME)))stop(paste('Only one of HOUR or DATETIME may be specified, e.g.',x[!is.na(HOUR) & !is.na(DATETIME),][1,])))
+	#DATETIME is understood as seconds, coercible to miDateTime.
 	#If DATETIME is present, definition (or not) should be constant within subject (for active records).
 	if('DATETIME' %in% names(x))with(
 		x[!x$C,],
@@ -170,13 +172,21 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 			)
 		)
 	)
+	#If HOUR is present, definition (or not) should be constant within subject (for active records).
+	if('HOUR' %in% names(x))with(
+		x[!x$C,],
+		if(!constant(is.na(HOUR),within=SUBJ))stop(
+			paste(
+				'HOUR intermittent for SUBJ',
+				SUBJ[crosses(is.na(HOUR),SUBJ)][1]
+			)
+		)
+	)
 	#Coerce even in commented records
-	if(!'TIME' %in% names(x))x$TIME <- NA
-	if('DATETIME' %in% names(x)){
-		clash <- with(x,!is.na(TIME) & !is.na(DATETIME))
-		if(any(clash))warning(paste('DATETIME overrides TIME, e.g. for SUBJ',x$SUBJ[clash][[1]]))
-		x$TIME[!is.na(x$DATETIME)] <- as.numeric(as.miDateTime(x$DATETIME[!is.na(x$DATETIME)]))/60/60
-	}
+	#HOUR is received as-is, taken to represent relative accumulation of hours from arbitrary origin.
+	x$TIME <- NA
+	if('HOUR' in names(x)) x$TIME <- x$HOUR
+	if('DATETIME' %in% names(x))x$TIME[!is.na(x$DATETIME)] <- as.numeric(as.miDateTime(x$DATETIME[!is.na(x$DATETIME)]))/60/60
 	
 	#At this point, active TIME should be completely defined.
 	if(any(is.na(x$TIME[!x$C])))stop('TIME not completely defined.')

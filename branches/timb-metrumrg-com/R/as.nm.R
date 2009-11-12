@@ -169,14 +169,15 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	exclusive <- xor(hour,datetime)
 	if(any(!exclusive))stop(paste('exactly one of HOUR or DATETIME must be specified, e.g. SUBJ',subj[!exclusive][[1]]))
 
-	#DATETIME is understood as seconds, coercible to miDateTime.
 	#If DATETIME is present, definition (or not) should be constant within subject (for active records).
 	if(!constant(datetime,within=subj))stop(paste('Both HOUR and DATETIME defined for SUBJ',subj[crosses(datetime,subj)][[1]]))
 	#Coerce even in commented records
 	#HOUR is received as-is, taken to represent relative accumulation of hours from arbitrary origin.
 	x$TIME <- rep(NA,nrow(x))
 	if('HOUR' %in% names(x)) x$TIME <- x$HOUR
-	if('DATETIME' %in% names(x))x$TIME[!is.na(x$DATETIME)] <- as.numeric(as.miDateTime(x$DATETIME[!is.na(x$DATETIME)]))/60/60
+	#DATETIME is understood as seconds, coercible to miDateTime.
+	if('DATETIME' %in% names(x))x$DATETIME <- as.miDateTime(x$DATETIME,format='%m/%d/%Y %H:%M')	
+	if('DATETIME' %in% names(x))x$TIME[!is.na(x$DATETIME)] <- as.numeric(x$DATETIME[!is.na(x$DATETIME)])/60/60
 	
 	#At this point, active TIME should be completely defined.
 	if(any(is.na(x$TIME[!x$C])))stop('TIME not completely defined.')

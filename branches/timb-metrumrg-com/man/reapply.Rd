@@ -24,7 +24,7 @@ length of the value of reapply is always identical to that of \code{x}.
 \author{Tim Bergsma}
 \examples{
 theoph <- Theoph[c(1,12,2,13,3,14),]
-theoph$mean   <- with(theoph,reapply(conc,Subject,mean))
+theoph$avg <- with(theoph,reapply(conc,Subject,mean))
 theoph$sum <- with(theoph,reapply(conc,Subject,cumsum))
 }
 \keyword{manip}

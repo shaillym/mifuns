@@ -11,17 +11,15 @@ reapply <-
 function (x, INDEX, FUN, ...,simplify=TRUE) 
 {
     form <- tapply(x, INDEX)
-    calc <- tapply(x, INDEX, FUN, ...,simplify=FALSE)
+    calc <- tapply(x, INDEX, FUN, ...,simplify=simplify)
     need <- table(form)
     calc <- lapply(
     	seq(
     		length.out=length(calc)
     	),
     	function(cell)if(
-    		is.null(
-    			calc[[cell]]
-    		)
-    	) NULL else rep(
+    		!as.character(cell) %in% names(need)
+    	) return(calc[[cell]]) else rep(
     		calc[[cell]],
     		length.out=need[[
     			as.character(cell)

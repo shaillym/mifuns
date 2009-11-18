@@ -7,7 +7,7 @@ read.nm <- function(x){
 	if(any(dupKeys(tran)))warning('file has duplicate keys')
 	if(!is.integer(tran$ID))stop('ID should be integer')
 	if('DATETIME' %in% names(tran)){
-		tran$DATETIME <- as.miDateTime(tran$DATETIME,format='%m/%d/%Y %H:%M')
+		tran$DATETIME <- as.miDateTime(tran$DATETIME)
 		tran$TIME[!is.na(tran$DATETIME)] <- NA
 	}
 	a <- tran[!is.na(tran$TIME),]
@@ -176,7 +176,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	x$TIME <- rep(NA,nrow(x))
 	if('HOUR' %in% names(x)) x$TIME <- x$HOUR
 	#DATETIME is understood as seconds, coercible to miDateTime.
-	if('DATETIME' %in% names(x))x$DATETIME <- as.miDateTime(x$DATETIME,format='%m/%d/%Y %H:%M')	
+	if('DATETIME' %in% names(x))x$DATETIME <- as.miDateTime(x$DATETIME)	
 	if('DATETIME' %in% names(x))x$TIME[!is.na(x$DATETIME)] <- as.numeric(x$DATETIME[!is.na(x$DATETIME)])/60/60
 	
 	#At this point, active TIME should be completely defined.

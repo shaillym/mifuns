@@ -5,7 +5,6 @@ function (
 	b, 
 	boot,
 	urgent,
-	SGEflgs, 
 	checkrunno, 
 	diag, 
 	fdata, 
@@ -102,17 +101,16 @@ function (
   
   #Run NONMEM.
   runCommand(
-  	NMcom,
-	rundir,
-	b,
-	boot,
-	urgent,
-	SGEflgs,
-	nochecksum,
-	grid,
-	udef,
-	runtime(ctlfile,rundir),
-	outfile,
+  	NMcom=NMcom,
+	rdir=rundir,
+	run=b,
+	boot=boot,
+	urgent=urgent,
+	nochecksum=nochecksum,
+	grid=grid,
+	udef=udef,
+	ctlfile=runtime(ctlfile,rundir),
+	outfile=outfile,
 	invisible=invisible,
 	...
   )

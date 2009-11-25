@@ -10,7 +10,7 @@ reapply(x, INDEX, FUN, ...,simplify=TRUE)
   \item{INDEX}{list of factors, each of same length as \code{x}}
   \item{FUN}{the function to be applied. In the case of functions like \code{+}, \code{\%*\%}, etc., the function name must be quoted.}
   \item{\dots}{optional arguments to \code{FUN}}
-  \item{simplify}{by analogy to tapply; currently ignored}
+  \item{simplify}{passed to tapply}
 }
 \details{
 The function \code{tapply()} applies \code{FUN} to each cell of a vector, as 

@@ -7,11 +7,11 @@ metaSub(
         out='.',
         suffix='.for',
         pattern='SIZES',
-        replacement='/common/NONMEM/nm6osxbeta/SIZES'
+        replacement='/common/NONMEM/nm6osx6/SIZES'
 )
 nonr <- function(
         b,
-        NMcom='/common/NONMEM/nm6osxbeta/test/nm6osxbeta.pl',
+        NMcom='/common/NONMEM/nm6osx6/test/nm6osx6.pl',
 	checkrunno=FALSE,
 	dvname='Response',
 	grp='SEX',
@@ -35,12 +35,15 @@ nonr <- function(
        epilog=epilog,
        ...
 )
-        
+
 #nix workstation
 nonr(1:2)
 rlog(1:2,out='runlog.csv',append=FALSE)
+nonr(1,split=TRUE)
+
 
 #nix grid
+nonr(1,split=TRUE,grid=TRUE)
 bootdir <- paste(getwd(),'*.boot',sep='/')
 rundir  <- paste(getwd(),'*',sep='/')
 nms <- 1001:1005

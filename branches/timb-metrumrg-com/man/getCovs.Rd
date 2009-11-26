@@ -19,7 +19,7 @@ getCovs(file, dir)
   control stream's directory.  This tool resolves that reference and returns 
   the file, modified to represent constant covariates.
 }
-\value{}
+\value{data.frame}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{ \code{\link{PLOTR}} }

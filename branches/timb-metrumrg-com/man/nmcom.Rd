@@ -19,7 +19,7 @@ nmcom(nmdir, pathsep = "/", ...)
   Wrapper should be in sub directory 'test' and have same name as the
   installation directory.
 }
-\value{}
+\value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 

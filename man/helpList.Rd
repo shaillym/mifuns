@@ -59,11 +59,16 @@ Functions defined by MIfuns
 \item \link{as.keyed} convert to keyed
 \item \link{as.keyed.data.frame} convert data frame to keyed
 \item \link{as.miDate} convert to miDate
+\item \link{as.miDate.miDate} convert miDate to miDate
 \item \link{as.miDate.character} convert character to miDate
+\item \link{as.miDate.dates} convert dates (chron) to miDate
 \item \link{as.miDate.miDate} convert miDate to miDate
 \item \link{as.miDate.numeric} convert numeric to miDate
 \item \link{as.miDateTime} convert to miDateTime
+\item \link{as.miDateTime.POSIXct} convert POSIXct to miDateTime
+\item \link{as.miDateTime.POSIXlt} convert POSIXlt to miDateTime
 \item \link{as.miDateTime.character} convert character to miDateTime
+\item \link{as.miDateTime.chron} convert chron to miDateTime
 \item \link{as.miDateTime.miDate} convert miDate to miDateTime
 \item \link{as.miDateTime.miDateTime} convert miDateTime to miDateTime
 \item \link{as.miDateTime.numeric} convert numeric to miDateTime
@@ -71,6 +76,7 @@ Functions defined by MIfuns
 \item \link{as.miTime.character} convert character to miTime
 \item \link{as.miTime.miTime} convert miTime to miTime
 \item \link{as.miTime.numeric} convert numeric to miTime
+\item \link{as.miTime.times} convert times (chron) to miTime
 \item \link{as.moot} convert to moot
 \item \link{as.nm} convert to nm (NMTRAN-ready NONMEM data set)
 \item \link{as.nm.data.frame} convert data frame to nm
@@ -85,17 +91,22 @@ Functions defined by MIfuns
 \item \link{badDv.nm} DV is NA where EVID is 0
 \item \link{badII} generic
 \item \link{badII.nm} II is greater than 0 where ADDL is NA or 0 (unless SS > 0)
+\item \link{bakfor} impute NAs using last observation carried forward after next observation carried backward
 \item \link{bin} calculate bin limits for x and place each value in a bin, returning the number of values in each bin
 \item \link{bmi} calculate body mass index
 \item \link{bsa} calculate body surface area
 \item \link{c.comment} combine comment
 \item \link{c.flag} combine flag
 \item \link{c.miTemporal} combine miTemporal
+\item \link{candir} format directory canonically
 \item \link{cavg} calculate average concentration
 \item \link{check.data} check for missing data, numeric data, ranges, etc.
 \item \link{cmax} calculate maximum steady-state concentration
 \item \link{cmin} calculate minimum steady-state concentration
+\item \link{compileflag} calculate compiler flag for qsub
+\item \link{compiler} extract compiler specification from configuration file
 \item \link{compute.cwres} compute conditional weighted residuals
+\item \link{config} calculate path to configuration file
 \item \link{constant} generic
 \item \link{constant.default} test whether values of x are contant within an index
 \item \link{contains} test a character vector for occurences of a pattern
@@ -113,6 +124,7 @@ Functions defined by MIfuns
 \item \link{distance} generic
 \item \link{distance.logical} calculate the position of each element of a logical vector relative to the n-th TRUE element (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
+\item \link{enth} alias for ordinal
 \item \link{episcript} run a script in an environment that defines the the passed arguments
 \item \link{f} alias for as.flag
 \item \link{falseAmt} generic
@@ -122,6 +134,7 @@ Functions defined by MIfuns
 \item \link{filename} generate standard file name (internal)
 \item \link{first} generic
 \item \link{first.logical} repeat for each element the position of the first TRUE element (usually, within levels of an index)
+\item \link{fixedwidth} convert to fixed-width format
 \item \link{fixedwidth} convert a data.frame to fixed-width format
 \item \link{forbak} impute NAs using last observation carried forward and then next observation carried backward
 \item \link{format.comment} format comment 
@@ -134,7 +147,6 @@ Functions defined by MIfuns
 \item \link{getPars} return the non-duplicated (ID) rows corresponding to the specified filename (internal)
 \item \link{getTabs} return the observation rows (EVID==0) corresponding to the specified filename (internal)
 \item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)
-\item \link{grdCommand} construct the version of the NONMEM execution command designed for the grid (internal)
 \item \link{groupnames} construct a single vector of group names from possibly multiple indicies to the plotting data set (internal)
 \item \link{hash} prepend a character to each line of output
 \item \link{hide} generic
@@ -163,7 +175,10 @@ Functions defined by MIfuns
 \item \link{naKeys} detect rows for which one or more key fields is NA
 \item \link{nix} identify Unix-like platforms (internal)
 \item \link{nm} give a zero-row data frame with suitable columns and column classes; i.e. a template for NMTRAN data sets
+\item \link{nm.pl} prepare commandlines for nm.pl
 \item \link{nmPlots} a list of functions that plot nm objects
+\item \link{nmcom} calculate NONMEM wrapper script from installation path
+\item \link{nmdir} calculate NONMEM installation path from wrapper script
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
 \item \link{nocb} impute NA with next observation carried backward
@@ -187,10 +202,10 @@ Functions defined by MIfuns
 \item \link{print.nm.summary} print nm summary
 \item \link{purge.dir} purge a directory (internal)
 \item \link{purge.files} purge files (internal)
+\item \link{qsub} prepare commandlines for qsub
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
 \item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
-\item \link{regCommand} construct the default version of the NONMEM execution command (internal)
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag
 \item \link{rep.miTemporal} repeat miTemporal

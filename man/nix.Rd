@@ -14,7 +14,7 @@ nix()
 
 \seealso{ \code{\link{NONR}} }
 \examples{
-unix()
+nix()
 }
 \keyword{manip}
 

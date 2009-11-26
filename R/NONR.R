@@ -6,7 +6,6 @@ function (
 	boot = FALSE,
 	concurrent = grid,
 	urgent = !boot,
-	#SGEflgs = "", 
 	checkrunno = TRUE, 
 	diag = TRUE, 
 	fdata = TRUE, 

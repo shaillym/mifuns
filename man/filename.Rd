@@ -20,7 +20,7 @@ filename(dir, b = NULL, ext = NULL)
 
 \seealso{ \code{\link{dataSynthesis}} }
 \examples{
-filename('dir','3''.ctl')
+filename('dir','3','.ctl')
 }
 \keyword{manip}
 

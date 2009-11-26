@@ -120,7 +120,7 @@
 item \code{\link{NONR}}
 item \code{\link{dataSynthesis}}
 item \code{\link{diagnosticPlots}}
-item \code{\link{CovariatePlots}}
+item \code{\link{covariatePlots}}
 item \code{\link{cwresPlots}}
 }
 }

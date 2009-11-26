@@ -12,7 +12,7 @@ getdname(filename)
 \arguments{
   \item{filename}{path for the control stream}
 }
-\value{}
+\value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{ \code{\link{PLOTR}} }

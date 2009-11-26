@@ -20,7 +20,7 @@ runCommand(
 	udef = FALSE, 
 	ctlfile, 
 	outfile, 
-	perl = if (nix) "perl -S" else if (!invisible) "cmd /K perl -S" else "cmd /C perl -S", 
+	perl = if (nix()) "perl -S" else if (!invisible) "cmd /K perl -S" else "cmd /C perl -S", 
 	intern = invisible, 
 	minimized = invisible, 
 	invisible = FALSE, 

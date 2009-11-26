@@ -19,7 +19,7 @@ candir(dir, pathsep = "/")
 \seealso{ \code{\link{runCommand}} }
 \examples{
 candir('/common/directory/')
-candir('c:\\common\directory\\',pathsep='\\\\')
+#candir('c:\\common\\directory\\',pathsep='\\\\')
 }
 
 

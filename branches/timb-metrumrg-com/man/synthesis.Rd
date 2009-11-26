@@ -3,7 +3,7 @@
 
 \title{Sequentially Left-join an Arbitrary Number of Data Frames, Picking Up Novel Columns}
 \description{
- 
+ Integrates specified columns from among a list of data frames.
 }
 \usage{
 synthesis(x, key = character(0), frames, ...)

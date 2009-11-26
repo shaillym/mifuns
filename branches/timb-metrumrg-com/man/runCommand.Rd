@@ -60,7 +60,7 @@ runCommand(
   \item{o}{passed to qsub}
   \item{e}{passed to qsub}
   \item{L}{passed to qsub as an instance of 'l'}
-  \item{hold_jid}{passed to qsub}
+  \item{hold\_jid}{passed to qsub}
   \item{V}{passed to qsub}
   \item{j}{passed to qsub}
   \item{q}{passed to qsub}
@@ -75,7 +75,7 @@ The argument 'L' represents a possibly-constituative instance of qsub's 'l',
 but is not called 'l' so that other instances of 'l' (multiple are allowed)
 will not accidentally override it.  Users can override intentionally, of course.
 
-N, L, and hold_jid are coordinated that if a run is split, compile status is flagged
+N, L, and hold\_jid are coordinated that if a run is split, compile status is flagged
 on the compile run, and the execute run waits for compile to finish. 
 }
 \value{Used for side effects}

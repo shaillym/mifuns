@@ -38,11 +38,11 @@
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99, 
-	invisible=!is.null(udef),
+	invisible=udef,
 	nochecksum = FALSE, 
 	grid = boot, 
 	nice=FALSE, 
-	udef=NULL, 
+	udef=FALSE, 
 	file=NULL,
 	...
 )

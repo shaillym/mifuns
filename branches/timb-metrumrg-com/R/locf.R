@@ -9,6 +9,8 @@ function(x){
 }
 `forbak` <-
 function(x)nocb(locf(x))
+`bakfor` <-
+function(x)locf(nocb(x))
 `nocb` <-
 function(x)rev(locf(rev(x)))
 

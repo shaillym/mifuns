@@ -8,9 +8,10 @@
 }
 \usage{
 runNonmem(
-	NMcom, 
+	command, 
 	ProjectDir, 
-	b, boot, 
+	run, 
+	boot, 
 	urgent, 
 	checkrunno, 
 	diag, 
@@ -26,7 +27,7 @@ runNonmem(
 	eta.list, 
 	missing, 
 	invisible, 
-	nochecksum, 
+	checksum, 
 	grid, 
 	nice, 
 	udef, 
@@ -42,9 +43,9 @@ runNonmem(
 )
 }
 \arguments{
-  \item{NMcom}{see NONR}
+  \item{command}{see NONR}
   \item{ProjectDir}{see NONR}
-  \item{b}{see NONR}
+  \item{run}{see NONR}
   \item{boot}{see NONR}
   \item{urgent}{see NONR}
   \item{checkrunno}{see NONR}
@@ -61,7 +62,7 @@ runNonmem(
   \item{eta.list}{see NONR}
   \item{missing}{see NONR}
   \item{invisible}{see NONR}
-  \item{nochecksum}{see NONR}
+  \item{checksum}{see NONR}
   \item{grid}{see NONR}
   \item{nice}{see NONR}
   \item{udef}{see NONR}

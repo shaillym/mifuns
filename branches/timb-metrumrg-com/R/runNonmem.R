@@ -1,8 +1,8 @@
 `runNonmem` <-
 function (
-	NMcom, 
+	command, 
 	ProjectDir, 
-	b, 
+	run, 
 	boot,
 	urgent,
 	checkrunno, 
@@ -19,7 +19,7 @@ function (
 	eta.list, 
 	missing, 
 	invisible, 
-	nochecksum, 
+	checksum, 
 	grid, 
 	nice, 
 	udef, 
@@ -30,7 +30,13 @@ function (
 	msffile = NULL,
 	parfile = NULL,
 	outdir  = ProjectDir,
-	pattern = c('^F[ISRC]','^OU','^nonmem.exe',if(fdata)c('^FD','^PR')),
+	pattern = c(
+		'^F[ISRC]',
+		'^OU',
+		'^nonmem.exe',
+		if(fdata)c('^FD','^PR')),
+		
+	,
 	...
 ){
   #Define some functions.
@@ -51,7 +57,7 @@ function (
   }
 	
   #Groom arguments
-  outdir <- star(outdir,b)
+  outdir <- star(outdir,run)
   script <- NULL
   epimatch <- try(match.fun(epilog),silent=TRUE)
   if(is.function(epimatch))epilog <- epimatch
@@ -61,34 +67,34 @@ function (
   }
 	  
   #Set runtime directory.
-  rundir <- filename(ProjectDir,b)
-  if (grid) rundir <- filename(ProjectDir, b, '.lock')
-  if (boot) rundir <- filename(ProjectDir, b, '.boot')
+  rundir <- filename(ProjectDir,run)
+  if (grid) rundir <- filename(ProjectDir, run, '.lock')
+  if (boot) rundir <- filename(ProjectDir, run, '.boot')
   
   #Check arguments.
-  if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, b, '.ctl')
-  ctlfile <- star(ctlfile,b)
-  if(is.null(outfile)) outfile <- filename(rundir,b,'.lst')
-  if(is.null(tabfile)) tabfile <- filename(outdir, b, '.TAB')
-  if(is.null(parfile)) parfile <- filename(outdir, b, 'par.TAB')
-  if(is.null(msffile)) msffile <- filename(outdir, b, '.MSF')
-  outfile <- star(outfile,b)
-  tabfile <- star(tabfile,b)
-  parfile <- star(parfile,b)
-  msffile <- star(msffile,b)
+  if(is.null(ctlfile)) ctlfile <- filename(ProjectDir, run, '.ctl')
+  ctlfile <- star(ctlfile,run)
+  if(is.null(outfile)) outfile <- filename(rundir,run,'.lst')
+  if(is.null(tabfile)) tabfile <- filename(outdir, run, '.TAB')
+  if(is.null(parfile)) parfile <- filename(outdir, run, 'par.TAB')
+  if(is.null(msffile)) msffile <- filename(outdir, run, '.MSF')
+  outfile <- star(outfile,run)
+  tabfile <- star(tabfile,run)
+  parfile <- star(parfile,run)
+  msffile <- star(msffile,run)
   
   #Groom the control stream.
   if (checkrunno) {
     txt <- readLines(ctlfile)
-    txt <- sub('#.[0-9]{1,4}', paste('# ', b, sep = ''), txt)
-    txt <- gsub('E=../[0-9]{1,4}', paste('E=../', b, sep = ''), txt)
-    txt <- gsub('O=../[0-9]{1,4}', paste('O=../', b, sep = ''), txt)
+    txt <- sub('#.[0-9]{1,4}', paste('# ', run, sep = ''), txt)
+    txt <- gsub('E=../[0-9]{1,4}', paste('E=../', run, sep = ''), txt)
+    txt <- gsub('O=../[0-9]{1,4}', paste('O=../', run, sep = ''), txt)
     writeLines(txt,ctlfile)
   }
     
   #Prepare the file environment.
-  #purge.files(paste('^',b,'[^0-9]*\\.TAB$',sep=''),ProjectDir)
-  #purge.files(paste('^[^0-9]*',b,'\\.PDF$',sep=''),ProjectDir)
+  #purge.files(paste('^',run,'[^0-9]*\\.TAB$',sep=''),ProjectDir)
+  #purge.files(paste('^[^0-9]*',run,'[^.]*\\.pdf$',sep=''),ProjectDir)
   if(!is.null(file))if(file.exists(file))file.remove(file)
   if(file.exists(outfile))file.remove(outfile)
   if(file.exists(tabfile))file.remove(tabfile)
@@ -101,12 +107,12 @@ function (
   
   #Run NONMEM.
   runCommand(
-  	NMcom=NMcom,
+  	command=command,
 	rdir=rundir,
-	run=b,
+	run=run,
 	boot=boot,
 	urgent=urgent,
-	nochecksum=nochecksum,
+	checksum=checksum,
 	grid=grid,
 	udef=udef,
 	ctlfile=runtime(ctlfile,rundir),
@@ -118,7 +124,7 @@ function (
   #Clean up.
   if(boot & grid)return() #boot runs on grid have sync=n by definition, so run perh. not complete.
   lapply(pattern,purge.files,rundir)
-  Sys.chmod(dir(rundir,paste('^',b,'\\.',sep=''),full.names=TRUE),mode='0664')
+  Sys.chmod(dir(rundir,paste('^',run,'\\.',sep=''),full.names=TRUE),mode='0664')
   Sys.chmod(dir(rundir,'n.*\\.',full.names=TRUE),mode='0664')
   runfilename <- function(rundir)dir(rundir,'^Run',full.names=TRUE)
   try(file.rename(runfilename(rundir),sub('\\.o[0-9]*$','.out',runfilename(rundir))),silent=TRUE)
@@ -136,7 +142,7 @@ function (
   try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
   if(diag)try(
     	PLOTR(
-    		b, 
+    		run, 
 		ProjectDir, 
 		dvname, 
 		logtrans, 
@@ -159,7 +165,7 @@ function (
   )
   if (!is.null(epilog))if(is.function(epilog))try(
 	  epilog(
-		b=b,
+		run=run,
 		ProjectDir=ProjectDir,
 		dvname=dvname,
 		logtrans=logtrans,
@@ -181,7 +187,7 @@ function (
 	)
   )
 
-  message(paste("Run ", b, " complete.", sep = ""))
+  message(paste("Run ", run, " complete.", sep = ""))
 }
   purge.dir <- function(dir,nice=FALSE){
   	if(file_test('-d',dir)){

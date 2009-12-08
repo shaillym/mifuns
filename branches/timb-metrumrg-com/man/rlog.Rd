@@ -10,7 +10,7 @@
 }
 \usage{
 rlog(
-  	b, 
+  	run, 
 	boot=FALSE, 
 	ProjectDir=getwd(), 
 	append=TRUE,
@@ -21,9 +21,9 @@ rlog(
 )
 }
 \arguments{
-  \item{b}{ Vector of control stream numbers to use to generate a combined run log.
+  \item{run}{ Vector of control stream numbers to use to generate a combined run log.
   Should be numeric with no placeholder zeros to left of number, i.e., "1" not "001".
-  Example: \code{b=c(1,2,5)} }
+  Example: \code{run=c(1,2,5)} }
   \item{boot}{ Were these runs in '.boot' directories?}
   \item{ProjectDir}{System path to the directory containing the NONMEM control (*.ctl) streams. }
   \item{append}{TRUE builds the runlog by appending; FALSE causes the runlog to 

@@ -33,7 +33,7 @@ panel.densitystrip <- function(
 		horizontal,
 		...
 	)
-	lapply(dat,function(s,fcol='grey',...)with(s,panel.polygon(x,y,col=fcol,border=border,...)),...)
+	lapply(dat,function(s,fcol=col,...)with(s,panel.polygon(x,y,col=fcol,border=border,...)),...)
 }
 
 panel.ref <- function(x,y,col='grey90',horizontal,rlim,...){
@@ -115,11 +115,11 @@ panel.covplot <- function(
 	y <- as.numeric(y)
 	panel.ref(x,y,rlim=rlim,horizontal=horizontal,col=shade,...)
 	if(!is.null(groups)){
-		panel.superpose(x=x,y=y,groups=groups,horizontal=horizontal,panel.groups=panel.densitystrip,border=border,...)
+		panel.superpose(x=x,y=y,groups=groups,horizontal=horizontal,panel.groups=panel.densitystrip,border=border,fill=fill,...)
 		panel.superpose(x=x,y=y,groups=groups,cuts=cuts,horizontal=horizontal,col=text,panel.groups=panel.cuts,...)
 	}
 	else{
-		panel.densitystrip(x,y,horizontal=horizontal,col=fill,border=border,...)
+		panel.densitystrip(x,y,horizontal=horizontal,col=fill,border=border,fill=fill,...)
 		panel.cuts(x,y,cuts=cuts,horizontal=horizontal,col=text,...)
 	}
 	if(horizontal)args <- list(v=cuts,col=col,...)else args<-list(h=cuts,col=col,...)

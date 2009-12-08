@@ -19,7 +19,7 @@ dataFormat(
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99, 
-	b, 
+	run, 
 	...
 )
 }
@@ -37,7 +37,7 @@ dataFormat(
   \item{par.list}{see PLOTR}
   \item{eta.list}{see PLOTR}
   \item{missing}{see PLOTR}
-  \item{b}{see PLOTR}
+  \item{run}{see PLOTR}
   \item{\dots}{passed to synthesis()}
 }
 \details{

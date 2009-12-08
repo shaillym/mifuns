@@ -14,7 +14,7 @@
 }
 \usage{
   dataSynthesis(
-	b, 
+	run, 
 	ProjectDir=getwd(), 
 	dvname = 'DV',
 	logtrans = FALSE,
@@ -25,19 +25,19 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(outdir, b, '.TAB'),
-	ctlfile = filename(rundir,b,'.ctl'),
-	outfile = filename(rundir,b,'.lst'),
+	tabfile = filename(outdir, run, '.TAB'),
+	ctlfile = filename(rundir,run,'.ctl'),
+	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
-	parfile = filename(outdir, b, 'par.TAB'),
-	rundir  = filename(ProjectDir, b),
+	parfile = filename(outdir, run, 'par.TAB'),
+	rundir  = filename(ProjectDir, run),
 	outdir  = ProjectDir,
 	...
 )
 }
 
 \arguments{
-  \item{b}{A control stream name, typically integer.}
+  \item{run}{A control stream name, typically integer.}
   \item{ProjectDir}{The directory containing the NONMEM control (*.ctl) streams.}
   \item{dvname}{{Name of the dependent variable to use as a label for the diagnostic plots. Default: DV.}}
   \item{logtrans}{Whether to transform the NONMEM output variables DV,

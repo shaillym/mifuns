@@ -8,14 +8,14 @@ NONMEM run }
   TABR can also be used to add 95% CI estimates generated from bootstrap 
   analysis of final NONMEM model. }
 \usage{
-TABR(ProjectDir, i, boot = FALSE, bootres = NULL, btcol =
+TABR(ProjectDir, run, boot = FALSE, bootres = NULL, btcol =
 NULL, btcoll = NULL, btcolh = NULL, outname)
 }
 \arguments{
   \item{ProjectDir}{System path to the directory containing the NONMEM control (*.ctl) streams.}
-  \item{i}{ Control stream number used to generate table file. Should be numeric with no placeholder 
+  \item{run}{ Control stream number used to generate table file. Should be numeric with no placeholder 
   zeros to left of number, i.e., "1" not "001".
-  Example: \code{i=c(1)}}
+  Example: \code{run=c(1)}}
   \item{boot}{Do subdirectories end in '.boot'?  Normally FALSE on Windows.}
   \item{bootres}{Complete path plus name of bootstrap results file. Default is NULL. 
    Example: \code{bootres="/Path/to/results/file/filename"}}
@@ -39,7 +39,7 @@ NULL, btcoll = NULL, btcolh = NULL, outname)
   and remaining rows containing bootstrap estimates for each parameter estimated in NONMEM.  Columns
   should correspond to parameter name, median/average, lower 95% CI, and upper 95% CI for each 
   parameter estimated in NONMEM. This should be a summary file generated from the bootstrap analysis of the 
-  NONMEM control stream specified \code{i}. 
+  NONMEM control stream specified \code{run}. 
 
 }
 \keyword{ manip }

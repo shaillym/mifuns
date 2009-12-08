@@ -3,50 +3,60 @@
 
 \title{Issue the System Call That Invokes NONMEM}
 \description{
-   If udef is FALSE, NMcom passed to nm.pl() with supporting arguments.  If grid
+   If udef is FALSE, \code{command} is passed to nm.pl() with supporting arguments.  If grid
   is TRUE, the result is passed to qsub() with supporting arguments.  If boot
   is TRUE, '&' is appended to the result.  Each element of the result is executed
   in succession using a system call customized by platform.
 }
 \usage{
 runCommand(
-	NMcom, 
-	rdir, 
-	run, 
-	boot, 
-	urgent, 
-	nochecksum, 
-	grid, 
-	udef = FALSE, 
-	ctlfile, 
-	outfile, 
-	perl = if (nix()) "perl -S" else if (!invisible) "cmd /K perl -S" else "cmd /C perl -S", 
-	intern = invisible, 
-	minimized = invisible, 
-	invisible = FALSE, 
-	split = grid, 
-	N = paste("Run", run, if (split) c("c", "e") else NULL, sep = ""), 
-	o = rdir, 
-	e = rdir, 
-	L = if (split) c(compileflag(compiler(config(nmdir(NMcom)))), NA) else NA, 
-	hold_jid = if (split) c(NA, paste("Run", run, "c", sep = "")) else NA, 
-	V = "", 
-	j = "y", 
-	q = if (urgent) "all.q" else "boot.q", 
-	sync = if (boot) "n" else "y", 
-	shell = "n", 
-	b = "y", 
-	cwd = "", 
+	command,
+	rdir,
+	run,
+	boot,
+	urgent,
+	checksum,
+	grid,
+	udef = FALSE,
+	ctlfile,
+	outfile,
+	perl = if (nix()) "perl -S" else if (!invisible) "cmd /K perl -S" else "cmd /C perl -S",
+	intern = invisible,
+	minimized = invisible,
+	invisible = FALSE,
+	split = grid,
+	N = paste("Run", run, if (split) c("c", "e") else NULL, sep = ""),
+	o = rdir,
+	e = rdir,
+	L = if (split) c(compileflag(compiler(config(nmdir(command)))), NA) else NA,
+	hold_jid = if (split) c(NA, paste("Run", run, "c", sep = "")) else NA,
+	V = "",
+	j = "y",
+	q=if(split)
+	    c(
+	        'compile.q',
+	        if(urgent)'all.q' else 'bootstrap.q'
+	    )
+	else 
+	    if(!execute)
+	        'compile.q'
+            else if(urgent)'all.q' else 'bootstrap.q',
+	sync = if (boot) "n" else "y",
+	shell = "n",
+	b = "y",
+	cwd = "",
+	compile = TRUE,
+	execute = TRUE,
 	...
 )
 }
 \arguments{
-  \item{NMcom}{a command to pass to system()}
+  \item{command}{a command to pass to system()}
   \item{rdir}{run directory}
   \item{run}{run name}
   \item{boot}{see NONR}
   \item{urgent}{see NONR}
-  \item{nochecksum}{see NONR}
+  \item{checksum}{see NONR}
   \item{grid}{see NONR}
   \item{udef}{see NONR}
   \item{ctlfile}{see runNonmem}
@@ -76,7 +86,14 @@ but is not called 'l' so that other instances of 'l' (multiple are allowed)
 will not accidentally override it.  Users can override intentionally, of course.
 
 N, L, and hold\_jid are coordinated that if a run is split, compile status is flagged
-on the compile run, and the execute run waits for compile to finish. 
+on the compile run, and the execute run waits for compile to finish.
+
+'q' is handled specially.  When overriding, be sure to pass a character vector of
+length one for a normal run, and of length two if split is TRUE (the default when
+grid is TRUE).  By default, all standalone compile-only runs are diverted to 
+'compile.q', as well as all compile halves of split runs.  By default, all execute-only
+runs as well as the execute halves of split runs are diverted to 'all.q' if urgent,
+and 'bootstrap.q' otherwise.
 }
 \value{Used for side effects}
 \references{mifuns.googlecode.com}

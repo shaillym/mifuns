@@ -10,7 +10,7 @@
 }
 \usage{
   PLOTR(
-	b, 
+	run, 
 	ProjectDir=getwd(), 
 	dvname = 'DV', 
 	logtrans = FALSE, 
@@ -23,14 +23,14 @@
 	missing = -99,
 	epilog=NULL,
 	file=NULL,
-	rundir=filename(ProjectDir,b),
+	rundir=filename(ProjectDir,run),
 	outdir=ProjectDir,
 	...
 )
 }
 
 \arguments{
-  \item{b}{A control stream name, typically integer.}
+  \item{run}{A control stream name, typically integer.}
   \item{ProjectDir}{The directory containing the NONMEM control (*.ctl) streams.}
   \item{dvname}{Name of the dependent
   variable to use as a label for the diagnostic plots. Default: DV.}
@@ -71,7 +71,7 @@
   User-defined function or script to call at end of NONR or PLOTR.
   A non-null argument that cannot be coerced by match.fun() to a function
   will be treated as a filename to be sourced.  All the arguments normally
-  available to PLOTR (b, ProjectDir, dvname, logtrans, grp, grpnames, cont.cov, 
+  available to PLOTR (run, ProjectDir, dvname, logtrans, grp, grpnames, cont.cov, 
   at.cov, par.list, eta.list, missing, etc) will be available to epilog, as well
   as any extra arguments you pass to NONR() or PLOTR(). A
   function can declare any of these, but should at minimum contain the 
@@ -107,7 +107,7 @@
   the name (or naming strategy) for the diagnostic plots; it is passed to pdf().
   \code{tabfile}, \code{ctlfile}, \code{outfile}, \code{datfile}, 
   and \code{parfile} are passed to dataSynthesis().  All have suitable defaults.
-  If alternatives are specified, '*' will be replaced with \code{b}, the run number.  
+  If alternatives are specified, '*' will be replaced with \code{run}, the run number.  
   For example, the default pdf name is ProjectDir/DiagnosticPlotReview\_*.pdf, 
   but you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
      

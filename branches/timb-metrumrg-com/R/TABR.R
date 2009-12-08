@@ -1,11 +1,11 @@
 `TABR` <-
-function(ProjectDir,i,boot=FALSE,bootres=NULL,
+function(ProjectDir,run,boot=FALSE,bootres=NULL,
                btcol=NULL,btcoll=NULL,btcolh=NULL,outname){
     delim <- "/"
-    ndir<-paste(ProjectDir,delim,i,sep="")
-    if(boot)rdir<-paste(ProjectDir,delim,i,".boot",sep="")
-    else rdir<-paste(ProjectDir,delim,i,sep="")
-    ctl1<-paste(rdir,delim,i,".ctl",sep="")
+    ndir<-paste(ProjectDir,delim,run,sep="")
+    if(boot)rdir<-paste(ProjectDir,delim,run,".boot",sep="")
+    else rdir<-paste(ProjectDir,delim,run,sep="")
+    ctl1<-paste(rdir,delim,run,".ctl",sep="")
     
      a<-scan(file=ctl1,what="",comment.char="",allowEscapes=TRUE,sep="\n",quiet=TRUE)
 #    nm.temp<-data.frame(grep('\;;(.*)',a,value=T))
@@ -18,7 +18,7 @@ function(ProjectDir,i,boot=FALSE,bootres=NULL,
     nm.temp1<-data.frame(t(nm.temp1),row.names=NULL) 
     names(nm.temp1)<-c("NAME","TYPE","ORDER")
     # read NonmemRunLog.csv, format, assign names, and output as csv text file
-    RunLogName<-paste(ProjectDir,delim,i,delim,"NonmemRunLog.csv",sep="")
+    RunLogName<-paste(ProjectDir,delim,run,delim,"NonmemRunLog.csv",sep="")
     temp<-read.table(file=RunLogName,sep=",",comment.char="")
     temp<-temp[,c(6:dim(temp)[[2]])] # this line may be necessary if ..runlog.for creates large log file
 #   temp<-temp[,c(6:ncol(temp)] # easier to read
@@ -111,6 +111,6 @@ function(ProjectDir,i,boot=FALSE,bootres=NULL,
     tempfinal$ORDER<-NULL
     
     write.table(tempfinal,row.names=FALSE, col.names=TRUE, sep=",", na= "." , quote=FALSE,
-     file=paste(ProjectDir,outname,i,"_SumTable.txt",sep=""))
+     file=paste(ProjectDir,outname,run,"_SumTable.txt",sep=""))
   }
 

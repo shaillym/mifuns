@@ -6,12 +6,12 @@
  Helper function to build file and directory names from components.
 }
 \usage{
-filename(dir, b = NULL, ext = NULL)
+filename(dir, run = NULL, ext = NULL)
 }
 
 \arguments{
   \item{dir}{directory}
-  \item{b}{run name}
+  \item{run}{run name}
   \item{ext}{file extension}
 }
 \value{character}

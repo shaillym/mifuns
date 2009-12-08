@@ -1,5 +1,5 @@
 `rlog` <-function(
-  	b, 
+  	run, 
 	boot=FALSE, 
 	ProjectDir=getwd(), 
 	append=TRUE,
@@ -9,17 +9,17 @@
 	...
 ){
   if(!append) if(file.exists(out)) file.remove(out)
-  b <- unique(b)
-  for(i in b){
+  run <- unique(run)
+  for(each in run){
       #identify objects
-      rdir <- paste(ProjectDir, '/', i, sep = '')    
-      if(boot)rdir <- paste(ProjectDir, '/', i, '.boot', sep = '')
+      rdir <- paste(ProjectDir, '/', each, sep = '')    
+      if(boot)rdir <- paste(ProjectDir, '/', each, '.boot', sep = '')
       if(is.null(file)) f <- paste(rdir,'NonmemRunLog.csv',sep='/')
-      f <- star(f,i)
+      f <- star(f,each)
       #cleanup
       lapply(pattern,purge.files,rdir)
       #append log
-      if(!file.exists(f)) cat(paste('Log for Run ', i, ' does not exist', '\n', sep = ''))
+      if(!file.exists(f)) cat(paste('Log for Run ', each, ' does not exist', '\n', sep = ''))
       else {
 	  dat <- readLines(f)
 	  dat <- dat[nchar(dat)>0]

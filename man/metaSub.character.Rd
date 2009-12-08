@@ -20,9 +20,17 @@
 }
 \usage{
 	\method{as.filename}{character}(x, ...)
-	\method{metaSub}{filename}(x, names, ...)
-	\method{metaSub}{character}(x, names, pattern = NULL,
-   replacement = NULL, out = NULL, suffix = ".txt", fixed = TRUE, ...)
+	\method{metaSub}{filename}(x, names, pattern=NULL, replacement=NULL, ...)
+	\method{metaSub}{character}(
+		x, 
+		names, 
+		pattern = NULL,
+		replacement = NULL, 
+		out = NULL, 
+		suffix = ".txt", 
+		fixed = TRUE, 
+		...
+	)
 }
 
 \arguments{

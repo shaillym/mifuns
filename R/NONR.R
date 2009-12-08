@@ -1,7 +1,7 @@
 `NONR` <-  
 function (
-	NMcom, 
-	b, 
+	command, 
+	run, 
 	ProjectDir=getwd(), 
 	boot = FALSE,
 	concurrent = grid,
@@ -20,7 +20,7 @@ function (
 	eta.list = NULL, 
 	missing = -99, 
 	invisible=udef,
-	nochecksum = FALSE, 
+	checksum = TRUE, 
 	grid = boot, 
 	nice=FALSE, 
 	udef=FALSE, 
@@ -29,15 +29,15 @@ function (
 ){
     if (win())  grid <- FALSE
     if (win())  concurrent <- FALSE
-    b <- unique(b)
+    run <- unique(run)
 	    
-    if (any(!file.exists(filename(ProjectDir, b, ".ctl")))) 
+    if (any(!file.exists(filename(ProjectDir, run, ".ctl")))) 
         stop("One or more control stream(s) missing.")
-    for (i in b) {
+    for (each in run) {
         args <- list(
-		NMcom = NMcom, 
+		command = command, 
 		ProjectDir = ProjectDir, 
-		b = i, 
+		run = each, 
 		boot = boot,
 		urgent = urgent,
 		#SGEflgs = SGEflgs, 
@@ -55,7 +55,7 @@ function (
 		eta.list = eta.list, 
 		missing = missing,
 		invisible = invisible, 
-		nochecksum = nochecksum, 
+		checksum = checksum, 
 		grid = grid, 
 		nice = nice,
 		udef = udef, 

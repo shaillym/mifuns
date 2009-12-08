@@ -1,5 +1,5 @@
 `PLOTR` <-function(
-	b, 
+	run, 
 	ProjectDir=getwd(), 
 	dvname = 'DV', 
 	logtrans = FALSE, 
@@ -12,14 +12,14 @@
 	missing = -99,
 	epilog=NULL,
 	file=NULL,
-	rundir=filename(ProjectDir,b),
+	rundir=filename(ProjectDir,run),
 	outdir=ProjectDir,
 	...
 ){
     
     #process data
     synthesis <- dataSynthesis(
-    	b,
+    	run,
 	ProjectDir,
 	dvname,
 	logtrans,
@@ -43,19 +43,19 @@
     
     
     #open device
-    if(is.null(file))file <- paste(outdir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',b,'.pdf',sep = '')
-    file <- star(file,b)
+    if(is.null(file))file <- paste(outdir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',run,'.pdf',sep = '')
+    file <- star(file,run)
     safe.call(pdf,file=file,...)
 
     #make plots
-    lapply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',b),...),print)
+    lapply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
     lapply(covariatePlots(synthesis,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(synthesis,cont.cov,cat.cov,...),print)
     
     #cleanup
     dev.off()
     unlink(filename(rundir,ext='_syn.csv'))
-    message(paste('Plotting for run ', b, ' complete.', sep = ''))
+    message(paste('Plotting for run ', run, ' complete.', sep = ''))
     
     #try epilog
     script <- NULL
@@ -67,7 +67,7 @@
     }
     if (!is.null(epilog))if(is.function(epilog))try(
         epilog(
-            b=b,
+            run=run,
     	    ProjectDir=ProjectDir,
 	    dvname=dvname,
 	    logtrans=logtrans,
@@ -95,12 +95,11 @@ safe.call <- function(what,...){
 }
 
 #creates a filepath from dir,run, and extension
-filename <- function(dir,b=NULL,ext=NULL)paste(dir,'/',b,ext,sep='')
+filename <- function(dir,run=NULL,ext=NULL)paste(dir,'/',run,ext,sep='')
 
 #calculates a vector of cwres
 getCwres <- function(directory){
-    	#nonmdir <- filename(ProjectDir, b)
-        cwrtab1 <- filename(directory, NULL, 'cwtab1.deriv')
+    	cwrtab1 <- filename(directory, NULL, 'cwtab1.deriv')
         if (!file.exists(cwrtab1)) message(paste(cwrtab1,'does not exist.'))
         if (!file.exists(cwrtab1)) return(NULL)
 	tab.prefix <- filename(directory,NULL, '/cwtab')
@@ -173,7 +172,7 @@ getTabs <- function(file){
 }   
 
 #melds the grpnames columns into one, renaming levels conditionally
-groupnames <- function(data,grp,grpnames=NULL,b){
+groupnames <- function(data,grp,grpnames=NULL,run){
 	    result <- factor(
 	    	do.call(
   			paste,
@@ -188,7 +187,7 @@ groupnames <- function(data,grp,grpnames=NULL,b){
 	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(
 		   paste(
   			"Run", 
-			b, 
+			run, 
 			"has",
 			nlevs,
 			"grouping levels but",
@@ -243,7 +242,7 @@ dataFormat <- function(
 	par.list=NULL,
 	eta.list=NULL,
 	missing=-99,
-	b,
+	run,
 	...
 ){
     if (logtrans) tabfile <- backtrans(tabfile,c(dvname,'PRED','IPRE'))    
@@ -260,13 +259,13 @@ dataFormat <- function(
     for(col in cont.cov) synthesis[[col]][!is.na(synthesis[[col]]) & synthesis[[col]]==missing] <- NA
     if(is.null(grp))synthesis$grpnames <- 'all'
     if(is.null(grp))grp <- 'grpnames'
-    synthesis$grpnames <- groupnames(synthesis,grp,grpnames,b)
+    synthesis$grpnames <- groupnames(synthesis,grp,grpnames,run)
     synthesis
 }
 
-#generates the plotting data set, given ProjectDir, b, etc.
+#generates the plotting data set, given ProjectDir, run, etc.
 dataSynthesis <- function(
-	b, 
+	run, 
 	ProjectDir=getwd(), 
 	dvname = 'DV',
 	logtrans = FALSE,
@@ -277,21 +276,21 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(outdir, b,'.TAB'),
-	ctlfile = filename(rundir,b,'.ctl'),
-	outfile = filename(rundir,b,'.lst'),
+	tabfile = filename(outdir, run,'.TAB'),
+	ctlfile = filename(rundir,run,'.ctl'),
+	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
-	parfile = filename(outdir, b, 'par.TAB'),
-	rundir  = filename(ProjectDir, b),
+	parfile = filename(outdir, run, 'par.TAB'),
+	rundir  = filename(ProjectDir, run),
 	outdir  = ProjectDir,
 	...
 ){
     #cleanup arguments
-    tabfile <- star(tabfile,b)
-    ctlfile <- star(ctlfile,b)
-    outfile <- star(outfile,b)
-    datfile <- star(datfile,b)
-    parfile <- star(parfile,b)
+    tabfile <- star(tabfile,run)
+    ctlfile <- star(ctlfile,run)
+    outfile <- star(outfile,run)
+    datfile <- star(datfile,run)
+    parfile <- star(parfile,run)
     if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
     if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
     if (!file.exists(parfile)) stop(paste(parfile,'does not exist.'))
@@ -302,7 +301,7 @@ dataSynthesis <- function(
     parfile <- getPars(parfile)
     
     #process data
-    synthesis <- dataFormat(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,b,...)
+    synthesis <- dataFormat(tabfile,covfile,parfile,dvname,logtrans,grp,grpnames,cont.cov,cat.cov,par.list,eta.list,missing,run,...)
     synthesis
 }
 

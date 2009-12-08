@@ -1,11 +1,11 @@
 `runCommand` <-
   function (
-  	NMcom,
+  	command,
 	rdir,
 	run,
 	boot,
 	urgent,
-	nochecksum,
+	checksum,
 	grid,
 	udef=FALSE,
 	ctlfile,
@@ -18,26 +18,34 @@
 	N=paste('Run',run,if(split)c('c','e') else NULL,sep=''),
 	o=rdir,
 	e=rdir,
-	L=if(split)c(compileflag(compiler(config(nmdir(NMcom)))),NA)else NA,
+	L=if(split)c(compileflag(compiler(config(nmdir(command)))),NA)else NA,
 	hold_jid=if(split)c(NA,paste('Run',run,'c',sep=''))else NA,
 	V='',
 	j='y',
-	q=if(urgent)'all.q' else 'boot.q',
+	q=if(split)
+	    c(
+	        'compile.q',
+	        if(urgent)'all.q' else 'bootstrap.q'
+	    )
+	else 
+	    if(!execute)
+	        'compile.q'
+            else if(urgent)'all.q' else 'bootstrap.q',
 	sync=if(boot)'n'else'y',
 	shell='n',
 	b='y',
 	cwd='',
+	compile=TRUE,
+	execute=TRUE,
 	...
 ){
   if(nix())internal <- FALSE
 
   #draft a command
-  command <- NMcom
-  if(!udef){
-        command <- nm.pl(nmdir(command),infile=ctlfile,outfile=outfile,perl=perl,checksum=!nochecksum,split=split,...)
-	if(grid)   command <- qsub(command,N=N,o=o,e=e,l=L,hold_jid=hold_jid,V=V,j=j,q=q,sync=sync,shell=shell,b=b,cwd=cwd,...)
-	if(boot) command <- paste(command,'&')
-  }
+  if(!udef)command <- nm.pl(command,infile=ctlfile,outfile=outfile,perl=perl,checksum=checksum,split=split,compile=compile,execute=execute...)
+  if(grid) command <- qsub(command,N=N,o=o,e=e,l=L,hold_jid=hold_jid,V=V,j=j,q=q,sync=sync,shell=shell,b=b,cwd=cwd,...)
+  if(boot) command <- paste(command,'&')
+  
 
   #set up the call
   execute <- function(command,intern,minimized,invisible,win){
@@ -83,7 +91,7 @@ compiler <- function(config,pathsep='/',...){
 	rev(strsplit(comp,pathsep)[[1]])[[1]]
 }
 nm.pl <- function(
-	nmdir,
+	command,
 	infile,
 	outfile=NULL,
 	perl='perl',
@@ -94,7 +102,6 @@ nm.pl <- function(
 	...
 ){
 	if(split & xor(compile,execute)) stop('cannot split run if compile or execute is FALSE')
-	command <- nmcom(candir(nmdir))
 	if(is.null(outfile))outfile <- sub('\\....$','.lst',infile)
 	command <- paste(perl,command)
 	mode <- c('c','e')[c(compile,execute)][xor(compile,execute)|split]

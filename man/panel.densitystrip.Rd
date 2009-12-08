@@ -128,6 +128,48 @@ panel.covplot(
 \author{ Tim Bergsma }
 \seealso{  \code{\link{densityplot}},\code{\link{bin}}}
 \examples{
+#a bootstrap of a pharmacokinetic model
+set.seed(0)
+boot <- data.frame(
+	CL =      exp(rnorm(100,mean=3,    sd=0.25)),
+	WT =   exp(rnorm(100,mean=-0.25,sd=0.25)),
+	MALE = exp(rnorm(100,mean=0.3,  sd=0.25)),
+	ASIAN =  exp(rnorm(100,mean=-.1,    sd=0.05))
+)
+
+#Model: CL = theta1 * (WT/70)**theta2 * theta3**MALE * theta4**ASIAN
+
+#Normalize the structural parameter.
+boot <- within(boot, CL <- CL/median(CL))
+
+#Realize the submodel for non-normal instances of the continuous covariate.
+boot <- within(boot, WT_35 <- (35/70) ** WT)
+boot <- within(boot, WT_140 <- (140/70) ** WT)
+boot$WT <- NULL
+
+#(Categorical covariates are already expressed proportionally.)
+
+#Reorganize the table.  rev() anticpates bottom-up plotting.
+boot <- melt(rev(boot))
+
+#Limit to 90% of the data, for independence from number of bootstraps.
+boot <- boot[
+	with(
+		boot,
+		value >= reapply(value,variable,quantile,0.05) &
+		value <= reapply(value,variable,quantile,0.95)
+	),
+]
+
+#plot using panel.covplot().
+stripplot(
+	variable~value,
+	boot,
+	panel=panel.covplot,
+	xlab='relative clearance'
+)
+
+#variations
 soup <- melt(crabs,id.var=c('sp','sex','index'))
 soup$relative <- with(soup,value/mean(value[variable=='CL']))
 soup$grp <- 'depth'

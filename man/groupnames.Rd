@@ -7,14 +7,14 @@
  those indicies into text for a single index vector.
 }
 \usage{
-groupnames(data, grp, grpnames = NULL, b)
+groupnames(data, grp, grpnames = NULL, run)
 }
 
 \arguments{
   \item{data}{data.frame in which to find the groups}
   \item{grp}{columns by which to group}
   \item{grpnames}{optional substitute names}
-  \item{b}{run name}
+  \item{run}{run name}
 }
 \value{factor}
 \references{mifuns.googlecode.com}

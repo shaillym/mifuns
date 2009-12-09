@@ -38,7 +38,12 @@ runNonmem(
 	msffile = NULL, 
 	parfile = NULL, 
 	outdir = ProjectDir, 
-	pattern = c("^F[ISRC]", "^OU", "^nonmem.exe", if (fdata) c("^FD", "^PR")), 
+	pattern = c(
+		'^F[ISRC]',
+		'^OU',
+		'^nonmem.exe',
+		if(fdata)c('^FD','^PR')
+	),
 	...
 )
 }

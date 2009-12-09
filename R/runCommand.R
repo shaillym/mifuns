@@ -42,7 +42,7 @@
   if(nix())internal <- FALSE
 
   #draft a command
-  if(!udef)command <- nm.pl(command,infile=ctlfile,outfile=outfile,perl=perl,checksum=checksum,split=split,compile=compile,execute=execute...)
+  if(!udef)command <- nm.pl(command,infile=ctlfile,outfile=outfile,perl=perl,checksum=checksum,split=split,compile=compile,execute=execute,...)
   if(grid) command <- qsub(command,N=N,o=o,e=e,l=L,hold_jid=hold_jid,V=V,j=j,q=q,sync=sync,shell=shell,b=b,cwd=cwd,...)
   if(boot) command <- paste(command,'&')
   

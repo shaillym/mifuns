@@ -97,8 +97,7 @@
   ensure that all uses of the NONMEM control stream number match the
   number listed in \code{run} vector. Default: TRUE.}  
   
-  \item{diag}{Whether
-  to plot standard diagnostic plots. Default: TRUE.}
+  \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE.}
   
   \item{fdata}{Whether to attempt deletion of NONMEM files FDATA and
   PRDERR. Default: TRUE.}  
@@ -116,8 +115,7 @@
   try \code{epilog=function(...)cat(names(list(...)))}.
   }  
   
-  \item{dvname}{Name of the dependent
-  variable to use as a label for the diagnostic plots. Default: DV.}
+  \item{dvname}{Name of the dependent variable to use as a label for the diagnostic plots. Default: DV.}
   
   \item{logtrans}{Passed to PLOTR.}     
   \item{grp}{Passed to PLOTR.} 
@@ -127,8 +125,8 @@
   \item{par.list}{Passed to PLOTR.} 
   \item{eta.list}{Passed to PLOTR.}
   \item{missing}{Passed to PLOTR.}
-  \item{invisible}{\code{intern}, \code{minimized}, and
-  \code{invisible} can be specified for the system call that runs NONMEM.  MIfuns
+  \item{invisible}{\code{intern}, \code{minimized}, and \code{invisible} 
+  can be specified for the system call that runs NONMEM.  MIfuns
   will ignore these on a unix-like platform.  For Windows, \code{invisible} is
   TRUE by default when \code{udef} is TRUE, and FALSE otherwise.  If FALSE, 
   NONMEM output will be displayed in a command window during the run.  Set 
@@ -158,7 +156,7 @@
   \item{file}{File name for diagnostic plots, if any.  Default combines
   DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
   an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
-  Supplying \code{outdir} modifies the default file name.
+  Supplying \code{outdir} modifies the default file name.}
 
   \item{\dots}{Additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to pdf(), called by PLOTR().  You can also pass

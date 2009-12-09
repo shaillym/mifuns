@@ -34,9 +34,8 @@ function (
 		'^F[ISRC]',
 		'^OU',
 		'^nonmem.exe',
-		if(fdata)c('^FD','^PR')),
-		
-	,
+		if(fdata)c('^FD','^PR')
+	),
 	...
 ){
   #Define some functions.

@@ -7,11 +7,21 @@
  operate the renamed copy of 'nm.pl' in an NMQual-mediated NONMEM installation.
 }
 \usage{
-nm.pl(nmdir, infile, outfile = NULL, perl = "perl", checksum = TRUE, compile = TRUE, execute = TRUE, split = FALSE, ...)
+nm.pl(
+	command,
+	infile,
+	outfile=NULL,
+	perl='perl',
+	checksum=TRUE,
+	compile=TRUE, 
+	execute=TRUE,
+	split=FALSE,
+	...
+)
 }
 
 \arguments{
-  \item{nmdir}{root of a NONMEM installation}
+  \item{command}{path for the installation-specific variant of nm.pl}
   \item{infile}{path for a control stream}
   \item{outfile}{path for output}
   \item{perl}{how to invoke Perl on this system}

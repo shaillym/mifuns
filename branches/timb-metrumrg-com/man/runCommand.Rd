@@ -78,6 +78,8 @@ runCommand(
   \item{shell}{passed to qsub}
   \item{b}{passed to qsub}
   \item{cwd}{passed to qsub}
+  \item{compile}{passed to nm.pl}
+  \item{execute}{passed to nm.pl, influences default for \code{q}}
   \item{\dots}{passed to nm.pl and qsub}
 }
 \details{

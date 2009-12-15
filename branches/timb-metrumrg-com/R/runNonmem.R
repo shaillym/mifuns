@@ -1,8 +1,8 @@
 `runNonmem` <-
 function (
+	run, 
 	command, 
 	ProjectDir, 
-	run, 
 	boot,
 	urgent,
 	checkrunno, 
@@ -107,8 +107,8 @@ function (
   #Run NONMEM.
   runCommand(
   	command=command,
-	rdir=rundir,
 	run=run,
+	rdir=rundir,
 	boot=boot,
 	urgent=urgent,
 	checksum=checksum,

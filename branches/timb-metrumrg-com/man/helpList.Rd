@@ -22,7 +22,6 @@ Functions defined by MIfuns
 \item \link{PLOTR} create diagnostic plots for NONMEM runs
 \item \link{PlotPredictiveCheck} plot results of \code{\link{ComputePredictiveCheck}}
 \item \link{SimulateOmega} generate omega values for simulation
-\item \link{TABR} generate a comma-delimited table file following a successful NONMEM run
 \item \link{Tmax} calculate the time associated with the maximum concentration for each subject
 \item \link{Tmin} calculate the time associated with the minimum concentration for each subject
 \item \link{TruncateParametersForSimulation} truncate a set of parameters for simulation according to a user-defined set a boundaries

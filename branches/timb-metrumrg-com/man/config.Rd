@@ -6,11 +6,10 @@
    Gives the path for the configuration file in a NONMEM installation directory.
 }
 \usage{
-config(dir, pathsep = "/", ...)
+config(dir, ...)
 }
 \arguments{
-  \item{dir}{root directory of an NMQual-mediated NONMEM installation}
-  \item{pathsep}{file system path separator}
+  \item{dir}{directory in which to find 'config.xml'}
   \item{\dots}{ignored}
 }
 \value{character}

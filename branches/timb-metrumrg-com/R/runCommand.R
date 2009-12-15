@@ -1,8 +1,8 @@
 `runCommand` <-
   function (
   	command,
-	rdir,
 	run,
+	rdir,
 	boot,
 	urgent,
 	checksum,

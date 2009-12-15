@@ -35,7 +35,7 @@ bins <- split(ind.key,f=ind.strat,drop=TRUE)
 rowsets <- split(rownames(dat),dat[[key]]) 
 doBin <- function(bin,...){
 	if(length(bin)==1)return(bin)
-	return(safe.call(sample,bin,...))
+	return(safe.call(sample,x=bin,...))
 }
 doName <- function(name,...) {
         sample.id <- unlist(sapply(bins,doBin,...))

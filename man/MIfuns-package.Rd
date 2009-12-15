@@ -32,7 +32,7 @@ I want to ....
     \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.2.16.39\cr
+Version: \tab 3.2.16.41\cr
 Date: \tab 2009-12-15\cr
 License: \tab GPL\cr
 }

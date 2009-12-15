@@ -39,6 +39,7 @@
 	execute=TRUE,
 	...
 ){
+  force(L) #before command changes
   if(nix())internal <- FALSE
 
   #draft a command

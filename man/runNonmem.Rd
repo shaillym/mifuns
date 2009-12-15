@@ -8,9 +8,9 @@
 }
 \usage{
 runNonmem(
+	run, 
 	command, 
 	ProjectDir, 
-	run, 
 	boot, 
 	urgent, 
 	checkrunno, 
@@ -48,9 +48,9 @@ runNonmem(
 )
 }
 \arguments{
+  \item{run}{see NONR}
   \item{command}{see NONR}
   \item{ProjectDir}{see NONR}
-  \item{run}{see NONR}
   \item{boot}{see NONR}
   \item{urgent}{see NONR}
   \item{checkrunno}{see NONR}

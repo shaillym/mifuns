@@ -11,8 +11,8 @@
 \usage{
 runCommand(
 	command,
-	rdir,
 	run,
+	rdir,
 	boot,
 	urgent,
 	checksum,
@@ -52,8 +52,8 @@ runCommand(
 }
 \arguments{
   \item{command}{a command to pass to system()}
-  \item{rdir}{run directory}
   \item{run}{run name}
+  \item{rdir}{run directory}
   \item{boot}{see NONR}
   \item{urgent}{see NONR}
   \item{checksum}{see NONR}

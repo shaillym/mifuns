@@ -1,8 +1,8 @@
 `NONR` <-  
 function (
-	command, 
 	run, 
-	ProjectDir=getwd(), 
+	command, 
+	ProjectDir = getwd(), 
 	boot = FALSE,
 	concurrent = grid,
 	urgent = !boot,
@@ -22,9 +22,12 @@ function (
 	invisible=udef,
 	checksum = TRUE, 
 	grid = boot, 
-	nice=FALSE, 
-	udef=FALSE, 
-	file=NULL,
+	nice= FALSE, 
+	udef= FALSE, 
+	file= NULL,
+	compile = TRUE,
+	execute = TRUE,
+	split = grid & compile & execute,
 	...
 ){
     if (win())  grid <- FALSE
@@ -35,9 +38,9 @@ function (
         stop("One or more control stream(s) missing.")
     for (each in run) {
         args <- list(
+		run = each, 
 		command = command, 
 		ProjectDir = ProjectDir, 
-		run = each, 
 		boot = boot,
 		urgent = urgent,
 		#SGEflgs = SGEflgs, 
@@ -60,6 +63,9 @@ function (
 		nice = nice,
 		udef = udef, 
 		file = file,
+		split = split,
+		compile = compile,
+		execute = execute,
 		...
 	)
         if (concurrent){

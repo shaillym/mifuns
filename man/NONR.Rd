@@ -19,9 +19,9 @@
 
 \usage{
   NONR(
-	command, 
 	run, 
-	ProjectDir=getwd(), 
+	command, 
+	ProjectDir= getwd(), 
 	boot = FALSE,
 	concurrent = grid,
 	urgent = !boot,
@@ -38,17 +38,25 @@
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99, 
-	invisible=udef,
+	invisible= udef,
 	checksum = TRUE, 
 	grid = boot, 
-	nice=FALSE, 
-	udef=FALSE, 
-	file=NULL,
+	nice= FALSE, 
+	udef= FALSE, 
+	file= NULL,
+	compile = TRUE,
+	execute = TRUE,
+	split = grid & compile & execute,
 	...
 )
 }
 
 \arguments{ 
+
+  \item{run}{
+  Vector of control stream names.  Typically integer.
+  e.g. 1:10 corresponds to 1.ctl, 2.ctl, ... 10.ctl.
+  } 
 
   \item{command}{
   The path for a script to run NONMEM, e.g., 
@@ -60,12 +68,7 @@
   current directory.  \code{command} may be a character vector of length greater than one: 
   each element will be run in succession.
   } 
-  
-  \item{run}{
-  Vector of control stream names.  Typically integer.
-  e.g. 1:10 corresponds to 1.ctl, 2.ctl, ... 10.ctl.
-  } 
- 
+
   \item{ProjectDir}{
   The directory containing the NONMEM control (*.ctl) streams. 
   Use an absolute path (safer) or specify relative to the current working directory.
@@ -157,6 +160,22 @@
   DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
   an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
   Supplying \code{outdir} modifies the default file name.}
+
+  \item{compile}{whether to compile NONMEM (i.e., make nonmem.exe).  Set to FALSE
+  if you already did this in a previous step and merely want to execute.}
+
+  \item{execute}{whether to execute the compiled NONMEM (i.e., invoke nonmem.exe).
+  Set to FALSE if you merely want to compile, e.g. to verify compile success without
+  committing to a run.  You can run the compiled object later with \code{compile=FALSE}.}
+
+  \item{split}{whether to compile and execute as separate steps.  If both
+  compile and execute are TRUE, the run can be split into two separate steps (this 
+  is the default if grid is TRUE.  Though \code{split}, \code{compile}, and 
+  \code{execute} can be manipulated independently, it makes no sense to split a run
+  unless \code{compile} and \code{execute} are both TRUE.  The greatest advantage
+  to splitting is realized on a grid, with \code{grid=TRUE}: runs will be split
+  and compile steps will by default be run in their own queue, for efficiency. }
+
 
   \item{\dots}{Additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to pdf(), called by PLOTR().  You can also pass

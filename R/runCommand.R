@@ -18,7 +18,7 @@
 	N=paste('Run',run,if(split)c('c','e') else NULL,sep=''),
 	o=rdir,
 	e=rdir,
-	L=if(split)c(compileflag(compiler(config(nmdir(command)))),NA)else NA,
+	L=if(split)c(compileflag(compiler(config(basename(command)))),NA)else NA,
 	hold_jid=if(split)c(NA,paste('Run',run,'c',sep=''))else NA,
 	V='',
 	j='y',
@@ -62,7 +62,7 @@ qsub <- function(
 	...
 ){
 	range <- c(
-		'@','a','a','ac','A','b','c','ckpt','clear','cwd','C',
+		'@','a','ac','A','b','c','ckpt','clear','cwd','C',
 		'dc','dl','e','hard','h','help','hold_jid','i','j','js',
 		'l','m','M','masterq','notify','now','N','o','P','p',
 		'pe','q','R','r','sc','shell','soft','sync','S','t',
@@ -78,11 +78,7 @@ qsub <- function(
 	result <- gsub('-[^ ]* NA','',result)
 	result
 }
-
-candir <- function(dir,pathsep='/')sub(paste(pathsep,'$',sep=''),'',dir)
-nmdir <- function(nmcom,pathsep='/',...)paste(rev(rev(strsplit(nmcom,pathsep)[[1]])[-(1:2)]),collapse=pathsep)
-nmcom <- function(nmdir,pathsep='/',...)paste(sep=pathsep,candir(nmdir),'test',paste(rev(strsplit(nmdir,pathsep)[[1]])[[1]],'pl',sep='.'))
-config <- function(nmdir,pathsep='/',...)paste(candir(nmdir),'test','config.xml',sep=pathsep)
+config <- function(dir,...)file.path(dir,'config.xml')
 compiler <- function(config,pathsep='/',...){
 	tree <- xmlParse(config)
 	nmtran <- xmlValue(getNodeSet(tree,"//d:instruction[@id='nmtran']/text()",c(d='http://metruminstitute.org/nmqual/configuration'))[[1]])

@@ -5,7 +5,7 @@
 \alias{resample.csv.filename}
 \alias{resample.filename}
 \alias{resample.data.frame}
-\title{Create Replicate Data Sets by Stratified Sampling With Replacement}
+\title{Create Replicate Data Sets by Stratified Sampling}
 \description{
 	\code{resample()} is generic.  A Methods is defined for data.frame; 
 	a convienience wrapper is provided for passing names of files 
@@ -16,7 +16,7 @@
 	\method{resample}{csv.filename}(x, ...)
 	\method{resample}{data.frame}(x, names, key = NULL, rekey =
       FALSE, out = NULL, stratify = NULL, seed = 0,ext='.csv',
-      row.names=FALSE, quote=FALSE, sep=',',...)
+      row.names=FALSE, quote=FALSE, sep=',',replace=TRUE,...)
 }
 
 \arguments{
@@ -35,7 +35,8 @@
   \item{row.names}{Passed to \code{write.table()}.}
   \item{quote}{Passed to \code{write.table()}.}
   \item{sep}{Passed to \code{write.table()}.}
-  \item{\dots}{Extra arguments, passed to \code{write.table()}.}
+  \item{replace}{Passed to \code{sample()}.}
+  \item{\dots}{Extra arguments, passed to \code{sample()} and \code{write.table()}.}
 }
 \details{
 	Typical usages are
@@ -59,6 +60,9 @@
 	not supplied, the whole data set is treated as a single level. Otherwise,
 	each resulting data set has as many keys in each level as the original.
 	An error results if \code{key} is not nested within \code{stratify}.
+	
+	The default behavior is to sample with replacement (\code{replace=TRUE}.)
+	This and other arguments to \code{sample} can be modified.
 }
 \value{
 	A list of data.frame, or if \code{out} is supplied, an invisible list of
@@ -69,7 +73,7 @@
 	http://metruminstitute.org}
 \author{Tim Bergsma}
 
-\seealso{\code{\link{metaSub.character}}}
+\seealso{\code{\link{metaSub.character}},\code{\link{sample}}}
 \examples{
 b <- resample(Theoph,key="Subject",names=1:3)
 d <- resample(

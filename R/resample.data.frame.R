@@ -13,6 +13,7 @@ function(
 	row.names=FALSE,
 	quote=FALSE,
 	sep=',',
+	replace=TRUE,
 	...
 ){
 set.seed(seed)
@@ -32,12 +33,12 @@ ind.key <- dat[[key]][!duplicated(dat[[key]])]
 ind.strat <- stratify[!duplicated(dat[[key]]),]
 bins <- split(ind.key,f=ind.strat,drop=TRUE)
 rowsets <- split(rownames(dat),dat[[key]]) 
-doBin <- function(bin){
-	  if(length(bin)==1)return(bin)
-        return(sample(bin,replace=TRUE))
-    }
-    doName <- function(name) {
-        sample.id <- unlist(sapply(bins,doBin))
+doBin <- function(bin,...){
+	if(length(bin)==1)return(bin)
+	return(safe.call(sample,bin,...))
+}
+doName <- function(name,...) {
+        sample.id <- unlist(sapply(bins,doBin,...))
         sample.rownames <- rowsets[as.character(sample.id)]
         sample.dataset <- dat[(unlist(sample.rownames)), ]
         if (rekey) 
@@ -49,8 +50,8 @@ doBin <- function(bin){
         write.table(sample.dataset, file = paste(out, "/", name, 
             ext, sep = ""), row.names = row.names, quote = quote, sep=sep,...)
         return(nrow(sample.dataset))
-    }
-    invisible(lapply(as.list(as.character(names)), doName))
+}
+invisible(lapply(as.list(as.character(names)), doName,...))
 }
 `resample.csv.filename` <-
 function(x,...){

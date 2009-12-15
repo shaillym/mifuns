@@ -238,6 +238,7 @@ Functions defined by MIfuns
 \item \link{unconditional.default} return an all-TRUE logical vector of length nrow(x)
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
+\item \link{nmVersion} extract NONMEM version specification from configuration file
 \item \link{where} generic
 \item \link{where.logical} return a logical vector identifying the n-th TRUE element in x (usually, within levels of an index)
 \item \link{win} identify Windows platforms (internal)

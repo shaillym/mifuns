@@ -87,6 +87,10 @@ compiler <- function(config,pathsep='/',...){
 	comp <- strsplit(nmtran,' ')[[1]]
 	rev(strsplit(comp,pathsep)[[1]])[[1]]
 }
+nmVersion <- function(config,...){
+	tree <- xmlParse(config)
+	as.numeric(getNodeSet(tree,"//d:nonmem/@version",c(d='http://metruminstitute.org/nmqual/configuration'))[[1]])
+}
 nm.pl <- function(
 	command,
 	infile,

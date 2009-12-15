@@ -98,7 +98,6 @@ Functions defined by MIfuns
 \item \link{c.comment} combine comment
 \item \link{c.flag} combine flag
 \item \link{c.miTemporal} combine miTemporal
-\item \link{candir} format directory canonically
 \item \link{cavg} calculate average concentration
 \item \link{check.data} check for missing data, numeric data, ranges, etc.
 \item \link{cmax} calculate maximum steady-state concentration
@@ -177,8 +176,6 @@ Functions defined by MIfuns
 \item \link{nm} give a zero-row data frame with suitable columns and column classes; i.e. a template for NMTRAN data sets
 \item \link{nm.pl} prepare commandlines for nm.pl
 \item \link{nmPlots} a list of functions that plot nm objects
-\item \link{nmcom} calculate NONMEM wrapper script from installation path
-\item \link{nmdir} calculate NONMEM installation path from wrapper script
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
 \item \link{nocb} impute NA with next observation carried backward

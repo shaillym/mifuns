@@ -221,7 +221,7 @@
  variables for diagnostic plots to be output in the *.TAB file, where
  "*" represents the control stream number.  Additional \$TABLE records
  can be present in the control stream but these are not used/needed by
- PLOTR.  
+ PLOTR.  Mechanisms and expectations are somewhat different for NONMEM7.
  }
 
  \references{ MIfuns package available from Metrum Institute

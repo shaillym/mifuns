@@ -138,7 +138,9 @@ function (
   Sys.chmod(msffile, mode='0664')
   
   #Diagnostics
-  try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
+  if(!udef)
+   if(nmVersion(config(dirname(command))) < 7)
+    try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
   if(diag)try(
     	PLOTR(
     		run, 

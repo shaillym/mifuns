@@ -245,7 +245,7 @@ dataFormat <- function(
 	run,
 	...
 ){
-    if (logtrans) tabfile <- backtrans(tabfile,c(dvname,'PRED','IPRE'))    
+    if (logtrans) tabfile <- backtrans(tabfile,intersect(names(tabfile),c(dvname,'PRED','IPRE','IPRED')))    
     available <- unique(c(names(tabfile),names(covfile),names(parfile)))
     grp <- strain(grp,available)
     cont.cov <- strain(cont.cov,available)

@@ -4,11 +4,11 @@ function (data, dvname='DV', group=NULL, model=NULL, ...)
   plots <-list()
   if(is.null(group))data$grpnames <- 'all'
   if(is.null(group))group <- 'grpnames'
-  observed <- melt(data,measure.var=intersect(c("PRED","IPRE"),names(data)),id.var=c("DV","grpnames"))
+  observed <- melt(data,measure.var=intersect(c("PRED","IPRE","IPRED"),names(data)),id.var=c("DV","grpnames"))
   observed$variable <- factor(
   	observed$variable,
-  	levels=intersect(c("PRED","IPRE"),names(data)),
-  	labels=c("population","individual")[c("PRED","IPRE") %in% names(data)]
+  	levels=intersect(c("PRED","IPRE","IPRED"),names(data)),
+  	labels=c("population","individual")[c("PRED","IPRE") %in% substr(names(data),1,4)]#IPRED in NM7
   )
   resvar <- intersect(c("RES","WRES","CWRES"),names(data))
   resid <- intersect(c("PRED","TIME","grpnames","TAD"),names(data))

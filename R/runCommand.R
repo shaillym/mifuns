@@ -18,7 +18,7 @@
 	N=paste('Run',run,if(split)c('c','e') else NULL,sep=''),
 	o=rdir,
 	e=rdir,
-	L=if(split)c(compileflag(compiler(config(basename(command)))),NA)else NA,
+	L=if(split)c(compileflag(compiler(config(dirname(command)))),NA)else NA,
 	hold_jid=if(split)c(NA,paste('Run',run,'c',sep=''))else NA,
 	V='',
 	j='y',

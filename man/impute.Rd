@@ -1,5 +1,6 @@
 \name{impute}
 \alias{forbak}
+\alias{bakfor}
 \alias{locf}
 \alias{nocb}
 \title{Impute Missing Vector Values}
@@ -9,6 +10,7 @@ Impute NA values using other values in the vector.
 \usage{
 locf(x)
 forbak(x)
+bakfor(x)
 nocb(x)
 }
 \arguments{
@@ -19,7 +21,8 @@ locf() implements "last observation carried forward":  NA's are imputed with
 the most recent non-NA value.  nocb() is the complement: "next observation 
 carried backward":  NA's are imputed with the next non-NA value.  forbak()
 first executes locf(), then nocb(), so that even leading NAs are imputed. 
-If even one non-NA value is present, forbak() should not return any NAs.
+If even one non-NA value is present, forbak() should not return any NAs. bakfor()
+does the reverse.
 }
 \value{
 A vector of the same class as x.

@@ -20,5 +20,4 @@ The Tmin() function performs the calculation based on the variables id, time, an
   one Tmin is returned for each subject }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\examples{}
 \keyword{ manip }

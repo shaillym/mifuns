@@ -4,7 +4,6 @@
 \alias{\%nested.in\%}
 \alias{constant}
 \alias{constant.default}
-\alias{constant.data.frame}
 \title{ Test for Nested Factors (beta)}
 \description{
   Various Tests for Nested Factors.
@@ -14,7 +13,6 @@ a \%nests\% b
 a \%nested.in\% b
 crosses(a,b)
 \method{constant}{default}(x,within,...)
-\method{constant}{data.frame}(x,within=NULL,...)
 }
 \arguments{
   \item{a}{ A list of equal length factors, or one factor. }
@@ -29,8 +27,7 @@ crosses(a,b)
   the opposite: i.e., for unique interaction-wise levels of \code{a}, is there 
   exactly one interaction-wise corresponding level in \code{b} (\code{a} implies 
   \code{b})?  \code{constant}, by default, tests whether \code{within} implies 
-  \code{x}.\code{constant.data.frame} returns unique rows for the columns of a data.frame that
-  do not vary (optionally nested by 'within' columns).
+  \code{x}.
   
   \code{crosses} is the basis for all other functions.  For each level
   in \code{b},

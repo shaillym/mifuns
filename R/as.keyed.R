@@ -10,8 +10,6 @@
 	x
 }
 
-constant.keyed <- function(x,...)constant.data.frame(x,within=key(x))
-
 `dupKeys` <- function(x,...){
 	if(!all(key(x) %in% names(x)))stop('nonexistent key field(s)')
 	y <- x[,key(x),drop=FALSE]
@@ -91,11 +89,12 @@ aggregate.keyed <- function(
 	}
 	unique <- x[!dupKeys(x),]
 	dups <- x[dupKeys(x),]
-	molten <- melt(dups,id.var=names(by))
-	frozen <- cast(molten,fun=FUN,...)
+	molten <- melt(dups,id.var=names(by),variable_name='aggregate.keyed.variable')
+	frozen <- cast(molten,formula=...~aggregate.keyed.variable,fun=FUN,...)
 	frozen <- as.keyed(frozen,names(by))
 	#x <- merge(unique,frozen,all=TRUE)
 	x <- as.keyed(rbind(unique,frozen),names(by))
+	sort(x)
 	x[['_superkey']] <- NULL
 	key(x) <- setdiff(key(x),'_superkey')
 	if(!length(key(x))){
@@ -104,7 +103,8 @@ aggregate.keyed <- function(
 	}
 	x
 }
-
+#a <- as.keyed(data.frame(variable=c(1,1),id=4:5,val=2:3),key='variable')
+#aggregate(a,FUN=mean)
 `sort.keyed` <- function(x,decreasing=FALSE,...){
 	if(!inherits(x,"data.frame"))stop(
 		"sort.keyed assumes x is data.frame"

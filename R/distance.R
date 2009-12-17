@@ -15,6 +15,7 @@ first.logical <- function(x,within=rep(1,length(x)),...){
 #ordinal.logical returns the position of the nth TRUE in a vector, 'within' each level,
 #repeated for each element sharing the level. Negative values count from the end of the vector.
 ordinal <- function(x,...)UseMethod('ordinal')
+enth <- ordinal
 ordinal.logical <- function(x,n=1,within=rep(1,length(x)),...){
 	n=as.integer(n)
 	if(length(n)!=1)stop('n must have length one')

@@ -62,7 +62,7 @@ Development Solutions).
    \item{badDv}{\code{DV} is \code{NA} where \code{EVID} is 0}
    \item{falseDv}{\code{DV} is defined where \code{EVID} is not 0}
    \item{zeroDv}{\code{DV} is zero where \code{EVID} is zero}
-   \item{preDoseDv}{\code{DV} is defined before the first record within \code{SUBJ} where \code{EVID} is 1}
+   \item{predoseDv}{\code{DV} is defined before the first record within \code{SUBJ} where \code{EVID} is 1; NA if no \code{EVID} records.}
    \item{noPk}{rows where \code{EVID} is never 0 within SUBJ}
    \item{badII}{\code{II} is greater than 0 where \code{ADDL} is \code{NA} or 0 (unless SS > 0)}
    \item{summary}{all of the above, plus some other diagnostics (see value)}

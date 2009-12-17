@@ -7,13 +7,11 @@ return the number of values in each bin.
 }
 \usage{
 bin(
-	x, 
-	population = x, 
-	breaks = quantile(
-		population,
-                probs = c(0, 0.25, 0.5, 0.75, 1),
-		...
-	),
+	x,
+	population=x,
+	breaks=quantile(population,probs=probs,...),
+	probs=c(0,0.25,0.5,0.75,1),
+	include.lowest=TRUE,
 	...
 )
 }
@@ -22,6 +20,8 @@ bin(
   \item{population}{A vector of numeric values serving as the reference
   population for constructing bins.}
   \item{breaks}{Bin limits (boundaries) to pass to cut().}
+  \item{include.lowest}{Limit qualifier to pass to cut().}
+  \item{probs}{Default probabilities for calculating breaks.}
   \item{\dots}{Other arguments to pass to quantile() and cut().}
 }
 \details{

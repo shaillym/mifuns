@@ -21,6 +21,4 @@ CLNR(Dir, ProjectDir, note = "Files removed", test = TRUE)
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\examples{
-}
 \keyword{ manip }

@@ -12,6 +12,7 @@
 \alias{hide}
 \alias{print.comment}
 \alias{rep.comment}
+\alias{xtfrm.comment}
 
 \title{Create and Manipulate Comment Objects}
 \description{Some conventions include the use of 'C' or '.' as the 

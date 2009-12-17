@@ -2,6 +2,7 @@
 \alias{distance.logical}
 \alias{distance}
 \alias{ordinal}
+\alias{enth}
 \alias{ordinal.logical}
 \alias{first}
 \alias{first.logical}
@@ -40,7 +41,8 @@
   
   \code{ordinal.logical()} is a generalization operating on the n-th element,
   rather than the first element.  \code{n} can be 0, returning all \code{NA}, or negative,
-  which counts instances of \code{TRUE} from the end of the vector.  
+  which counts instances of \code{TRUE} from the end of the vector. \code{enth} is an
+  alias for ordinal that perhaps more-readily suggests the concept "n-th".
   
   \code{distance.logical()} merely subtracts the \code{ordinal} of \code{x} from positions in \code{x}: giving the 
   (signed) distance of each element in \code{x} from the n-th \code{TRUE} (optionally within 

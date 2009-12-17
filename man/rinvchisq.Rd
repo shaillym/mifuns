@@ -15,12 +15,9 @@ rinvchisq(n, df, omega)
   to obtain the estimates of the variance-covariance matrix.}
   \item{omega}{vector of omega estimates}
 }
-\details{
-}
 \value{
  The \code{rinvchisq} function returns \code{n} omega estimates for use as simulation parameters.
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\examples{}
 \keyword{utilities}

@@ -12,11 +12,6 @@ Omega.VtoM(omegaVector)
 }
 \details{
  This a a helper function for the \code{myriwish} function. This is not called directly.}
-\value{
-}
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\seealso{ }
-\examples{
-}
 \keyword{utilities}

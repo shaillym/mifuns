@@ -39,7 +39,7 @@ plot.nm <- function(
 	x <- stableMerge(x,mins)
 	x$TIME <- with(x,TIME-min)
 	x$min <- NULL
-	names(x)[names(x)==dvname] <- 'DV'
+	x$DV <- x[[dvname]]
 	lapply(
 		nmPlots[which],
 		function(p)p(
@@ -55,7 +55,7 @@ plot.nm <- function(
 }
 nmPlots <- list(
 	kinetics = function(
-		formula=NULL,
+		formula=value~TIME|ID,
 		data,
 		dvname,
 		ivname,
@@ -67,90 +67,79 @@ nmPlots <- list(
 		scales=list(x=list(relation='free')),
 		...
 	){
-		if(is.null(formula)){
-			if('CMT' %in% names(data))formula <- value~TIME|CMT + ID
-			else formula <- value~TIME|ID
-		}
-		data$ID <- factor(
-			data$ID,
-			levels=sort(unique(data$ID)),
-			labels=paste('ID',sort(unique(data$ID)))
+	    formula <- as.formula(format(formula))
+	    if (!'ADDL' %in% names(data))data$ADDL <- NA
+	    if (!'II' %in% names(data))data$II <- NA
+	    if (!'SS' %in% names(data))data$SS <- NA
+	    if (!model %in% names(data))data[[model]] <- NA
+	    if (!'EVID' %in% names(data))data$EVID <- ifelse(is.na(data[[ivname]]), 0, 1)
+	    molten <- melt(data, id.var = union(id.var, c('SS', 'ADDL','II', 'EVID')), measure.var = c(ivname, dvname, model))
+	    if ("EVID" %in% names(data))molten <- molten[with(molten, !(is.na(value) & EVID !=1 & variable == ivname)), ]
+	    if ('EVID' %in% names(data))molten <- molten[with(molten, !(is.na(value) & EVID !=0 & variable == dvname)), ]
+	    molten <- molten[with(molten, !(is.na(value) & variable ==model)), ]
+	    dvscale <- max(c(molten$value[molten$variable %in% c(dvname,model)],1), na.rm = TRUE)
+	    ivscale <- max(molten$value[molten$variable == ivname], na.rm = TRUE)
+	    iv <- molten$variable == ivname
+	    molten$value[iv] <- molten$value[iv]/ivscale * dvscale
+	    molten$value[is.na(molten$value)] <- -(0.05 * dvscale)
+	    #if (!all(is.na(molten$ADDL) == is.na(molten$II))) stop("addl ii mismatch")
+	    molten$addl <- FALSE
+	    if (any(!is.na(molten$ADDL))) {
+		gratis <- molten[molten$variable == ivname & !is.na(molten$ADDL),]
+		gratis <- do.call(
+			rbind,
+			by(
+				gratis,
+				rownames(gratis), 
+		    function(x) {
+			start <- x$TIME
+			times <- x$ADDL
+			inter <- x$II
+			x <- x[rep(1, times), ]
+			x$TIME <- x$TIME + cumsum(rep(inter, times))
+			x
+		    }
+		  )
 		)
-		if(!'CMT' %in% names(data))data$CMT <- 0
-		data$CMT <- paste('CMT',data$CMT)
-		cmts <- length(unique(data$CMT))
-		if(is.null(layout))if(cmts==1)layout <- 3:4
-		if(is.null(layout))if(cmts==2)layout <- 2:3
-		if(is.null(layout))if(cmts==3)layout <- 3:4
-		if(is.null(layout))if(cmts==4)layout <- 4:5
-		if(is.null(layout))if(cmts>4)layout <- 3:4
-		if(!'ADDL' %in% names(data))data$ADDL <- NA
-		if(!'II' %in% names(data))data$II <- NA
-		if(!model %in% names(data))data[[model]] <- NA
-		if(!'EVID' %in% names(data))data$EVID <- ifelse(is.na(data[[ivname]]),0,1)
-		molten <- melt(data,id.var=union(id.var,c('CMT','ADDL','II','EVID')),measure.var=c(ivname,dvname,model))
-		#molten <- molten[molten$EVID %in% 0:1,]
-		if('EVID' %in% names(data))molten <- molten[with(molten,!(is.na(value) & EVID!=1 & variable==ivname)),]
-		if('EVID' %in% names(data))molten <- molten[with(molten,!(is.na(value) & EVID!=0 & variable==dvname)),]
-		molten <- molten[with(molten,!(is.na(value) & variable==model)),]
-		dvscale <- max(molten$value[molten$variable %in% c(dvname,model)],na.rm=TRUE)
-		ivscale <- max(molten$value[molten$variable==ivname],na.rm=TRUE)
-		iv <- molten$variable==ivname
-		molten$value[iv] <- molten$value[iv]/ivscale*dvscale
-		molten$value[is.na(molten$value)] <- -(0.05*dvscale)
-		if(!all(is.na(molten$ADDL)==is.na(molten$II)))stop('addl ii mismatch')
-		molten$addl <- FALSE
-		if(any(!is.na(molten$ADDL))){
-			gratis <- molten[molten$variable==ivname & !is.na(molten$ADDL),]
-			gratis <- do.call(
-				rbind,
-				by(
-					gratis,
-					rownames(gratis),
-					function(x){
-						start <- x$TIME
-						times <- x$ADDL
-						inter <- x$II
-						x <- x[rep(1,times),]
-						x$TIME <- x$TIME + cumsum(rep(inter,times))
-						x
-					}
-				)
-			)
-			gratis$addl <- TRUE
-			molten <- rbind(molten,gratis)
-		}
-		#browser()
-		groups <- rep('sample',nrow(molten))
-		groups[molten$addl==TRUE] <- 'addl'
-		groups[molten$EVID==1 & molten$addl==FALSE] <- 'dose'
-		groups[molten$variable==model] <- 'model'
-		groups[molten$C==TRUE] <- paste(groups[molten$C==TRUE],'comment')
-		groups <- factor(groups)
-		groupKey <- levels(groups)
-		xyplot(
-			x=formula,
-			data=molten,
-			layout=layout,
-			as.table=as.table,
-			scales=scales,
-			groups=groups,
-			panel=function(x,y,...){
-				panel.abline(h=0,col='grey')
-				panel.superpose(x,y,...)
-			},
-			panel.groups= function(x,y,group.number,...){
-				key <- groupKey[group.number]
-				col='blue'
-				if(contains('addl',key)) col='lightblue'
-				if(contains('comment',key))col='magenta'
-				if(contains('model',key))col='green'
-				if(contains('dose',key))panel.segments(x,y,x,0,col=col)
-				if(contains('addl',key))panel.segments(x,y,x,0,col=col)
-				if(contains('sample',key))panel.xyplot(x,y,col=col)
-				if(contains('model',key))panel.lines(x[order(x)],y[order(x)],col=col)
-			},
-			...
+		gratis$addl <- TRUE
+		molten <- rbind(molten, gratis)
+	    }
+	    groups <- rep('sample', nrow(molten))
+	    groups[molten$addl == TRUE] <- "addl"
+	    groups[molten$EVID %in% c(1,4) & molten$addl == FALSE] <- 'dose'
+	    groups[molten$variable == model] <- 'model'
+	    groups[molten$C == TRUE] <- paste(groups[molten$C == TRUE],'comment')
+	    ss <- !is.na(molten$SS) & molten$SS==1
+	    groups[ss] <- paste(groups[ss],"steady")
+	    groups <- factor(groups)
+	    groupKey <- levels(groups)
+	    xyplot(
+	    	x = formula,
+	    	data = molten,
+	    	layout = layout,
+	    	as.table = as.table, 
+			scales = scales,
+			groups = groups,
+			panel = function(x,y, ...) {
+		    panel.abline(h = 0, col = 'grey')
+		    panel.superpose(x, y, ...)
+		},
+		panel.groups = function(x, y, group.number, ...) {
+		    key <- groupKey[group.number]
+		    col='blue'
+		    if (contains('addl',key))col = 'lightblue'
+		    if (contains('comment', key))col = 'magenta'
+		    if (contains('model', key))col = 'green'
+		    if (contains('dose', key))panel.segments(x, y, x, 0, col = col)
+		    if (contains('addl', key))panel.segments(x, y, x, 0, col = col)
+		    xlimits <- current.panel.limits()$x
+		    width <- xlimits[[2]] - xlimits[[1]]
+		    tick <- width / 100
+		    if (contains('steady',key))panel.segments(x, y, x-tick, y, col = col)
+		    if (contains('sample', key))panel.xyplot(x, y, col = col)
+		    if (contains('model', key))panel.lines(x[order(x)], y[order(x)], col = col)
+		},
+		...
 		)
 	},
 	constantContinuous = function(

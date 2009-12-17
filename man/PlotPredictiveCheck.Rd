@@ -39,8 +39,6 @@ DrugName = "DV", plotType = "pdf", FileTemplate = "Plots")
   (\code{PlotType} is not equal to \dQuote{pdf} or \dQuote{ps}) then the three-digit order number will be added to the 
   \code{FileTemplate} name. Then the \code{PlotType} extension will be added to create the name of the output file.}
 }
-\details{
-}
 \value{
    The output of the program is one or more files with the plots. If \code{plot.hist} is TRUE, then for each 
    combination of the elements from the \code{Parameters} and \code{Statistics} lists, the histogram of simulated 
@@ -51,7 +49,4 @@ DrugName = "DV", plotType = "pdf", FileTemplate = "Plots")
    The unit line is provided for the reference.}
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\seealso{ }
-\examples{
-}
 \keyword{ manip }

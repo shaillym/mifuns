@@ -9,7 +9,8 @@
 \alias{as.numeric.chartime}
 \alias{print.miTemporal}
 \alias{seq.miTemporal}
-\alias{subclass}
+\alias{rep.miTemporal}
+
 
 
 \title{ Support for miTemporal Classes }
@@ -27,8 +28,8 @@ as.chartime(x, ...)
 \method{as.chartime}{numeric}(x, format, mark=TRUE,...)
 \method{as.numeric}{chartime}(x, format,...)
 \method{print}{miTemporal}(x, ...)
+\method{rep}{miTemporal}(x, ...)
 \method{seq}{miTemporal}(from, to, by = NULL, length.out = NULL, along.with = NULL, ...)
-subclass(x, class,...)
 }
 
 \arguments{
@@ -44,19 +45,16 @@ subclass(x, class,...)
   \item{by}{ as for \code{\link{seq.default}} }
   \item{length.out}{ as for \code{\link{seq.default}} }
   \item{along.with}{ as for \code{\link{seq.default}} }
-  \item{class}{ class to prepend to class attribute of x }
-}
+s}
 \details{
   Normally you shouldn't need to worry about these functions.  c() and the '[' 
   variants exist just so that class information is not lost on invocation of the 
   generic.  as.character.miTemporal() and print.miTemporal() just call format().
   'chartime' variants are used internally by other functions.  seq.miTemporal() 
   requires 'from' and 'to', sets smart defaults for 'by' (if null), and preserves
-  class information, relative to seq.default(). subclass() returns its first 
-  argument with 'class' prepended to its class list.
+  class information, relative to seq.default().
 }
 \value{
-  \item{subclass}{see above}
   \item{print}{an invisible object with same class as x}
   \item{as.chartime}{generic: does not return}
   \item{as.chartime.numeric}{character (time)}
@@ -123,5 +121,9 @@ as.miDate(as.miDate(0))
 # 01/01/1970
 as.miDateTime(as.miDateTime(0))
 # 01/01/1970 00:00
+
+#repetition
+rep(as.miTime(86340),2)
+# 23:59 23:59
 }
 \keyword{ manip }

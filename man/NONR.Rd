@@ -1,314 +1,218 @@
 \name{NONR}
 \alias{NONR}
-\alias{diagnostics}
-\alias{doCov}
-\alias{PLOTR}
-\alias{runmsge}
-\alias{runnm}
 
-\title{Run NONMEM and create diagnostic plots}
 
-\description{ NONR executes a NONMEM run from R on MS Windows or the Nix
-  grid.  NONMEM needs to be installed on either OS using NMQual
+\title{Run NONMEM}
+
+\description{ 
+
+  NONR executes, from R, a NONMEM a run with a compatible control stream (see
+  Nore below). Supported platforms include MS Windows and 
+  Unix-like operating systems (Nix).  Special support is included for Sun Grid
+  Engine with Nix.  Generally, NONMEM needs to be installed using NMQual
   (http://nmqual.googlecode.com).  Execution on the Nix grid requires
   the installation of Sun Grid Engine v6.  Following a successful NONMEM
   run NONR can call PLOTR to create diagnostic plots (pdf format) and/or
   run a user-written script.
+  
+  }
 
-  PLOTR is a function to generate diagnostic plots and/or covariate
-  evaluation plots following a successful NONMEM run. It is called by
-  NONR if diagnostic plots are requested or can be called independently
-  following a NONMEM run. Plots are output as one pdf or multiple pdfs.  }
-
-\synopsis{
+\usage{
   NONR(
-  	NMcom, 
-	b, 
-	ProjectDir, 
-	boot = 0, 
-	concurrent = TRUE, 
-	SGEflgs = "",
+	run, 
+	command, 
+	ProjectDir= getwd(), 
+	boot = FALSE,
+	concurrent = grid,
+	urgent = !boot,
 	checkrunno = TRUE, 
 	diag = TRUE, 
-	fdata = FALSE, 
+	fdata = TRUE, 
 	epilog = NULL, 
-	dvname =NULL, 
-	logtrans = FALSE, 
-	covplt = FALSE, 
-	grp = NULL, 
-	grpnames = NULL,
-	cont.cov = NULL, 
-	cat.cov = NULL, 
-	par.list = NULL, 
-	eta.list = NULL,
-	missing = -99, 
-	dosbox = TRUE, 
-	nochecksum=FALSE, 
-	grid=FALSE,
-	nice=FALSE, 
-	udef=FALSE, 
-	UDEFcom=NULL, 
-	onefile=TRUE,
-	plotName=NULL
-  ) 
-  
- 
-  PLOTR(
-  	b, 
-	ProjectDir, 
 	dvname = NULL, 
 	logtrans = FALSE,
-	covplt = FALSE, 
 	grp = NULL, 
 	grpnames = NULL, 
 	cont.cov = NULL, 
-	cat.cov= NULL, 
+	cat.cov = NULL, 
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99, 
-	onefile=TRUE,
-	epilog=NULL,
-	plotName=NULL
-  )
-  
-  diagnostics(grp, grpnames, ProjectDir, b, dataObs, dvname, covplt)
-
-  doCov(
-  	ParFileName, 
-	par.list, 
-	eta.list, 
-	CovFile, 
-	ProjectDir, 
-	b,
-	cont.cov, 
-	cat.cov, 
-	covariates, 
-	dataObs, 
-	missing
-  ) 
-  
-  runmsge(
-  	NMcom,
-	ProjectDir, 
-	i, 
-	boot, 
-	concurrent, 
-	Platform, 
-	SGEflgs, 
-	checkrunno, 
-	diag,
-	fdata, 
-	epilog, 
-	dvname, 
-	logtrans, 
-	covplt, 
-	grp, 
-	grpnames, 
-	cont.cov,
-	cat.cov, 
-	par.list, 
-	eta.list, 
-	missing, 
-	dosbox, 
-	nochecksum, 
-	grid, 
-	nice,
-	udef, 
-	UDEFcom, 
-	onefile,
-	plotName
-  )
-  runnm(
-  	NMcom, 
-	i, 
-	boot, 
-	concurrent, 
-	Platform, 
-	SGEflgs, 
-	dosbox,
-	nochecksum, 
-	grid,
-	udef,
-	UDEFcom
-  ) 
- }
-
-\usage{
-NONR(
-	NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, 
-	SGEflgs = "",checkrunno = TRUE, diag = TRUE, fdata = FALSE, 
-	epilog = NULL, dvname =NULL, logtrans = FALSE, covplt = FALSE, 
-	grp = NULL, grpnames = NULL,cont.cov = NULL, cat.cov = NULL, 
-	par.list = NULL, eta.list = NULL,missing = -99, dosbox = TRUE, 
-	nochecksum=FALSE, grid=FALSE, nice=F, udef=FALSE, UDEFcom=NULL, 
-	onefile=TRUE,plotName=NULL)
-
-PLOTR(
-	b, ProjectDir, dvname = NULL, logtrans = FALSE, covplt = FALSE,
-	grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
-	par.list =NULL, eta.list = NULL, missing = -99, onefile=TRUE,
-	epilog=NULL,plotName=NULL
+	invisible= udef,
+	checksum = TRUE, 
+	grid = boot, 
+	nice = FALSE, 
+	udef = FALSE, 
+	file = NULL,
+	compile = TRUE,
+	execute = TRUE,
+	split = grid & compile & execute,
+	...
 )
 }
 
 \arguments{ 
 
-  \item{NMcom}{The complete name of the perl script created by
-  NMQual when running on the cluster or the complete path plus perl
-  script name when running on Windows. On Windows with NONMEM 6
-  installed using NMQual 6 in C:/nm6, the command would be
-  \code{NMcom="C:/nm6/test/nm6.pl"}} 
+  \item{run}{
+  Vector of control stream names.  Typically integer.
+  e.g. 1:10 corresponds to 1.ctl, 2.ctl, ... 10.ctl.
+  } 
+
+  \item{command}{
+  The path for a script to run NONMEM, e.g., 
+  \code{command="C:/nm6/test/nm6.pl"}.  The script is assumed to be an NMQual-generated
+  wrapper for NONMEM execution, but may also be arbitrarily defined by the user
+  (udef=TRUE).  In the former case, appropriate arguments and modifiers are added
+  to build a typical NMQual commandline (nm.pl()), conditionally wrapped in the arguments for
+  a typical grid commandline (qsub()).  The path may be given relative to the 
+  current directory.  \code{command} may be a character vector of length greater than one: 
+  each element will be run in succession.
+  } 
+
+  \item{ProjectDir}{
+  The directory containing the NONMEM control (*.ctl) streams. 
+  Use an absolute path (safer) or specify relative to the current working directory.
+  }
+
+  \item{boot}{
+  If TRUE, autogenerated run directories will end in '.boot'.  If 
+  \code{grid} is also TRUE, The job will run asynchronously and no
+  cleanup or plotting will be attempted.  Default: FALSE.
+  } 
   
-  \item{b}{Vector of (NONR) or single
-  (PLOTR) control stream number(s) to run in NONMEM. Should be numeric
-  with no placeholder zeros to left of number, i.e., "1" not
-  "001". Example: \code{b=c(1,2,5)}} 
- 
-  \item{ProjectDir}{Full system path
-  to the directory containing the NONMEM control (*.ctl) streams.}
+  \item{concurrent}{
+  Should the runs represented by elements of \code{run} be run 
+  concurrently as separate processes?  TRUE if \code{grid} is TRUE,
+  by default, since this is the primary advantage of using a grid.
+  Coerced to FALSE on Windows.
+  }
+  
+  \item{urgent}{
+  Should jobs use as many resources as possible?  Only meaningful
+  in the grid environment, where all available processors will be 
+  used if urgent, and a limited number of processors if not.  In
+  practice, this disolves to a choice between q='all.q' and 
+  q='bootstrap.q'.  Passing 'q' explicitly will override this choice.
+  }
 
-  \item{boot}{Flag to describe type of NONMEM run with (0)-normal,
-  (1)-bootstrap, (2)-long runs, and (3)-bootstrap runs across entire
-  cluster.}  
-
-  \item{concurrent}{Tell NONR to whether to run control
-  streams concurrently in NONMEM (default: TRUE). Coerced to FALSE in
-  Windows.}  
-
-  \item{SGEflgs}{Flags to pass to Sun Grid Engine when
-  running on the Nix grid. Example: To set a run length of maximum one
-  hour and get an email sent if it goes over one hour and is killed.
-  \code{SGEflags="-l h_rt=1:0:0 -m e -M name@email.address"}}
   
   \item{checkrunno}{Whether to check/correct the control stream to
   ensure that all uses of the NONMEM control stream number match the
-  number listed in \code{b} vector. Default: TRUE.}  
+  number listed in \code{run} vector. Default: TRUE.}  
   
-  \item{diag}{Whether
-  to plot standard diagnostic plots. Default: TRUE.}
+  \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE.}
   
-  \item{fdata}{Whether to request deletion of NONMEM files: FDATA,
-  PRDERR, and nonmem executable. Default: FALSE.}  
+  \item{fdata}{Whether to attempt deletion of NONMEM files FDATA and
+  PRDERR. Default: TRUE.}  
   
-  \item{epilog}{Path to
-  user-defined script that will be sourced at completion of NONMEM
-  run. Default value is NULL.}  
+  \item{epilog}{
+  User-defined function or script to call at end of NONR or PLOTR.
+  A non-null argument that cannot be coerced by match.fun() to a function
+  will be treated as a filename to be sourced.  All the arguments normally
+  available to PLOTR (run, ProjectDir, dvname, logtrans, grp, grpnames, cont.cov, 
+  at.cov, par.list, eta.list, missing, etc) will be available to epilog, as well
+  as any extra arguments you pass to NONR() or PLOTR(). A
+  function can declare any of these, but should at minimum contain the 
+  \dots argument. A script can expect them to be present.  See also 
+  inst/MIfunsExamples/epilog.R in this package.  To see exactly what is available,
+  try \code{epilog=function(...)cat(names(list(...)))}.
+  }  
   
-  \item{dvname}{Name of the dependent
-  variable to use as a label for the diagnostic plots. Default: DV.}
+  \item{dvname}{Name of the dependent variable to use as a label for the diagnostic plots. Default: DV.}
   
-  \item{logtrans}{Whether to transform the NONMEM output variables DV,
-  PRED, and IPRED. Default: FALSE.}  
-  
-  \item{covplt}{Whether to generate
-  covariate diagnostic plots. Default: FALSE.}  
-  
-  \item{grp}{Item in
-  NONMEM datafile or output table file that can be used to condition
-  plots generated by PLOTR.  Default value is NULL. Example:
-  \code{grp=c("SEX")}.  Can be more than one, e.g,. grp=c("SEX","TRT").} 
- 
-  \item{grpnames}{Optional vector of names for
-  \code{grp} item. Vector length must equal number of conditions in
-  \code{grp} and must have an order corresponding to an increasing sort
-  of \code{grp}.  Default value is NULL. Example:
-  \code{grpnames=c("Male","Female")}} 
-  
-  \item{cont.cov}{Vector of
-  continuous covariate names. Names must match those used as column
-  headers in \code{DataFile}.  Values are retrieved from \code{DataFile}
-  so they do not need to be part of the NONMEM \$TABLE step. Default
-  value is NULL.  Example: \code{cont.cov=c("AGE","WT","CLCR")}}
-  
-  \item{cat.cov}{Vector of categorical covariate names. Names must match
-  those used as column headers in \code{DataFile}.  Values are retrieved
-  from \code{DataFile} so they do not need to be part of the NONMEM
-  \$TABLE step. Default value is NULL.  Example:
-  \code{cat.cov=c("SEX","FOOD")}} 
+  \item{logtrans}{Passed to PLOTR.}     
+  \item{grp}{Passed to PLOTR.} 
+  \item{grpnames}{Passed to PLOTR.} 
+  \item{cont.cov}{Passed to PLOTR.}
+  \item{cat.cov}{Passed to PLOTR.} 
+  \item{par.list}{Passed to PLOTR.} 
+  \item{eta.list}{Passed to PLOTR.}
+  \item{missing}{Passed to PLOTR.}
+  \item{invisible}{\code{intern}, \code{minimized}, and \code{invisible} 
+  can be specified for the system call that runs NONMEM.  MIfuns
+  will ignore these on a unix-like platform.  For Windows, \code{invisible} is
+  TRUE by default when \code{udef} is TRUE, and FALSE otherwise.  If FALSE, 
+  NONMEM output will be displayed in a command window during the run.  Set 
+  \code{invisible=TRUE} to suppress this display.  See the Windows help for
+  \code{system()}.  To explore interactively, use \code{debug(runCommand)}.} 
 
-  \item{par.list}{Vector of NONMEM model
-  parameter names.  Values are retrieved from *par.TAB created in
-  NONMEM. Default value is NULL.  This can be a superset of parameters
-  but only those present in NONMEM output table will be used. Example:
-  \code{par.list=c("CL","V","V2","Q")}} 
+  \item{checksum}{If TRUE (default), checksums are requested from nm.pl when 
+  wrapping NONMEM execution.  'FALSE' is useful for development.} 
 
-  \item{eta.list}{Vector of NONMEM
-  model random effect names. Values are retrieved from *par.TAB created
-  in NONMEM. Default value is NULL This can be a superset of random
-  parameters but only those present in NONMEM output table will be used.
-  Example: \code{eta.list=c("ETA1","ETA2","ETA3","ETA4")}}
-
-  \item{missing}{Numeric item that defines value used to represent
-  missing items in the NONMEM data file. Default value is "-99".}
-
-  \item{dosbox}{Whether to capture all MS DOS box info when using NONR
-  on MS Windows. If set to TRUE, all output to DOS box during NONMEM run
-  will be shown on R console. Options only functions on MS Windows and
-  is a good diagnostic tool to use if NONMEM run fails prior to
-  execution.  Default: TRUE. } 
-
-  \item{nochecksum}{Turn nmqual checksum on
-  or off. There is no good reason to set this to true unless MItools
-  code development is taking place. Default: FALSE} 
-
-  \item{grid}{Whether
-  NONMEM execution is taking place on an appropriately configured (Sun
-  Grid Engine) Nix/Apple grid or locally. Default: FALSE}
+  \item{grid}{
+  Whether NONMEM execution should be wrapped in a call to Sun Grid Engine's 
+  \code{qsub} utility.  TRUE if \code{boot} is TRUE, by default.  Set to TRUE
+  explicitly for regular runs using a grid.  Coerced to FALSE for Windows.  
+  Autogenerated run directories will end in '.lock' until run is complete.}
   
-
-  \item{nice}{Whether the NONMEM run directory, based on \code{b}, is
+  \item{nice}{Whether the NONMEM run directory, based on \code{run}, is
   deleted or simply emptied prior to the execution of NONMEM. If
-  \code{nice=TRUE}, standard NONMEM files (cwtab1, *.ctl, *.lst, etc..)
+  \code{nice=TRUE}, standard NONMEM files (cwtab1, *.ctl, *.lst, etc.)
   are deleted but non-standard files/directories are not deleted prior
   to a NONMEM execution. Using \code{nice=TRUE} will preserve .svn
   directories. Default: FALSE} 
 
-  \item{udef}{Whether the user will supply a 
-  custom command to run NONMEM. If set to TRUE, \code{UDEFcom} must be defined. 
-  Default: FALSE} 
-
-  \item{UDEFcom}{User supplied custom command to run NONMEM. 
-  This must be character.  The command in \code{UDEFcom} is wrapped in a 
-  system call and passed to the command-line. Default: NULL} 
+  \item{udef}{A logical indicating whether \code{command} is user defined.  If so, the 
+  \code{command} is simply wrapped in a system call rather than pre-converted to a 
+  (possibly grid-ready) NMQual commandline. Default: FALSE} 
   
+  \item{file}{File name for diagnostic plots, if any.  Default combines
+  DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
+  an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
+  Supplying \code{outdir} modifies the default file name.}
 
-  \item{onefile}{Whether diagnostic plots should be many single page 
-  pdfs or one multi-page pdf. Defaults to one multi-page pdf. Set \code{onefile}=FALSE
-  to get to multiple pdfs. Default: TRUE}
+  \item{compile}{whether to compile NONMEM (i.e., make nonmem.exe).  Set to FALSE
+  if you already did this in a previous step and merely want to execute.}
 
-  \item{plotName}{File name for diagnostic plots, if any.  Default combines
-  'DiagnosticPlotReview with the run number, grp if present, and a counter if 
-  onefile is FALSE. NOTE: If \code{onefile}=FALSE and \code{plotName} is provided the user must add counter (\code{\%d}) to 
-  \code{plotName}. }
- } 
+  \item{execute}{whether to execute the compiled NONMEM (i.e., invoke nonmem.exe).
+  Set to FALSE if you merely want to compile, e.g. to verify compile success without
+  committing to a run.  You can run the compiled object later with \code{compile=FALSE}.}
+
+  \item{split}{whether to compile and execute as separate steps.  If both
+  compile and execute are TRUE, the run can be split into two separate steps (this 
+  is the default if grid is TRUE.  Though \code{split}, \code{compile}, and 
+  \code{execute} can be manipulated independently, it makes no sense to split a run
+  unless \code{compile} and \code{execute} are both TRUE.  The greatest advantage
+  to splitting is realized on a grid, with \code{grid=TRUE}: runs will be split
+  and compile steps will by default be run in their own queue, for efficiency. }
+
+
+  \item{\dots}{Additional arguments passed to functions that accept them. For example,
+  you can pass \code{onefile=FALSE} to pdf(), called by PLOTR().  You can also pass
+  additional lattice arguments to modify the diagnostic plots.  
   
+  Flags recognized
+  by Sun Grid Engine's \code{qsub} are accepted by a like-named wrapper (this effect replaces
+  the older SGEflgs argument).  Example: to set a maximum run length of one hour and get an email 
+  if the run goes over one hour and is killed, include \code{l='h_rt=1:0:0',
+  m='e',M='name@email.address'}. Passing N, o, e, V, j, q, sync, shell, b, or cwd
+  will override defaults.  You can pass multiple instances of an argument if qsub() 
+  allows it.  passing L will override a constituative instance of l in runCommand().
+  Values are character vectors.  Lengths greater than one result in element-wise
+  paste operations: a vector of corresponding length will be returned.}
   
-  \details{ Generally 0 and 1 can be used
-  in place of FALSE and TRUE.The plotting device is pdf().  } 
-  
-  \value{ NONR and PLOTR are used for
-their side effects.  } 
-
-\note{ Specific control stream syntax is expected
-when running NONR and the other functions present in the MIfuns package.
-The list of syntax requirements are as follows: (1) \$PROB should be
-followed by "RUN\#" then a number representing the control stream
-number. No commas should be used in the \$PROB statement.  (2) The
-datafile name and relative path needs to be on the first line of the
-\$DATA record immediately following "\$DATA".  (3) The datafile relative
-path must be one directory deeper than actual, anticipating the fact
-that a COPY of the control stream will be exectuted from within a
-dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
-then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because
-3/3.ctl is the copy that will be executed, and needs to find the data in
-its parent directory.  (4) Comments should be indicated with one
-semicolon (;) only.  (5) The NONMEM datafile must contain a "C" column
-containing only C's or periods(".").  (6) The *.TAB file in the \dQuote{\$TABLE}
-step must contain an EVID column for plotting to function. In the case
-of \dQuote{\$PRED} models, this can be a dummy column in the datafile.  (7) The
-NONMEM datafile must contain a column with a header of "ID" for
-plotting to function correctly.
-
+}
+\value{Used for side effects.}
+\note{ 
+  Specific control stream syntax is expected
+  when running NONR and the other functions present in the MIfuns package.
+  The list of syntax requirements are as follows: (1) \$PROB should be
+  followed by "RUN\#" then a number representing the control stream
+  number. No commas should be used in the \$PROB statement.  (2) The
+  datafile name and relative path needs to be on the first line of the
+  \$DATA record immediately following "\$DATA".  (3) The datafile relative
+  path must be one directory deeper than actual, anticipating the fact
+  that a COPY of the control stream will be executed from within a
+  dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
+  then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because
+  3/3.ctl is the copy that will be executed, and needs to find the data in
+  its parent directory.  (4) Comments should be indicated with one
+  semicolon (;) only.  (5) The NONMEM datafile must contain a "C" column
+  containing only C's or periods(".").  (6) The *.TAB file in the \dQuote{\$TABLE}
+  step must contain an EVID column for plotting purposes. In the case
+  of \dQuote{\$PRED} models, this can be a dummy column in the datafile.  (7) The
+  NONMEM datafile must contain a column with a header of "ID" for
+  plotting purposes.
 
  PLOTR will automatically generate CWRES plots if required files are
  present in NONMEM run directory. See help for \code{compute.cwres} for
@@ -317,12 +221,13 @@ plotting to function correctly.
  variables for diagnostic plots to be output in the *.TAB file, where
  "*" represents the control stream number.  Additional \$TABLE records
  can be present in the control stream but these are not used/needed by
- PLOTR.  }
+ PLOTR.  Mechanisms and expectations are somewhat different for NONMEM7.
+ }
 
  \references{ MIfuns package available from Metrum Institute
    website (\code{http://metruminstitute.org/}). }
  \author{ Developed by
  Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
- \seealso{\code{\link{CWRES}},\code{\link{compute.cwres}} } 
+ \seealso{\code{\link{compute.cwres}} } 
  \keyword{ manip }
 

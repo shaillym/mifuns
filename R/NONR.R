@@ -1,70 +1,82 @@
 `NONR` <-  
-function (NMcom, b, ProjectDir, boot = 0, concurrent = TRUE, 
-    SGEflgs = "", checkrunno = TRUE, diag = TRUE, fdata = FALSE, 
-    epilog = NULL, dvname = NULL, logtrans = FALSE, covplt = FALSE, 
-    grp = NULL, grpnames = NULL, cont.cov = NULL, cat.cov = NULL, 
-    par.list = NULL, eta.list = NULL, missing = -99, dosbox = TRUE,
-    nochecksum = FALSE, grid = FALSE, nice=FALSE, udef=FALSE, UDEFcom=NULL, 
-    onefile=TRUE,plotName=NULL) 
-{
-    start <- getwd()
-    Platform <- "Windows"
-    if (.Platform$OS.type == "unix" & regexpr("apple", version$platform) > 
-        1) {
-        Platform <- "Mac"
-    }
-    if (.Platform$OS.type == "unix" & regexpr("bsd", version$platform) > 
-        1) {
-        Platform <- "Nix"
-    }
-    if (Platform == "Windows") {
-        concurrent <- FALSE
-        boot <- 0
-    }
-    if (Platform == "Mac" & grid==FALSE) {
-        concurrent <- FALSE
-        boot <- 0
-    }
-    
-    if (Platform == "Mac" & grid==TRUE) {
-        concurrent <- TRUE
-        #boot <- 0
-    }
-    
-    delim <- "/"
-    testfile <- paste(ProjectDir, delim, b[1], ".ctl", sep = "")
-    if (!file.exists(testfile)) 
-        stop(paste("Can't find", testfile, "."))
-    if (any(!file.exists(paste(ProjectDir, delim, b, ".ctl", 
-        sep = "")))) 
+function (
+	run, 
+	command, 
+	ProjectDir = getwd(), 
+	boot = FALSE,
+	concurrent = grid,
+	urgent = !boot,
+	checkrunno = TRUE, 
+	diag = TRUE, 
+	fdata = TRUE, 
+	epilog = NULL, 
+	dvname = NULL, 
+	logtrans = FALSE,
+	grp = NULL, 
+	grpnames = NULL, 
+	cont.cov = NULL, 
+	cat.cov = NULL, 
+	par.list = NULL, 
+	eta.list = NULL, 
+	missing = -99, 
+	invisible=udef,
+	checksum = TRUE, 
+	grid = boot, 
+	nice= FALSE, 
+	udef= FALSE, 
+	file= NULL,
+	compile = TRUE,
+	execute = TRUE,
+	split = grid & compile & execute,
+	...
+){
+    if (win())  grid <- FALSE
+    if (win())  concurrent <- FALSE
+    run <- unique(run)
+	    
+    if (any(!file.exists(filename(ProjectDir, run, ".ctl")))) 
         stop("One or more control stream(s) missing.")
-    if (is.null(boot)) {
-        boot <- 0
-    }
-    for (i in b) {
-        run.args <- list(NMcom = NMcom, ProjectDir = ProjectDir, 
-            i = i, boot = boot, concurrent = concurrent, Platform = Platform, 
-            SGEflgs = SGEflgs, checkrunno = checkrunno, diag = diag, 
-            fdata = fdata, epilog = epilog, dvname = dvname, 
-            logtrans = logtrans, covplt = covplt, grp = grp, 
-            grpnames = grpnames, cont.cov = cont.cov, cat.cov = cat.cov, 
-            par.list = par.list, eta.list = eta.list, missing = missing,
-            dosbox = dosbox, nochecksum = nochecksum, grid = grid, nice=nice,
-            udef = udef, UDEFcom = UDEFcom, onefile = onefile,plotName=plotName)
-        if (!concurrent) 
-            do.call("runmsge", run.args)
-        if (concurrent & (boot == 1 | boot == 3)) 
-            do.call("runmsge", run.args)
-        if (concurrent & (boot == 0 | boot == 2)) {
+    for (each in run) {
+        args <- list(
+		run = each, 
+		command = command, 
+		ProjectDir = ProjectDir, 
+		boot = boot,
+		urgent = urgent,
+		#SGEflgs = SGEflgs, 
+		checkrunno = checkrunno, 
+		diag = diag, 
+		fdata = fdata, 
+		epilog = epilog, 
+		dvname = dvname, 
+		logtrans = logtrans, 
+		grp = grp, 
+		grpnames = grpnames, 
+		cont.cov = cont.cov, 
+		cat.cov = cat.cov, 
+		par.list = par.list, 
+		eta.list = eta.list, 
+		missing = missing,
+		invisible = invisible, 
+		checksum = checksum, 
+		grid = grid, 
+		nice = nice,
+		udef = udef, 
+		file = file,
+		split = split,
+		compile = compile,
+		execute = execute,
+		...
+	)
+        if (concurrent){
             pid <- fork(NULL)
             if (pid == 0) {
-                do.call("runmsge", run.args)
+                do.call("runNonmem", args)
                 exit()
             }
-        }
-        message(paste("Run ", i, " complete.", sep = ""))
+        } else do.call('runNonmem', args)
     }
-    setwd(start)
     message("NONR complete.")
 }
-
+nix <- function().Platform$OS.type == 'unix'
+win <- function().Platform$OS.type == 'windows'

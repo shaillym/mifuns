@@ -20,9 +20,17 @@
 }
 \usage{
 	\method{as.filename}{character}(x, ...)
-	\method{metaSub}{filename}(x, names, ...)
-	\method{metaSub}{character}(x, names, pattern = NULL,
-   replacement = NULL, out = NULL, suffix = ".txt", fixed = TRUE, ...)
+	\method{metaSub}{filename}(x, names, pattern=NULL, replacement=NULL, ...)
+	\method{metaSub}{character}(
+		x, 
+		names, 
+		pattern = NULL,
+		replacement = NULL, 
+		out = NULL, 
+		suffix = ".txt", 
+		fixed = TRUE, 
+		...
+	)
 }
 
 \arguments{
@@ -75,7 +83,7 @@
 	error results that is very hard to track.  e.g. \code{c(a,b,c,)}.
 }
 \value{
-	an invisble named character vector.
+	an invisible named character vector.
 	If \code{out} is supplied, Elements are written as files with corresponding
 	names.
 }

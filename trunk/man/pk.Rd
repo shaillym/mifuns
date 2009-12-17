@@ -36,7 +36,7 @@ auc(cl, dose, ...)
 acr() calculates accumulation ratio (unitless, called by css()).
 ke() calculates the elimination constant (h\^-1, called by css()).
 css() calculates steady-state compartment concentration (dose units per L) 
-at a given time.
+at a given time.  cavg() calculates average concentration over dosing interval.
 cmin() and cmax() calculate minimum and maximum steady-state concentrations; they
 call css(), passing either tau itself or tmax for the time argument.
 tmax() calculates the time of the maximum concentration.

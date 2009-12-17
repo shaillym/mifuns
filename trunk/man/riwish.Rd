@@ -8,19 +8,14 @@
 \usage{
 riwish(s, df, Prec)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{s}{scale matrix for inverse Wishart distribution}
   \item{df}{degrees of freedom}
   \item{Prec}{presision matrix with the mean of riwish() proportion to the \code{Prec}}
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
 }
 \value{
  The variance of the random effect can be drawn form the returned inverse Wishart distribution.
  }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Leonid Gibiansky, Bill Knebel, Tim Bergsma, and others). }
-\examples{}
 \keyword{ manip }

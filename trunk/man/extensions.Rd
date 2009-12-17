@@ -21,7 +21,7 @@ for \code{Ops.keyed()} are techniques for dynamic preparation.
 %rig(x, ...)
 %deranged(x, ...)
 
-\method{moot}{nm}(x, scope = EVID == 2, disregard = c("TIME", "DATETIME", "DATE", "TAFD", "TAD"), ...)
+\method{moot}{nm}(x, scope = EVID == 2, disregard = c("TIME", "DATETIME", "DATE", "TAFD", "TAD","HOUR"), ...)
 \method{rig}{nm}(x, n = 50, dateTime = FALSE, noDups = FALSE, ...)
 \method{deranged}{keyed}(x, ...)
 \method{deranged}{data.frame}(x, start, stop, result = start, dropStop = TRUE, ...)
@@ -45,7 +45,7 @@ as.rigged(...)
   \item{scope}{an expression to evaluate within \code{x}, giving moot candidate rows}
   \item{disregard}{columns to disregard when testing for between-row differences}
   \item{n}{number of extra records to generate per subject}
-  \item{dateTime}{whether to attempt derivation of timecourse from \code{DATETIME} instead of \code{TIME}}
+  \item{dateTime}{whether to attempt derivation of timecourse from \code{DATETIME} instead of \code{HOUR}}
   \item{noDups}{whether to prohibit introduction of rows with times that already exist}
 
   
@@ -68,8 +68,8 @@ the changed values from the first row in which non-temporal items change to
 estimate the midpoint of the prior interval. 
 
 \code{rig.nm()} generates extra rows, spaced across each subject's timecourse, 
-for obtaining model predictions in NONMEM (\code{EVID: 2}). It can only work with one 
-of \code{TIME} or \code{DATETIME} (simultaneously), so in mixed cases, \code{plus.rigged()} tries 
+for obtaining model predictions in NONMEM (\code{EVID: 2}). It cannot work with 
+\code{HOUR} and \code{DATETIME} simultaneously, so in mixed cases, \code{plus.rigged()} tries 
 both sequentially and combines the result.
 
 \code{as.moot()} and \code{as.rigged()} return their arguments as a list classified as \code{moot}

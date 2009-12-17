@@ -16,74 +16,24 @@ detailed analysis log. All functions are considered stable unless marked
 as beta.
 }
 \details{
-  \tabular{ll}{
-    \code{\link{CLNR}} \tab Delete files and directories; log what was
-    deleted to a text file.\cr
-    \code{\link{compute.cwres}} \tab Compute the conditional weighted
-    residuals (ind.cwres,read.cwres.data,is.cwres.readable).\cr
-    \code{\link{CWRES}} \tab Generate conditional weighted residual
-    (CWRES) diagnostic plots as a pdf (cwres\_1).\cr
-    \code{\link{NONR}} \tab Run NONMEM and create diagnostic plots.\cr
-    \code{\link{PLOTR}} \tab Generate diagnostic and/or covariate
-    evaluation plots as a pdf or multiple single page pdfs.\cr
-    \code{\link{rlog}} \tab Generate a combined run log from multiple
-    NONMEM runs.\cr
-    \code{\link{resample.data.frame}} \tab Create replicate datasets by
-    stratified sampling with replacement
-    (as.csv.filename,resample.csv.filename).\cr
-    \code{\link{metaSub.character}} \tab Make multiple, systematic
-    substitutions in text files (as.filename,metaSub.filename).\cr
-    \code{\link{CreateParametersForSimulation}} \tab Create parameters
-    for simulation from uncertainity.\cr
-    \code{\link{miTemporal}} \tab Create date, time, and date-time objects with
-    default behaviors appropriate for NMTRAN datasets.\cr
-    \code{\link{bsa}} \tab Calculate various clinical measurements: body
-    size, etc. (bsa, bmi, ibw, lbm, crcl).\cr
-    \code{\link{constant}} \tab Test for nesting among factors(nests,
-    nested.in, crosses).\cr
-    \code{\link{naInContext}} \tab View missing values in a broader
-    context.\cr
-    \code{\link{stableMerge}} \tab Add keyed data to a dataframe
-    safely.\cr
-    \code{\link{css}} \tab Calculate One-Compartment Model Properties
-    (acr, cavg, cmax, cmin, ke, tmax, auc).\cr
-    \code{\link{covplot}} \tab Make "forest plots" of
-    covariate effects, etc.\cr
-    \code{\link{forbak}} \tab Impute missing vector values(locf,
-    nocb).\cr
-    \code{\link{runhead}} \tab Check some properties of vectors and data
-    frames(maxChar, prev, sorted).\cr
-    \code{\link{bin}} \tab Calculate bin sizes and limits for a
-    vector.\cr
-    \code{\link{accept}} \tab Document acceptance of an R installation
-    (acceptance, packageCheck).
-    
-  }
-  
-  See also 
-  
- \itemize{
-\item \code{\link{as.comment}}
-\item \code{\link{contains}}
-\item \code{\link{distance}}
-\item \code{\link{deranged}}
-\item \code{\link{as.flag}}
-\item \code{\link{as.keyed}}
-\item \code{\link{nm}}
-\item \code{\link{nmPlots}}
-\item \code{\link{Ops.keyed}}
-\item \code{\link{plot.nm}}
-\item \code{\link{reapply}}
-\item \code{\link{summary.nm}}
-\item \code{\link{text2decimal}}
+I want to ....
+\itemize{
+\item \link[=helpPrepare]{prepare or manipulate data}
+\item \link[=helpAnalyze]{model data in NONMEM}
+\item \link[=helpSimulate]{conduct simulations}
+\item \link[=helpPlot]{create diagnostic plots}
+\item \link[=helpReport]{generate report material}
+\item \link[=helpAdminister]{perform related filesystem tasks}
+\item \link[=helpList]{see a list of available functions}
+
 }
 
     
     \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.3.0\cr
-Date: \tab 2009-06-01\cr
+Version: \tab 4.0\cr
+Date: \tab 2009-12-15\cr
 License: \tab GPL\cr
 }
 

@@ -13,14 +13,7 @@ CheckPositiveVector(omegaVector)
 \arguments{
   \item{omegaVector}{R vector containing omega values}
 }
-\details{
-}
-\value{
-}
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\seealso{ }
-\examples{
-}
 \keyword{ manip }
 

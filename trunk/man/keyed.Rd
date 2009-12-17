@@ -3,7 +3,6 @@
 \alias{aggregate.keyed}
 \alias{as.keyed.data.frame}
 \alias{as.keyed}
-\alias{constant.keyed}
 \alias{dupKeys}
 \alias{key}
 \alias{key<-}
@@ -29,7 +28,6 @@ take advantage of this information.
 \method{aggregate}{keyed}(x, by=x[,setdiff(key(x),across),drop=FALSE], FUN, across=character(0), ...)
 %as.keyed(x, ...)
 \method{as.keyed}{data.frame}(x, key, ...)
-\method{constant}{keyed}(x, ...)
 dupKeys(x, ...)
 key(x, ...)
 key(x) <- value
@@ -78,9 +76,6 @@ into a one row \code{data.frame}.
 a subset of (or all of) \code{key(x)}.  Columns indicated by \code{across} are dropped 
 from \code{x} and from the default \code{by} value, and aggregation proceeds irrespective
 of those columns.
-
-The method \code{constant.keyed()} returns unique rows for columns that are constant 
-within the key.
 
 The function \code{naKeys()} detects rows for which one or more key fields is \code{NA}.
 

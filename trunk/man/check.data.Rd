@@ -12,14 +12,9 @@ check.data(IDname, data)
   \item{IDname}{subject identifier in the data.}
   \item{data}{name of R object}
 }
-\details{
- }
 \value{
   A summary of each column in the \code{data} by \code{IDname} is output.
   }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
 \author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\seealso{ }
-\examples{
-}
 \keyword{ manip }

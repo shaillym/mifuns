@@ -7,6 +7,23 @@ Functions defined by MIfuns
 \description{Exhaustive list of functions (etc.) defined by MIfuns.}
 \details{
 \itemize{
+\item \link{variants} def
+\item \link{attribute} def
+\item \link{toXML} def
+\item \link{nest} def
+\item \link{bracket} def
+\item \link{latest} def
+\item \link{as.data.frame.block} def
+\item \link{runlog} def
+\item \link{read.param} def
+\item \link{variants} def
+\item \link{latest} def
+\item \link{attribute} def
+\item \link{toXML} def
+\item \link{toXML.character} def
+\item \link{toXML.data.frame} def
+\item \link{toXML.default} def
+
 \item \link{\%nested.in\%} test whether a is nested in b
 \item \link{\%nests\%} test whether a nests b
 \item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule.

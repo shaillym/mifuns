@@ -8,7 +8,6 @@
 \usage{
 read.param(file, lead = 1, tag = "param", ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{file}{path to a parameter file}
   \item{lead}{number of leading 'note' lines}
@@ -16,15 +15,16 @@ read.param(file, lead = 1, tag = "param", ...)
   \item{\dots}{ignored}
 }
 \details{
-  The 'note' and 'body' are identified, and coerced using 'toXML'.  The result
-  is nested in an element with the name specified by 'tag'.
+  The 'note' and 'body' are identified, and coerced using 'as.xml'.  The result
+  is nested in an element with the name specified by 'tag'.  The first column
+  of 'body' is used as the key.
 }
 \value{
 character
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{toXML}}}
+\seealso{\code{\link{as.xml}}}
 \examples{
 x <- c(
 	'TABLE NO.  1: First Order: Goal Function=MINIMUM VALUE OF OBJECTIVE FUNCTION',

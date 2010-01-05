@@ -1,6 +1,6 @@
 \name{variants}
 \alias{variants}
-\title{ Locate Variants of a File in Distinguishing Subdirectories }
+\title{ Locate Variants of a File in Distinctive Subdirectories }
 \description{
   Give the paths to identically named files distinguished by enclosing subdirectories,
   themselves enclosed by a directory bearing the file name.

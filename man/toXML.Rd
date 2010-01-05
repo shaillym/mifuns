@@ -1,18 +1,18 @@
-\name{toXML}
-\alias{toXML}
-\alias{toXML.default}
-\alias{toXML.character}
-\alias{toXML.data.frame}
+\name{as.xml}
+\alias{as.xml}
+\alias{as.xml.default}
+\alias{as.xml.character}
+\alias{as.xml.data.frame}
 \title{Represent an Object as XML}
 \description{
-  \code{toXML} is generic, with a default method and methods for \code{character}
+  \code{as.xml} is generic, with a default method and methods for \code{character}
   and \code{data.frame}.  The intent is to convert text-like objects to informal
   XML that can be navigated with XPath expressions, e.g. using package XML.
 }
 \usage{
-\method{toXML}{default}(x, tag, ...)
-\method{toXML}{character}(x, tag, ...)
-\method{toXML}{data.frame}(x, ...)
+\method{as.xml}{default}(x, tag, ...)
+\method{as.xml}{character}(x, tag, ...)
+\method{as.xml}{data.frame}(x, ...)
 }
 \arguments{
   \item{x}{an object to convert}
@@ -44,6 +44,6 @@ character
 \author{Tim Bergsma}
 \seealso{\code{\link{read.param}}}
 \examples{
-nest(toXML(head(Theoph)),tag='frame')
+nest(as.xml(head(Theoph)),tag='frame')
 \keyword{ manip }
 

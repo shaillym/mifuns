@@ -7,22 +7,18 @@ Functions defined by MIfuns
 \description{Exhaustive list of functions (etc.) defined by MIfuns.}
 \details{
 \itemize{
-\item \link{variants} def
-\item \link{attribute} def
-\item \link{toXML} def
-\item \link{nest} def
-\item \link{bracket} def
-\item \link{latest} def
-\item \link{as.data.frame.block} def
-\item \link{runlog} def
-\item \link{read.param} def
-\item \link{variants} def
-\item \link{latest} def
-\item \link{attribute} def
-\item \link{toXML} def
-\item \link{toXML.character} def
-\item \link{toXML.data.frame} def
-\item \link{toXML.default} def
+\item \link{variants} locate variants of a file in distinctive subdirectories
+\item \link{attribute} encode an attribute for an XML open tag
+\item \link{nest} nest an XML fragment in a parent element
+\item \link{bracket} create an XML tag
+\item \link{latest} identify the latest of each set of variants
+\item \link{as.data.frame.block} convert a block of lines to data.frame
+\item \link{runlog} create NONMEM6-style runlog under NONMEM7
+\item \link{read.param} convert a param file to XML
+\item \link{as.xml} convert object to XML
+\item \link{as.xml.character} convert character to XML
+\item \link{as.xml.data.frame} convert data.frame to XML
+\item \link{as.xml.default} convert arbitrary object to XML
 
 \item \link{\%nested.in\%} test whether a is nested in b
 \item \link{\%nests\%} test whether a nests b

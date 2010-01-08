@@ -70,7 +70,8 @@
   } 
 
   \item{ProjectDir}{
-  The directory containing the NONMEM control (*.ctl) streams. 
+  The directory in which run-specific subdirectories will be created. 
+  Typically also contains original control streams.
   Use an absolute path (safer) or specify relative to the current working directory.
   }
 
@@ -98,7 +99,9 @@
   
   \item{checkrunno}{Whether to check/correct the control stream to
   ensure that all uses of the NONMEM control stream number match the
-  number listed in \code{run} vector. Default: TRUE.}  
+  number listed in \code{run} vector. Default: TRUE.  For files, e.g.
+  ../3.TAB, path separator  must be that recognized by dirname() and basename().
+  Only one usage per line of text will be fixed.}  
   
   \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE.}
   
@@ -196,23 +199,38 @@
 \note{ 
   Specific control stream syntax is expected
   when running NONR and the other functions present in the MIfuns package.
-  The list of syntax requirements are as follows: (1) \$PROB should be
-  followed by "RUN\#" then a number representing the control stream
-  number. No commas should be used in the \$PROB statement.  (2) The
-  datafile name and relative path needs to be on the first line of the
-  \$DATA record immediately following "\$DATA".  (3) The datafile relative
-  path must be one directory deeper than actual, anticipating the fact
-  that a COPY of the control stream will be executed from within a
-  dynamically created SUB-directory. If 3.ctl and DATA3 share a directory,
-  then 3.ctl should contain "\$DATA ../DATA3" not "\$DATA DATA3", because
-  3/3.ctl is the copy that will be executed, and needs to find the data in
-  its parent directory.  (4) Comments should be indicated with one
-  semicolon (;) only.  (5) The NONMEM datafile must contain a "C" column
-  containing only C's or periods(".").  (6) The *.TAB file in the \dQuote{\$TABLE}
+  The list of syntax requirements are as follows.
+  \itemize{
+ 
+  \item \$PROB should be followed by "RUN\#" then a number representing 
+  the control stream number. No commas should be used in the \$PROB statement.
+  'PROBLEM' is an alternative for 'PROB'.  The run number is the first space-delimited
+  alphanumeric sequence after PROB(LEM), ignoring RUN(#).  
+
+  \item The datafile name and relative path needs to be on the first line of the
+  \$DATA record immediately following "\$DATA".
+  
+  \item A relative datafile path must be specified relative to a subdirectory
+  of ProjectDir.  For example, 3.ctl will actually run as path/ProjectDir/3/3.ctl; if
+  its datafile is path/data/DATA3, then 3.ctl should specify 
+  "\$DATA ../../data/DATA3".
+  
+  \item The NONMEM datafile must contain a "C" column
+  containing only C's or periods(".").  Typically this is the first column.
+  
+  \item The *.TAB file in the \dQuote{\$TABLE}
   step must contain an EVID column for plotting purposes. In the case
-  of \dQuote{\$PRED} models, this can be a dummy column in the datafile.  (7) The
-  NONMEM datafile must contain a column with a header of "ID" for
+  of \dQuote{\$PRED} models, this can be a dummy column in the datafile.
+  
+  \item The NONMEM datafile must contain a column with a header of "ID" for
   plotting purposes.
+  
+  \item File paths for MSF files and TAB files, etc., are generally expected to 
+  be relative paths, using '/' as the directory separator.  File paths with no
+  separator are assumed to be relative to the directory in which the control
+  stream is run: './' may be prepended.  E.g. "$TABLE EVID FILE=100.tab" is taken
+  as "$TABLE EVID FILE=./100.tab".
+  }
 
  PLOTR will automatically generate CWRES plots if required files are
  present in NONMEM run directory. See help for \code{compute.cwres} for

@@ -70,11 +70,10 @@ as.rigged <- function(...){
 
 `moot` <- function(x,...)UseMethod("moot")
 
-`moot.nm` <- function(x,scope=EVID==2,disregard=c("TIME","DATETIME","DATE","TAFD","TAD","HOUR"),...){
+`moot.nm` <- function(x,scope=x$EVID==2,disregard=c("TIME","DATETIME","DATE","TAFD","TAD","HOUR"),...){
 	y <- x[,names(x)[!names(x) %in% disregard]]#cols with potentially relevant changes
 	target <- do.call(paste,y)#one super col
 	suspect <- duplicated(target,fromLast=TRUE)#could be unnecessary
-	scope <-eval(substitute(scope),x,environment(x))
 	moot <- suspect & scope#is unnecessary
 	return (moot)	
 }

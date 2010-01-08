@@ -21,7 +21,7 @@ bracket(x, close = FALSE, ...)
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{attribute}},\code{\link{to.XML.character}}}
+\seealso{\code{\link{attribute}},\code{\link{as.xml.character}}}
 \examples{
 bracket(rep('name',2),close=FALSE:TRUE,row=1,col=2)
 }

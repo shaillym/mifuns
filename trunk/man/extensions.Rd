@@ -21,7 +21,7 @@ for \code{Ops.keyed()} are techniques for dynamic preparation.
 %rig(x, ...)
 %deranged(x, ...)
 
-\method{moot}{nm}(x, scope = EVID == 2, disregard = c("TIME", "DATETIME", "DATE", "TAFD", "TAD","HOUR"), ...)
+\method{moot}{nm}(x, scope = x$EVID == 2, disregard = c("TIME", "DATETIME", "DATE", "TAFD", "TAD","HOUR"), ...)
 \method{rig}{nm}(x, n = 50, dateTime = FALSE, noDups = FALSE, ...)
 \method{deranged}{keyed}(x, ...)
 \method{deranged}{data.frame}(x, start, stop, result = start, dropStop = TRUE, ...)

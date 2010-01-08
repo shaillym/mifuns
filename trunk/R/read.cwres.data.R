@@ -1,20 +1,5 @@
-`is.cwres.readable.file` <-
-function (filename) 
-{
-    if (is.null(version$language)) {
-        if (win()) {
-            access(filename, 4) == 0
-        }
-        else {
-            filename <- paste("'", filename, "'", sep = "")
-            sapply(paste("test -f", filename, "-a -r", filename), 
-                unix, output = FALSE) == 0
-        }
-    }
-    else {
-        return(file.exists(filename)[1])
-    }
-}
+`is.cwres.readable.file` <- function (filename) file.exists(filename)[1]
+
 `read.cwres.data` <-
 function (filename, old.file.convention = FALSE, est.tab.suffix = ".est", 
     deriv.tab.suffix = ".deriv", ...) 

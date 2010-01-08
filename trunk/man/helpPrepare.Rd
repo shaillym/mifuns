@@ -33,5 +33,7 @@ I want to ....
 \item \link[=plot.nm]{Plot} 'nm' objects
 \item \link[=summary.nm]{Summarize} an 'nm' object
 \item \link[=fixedwidth]{Format} a data.frame as fixed-width
+\item \link[=variants]{Locate} variants of a file in distinctive subdirectories
+\item \link[=latest]{Identify} the latest of each set of variants
 }
 }

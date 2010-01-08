@@ -1,7 +1,7 @@
 read.nm <- function(x){
 	tran <- as.keyed(read.csv(x,na='.',as.is=TRUE),key=key(nm()))
-	miscol <- setdiff(names(nm()),names(tran))
-	if(length(miscol))stop(paste('file is missing columns ',paste(miscol,collapse=', ')))
+	#miscol <- setdiff(names(nm()),names(tran))
+	#if(length(miscol))stop(paste('file is missing columns ',paste(miscol,collapse=', ')))
 	tran$C <- as.comment(!is.na(tran$C))
 	if(any(naKeys(tran) & !tran$C))warning('file has na Keys')
 	if(any(dupKeys(tran)))warning('file has duplicate keys')
@@ -193,19 +193,22 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	#Relativize to earliest value.
 	
 	x <- sort(x) #NAs will be last
-	x <- within(x,TIME <- signif(TIME - TIME[first(!is.na(TIME),within=ID)],7))
+	#x <- within(x,TIME <- signif(TIME - TIME[first(!is.na(TIME),within=ID)],7))#issues innocuous but irritating warning in R CMD check
+	x$TIME <- signif(x$TIME - x$TIME[first(!is.na(x$TIME),within=x$ID)],7)
 	
 	#PRIME
 	#If data set contains AMT, prime can be calculated as the first non(commented) dose at any
 	#given time within Subject.
 	prime <- logical(0)
-	if('AMT' %in% names(x))prime <- with(x,where(!is.na(AMT) & !C,within=list(ID,TIME)))
+	#if('AMT' %in% names(x))prime <- with(x,where(!is.na(AMT) & !C,within=list(ID,TIME)))
+	if('AMT' %in% names(x))prime <- where(!is.na(x$AMT) & !x$C,within=list(x$ID,x$TIME))
 	prime[is.na(prime)] <- FALSE
 	
 	#TAFD
 	#Time After First Dose. The time of the first defined amount per subject is a local origin.
 	#Domain is active records.  Range is all records.
-	if(length(prime))x <- within(x,TAFD <- signif(TIME - TIME[first(prime,within=ID)],6))
+	#if(length(prime))x <- within(x,TAFD <- signif(TIME - TIME[first(prime,within=ID)],6))
+	if(length(prime))x$TAFD <- x$TAFD <- signif(x$TIME - x$TIME[first(prime,within=x$ID)],6)
 	
 	#TAD
 	#Time After Dose.  
@@ -225,20 +228,16 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 		z							
 	}
 	s <- suppressWarnings
-	if(length(prime))x <- within(x,TAD <- signif(TIME - TIME[s(first(prime & !C,within=list(ID,cumsum(prime))))],5))
-	if(length(prime) & all(c('ADDL','II') %in% names(x)))x <- within(
-		x,
-		TAD <- signif(
-			TIME - tMostRecentDose(
-				TIME,#ceiling reference
-				TIME[s(first(prime            ,within=list(ID,cumsum(prime))))], # most recent dose record
-				ADDL[s(first(!is.na(ADDL) & !C,within=list(ID,cumsum(prime))))], # most recent ADDL value
-				  II[s(first(!is.na(II)   & !C,within=list(ID,cumsum(prime))))]  # most recent II value
-			),
-			5
-		)
-	)
-		
+	if(length(prime))x$TAD <- signif(x$TIME - x$TIME[s(first(prime & !x$C,within=list(x$ID,cumsum(prime))))],5)
+	if(length(prime) & all(c('ADDL','II') %in% names(x)))x$TAD <- signif(
+		x$TIME - tMostRecentDose(
+			x$TIME,#ceiling reference
+			x$TIME[s(first(prime            ,    within=list(x$ID,cumsum(prime))))], # most recent dose record
+			x$ADDL[s(first(!is.na(x$ADDL) & !x$C,within=list(x$ID,cumsum(prime))))], # most recent ADDL value
+			  x$II[s(first(!is.na(x$II)   & !x$C,within=list(x$ID,cumsum(prime))))]  # most recent II value
+		),
+		5
+	)	
 	#Impute flags.  Check whether merge drops flag status.
 	flags <- names(x)[sapply(names(x),function(col)inherits(x[[col]],'flag'))]
 	x <- as.keyed(
@@ -261,7 +260,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	#LDOS
 	#AMT from prime records is carried forward.
 	#Domain is active prime records.  Range is all records.
-	if(length(prime))x <- within(x, LDOS <- AMT[s(first(prime & !C,within=list(ID,cumsum(prime))))])
+	if(length(prime))x$LDOS <- x$AMT[s(first(prime & !x$C,within=list(x$ID,cumsum(prime))))]
 	
 	#MDV
 	if('DV' %in% names(x))x$MDV <- as.flag(as.numeric(is.na(x$DV)))

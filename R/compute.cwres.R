@@ -94,7 +94,8 @@ function (run.number=1, tab.prefix = "cwtab", sim.suffix = "",
             id.vals <- unique(dataset@data$ID)
             CWRES <- c()
             for (i in id.vals) {
-                ind.data <- subset(dataset@data, ID == i)
+                #ind.data <- subset(dataset@data, ID == i)#gives irritating warning in R CMD check
+                ind.data <- dataset@data[dataset@data$ID == i,]
                 ind.etas <- t(as.matrix(all.etas[all.etas$ID == 
                   i, colnames(all.etas) != "ID"]))
                 CWRESI <- ind.cwres(ind.data, H.names, G.names, 
@@ -143,7 +144,7 @@ function (run.number=1, tab.prefix = "cwtab", sim.suffix = "",
                 }
                 else {
                   data.cwres <- cbind(dataset@data, CWRES)
-                  tmp <- subset(data.cwres, MDV == 0)
+                  tmp <- data.cwres[data.cwres$MDV == 0,]
                   CWRES <- tmp$CWRES
                 }
             }
@@ -159,7 +160,7 @@ function (run.number=1, tab.prefix = "cwtab", sim.suffix = "",
                 }
                 else {
                   data1.cwres <- cbind(data1, CWRES)
-                  tmp <- subset(data1.cwres, MDV == 0)
+                  tmp <- data1.cwres[data1.cwres$MDV == 0,]
                   CWRES <- tmp$CWRES
                 }
             }

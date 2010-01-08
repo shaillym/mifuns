@@ -12,7 +12,7 @@
 \usage{
 \method{as.xml}{default}(x, tag, ...)
 \method{as.xml}{character}(x, tag, ...)
-\method{as.xml}{data.frame}(x, ...)
+\method{as.xml}{data.frame}(x,keyname='row',key=rownames(x),...)
 }
 \arguments{
   \item{x}{an object to convert}
@@ -45,5 +45,6 @@ character
 \seealso{\code{\link{read.param}}}
 \examples{
 nest(as.xml(head(Theoph)),tag='frame')
+}
 \keyword{ manip }
 

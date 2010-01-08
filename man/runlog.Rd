@@ -34,6 +34,9 @@ runlog(
 \value{
  used for side effects
 }
+\note{
+For automated log generation, call NONR with \code{epilog=runlog}.
+}
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
 \seealso{\code{\link{read.param}}}

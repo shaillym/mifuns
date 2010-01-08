@@ -7,19 +7,6 @@ Functions defined by MIfuns
 \description{Exhaustive list of functions (etc.) defined by MIfuns.}
 \details{
 \itemize{
-\item \link{variants} locate variants of a file in distinctive subdirectories
-\item \link{attribute} encode an attribute for an XML open tag
-\item \link{nest} nest an XML fragment in a parent element
-\item \link{bracket} create an XML tag
-\item \link{latest} identify the latest of each set of variants
-\item \link{as.data.frame.block} convert a block of lines to data.frame
-\item \link{runlog} create NONMEM6-style runlog under NONMEM7
-\item \link{read.param} convert a param file to XML
-\item \link{as.xml} convert object to XML
-\item \link{as.xml.character} convert character to XML
-\item \link{as.xml.data.frame} convert data.frame to XML
-\item \link{as.xml.default} convert arbitrary object to XML
-
 \item \link{\%nested.in\%} test whether a is nested in b
 \item \link{\%nests\%} test whether a nests b
 \item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule.
@@ -61,6 +48,7 @@ Functions defined by MIfuns
 \item \link{as.comment.default} convert default to comment
 \item \link{as.csv.filename} convert to csv.filename
 \item \link{as.csv.filename.character} convert character to csv.filename 
+\item \link{as.data.frame.block} convert a block of lines to data frame
 \item \link{as.data.frame.comment} convert comment to data frame
 \item \link{as.data.frame.flag} convert flag to data frame
 \item \link{as.filename} convert to filename
@@ -94,6 +82,11 @@ Functions defined by MIfuns
 \item \link{as.nm.data.frame} convert data frame to nm
 \item \link{as.numeric.chartime} convert chartime to numeric
 \item \link{as.rigged} convert to rigged
+\item \link{as.xml} convert object to XML
+\item \link{as.xml.character} convert character to XML
+\item \link{as.xml.data.frame} convert data.frame to XML
+\item \link{as.xml.default} convert arbitrary object to XML
+\item \link{attribute} encode an attribute for an XML open tag
 \item \link{auc} calculate area under the curve
 \item \link{aug} add named elements to an object
 \item \link{backtrans} backtransform cols in x, returning x
@@ -106,6 +99,7 @@ Functions defined by MIfuns
 \item \link{bakfor} impute NAs using last observation carried forward after next observation carried backward
 \item \link{bin} calculate bin limits for x and place each value in a bin, returning the number of values in each bin
 \item \link{bmi} calculate body mass index
+\item \link{bracket} create an XML tag
 \item \link{bsa} calculate body surface area
 \item \link{c.comment} combine comment
 \item \link{c.flag} combine flag
@@ -126,7 +120,7 @@ Functions defined by MIfuns
 \item \link{crosses} test whether a crosses b
 \item \link{css} calculate steady-state concentration
 \item \link{cwresPlots} create conditional weighted residual diagnostic plots
-\item \link{dataFormat} combine NONMEM predictions, parameter estimates, and covariates into a standard format (internal)
+\item \link{dataFormat} combine NONMEM predictions, parameter estimates, and covariates into a standard format
 \item \link{dataSynthesis} build a standard plotting data set for a given NONR run
 \item \link{deranged} generic
 \item \link{deranged.data.frame} instantiate records implied by range data
@@ -137,6 +131,8 @@ Functions defined by MIfuns
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
 \item \link{enth} alias for ordinal
 \item \link{episcript} run a script in an environment that defines the the passed arguments
+\item \link{explicitPath} add separators to control stream paths that have none
+\item \link{extractPath} isolate file path from surrounding text (MSF, TAB files).
 \item \link{f} alias for as.flag
 \item \link{falseAmt} generic
 \item \link{falseAmt.nm} AMT defined where EVID is not 1
@@ -147,6 +143,8 @@ Functions defined by MIfuns
 \item \link{first.logical} repeat for each element the position of the first TRUE element (usually, within levels of an index)
 \item \link{fixedwidth} convert to fixed-width format
 \item \link{fixedwidth} convert a data.frame to fixed-width format
+\item \link{fixProblem} rewrite run name in control stream PROBLEM statement
+\item \link{fixFile} rewrite run name in control stream file specifications
 \item \link{forbak} impute NAs using last observation carried forward and then next observation carried backward
 \item \link{format.comment} format comment 
 \item \link{format.flag} format flag
@@ -168,6 +166,7 @@ Functions defined by MIfuns
 \item \link{ke} calculate elimination constant
 \item \link{key} return the key of a keyed data frame
 \item \link{key<-} assign a key
+\item \link{latest} identify the latest of each set of variants
 \item \link{lbm} calculate lean body mass
 \item \link{left.keyed} produce left join of two keyed data frames
 \item \link{locf} impute NA using last observation carried forward
@@ -184,6 +183,7 @@ Functions defined by MIfuns
 \item \link{myriwish} support \code{\link{SimulateOmega}} (internal)
 \item \link{naInContext} display rows of data with missing values, as well as other rows with the same key
 \item \link{naKeys} detect rows for which one or more key fields is NA
+\item \link{nest} nest an XML fragment in a parent element
 \item \link{nix} identify Unix-like platforms (internal)
 \item \link{nm} give a zero-row data frame with suitable columns and column classes; i.e. a template for NMTRAN data sets
 \item \link{nm.pl} prepare commandlines for nm.pl
@@ -214,6 +214,7 @@ Functions defined by MIfuns
 \item \link{qsub} prepare commandlines for qsub
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
+\item \link{read.param} convert a param file to XML
 \item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag
@@ -222,6 +223,7 @@ Functions defined by MIfuns
 \item \link{resample.csv.filename} create replicate data sets by stratified sampling with replacement, after reading csv file
 \item \link{resample.data.frame} create replicate data sets by stratified sampling with replacement
 \item \link{resample.filename} create replicate data sets by stratified sampling with replacement, after reading file
+\item \link{resolve} reinterpret relative file paths with respect to specified directory.
 \item \link{rig} generic
 \item \link{rig.nm} generate extra rows, spaced across each subject's timecourse, for obtaining model predictions in NONMEM (EVID==2)
 \item \link{rinvchisq} generate inverse chi-square distribution
@@ -229,6 +231,7 @@ Functions defined by MIfuns
 \item \link{riwish} generate inverse Wishart distribution
 \item \link{rlog} generate a combined run log for multiple NONMEM runs
 \item \link{runCommand} issue the system call that invokes NONMEM (internal)
+\item \link{runlog} create NONMEM6-style runlog under NONMEM7
 \item \link{runNonmem} process a request for NONMEM invocation
 \item \link{runhead} determine whether each element is the start of a run
 \item \link{safe.call} call a function, passing only those extra arguments that the function accepts
@@ -252,6 +255,7 @@ Functions defined by MIfuns
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
 \item \link{nmVersion} extract NONMEM version specification from configuration file
+\item \link{variants} locate variants of a file in distinctive subdirectories
 \item \link{where} generic
 \item \link{where.logical} return a logical vector identifying the n-th TRUE element in x (usually, within levels of an index)
 \item \link{win} identify Windows platforms (internal)

@@ -7,7 +7,7 @@
   The first line must be a header, and names will not be checked.
 }
 \usage{
-as.data.frame.block(x, ...)
+\method{as.data.frame}{block}(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

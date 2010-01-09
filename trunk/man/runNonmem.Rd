@@ -8,42 +8,40 @@
 }
 \usage{
 runNonmem(
-	run, 
-	command, 
-	ProjectDir, 
-	boot, 
-	urgent, 
-	checkrunno, 
-	diag, 
-	fdata, 
-	epilog, 
-	dvname, 
-	logtrans, 
-	grp, 
-	grpnames, 
-	cont.cov, 
-	cat.cov, 
-	par.list, 
-	eta.list, 
-	missing, 
-	invisible, 
-	checksum, 
-	grid, 
-	nice, 
-	udef, 
-	file, 
-	ctlfile = NULL, 
-	outfile = NULL, 
-	tabfile = NULL, 
-	msffile = NULL, 
-	parfile = NULL, 
-	outdir = ProjectDir, 
-	pattern = c(
-		'^F[ISRC]',
-		'^OU',
-		'^nonmem.exe',
-		if(fdata)c('^FD','^PR')
-	),
+	run,
+	command,
+	ProjectDir,
+	boot,
+	urgent,
+	checkrunno,
+	diag,
+	fdata,
+	epilog,
+	dvname,
+	logtrans,
+	grp,
+	grpnames,
+	cont.cov,
+	cat.cov,
+	par.list,
+	eta.list,
+	missing,
+	invisible,
+	checksum,
+	grid,
+	nice,
+	udef,
+	file,
+	compile,
+	execute,
+	split,
+	outdir = ProjectDir,
+	runext = if(boot) '.boot' else if(grid) '.lock' else '',
+	rundir = filename(ProjectDir,run,runext),
+	outfile = filename(rundir,run,'.lst'),
+	streams = ProjectDir,
+	ctlfile = filename(streams,run,'.ctl'),
+	remove  = c('^F[ISRC]','^OU','^nonmem.exe',if(fdata)c('^FD','^PR')),
 	...
 )
 }
@@ -72,13 +70,16 @@ runNonmem(
   \item{nice}{see NONR}
   \item{udef}{see NONR}
   \item{file}{see NONR}
-  \item{ctlfile}{see dataSynthesis}
-  \item{outfile}{see dataSynthesis}
-  \item{tabfile}{see dataSynthesis}
-  \item{msffile}{see dataSynthesis}
-  \item{parfile}{see dataSynthesis}
+  \item{compile}{see NONR}
+  \item{execute}{see NONR}
+  \item{split}{see NONR}
   \item{outdir}{see dataSynthesis}
-  \item{pattern}{regular expressions for files to purge}
+  \item{runext}{an extension for the run directory}
+  \item{rundir}{the directory in which run will occur}
+  \item{outfile}{see dataSynthesis}
+  \item{streams}{where to find control streams}
+  \item{ctlfile}{the original control stream}
+  \item{remove}{regular expressions for files to purge}
   \item{\dots}{extra arguments for other functions}
 }
 \value{Used for side effects}

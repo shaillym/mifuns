@@ -25,11 +25,10 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(outdir, run, '.TAB'),
-	ctlfile = filename(rundir,run,'.ctl'),
+	streams = ProjectDir,#where to find control streams
+	ctlfile = filename(streams,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
-	parfile = filename(outdir, run, 'par.TAB'),
 	rundir  = filename(ProjectDir, run),
 	outdir  = ProjectDir,
 	...
@@ -73,11 +72,10 @@
   Example: \code{eta.list=c("ETA1","ETA2","ETA3","ETA4")}}
   \item{missing}{Numeric item that defines value used to represent
   missing items in the NONMEM data file. Default value is "-99".}
-  \item{tabfile}{Path and filename for the NONMEM output table (*.TAB).}
+  \item{streams}{where to find control streams}
   \item{ctlfile}{Path and filename for the NONMEM control stream (*.ctl).}
   \item{outfile}{Path and filename for the NONMEM output file (*.lst).}
   \item{datfile}{Path and filename for the source dataset, as in DATA record in *.ctl.}
-  \item{parfile}{Path and filename for the NONMEM parameter file (*par.TAB).}
   \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).}
   \item{outdir}{Path for the NONMEM output directory (ProjectDir). Not related
   to \code{outfile}.  Controls defaults for where to look for \code{tabfile} and

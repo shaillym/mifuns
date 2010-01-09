@@ -1,8 +1,13 @@
 \name{fixProblem}
+\alias{fixProblem}
 \alias{fixFile}
 \alias{explicitPath}
 \alias{extractPath}
 \alias{resolve}
+\alias{scavenge}
+\alias{tabfile}
+\alias{parfile}
+\alias{msffile}
 \title{Clean Up a Control Stream}
 \description{
    These functions are used to re-write a control stream for 
@@ -14,6 +19,10 @@ fixFile(x,run)
 explicitPath(x)
 extractPath(x)
 resolve(file,dir)
+scavenge(expr,lines)
+tabfile(ctlfile,dir,tabreg='(?<!par)\\.tab',...)
+parfile(ctlfile,dir,parreg='par\\.tab',...)
+msffile(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)
 }
 
 \arguments{
@@ -21,10 +30,17 @@ resolve(file,dir)
   \item{run}{run designator to substitute at predefined locations}
   \item{file}{an absolute or relative filepath}
   \item{dir}{a directory}
+  \item{expr}{a regular expression to locate relevant lines}
+  \item{lines}{lines in which to search for expr}
+  \item{ctlfile}{path to the control stream}
+  \item{tabreg}{a regular expression to locate the .TAB file}
+  \item{parreg}{a regular expression to locate the par.TAB file}
+  \item{msfreg}{a regular expression to locate the .MSF file}
+  \item{\dots}{ignored}
 }
 \details{
 fixProblem() tries to substitute the run name in the NONMEM \$PROBLEM statement
-with the current run name.  It looks for PROB or PROBLEM, and then RUN or RUN# 
+with the current run name.  It looks for PROB or PROBLEM, and then RUN or RUN\# 
 (optional).  The next space delimited word is replaced.
 
 fixFiles() tries to replace the run name in filenames ending in .msf, par.tab,
@@ -44,11 +60,14 @@ to locate the tabfile, parfile, and msffile.
 
 resolve() does nothing to absolute filepaths in 'file', but expresses others (those
 beginning with '.') relative to 'dir'.
+
+tabfile(), parfile(), and msffile() calculate corresponding filepaths from their
+arguments.
 }
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runNonmem}} }
+\seealso{ \code{\link{runNonmem}},\code{\link{dataSynthesis}} }
 \examples{
 prob <- c(
 	'$PROBLEM  1000 desc',
@@ -79,7 +98,6 @@ tab <- c(
 	'ONEHEADER NOPRINT FILE=../1000.TAB'
 )
 fixFile(tab,2000)
-}
 files <- c(
 	'1000.msf',
 	'1000.tab',
@@ -92,7 +110,7 @@ files <- c(
 explicitPath(files)
 extractPath(msf)
 extractPath(tab)
-		
+}		
 
 \keyword{manip}
 

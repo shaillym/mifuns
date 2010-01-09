@@ -96,7 +96,6 @@
   q='bootstrap.q'.  Passing 'q' explicitly will override this choice.
   }
 
-  
   \item{checkrunno}{Whether to check/correct the control stream to
   ensure that all uses of the NONMEM control stream number match the
   number listed in \code{run} vector. Default: TRUE.  For files, e.g.
@@ -205,7 +204,7 @@
   \item \$PROB should be followed by "RUN\#" then a number representing 
   the control stream number. No commas should be used in the \$PROB statement.
   'PROBLEM' is an alternative for 'PROB'.  The run number is the first space-delimited
-  alphanumeric sequence after PROB(LEM), ignoring RUN(#).  
+  alphanumeric sequence after PROB(LEM), ignoring RUN(\#).  
 
   \item The datafile name and relative path needs to be on the first line of the
   \$DATA record immediately following "\$DATA".

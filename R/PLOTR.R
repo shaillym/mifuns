@@ -276,21 +276,17 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	tabfile = filename(outdir, run,'.TAB'),
-	ctlfile = filename(rundir,run,'.ctl'),
+	streams = ProjectDir,#where to find control streams
+	ctlfile = filename(streams,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
-	parfile = filename(outdir, run, 'par.TAB'),
 	rundir  = filename(ProjectDir, run),
 	outdir  = ProjectDir,
 	...
 ){
     #cleanup arguments
-    tabfile <- star(tabfile,run)
-    ctlfile <- star(ctlfile,run)
-    outfile <- star(outfile,run)
-    datfile <- star(datfile,run)
-    parfile <- star(parfile,run)
+    tabfile <- tabfile(ctlfile,dir=rundir,...)
+    parfile <- parfile(ctlfile,dir=rundir,...)
     if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
     if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
     if (!file.exists(parfile)) stop(paste(parfile,'does not exist.'))

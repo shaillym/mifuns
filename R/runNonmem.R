@@ -180,7 +180,7 @@ function (
 	)
 	try(source(script))
   }
-  fixProblem <- function(x,run)sub('(^\\$(PROB(LEM)? +(RUN#?)?([^ ]+)(.*$)',paste(sep='','\\1',run,'\\5'),x,ignore.case=TRUE)
+  fixProblem <- function(x,run)sub('(^\\$PROB(LEM)? +(RUN#? *)?)([^ ]+)(.*$)',paste(sep='','\\1',run,'\\5'),x,ignore.case=TRUE)
   fixFile <- function(x,run){
         x <- explicitPath(x)
 	risk <- grep('\\bTAB\\b|\\bMSF\\b',x,ignore.case=TRUE)

@@ -25,12 +25,11 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	streams = ProjectDir,#where to find control streams
-	ctlfile = filename(streams,run,'.ctl'),
+	outdir  = ProjectDir,
+	rundir  = filename(ProjectDir, run),
+	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
-	rundir  = filename(ProjectDir, run),
-	outdir  = ProjectDir,
 	...
 )
 }
@@ -72,7 +71,6 @@
   Example: \code{eta.list=c("ETA1","ETA2","ETA3","ETA4")}}
   \item{missing}{Numeric item that defines value used to represent
   missing items in the NONMEM data file. Default value is "-99".}
-  \item{streams}{where to find control streams}
   \item{ctlfile}{Path and filename for the NONMEM control stream (*.ctl).}
   \item{outfile}{Path and filename for the NONMEM output file (*.lst).}
   \item{datfile}{Path and filename for the source dataset, as in DATA record in *.ctl.}

@@ -201,10 +201,10 @@ function (
   extractPath <- function(x)sub('(^.*(MSFO?|FILE) *= *)([^ ]*)(.*$)','\\3',x,ignore.case=TRUE)
   resolve <- function(file,dir)ifelse(contains('^\\.',file),file.path(dir,file),file)
   scavenge <- function(expr,lines)lines[grep(expr,lines,ignore.case=TRUE, perl=TRUE)][[1]]
-	  
-  tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)resolve(scavenge(tabreg,explicitPath(readLines(ctlfile))),dir)
-  parfile <- function(ctlfile,dir,parreg='par\\.tab',...)resolve(scavenge(parreg,explicitPath(readLines(ctlfile))),dir)
-  msffile <- function(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)resolve(scavenge(msfreg,explicitPath(readLines(ctlfile))),dir)
+  extfile <- function(ctlfile,dir,extreg,...)resolve(extractPath(scavenge(extreg,explicitPath(readLines(ctlfile)))),dir)  
+  tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)extfile(ctlfile,dir,extreg=tabreg,...)
+  parfile <- function(ctlfile,dir,parreg='par\\.tab',...)extfile(ctlfile,dir,extreg=parreg,...)
+  msffile <- function(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)extfile(ctlfile,dir,extreg=msfreg,...)
 	  
 	  
 	  

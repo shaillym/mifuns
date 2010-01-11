@@ -77,7 +77,7 @@ prob <- c(
 	'$PROB  1000 desc',
 	'$PROBLEM  RUN1000 desc',
 	'$PROB  RUN#1000 desc',
-	'$PROB  RUN #1000 desc'
+	'$PROB  RUN# 1000 desc'
 )
 fixProblem(prob,2000)
 msf <- c(

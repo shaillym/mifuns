@@ -50,7 +50,7 @@ function (
   if(!file.exists(ctlfile))message(paste(ctlfile,'was not found'))
   if(!file.exists(ctlfile))return()
   control <- explicitPath(readLines(ctlfile))
-  if (checkrunno) writeLines(control <- fixFile(fixProblem(control,run)))
+  if (checkrunno) writeLines(control <- fixFile(fixProblem(control,run),run))
   script <- NULL
   epimatch <- try(match.fun(epilog),silent=TRUE)
   if(is.function(epimatch))epilog <- epimatch

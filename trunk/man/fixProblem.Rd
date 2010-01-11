@@ -89,7 +89,8 @@ msf <- c(
 	'$EST MAXEVAL=9999 MSF=../1000.msf INTER',#trailing text
 	'$EST MAXEVAL=9999 MSF=../1000/1000.msf',#non-target path elements
 	'$EST MAXEVAL=9999 MSF=1000.msf',#no path
-	'$MSFI 1000.MSF'#non-target file name
+	'$MSFI 1000.MSF',#non-target file name
+	'$INPUT etc'#non-target
 )
 fixFile(msf,2000)
 tab <- c(

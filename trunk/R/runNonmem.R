@@ -188,8 +188,9 @@ function (
         risk <- setdiff(risk,except)
         dir <- dirname(x)
 	base <- basename(x)
-	base[risk] <- sub('^[^.(par)]+',run,base[risk])
-	file.path(dir,base)
+	base <- sub('^[^.(par)]+',run,base)
+	x[risk] <- file.path(dir[risk],base[risk])
+	x
   }
   explicitPath <- function(x){
 	risk <- grep('\\.TAB\\b|\\.MSF\\b',x,ignore.case=TRUE)

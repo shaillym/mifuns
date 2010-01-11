@@ -114,7 +114,7 @@ nm.pl <- function(
 
 compileflag <- function(compiler,mappings=list(ifort=1),...){
 	val <- mappings[[compiler]]
-	if(is.null(val))val<- NA
+	if(is.null(val))val<- 0
 	paste(sep='=','compile',val)
 }
 

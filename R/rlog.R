@@ -12,9 +12,8 @@
   run <- unique(run)
   for(each in run){
       #identify objects
-      rdir <- paste(ProjectDir, '/', each, sep = '')    
-      if(boot)rdir <- paste(ProjectDir, '/', each, '.boot', sep = '')
-      if(is.null(file)) f <- paste(rdir,'NonmemRunLog.csv',sep='/')
+      rdir <- filename(ProjectDir, each, if(boot) '.boot' else '')
+      if(is.null(file)) f <- file.path(rdir,'NonmemRunLog.csv')
       f <- star(f,each)
       #cleanup
       lapply(pattern,purge.files,rdir)

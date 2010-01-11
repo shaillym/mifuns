@@ -8,6 +8,7 @@
 \alias{tabfile}
 \alias{parfile}
 \alias{msffile}
+\alias{extfile}
 \title{Clean Up a Control Stream}
 \description{
    These functions are used to re-write a control stream for 
@@ -20,6 +21,7 @@ explicitPath(x)
 extractPath(x)
 resolve(file,dir)
 scavenge(expr,lines)
+extfile(ctlfile,dir,extreg,...)
 tabfile(ctlfile,dir,tabreg='(?<!par)\\.tab',...)
 parfile(ctlfile,dir,parreg='par\\.tab',...)
 msffile(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)
@@ -33,6 +35,7 @@ msffile(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)
   \item{expr}{a regular expression to locate relevant lines}
   \item{lines}{lines in which to search for expr}
   \item{ctlfile}{path to the control stream}
+  \item{extreg}{a regular expression to locate an arbitrary file}
   \item{tabreg}{a regular expression to locate the .TAB file}
   \item{parreg}{a regular expression to locate the par.TAB file}
   \item{msfreg}{a regular expression to locate the .MSF file}
@@ -62,7 +65,7 @@ resolve() does nothing to absolute filepaths in 'file', but expresses others (th
 beginning with '.') relative to 'dir'.
 
 tabfile(), parfile(), and msffile() calculate corresponding filepaths from their
-arguments.
+arguments, relying on extfile() as the common engine.
 }
 \value{character}
 \references{mifuns.googlecode.com}
@@ -110,6 +113,21 @@ files <- c(
 explicitPath(files)
 extractPath(msf)
 extractPath(tab)
+resolve('./file.ext',dir='project/pk')
+resolve('../file.ext',dir='project/pk/')
+scavenge('.tab',lines=c('text file.TAB','text file.csv'))
+ctlfile <- c('text file=../100.tab etc','text file=../100par.tab etc','text file=../100.msf etc')
+f <- textConnection(ctlfile)
+tabfile(f,dir='projectdir/100')
+close(f)
+
+f <- textConnection(ctlfile)
+parfile(f,dir='projectdir/100')
+close(f)
+
+f <- textConnection(ctlfile)
+msffile(f,dir='projectdir/100')
+close(f)
 }		
 
 \keyword{manip}

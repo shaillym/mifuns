@@ -276,12 +276,11 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	streams = ProjectDir,#where to find control streams
-	ctlfile = filename(streams,run,'.ctl'),
+	outdir  = ProjectDir,
+	rundir  = filename(ProjectDir, run),
+	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
-	rundir  = filename(ProjectDir, run),
-	outdir  = ProjectDir,
 	...
 ){
     #cleanup arguments

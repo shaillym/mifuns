@@ -34,8 +34,6 @@ function (
     if (win())  concurrent <- FALSE
     run <- unique(run)
 	    
-    if (any(!file.exists(filename(ProjectDir, run, ".ctl")))) 
-        stop("One or more control stream(s) missing.")
     for (each in run) {
         args <- list(
 		run = each, 
@@ -43,7 +41,6 @@ function (
 		ProjectDir = ProjectDir, 
 		boot = boot,
 		urgent = urgent,
-		#SGEflgs = SGEflgs, 
 		checkrunno = checkrunno, 
 		diag = diag, 
 		fdata = fdata, 

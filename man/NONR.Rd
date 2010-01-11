@@ -6,8 +6,8 @@
 
 \description{ 
 
-  NONR executes, from R, a NONMEM a run with a compatible control stream (see
-  Nore below). Supported platforms include MS Windows and 
+  NONR executes, from R, a NONMEM run for which there existsw a compatible (see NOTE)
+  control stream. Supported platforms include MS Windows and 
   Unix-like operating systems (Nix).  Special support is included for Sun Grid
   Engine with Nix.  Generally, NONMEM needs to be installed using NMQual
   (http://nmqual.googlecode.com).  Execution on the Nix grid requires
@@ -97,10 +97,15 @@
   }
 
   \item{checkrunno}{Whether to check/correct the control stream to
-  ensure that all uses of the NONMEM control stream number match the
-  number listed in \code{run} vector. Default: TRUE.  For files, e.g.
+  ensure that standard uses of the NONMEM control stream name match the
+  name listed in \code{run} vector. Default: TRUE.  For files, e.g.
   ../3.TAB, path separator  must be that recognized by dirname() and basename().
-  Only one usage per line of text will be fixed.}  
+  Only one usage per line of text will be fixed.
+  
+  'Standard' uses currently include:  the first word after \$PROB(LEM) (not 
+  counting RUN or RUN\#); *.tab (case insensitive); *par.tab (case insensitive);
+  *.msf (case insensitive) except on a line that starts with \$MSFI.  
+  }  
   
   \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE.}
   
@@ -178,7 +183,6 @@
   to splitting is realized on a grid, with \code{grid=TRUE}: runs will be split
   and compile steps will by default be run in their own queue, for efficiency. }
 
-
   \item{\dots}{Additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to pdf(), called by PLOTR().  You can also pass
   additional lattice arguments to modify the diagnostic plots.  
@@ -194,6 +198,22 @@
   paste operations: a vector of corresponding length will be returned.}
   
 }
+\details{
+NONR is currently implemented as a wrapper that calls \code{runNonmem} for each
+of its arguments.  By default, it creates a like-named subdirectory for each
+run in ProjectDir, attaching an appropriate extension if necessary ('.boot' for 
+bootstrap runs, '.lock' for grid runs). It looks for <run>.ctl in ProjectDir,
+cleans it up as necessary, and writes it to the subdirectory, in which context
+NONMEM is invoked (using \code{runCommand}).  The output of NONMEM will be 
+<run>.lst in the subdirectory.  Files matching patterns in \code{runNonmem:remove} will
+be removed.  A '*.lock' directory, if any, will be converted to '*'.  Attempts 
+will be made to run PLOTR and epilog.  Then a 'complete' message is printed.
+
+File names and locations can be manipulated somewhat, i.e., by over-riding
+\code{runNonmem}'s defaults for outdir, runext, rundir, outfile, streams, 
+ctlfile, and remove.
+}
+
 \value{Used for side effects.}
 \note{ 
   Specific control stream syntax is expected
@@ -245,6 +265,6 @@
    website (\code{http://metruminstitute.org/}). }
  \author{ Developed by
  Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
- \seealso{\code{\link{compute.cwres}} } 
+ \seealso{\code{\link{runNonmem}};\code{\link{PLOTR}} } 
  \keyword{ manip }
 

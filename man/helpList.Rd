@@ -132,6 +132,7 @@ Functions defined by MIfuns
 \item \link{enth} alias for ordinal
 \item \link{episcript} run a script in an environment that defines the the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
+\item \link{extfile} extract arbitrary file specification from a control stream
 \item \link{extractPath} isolate file path from surrounding text (MSF, TAB files).
 \item \link{f} alias for as.flag
 \item \link{falseAmt} generic
@@ -180,6 +181,7 @@ Functions defined by MIfuns
 \item \link{minus.moot} drop moot rows
 \item \link{moot} generic
 \item \link{moot.nm} identify moot rows (rows not influencing NONMEM estimates)
+\item \link{msffile} extract msffile specification from a control stream
 \item \link{myriwish} support \code{\link{SimulateOmega}} (internal)
 \item \link{naInContext} display rows of data with missing values, as well as other rows with the same key
 \item \link{naKeys} detect rows for which one or more key fields is NA
@@ -198,6 +200,7 @@ Functions defined by MIfuns
 \item \link{panel.cuts} for each strip, plot percent observations in each vertical category defined by cuts
 \item \link{panel.densitystrip} for each strip, plot a filled polygon representing smoothed density of the distribution
 \item \link{panel.ref} plot a reference region in a stripplot
+\item \link{parfile} extract parfile specification from a control stream
 \item \link{plot.nm} generate standard plots for an nm object using \code{\link{nmPlots}}
 \item \link{plus.keyed} produce and outer join of keyed data frames
 \item \link{plus.rigged} merge an nm object with a rigged data frame
@@ -246,6 +249,7 @@ Functions defined by MIfuns
 \item \link{summary.keyed} summarize a keyed data frame
 \item \link{summary.nm} summarize an nm object
 \item \link{synthesis} sequentially left-join an arbitrary number of data frames, picking up novel columns (internal)
+\item \link{tabfile} extract tabfile specification from a control stream
 \item \link{text2decimal} convert mixed text to decimal
 \item \link{tmax} calculate the time of the maximum concentration
 \item \link{transform.keyed} transform a keyed data frame, preserving class

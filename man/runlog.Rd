@@ -13,7 +13,7 @@ runlog(
 	outfile, 
 	estfile = file.path(dirname(outfile), 
 	paste(run, "ext", sep = ".")), 
-	filename = "NonmemRunLog.csv", 
+	runlogName = "NonmemRunLog.csv", 
 	...
 )
 }
@@ -21,7 +21,7 @@ runlog(
   \item{run}{name of the NONMEM run, typically integer}
   \item{outfile}{path for the NONMEM output file, typically 'run.lst'}
   \item{estfile}{path for the NONMEM estimates, by default 'run.ext'}
-  \item{filename}{path and name for file to create}
+  \item{runlogName}{path and name for file to create}
   \item{\dots}{ignored}
 }
 \details{

@@ -70,7 +70,7 @@ arguments, relying on extfile() as the common engine.
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runNonmem}},\code{\link{dataSynthesis}} }
+\seealso{ \code{\link{runNonmem}}, \code{\link{dataSynthesis}} }
 \examples{
 prob <- c(
 	'$PROBLEM  1000 desc',
@@ -101,6 +101,7 @@ tab <- c(
 	'ONEHEADER NOPRINT file=../1000par.tab',
 	'ONEHEADER NOPRINT file= 1000par.tab',
 	'ONEHEADER NOPRINT FILE=../1000.TAB'
+	'ONEHEADER NOPRINT FILE=~/1000.TAB'
 )
 fixFile(tab,2000)
 files <- c(

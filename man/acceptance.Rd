@@ -18,7 +18,7 @@ acceptance()
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{accept}},
+\code{\link{accept}}, 
 \code{\link{packageCheck}}}
 \examples{
 ## The function is currently defined as

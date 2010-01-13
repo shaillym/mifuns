@@ -16,6 +16,6 @@ getCwres(directory)
 \value{numeric}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{PLOTR}},\code{\link{NONR}} }
+\seealso{ \code{\link{PLOTR}}, \code{\link{NONR}} }
 \keyword{manip}
 

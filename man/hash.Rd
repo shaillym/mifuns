@@ -26,7 +26,7 @@ used for side effects
   this situation, recover by typing \code{sink(NULL)} until output is restored.
 }
 \seealso{
-\code{\link{file}},
+\code{\link{file}}, 
 \code{\link{sink}}}
 \examples{
 function(x,char='#'){

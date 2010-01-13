@@ -16,6 +16,6 @@ setCwres(cwres, file)
 \value{Used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{PLOTR}} }
+\seealso{\code{\link{PLOTR}}}
 \keyword{manip}
 

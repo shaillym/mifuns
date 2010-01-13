@@ -126,7 +126,7 @@ panel.covplot(
 }
 \references{ http://metruminstitute.org; http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{  \code{\link{densityplot}},\code{\link{bin}}}
+\seealso{ \code{\link{densityplot}}, \code{\link{bin}}}
 \examples{
 #a bootstrap of a pharmacokinetic model
 set.seed(0)

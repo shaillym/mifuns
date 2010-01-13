@@ -45,8 +45,10 @@ rlog(1:2,ProjectDir='../out',out='../out/runlog.csv',append=FALSE)
 
 #nix grid
 nonr(1,grid=TRUE)
-bootdir <- paste(getwd(),'*.boot',sep='/')
-rundir  <- paste(getwd(),'*',sep='/')
+nonr(1,grid=TRUE,execute=FALSE)
+nonr(1,grid=TRUE,compile=FALSE)
+bootdir <- paste(getwd(),'../out/*.boot',sep='/')
+rundir  <- paste(getwd(),'../out/*',sep='/')
 nms <- 1001:1005
 nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE,outdir=rundir )#conventional
 nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE ,outdir=rundir )#unnecessary chaining
@@ -57,9 +59,8 @@ nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE ,outdir=bootdir)#chained boots, n
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE,outdir=bootdir)#concurrent non-grid boots (chatter)
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,outdir=bootdir)#conventional boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,urgent=TRUE   )#urgent boots
-rlog(nms,boot=TRUE,append=FALSE,out='bootlog.csv')
+rlog(nms,ProjectDir='../out',boot=TRUE,append=FALSE,out='../out/bootlog.csv')
 
 #windows
 nonr(1)
 nonr(1,invisible=TRUE)
-

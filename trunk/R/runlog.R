@@ -10,9 +10,10 @@ function(
 			sep='.'
 		)
 	),
-	filename='NonmemRunLog.csv',
+	runlogName=file.path(dirname(outfile),'NonmemRunLog.csv'),
 	...
 ){
+	runlogName <- star(runlogName,run)
 	out <- readLines(outfile)
 	prob <- grep(pattern='^\\$PROB',out,value=TRUE)[[1]]
 	min <- 0**length(grep('MINIMIZATION SUCCESSFUL',out))
@@ -27,6 +28,7 @@ function(
 	tree <- xmlParse(est,asText=TRUE)
 	par <- xpathSApply(tree,"//ITERATION[@key='-1000000000']/text()",fun=xmlValue)
 	se  <- xpathSApply(tree,"//ITERATION[@key='-1000000001']/text()",fun=xmlValue)
+	if(is.null(se))se <- rep(Inf,length(par))
 	prse <- signif(digits=3, 100 * as.numeric(se)/as.numeric(par))
 	free(tree)
 	write.table(
@@ -34,7 +36,7 @@ function(
 		quote=FALSE,
 		row.names=FALSE,
 		col.names=FALSE,
-		file=filename,
+		file=runlogName,
 		x=do.call(
 			data.frame,
 			c(

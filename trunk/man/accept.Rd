@@ -52,7 +52,7 @@ accept(
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{packageCheck}},
+\code{\link{packageCheck}}, 
 \code{\link{acceptance}}}
 \keyword{ manip }
 

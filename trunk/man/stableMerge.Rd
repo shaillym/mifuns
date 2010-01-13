@@ -28,7 +28,7 @@ stableMerge(x, y)
 }
 \author{Tim Bergsma}
 
-\seealso{  \code{\link{merge}}  }
+\seealso{\code{\link{merge}}}
 \examples{
 #a nonsense example
 stableMerge(Theoph,BOD)

@@ -46,6 +46,6 @@ dataFormat(
 \value{data.frame}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{dataSynthesis}},\code{\link{synthesis}} }
+\seealso{ \code{\link{dataSynthesis}}, \code{\link{synthesis}} }
 \keyword{manip}
 

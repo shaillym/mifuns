@@ -73,7 +73,7 @@
 	http://metruminstitute.org}
 \author{Tim Bergsma}
 
-\seealso{\code{\link{metaSub.character}},\code{\link{sample}}}
+\seealso{\code{\link{metaSub.character}}, \code{\link{sample}}}
 \examples{
 b <- resample(Theoph,key="Subject",names=1:3)
 d <- resample(

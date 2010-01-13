@@ -23,8 +23,8 @@ packageCheck(x,lib.loc=NULL)
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{accept}},
-\code{\link{acceptance}}
+\code{\link{accept}}, 
+\code{\link{acceptance}}, 
 \code{\link{library}}}
 \examples{
 function(x,lib.loc=NULL){

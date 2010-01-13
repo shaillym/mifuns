@@ -85,6 +85,6 @@ runNonmem(
 \value{Used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{NONR}},\code{\link{NONR}},runCommand }
+\seealso{\code{\link{NONR}}, \code{\link{NONR}},\code{\link{runCommand}}}
 \keyword{manip}
 

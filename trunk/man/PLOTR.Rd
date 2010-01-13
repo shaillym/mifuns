@@ -31,7 +31,7 @@
 
 \arguments{
   \item{run}{A control stream name, typically integer.}
-  \item{ProjectDir}{The directory containing the NONMEM control (*.ctl) streams.}
+  \item{ProjectDir}{The directory containing run subdirectories.}
   \item{dvname}{Name of the dependent
   variable to use as a label for the diagnostic plots. Default: DV.}
   \item{logtrans}{Whether to transform the NONMEM output variables DV,
@@ -116,13 +116,11 @@
 \references{http://metruminstitute.org; mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{ 
-\itemize{
-item \code{\link{NONR}}
-item \code{\link{dataSynthesis}}
-item \code{\link{diagnosticPlots}}
-item \code{\link{covariatePlots}}
-item \code{\link{cwresPlots}}
-}
+\code{\link{NONR}}, 
+\code{\link{dataSynthesis}}, 
+\code{\link{diagnosticPlots}}, 
+\code{\link{covariatePlots}}, 
+\code{\link{cwresPlots}}
 }
 
 

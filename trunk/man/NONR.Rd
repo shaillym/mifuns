@@ -265,6 +265,6 @@ ctlfile, and remove.
    website (\code{http://metruminstitute.org/}). }
  \author{ Developed by
  Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
- \seealso{\code{\link{runNonmem}};\code{\link{PLOTR}} } 
+ \seealso{\code{\link{runNonmem}}, \code{\link{PLOTR}} } 
  \keyword{ manip }
 

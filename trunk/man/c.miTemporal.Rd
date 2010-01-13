@@ -65,8 +65,8 @@ s}
 \references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
 \seealso{ 
-	\code{\link{miTemporal}},
-	\code{\link{seq.default}},
+	\code{\link{miTemporal}}, 
+	\code{\link{seq.default}}, 
 	\code{\link{strftime}},
 }
 \examples{

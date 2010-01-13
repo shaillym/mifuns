@@ -284,6 +284,7 @@ dataSynthesis <- function(
 	...
 ){
     #cleanup arguments
+    force(datfile)
     tabfile <- tabfile(ctlfile,dir=rundir,...)
     parfile <- parfile(ctlfile,dir=rundir,...)
     if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))

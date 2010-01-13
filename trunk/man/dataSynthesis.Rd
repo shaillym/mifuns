@@ -83,6 +83,6 @@
 \value{data.frame}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{diagnosticPlots}},\code{\link{dataFormat}}}
+\seealso{ \code{\link{diagnosticPlots}}, \code{\link{dataFormat}}}
 \keyword{manip}
 

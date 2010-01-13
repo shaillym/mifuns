@@ -100,6 +100,6 @@ and 'bootstrap.q' otherwise.
 \value{Used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runNonmem}} }
+\seealso{\code{\link{runNonmem}}}
 \keyword{manip}
 

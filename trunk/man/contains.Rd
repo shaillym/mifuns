@@ -18,8 +18,7 @@ contains(pattern, text, ...)
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{
-\code{\link{regexpr}}}
+\seealso{\code{\link{regexpr}}}
 \examples{
 function(pattern,text,...){
 	hits <- regexpr(pattern,text,...)

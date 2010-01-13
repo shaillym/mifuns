@@ -57,8 +57,7 @@
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{ 
-\code{\link{match}} 
+\seealso{\code{\link{match}} 
 }
 \examples{
 test <- data.frame(

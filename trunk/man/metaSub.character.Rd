@@ -92,7 +92,7 @@
 	http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-	\code{\link{gsub}},
+	\code{\link{gsub}}, 
 	\code{\link{regex}}
 }
 \examples{

@@ -24,12 +24,8 @@ naInContext(x, context, search)
   with matching keys.
 }
 
-\value{
-  A data.frame.
-}
+\value{data.frame}
 \author{ Tim Bergsma}
-
-\seealso{  \code{\link{help}},  }
 \examples{
 test <- Theoph
 test$conc[[5]] <- NA

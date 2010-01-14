@@ -2,7 +2,7 @@ library(MIfuns)
 getwd()#...MIfuns/inst/test/nm6/script
 nonr <- function(
         run,
-        command='/common/NONMEM/nm7_osx2/test/nm7_osx2.pl',
+        command='/common/NONMEM/nm7/test/nm7.pl',
 	dvname='Response',
 	grp='SEX',
 	grpnames=c('female','male'),

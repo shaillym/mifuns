@@ -3,7 +3,7 @@ getwd()#...MIfuns/inst/test/nm6/script
 source('../../../example/epilog.R')
 nonr <- function(
         run,
-        command='/common/NONMEM/nm6osx6/test/nm6osx6.pl',
+        command='/common/NONMEM/nm6/test/nm6.pl',
 	dvname='Response',
 	grp='SEX',
 	grpnames=c('female','male'),
@@ -15,6 +15,7 @@ nonr <- function(
         ProjectDir='../out',
         outdir='../out/*',
         streams='../ctl',
+        ep=epilog,
         ...
 )NONR(
        run=run,
@@ -26,7 +27,7 @@ nonr <- function(
        cat.cov=cat.cov,
        par.list=par.list,
        eta.list=eta.list,
-       epilog=epilog,
+       epilog=ep,
        nice=nice,
        ProjectDir=ProjectDir,
        outdir=outdir,

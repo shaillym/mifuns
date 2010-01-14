@@ -13,7 +13,7 @@ runlog(
 	outfile, 
 	estfile = file.path(dirname(outfile), 
 	paste(run, "ext", sep = ".")), 
-	runlogName = "NonmemRunLog.csv", 
+	runlogName=file.path(dirname(outfile),'NonmemRunLog.csv'),
 	...
 )
 }

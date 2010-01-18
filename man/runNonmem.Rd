@@ -34,7 +34,7 @@ runNonmem(
 	compile,
 	execute,
 	split,
-	plotFileName=plotFileName(run,ProjectDir,grp),
+	plotFileName=plotfilename(run,ProjectDir,grp),
 	runext = if(boot) '.boot' else if(grid) '.lock' else '',
 	rundir = filename(ProjectDir,run,runext),
 	outfile = filename(rundir,run,'.lst'),

@@ -1,12 +1,12 @@
-\name{plotFileName}
-\alias{plotFileName}
+\name{plotfilename}
+\alias{plotfilename}
 
 \title{Make a Name for a Diagnostic Plot File}
 \description{
  Make a name for a diagnostic plot file, given supplied arguments.
 }
 \usage{
-plotFileName(
+plotfilename(
 	run,
 	dir=getwd(),
 	grp=NULL,

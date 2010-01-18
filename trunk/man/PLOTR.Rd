@@ -22,7 +22,7 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	plotFileName=plotFileName(run,ProjectDir,grp),
+	plotFileName=plotfilename(run,ProjectDir,grp),
 	rundir=filename(ProjectDir,run),
 	...
 )

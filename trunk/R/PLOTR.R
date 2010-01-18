@@ -11,7 +11,7 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	plotFileName=plotFileName(run,ProjectDir,grp),
+	plotFileName=plotfilename(run,ProjectDir,grp),
 	rundir=filename(ProjectDir,run),
 	...
 ){
@@ -297,7 +297,7 @@ dataSynthesis <- function(
 }
 
 star <- function(x,y)gsub('*', y, x, fixed=TRUE)
-plotFileName=function(
+plotfilename=function(
 	run,
 	dir=getwd(),
 	grp=NULL,

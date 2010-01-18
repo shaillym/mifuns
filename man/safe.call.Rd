@@ -15,6 +15,10 @@ safe.call(what, ...)
 \value{the result of the called function}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{\code{\link{PLOTR}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{PLOTR}}}
+	}
+}
 \keyword{manip}
 

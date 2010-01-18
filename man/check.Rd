@@ -51,6 +51,5 @@ prev(c(1,2,NA,3,3,NA,4))
 runhead(c(1,2,NA,3,3,NA,4))
 sorted(Theoph,on="Subject")#FALSE: note ordered factor.
 }
-
 \keyword{manip}
 

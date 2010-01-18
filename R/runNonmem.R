@@ -23,24 +23,22 @@ function (
 	grid,
 	nice,
 	udef,
-	file,
+	plotFileName,
 	compile,
 	execute,
 	split,
-	outdir = ProjectDir,
 	runext = if(boot) '.boot' else if(grid) '.lock' else '',
 	rundir = filename(ProjectDir,run,runext),
 	outfile = filename(rundir,run,'.lst'),
 	streams = ProjectDir,
 	ctlfile = filename(streams,run,'.ctl'),
-	remove  = c('^F[ISRC]','^OU','^nonmem.exe',if(fdata)c('^FD','^PR')),
+	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
 	...
 ){
   #Define some functions.
   final <- function(x)sub('\\.lock','',x)
   
   #Groom arguments.
-  outdir <- star(outdir,run)
   rundir <- star(rundir,run)
   ctlfile <- star(ctlfile,run)
   outfile <- star(outfile,run)
@@ -61,7 +59,7 @@ function (
   
   #Prepare the file environment.
   if(compile){
-  	  if(!is.null(file))if(file.exists(file))file.remove(file)
+  	  if(!is.null(plotFileName))if(file.exists(plotFileName))file.remove(plotFileName)
 	  if(file.exists(outfile))file.remove(outfile)
 	  if(file.exists(tabfile))file.remove(tabfile)
 	  if(file.exists(parfile))file.remove(parfile)
@@ -120,11 +118,10 @@ function (
 			par.list,
 			eta.list,
 			missing,
-			file=file,
+			plotFileName=plotFileName,
 			ctlfile=ctlfile,
 			outfile=final(outfile),
 			rundir=final(rundir),
-			outdir=outdir,
 			...
 		)
 	  )
@@ -144,7 +141,6 @@ function (
 			ctlfile=ctlfile,
 			outfile=final(outfile),
 			rundir=final(rundir),
-			outdir=outdir,
 			...,
 			script=script
 		)

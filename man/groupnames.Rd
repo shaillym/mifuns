@@ -19,6 +19,10 @@ groupnames(data, grp, grpnames = NULL, run)
 \value{factor}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{PLOTR}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{PLOTR}}}
+	}
+}
 \keyword{manip}
 

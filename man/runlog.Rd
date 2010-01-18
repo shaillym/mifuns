@@ -39,6 +39,10 @@ For automated log generation, call NONR with \code{epilog=runlog}.
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{read.param}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{read.param}}}
+	}
+}
 \keyword{ manip }
 

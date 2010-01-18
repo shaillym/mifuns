@@ -52,7 +52,10 @@ accept(
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{packageCheck}}, 
-\code{\link{acceptance}}}
+	\itemize{
+		\item{}{\code{\link{packageCheck}}}
+		\item{}{\code{\link{acceptance}}}
+	}
+}
 \keyword{ manip }
 

@@ -104,7 +104,11 @@ Most functions and methods documented here return objects with class
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{Ops.keyed}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{Ops.keyed}}}
+	}
+}
 \examples{
 a <- sort(as.keyed(Theoph,key=c('Subject','Time')))
 summary(a)

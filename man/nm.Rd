@@ -80,8 +80,11 @@ Note, for example, that \code{-.moot()} only makes sense if the left operand alr
 resolves to class \code{nm}, since currently \code{moot.nm()} is the only method defined for
 generic \code{moot()}.
 }
-
-\seealso{\code{\link{Ops.keyed}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{Ops.keyed}}}
+	}
+}
 \examples{
 dose <- data.frame( 
 	SUBJ = rep(letters[1:3], each = 2), 

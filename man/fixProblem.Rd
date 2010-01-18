@@ -70,7 +70,12 @@ arguments, relying on extfile() as the common engine.
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runNonmem}}, \code{\link{dataSynthesis}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runNonmem}}}
+		\item{}{\code{\link{dataSynthesis}}}
+	}
+}
 \examples{
 prob <- c(
 	'$PROBLEM  1000 desc',
@@ -132,6 +137,5 @@ f <- textConnection(ctlfile)
 msffile(f,dir='projectdir/100')
 close(f)
 }		
-
 \keyword{manip}
 

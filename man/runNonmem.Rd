@@ -31,17 +31,16 @@ runNonmem(
 	grid,
 	nice,
 	udef,
-	file,
+	plotFileName,
 	compile,
 	execute,
 	split,
-	outdir = ProjectDir,
 	runext = if(boot) '.boot' else if(grid) '.lock' else '',
 	rundir = filename(ProjectDir,run,runext),
 	outfile = filename(rundir,run,'.lst'),
 	streams = ProjectDir,
 	ctlfile = filename(streams,run,'.ctl'),
-	remove  = c('^F[ISRC]','^OU','^nonmem.exe',if(fdata)c('^FD','^PR')),
+	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
 	...
 )
 }
@@ -69,11 +68,10 @@ runNonmem(
   \item{grid}{see NONR}
   \item{nice}{see NONR}
   \item{udef}{see NONR}
-  \item{file}{see NONR}
+  \item{plotFileName}{see NONR}
   \item{compile}{see NONR}
   \item{execute}{see NONR}
   \item{split}{see NONR}
-  \item{outdir}{see dataSynthesis}
   \item{runext}{an extension for the run directory}
   \item{rundir}{the directory in which run will occur}
   \item{outfile}{see dataSynthesis}
@@ -85,6 +83,11 @@ runNonmem(
 \value{Used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{\code{\link{NONR}}, \code{\link{NONR}},\code{\link{runCommand}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{NONR}}}
+		\item{}{\code{\link{runCommand}}}
+	}
+}
 \keyword{manip}
 

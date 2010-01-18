@@ -23,7 +23,11 @@
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{read.table}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{read.table}}}
+	}
+}
 \examples{
 as.data.frame.block(
 	c(

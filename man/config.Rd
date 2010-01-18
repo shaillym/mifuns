@@ -15,7 +15,11 @@ config(dir, ...)
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{help}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runNonmem}}}
+	}
+}
 \examples{
 config('/common/nonmem/nm6')
 }

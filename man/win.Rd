@@ -11,11 +11,13 @@ win()
 \value{logical}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{\code{\link{NONR}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{NONR}}}
+	}
+}
 \examples{
 win()
 }
-
-
 \keyword{manip}
 

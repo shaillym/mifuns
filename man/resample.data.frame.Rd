@@ -72,8 +72,12 @@
 \references{This package developed under the auspices of Metrum Institute,
 	http://metruminstitute.org}
 \author{Tim Bergsma}
-
-\seealso{\code{\link{metaSub.character}}, \code{\link{sample}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{metaSub.character}}}
+		\item{}{\code{\link{sample}}}
+	}
+}
 \examples{
 b <- resample(Theoph,key="Subject",names=1:3)
 d <- resample(

@@ -1,11 +1,7 @@
 \name{NONR}
 \alias{NONR}
-
-
 \title{Run NONMEM}
-
 \description{ 
-
   NONR executes, from R, a NONMEM run for which there existsw a compatible (see NOTE)
   control stream. Supported platforms include MS Windows and 
   Unix-like operating systems (Nix).  Special support is included for Sun Grid
@@ -14,9 +10,7 @@
   the installation of Sun Grid Engine v6.  Following a successful NONMEM
   run NONR can call PLOTR to create diagnostic plots (pdf format) and/or
   run a user-written script.
-  
   }
-
 \usage{
   NONR(
 	run, 
@@ -43,7 +37,7 @@
 	grid = boot, 
 	nice = FALSE, 
 	udef = FALSE, 
-	file = NULL,
+	plotFileName=filename(ProjectDir,paste('DiagnosticPlotReview',paste(grp,collapse=''),'_',run),'.pdf'),
 	compile = TRUE,
 	execute = TRUE,
 	split = grid & compile & execute,
@@ -163,10 +157,10 @@
   \code{command} is simply wrapped in a system call rather than pre-converted to a 
   (possibly grid-ready) NMQual commandline. Default: FALSE} 
   
-  \item{file}{File name for diagnostic plots, if any.  Default combines
+  \item{plotFileName}{File name for diagnostic plots, if any.  Default combines
   DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
   an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
-  Supplying \code{outdir} modifies the default file name.}
+  Any asterisk will be replaced with the run name.}
 
   \item{compile}{whether to compile NONMEM (i.e., make nonmem.exe).  Set to FALSE
   if you already did this in a previous step and merely want to execute.}
@@ -210,7 +204,7 @@ be removed.  A '*.lock' directory, if any, will be converted to '*'.  Attempts
 will be made to run PLOTR and epilog.  Then a 'complete' message is printed.
 
 File names and locations can be manipulated somewhat, i.e., by over-riding
-\code{runNonmem}'s defaults for outdir, runext, rundir, outfile, streams, 
+\code{runNonmem}'s defaults for runext, rundir, outfile, streams, 
 ctlfile, and remove.
 }
 
@@ -265,6 +259,11 @@ ctlfile, and remove.
    website (\code{http://metruminstitute.org/}). }
  \author{ Developed by
  Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
- \seealso{\code{\link{runNonmem}}, \code{\link{PLOTR}} } 
- \keyword{ manip }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runNonmem}}}
+		\item{}{\code{\link{PLOTR}}}
+	}
+}
+\keyword{ manip }
 

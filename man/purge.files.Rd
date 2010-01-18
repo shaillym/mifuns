@@ -16,23 +16,10 @@ purge.files(pattern, dir = ".")
 \value{used for side effects.}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-
-\seealso{ \code{\link{help}} }
-\examples{
-
-
-
-
-
-function(pattern,dir='.'){
-  	if(file_test('-d',dir)){
-  		files <- dir(dir)
-  		files <- grep(pattern,files,value=TRUE,ignore.case=TRUE)
-  		if(length(files))file.remove(paste(dir,files,sep='/'))
-  	}
-  }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{purge.dir}}}
+	}
 }
-
-
 \keyword{manip}
 

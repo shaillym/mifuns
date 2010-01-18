@@ -95,7 +95,11 @@ as.miDateTime(x, ...)
 }
 \references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{c.miTemporal}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{c.miTemporal}}}
+	}
+}
 \examples{
 #numeric to temporal
 as.miTime(0)

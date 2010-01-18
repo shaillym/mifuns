@@ -15,8 +15,11 @@
 Extra arguments can be passed to \code{plot.nm()} to exert fine control on the end results.
 }
 \seealso{
-\code{\link{plot.nm}}
+	\itemize{
+		\item{}{\code{\link{plot.nm}}}
+	}
 }
+
 \examples{
 data(nmPlots)
 }

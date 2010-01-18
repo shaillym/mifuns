@@ -10,5 +10,9 @@ sqrtm(x)
 \arguments{
   \item{x}{ a matrix. }
 }
-\seealso{\code{\link{compute.cwres}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{compute.cwres}}}
+	}
+}
 \keyword{ manip }

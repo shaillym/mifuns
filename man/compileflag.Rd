@@ -19,6 +19,9 @@ compileflag(compiler, mappings = list(ifort = 1), ...)
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runCommand}} }
-\keyword{manip}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runCommand}}}
+	}
+}\keyword{manip}
 

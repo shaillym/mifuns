@@ -27,8 +27,11 @@ stableMerge(x, y)
   A dataframe with as many rows as nrow(x) but possibly more columns.
 }
 \author{Tim Bergsma}
-
-\seealso{\code{\link{merge}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{merge}}}
+	}
+}
 \examples{
 #a nonsense example
 stableMerge(Theoph,BOD)

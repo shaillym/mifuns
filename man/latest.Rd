@@ -17,7 +17,11 @@ latest(x)
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{variants}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{variants}}}
+	}
+}
 \examples{
 latest(
 	c(

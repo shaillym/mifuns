@@ -37,8 +37,11 @@ nm.pl(
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-
-\seealso{ \code{\link{help}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runCommand}}}
+	}
+}
 \examples{
 nm.pl('/common/nonmem/nm6/','1.ctl')
 nm.pl('/common/nonmem/nm6','1.ctl','1.out',search=FALSE,checksum=FALSE)
@@ -46,7 +49,5 @@ nm.pl('/nm6','1.ctl',execute=FALSE)
 nm.pl('/nm6','1.ctl',compile=FALSE)
 nm.pl('/nm6','1.ctl',split=TRUE)
 }
-
-
 \keyword{manip}
 

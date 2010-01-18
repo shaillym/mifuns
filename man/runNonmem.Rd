@@ -71,6 +71,7 @@ runNonmem(
   \item{compile}{see NONR}
   \item{execute}{see NONR}
   \item{split}{see NONR}
+  \item{plotFileName}{see PLOTR}
   \item{runext}{an extension for the run directory}
   \item{rundir}{the directory in which run will occur}
   \item{outfile}{see dataSynthesis}

@@ -38,6 +38,10 @@ even assigning the same column as both categorical and continuous.
 \value{Returns a list of \code{trellis} objects, which are plotted by default.}
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{nmPlots}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{nmPlots}}}
+	}
+}
 \keyword{manip}
 

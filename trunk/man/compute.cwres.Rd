@@ -440,5 +440,9 @@ C     open files here, if necessary
   Abstr 1001 [\url{http://www.page-meeting.org/?abstract=1001}].
 }
 \author{Andrew Hooker}
-\seealso{\code{\link{compute.cwres}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{compute.cwres}}}
+	}
+}
 \keyword{ manip }

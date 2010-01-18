@@ -17,8 +17,11 @@ filename(dir, run = NULL, ext = NULL)
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-
-\seealso{ \code{\link{dataSynthesis}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{dataSynthesis}}}
+	}
+}
 \examples{
 filename('dir','3','.ctl')
 }

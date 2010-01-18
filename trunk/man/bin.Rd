@@ -33,7 +33,13 @@ of the population.
 A table with bin limits encoded as column names.
 }
 \author{Tim Bergsma}
-\seealso{\code{\link{quantile}}, \code{\link{table}}, \code{\link{cut}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{quantile}}}
+		\item{}{\code{\link{table}}}
+		\item{}{\code{\link{cut}}}
+	}
+}
 \examples{
 bin(1:100)
 bin(1:50,population=1:100)

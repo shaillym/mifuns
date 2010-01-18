@@ -16,8 +16,10 @@ backtrans(x, cols)
 \value{data.frame}
 \references{mifuns.google.code.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{PLOTR}} }
-
-
+\seealso{
+	\itemize{
+		\item{}{\code{\link{PLOTR}}}
+	}
+}
 \keyword{manip}
 

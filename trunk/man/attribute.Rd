@@ -17,7 +17,11 @@ character
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{bracket}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{bracket}}}
+	}
+}
 \examples{
 attribute(letters,'letter')
 }

@@ -26,6 +26,10 @@ variants(x, path)
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{latest}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{latest}}}
+	}
+}
 \keyword{ manip }
 

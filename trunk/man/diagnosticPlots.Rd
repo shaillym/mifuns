@@ -52,10 +52,10 @@ a list of trellis objects
 \references{http://metruminstitute.org; mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{PLOTR}}, 
-\code{\link{dataSynthesis}}
+	\itemize{
+		\item{}{\code{\link{PLOTR}}}
+		\item{}{\code{\link{dataSynthesis}}}
+	}
 }
-
-
 \keyword{manip}
 

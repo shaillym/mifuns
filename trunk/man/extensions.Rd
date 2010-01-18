@@ -97,6 +97,11 @@ timecourse (i.e., "rigging"). \code{as.rigged()} returns a list of class \code{r
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{as.nm}}, \code{\link{Ops.keyed}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{as.nm}}}
+		\item{}{\code{\link{Ops.keyed}}}
+	}
+}
 \keyword{manip}
 

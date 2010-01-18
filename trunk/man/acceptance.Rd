@@ -17,9 +17,6 @@ acceptance()
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{
-\code{\link{accept}}, 
-\code{\link{packageCheck}}}
 \examples{
 ## The function is currently defined as
 function(){
@@ -31,6 +28,12 @@ function(){
 	if(file.exists(filepath))return(as.XMLNode.XMLDocument(filepath,asText=FALSE))
 	return(NULL)
   }
+}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{accept}}}
+		\item{}{\code{\link{packageCheck}}}
+	}
 }
 \keyword{ manip}
 

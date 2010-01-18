@@ -67,12 +67,14 @@ Proxy methods have been defined on these operators for class \code{keyed}.  User
 can implement differing assembly operations by creating additional classes
 and defining proxy methods for them.  \code{plus.rigged()} and \code{minus.moot()} are 
 examples.  See examples for \code{as.nm()}.
-
-
 }
 \value{keyed data.frame}
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{as.nm}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{as.nm}}}
+	}
+}
 \keyword{manip}
 

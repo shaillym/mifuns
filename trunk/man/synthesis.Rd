@@ -23,6 +23,10 @@ synthesis(x, key = character(0), frames, ...)
 \value{data.frame}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{dataSynthesis}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{dataSynthesis}}}
+	}
+}
 \keyword{manip}
 

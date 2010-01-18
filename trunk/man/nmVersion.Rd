@@ -17,7 +17,11 @@ nmVersion(config, ...)
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runNonmem}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runNonmem}}}
+	}
+}
 \examples{
 #nmVersion('../NONMEM/nm6osx1/test/config.xml'))
 }

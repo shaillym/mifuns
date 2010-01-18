@@ -32,11 +32,7 @@ f(x, ...)
 \method{format}{flag}(x, ...)
 \method{print}{flag}(x, ...)
 \method{rep}{flag}(x, ...)
-
-
 }
-
-
 \arguments{
   \item{x}{the flag object, or something coercible to integer}
   \item{\dots}{extra arguments, ususally ignored}

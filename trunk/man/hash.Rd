@@ -26,8 +26,11 @@ used for side effects
   this situation, recover by typing \code{sink(NULL)} until output is restored.
 }
 \seealso{
-\code{\link{file}}, 
-\code{\link{sink}}}
+	\itemize{
+		\item{}{\code{\link{file}}}
+		\item{}{\code{\link{sink}}}
+	}
+}
 \examples{
 function(x,char='#'){
 	con <- file()

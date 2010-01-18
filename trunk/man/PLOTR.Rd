@@ -22,9 +22,8 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	file=NULL,
+	plotFileName=filename(ProjectDir,paste('DiagnosticPlotReview',paste(grp,collapse=''),'_',run),'.pdf'),
 	rundir=filename(ProjectDir,run),
-	outdir=ProjectDir,
 	...
 )
 }
@@ -79,12 +78,11 @@
   inst/MIfunsExamples/epilog.R in this package.  To see exactly what is available,
   try \code{epilog=function(...)cat(names(list(...)))}.
   }  
-  \item{file}{File name for diagnostic plots, if any.  Default combines
+  \item{plotFileName}{File name for diagnostic plots, if any.  Default combines
   DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
   an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
-  Supplying \code{outdir} modifies the default file name.}
+  Any asterisk will be replaced with the run name.}
   \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).  Passed to dataSynthesis().}
-  \item{outdir}{Path for the NONMEM output directory (ProjectDir).  Passed to dataSynthesis().}
   \item{\dots}{Additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to pdf().  You can also pass
   additional lattice arguments to modify the diagnostic plots. }
@@ -103,11 +101,10 @@
   covariatePlots(), and cwresPlots()). pdf() technically does not accept extra 
   arguments, but any specified argument that it does accept will be passed.  
 
-  File names deserve special consideration.  \code{file} gives
-  the name (or naming strategy) for the diagnostic plots; it is passed to pdf().
-  \code{tabfile}, \code{ctlfile}, \code{outfile}, \code{datfile}, 
-  and \code{parfile} are passed to dataSynthesis().  All have suitable defaults.
-  If alternatives are specified, '*' will be replaced with \code{run}, the run number.  
+  File names deserve special consideration.  \code{plotFileName} gives
+  the name (or naming strategy) for the diagnostic plots; it is passed to pdf()
+  and has a suitable default.  If an alternative is specified, '*' will be 
+  replaced with \code{run}, the run name.  
   For example, the default pdf name is ProjectDir/DiagnosticPlotReview\_*.pdf, 
   but you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
      
@@ -115,14 +112,14 @@
 \value{Used for side effects.}
 \references{http://metruminstitute.org; mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ 
-\code{\link{NONR}}, 
-\code{\link{dataSynthesis}}, 
-\code{\link{diagnosticPlots}}, 
-\code{\link{covariatePlots}}, 
-\code{\link{cwresPlots}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{NONR}}}
+		\item{}{\code{\link{dataSynthesis}}}
+		\item{}{\code{\link{diagnosticPlots}}}
+		\item{}{\code{\link{covariatePlots}}}
+		\item{}{\code{\link{cwresPlots}}}
+	}
 }
-
-
 \keyword{manip}
 

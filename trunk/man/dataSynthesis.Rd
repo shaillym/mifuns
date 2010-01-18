@@ -25,7 +25,6 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	outdir  = ProjectDir,
 	rundir  = filename(ProjectDir, run),
 	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
@@ -75,14 +74,16 @@
   \item{outfile}{Path and filename for the NONMEM output file (*.lst).}
   \item{datfile}{Path and filename for the source dataset, as in DATA record in *.ctl.}
   \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).}
-  \item{outdir}{Path for the NONMEM output directory (ProjectDir). Not related
-  to \code{outfile}.  Controls defaults for where to look for \code{tabfile} and
-  \code{outfile}, as well as where to put \code{file}.}
   \item{\dots}{}
 }
 \value{data.frame}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{diagnosticPlots}}, \code{\link{dataFormat}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{diagnosticPlots}}}
+		\item{}{\code{\link{dataFormat}}}
+	}
+}
 \keyword{manip}
 

@@ -57,8 +57,12 @@
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{match}} 
+\seealso{
+	\itemize{
+		\item{}{\code{\link{match}}}
+	}
 }
+
 \examples{
 test <- data.frame(
 	id=c(1,1,1,1,1,2,2,2,2,2),

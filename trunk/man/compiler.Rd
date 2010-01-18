@@ -19,11 +19,13 @@ compiler(config, pathsep = "/", ...)
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{ \code{\link{runCommand}} }
+\seealso{
+	\itemize{
+		\item{}{\code{\link{runCommand}}}
+	}
+}
 \examples{
 #compiler('../NONMEM/nm6osx1/test/config.xml'))
 }
-
-
 \keyword{manip}
 

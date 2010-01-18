@@ -11,9 +11,8 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	file=NULL,
+	plotFileName=filename(ProjectDir,paste('DiagnosticPlotReview',paste(grp,collapse=''),'_',run),'.pdf'),
 	rundir=filename(ProjectDir,run),
-	outdir=ProjectDir,
 	...
 ){
     
@@ -31,7 +30,6 @@
 	eta.list,
 	missing,
 	rundir=rundir,
-	outdir=outdir,
 	...
     )
     write.csv(synthesis,filename(rundir,ext='_syn.csv'),row.names=FALSE)
@@ -43,9 +41,8 @@
     
     
     #open device
-    if(is.null(file))file <- paste(outdir,'/DiagnosticPlotReview',paste(grp,collapse=''),'_',run,'.pdf',sep = '')
-    file <- star(file,run)
-    safe.call(pdf,file=file,...)
+    plotFileName <- star(plotFileName,run)
+    safe.call(pdf,file=plotFileName,...)
 
     #make plots
     lapply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
@@ -79,7 +76,6 @@
 	    eta.list=eta.list,
 	    missing=missing,
 	    rundir=rundir,
-	    outdir=outdir,
 	    ...,
 	    script=script
 	)
@@ -276,7 +272,6 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	outdir  = ProjectDir,
 	rundir  = filename(ProjectDir, run),
 	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
@@ -302,4 +297,3 @@ dataSynthesis <- function(
 }
 
 star <- function(x,y)gsub('*', y, x, fixed=TRUE)
-

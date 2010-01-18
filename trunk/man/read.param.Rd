@@ -24,7 +24,11 @@ character
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{as.xml}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{as.xml}}}
+	}
+}
 \examples{
 x <- c(
 	'TABLE NO.  1: First Order: Goal Function=MINIMUM VALUE OF OBJECTIVE FUNCTION',

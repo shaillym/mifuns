@@ -95,6 +95,10 @@ Development Solutions).
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{as.nm}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{as.nm}}}
+	}
+}
 \keyword{manip}
 

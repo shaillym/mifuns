@@ -42,7 +42,11 @@ character
 }
 \references{ mifuns.googlecode.com }
 \author{Tim Bergsma}
-\seealso{\code{\link{read.param}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{read.param}}}
+	}
+}
 \examples{
 nest(as.xml(head(Theoph)),tag='frame')
 }

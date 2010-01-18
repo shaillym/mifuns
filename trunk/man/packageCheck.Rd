@@ -23,9 +23,12 @@ packageCheck(x,lib.loc=NULL)
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{accept}}, 
-\code{\link{acceptance}}, 
-\code{\link{library}}}
+	\itemize{
+		\item{}{\code{\link{accept}}}
+		\item{}{\code{\link{acceptance}}}
+		\item{}{\code{\link{library}}}
+	}
+}
 \examples{
 function(x,lib.loc=NULL){
 	if(!is.character(x))stop("x must be character")

@@ -20,7 +20,10 @@ like \code{x}
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
 \seealso{
-\code{\link{transform}}}
+	\itemize{
+		\item{}{\code{\link{transform}}}
+	}
+}
 \examples{
 head(aug(Theoph,study='b'))
 }

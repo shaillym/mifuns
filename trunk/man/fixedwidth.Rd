@@ -24,7 +24,11 @@
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
-\seealso{\code{\link{write.table}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{write.table}}}
+	}
+}
 \examples{
 	head(Theoph)
 }

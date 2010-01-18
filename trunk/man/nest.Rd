@@ -21,7 +21,13 @@ nest(x, tag, ...)
 }
 \references{ mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{\code{\link{bracket}}, \code{\link{as.xml.data.frame}}, \code{\link{read.param}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{bracket}}}
+		\item{}{\code{\link{as.xml.data.frame}}}
+		\item{}{\code{\link{read.param}}}
+	}
+}
 \examples{
 nest('some xml',tag='content')
 }

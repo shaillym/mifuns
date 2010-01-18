@@ -37,8 +37,9 @@ function (
 ){
   #Define some functions.
   final <- function(x)sub('\\.lock','',x)
-  
+ 
   #Groom arguments.
+  force(plotFileName)
   rundir <- star(rundir,run)
   ctlfile <- star(ctlfile,run)
   outfile <- star(outfile,run)

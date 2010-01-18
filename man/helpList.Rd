@@ -202,6 +202,7 @@ Functions defined by MIfuns
 \item \link{panel.ref} plot a reference region in a stripplot
 \item \link{parfile} extract parfile specification from a control stream
 \item \link{plot.nm} generate standard plots for an nm object using \code{\link{nmPlots}}
+\item \link{plotFileName} make a name for a diagnostic plot file
 \item \link{plus.keyed} produce and outer join of keyed data frames
 \item \link{plus.rigged} merge an nm object with a rigged data frame
 \item \link{predoseDv} generic

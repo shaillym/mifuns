@@ -37,7 +37,6 @@
 	grid = boot, 
 	nice = FALSE, 
 	udef = FALSE, 
-	plotFileName=filename(ProjectDir,paste('DiagnosticPlotReview',paste(grp,collapse=''),'_',run),'.pdf'),
 	compile = TRUE,
 	execute = TRUE,
 	split = grid & compile & execute,
@@ -101,8 +100,10 @@
   *.msf (case insensitive) except on a line that starts with \$MSFI.  
   }  
   
-  \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE.}
-  
+  \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE. You can
+  override the default file name by passing \code{plotFileName}.  See \code{PLOTR}
+  for details.}
+ 
   \item{fdata}{Whether to attempt deletion of NONMEM files FDATA and
   PRDERR. Default: TRUE.}  
   
@@ -157,11 +158,6 @@
   \code{command} is simply wrapped in a system call rather than pre-converted to a 
   (possibly grid-ready) NMQual commandline. Default: FALSE} 
   
-  \item{plotFileName}{File name for diagnostic plots, if any.  Default combines
-  DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
-  an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
-  Any asterisk will be replaced with the run name.}
-
   \item{compile}{whether to compile NONMEM (i.e., make nonmem.exe).  Set to FALSE
   if you already did this in a previous step and merely want to execute.}
 

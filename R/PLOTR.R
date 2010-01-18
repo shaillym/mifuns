@@ -11,7 +11,7 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	plotFileName=filename(ProjectDir,paste('DiagnosticPlotReview',paste(grp,collapse=''),'_',run),'.pdf'),
+	plotFileName=plotFileName(run,ProjectDir,grp),
 	rundir=filename(ProjectDir,run),
 	...
 ){
@@ -272,7 +272,7 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	rundir  = filename(ProjectDir, run),
+	rundir  = filename(ProjectDir, run),s
 	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
@@ -297,3 +297,22 @@ dataSynthesis <- function(
 }
 
 star <- function(x,y)gsub('*', y, x, fixed=TRUE)
+plotFileName=function(
+	run,
+	dir=getwd(),
+	grp=NULL,
+	stem='DiagnosticPlotReview',
+	pext='.pdf',
+	...
+)filename(
+	dir,
+	paste(
+		stem,
+		paste(grp,collapse=''),
+		'_',
+		run,
+		sep=''
+	),
+	pext
+)
+

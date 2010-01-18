@@ -22,7 +22,7 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	plotFileName=filename(ProjectDir,paste('DiagnosticPlotReview',paste(grp,collapse=''),'_',run),'.pdf'),
+	plotFileName=plotFileName(run,ProjectDir,grp),
 	rundir=filename(ProjectDir,run),
 	...
 )
@@ -91,7 +91,7 @@
   PLOTR creates a plotting dataset using dataSynthesis(). It passes this dataset
   to each of diagnosticPlots(), covariatePlots(), and cwresPlots().  It then 
   calls the function named by the epilog argument, if any.  The example epilog 
-  (epilogEx.R) calls dataSynthesis() itself, and does additional plotting.
+  (example/epilog.R) calls dataSynthesis() itself, and does additional plotting.
   
   The \dots argument can be used creatively, with appropriate caution.
   Extra arguments are generally passed to secondary functions that accept them, 

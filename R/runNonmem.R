@@ -26,6 +26,7 @@ function (
 	compile,
 	execute,
 	split,
+	plotFileName=plotFileName(run,ProjectDir,grp),
 	runext = if(boot) '.boot' else if(grid) '.lock' else '',
 	rundir = filename(ProjectDir,run,runext),
 	outfile = filename(rundir,run,'.lst'),
@@ -58,7 +59,7 @@ function (
   
   #Prepare the file environment.
   if(compile){
-  	  if(!is.null(plotFileName))if(file.exists(plotFileName))file.remove(plotFileName)
+  	  if(file.exists(plotFileName))file.remove(plotFileName)
 	  if(file.exists(outfile))file.remove(outfile)
 	  if(file.exists(tabfile))file.remove(tabfile)
 	  if(file.exists(parfile))file.remove(parfile)
@@ -120,6 +121,7 @@ function (
 			ctlfile=ctlfile,
 			outfile=final(outfile),
 			rundir=final(rundir),
+			plotFileName=plotFileName,
 			...
 		)
 	  )

@@ -86,6 +86,7 @@ runNonmem(
 \seealso{
 	\itemize{
 		\item{}{\code{\link{NONR}}}
+		\item{}{\code{\link{dataSynthesis}}}
 		\item{}{\code{\link{runCommand}}}
 	}
 }

@@ -2,7 +2,7 @@
 \alias{NONR}
 \title{Run NONMEM}
 \description{ 
-  NONR executes, from R, a NONMEM run for which there existsw a compatible (see NOTE)
+  NONR executes, from R, a NONMEM run for which there exists a compatible (see NOTE)
   control stream. Supported platforms include MS Windows and 
   Unix-like operating systems (Nix).  Special support is included for Sun Grid
   Engine with Nix.  Generally, NONMEM needs to be installed using NMQual
@@ -86,7 +86,7 @@
   Should jobs use as many resources as possible?  Only meaningful
   in the grid environment, where all available processors will be 
   used if urgent, and a limited number of processors if not.  In
-  practice, this disolves to a choice between q='all.q' and 
+  practice, this dissolves to a choice between q='all.q' and 
   q='bootstrap.q'.  Passing 'q' explicitly will override this choice.
   }
 
@@ -131,14 +131,14 @@
   \item{missing}{Passed to PLOTR.}
   \item{invisible}{\code{intern}, \code{minimized}, and \code{invisible} 
   can be specified for the system call that runs NONMEM.  MIfuns
-  will ignore these on a unix-like platform.  For Windows, \code{invisible} is
+  will largely ignore these on a unix-like platform.  For Windows, \code{invisible} is
   TRUE by default when \code{udef} is TRUE, and FALSE otherwise.  If FALSE, 
   NONMEM output will be displayed in a command window during the run.  Set 
   \code{invisible=TRUE} to suppress this display.  See the Windows help for
   \code{system()}.  To explore interactively, use \code{debug(runCommand)}.} 
 
   \item{checksum}{If TRUE (default), checksums are requested from nm.pl when 
-  wrapping NONMEM execution.  'FALSE' is useful for development.} 
+  wrapping NONMEM execution.  FALSE is useful for development.} 
 
   \item{grid}{
   Whether NONMEM execution should be wrapped in a call to Sun Grid Engine's 
@@ -194,7 +194,7 @@
 }
 \details{
 NONR is currently implemented as a wrapper that calls \code{runNonmem} for each
-of its arguments.  By default, it creates a like-named subdirectory for each
+element in \code{run}.  By default, it creates a like-named subdirectory for each
 run in ProjectDir, attaching an appropriate extension if necessary ('.boot' for 
 bootstrap runs, '.lock' for grid runs). It looks for <run>.ctl in ProjectDir,
 cleans it up as necessary, and writes it to the subdirectory, in which context
@@ -217,13 +217,13 @@ ctlfile, and remove.
  
   \item \$PROB should be followed by "RUN\#" then a number representing 
   the control stream number. No commas should be used in the \$PROB statement.
-  'PROBLEM' is an alternative for 'PROB'.  The run number is the first space-delimited
+  "PROBLEM" is an alternative for "PROB".  The run number is the first space-delimited
   alphanumeric sequence after PROB(LEM), ignoring RUN(\#).  
 
   \item The datafile name and relative path needs to be on the first line of the
   \$DATA record immediately following "\$DATA".
   
-  \item A relative datafile path must be specified relative to a subdirectory
+  \item A relative datafile path must be specified relative to \code{runNonmem:rundir}, typically a subdirectory
   of ProjectDir.  For example, 3.ctl will actually run as path/ProjectDir/3/3.ctl; if
   its datafile is path/data/DATA3, then 3.ctl should specify 
   "\$DATA ../../data/DATA3".

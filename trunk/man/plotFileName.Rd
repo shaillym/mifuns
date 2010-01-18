@@ -6,7 +6,14 @@
  Make a name for a diagnostic plot file, given supplied arguments.
 }
 \usage{
-plotFileName(run,dir=getwd(),stem='DiagnosticPlotReview,grp=NULL,pext='.pdf',...)
+plotFileName(
+	run,
+	dir=getwd(),
+	grp=NULL,
+	stem='DiagnosticPlotReview',
+	pext='.pdf',
+	...
+)
 }
 
 \arguments{

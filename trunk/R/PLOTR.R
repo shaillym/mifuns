@@ -272,7 +272,7 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	rundir  = filename(ProjectDir, run),s
+	rundir  = filename(ProjectDir, run),
 	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),

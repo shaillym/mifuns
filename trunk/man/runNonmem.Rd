@@ -31,7 +31,6 @@ runNonmem(
 	grid,
 	nice,
 	udef,
-	plotFileName,
 	compile,
 	execute,
 	split,
@@ -68,7 +67,6 @@ runNonmem(
   \item{grid}{see NONR}
   \item{nice}{see NONR}
   \item{udef}{see NONR}
-  \item{plotFileName}{see NONR}
   \item{compile}{see NONR}
   \item{execute}{see NONR}
   \item{split}{see NONR}

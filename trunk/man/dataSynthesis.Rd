@@ -15,7 +15,7 @@
 \usage{
   dataSynthesis(
 	run, 
-	ProjectDir=getwd(), 
+	project=getwd(), 
 	dvname = 'DV',
 	logtrans = FALSE,
 	grp = NULL, 
@@ -25,7 +25,7 @@
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	rundir  = filename(ProjectDir, run),
+	rundir  = filename(project, run),
 	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),
@@ -35,7 +35,7 @@
 
 \arguments{
   \item{run}{A control stream name, typically integer.}
-  \item{ProjectDir}{The directory containing the NONMEM control (*.ctl) streams.}
+  \item{project}{The directory containing the NONMEM control (*.ctl) streams.}
   \item{dvname}{{Name of the dependent variable to use as a label for the diagnostic plots. Default: DV.}}
   \item{logtrans}{Whether to transform the NONMEM output variables DV,
   PRED, and IPRED. Default: FALSE.}
@@ -73,7 +73,7 @@
   \item{ctlfile}{Path and filename for the NONMEM control stream (*.ctl).}
   \item{outfile}{Path and filename for the NONMEM output file (*.lst).}
   \item{datfile}{Path and filename for the source dataset, as in DATA record in *.ctl.}
-  \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).}
+  \item{rundir}{Path for the NONMEM run directory (project/*).}
   \item{\dots}{}
 }
 \value{data.frame}

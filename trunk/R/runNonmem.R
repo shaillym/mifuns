@@ -2,7 +2,7 @@
 function (
 	run,
 	command,
-	ProjectDir,
+	project,
 	boot,
 	urgent,
 	checkrunno,
@@ -26,11 +26,11 @@ function (
 	compile,
 	execute,
 	split,
-	plotFileName=plotfilename(run,ProjectDir,grp),
+	plotfile=plotfilename(run,project,grp),
 	runext = if(boot) '.boot' else if(grid) '.lock' else '',
-	rundir = filename(ProjectDir,run,runext),
+	rundir = filename(project,run,runext),
 	outfile = filename(rundir,run,'.lst'),
-	streams = ProjectDir,
+	streams = project,
 	ctlfile = filename(streams,run,'.ctl'),
 	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
 	...
@@ -59,7 +59,7 @@ function (
   
   #Prepare the file environment.
   if(compile){
-  	  if(file.exists(plotFileName))file.remove(plotFileName)
+  	  if(file.exists(plotfile))file.remove(plotfile)
 	  if(file.exists(outfile))file.remove(outfile)
 	  if(file.exists(tabfile))file.remove(tabfile)
 	  if(file.exists(parfile))file.remove(parfile)
@@ -108,7 +108,7 @@ function (
 	  if(diag)try(
 		PLOTR(
 			run,
-			ProjectDir,
+			project,
 			dvname,
 			logtrans,
 			grp,
@@ -121,14 +121,14 @@ function (
 			ctlfile=ctlfile,
 			outfile=final(outfile),
 			rundir=final(rundir),
-			plotFileName=plotFileName,
+			plotfile=plotfile,
 			...
 		)
 	  )
 	  if (!is.null(epilog))if(is.function(epilog))try(
 		  epilog(
 			run=run,
-			ProjectDir=ProjectDir,
+			project=project,
 			dvname=dvname,
 			logtrans=logtrans,
 			grp=grp,

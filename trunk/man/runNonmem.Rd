@@ -10,7 +10,7 @@
 runNonmem(
 	run,
 	command,
-	ProjectDir,
+	project,
 	boot,
 	urgent,
 	checkrunno,
@@ -34,11 +34,11 @@ runNonmem(
 	compile,
 	execute,
 	split,
-	plotFileName=plotfilename(run,ProjectDir,grp),
+	plotfile=plotfilename(run,project,grp),
 	runext = if(boot) '.boot' else if(grid) '.lock' else '',
-	rundir = filename(ProjectDir,run,runext),
+	rundir = filename(project,run,runext),
 	outfile = filename(rundir,run,'.lst'),
-	streams = ProjectDir,
+	streams = project,
 	ctlfile = filename(streams,run,'.ctl'),
 	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
 	...
@@ -47,7 +47,7 @@ runNonmem(
 \arguments{
   \item{run}{see NONR}
   \item{command}{see NONR}
-  \item{ProjectDir}{see NONR}
+  \item{project}{see NONR}
   \item{boot}{see NONR}
   \item{urgent}{see NONR}
   \item{checkrunno}{see NONR}
@@ -71,7 +71,7 @@ runNonmem(
   \item{compile}{see NONR}
   \item{execute}{see NONR}
   \item{split}{see NONR}
-  \item{plotFileName}{see PLOTR}
+  \item{plotfile}{see PLOTR}
   \item{runext}{an extension for the run directory}
   \item{rundir}{the directory in which run will occur}
   \item{outfile}{see dataSynthesis}

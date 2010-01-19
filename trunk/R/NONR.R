@@ -2,7 +2,7 @@
 function (
 	run, 
 	command, 
-	ProjectDir = getwd(), 
+	project = getwd(), 
 	boot = FALSE,
 	concurrent = grid,
 	urgent = !boot,
@@ -37,7 +37,7 @@ function (
         args <- list(
 		run = each, 
 		command = command, 
-		ProjectDir = ProjectDir, 
+		project = project, 
 		boot = boot,
 		urgent = urgent,
 		checkrunno = checkrunno, 

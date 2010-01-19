@@ -1,7 +1,7 @@
-epilog <- function(run,ProjectDir,...){
+epilog <- function(run,project,...){
 
     #See R help. dataSynthesis() gives the same dataset that is used by PLOTR.
-    data <- dataSynthesis(run=run,ProjectDir,...)
+    data <- dataSynthesis(run=run,project,...)
     
     numDV<-intersect(c('DV','LDV','AMT'),names(data)) 
     # loop to change variables in numDV to numeric
@@ -12,7 +12,7 @@ epilog <- function(run,ProjectDir,...){
     pdf(
     	file=star(
 		filename(
-			ProjectDir,
+			project,
 			file.path(
 				'*',
 				'TestPlots'

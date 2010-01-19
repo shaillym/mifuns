@@ -90,10 +90,9 @@ function (
 	split=split,
 	...
   )
-
   #Clean up.
   if(execute){
-	  if(boot & grid)return() #boot runs on grid have sync=n by definition, so run perh. not complete.
+	  if(boot)return() #boots run in background, so we may have reached here before run is complete.
 	  lapply(remove,purge.files,dir=rundir)
 	  if(rundir!=final(rundir)){
 		dir.create(final(rundir), showWarnings = FALSE)

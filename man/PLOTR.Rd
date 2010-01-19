@@ -11,7 +11,7 @@
 \usage{
   PLOTR(
 	run, 
-	ProjectDir=getwd(), 
+	project=getwd(), 
 	dvname = 'DV', 
 	logtrans = FALSE, 
 	grp = NULL, 
@@ -22,15 +22,15 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	plotFileName=plotfilename(run,ProjectDir,grp),
-	rundir=filename(ProjectDir,run),
+	plotfile=plotfilename(run,project,grp),
+	rundir=filename(project,run),
 	...
 )
 }
 
 \arguments{
   \item{run}{A control stream name, typically integer.}
-  \item{ProjectDir}{The directory containing run subdirectories.}
+  \item{project}{The directory containing run subdirectories.}
   \item{dvname}{Name of the dependent
   variable to use as a label for the diagnostic plots. Default: DV.}
   \item{logtrans}{Whether to transform the NONMEM output variables DV,
@@ -70,7 +70,7 @@
   User-defined function or script to call at end of NONR or PLOTR.
   A non-null argument that cannot be coerced by match.fun() to a function
   will be treated as a filename to be sourced.  All the arguments normally
-  available to PLOTR (run, ProjectDir, dvname, logtrans, grp, grpnames, cont.cov, 
+  available to PLOTR (run, project, dvname, logtrans, grp, grpnames, cont.cov, 
   at.cov, par.list, eta.list, missing, etc) will be available to epilog, as well
   as any extra arguments you pass to NONR() or PLOTR(). A
   function can declare any of these, but should at minimum contain the 
@@ -78,11 +78,11 @@
   inst/MIfunsExamples/epilog.R in this package.  To see exactly what is available,
   try \code{epilog=function(...)cat(names(list(...)))}.
   }  
-  \item{plotFileName}{File name for diagnostic plots, if any.  Default combines
+  \item{plotfile}{File name for diagnostic plots, if any.  Default combines
   DiagnosticPlotReview with the run number, and \code{grp} if present.  You can specify 
   an alternative name with a counter, additionally supplying \code{onefile=FALSE}.
   Any asterisk will be replaced with the run name.}
-  \item{rundir}{Path for the NONMEM run directory (ProjectDir/*).  Passed to dataSynthesis().}
+  \item{rundir}{Path for the NONMEM run directory (project/*).  Passed to dataSynthesis().}
   \item{\dots}{Additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to pdf().  You can also pass
   additional lattice arguments to modify the diagnostic plots. }
@@ -101,12 +101,12 @@
   covariatePlots(), and cwresPlots()). pdf() technically does not accept extra 
   arguments, but any specified argument that it does accept will be passed.  
 
-  File names deserve special consideration.  \code{plotFileName} gives
+  File names deserve special consideration.  \code{plotfile} gives
   the name (or naming strategy) for the diagnostic plots; it is passed to pdf()
   and has a suitable default.  If an alternative is specified, '*' will be 
   replaced with \code{run}, the run name.  
-  For example, the default pdf name is ProjectDir/DiagnosticPlotReview\_*.pdf, 
-  but you could change it to ProjectDir/*/DiagnosticPlotReview.pdf.
+  For example, the default pdf name is project/DiagnosticPlotReview\_*.pdf, 
+  but you could change it to project/*/DiagnosticPlotReview.pdf.
      
 }
 \value{Used for side effects.}

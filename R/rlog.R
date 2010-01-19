@@ -1,10 +1,10 @@
 `rlog` <-function(
   	run, 
 	boot=FALSE, 
-	ProjectDir=getwd(), 
+	project=getwd(), 
 	append=TRUE,
 	file=NULL,
-	out=filename(ProjectDir,'CombRunLog.csv'),
+	out=filename(project,'CombRunLog.csv'),
 	pattern=if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
 	...
 ){
@@ -12,7 +12,7 @@
   run <- unique(run)
   for(each in run){
       #identify objects
-      rdir <- filename(ProjectDir, each, if(boot) '.boot' else '')
+      rdir <- filename(project, each, if(boot) '.boot' else '')
       if(is.null(file)) f <- file.path(rdir,'NonmemRunLog.csv')
       f <- star(f,each)
       #cleanup

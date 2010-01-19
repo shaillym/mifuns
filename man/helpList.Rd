@@ -10,7 +10,7 @@ Functions defined by MIfuns
 \item \link{\%nested.in\%} test whether a is nested in b
 \item \link{\%nests\%} test whether a nests b
 \item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule.
-\item \link{CLNR} delete files and directories and log what was deleted to a text file in the ProjectDir
+\item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
 \item \link{CheckPositiveMatrix} determine if omega matrix is positive, definite (\code{SimulationFromFile})
 \item \link{CheckPositiveVector} determine if omega matrix is positive, definite (\code{SimulationFromFile})
 \item \link{CreateParametersForSimulation} generate nsim sets of model parameters for simulation based on the results of a (final) model

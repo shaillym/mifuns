@@ -15,7 +15,7 @@
   NONR(
 	run, 
 	command, 
-	ProjectDir= getwd(), 
+	project= getwd(), 
 	boot = FALSE,
 	concurrent = grid,
 	urgent = !boot,
@@ -62,7 +62,7 @@
   each element will be run in succession.
   } 
 
-  \item{ProjectDir}{
+  \item{project}{
   The directory in which run-specific subdirectories will be created. 
   Typically also contains original control streams.
   Use an absolute path (safer) or specify relative to the current working directory.
@@ -101,7 +101,7 @@
   }  
   
   \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE. You can
-  override the default file name by passing \code{plotFileName}.  See \code{PLOTR}
+  override the default file name by passing \code{plotfile}.  See \code{PLOTR}
   for details.}
  
   \item{fdata}{Whether to attempt deletion of NONMEM files FDATA and
@@ -111,7 +111,7 @@
   User-defined function or script to call at end of NONR or PLOTR.
   A non-null argument that cannot be coerced by match.fun() to a function
   will be treated as a filename to be sourced.  All the arguments normally
-  available to PLOTR (run, ProjectDir, dvname, logtrans, grp, grpnames, cont.cov, 
+  available to PLOTR (run, project, dvname, logtrans, grp, grpnames, cont.cov, 
   at.cov, par.list, eta.list, missing, etc) will be available to epilog, as well
   as any extra arguments you pass to NONR() or PLOTR(). A
   function can declare any of these, but should at minimum contain the 
@@ -191,8 +191,8 @@
 \details{
 NONR is currently implemented as a wrapper that calls \code{runNonmem} for each
 element in \code{run}.  By default, it creates a like-named subdirectory for each
-run in ProjectDir, attaching an appropriate extension if necessary ('.boot' for 
-bootstrap runs, '.lock' for grid runs). It looks for <run>.ctl in ProjectDir,
+run in project, attaching an appropriate extension if necessary ('.boot' for 
+bootstrap runs, '.lock' for grid runs). It looks for <run>.ctl in project,
 cleans it up as necessary, and writes it to the subdirectory, in which context
 NONMEM is invoked (using \code{runCommand}).  The output of NONMEM will be 
 <run>.lst in the subdirectory.  Files matching patterns in \code{runNonmem:remove} will
@@ -220,7 +220,7 @@ ctlfile, and remove.
   \$DATA record immediately following "\$DATA".
   
   \item A relative datafile path must be specified relative to \code{runNonmem:rundir}, typically a subdirectory
-  of ProjectDir.  For example, 3.ctl will actually run as path/ProjectDir/3/3.ctl; if
+  of project.  For example, 3.ctl will actually run as path/project/3/3.ctl; if
   its datafile is path/data/DATA3, then 3.ctl should specify 
   "\$DATA ../../data/DATA3".
   

@@ -12,10 +12,10 @@
 rlog(
   	run, 
 	boot=FALSE, 
-	ProjectDir=getwd(), 
+	project=getwd(), 
 	append=TRUE,
 	file=NULL,
-	out=filename(ProjectDir,'CombRunLog.csv'),
+	out=filename(project,'CombRunLog.csv'),
 	pattern=if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
 	...
 )
@@ -25,7 +25,7 @@ rlog(
   Should be numeric with no placeholder zeros to left of number, i.e., "1" not "001".
   Example: \code{run=c(1,2,5)} }
   \item{boot}{ Were these runs in '.boot' directories?}
-  \item{ProjectDir}{System path to the directory containing run subdirectoriess. }
+  \item{project}{System path to the directory containing run subdirectoriess. }
   \item{append}{TRUE builds the runlog by appending; FALSE causes the runlog to 
   be overwritten.}
   \item{file}{The run-specific input file to read. See details.}
@@ -35,7 +35,7 @@ rlog(
 }
 
 \details{
-  \code{file} is ProjectDir/*/NonmemRunLog.csv by default.  '*', if present, will be replaced 
+  \code{file} is project/*/NonmemRunLog.csv by default.  '*', if present, will be replaced 
   with run number when \code{file} is user-specified.
 }
 \references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }

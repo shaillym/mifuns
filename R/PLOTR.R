@@ -1,6 +1,6 @@
 `PLOTR` <-function(
 	run, 
-	ProjectDir=getwd(), 
+	project=getwd(), 
 	dvname = 'DV', 
 	logtrans = FALSE, 
 	grp = NULL, 
@@ -11,15 +11,15 @@
 	eta.list = NULL, 
 	missing = -99,
 	epilog=NULL,
-	plotFileName=plotfilename(run,ProjectDir,grp),
-	rundir=filename(ProjectDir,run),
+	plotfile=plotfilename(run,project,grp),
+	rundir=filename(project,run),
 	...
 ){
     
     #process data
     synthesis <- dataSynthesis(
     	run,
-	ProjectDir,
+	project,
 	dvname,
 	logtrans,
 	grp,
@@ -41,8 +41,8 @@
     
     
     #open device
-    plotFileName <- star(plotFileName,run)
-    safe.call(pdf,file=plotFileName,...)
+    plotfile <- star(plotfile,run)
+    safe.call(pdf,file=plotfile,...)
 
     #make plots
     lapply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
@@ -65,7 +65,7 @@
     if (!is.null(epilog))if(is.function(epilog))try(
         epilog(
             run=run,
-    	    ProjectDir=ProjectDir,
+    	    project=project,
 	    dvname=dvname,
 	    logtrans=logtrans,
 	    grp=grp,
@@ -259,10 +259,10 @@ dataFormat <- function(
     synthesis
 }
 
-#generates the plotting data set, given ProjectDir, run, etc.
+#generates the plotting data set, given project, run, etc.
 dataSynthesis <- function(
 	run, 
-	ProjectDir=getwd(), 
+	project=getwd(), 
 	dvname = 'DV',
 	logtrans = FALSE,
 	grp = NULL, 
@@ -272,7 +272,7 @@ dataSynthesis <- function(
 	par.list = NULL,
 	eta.list = NULL,
 	missing = -99,
-	rundir  = filename(ProjectDir, run),
+	rundir  = filename(project, run),
 	ctlfile = filename(rundir,run,'.ctl'),
 	outfile = filename(rundir,run,'.lst'),
 	datfile = getdname(ctlfile),

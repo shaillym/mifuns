@@ -13,14 +13,12 @@ Functions defined by MIfuns
 \item \link{CLNR} delete files and directories and log what was deleted to a text file in the ProjectDir
 \item \link{CheckPositiveMatrix} determine if omega matrix is positive, definite (\code{SimulationFromFile})
 \item \link{CheckPositiveVector} determine if omega matrix is positive, definite (\code{SimulationFromFile})
-\item \link{ComputePredictiveCheck} compute individual patient parameters for observed data and for each simulated study; compute statistics of individual parameters for each study (beta)
 \item \link{CreateParametersForSimulation} generate nsim sets of model parameters for simulation based on the results of a (final) model
 \item \link{NONR} run NONMEM and create diagnostic plots
 \item \link{Omega.MtoV} convert matrix containing omega estimates into a vector of omega estimates
 \item \link{Omega.VtoM} convert vector containing lower block omega estimates into a full matrix of omega estimates
 \item \link{Ops.keyed} use concise syntax to join data frames
 \item \link{PLOTR} create diagnostic plots for NONMEM runs
-\item \link{PlotPredictiveCheck} plot results of \code{\link{ComputePredictiveCheck}}
 \item \link{SimulateOmega} generate omega values for simulation
 \item \link{Tmax} calculate the time associated with the maximum concentration for each subject
 \item \link{Tmin} calculate the time associated with the minimum concentration for each subject

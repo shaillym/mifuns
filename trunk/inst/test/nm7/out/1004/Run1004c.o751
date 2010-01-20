@@ -1,0 +1,34 @@
+
+this is /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is confirming checksums
+checking 7 items
+/common/NONMEM/nm7_osx2/test/checksum.2009.12.21.1452.xml
+nm is okay
+pr is okay
+tr is okay
+test/config.xml is okay
+test/runtest.pl is okay
+test/nmqual.pm is okay
+test/nm7_osx2.pl is okay
+
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is testing environment variables
+'SHELL' exists
+'USER' exists
+'PATH' exists
+
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is testing system commands
+'perl -e 'use POSIX; print join qq(,\n),uname'' was executed
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  home directory is /common/NONMEM/nm7_osx2/test
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  default in/out directory is /Users/timb/project/metrum-mifuns/inst/test/nm7/script
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  execution directory is /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1004.lock
+/common/NONMEM/nm7_osx2/tr/nmtran.exe < /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1004.lock/1004.ctl
+  
+ WARNINGS AND ERRORS (IF ANY) FOR PROBLEM    1
+             
+ (WARNING  2) NM-TRAN INFERS THAT THE DATA ARE POPULATION.
+ CREATING MUMODEL ROUTINE...
+nmtran succeeded
+
+ifort -I/common/NONMEM/nm7_osx2/resource -o nonmem.exe -Gs -nologo -nbs -w -Ob1gyti -Qprec_div -4Yportlib -traceback -vec-report0 FSUBS.f90 /common/NONMEM/nm7_osx2/pr/PRED.o /common/NONMEM/nm7_osx2/pr/PREDI.o /common/NONMEM/nm7_osx2/pr/CHECK.o /common/NONMEM/nm7_osx2/pr/SADVAN.o /common/NONMEM/nm7_osx2/pr/ADVAN1.o /common/NONMEM/nm7_osx2/pr/SSS0.o /common/NONMEM/nm7_osx2/pr/TRANS2.o /common/NONMEM/nm7_osx2/pr/INFN.o /common/NONMEM/nm7_osx2/nm/NONMEM_Recoded.o /common/NONMEM/nm7_osx2/nm/nonmem.a /common/NONMEM/nm7_osx2/resource/resource.a /common/NONMEM/nm7_osx2/resource/*.o
+instruction succeeded
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is complete

@@ -1,0 +1,45 @@
+FILE    FSTREAM                                                                 
+PROB    RUN# 1004 ESTIMATE PK W/COVARIATE RELATIONSHIPS                         
+DATA       1   0 600  15   0                                                    
+ITEM       2   3  15  11   1   0   0   0   0   0   7   0   0   0   0            
+INDX      14   7   4   8   0   5   0   0   0   0   6                            
+LABL                    C,                  ID,                  DV             
+                      AMT,                  II,                ADDL             
+                     TIME,                RATE,                  HT             
+                       WT,                CLCR,                 SEX             
+                      AGE,                EVID,                 MDV             
+     ,                  CL,                                                     
+                        V,,                                                     
+                    IPRED                                                       
+LBW1 NPRED,NRES,NWRES                                                           
+     CPRED,CRES,CWRES                                                           
+     PREDI,RESI,WRESI                                                           
+     CPREDI,CRESI,CWRESI                                                        
+     EPRED,ERES,EWRES                                                           
+     NPDE,ECWRES                                                                
+FORM                                                                            
+(E2.0,E3.0,E6.0,E4.0,E3.0,E2.0,E6.0,2E4.0,E3.0,E7.0,E2.0,E3.0,2F2.0)            
+STRC       2   2   2   0   0   0   1   1   0                                    
+STRC       1   2                                                                
+THCN       1   0   0   0                                                        
+THTA     1.300000000000000E+01, 7.500000000000000E+01                           
+LOWR     0.000000000000000E+00, 0.000000000000000E+00                           
+UPPR     1000000, 1000000                                                       
+BLST     4.000000000000000E-02, 2.000000000000000E-02, 4.000000000000000E-02    
+DIAG     4.000000000000000E-02, 1.000000000000000E+00                           
+ESTM       09999   3  10   0   1   0   1   0   0   0   0   0   0   0   0   0   0
+           0   0   0   0  -1                                                    
+BEST        -100        -100        -100        -100  -100.00000        -100    
+            -100        -100  -100.00000        -100        -100        -100    
+            -100  -100.00000        -100        -100        -100        -100    
+            -100        -100           0        -100        -100  -100.00000    
+            -100                                                                
+BFIL                                                                            
+BDLM                                                                            
+BMUM                                                                            
+BGRD                                                                            
+TABL       1   2                                                                
+TABL   1   5   2   0   7   0  14   0  25   04099   0                            
+           0   1   1   0   0           0           0                            
+TABL   1   6   2   0  20   0  22   0  14   0  26   0  27   0                    
+           0   1   1   0   0           0           0                            

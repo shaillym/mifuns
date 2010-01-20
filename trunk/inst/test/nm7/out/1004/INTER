@@ -1,0 +1,112 @@
+0ITERATION NO.:    0     OBJECTIVE VALUE:  0.759179163894472E+03
+
+ THETA - VECTOR OF FIXED EFFECTS PARAMETERS  *********
+
+            TH 1      TH 2
+        
+         1.30E+01  7.50E+01
+ 
+ OMEGA - COV MATRIX FOR RANDOM EFFECTS - ETAS  ********
+
+            ETA1      ETA2
+ 
+ ETA1
+         4.00E-02
+ 
+ ETA2
+         2.00E-02  4.00E-02
+ 
+ SIGMA - COV MATRIX FOR RANDOM EFFECTS - EPSILONS  ****
+
+            EPS1      EPS2
+ 
+ EPS1
+         4.00E-02
+ 
+ EPS2
+         0.00E+00  1.00E+00
+ 
+0ITERATION NO.:   10     OBJECTIVE VALUE:  0.460742263408549E+03
+
+ THETA - VECTOR OF FIXED EFFECTS PARAMETERS  *********
+
+            TH 1      TH 2
+        
+         1.18E+01  8.44E+01
+ 
+ OMEGA - COV MATRIX FOR RANDOM EFFECTS - ETAS  ********
+
+            ETA1      ETA2
+ 
+ ETA1
+         6.09E-02
+ 
+ ETA2
+         1.25E-02  2.83E-02
+ 
+ SIGMA - COV MATRIX FOR RANDOM EFFECTS - EPSILONS  ****
+
+            EPS1      EPS2
+ 
+ EPS1
+         4.23E-02
+ 
+ EPS2
+         0.00E+00  1.29E-02
+ 
+0ITERATION NO.:   20     OBJECTIVE VALUE:  0.460569869300914E+03
+
+ THETA - VECTOR OF FIXED EFFECTS PARAMETERS  *********
+
+            TH 1      TH 2
+        
+         1.18E+01  8.41E+01
+ 
+ OMEGA - COV MATRIX FOR RANDOM EFFECTS - ETAS  ********
+
+            ETA1      ETA2
+ 
+ ETA1
+         6.45E-02
+ 
+ ETA2
+         1.33E-02  2.87E-02
+ 
+ SIGMA - COV MATRIX FOR RANDOM EFFECTS - EPSILONS  ****
+
+            EPS1      EPS2
+ 
+ EPS1
+         4.32E-02
+ 
+ EPS2
+         0.00E+00  1.28E-02
+ 
+0ITERATION NO.:   21     OBJECTIVE VALUE:  0.460569869300914E+03
+
+ THETA - VECTOR OF FIXED EFFECTS PARAMETERS  *********
+
+            TH 1      TH 2
+        
+         1.18E+01  8.41E+01
+ 
+ OMEGA - COV MATRIX FOR RANDOM EFFECTS - ETAS  ********
+
+            ETA1      ETA2
+ 
+ ETA1
+         6.45E-02
+ 
+ ETA2
+         1.33E-02  2.87E-02
+ 
+ SIGMA - COV MATRIX FOR RANDOM EFFECTS - EPSILONS  ****
+
+            EPS1      EPS2
+ 
+ EPS1
+         4.32E-02
+ 
+ EPS2
+         0.00E+00  1.28E-02
+ 

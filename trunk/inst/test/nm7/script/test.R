@@ -11,9 +11,9 @@ nonr <- function(
 	par.list=c('CL','V','V2','V3','KA','CLCM','CLCB','CLHC'),
 	eta.list=paste('ETA',1:6,sep=''),
         nice=TRUE,
-        ProjectDir='../out',
+        project='../out',
         boot=FALSE,
-        plotFileName=if(boot)'../out/*.boot/diagnostics.pdf' else '../out/*/diagnostics.pdf',
+        plotfile='../out/*/diagnostics.pdf',
         streams='../ctl',
         ep=runlog,
         ...
@@ -28,9 +28,9 @@ nonr <- function(
        par.list=par.list,
        eta.list=eta.list,
        nice=nice,
-       ProjectDir=ProjectDir,
+       project=project,
        boot=boot,
-       plotFileName=plotFileName,
+       plotfile=plotfile,
        streams=streams,
        epilog=ep,
        ...
@@ -38,30 +38,29 @@ nonr <- function(
 
 #nix workstation
 nonr(1)
-PLOTR(1,ProjectDir='../out',plotFileName='../out/1/diagnostics.pdf')
+PLOTR(1,project='../out',plotfile='../out/1/diagnostics.pdf')
 nonr(1,split=TRUE)
 nonr(1,execute=FALSE)
 nonr(1,compile=FALSE)
 nonr(1:2)
-rlog(1:2,ProjectDir='../out',out='../out/runlog.csv',append=FALSE)
+rlog(1:2,project='../out',out='../out/runlog.csv',append=FALSE)
 
 #nix grid
 nonr(1,grid=TRUE)
 nonr(1,grid=TRUE,execute=FALSE)
 nonr(1,grid=TRUE,compile=FALSE)
-nms <- 1001:1005
-nms <- 1001
+nms <- 1001:1003
 nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE)#conventional
 nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE )#unnecessary chaining
 nonr(nms,boot=FALSE,concurrent=TRUE ,grid=FALSE)#cross-chatter on stdout
 nonr(nms,boot=FALSE,concurrent=TRUE ,grid=TRUE )#conventional grid
-nonr(nms,boot=TRUE ,concurrent=FALSE,grid=FALSE)#boot-style directories#ERROR
-nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots, no plotting (outdir irrelevant)
+nonr(nms,boot=TRUE ,concurrent=FALSE,grid=FALSE)#boot-style directories
+nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE)#concurrent non-grid boots (chatter)
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#urgent boots
 for(nm in nms)runlog(nm,outfile=file.path('../out',paste(nm,'boot',sep='.'),paste(nm,'lst',sep='.')))
-rlog(nms,ProjectDir='../out',boot=TRUE,append=FALSE,out='../out/bootlog.csv')
+rlog(nms,project='../out',boot=TRUE,append=FALSE,out='../out/bootlog.csv')
 
 #windows
 nonr(1)

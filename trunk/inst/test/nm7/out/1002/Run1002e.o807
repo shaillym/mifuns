@@ -1,0 +1,49 @@
+
+this is /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is confirming checksums
+checking 7 items
+/common/NONMEM/nm7_osx2/test/checksum.2009.12.21.1452.xml
+nm is okay
+pr is okay
+tr is okay
+test/config.xml is okay
+test/runtest.pl is okay
+test/nmqual.pm is okay
+test/nm7_osx2.pl is okay
+
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is testing environment variables
+'SHELL' exists
+'USER' exists
+'PATH' exists
+
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is testing system commands
+'perl -e 'use POSIX; print join qq(,\n),uname'' was executed
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  home directory is /common/NONMEM/nm7_osx2/test
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  default in/out directory is /Users/timb/project/metrum-mifuns/inst/test/nm7/script
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  execution directory is /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1002.lock
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is starting /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1002.lock/nonmem.exe
+/Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1002.lock/nonmem.exe /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1002.lock/1002.ctl -licfile=/common/NONMEM/nm7_osx2/license/nonmem.lic
+License Registered to: Metrum Research Group
+Expiration Date:    14 JUL 2010
+Current Date:       19 JAN 2010
+Days until program expires : 175
+ 
+ 
+ First Order
+ MONITORING OF SEARCH:
+
+0ITERATION NO.:    0    OBJECTIVE VALUE:   917.684670097053        NO. OF FUNC. EVALS.: 6
+ CUMULATIVE NO. OF FUNC. EVALS.:        6
+ PARAMETER:  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01
+ GRADIENT:   7.9696E+02 -5.2629E+02 -1.8712E+02  6.9816E+02 -1.0153E+02  5.5679E+01  2.6639E+02
+0ITERATION NO.:   10    OBJECTIVE VALUE:   619.995794224802        NO. OF FUNC. EVALS.: 7
+ CUMULATIVE NO. OF FUNC. EVALS.:       93
+ PARAMETER: -6.6958E-02  2.8082E-01  2.3985E-01 -6.1533E-02  3.1690E-01  2.4725E-01 -1.6678E+00
+ GRADIENT:  -1.3993E+02 -2.8970E+01 -8.0225E+00 -5.0255E+01  2.4467E+00  1.4905E+02  1.8036E+01
+0ITERATION NO.:   20    OBJECTIVE VALUE:   609.336956082849        NO. OF FUNC. EVALS.: 0
+ CUMULATIVE NO. OF FUNC. EVALS.:      163
+ PARAMETER: -6.8099E-02  3.0042E-01  3.0426E-01 -1.3393E-02  3.3499E-01  1.5035E-01 -1.8296E+00
+ GRADIENT:  -1.1468E-01 -6.2820E-02  4.1795E-03 -3.8250E-02 -5.4188E-06 -2.9603E-02 -6.3831E-03
+ Elapsed estimation time in seconds:     0.38
+nonmem succeeded
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is complete

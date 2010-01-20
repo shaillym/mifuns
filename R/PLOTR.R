@@ -1,18 +1,18 @@
 `PLOTR` <-function(
 	run, 
 	project=getwd(), 
-	dvname = 'DV', 
-	logtrans = FALSE, 
+	rundir=filename(project,run),
 	grp = NULL, 
+	plotfile=plotfilename(run,project,grp),
+	logtrans = FALSE, 
+	dvname = 'DV', 
+	epilog=NULL,
 	grpnames = NULL, 
 	cont.cov = NULL, 
 	cat.cov = NULL, 
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99,
-	epilog=NULL,
-	plotfile=plotfilename(run,project,grp),
-	rundir=filename(project,run),
 	...
 ){
     

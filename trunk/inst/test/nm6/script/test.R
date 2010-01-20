@@ -14,7 +14,7 @@ nonr <- function(
         nice=TRUE,
         project='../out',
         boot=FALSE,
-        plotfile=if(boot)'../out/*.boot/diagnostics.pdf' else '../out/*/diagnostics.pdf',
+        plotfile='../out/*/diagnostics.pdf',
         streams='../ctl',
         ep=epilog,
         ...

@@ -2,7 +2,7 @@ library(MIfuns)
 getwd()#...MIfuns/inst/test/nm6/script
 nonr <- function(
         run,
-        command='/common/NONMEM/nm7/test/nm7.pl',
+        command='/common/NONMEM/nm7_osx2/test/nm7_osx2.pl',
 	dvname='Response',
 	grp='SEX',
 	grpnames=c('female','male'),
@@ -12,7 +12,8 @@ nonr <- function(
 	eta.list=paste('ETA',1:6,sep=''),
         nice=TRUE,
         ProjectDir='../out',
-        outdir='../out/*',
+        boot=FALSE,
+        plotFileName=if(boot)'../out/*.boot/diagnostics.pdf' else '../out/*/diagnostics.pdf',
         streams='../ctl',
         ep=runlog,
         ...
@@ -28,7 +29,8 @@ nonr <- function(
        eta.list=eta.list,
        nice=nice,
        ProjectDir=ProjectDir,
-       outdir=outdir,
+       boot=boot,
+       plotFileName=plotFileName,
        streams=streams,
        epilog=ep,
        ...
@@ -36,7 +38,7 @@ nonr <- function(
 
 #nix workstation
 nonr(1)
-PLOTR(1,ProjectDir='../out',outdir='../out/1')
+PLOTR(1,ProjectDir='../out',plotFileName='../out/1/diagnostics.pdf')
 nonr(1,split=TRUE)
 nonr(1,execute=FALSE)
 nonr(1,compile=FALSE)
@@ -47,18 +49,17 @@ rlog(1:2,ProjectDir='../out',out='../out/runlog.csv',append=FALSE)
 nonr(1,grid=TRUE)
 nonr(1,grid=TRUE,execute=FALSE)
 nonr(1,grid=TRUE,compile=FALSE)
-bootdir <- paste(getwd(),'../out/*.boot',sep='/')
-rundir  <- paste(getwd(),'../out/*',sep='/')
 nms <- 1001:1005
-nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE,outdir=rundir )#conventional
-nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE ,outdir=rundir )#unnecessary chaining
-nonr(nms,boot=FALSE,concurrent=TRUE ,grid=FALSE,outdir=rundir )#cross-chatter on stdout
-nonr(nms,boot=FALSE,concurrent=TRUE ,grid=TRUE ,outdir=rundir )#conventional grid
-nonr(nms,boot=TRUE ,concurrent=FALSE,grid=FALSE,outdir=bootdir)#boot-style directories
-nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE ,outdir=bootdir)#chained boots, no plotting (outdir irrelevant)
-nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE,outdir=bootdir)#concurrent non-grid boots (chatter)
-nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,outdir=bootdir)#conventional boots
-nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE ,urgent=TRUE   )#urgent boots
+nms <- 1001
+nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE)#conventional
+nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE )#unnecessary chaining
+nonr(nms,boot=FALSE,concurrent=TRUE ,grid=FALSE)#cross-chatter on stdout
+nonr(nms,boot=FALSE,concurrent=TRUE ,grid=TRUE )#conventional grid
+nonr(nms,boot=TRUE ,concurrent=FALSE,grid=FALSE)#boot-style directories#ERROR
+nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots, no plotting (outdir irrelevant)
+nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE)#concurrent non-grid boots (chatter)
+nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
+nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#urgent boots
 for(nm in nms)runlog(nm,outfile=file.path('../out',paste(nm,'boot',sep='.'),paste(nm,'lst',sep='.')))
 rlog(nms,ProjectDir='../out',boot=TRUE,append=FALSE,out='../out/bootlog.csv')
 

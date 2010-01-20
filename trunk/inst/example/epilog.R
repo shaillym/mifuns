@@ -1,7 +1,7 @@
 epilog <- function(run,project,...){
 
     #See R help. dataSynthesis() gives the same dataset that is used by PLOTR.
-    data <- dataSynthesis(run=run,project,...)
+    data <- dataSynthesis(run=run,project=project,...)
     
     numDV<-intersect(c('DV','LDV','AMT'),names(data)) 
     # loop to change variables in numDV to numeric

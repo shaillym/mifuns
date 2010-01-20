@@ -50,7 +50,7 @@ rlog(1:2,project='../out',out='../out/runlog.csv',append=FALSE)
 nonr(1,grid=TRUE)
 nonr(1,grid=TRUE,execute=FALSE)
 nonr(1,grid=TRUE,compile=FALSE)
-nms <- 1001
+nms <- 1001:1003
 nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE)#conventional
 nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE )#unnecessary chaining
 nonr(nms,boot=FALSE,concurrent=TRUE ,grid=FALSE)#cross-chatter on stdout

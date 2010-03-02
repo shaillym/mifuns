@@ -148,3 +148,44 @@ head(phase1)
 #bootstrap estimates of parameters.
 getwd()
 dir.create('../nonmem/1005.boot')
+dir.create('../nonmem/1005.boot/data')
+dir.create('../nonmem/1005.boot/ctl')
+t <- metaSub(
+     as.filename('../nonmem/ctl/1005.ctl'),
+     names=1:500,
+     pattern=c(
+         '1005',
+         '../../../data/derived/phase1.csv',
+         '$COV',
+         '$TABLE'
+     ),
+     replacement=c(
+         '*',
+         '../data/*.csv',
+         ';$COV',
+         ';$TABLE'
+    ),
+    fixed=TRUE,
+    out='../nonmem/1005.boot/ctl',
+    suffix='.ctl'
+ )
+ bootset <- read.csv('../data/derived/phase1.csv')
+ set.seed(1968)
+ r <- resample(
+ 	bootset,
+ 	names=1:500,
+ 	key='ID',
+ 	rekey=TRUE,
+ 	out='../nonmem/1005.boot/data',
+ 	stratify='SEX'
+ )
+
+NONR(
+     run=1:500,
+     command=command,
+     project='../nonmem/1005.boot/',
+     boot=TRUE,
+     nice=TRUE,
+     diag=FALSE,
+     streams='../nonmem/1005.boot/ctl'
+)     

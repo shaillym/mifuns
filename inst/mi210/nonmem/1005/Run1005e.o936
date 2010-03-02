@@ -1,0 +1,66 @@
+
+this is /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is confirming checksums
+checking 7 items
+/common/NONMEM/nm7_osx2/test/checksum.2009.12.21.1452.xml
+nm is okay
+pr is okay
+tr is okay
+test/config.xml is okay
+test/runtest.pl is okay
+test/nmqual.pm is okay
+test/nm7_osx2.pl is okay
+
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is testing environment variables
+'SHELL' exists
+'USER' exists
+'PATH' exists
+
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is testing system commands
+'perl -e 'use POSIX; print join qq(,\n),uname'' was executed
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  home directory is /common/NONMEM/nm7_osx2/test
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  default in/out directory is /Users/timb/project/metrum-mifuns/inst/mi210/script
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl:  execution directory is /Users/timb/project/metrum-mifuns/inst/mi210/script/../nonmem/1005.lock
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is starting /Users/timb/project/metrum-mifuns/inst/mi210/script/../nonmem/1005.lock/nonmem.exe
+/Users/timb/project/metrum-mifuns/inst/mi210/script/../nonmem/1005.lock/nonmem.exe /Users/timb/project/metrum-mifuns/inst/mi210/script/../nonmem/1005.lock/1005.ctl -licfile=/common/NONMEM/nm7_osx2/license/nonmem.lic
+License Registered to: Metrum Research Group
+Expiration Date:    14 JUL 2010
+Current Date:        1 MAR 2010
+Days until program expires : 133
+ 
+ 
+ First Order Conditional Estimation with Interaction
+ MONITORING OF SEARCH:
+
+0ITERATION NO.:    0    OBJECTIVE VALUE:  -2119.85800498393        NO. OF FUNC. EVALS.: 8
+ CUMULATIVE NO. OF FUNC. EVALS.:        8
+ PARAMETER:  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01
+ GRADIENT:  -9.5879E+01 -1.8134E+02  2.3009E+02 -1.8208E+01  2.1530E+01 -1.5595E+01 -8.1187E+01 -1.1241E+02  1.6981E+02
+0ITERATION NO.:    5    OBJECTIVE VALUE:  -2337.37705644536        NO. OF FUNC. EVALS.: 9
+ CUMULATIVE NO. OF FUNC. EVALS.:       54
+ PARAMETER:  3.8382E-01  1.4998E+00 -5.0936E-01 -4.2879E-01 -3.1853E-02 -1.4115E-01  6.0778E-01  2.0237E-02 -2.3335E-01
+ GRADIENT:  -1.9429E+01  3.1456E+01 -1.2746E+01 -3.0703E+01  7.0307E+01  2.3501E+00  9.5729E+00  1.3098E+01  5.2621E+01
+0ITERATION NO.:   10    OBJECTIVE VALUE:  -2351.89784063110        NO. OF FUNC. EVALS.: 9
+ CUMULATIVE NO. OF FUNC. EVALS.:      102
+ PARAMETER:  3.8993E-01  5.1843E-01 -9.1693E-01 -1.7845E+00 -3.8021E-01 -1.3264E-01  3.8610E-02 -9.8981E-01 -2.2363E-01
+ GRADIENT:  -9.5476E+00 -1.1901E+01 -9.9802E+01  2.4987E+01  8.3509E+00  9.9172E-02  6.4002E+00 -2.4288E+01  5.9209E+01
+0ITERATION NO.:   15    OBJECTIVE VALUE:  -2366.56300778638        NO. OF FUNC. EVALS.: 9
+ CUMULATIVE NO. OF FUNC. EVALS.:      148
+ PARAMETER:  4.0248E-01  5.8332E-01 -8.7095E-01 -1.8000E+00 -5.0791E-01 -1.4292E-01 -2.3627E-01 -4.7936E-01 -3.3280E-01
+ GRADIENT:  -3.6295E-01  3.5236E-01  4.4133E+00 -2.3350E+00  4.6595E+00  2.0762E-01  2.4366E-01  6.0573E-01 -1.7160E+00
+0ITERATION NO.:   20    OBJECTIVE VALUE:  -2367.33617421133        NO. OF FUNC. EVALS.: 9
+ CUMULATIVE NO. OF FUNC. EVALS.:      196
+ PARAMETER:  4.0906E-01  6.4604E-01 -8.1841E-01 -1.4939E+00 -5.2166E-01 -1.4807E-01 -2.4174E-01 -4.5550E-01 -3.2714E-01
+ GRADIENT:  -6.8288E-01 -1.3434E+00  3.3964E-01  2.2791E-01 -3.2949E-01  2.8888E-01  3.6409E-01  8.6142E-01  3.2051E+00
+0ITERATION NO.:   25    OBJECTIVE VALUE:  -2367.45932757448        NO. OF FUNC. EVALS.:17
+ CUMULATIVE NO. OF FUNC. EVALS.:      257
+ PARAMETER:  4.1591E-01  6.9063E-01 -7.8385E-01 -1.3428E+00 -4.8506E-01 -1.5332E-01 -2.5464E-01 -4.6475E-01 -3.2982E-01
+ GRADIENT:  -4.5680E-02  2.4591E-01 -8.9633E-01  1.1402E+00 -3.6555E+00 -1.0491E-02 -9.0396E-03 -1.7674E-01  1.9569E-01
+0ITERATION NO.:   29    OBJECTIVE VALUE:  -2367.48415198353        NO. OF FUNC. EVALS.:12
+ CUMULATIVE NO. OF FUNC. EVALS.:      314
+ PARAMETER:  4.1698E-01  7.0062E-01 -7.7510E-01 -1.3129E+00 -4.6413E-01 -1.5392E-01 -2.5278E-01 -4.5847E-01 -3.2978E-01
+ GRADIENT:   1.0870E-02  6.0128E-03 -5.2628E-02  1.4373E-02 -9.3947E-03  1.6754E-03 -7.0655E-03 -4.1082E-03 -8.1713E-03
+ Elapsed estimation time in seconds:     2.39
+ Elapsed covariance time in seconds:     2.14
+nonmem succeeded
+/common/NONMEM/nm7_osx2/test/nm7_osx2.pl is complete

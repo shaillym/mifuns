@@ -181,7 +181,7 @@ t <- metaSub(
  )
 
 NONR(
-     run=1:500,
+     run=1,
      command=command,
      project='../nonmem/1005.boot/',
      boot=TRUE,

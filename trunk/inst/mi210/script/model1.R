@@ -155,7 +155,7 @@ t <- metaSub(
      names=1:500,
      pattern=c(
          '1005',
-         '../../../data/derived/phase1.csv',
+         '../../data/derived/phase1.csv',
          '$COV',
          '$TABLE'
      ),
@@ -181,7 +181,7 @@ t <- metaSub(
  )
 
 NONR(
-     run=1,
+     run=1:500,
      command=command,
      project='../nonmem/1005.boot/',
      boot=TRUE,
@@ -189,3 +189,19 @@ NONR(
      diag=FALSE,
      streams='../nonmem/1005.boot/ctl'
 )     
+for(run in 1:1)runlog(
+                      run,
+                      outfile=file.path(
+                        '../nonmem/1005.boot',
+                        paste(
+                              run,
+                              'boot',
+                              sep='.'
+                        ),
+                        paste(
+                            run,
+                            'lst',
+                            sep='.'
+                       )
+                     )
+)

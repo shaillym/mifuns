@@ -1,0 +1,5200 @@
+<?xml version="1.0"?>
+<nonmem>
+<text><![CDATA[
+/Users/timb/project/metrum-mifuns/inst/mi210/script/../nonmem/1105.lock/1105.lst
+2010.03.01.1954.10
+$PROB 1105 phase1 2 CMT like 1004 but diff. initial on V3
+$INPUT C ID TIME SEQ=DROP EVID AMT DV
+$DATA ../../data/derived/phase1.csv IGNORE=C
+$SUBROUTINE ADVAN4 TRANS4
+$PK
+ CL=THETA(1)*EXP(ETA(1))
+ V2 =THETA(2)*EXP(ETA(2))
+ KA=THETA(3)*EXP(ETA(3))
+ Q  =THETA(4);*EXP(ETA(4))
+ V3=THETA(5); *EXP(ETA(5))
+ S2=V2
+ 
+$ERROR
+ Y=F*EXP(ERR(1)); + ERR(2)
+ IPRE=F
+
+$MSFI=../1005/1005.msf
+;$OMEGA
+;$SIGMA
+$SIMULATION ONLYSIM (1968) SUBPROBLEMS=500
+;$COV PRINT=E
+$TABLE DV NOHEADER NOPRINT FILE=./1105.tab FORWARD NOAPPEND
+
+License Registered to: Metrum Research Group
+Expiration Date:    14 JUL 2010
+Current Date:        1 MAR 2010
+Days until program expires : 133
+1NONLINEAR MIXED EFFECTS MODEL PROGRAM (NONMEM) VERSION 7.1.0
+ ORIGINALLY DEVELOPED BY STUART BEAL, LEWIS SHEINER, AND ALISON BOECKMANN
+ CURRENT DEVELOPERS ARE ROBERT BAUER, ICON DEVELOPMENT SOLUTIONS,
+ AND ALISON BOECKMANN. IMPLEMENTATION, EFFICIENCY, AND STANDARDIZATION
+ PERFORMED BY NOUS INFOSYSTEMS.
+ 
+ PROBLEM NO.:         1
+ 1105 phase1 2 CMT like 1004 but diff. initial on V3                     
+0DATA CHECKOUT RUN:              NO 
+ DATA SET LOCATED ON UNIT NO.:    2
+ THIS UNIT TO BE REWOUND:        NO 
+ NO. OF DATA RECS IN DATA SET:      272
+ NO. OF DATA ITEMS IN DATA SET:   7
+ ID DATA ITEM IS DATA ITEM NO.:   2
+ DEP VARIABLE IS DATA ITEM NO.:   6
+ MDV DATA ITEM IS DATA ITEM NO.:  7
+0INDICES PASSED TO SUBROUTINE PRED:
+  4  3  5  0  0  0  0  0  0
+  0  0
+ 0LABELS FOR DATA ITEMS:
+  C ID TIME EVID AMT DV MDV
+0FORMAT FOR DATA:
+ (6E9.0,1F2.0)                                                                   
+ 
+ TOT. NO. OF OBS RECS:      252
+ TOT. NO. OF INDIVIDUALS:     20
+0MODEL SPECIFICATION FILE INPUT
+ EST. RESCALED:   NO 
+0SIMULATION STEP OMITTED:    NO 
+ OBJ FUNC EVALUATED:         NO 
+ SIMULATE WITH
+   INITIAL ESTIMATE:         NO 
+   FINAL ESTIMATE:          YES 
+   PRIOR ROUTINE VAL.:       NO 
+ SOURCE  1:
+    SEED1:          1968   SEED2:             0   PSEUDO-NORMAL       
+ NUMBER OF SUBPROBLEMS:  500
+0TABLES STEP OMITTED:    NO 
+ NO. OF TABLES:           1
+0-- TABLE  1 --
+04 COLUMNS APPENDED:     NO 
+ PRINTED:                NO 
+ HEADER:                 NO 
+ FILE TO BE FORWARDED:  YES 
+ 0USER-CHOSEN ITEMS:
+  DV
+ 
+ THE FOLLOWING LABELS ARE EQUIVALENT
+ PRED=NPRED
+ RES=NRES
+ WRES=NWRES
+1DOUBLE PRECISION PREDPP VERSION 7.1.0
+ 
+ TWO COMPARTMENT MODEL WITH FIRST-ORDER ABSORPTION (ADVAN4)
+0MAXIMUM NO. OF BASIC PK PARAMETERS:   5
+0BASIC PK PARAMETERS (AFTER TRANSLATION):
+   BASIC PK PARAMETER NO.  1: ELIMINATION RATE (K)
+   BASIC PK PARAMETER NO.  2: CENTRAL-TO-PERIPH. RATE (K23)
+   BASIC PK PARAMETER NO.  3: PERIPH.-TO-CENTRAL RATE (K32)
+   BASIC PK PARAMETER NO.  5: ABSORPTION RATE (KA)
+ TRANSLATOR WILL CONVERT PARAMETERS 
+ CL, V2, Q, V3 TO K, K23, K32 (TRANS4)
+0COMPARTMENT ATTRIBUTES 
+ COMPT. NO.   FUNCTION   INITIAL    ON/OFF      DOSE      DEFAULT    DEFAULT
+                         STATUS     ALLOWED    ALLOWED    FOR DOSE   FOR OBS.
+    1         DEPOT        OFF        YES        YES        YES        NO 
+    2         CENTRAL      ON         NO         YES        NO         YES
+    3         PERIPH.      ON         NO         YES        NO         NO 
+    4         OUTPUT       OFF        YES        NO         NO         NO 
+1
+ ADDITIONAL PK PARAMETERS - ASSIGNMENT OF ROWS IN GG
+ COMPT. NO.                             INDICES
+              SCALE      BIOAVAIL.   ZERO-ORDER  ZERO-ORDER  ABSORB
+                         FRACTION    RATE        DURATION    LAG  
+    1           *           *           *           *           *
+    2           6           *           *           *           *
+    3           *           *           *           *           *
+    4           *           -           -           -           -
+             - PARAMETER IS NOT ALLOWED FOR THIS MODEL
+             * PARAMETER IS NOT SUPPLIED BY PK SUBROUTINE;
+               WILL DEFAULT TO ONE IF APPLICABLE
+0DATA ITEM INDICES USED BY PRED ARE:
+   EVENT ID DATA ITEM IS DATA ITEM NO.:      4
+   TIME DATA ITEM IS DATA ITEM NO.:          3
+   DOSE AMOUNT DATA ITEM IS DATA ITEM NO.:   5
+ 
+0PK SUBROUTINE CALLED WITH EVERY EVENT RECORD.
+ PK SUBROUTINE NOT CALLED AT NONEVENT (ADDITIONAL OR LAGGED) DOSE TIMES.
+0ERROR SUBROUTINE CALLED WITH EVERY EVENT RECORD.
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      1
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1299895048   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      2
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1223922510   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      3
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1636523246   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      4
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1394592576   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      5
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1482092543   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      6
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1302233545   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      7
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1299754260   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      8
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     328595167   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:      9
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1994683883   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     10
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     921359764   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     11
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     237226654   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     12
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1361946562   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     13
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1088270885   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     14
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1782874633   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     15
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1328459964   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     16
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      84931677   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     17
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1018630135   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     18
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     671799128   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     19
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     546418961   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     20
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2072568521   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     21
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1930358205   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     22
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     480820102   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     23
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1503036001   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     24
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     138306486   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     25
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     499683613   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     26
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     271033208   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     27
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     471858679   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     28
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     937640560   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     29
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1247328596   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     30
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1746386768   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     31
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     530993421   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     32
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1585910281   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     33
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     235278234   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     34
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     759961234   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     35
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     916404083   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     36
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1695901569   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     37
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      81112403   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     38
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1900531345   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     39
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1990454458   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     40
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     348874807   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     41
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1118609371   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     42
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1107729976   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     43
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1335453327   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     44
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1671717054   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     45
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     251161529   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     46
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1093901558   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     47
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1987134081   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     48
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     754731963   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     49
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1930979558   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     50
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     925683744   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     51
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     263197597   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     52
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     301657279   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     53
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2096622417   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     54
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     502054318   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     55
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     879207714   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     56
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1333688663   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     57
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1712985657   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     58
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     673638461   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     59
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1419524727   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     60
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     221002280   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     61
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     151986843   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     62
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1839529205   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     63
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1756644203   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     64
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     443919092   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     65
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     416258052   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     66
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     793488200   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     67
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     404268493   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     68
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1271903143   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     69
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1779936778   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     70
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1080358686   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     71
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1848870594   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     72
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1027355884   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     73
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1865706858   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     74
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1713131487   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     75
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     883666521   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     76
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     281814278   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     77
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1320949344   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     78
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     360554380   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     79
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     721080605   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     80
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2041748223   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     81
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1612501199   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     82
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1398381216   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     83
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1648736125   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     84
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     769965680   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     85
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     452893318   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     86
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     996705732   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     87
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     516895839   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     88
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     980662060   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     89
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     656612666   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     90
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2116124551   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     91
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1449616606   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     92
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     853246459   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     93
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1861745781   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     94
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      25376884   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     95
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     547781449   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     96
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1767799982   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     97
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1545519345   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     98
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     639184648   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:     99
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1688867407   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    100
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     938535081   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    101
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1630584204   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    102
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     532244393   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    103
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     951774316   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    104
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     919068448   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    105
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1548495768   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    106
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     644632277   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    107
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     393259692   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    108
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     422775179   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    109
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      59512707   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    110
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1881651162   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    111
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     189200232   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    112
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     593737177   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    113
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1831698880   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    114
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1621004302   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    115
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1734573551   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    116
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1958444888   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    117
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     581869445   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    118
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1357712506   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    119
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1551123670   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    120
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1440626777   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    121
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1044644079   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    122
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1973927125   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    123
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     465427989   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    124
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      58002260   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    125
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1521680860   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    126
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1664404441   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    127
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1373311714   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    128
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     871414915   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    129
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1436905189   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    130
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1763291765   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    131
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     706989724   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    132
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1192275768   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    133
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     708160865   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    134
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1559244072   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    135
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1849875981   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    136
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     350386748   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    137
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1732103144   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    138
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     705700600   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    139
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2099410912   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    140
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     757552475   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    141
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1187195018   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    142
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     384231584   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    143
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     846934516   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    144
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1539538551   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    145
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     447994295   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    146
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     909911962   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    147
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      20943727   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    148
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     104952725   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    149
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1102233293   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    150
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     312350420   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    151
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1600945856   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    152
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      99922654   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    153
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     128544118   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    154
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     182361744   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    155
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     713055989   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    156
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     545990636   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    157
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1708381115   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    158
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1883770076   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    159
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1561420535   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    160
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1400915932   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    161
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     499673100   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    162
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2012991130   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    163
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     657680267   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    164
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1992182886   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    165
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1339836328   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    166
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1966176733   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    167
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     967385926   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    168
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1412471262   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    169
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      52352901   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    170
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1213934480   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    171
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1315222713   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    172
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1932318567   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    173
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1602895409   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    174
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1703430998   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    175
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1063961896   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    176
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     781566658   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    177
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     196781523   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    178
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     878904149   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    179
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1893285454   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    180
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1475309108   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    181
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1565782472   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    182
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     737010045   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    183
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     424694137   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    184
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1506451185   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    185
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1971267788   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    186
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1681668167   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    187
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1338202717   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    188
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     427164165   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    189
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2081109186   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    190
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1062611337   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    191
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2008130062   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    192
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     438383568   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    193
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1629160459   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    194
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     942287884   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    195
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      81288834   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    196
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     595007568   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    197
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2108203419   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    198
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1018852687   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    199
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1956284106   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    200
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2143722172   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    201
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     255943584   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    202
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1981643599   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    203
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1391926664   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    204
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      40255897   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    205
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1773513951   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    206
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     392290368   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    207
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2109458217   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    208
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1427816668   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    209
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1156657355   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    210
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2006550147   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    211
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     338412895   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    212
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1724946120   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    213
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2119967841   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    214
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1328439887   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    215
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      14194607   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    216
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1044217159   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    217
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1970339844   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    218
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1142040258   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    219
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1178652017   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    220
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1577149779   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    221
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     171455084   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    222
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     469599813   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    223
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1911003466   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    224
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     611130506   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    225
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     585461301   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    226
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     219846194   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    227
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1409766823   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    228
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1385648639   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    229
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     437075702   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    230
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     859408723   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    231
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1971915749   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    232
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2085185996   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    233
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1456676193   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    234
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:       2400595   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    235
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     744290774   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    236
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     817426055   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    237
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     205889227   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    238
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1594306324   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    239
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1806083328   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    240
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     719326256   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    241
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1833983928   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    242
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1215335911   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    243
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     413150967   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    244
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1849648270   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    245
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1219061380   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    246
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1515948302   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    247
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     377574228   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    248
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     592141744   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    249
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1363761008   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    250
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     197592111   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    251
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     828351126   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    252
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     956074254   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    253
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     987724672   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    254
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1812556634   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    255
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     660449958   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    256
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     669515918   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    257
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1974063966   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    258
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     752779868   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    259
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      80095875   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    260
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1093720616   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    261
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     950332598   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    262
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1164066648   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    263
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1907344531   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    264
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     872060449   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    265
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     682561253   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    266
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1531240699   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    267
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     784688200   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    268
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2063925317   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    269
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1440689940   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    270
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     190502283   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    271
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1651694409   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    272
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1775245214   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    273
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     505987494   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    274
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1099540607   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    275
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      76736783   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    276
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     833282028   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    277
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1995162497   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    278
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1949515621   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    279
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:       8152657   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    280
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1801948992   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    281
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1105351008   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    282
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     341339395   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    283
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2146216471   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    284
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     319372226   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    285
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1783197415   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    286
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2139692856   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    287
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     993051789   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    288
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1141972142   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    289
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     463532795   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    290
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     881423095   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    291
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1885890052   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    292
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1173359046   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    293
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1703162355   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    294
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1713761530   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    295
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1900484134   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    296
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     374027521   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    297
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     325825881   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    298
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1044543719   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    299
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      21777130   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    300
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1584444635   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    301
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     964904063   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    302
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1636732460   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    303
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     363946719   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    304
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     794670901   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    305
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     375559517   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    306
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     698718694   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    307
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1978158569   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    308
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2083417224   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    309
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1735153599   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    310
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1981709189   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    311
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1695646633   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    312
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      68547723   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    313
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     433385483   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    314
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     779291288   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    315
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     709603607   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    316
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1554133611   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    317
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1970731997   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    318
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1882362132   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    319
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1854177349   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    320
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1328662099   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    321
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1562962287   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    322
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1618216769   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    323
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1817684888   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    324
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1476166442   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    325
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     650844078   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    326
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     286587481   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    327
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1686866808   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    328
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     257424232   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    329
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1541047078   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    330
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1163481454   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    331
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1488051307   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    332
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1311196640   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    333
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1904519864   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    334
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     992696760   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    335
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1003511152   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    336
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1165326884   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    337
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     792642828   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    338
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     560525150   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    339
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1684725664   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    340
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     753275596   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    341
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1220960862   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    342
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1831275102   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    343
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:       8862879   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    344
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1471367677   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    345
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     877498196   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    346
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     297362925   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    347
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     618195029   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    348
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     672845496   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    349
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     391307954   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    350
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1086123400   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    351
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     979895813   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    352
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1143740230   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    353
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1828368595   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    354
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1593196970   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    355
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1806127950   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    356
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1228020822   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    357
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1183153581   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    358
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      20348245   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    359
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2073821147   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    360
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2056990218   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    361
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1708759245   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    362
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1157219448   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    363
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1143371342   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    364
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1763015455   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    365
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     229668253   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    366
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2106397882   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    367
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     504843565   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    368
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2015516501   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    369
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      14247677   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    370
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     847631013   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    371
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     445235718   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    372
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1577230047   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    373
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     864463149   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    374
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     499508193   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    375
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      70665963   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    376
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     662049487   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    377
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2097004746   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    378
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1021327979   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    379
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     106681929   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    380
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     580485926   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    381
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1171122524   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    382
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1250395942   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    383
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1931526862   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    384
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1616439114   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    385
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     549956771   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    386
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     399328874   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    387
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1816699475   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    388
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1937599315   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    389
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     884672829   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    390
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1705943195   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    391
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1792862470   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    392
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     675508945   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    393
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2118078465   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    394
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2101336198   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    395
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1757542376   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    396
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     969680152   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    397
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     870994759   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    398
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1885426792   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    399
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1120673683   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    400
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     128215191   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    401
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1431714839   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    402
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1869226003   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    403
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1600171712   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    404
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1280901965   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    405
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     396467537   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    406
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1513134548   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    407
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1098105708   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    408
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1552188942   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    409
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     764789609   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    410
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1548801081   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    411
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     419033881   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    412
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     434785722   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    413
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1359582900   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    414
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1561699189   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    415
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1471054119   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    416
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2143242998   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    417
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     673657423   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    418
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1914824613   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    419
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     660839054   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    420
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1878579435   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    421
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      87136959   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    422
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1753025230   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    423
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     667126496   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    424
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     238021582   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    425
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1862267665   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    426
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     389862511   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    427
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1131668888   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    428
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1843968845   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    429
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     431978139   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    430
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1363602268   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    431
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     800986281   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    432
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1702166264   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    433
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1582117100   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    434
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1791950613   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    435
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1918505102   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    436
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      93138693   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    437
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     952541012   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    438
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     929293459   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    439
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     995917875   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    440
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1884877520   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    441
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1277506912   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    442
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     765017154   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    443
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1845003645   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    444
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     754556369   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    445
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     830017819   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    446
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2120686952   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    447
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     871942392   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    448
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1104662568   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    449
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1249034988   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    450
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2079759087   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    451
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     794712684   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    452
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     728782633   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    453
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     200612049   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    454
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1685044180   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    455
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     737098883   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    456
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     772351881   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    457
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1117696993   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    458
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     443997524   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    459
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1677399249   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    460
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      22021158   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    461
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     677421217   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    462
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     702678743   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    463
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     245805941   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    464
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     234836247   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    465
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     328385428   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    466
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      85865286   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    467
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     123422183   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    468
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     354137414   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    469
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1957592597   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    470
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1606563429   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    471
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     381033752   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    472
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2066622714   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    473
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1968329912   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    474
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1917283732   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    475
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1668337731   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    476
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2035586955   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    477
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     955518996   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    478
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     769849875   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    479
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     337207031   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    480
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     569904822   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    481
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1755411473   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    482
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     364496485   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    483
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     405437533   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    484
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1970860640   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    485
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1922733802   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    486
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1923941768   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    487
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1394565099   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    488
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2110488053   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    489
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:      25464865   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    490
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     285729131   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    491
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     132421859   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    492
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1490180910   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    493
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1284679614   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    494
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     225961619   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    495
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1458662971   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    496
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     903933410   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    497
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    2078835277   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    498
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1361949847   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    499
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:    1503413938   SEED2:             0
+1
+ 
+ 
+ #METH: 
+1
+ PROBLEM NO.:         1     SUBPROBLEM NO.:    500
+ 
+ SIMULATION STEP PERFORMED
+ SOURCE  1:
+    SEED1:     584987953   SEED2:             0
+1
+ 
+ 
+ #METH: 
+2010.03.01.1954.22
+........................................
+NONMEM run with /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
+........................................
+NONMEM Installation Log for /common/NONMEM/nm7_osx2
+]]></text>
+<nmqual><version>7.1.0</version><origin><identifier>This log was generated by nmqual.pl, a component of NMQual</identifier><copyright>NMQual copyright (c) 2006 Metrum Institute -- http://metruminstitute.org</copyright></origin><time><year>2009</year><month>12</month><day>21</day><hour>14</hour><minute>48</minute></time><script><name>nmqual.pl</name><arguments><configurationFile>/Users/william/Downloads/nmqual-7.1.0/../config.darwin-ifort-nm7.xml</configurationFile></arguments></script><directory><source>/Volumes/NONMEM_7.1.0/NONMEM_7.1.0</source><target>/common/NONMEM/nm7_osx2</target></directory><tests on="installation"><environment><variable name="SHELL">/bin/bash</variable><variable name="USER">root</variable><variable name="PATH">/common/sge/bin/darwin-x86:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/william/bin:/Users/william/script:/Users/william/script/contrib:/opt/local/bin</variable></environment><system><test><command>perl -e 'use POSIX; print join qq(,\n),uname'</command><result>Darwin,
+leopardserver.local,
+9.8.0,
+Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386,
+i386</result></test></system></tests><checksum><path name="nm">efe2f99e5d35e620ee05e03f725458ec</path><path name="pr">256974759dacee090ded7efb43727f5d</path><path name="tr">a44a5b4c9a8b165fc97bf884f94bd994</path><path name="test/config.xml">3c18041e18a1fa1ab021c4974de0bcd2</path><path name="test/runtest.pl">36a1956412f6cba3bd6aec017f216d89</path><path name="test/nmqual.pm">624d6e9e001212ec09cf3765f3e493eb</path><path name="test/nm7_osx2.pl">1e556009dac9870738e7b548e7e196db</path></checksum><changed /><configuration xmlns="http://metruminstitute.org/nmqual/configuration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://metruminstitute.org/nmqual/configuration   http://metruminstitute.org/schemas/config.nmqual-7.xsd">
+
+<pause>0</pause>
+<verbose>1</verbose>
+<directory id="source">/Volumes/NONMEM_7.1.0/NONMEM_7.1.0</directory> 
+<directory id="target">/common/NONMEM/nm7_osx2</directory> 
+<file type="zip" from="NMQUAL/nm7control.zip" to="test" />
+<file type="zip" from="guides.zip" to="guides" />
+<file type="zip" from="help.zip" to="help" />
+<file type="zip" from="html.zip" to="html" />
+<file nix="0" from="nonmem7e.zip" />
+<file nix="0" from="nonmem7r.zip" />
+<file type="zip" from="nonmem7r.zip" />
+<file nix="0" from="install_Darwin" to="install" />
+<file nix="0" from="/Users/william/Downloads/NONMEM.lic" to="license/nonmem.lic" />
+<file to="TARGET/resource/SIZES.f90" from="TARGET/resource/SIZES_big" />
+
+<instruction id="compile">./install 2 nonmem7e.zip nonmem7r.zip ifort '-Gs -nologo -nbs -w -Ob1gyti -Qprec_div -4Yportlib -traceback -vec-report0' '-module resource' Linux 'unzip -a' o n x</instruction>
+<instruction id="compile">./install 3 nonmem7e.zip nonmem7r.zip ifort '-Gs -nologo -nbs -w -Ob1gyti -Qprec_div -4Yportlib -traceback -vec-report0' '-module resource' Linux 'unzip -a' o n x</instruction>
+<instruction id="compile" cd="resource">ar -r resource.a *.o</instruction>
+<instruction id="compile" cd="nm">rm -rf termiowin.o</instruction>
+<instruction id="compile" cd="nm">ifort -c ifortlinux.f -I../resource</instruction>
+<instruction id="compile" cd="tr">ifort -c ifortlinuxtr.f -I../resource</instruction>
+<instruction id="library" cd="nm">ar -r nonmem.a *.o new_imsl/*.o</instruction>
+<instruction id="nmtran" cd="tr">ifort -o nmtran.exe *.o ../resource/resource.a</instruction>
+<instruction id="nonmem">ifort -ITARGET/resource -o nonmem.exe -Gs -nologo -nbs -w -Ob1gyti -Qprec_div -4Yportlib -traceback -vec-report0 FSUBS.f90 FREPORT TARGET/nm/NONMEM_Recoded.o TARGET/nm/nonmem.a TARGET/resource/resource.a TARGET/resource/*.o</instruction> 
+
+<suffix id="fortran">f90</suffix>
+<suffix id="object">o</suffix>
+<suffix id="library">a</suffix>
+<test class="system" command="perl -e 'use POSIX; print join qq(,\n),uname'" />
+<test class="environment" variable="SHELL" />
+<test class="environment" variable="USER" />
+<test class="environment" variable="PATH" />
+<attribution>Altered on installation by NMQual (copyright metruminstitute.org)</attribution>
+<trash>FSUBS</trash>
+<trash>FSUBS.F</trash>
+<trash>fsubs.for</trash>
+<trash>FSUBS.f90</trash>
+<trash>FREPORT</trash>
+<trash>FLIB</trash>
+<trash>nonmem.exe</trash>
+<trash>output</trash>
+<checksum>nm</checksum>
+<checksum>pr</checksum>
+<checksum>tr</checksum>
+<checksum>test/config.xml</checksum>
+<checksum>test/runtest.pl</checksum>
+<checksum>test/nmqual.pm</checksum>
+<checksum>test/nm.pl</checksum>
+<nonmem version="7" level="1.0" date="08-xx-2009" />
+<meta>nmqual 7.1.x for nonmem 7.1.0</meta>
+</configuration></nmqual><tests on="execution"><environment><variable name="SHELL">/bin/csh</variable><variable name="USER">timb</variable><variable name="PATH">/tmp/944.1.all.q:/common/sge/bin/darwin-x86:/usr/local/bin:/usr/X11R6/bin:/bin:/sbin:/usr/bin:/bin:/usr/sbin:/sbin</variable></environment><system><test><command>perl -e 'use POSIX; print join qq(,\n),uname'</command><result>Darwin,
+leopardserver.local,
+9.8.0,
+Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386,
+i386</result></test></system></tests><text><![CDATA[
+
+........................................
+NONMEM control test log(s) generated by runtest.pl for /common/NONMEM/nm7_osx2
+]]></text>
+<runtest><time><year>2009</year><month>12</month><day>21</day><hour>14</hour><minute>52</minute><second>46</second></time><script><name>runtest.pl</name><arguments><argument>3</argument><argument>4</argument><argument>5</argument><argument>6</argument><argument>7</argument><argument>8</argument></arguments></script><directory>/common/NONMEM/nm7_osx2/test</directory><filename>/common/NONMEM/nm7_osx2/test/runtest.2009.12.21.1452.46.xml</filename><username /><user>root</user><install_log>/common/NONMEM/nm7_osx2/test/nmqual_install.2009.12.21.1448.xml</install_log><checksum><path name="nm">efe2f99e5d35e620ee05e03f725458ec</path><path name="pr">256974759dacee090ded7efb43727f5d</path><path name="tr">a44a5b4c9a8b165fc97bf884f94bd994</path><path name="test/config.xml">3c18041e18a1fa1ab021c4974de0bcd2</path><path name="test/runtest.pl">36a1956412f6cba3bd6aec017f216d89</path><path name="test/nmqual.pm">624d6e9e001212ec09cf3765f3e493eb</path><path name="test/nm7_osx2.pl">1e556009dac9870738e7b548e7e196db</path></checksum><tests><test_3><refFile>control3.ref.xml</refFile><testFile>control3.test.xml</testFile><streamFile>3.ctl</streamFile><outFile>3.lst</outFile><command>nm7_osx2.pl</command><commandline>perl /common/NONMEM/nm7_osx2/test/nm7_osx2.pl /common/NONMEM/nm7_osx2/test/3.ctl /common/NONMEM/nm7_osx2/test/3.lst nochecksum</commandline><parameters><MIN><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></MIN><DESC><ref>3, THEOPHYLLINE SINGLE SUBJECT DATA</ref><test>3, THEOPHYLLINE SINGLE SUBJECT DATA
+</test><similarity>99</similarity><status>match</status></DESC><TH2><ref>1.01681E-01</ref><test>1.01681E-01</test><similarity>99</similarity><status>match</status></TH2><COV><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></COV><TH1><ref>1.94057E+00</ref><test>1.94057E+00</test><similarity>99</similarity><status>match</status></TH1><TH3><ref>3.20217E+01</ref><test>3.20217E+01</test><similarity>99</similarity><status>match</status></TH3><OFV><ref>8.94010167314457</ref><test>8.94010167314457</test><similarity>99</similarity><status>match</status></OFV><OM1.1><ref>8.99322E-01</ref><test>8.99322E-01</test><similarity>99</similarity><status>match</status></OM1.1></parameters></test_3><test_4><refFile>control4.ref.xml</refFile><testFile>control4.test.xml</testFile><streamFile>4.ctl</streamFile><outFile>4.lst</outFile><command>nm7_osx2.pl</command><commandline>perl /common/NONMEM/nm7_osx2/test/nm7_osx2.pl /common/NONMEM/nm7_osx2/test/4.ctl /common/NONMEM/nm7_osx2/test/4.lst nochecksum</commandline><parameters><OM3.2><ref>9.10643E-03</ref><test>9.10643E-03</test><similarity>99</similarity><status>match</status></OM3.2><MIN><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></MIN><DESC><ref>4, THEOPHYLLINE POPULATION DATA</ref><test>4, THEOPHYLLINE POPULATION DATA
+</test><similarity>99</similarity><status>match</status></DESC><TH2><ref>7.81286E-02</ref><test>7.81286E-02</test><similarity>99</similarity><status>match</status></TH2><OM3.1><ref>-1.27668E-01</ref><test>-1.27668E-01</test><similarity>99</similarity><status>match</status></OM3.1><OM3.3><ref>5.15206E-01</ref><test>5.15206E-01</test><similarity>99</similarity><status>match</status></OM3.3><OM2.2><ref>2.39848E-04</ref><test>2.39848E-04</test><similarity>99</similarity><status>match</status></OM2.2><OFV><ref>104.561067398632</ref><test>104.561067398632</test><similarity>99</similarity><status>match</status></OFV><OM2.1><ref>5.23932E-03</ref><test>5.23932E-03</test><similarity>99</similarity><status>match</status></OM2.1><OM1.1><ref>5.54976E+00</ref><test>5.54976E+00</test><similarity>99</similarity><status>match</status></OM1.1><COV><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></COV><TH1><ref>2.77387E+00</ref><test>2.77387E+00</test><similarity>99</similarity><status>match</status></TH1><TH3><ref>3.63073E-02</ref><test>3.63073E-02</test><similarity>99</similarity><status>match</status></TH3><SG1.1><ref>3.87501E-01</ref><test>3.87501E-01</test><similarity>99</similarity><status>match</status></SG1.1></parameters></test_4><test_5><refFile>control5.ref.xml</refFile><testFile>control5.test.xml</testFile><streamFile>5.ctl</streamFile><outFile>5.lst</outFile><command>nm7_osx2.pl</command><commandline>perl /common/NONMEM/nm7_osx2/test/nm7_osx2.pl /common/NONMEM/nm7_osx2/test/5.ctl /common/NONMEM/nm7_osx2/test/5.lst nochecksum</commandline><parameters><OM3.2><ref>9.10643E-03</ref><test>9.10643E-03</test><similarity>99</similarity><status>match</status></OM3.2><MIN><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></MIN><DESC><ref>5, THEOPHYLLINE POPULATION DATA</ref><test>5, THEOPHYLLINE POPULATION DATA
+</test><similarity>99</similarity><status>match</status></DESC><TH2><ref>7.81286E-02</ref><test>7.81286E-02</test><similarity>99</similarity><status>match</status></TH2><OM3.1><ref>-1.27668E-01</ref><test>-1.27668E-01</test><similarity>99</similarity><status>match</status></OM3.1><OM3.3><ref>5.15206E-01</ref><test>5.15206E-01</test><similarity>99</similarity><status>match</status></OM3.3><OM2.2><ref>2.39848E-04</ref><test>2.39848E-04</test><similarity>99</similarity><status>match</status></OM2.2><OFV><ref>104.561067398633</ref><test>104.561067398633</test><similarity>99</similarity><status>match</status></OFV><OM2.1><ref>5.23932E-03</ref><test>5.23932E-03</test><similarity>99</similarity><status>match</status></OM2.1><OM1.1><ref>5.54976E+00</ref><test>5.54976E+00</test><similarity>99</similarity><status>match</status></OM1.1><COV><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></COV><TH1><ref>2.77387E+00</ref><test>2.77387E+00</test><similarity>99</similarity><status>match</status></TH1><TH3><ref>3.63073E-02</ref><test>3.63073E-02</test><similarity>99</similarity><status>match</status></TH3><SG1.1><ref>3.87501E-01</ref><test>3.87501E-01</test><similarity>99</similarity><status>match</status></SG1.1></parameters></test_5><test_6><refFile>control6.ref.xml</refFile><testFile>control6.test.xml</testFile><streamFile>6.ctl</streamFile><outFile>6.lst</outFile><command>nm7_osx2.pl</command><commandline>perl /common/NONMEM/nm7_osx2/test/nm7_osx2.pl /common/NONMEM/nm7_osx2/test/6.ctl /common/NONMEM/nm7_osx2/test/6.lst nochecksum</commandline><parameters><OM3.2><ref>9.10643E-03</ref><test>9.10643E-03</test><similarity>99</similarity><status>match</status></OM3.2><MIN><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></MIN><DESC><ref>6, THEOPHYLLINE POPULATION DATA</ref><test>6, THEOPHYLLINE POPULATION DATA
+</test><similarity>99</similarity><status>match</status></DESC><TH2><ref>7.81286E-02</ref><test>7.81286E-02</test><similarity>99</similarity><status>match</status></TH2><OM3.1><ref>-1.27668E-01</ref><test>-1.27668E-01</test><similarity>99</similarity><status>match</status></OM3.1><OM3.3><ref>5.15206E-01</ref><test>5.15206E-01</test><similarity>99</similarity><status>match</status></OM3.3><OM2.2><ref>2.39848E-04</ref><test>2.39848E-04</test><similarity>99</similarity><status>match</status></OM2.2><OFV><ref>104.561067398633</ref><test>104.561067398633</test><similarity>99</similarity><status>match</status></OFV><OM2.1><ref>5.23932E-03</ref><test>5.23932E-03</test><similarity>99</similarity><status>match</status></OM2.1><OM1.1><ref>5.54976E+00</ref><test>5.54976E+00</test><similarity>99</similarity><status>match</status></OM1.1><COV><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></COV><TH1><ref>2.77387E+00</ref><test>2.77387E+00</test><similarity>99</similarity><status>match</status></TH1><TH3><ref>3.63073E-02</ref><test>3.63073E-02</test><similarity>99</similarity><status>match</status></TH3><SG1.1><ref>3.87501E-01</ref><test>3.87501E-01</test><similarity>99</similarity><status>match</status></SG1.1></parameters></test_6><test_7><refFile>control7.ref.xml</refFile><testFile>control7.test.xml</testFile><streamFile>7.ctl</streamFile><outFile>7.lst</outFile><command>nm7_osx2.pl</command><commandline>perl /common/NONMEM/nm7_osx2/test/nm7_osx2.pl /common/NONMEM/nm7_osx2/test/7.ctl /common/NONMEM/nm7_osx2/test/7.lst nochecksum</commandline><parameters><OM3.2><ref>9.10643E-03</ref><test>9.10643E-03</test><similarity>99</similarity><status>match</status></OM3.2><MIN><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></MIN><DESC><ref>7, THEOPHYLLINE POPULATION DATA</ref><test>7, THEOPHYLLINE POPULATION DATA
+</test><similarity>99</similarity><status>match</status></DESC><TH2><ref>7.81286E-02</ref><test>7.81286E-02</test><similarity>99</similarity><status>match</status></TH2><OM3.1><ref>-1.27668E-01</ref><test>-1.27668E-01</test><similarity>99</similarity><status>match</status></OM3.1><OM3.3><ref>5.15206E-01</ref><test>5.15206E-01</test><similarity>99</similarity><status>match</status></OM3.3><OM2.2><ref>2.39848E-04</ref><test>2.39848E-04</test><similarity>99</similarity><status>match</status></OM2.2><OFV><ref>104.561067310441</ref><test>104.561067310441</test><similarity>99</similarity><status>match</status></OFV><OM2.1><ref>5.23932E-03</ref><test>5.23932E-03</test><similarity>99</similarity><status>match</status></OM2.1><OM1.1><ref>5.54976E+00</ref><test>5.54976E+00</test><similarity>99</similarity><status>match</status></OM1.1><COV><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></COV><TH1><ref>2.77387E+00</ref><test>2.77387E+00</test><similarity>99</similarity><status>match</status></TH1><TH3><ref>3.63073E-02</ref><test>3.63073E-02</test><similarity>99</similarity><status>match</status></TH3><SG1.1><ref>3.87501E-01</ref><test>3.87501E-01</test><similarity>99</similarity><status>match</status></SG1.1></parameters></test_7><test_8><refFile>control8.ref.xml</refFile><testFile>control8.test.xml</testFile><streamFile>8.ctl</streamFile><outFile>8.lst</outFile><command>nm7_osx2.pl</command><commandline>perl /common/NONMEM/nm7_osx2/test/nm7_osx2.pl /common/NONMEM/nm7_osx2/test/8.ctl /common/NONMEM/nm7_osx2/test/8.lst nochecksum</commandline><parameters><TH5><ref>7.34486E+00</ref><test>7.34475E+00</test><similarity>4.82</similarity><status>partial match</status></TH5><MIN><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></MIN><TH2><ref>1.29135E+01</ref><test>1.29135E+01</test><similarity>99</similarity><status>match</status></TH2><TH6><ref>1.77076E+01</ref><test>1.77076E+01</test><similarity>99</similarity><status>match</status></TH6><OM3.3><ref>3.43608E-02</ref><test>3.43605E-02</test><similarity>5.06</similarity><status>partial match</status></OM3.3><OFV><ref>4425.31299055917</ref><test>4425.31299050029</test><similarity>10.88</similarity><status>partial match</status></OFV><SG6.6><ref>1.18045E+01</ref><test>1.18042E+01</test><similarity>4.59</similarity><status>partial match</status></SG6.6><OM1.1><ref>9.48496E-03</ref><test>9.48483E-03</test><similarity>4.86</similarity><status>partial match</status></OM1.1><SG5.5><ref>6.01007E-02</ref><test>6.01015E-02</test><similarity>4.88</similarity><status>partial match</status></SG5.5><SG4.4><ref>1.42000E-01</ref><test>1.41991E-01</test><similarity>4.20</similarity><status>partial match</status></SG4.4><DESC><ref>8, Parent-Metabolite-Urine Model</ref><test>8, Parent-Metabolite-Urine Model
+</test><similarity>99</similarity><status>match</status></DESC><OM4.4><ref>2.67234E-02</ref><test>2.67255E-02</test><similarity>4.10</similarity><status>partial match</status></OM4.4><TH8><ref>1.31768E+00</ref><test>1.31768E+00</test><similarity>99</similarity><status>match</status></TH8><SG3.3><ref>4.52108E-02</ref><test>4.52108E-02</test><similarity>99</similarity><status>match</status></SG3.3><SG2.2><ref>1.57506E+04</ref><test>1.57501E+04</test><similarity>4.50</similarity><status>partial match</status></SG2.2><OM2.2><ref>2.18600E-02</ref><test>2.18604E-02</test><similarity>4.74</similarity><status>partial match</status></OM2.2><OM6.6><ref>7.41652E-02</ref><test>7.41637E-02</test><similarity>4.69</similarity><status>partial match</status></OM6.6><COV><ref>0</ref><test>0</test><similarity>99</similarity><status>match</status></COV><TH1><ref>4.93015E-01</ref><test>4.93015E-01</test><similarity>99</similarity><status>match</status></TH1><TH7><ref>5.91295E-01</ref><test>5.91300E-01</test><similarity>5.07</similarity><status>partial match</status></TH7><OM5.5><ref>1.84058E-02</ref><test>1.84063E-02</test><similarity>4.57</similarity><status>partial match</status></OM5.5><TH4><ref>1.84011E+01</ref><test>1.84011E+01</test><similarity>99</similarity><status>match</status></TH4><TH3><ref>5.74744E+00</ref><test>5.74747E+00</test><similarity>5.28</similarity><status>partial match</status></TH3><TH9><ref>2.15449E+00</ref><test>2.15449E+00</test><similarity>99</similarity><status>match</status></TH9><SG1.1><ref>7.14281E-02</ref><test>7.14287E-02</test><similarity>5.08</similarity><status>partial match</status></SG1.1></parameters></test_8></tests></runtest>
+</nonmem>

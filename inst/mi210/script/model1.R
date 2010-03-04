@@ -2,8 +2,8 @@
 
 getwd()
 library(MIfuns)
-dir('/common/NONMEM')
-command <- '/common/NONMEM/nm7_osx2/test/nm7_osx2.pl'
+dir('~/NONMEM')
+command <- '~/NONEM/nm7g95/test/nm7g95.pl'
 cat.cov='SEX'
 cont.cov=c('HEIGHT','WEIGHT','AGE')
 par.list=c('CL','Q','KA','V','V2','V3')
@@ -140,10 +140,31 @@ head(phase1)
 phase1 <- phase1[!is.na(phase1$DV),]
 head(phase1)
 library(reshape)
-phase1 <- melt(phase1,measure.var=c('DV','PRED'))
-head(phase1)
+molt <- melt(phase1,measure.var=c('DV','PRED'))
+head(molt)
 
-#plotstuff
+#plots
+#Quick look at pred
+library(lattice)
+xyplot(
+	PRED~DV,
+	phase1,
+	panel=function(...){
+		panel.xyplot(...)
+		panel.abline(a=0,b=1)
+	}
+)
+xyplot(
+	log(PRED)~log(DV),
+	phase1,
+	panel=function(...){
+		panel.xyplot(...)
+		panel.abline(a=0,b=1)
+	}
+)
+
+head(molt)
+#Data reduction
 
 #bootstrap estimates of parameters.
 getwd()
@@ -152,7 +173,7 @@ dir.create('../nonmem/1005.boot/data')
 dir.create('../nonmem/1005.boot/ctl')
 t <- metaSub(
      as.filename('../nonmem/ctl/1005.ctl'),
-     names=1:500,
+     names=1:5,
      pattern=c(
          '1005',
          '../../data/derived/phase1.csv',
@@ -187,6 +208,7 @@ NONR(
      boot=TRUE,
      nice=TRUE,
      diag=FALSE,
+     concurrent=FALSE,
      streams='../nonmem/1005.boot/ctl'
 )     
 for(run in 1:1)runlog(

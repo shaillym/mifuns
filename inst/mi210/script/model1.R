@@ -2,8 +2,8 @@
 
 getwd()
 library(MIfuns)
-dir('~/NONMEM')
-command <- '~/NONEM/nm7g95/test/nm7g95.pl'
+dir('/common/NONMEM')
+command <- '/common/NONMEM/nm7_osx2/test/nm7_osx2.pl'
 cat.cov='SEX'
 cont.cov=c('HEIGHT','WEIGHT','AGE')
 par.list=c('CL','Q','KA','V','V2','V3')
@@ -38,7 +38,7 @@ NONR(
      plotfile='../nonmem/*/diagnostics.pdf',
      streams='../nonmem/ctl'
 )     
-#Flatter residuals, but still no covariance step.
+#Slightly better CWRES, but still no covariance step.
 #Model over parameterized?  Drop Etas on V2 and Q.  Drop additive error.
 NONR(
      run=1003,

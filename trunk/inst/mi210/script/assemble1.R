@@ -25,11 +25,6 @@ summary(dem)
 
 #Groom the pk data.
 head(pk)
-#We will create a BLQ flag, and comment out the BLQs.
-unique(pk$comment)
-pk$BLQ <- as.flag(as.integer(!is.na(pk$comment)))
-head(pk)
-pk$comment <- NULL
 pk <- as.keyed(pk, key=c('SUBJ','HOUR'))
 head(pk)
 summary(pk)
@@ -56,11 +51,11 @@ phase1 <-
 
 summary(phase1)
 
-#Note 28 badDv.
-# ?badDv tells us this means DV is NA where EVID==0.
+#Note 20 predose/zero DV.
+# See ?zeroDv
 #We comment-out these records.
 
-phase1 <- hide(phase1, where=badDv(phase1), why='badDv')
+phase1 <- hide(phase1, where=predoseDv(phase1), why='predose')
 summary(phase1)
 
 #We could rearrange columns for convenience and clarity.

@@ -47,6 +47,7 @@ runCommand(
 	cwd = "",
 	compile = TRUE,
 	execute = TRUE,
+	background='&',
 	...
 )
 }
@@ -74,12 +75,16 @@ runCommand(
   \item{V}{passed to qsub}
   \item{j}{passed to qsub}
   \item{q}{passed to qsub}
-  \item{sync}{passed to qsub}
+  \item{sync}{passed to qsub.  Bootstrap runs usually occur in large quantities,
+  whereas SGE has an internal limitation on number of synchronized processes.  Therefore,
+  no attempt is currently made to synchronize bootstrap runs.}
   \item{shell}{passed to qsub}
   \item{b}{passed to qsub}
   \item{cwd}{passed to qsub}
   \item{compile}{passed to nm.pl}
   \item{execute}{passed to nm.pl, influences default for \code{q}}
+  \item{background}{appended to bootstrap command lines to put the 
+  process in the background}
   \item{\dots}{passed to nm.pl and qsub}
 }
 \details{

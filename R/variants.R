@@ -7,7 +7,7 @@ function(x,path){
   dirs <- file.path(path,x)
   subdirs <- lapply(dirs,dir,full.names=TRUE)
   counts <- sapply(subdirs,length)
-  files <- file.path(unlist(subdirs),rep(x,each=counts))
+  files <- file.path(unlist(subdirs),rep(x,counts))
   missing <- !file_test('-f',files)
   if(any(missing))warning(paste('nonexistent file(s), e.g.',files[missing][[1]]))
   files  

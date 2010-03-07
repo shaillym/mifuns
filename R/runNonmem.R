@@ -101,9 +101,11 @@ function (
 	  }
 	
 	  #Diagnostics
+	  try(runlog(run=run,outfile=outfile,...))
 	  if(!udef)
 	   if(nmVersion(config(dirname(command))) < 7)
 	    try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
+	   else(try(runlog(run=run,outfile=outfile,...))
 	  if(diag)try(
 		PLOTR(
 			run=run,
@@ -196,7 +198,10 @@ function (
   }
   extractPath <- function(x)sub('(^.*(MSFO?|FILE) *= *)([^ ]*)(.*$)','\\3',x,ignore.case=TRUE)
   resolve <- function(file,dir)ifelse(contains('^\\.',file),file.path(dir,file),file)
-  scavenge <- function(expr,lines)lines[grep(expr,lines,ignore.case=TRUE, perl=TRUE)][[1]]
+  scavenge <- function(expr,lines){
+	  x <- lines[grep(expr,lines,ignore.case=TRUE, perl=TRUE)]
+	  if(length(x))return(x[[1]]) else return('')
+  }
   extfile <- function(ctlfile,dir,extreg,...)resolve(extractPath(scavenge(extreg,explicitPath(readLines(ctlfile)))),dir)  
   tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)extfile(ctlfile,dir,extreg=tabreg,...)
   parfile <- function(ctlfile,dir,parreg='par\\.tab',...)extfile(ctlfile,dir,extreg=parreg,...)

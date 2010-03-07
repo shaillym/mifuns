@@ -268,6 +268,10 @@ as.miDate(dates('01/01/1970'))
 as.miDateTime(chron(dates='01/01/1970',times='12:30:00'))
 # 1970-01-01 12:30
 
+#NA
+as.miTime(as.numeric(NA))
+# <NA>
+
 #infinity
 as.miTime(Inf)
 # Inf

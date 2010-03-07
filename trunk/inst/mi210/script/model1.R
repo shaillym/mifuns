@@ -127,11 +127,14 @@ NONR(
 phase1 <- read.csv('../data/derived/phase1.csv',na.strings='.')
 head(phase1)
 phase1 <- phase1[is.na(phase1$C),c('SUBJ','TIME','DV')]
+records <- nrow(phase1)
+records
+phase1 <- phase1[rep(1:records,500),]
 nrow(phase1)
-phase1 <- phase1[rep(1:nrow(phase1),500),]
-nrow(phase1)
-phase1$SIM <- rep(1:272,each=500)
-head(phase1)
+phase1$SIM <- rep(1:500,each=records)
+head(phase1,300)
+with(phase1,DV[SIM==1 & SUBJ==12])
+with(phase1,DV[SIM==2 & SUBJ==12])
 pred <- scan('../nonmem/1105/1105.tab')
 nrow(phase1)
 length(pred)
@@ -139,9 +142,6 @@ phase1$PRED <- pred
 head(phase1)
 phase1 <- phase1[!is.na(phase1$DV),]
 head(phase1)
-library(reshape)
-molt <- melt(phase1,measure.var=c('DV','PRED'))
-head(molt)
 
 #plots
 #Quick look at pred
@@ -163,8 +163,136 @@ xyplot(
 	}
 )
 
-head(molt)
-#Data reduction
+#Since subjects may contribute differing numbers of observations, it may
+#be useful to look at predictions from a subject-centric perspective.
+#Therefore, we wish to calculate summary statistics for each subject, 
+#(observed and predicted) and then make obspred comparisons therewith.
+library(reshape)
+subject <- melt(phase1,measure.var=c('DV','PRED'))
+head(subject)
+#We are going to aggregate each subject's DV and PRED values using cast().
+#cast() likes an aggregation function that returns a list.
+#We write one that grabs min med max for each subject, sim, and variable.
+metrics <- function(x)list(min=min(x), med=median(x), max=max(x))
+#Now we cast, ignoring time.
+subject <- data.frame(cast(subject, SUBJ + SIM + variable ~ .,fun=metrics))
+head(subject)
+#Note that regardless of SIM, DV (observed) is constant.
+#Now we can repeat earlier plots using aggregated data.  We need DV and PRED
+#in separate columns, with min/med/max as the variable.
+dvpred <- melt(subject,measure.var=c('min','med','max'),variable_name='metric')
+head(dvpred)
+dvpred <- data.frame(cast(dvpred, SUBJ + SIM + metric ~ variable))
+head(dvpred)
+#Now we can do seperate-axis comparisons of DV and PRED.
+xyplot(
+	log(PRED)~log(DV),
+	dvpred,
+	groups=metric,
+	auto.key=TRUE,
+	panel=function(...){
+		panel.xyplot(...)
+		panel.abline(a=0,b=1)
+	}
+)
+#Now, our predictions have central tendencies, which can vary by SIM.
+#Thus, our metrics as well can have variable central tendencies that vary by SIM.
+#We want to represent the variability across SIMS by aggregating within SIM.
+#That means aggregating across subjects, within SIMS.  
+#There are many aggregation strategies, but we choose quantiles for a non-parametric 
+#result. Quantiles that 'clip' the tails of the distribution offer robustness against
+#number of SIMS.  Within each SIM, let's find for each metric the 5th, 50th, and 95th percentile.
+#We also want to do this for the original data set (requires some minor rearrangement).
+head(dvpred)
+quants <- melt(dvpred,measure.var=c('DV','PRED'))
+head(quants)
+quants <- data.frame(cast(quants,SIM + metric + variable ~ .,fun=quantile,probs=c(0.05,0.50,0.95)))
+head(quants,10)
+#Note, again, that DV quantiles are invariant across SIMS.
+#We now have a lot of display options.  The simplest is to plot DV~PRED for each quantile and metric.
+#Requires slight rearrangement.
+molten <- melt(quants, measure.var=c('X5.','X50.','X95.'),variable_name='quant')
+head(molten)
+frozen <- data.frame(cast(molten, SIM + metric + quant ~ variable))
+head(frozen)
+xyplot(
+	log(PRED)~log(DV)|metric,
+	frozen,
+	groups=quant,
+	layout=c(1,3),
+	auto.key=TRUE,
+	panel=function(...){
+		panel.xyplot(...)
+		panel.abline(a=0,b=1)
+	}
+)
+#For a better view of the distributions, however, we can work with single-axis plot functions,
+# using the molten data.
+head(molten)
+#haystack plot
+stripplot(
+	~value|metric+quant,
+	molten,
+	groups=variable,
+	horizontal=TRUE,
+	auto.key=TRUE,
+	panel=panel.superpose,
+	alpha=0.5,
+	panel.groups=function(x,type,group.number,col.line,fill,col,...){
+		#browser()
+		view <- viewport(yscale=c(0,max(hist(x,plot=FALSE)$density)))
+		pushViewport(view)
+		if(group.number==1) panel.abline(v=x,col=col.line)
+		else panel.histogram(x,breaks=NULL,col=fill,border=col.line,...)
+		popViewport()
+	}
+)
+#boa plot
+stripplot(
+	~value|metric+quant,
+	molten,
+	groups=variable,
+	horizontal=TRUE,
+	auto.key=TRUE,
+	panel=panel.superpose,
+	alpha=0.5,
+	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
+		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=max(current.panel.limits()$y),col=col.line,...)
+		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
+	}
+)
+#rearranged
+stripplot(
+	quant~value|metric,
+	molten,
+	groups=variable,
+	horizontal=TRUE,
+	auto.key=TRUE,
+	panel=panel.superpose,
+	alpha=0.5,
+	layout=c(1,3),
+	#scales=list(relation='free'),
+	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
+		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
+		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
+	}
+)
+#reversed
+stripplot(
+	metric~value|quant,
+	molten,
+	groups=variable,
+	horizontal=TRUE,
+	auto.key=TRUE,
+	panel=panel.superpose,
+	alpha=0.5,
+	layout=c(1,3),
+	scales=list(relation='free'),
+	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
+		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
+		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
+	}
+)
 
 #bootstrap estimates of parameters.
 getwd()

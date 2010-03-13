@@ -101,11 +101,11 @@ function (
 	  }
 	
 	  #Diagnostics
-	  try(runlog(run=run,outfile=outfile,...))
+	  #try(runlog(run=run,outfile=outfile,...))
 	  if(!udef)
 	   if(nmVersion(config(dirname(command))) < 7)
 	    try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
-	   else(try(runlog(run=run,outfile=outfile,...))
+	   #else(try(runlog(run=run,outfile=outfile,...)))
 	  if(diag)try(
 		PLOTR(
 			run=run,

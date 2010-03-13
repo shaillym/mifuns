@@ -38,9 +38,10 @@ clear(x, drop = NULL, ...)
   lookup.one() is the engine that researches elements of x, one at a time.
   
   lookup() is the typical user interface to this system.  Try this.
+  
   \itemize{
       \item In your control stream, create parameter comments for each element,
-      e.g. "TVCL = THETA(1) ; <parameter name='THETA1' lattice='TH1' latex='\theta_1'>typical value of clearance</parameter>
+      e.g. \code{TVCL = THETA(1) ; <parameter name='THETA1' lattice='TH1' latex='\theta_1'>typical value of clearance</parameter>}
       
       \item In your script, use readLines() to acquire your control stream
       as a character vector.

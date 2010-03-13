@@ -47,7 +47,7 @@ as.file.runlog(x, file = "NonmemRunLog.csv", header = FALSE, quote = FALSE, na =
   The 'runlog' format by convention has the columns: prob, moment, min, 
   cov, mvof, p1...pn, and (possibly) run. p1 through pn are an arbitrary number
   of parameters for that run.  The others give, respectively, the problem statement,
-  a flag to identify relative standard error \%, minimization status, covariance
+  a flag to identify relative standard error percent, minimization status, covariance
   status, minimum value of the objective function, and run name (number).  The primary
   values for each variable are given in a single record.  Where available, a 
   second record gives PRSE, with non-informative entries as necessary.  Usually the

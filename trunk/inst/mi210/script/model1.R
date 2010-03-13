@@ -230,6 +230,7 @@ xyplot(
 # using the molten data.
 head(molten)
 #haystack plot
+library(grid)
 stripplot(
 	~value|metric+quant,
 	molten,
@@ -244,6 +245,65 @@ stripplot(
 		pushViewport(view)
 		if(group.number==1) panel.abline(v=x,col=col.line)
 		else panel.histogram(x,breaks=NULL,col=fill,border=col.line,...)
+		popViewport()
+	}
+)
+#in strips
+stripplot(
+	quant~value|metric,
+	molten,
+	groups=variable,
+	horizontal=TRUE,#FALSE not supported here
+	auto.key=TRUE,
+	layout=c(1,3),
+	#scales=list(x=list(relation='free')),#does not work
+	panel=panel.superpose,
+	alpha=0.5,
+	panel.groups=function(x,y,type,group.number,col.line,fill,col,...){
+		#browser()
+		strips <- seq(length.out=trunc(max(current.panel.limits()$y)))
+		l <- grid.layout(nrow=max(strips),ncol=1)
+		pushViewport(viewport(layout=l))
+		lapply(
+			strips,
+			function(strip){
+				#browser()
+				z <- x[y==strip]
+				h <- hist(z,plot=FALSE)
+				bars <- seq(length.out=length(h$mids))
+				view <- viewport(
+					layout.pos.col=1,
+					layout.pos.row=rev(strips)[match(strip,strips)],
+					yscale=c(0,max(h$counts))
+				)
+				pushViewport(view)
+				if(group.number==1) grid.polyline(
+					x=rep(z,each=2),
+					y=rep(0:1,length.out=length(z)*2),
+					id=rep(seq(length.out=length(z)),each=2),
+					gp=gpar(col=col.line)
+				)
+				else lapply(
+					bars,
+					function(b){
+						#browser()
+						grid.rect(
+						x=h$mids[[b]],
+						y=0,
+						default.units='native',
+						width=(h$breaks[-1] - h$breaks[-length(h$breaks)])[[b]],
+						height=h$counts[[b]],
+						just=c('center','bottom'),
+						gp=gpar(
+							col=col.line,
+							fill=fill,
+							alpha=0.5
+						)
+					)}
+				)
+				popViewport()
+			}
+		)
 		popViewport()
 	}
 )
@@ -293,6 +353,28 @@ stripplot(
 		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
 	}
 )
+#diamond plot
+stripplot(
+	metric~value|quant,
+	unique(subset(molten,select=-SIM)),
+	groups=variable,
+	horizontal=TRUE,
+	auto.key=TRUE,
+	panel=panel.superpose,
+	alpha=0.5,
+	layout=c(1,3),
+	scales=list(relation='free'),
+	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
+		if(group.number==1)for(d in seq(length.out=length(x))) panel.polygon(
+			x=x[[d]]*c(0.8,1,1.25,1),
+			y=y[[d]] + c(0.5,0,0.5,1),
+			border=col.line,
+			col=fill,
+			...
+		)
+		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
+	}
+)
 
 #bootstrap estimates of parameters.
 getwd()
@@ -339,19 +421,79 @@ NONR(
      concurrent=FALSE,
      streams='../nonmem/1005.boot/ctl'
 )     
-for(run in 1:1)runlog(
-                      run,
-                      outfile=file.path(
-                        '../nonmem/1005.boot',
-                        paste(
-                              run,
-                              'boot',
-                              sep='.'
-                        ),
-                        paste(
-                            run,
-                            'lst',
-                            sep='.'
-                       )
-                     )
+for(run in 1:500)
+	try(
+		runlog(
+        	run,
+            outfile=file.path(
+            	'../nonmem/1005.boot',
+                paste(
+                	run,
+                    'boot',
+                    sep='.'
+                ),
+                paste(
+                    run,
+                    'lst',
+                    sep='.'
+              )
+         )
+    )
 )
+rlog(1:500,project='../nonmem/1005.boot',boot=TRUE,append=FALSE,out='../nonmem/1005.boot/bootlog.csv')
+boot <- read.table(na.strings=c('.','','NA'),header=FALSE,sep=',',stringsAsFactors=FALSE,file='../nonmem/1005.boot/bootlog.csv')
+names(boot) <- c(
+	'DESC',
+	'moment',
+	'MIN',
+	'COV',
+	'MVOF',
+	'CL',
+	'V2',
+	'KA',
+	'Q',
+	'V3',
+	'SIGMA',
+	'IIV_CL',
+	'OM21',
+	'IIV_V2',
+	'OM31',
+	'IIV_KA',
+	'OM3'
+)
+head(boot)	
+boot <- boot[c(TRUE,FALSE),]
+head(boot)
+#but no covariate effects in the model.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

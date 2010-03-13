@@ -3,32 +3,86 @@
 	boot=FALSE, 
 	project=getwd(), 
 	append=TRUE,
-	file=NULL,
-	out=filename(project,'CombRunLog.csv'),
+	tool='nm6',
+	file=filename(project,'CombRunLog.csv'),
+	rundir = filename(project, run, if(boot) '.boot' else ''),
+	nmlog=file.path(rundir,'NonmemRunLog.csv'),
+	nmout = filename(rundir,run,'.lst'),
 	pattern=if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
-	software='nm6',
-	...
+...
 ){
-  if(!append) if(file.exists(out)) file.remove(out)
-  run <- unique(run)
-  for(each in run){
-      #identify objects
-      rundir <- filename(project, each, if(boot) '.boot' else '')
-      outfile = filename(rundir,run,'.lst')
-      if(is.null(file)) f <- file.path(rundir,'NonmemRunLog.csv')
-      f <- star(f,each)
-      #cleanup
-      lapply(pattern,purge.files,rundir)
-      #append log
-      if(software=='nm7')runlog(run=run,outfile=outfile,...)
-      if(!file.exists(f)) cat(paste('Log for Run ', each, ' does not exist', '\n', sep = ''))
-      else {
-	  dat <- readLines(f)
-	  dat <- dat[nchar(dat)>0]
-          cat(dat,sep='\n',file=out,append=TRUE)
-      }
-   }
-   if(software=='nm6')return()
-   if(software=='nm7')invisible(do.call(rbind,lapply(run,unilog,boot=boot,project=project,...)))
- }
+  if(length(run)!=length(unique(run)))stop('run must not contain duplicates')
+  if(!append) if(file.exists(file)) file.remove(file)
+  specialize <- function(path,run,nm){
+  		if(!length(path) %in% c(0,1,length(run)))stop(paste('length of',nm, 'must be 0, 1, or same as run'))
+  		if(!length(path))return(path)
+  		if(length(path)==1) path <- sapply(run,function(r)gsub('*',r,path,fixed=TRUE))
+  		names(path) <- run
+  		path
+  }
+  rundir <- specialize(rundir,run,'rundir')
+  nmlog <- specialize(nmlog,run,'nmlog')
+  nmout <- specialize(nmout,run,'nmlog')
+  #cleanup
+  if(length(pattern)){
+  		lapply(
+  			rundir,
+  			function(dir,pattern){
+  				lapply(
+  					pattern,
+  					purge.files,
+  					dir=dir
+  				)
+  			},
+  			pattern=pattern
+  		)
+  }
+  unilist <- list()
+  if(tool=='nm6') unilist <- lapply(
+  		nmlog,
+  		function(log,...)as.unilog.runlog(
+  			as.runlog.file(log,...),
+  			tool=tool,
+  			...
+  		),
+  		...
+  )
+  if(tool=='nm7') unilist <- lapply(
+  		run,
+  		function(r,filelist,...)as.unilog.run(
+  			r,
+  			outfile=filelist[[as.character(r)]],tool=tool,...),
+  			filelist = nmout,
+  		...
+  )
+  if(length(file)){
+  		runloglist <- lapply(unilist,as.runlog.unilog)
+  		lapply(
+  			runloglist,
+  			write.table,
+  			file=file,
+  			append=append,
+  			sep=',',
+  			row.names=FALSE,
+  			col.names=FALSE,
+  			quote=FALSE,
+  			na='.'
+  		)
+  }
+  uni <- do.call(rbind,unilist)
+  invisible(uni)
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -111,8 +111,8 @@ file <- textConnection(runlogfile)
 rlg  <- as.runlog.file(file)
 close(file)
 rlg
-as.runlog(pxml)
-as.unilog(rlg, run=1001)
+as.runlog.unilog(pxml)
+as.unilog.runlog(rlg)
 }
 \keyword{ manip }
 

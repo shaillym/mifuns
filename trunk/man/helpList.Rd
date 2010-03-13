@@ -79,6 +79,7 @@ Functions defined by MIfuns
 \item \link{as.nm} convert to nm (NMTRAN-ready NONMEM data set)
 \item \link{as.nm.data.frame} convert data frame to nm
 \item \link{as.numeric.chartime} convert chartime to numeric
+\item \link{as.pxml.ext} convert a param file to XML
 \item \link{as.rigged} convert to rigged
 \item \link{as.xml} convert object to XML
 \item \link{as.xml.character} convert character to XML
@@ -216,7 +217,6 @@ Functions defined by MIfuns
 \item \link{qsub} prepare commandlines for qsub
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
-\item \link{as.pxml.ext} convert a param file to XML
 \item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag

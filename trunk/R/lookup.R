@@ -1,9 +1,9 @@
-uncomment <- function(x,drop=NULL,...){
+clear <- function(x,drop=NULL,...){
 	if(!is.character(x))stop('x must be character')
 	for(d in drop) x <- sub(d,'',x)
 	x
 }
-as.xml.ctl <- function(x,...)nest(uncomment(x,drop=c('^[^;]*','^;','^[^<]*')),tag='document')
+as.xml.ctl <- function(x,...)nest(clear(x,drop=c('^[^;]*','^;','^[^<]*')),tag='document')
 lookup.one <- function(x,within,by='name',as=NULL,type='parameter',...){
 	if(length(x) !=1)stop('x must have length one')
 	if(is.na(x))return(NA)

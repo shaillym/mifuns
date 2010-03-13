@@ -6,6 +6,7 @@
 \alias{as.unilog.pxml}
 \alias{as.unilog.runlog}
 \alias{unilog}
+\alias{runlog}
 \title{Convert Model Metadata to Various Formats}
 \description{
   Metadata from successful model runs, e.g. NONMEM, comes in various formats,

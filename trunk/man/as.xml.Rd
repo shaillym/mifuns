@@ -44,7 +44,7 @@ character
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{read.param}}}
+		\item{}{\code{\link{as.pxml.ext}}}
 	}
 }
 \examples{

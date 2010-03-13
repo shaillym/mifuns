@@ -41,7 +41,7 @@ For automated log generation, call NONR with \code{epilog=runlog}.
 \author{ Tim Bergsma }
 \seealso{
 	\itemize{
-		\item{}{\code{\link{read.param}}}
+		\item{}{\code{\link{as.pxml.ext}}}
 	}
 }
 \keyword{ manip }

@@ -1,12 +1,12 @@
-\name{read.param}
-\alias{read.param}
+\name{as.pxml.ext}
+\alias{as.pxml.ext}
 \title{Convert a Param File to XML}
 \description{
   Convert the contents of a file to XML, encoding the leading lines as a 'note'
   element and the following lines as a table.
 }
 \usage{
-read.param(file, lead = 1, tag = "param", ...)
+as.pxml.ext(file, lead = 1, tag = "param", ...)
 }
 \arguments{
   \item{file}{path to a parameter file}
@@ -44,7 +44,7 @@ x <- c(
 	'  -1000000001  6.28499E-01  7.36368E-03  1.25313E+00  0.00000E+00  5.44628E-01  0.'
 )
 file <- textConnection(x)
-read.param(file)
+as.pxml.ext(file)
 close(file)
 }
 \keyword{ manip }

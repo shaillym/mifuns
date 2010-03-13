@@ -216,7 +216,7 @@ Functions defined by MIfuns
 \item \link{qsub} prepare commandlines for qsub
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
-\item \link{read.param} convert a param file to XML
+\item \link{as.pxml.ext} convert a param file to XML
 \item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag

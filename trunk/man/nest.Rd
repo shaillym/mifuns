@@ -25,7 +25,7 @@ nest(x, tag, ...)
 	\itemize{
 		\item{}{\code{\link{bracket}}}
 		\item{}{\code{\link{as.xml.data.frame}}}
-		\item{}{\code{\link{read.param}}}
+		\item{}{\code{\link{as.pxml.ext}}}
 	}
 }
 \examples{

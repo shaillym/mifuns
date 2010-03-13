@@ -102,7 +102,8 @@ file <- textConnection(ext)
 pxml <- as.pxml.ext(file)
 close(file)
 pxml
-as.unilog.pxml(pxml,run=3)
+unip <- as.unilog.pxml(pxml,run=3)
+unip
 runlogfile <- c(
 	'1001  2 compartment base,,  0,  1,  0.1439772E+05,  0.2813E+01,  0.4840E+01,  0.2814E+01,  0.5440E+01,  0.1284E+01,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.1814E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.3429E+00,  0.1199E+01,  0.0000E+00,  0.0000E+00, ,',
 	'1001  2 compartment base,RSE,,,,0,0,0,0,0,0,0,0,0,0,  0.0000E+00,0,0,0,0,0,0,0,0,0,0,0,0,0,0,  0.0000E+00,  0.0000E+00,0,0, ,'
@@ -111,7 +112,7 @@ file <- textConnection(runlogfile)
 rlg  <- as.runlog.file(file)
 close(file)
 rlg
-as.runlog.unilog(pxml)
+as.runlog.unilog(unip)
 as.unilog.runlog(rlg)
 }
 \keyword{ manip }

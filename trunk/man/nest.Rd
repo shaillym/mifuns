@@ -7,7 +7,6 @@
 \usage{
 nest(x, tag, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{an XML fragment}
   \item{tag}{an element name}

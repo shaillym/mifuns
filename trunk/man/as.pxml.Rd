@@ -30,7 +30,7 @@ character
 	}
 }
 \examples{
-x <- c(
+ext <- c(
 	'TABLE NO.  1: First Order: Goal Function=MINIMUM VALUE OF OBJECTIVE FUNCTION',
 	' ITERATION    THETA1       THETA2       THETA3       SIGMA(1,1)   OMEGA(1,1)   OBJ',
 	'            0  1.70000E+00  1.02000E-01  2.90000E+01  0.00000E+00  1.17001E+00  11.570086639848398',
@@ -43,8 +43,10 @@ x <- c(
 	'  -1000000000  1.94057E+00  1.01681E-01  3.20217E+01  0.00000E+00  8.99322E-01  8.940101673144566',
 	'  -1000000001  6.28499E-01  7.36368E-03  1.25313E+00  0.00000E+00  5.44628E-01  0.'
 )
-as.pxml.ext(file)
-
+file <- textConnection(ext)
+pxml <- as.pxml.ext(file)
+close(file)
+pxml
 }
 \keyword{ manip }
 

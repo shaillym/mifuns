@@ -24,6 +24,7 @@ as.unilog.run(
   \item{run}{name of the NONMEM run, typically integer}
   \item{outfile}{path for the NONMEM output file, typically 'run.lst'}
   \item{extfile}{path for the NONMEM estimates, by default 'run.ext'}
+  \item{tool}{currently 'nm7'}
   \item{\dots}{passed to other functions}
 }
 \details{

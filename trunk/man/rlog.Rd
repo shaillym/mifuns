@@ -28,9 +28,10 @@ rlog(
   \item{tool}{'nm6' or 'nm7': controls methodology}
   \item{file}{The run-generic output file to write. See details.}
   \item{rundir}{path to run subdirectory}
-  \item{nmlog}{The run-specific input file to read. See details.}
+  \item{nmlog}{The run-specific input file to read (nm6 only). See details.}
+  \item{nmout}{The run-specific NONMEM output file to read (nm7 only). See details.}
   \item{pattern}{Search patterns for files to delete (regular expressions).}
-  \item{\dots}{Extra arguments, currently ignored.}
+  \item{\dots}{passed to other functions}
 }
 
 \details{

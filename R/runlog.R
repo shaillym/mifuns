@@ -1,5 +1,5 @@
 as.pxml.ext <- function(file,lead=1,tag='param',...){
-	if(!file.exists(file)){
+	if(!inherits(file,'connection'))if(!file.exists(file)){
 		message(paste('not found:',file))
 		return(NULL)
 	}
@@ -11,7 +11,7 @@ as.pxml.ext <- function(file,lead=1,tag='param',...){
 	nest(tag='param',x=c(note,body))
 }
 as.unilog.lst <- function(file,run,tool,...){
-	if(!file.exists(file)){
+	if(!inherits(file,'connection'))if(!file.exists(file)){
 		message(paste('not found:',file))
 		return(unilog())
 	}
@@ -124,7 +124,7 @@ as.unilog.runlog <- function(x,tool='nm7',...){
 	rmelt
 }
 as.runlog.file <- function(file,...){
-	if(!file.exists(file)){
+	if(!inherits(file,'connection'))if(!file.exists(file)){
 		message(paste('not found:',file))
 		return(runlog())
 	}

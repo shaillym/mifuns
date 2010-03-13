@@ -6,7 +6,7 @@
 	tool='nm6',
 	file=filename(project,'CombRunLog.csv'),
 	rundir = filename(project, run, if(boot) '.boot' else ''),
-	nmlog=file.path(rundir,'NonmemRunLog.csv'),
+	nmlog = file.path(rundir,'NonmemRunLog.csv'),
 	nmout = filename(rundir,run,'.lst'),
 	pattern=if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
 ...

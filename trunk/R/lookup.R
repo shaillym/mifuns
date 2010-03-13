@@ -3,7 +3,7 @@ clear <- function(x,drop=NULL,...){
 	for(d in drop) x <- sub(d,'',x)
 	x
 }
-as.xml.ctl <- function(x,...)nest(clear(x,drop=c('^[^;]*','^;','^[^<]*')),tag='document')
+ctl2xml <- function(x,...)nest(clear(x,drop=c('^[^;]*','^;','^[^<]*')),tag='document')
 lookup.one <- function(x,within,by='name',as=NULL,type='parameter',...){
 	if(length(x) !=1)stop('x must have length one')
 	if(is.na(x))return(NA)
@@ -32,7 +32,7 @@ lookup <- function(x,within,by='name',as=NULL,type='parameter',...)sapply(
 #'<parameter name="y"            num="2">wombat</parameter>',
 #'<parameter name="z" label="c" num="3"/>'
 #)
-#doc <- as.xml.ctl(stuff)
+#doc <- ctl2xml(stuff)
 #lookup.one('y',within=doc)
 #lookup.one('a',within=doc)
 #lookup.one('a',within=doc,by='label',as='name')
@@ -57,7 +57,7 @@ lookup <- function(x,within,by='name',as=NULL,type='parameter',...)sapply(
 #'with maybe a < sign',
 #';<parameter name="z" label="c" num="3">coocoo</parameter>'
 #)
-#as.xml.ctl(stuff)
+#ctl2xml(stuff)
 
 
 

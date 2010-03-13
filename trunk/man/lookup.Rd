@@ -1,6 +1,6 @@
 \name{lookup}
 \alias{lookup}
-\alias{as.xml.ctl}
+\alias{ctl2xml}
 \alias{clear}
 \alias{lookup.one}
 \title{Lookup Alternate Versions of Parameter Codes}
@@ -14,7 +14,7 @@
 \usage{
 lookup(x, within, by = "name", as = NULL, type = "parameter", ...)
 lookup.one(x, within, by = "name", as = NULL, type = "parameter", ...)
-as.xml.ctl(x, ...)
+ctl2xml(x, ...)
 clear(x, drop = NULL, ...)
 }
 \arguments{
@@ -29,7 +29,7 @@ clear(x, drop = NULL, ...)
   '' (nothing)}
 }
 \details{
-  clear() helps to isolate XML fragments from a text file.  as.xml.ctl() puts it
+  clear() helps to isolate XML fragments from a text file.  ctl2xml() puts it
   to use, assuming the fragments occur after the control stream comment character:
   it drops material up to and including the comment character, and then drops 
   everything up to the first '<'.  It is expected that a <parameter> declaration
@@ -38,14 +38,16 @@ clear(x, drop = NULL, ...)
   lookup.one() is the engine that researches elements of x, one at a time.
   
   lookup() is the typical user interface to this system.  Try this.
-  \enumerate{
-      \item{}{In your control stream, create parameter comments for each element,
+  \itemize{
+      \item In your control stream, create parameter comments for each element,
       e.g. "TVCL = THETA(1) ; <parameter name='THETA1' lattice='TH1' latex='\theta_1'>typical value of clearance</parameter>
-      }
-      \item{}{In your script, use readLines() to acquire your control stream
-      as a character vector.}
-      \item{}{Use as.xml.ctl() to convert that vector to XML.}
-      \item{}{Pass the converted vector to lookup() as the argument 'within'.}
+      
+      \item In your script, use readLines() to acquire your control stream
+      as a character vector.
+      
+      \item Use ctl2xml() to convert that vector to XML.
+      
+      \item Pass the converted vector to lookup() as the argument 'within'.
    }
 }
 
@@ -64,7 +66,7 @@ codes <- c(
 	';<parameter name="SIGMA1" lattice="SG1" latex="\Sigma_1">additive error</parameter>'
 )
 codes
-doc <- as.xml.ctl(codes)
+doc <- ctl2xml(codes)
 lookup(c('TH1','SG1','OM1',NA),within=doc,by='lattice')
 lookup(c('THETA1','SIGMA1','OMEGA1'),within=doc,as='lattice')
 }

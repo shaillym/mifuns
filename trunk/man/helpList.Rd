@@ -49,6 +49,7 @@ Functions defined by MIfuns
 \item \link{as.data.frame.block} convert a block of lines to data frame
 \item \link{as.data.frame.comment} convert comment to data frame
 \item \link{as.data.frame.flag} convert flag to data frame
+\item \link{as.file.runlog} convert to convert runlog to file
 \item \link{as.filename} convert to filename
 \item \link{as.filename.character} convert character to filename
 \item \link{as.flag} convert to flag
@@ -81,6 +82,11 @@ Functions defined by MIfuns
 \item \link{as.numeric.chartime} convert chartime to numeric
 \item \link{as.pxml.ext} convert a param file to XML
 \item \link{as.rigged} convert to rigged
+\item \link{as.runlog.file} convert file to runlog
+\item \link{as.runlog.unilog} convert unilog to runlog
+\item \link{as.unilog.lst} convert nonmem output (.lst) to unilog
+\item \link{as.unilog.pxml} convert nonmem output (.ext) to unilog
+\item \link{as.unilog.runlog} convert runlog to unilog
 \item \link{as.xml} convert object to XML
 \item \link{as.xml.character} convert character to XML
 \item \link{as.xml.data.frame} convert data.frame to XML
@@ -104,6 +110,7 @@ Functions defined by MIfuns
 \item \link{c.flag} combine flag
 \item \link{c.miTemporal} combine miTemporal
 \item \link{cavg} calculate average concentration
+\item \link{clear} drop regular patterns from a character vector
 \item \link{check.data} check for missing data, numeric data, ranges, etc.
 \item \link{cmax} calculate maximum steady-state concentration
 \item \link{cmin} calculate minimum steady-state concentration
@@ -118,6 +125,7 @@ Functions defined by MIfuns
 \item \link{crcl} calculate creatinine clearance
 \item \link{crosses} test whether a crosses b
 \item \link{css} calculate steady-state concentration
+\item \link{ctl2xml} isolate xml comments from a control stream
 \item \link{cwresPlots} create conditional weighted residual diagnostic plots
 \item \link{dataFormat} combine NONMEM predictions, parameter estimates, and covariates into a standard format
 \item \link{dataSynthesis} build a standard plotting data set for a given NONR run
@@ -170,6 +178,8 @@ Functions defined by MIfuns
 \item \link{lbm} calculate lean body mass
 \item \link{left.keyed} produce left join of two keyed data frames
 \item \link{locf} impute NA using last observation carried forward
+\item \link{lookup} translate among parameter attributes (vector)
+\item \link{lookup.one} translate among parameter attributes (scalar)
 \item \link{maxChar} return the number of printed characters for the widest element of x
 \item \link{merge.keyed} merge keyed data frames, preserving attributes
 \item \link{merge.nm} merge nm objects
@@ -233,7 +243,7 @@ Functions defined by MIfuns
 \item \link{riwish} generate inverse Wishart distribution
 \item \link{rlog} generate a combined run log for multiple NONMEM runs
 \item \link{runCommand} issue the system call that invokes NONMEM (internal)
-\item \link{runlog} create NONMEM6-style runlog under NONMEM7
+\item \link{runlog} create a zero-row runlog
 \item \link{runNonmem} process a request for NONMEM invocation
 \item \link{runhead} determine whether each element is the start of a run
 \item \link{safe.call} call a function, passing only those extra arguments that the function accepts
@@ -257,6 +267,7 @@ Functions defined by MIfuns
 \item \link{unconditional.default} return an all-TRUE logical vector of length nrow(x)
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
+\item \link{unilog} create a zero-row unilog
 \item \link{nmVersion} extract NONMEM version specification from configuration file
 \item \link{variants} locate variants of a file in distinctive subdirectories
 \item \link{where} generic

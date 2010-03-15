@@ -61,7 +61,7 @@
   			runloglist,
   			write.table,
   			file=file,
-  			append=append,
+  			append=TRUE,
   			sep=',',
   			row.names=FALSE,
   			col.names=FALSE,

@@ -14,7 +14,7 @@ function (
 	split = grid & compile & execute,
 	checkrunno = TRUE, 
 	checksum = TRUE, 
-	diag = TRUE, 
+	diag = !boot, 
 	fdata = TRUE, 
 	logtrans = FALSE,
 	nice= FALSE, 

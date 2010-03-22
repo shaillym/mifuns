@@ -27,7 +27,7 @@
 	split = grid & compile & execute,
 	checkrunno = TRUE, 
 	checksum = TRUE, 
-	diag = TRUE, 
+	diag = !boot, 
 	fdata = TRUE, 
 	logtrans = FALSE,
 	nice= FALSE, 
@@ -136,9 +136,9 @@
   \item{checksum}{If TRUE (default), checksums are requested from nm.pl when 
   wrapping NONMEM execution.  FALSE is useful for development.} 
 
-  \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE. You can
-  override the default file name by passing \code{plotfile}.  See \code{PLOTR}
-  for details.}
+  \item{diag}{Whether to plot standard diagnostic plots. Default: TRUE for 
+  non-bootstrap runs. You can override the default file name by passing 
+  \code{plotfile}.  See \code{PLOTR} for details.}
  
   \item{fdata}{Whether to attempt deletion of NONMEM files FDATA and
   PRDERR. Default: TRUE.}  

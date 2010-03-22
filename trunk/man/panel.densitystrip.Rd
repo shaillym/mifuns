@@ -184,14 +184,12 @@ stripplot(variable~value,soup,panel=panel.densitystrip)
 stripplot(
 	variable~relative|sp+sex,
 	soup,
-	panel=panel.densitystrip,
-	auto.key=TRUE
+	panel=panel.densitystrip
 )
 stripplot(
 	variable~relative|sp+sex,
 	soup,
-	panel=panel.covplot,
-	auto.key=TRUE
+	panel=panel.covplot
 )
 stripplot(
 	variable~relative|sp+sex,

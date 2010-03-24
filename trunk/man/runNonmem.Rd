@@ -41,6 +41,7 @@ runNonmem(
 	streams = project,
 	ctlfile = filename(streams,run,'.ctl'),
 	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
+	background = FALSE,
 	...
 )
 }
@@ -78,6 +79,7 @@ runNonmem(
   \item{streams}{where to find control streams}
   \item{ctlfile}{the original control stream}
   \item{remove}{regular expressions for files to purge}
+  \item{background}{whether to run the command in the background}
   \item{\dots}{extra arguments for other functions}
 }
 \value{Used for side effects}

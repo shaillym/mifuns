@@ -37,7 +37,7 @@
 	cwd='',
 	compile=TRUE,
 	execute=TRUE,
-	background='&',
+	background=FALSE,
 	...
 ){
   force(L) #before command changes
@@ -46,7 +46,7 @@
   #draft a command
   if(!udef)command <- nm.pl(command,infile=ctlfile,outfile=outfile,perl=perl,checksum=checksum,split=split,compile=compile,execute=execute,...)
   if(grid) command <- qsub(command,N=N,o=o,e=e,l=L,hold_jid=hold_jid,V=V,j=j,q=q,sync=sync,shell=shell,b=b,cwd=cwd,...)
-  if(boot) command <- paste(command,background)
+  if(background) command <- paste(command,'&')
   
 
   #set up the call

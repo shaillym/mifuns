@@ -33,6 +33,7 @@ function (
 	streams = project,
 	ctlfile = filename(streams,run,'.ctl'),
 	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
+	background = FALSE,
 	...
 ){
   #Define some functions.
@@ -88,11 +89,12 @@ function (
 	compile=compile,
 	execute=execute,
 	split=split,
+	background=background,
 	...
   )
   #Clean up.
   if(execute){
-	  if(boot)return() #boots run in background, so we may have reached here before run is complete.
+	  if(background)return() #because we may have reached here before run is complete.
 	  lapply(remove,purge.files,dir=rundir)
 	  if(rundir!=final(rundir)){
 		dir.create(final(rundir), showWarnings = FALSE)

@@ -47,7 +47,7 @@ runCommand(
 	cwd = "",
 	compile = TRUE,
 	execute = TRUE,
-	background='&',
+	background=FALSE,
 	...
 )
 }
@@ -83,8 +83,8 @@ runCommand(
   \item{cwd}{passed to qsub}
   \item{compile}{passed to nm.pl}
   \item{execute}{passed to nm.pl, influences default for \code{q}}
-  \item{background}{appended to bootstrap command lines to put the 
-  process in the background}
+  \item{background}{TRUE appends '&' to command lines to put the 
+  process in the background.  defunct?}
   \item{\dots}{passed to nm.pl and qsub}
 }
 \details{

@@ -1,4 +1,4 @@
-`panel.levelplot` <-
+`panel.stratify` <-
 function(
 	x, 
 	y, 
@@ -42,7 +42,7 @@ function(
             col.line = col.line, col.symbol = col.symbol, font = font, 
             fontfamily = fontfamily, fontface = fontface, lty = lty, 
             cex = cex, fill = fill, lwd = lwd,horizontal = horizontal, 
-            panel.groups = panel.levelplot, jitter.x = jitter.x, 
+            panel.groups = panel.stratify, jitter.x = jitter.x, 
             jitter.y = jitter.y, factor = factor, amount = amount,
             panel.levels=panel.levels,...
        )

@@ -38,7 +38,8 @@ panel.ref(
 panel.cuts(
     x, 
     y, 
-    cuts, 
+    cuts,
+    col,
     col.line,
     text=col.line,
     horizontal = TRUE, 
@@ -80,6 +81,7 @@ unitDensity(x,...)
   	\code{panel.density}:polygon fill color; 
 	\code{panel.ref}:reference area fill color;
 	\code{panel.covplot}:color of cut lines	
+	\code{panel.cuts}:ignored	
   }
   \item{\dots}{ extra arguments passed to other functions }
   \item{rlim}{ length 2 vector: the limits of the shaded region }

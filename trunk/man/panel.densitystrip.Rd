@@ -94,19 +94,15 @@ unitDensity(x,...)
   \item{shade}{ reference fill color }
 }
 \details{
-  \code{panel.densitystrip} by default just calls panel.levelplot with 
-  \code{panel.density} as a sub-panel function, so the arguments to the later
-  are relevant.
-
-  Unlike \code{panel.densityplot}, \code{panel.density} has both \code{x}
+  Unlike \code{panel.densityplot}, \code{panel.densitystrip} has both \code{x}
   and \code{y} arguments.  In \code{panel.stripplot} and \code{panel.bwplot},
   panel data is implicitly subset by the discrete values on the secondary axis.
   I.e, visual elements are panel subsets.  Here, panel data is explicitly subset
-  using \code{panel.levelplot}.  (The same pertains to 
+  using \code{panel.stratify}.  (The same pertains to 
   \code{panel.cuts}).  Densities are calculated using the default arguments
   of \code{density()} (alternatives will be passed to \code{density()} if
   supplied).  \code{unitDensity} rescales densities so that the maximum value is 
-  one.  \code{panel.density} uses 'factor' (traditionally used to control 'jitter')
+  one.  \code{panel.densitystrip} uses 'factor' (traditionally used to control 'jitter')
   to rescale densities again.
   
   A grouping variable can be used at the "panel subset" level to give the same
@@ -143,7 +139,7 @@ unitDensity(x,...)
 	\itemize{
 		\item{}{\code{\link{densityplot}}}
 		\item{}{\code{\link{bin}}}
-		\item{}{\code{\link{panel.levelplot}}}
+		\item{}{\code{\link{panel.stratify}}}
 	}
 }
 \examples{

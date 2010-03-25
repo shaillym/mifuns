@@ -208,7 +208,7 @@ Functions defined by MIfuns
 \item \link{panel.covplot} plot distributions with respect to reference values; i.e. combine panel.cuts, panel.densitystrip, and panel.ref
 \item \link{panel.cuts} for each strip, plot percent observations in each vertical category defined by cuts
 \item \link{panel.densitystrip} for each strip, plot a filled polygon representing smoothed density of the distribution
-\item \link{panel.levelplot} handle strips (levels) of data one at a time
+\item \link{panel.stratify} handle strips (levels) of data one at a time
 \item \link{panel.ref} plot a reference region in a stripplot
 \item \link{parfile} extract parfile specification from a control stream
 \item \link{plot.nm} generate standard plots for an nm object using \code{\link{nmPlots}}

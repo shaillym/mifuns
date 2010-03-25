@@ -1,8 +1,8 @@
-\name{panel.levelplot}
-\alias{panel.levelplot}
+\name{panel.stratify}
+\alias{panel.stratify}
 \title{Handle Each Level of a Stripplot Separately}
 \description{
-  Just as panel.superpose handles each group of data separately, panel.levelplot
+  Just as panel.superpose handles each group of data separately, panel.stratify
   handles each 'level' of data separately.  Typically, levels are the unique
   values of y (horizontal==TRUE) that result from a call to stripplot or bwplot.
   The default panel functions treat all levels simultaneously.  Plotting some 
@@ -10,7 +10,7 @@
   the levels are presented individually.
 }
 \usage{
-panel.levelplot(
+panel.stratify(
 	x, 
 	y, 
 	type = "p", 
@@ -64,7 +64,7 @@ panel.levelplot(
   \item{amount}{See panel.xyplot}
 }
 \details{
-  panel.levelplot is defined almost identically to panel.xyplot.  panel.levels
+  panel.stratify is defined almost identically to panel.xyplot.  panel.levels
   is analogous to panel.groups.  panel.levels may want to handle special cases
   of col, which may be missing if groups is NULL and may be NA if groups is 
   not NULL (set to NA by panel.superpose).

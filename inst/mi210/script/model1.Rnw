@@ -264,6 +264,7 @@ print(stripplot(
 	auto.key=TRUE,
 	layout=c(1,3),
 	panel=panel.stratify,
+	alpha=0.5,
 	panel.levels=function(group.number,...){
 		if(group.number==1)panel.bar(...)
 		else panel.hist(...)
@@ -276,13 +277,12 @@ print(stripplot(
 	~value|metric+quant,
 	molten,
 	groups=variable,
-	horizontal=TRUE,
 	auto.key=TRUE,
-	panel=panel.superpose,
+	panel=panel.stratify,
 	alpha=0.5,
-	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
-		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=max(current.panel.limits()$y),col=col.line,...)
-		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
+	panel.levels = function(group.number,x,y,font,col,col.line,...){
+		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
+		else panel.densitystrip(x=x,y=y,col.line=col.line,...)
 	}
 ))
 @
@@ -292,13 +292,12 @@ print(stripplot(
 	quant~value|metric,
 	molten,
 	groups=variable,
-	horizontal=TRUE,
 	auto.key=TRUE,
-	panel=panel.superpose,
+	panel=panel.stratify,
 	alpha=0.5,
 	layout=c(1,3),
 	#scales=list(relation='free'),
-	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
+	panel.levels = function(x,y,group.number,col,col.line,fill,font,...){
 		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
 		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
 	}
@@ -312,12 +311,12 @@ print(stripplot(
 	groups=variable,
 	horizontal=TRUE,
 	auto.key=TRUE,
-	panel=panel.superpose,
+	panel=panel.stratify,
 	alpha=0.5,
 	layout=c(1,3),
 	scales=list(relation='free'),
-	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
-		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
+	panel.levels = function(x,y,group.number,col,col.line,fill,font,...){
+		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+0.5,col=col.line,...)
 		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
 	}
 ))
@@ -330,13 +329,12 @@ print(stripplot(
 	metric~value|quant,
 	molten,
 	groups=variable,
-	horizontal=TRUE,
 	auto.key=TRUE,
-	panel=panel.superpose,
+	panel=panel.stratify,
 	alpha=0.5,
 	layout=c(1,3),
 	scales=list(relation='free'),
-	panel.groups = function(x,y,group.number,col,col.line,fill,font,...){
+	panel.levels = function(x,y,group.number,col,col.line,fill,font,...){
 		if(group.number==1)for(d in seq(length.out=length(x))) panel.polygon(
 			x=x[[d]]*c(0.8,1,1.25,1),
 			y=y[[d]] + c(0.25,0,0.25,0.5),
@@ -468,7 +466,6 @@ stream.
 stream <- readLines('../nonmem/ctl/1005.ctl')
 tail(stream)
 doc <- ctl2xml(stream)
-#doc <- doc[doc!='']
 doc
 pars
 defs <- lookup(pars,within=doc)

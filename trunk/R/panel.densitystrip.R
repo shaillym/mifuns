@@ -24,6 +24,7 @@ panel.cuts <- function(
 	x,
 	y,
 	cuts,
+	col,
 	col.line,
 	text=col.line,
 	horizontal=TRUE,

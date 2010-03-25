@@ -1,4 +1,4 @@
-\name{comment}
+\name{as.comment}
 \alias{[.comment}
 \alias{[[.comment}
 \alias{as.character.comment}

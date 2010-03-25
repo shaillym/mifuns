@@ -185,6 +185,14 @@ stripplot(
 	panel=panel.covplot,
 	xlab='relative clearance'
 )
+#with groups
+stripplot(
+	variable~value,
+	boot,
+	groups=contains('WT',variable),
+	panel=panel.covplot,
+	xlab='relative clearance'
+)
 
 #variations
 soup <- melt(crabs,id.var=c('sp','sex','index'))

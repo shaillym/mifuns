@@ -1,4 +1,4 @@
-\name{check}
+\name{prev}
 \alias{maxChar}
 \alias{prev}
 \alias{runhead}

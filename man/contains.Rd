@@ -24,9 +24,14 @@ contains(pattern, text, ...)
 	}
 }
 \examples{
-function(pattern,text,...){
-	hits <- regexpr(pattern,text,...)
-	hits >=0
- }
+contains(
+	'glu',
+	c(
+		'glucose',
+		'glucuronidase',
+		'glucogen',
+		'fibrogen'
+	)
+)
 }
 \keyword{manip}

@@ -20,7 +20,4 @@ Extra arguments can be passed to \code{plot.nm()} to exert fine control on the e
 	}
 }
 
-\examples{
-data(nmPlots)
-}
 

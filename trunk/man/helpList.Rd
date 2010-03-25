@@ -205,10 +205,12 @@ Functions defined by MIfuns
 \item \link{ordinal} generic
 \item \link{ordinal.logical} repeat for each element the position of the n-th TRUE element (usually, within levels of an index)
 \item \link{packageCheck} load a package and run package-level examples
+\item \link{panel.bar} for each level, plot vertical (or horizontal) bars corresponding to x (y).
 \item \link{panel.covplot} plot distributions with respect to reference values; i.e. combine panel.cuts, panel.densitystrip, and panel.ref
-\item \link{panel.cuts} for each strip, plot percent observations in each vertical category defined by cuts
-\item \link{panel.densitystrip} for each strip, plot a filled polygon representing smoothed density of the distribution
+\item \link{panel.cuts} for each level, plot percent observations in each vertical category defined by cuts
+\item \link{panel.densitystrip} for each level, plot a filled polygon representing smoothed density of the distribution
 \item \link{panel.stratify} handle strips (levels) of data one at a time
+\item \link{panel.hist} for each level, plot a histogram
 \item \link{panel.ref} plot a reference region in a stripplot
 \item \link{parfile} extract parfile specification from a control stream
 \item \link{plot.nm} generate standard plots for an nm object using \code{\link{nmPlots}}
@@ -268,6 +270,7 @@ Functions defined by MIfuns
 \item \link{unconditional.default} return an all-TRUE logical vector of length nrow(x)
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
+\item \link{unitHist} calculate univariate histogram architecture with maximum height equal to 1
 \item \link{unitDensity} calculate univariate density with maximum equal to 1
 \item \link{unilog} create a zero-row unilog
 \item \link{nmVersion} extract NONMEM version specification from configuration file

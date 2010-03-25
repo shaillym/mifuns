@@ -82,6 +82,7 @@ panel.stratify(
 	\itemize{
 		\item{}{\code{\link{panel.covplot}}}
 		\item{}{\code{\link{panel.densitystrip}}}
+		\item{}{\code{\link{panel.hist}}}
 		\item{}{\code{\link{panel.xyplot}}}
 	}
 }

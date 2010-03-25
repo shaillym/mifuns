@@ -18,6 +18,7 @@ Tim Bergsma\\
 \section{Purpose}
 This script runs NONMEM models for the phase1 data.
 \section{Model Development}
+\subsection{Set up for NONMEM run.}
 <<model>>=
 getwd()
 library(MIfuns)
@@ -27,6 +28,7 @@ cont.cov=c('HEIGHT','WEIGHT','AGE')
 par.list=c('CL','Q','KA','V','V2','V3')
 eta.list=paste('ETA',1:10,sep='')
 @
+\subsection{Run NONMEM.}
 Here we comment out the NONMEM run so that it is not run accidentally 
 if the file is sourced.  Run it manually.
 <<run>>=
@@ -47,6 +49,7 @@ if the file is sourced.  Run it manually.
 @
 Covariance succeeded on model 1005.
 \section{Predictive Check}
+\subsection{Create a simulation control stream.}
 <<predict>>=
 t <- metaSub(
      as.filename('../nonmem/ctl/1005.ctl'),
@@ -72,6 +75,7 @@ t <- metaSub(
     suffix='.ctl'
 )
 @
+\subsection{Run the simulation.}
 This run makes the predictions (simulations).
 <<sim>>=
 #NONR(
@@ -84,6 +88,7 @@ This run makes the predictions (simulations).
 #     streams='../nonmem/ctl'
 #)  
 @
+\subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
 <<fetch>>=   
 phase1 <- read.csv('../data/ph1/derived/phase1.csv',na.strings='.')
@@ -97,28 +102,38 @@ phase1$SIM <- rep(1:500,each=records)
 head(phase1,300)
 with(phase1,DV[SIM==1 & SUBJ==12])
 with(phase1,DV[SIM==2 & SUBJ==12])
+@
+\subsection{Recover and format the simulation results.}
+<<preds>>=
 pred <- scan('../nonmem/1105/1105.tab')
 nrow(phase1)
 length(pred)
+\subsection{Combine the original data and the simulation data.}
+<<combine>>=
 phase1$PRED <- pred
 head(phase1)
 phase1 <- phase1[!is.na(phase1$DV),]
 head(phase1)
 @
+\subsection{Plot predictive checks.}
 We take a quick look at the predictions.  These are commented out because
 they take a very long time to render.  But you could try them manually.
+\subsubsection{First look.}
 <<predDv>>=
 library(lattice)
-#print(xyplot(PRED~DV,phase1,panel=function(...){panel.xyplot(...)panel.abline(a=0,b=1)}))
-<<logpreddv>>=
-#print(xyplot(log(PRED)~log(DV),phase1,panel=function(...){panel.xyplot(...)panel.abline(a=0,b=1)}))
+#print(xyplot(PRED~DV,phase1,panel=function(...){panel.xyplot(...);panel.abline(a=0,b=1)}))
 @
+<<logpreddv>>=
+#print(xyplot(log(PRED)~log(DV),phase1,panel=function(...){panel.xyplot(...);panel.abline(a=0,b=1)}))
+@
+\subsubsection{Aggregate data within subject.}
 Since subjects may contribute differing numbers of observations, it may
 be useful to look at predictions from a subject-centric perspective.
 Therefore, we wish to calculate summary statistics for each subject, 
 (observed and predicted) and then make obspred comparisons therewith.
 <<subject>>=
 library(reshape)
+head(phase1)
 subject <- melt(phase1,measure.var=c('DV','PRED'))
 head(subject)
 @
@@ -134,7 +149,7 @@ subject <- data.frame(cast(subject, SUBJ + SIM + variable ~ .,fun=metrics))
 head(subject)
 @
 Note that regardless of SIM, DV (observed) is constant.
-
+\subsubsection{Format for bivariate plot.}
 Now we can repeat earlier plots using aggregated data.  We need DV and PRED
 in separate columns, with min/med/max as the variable.
 <<repeat>>=
@@ -143,6 +158,7 @@ head(dvpred)
 dvpred <- data.frame(cast(dvpred, SUBJ + SIM + metric ~ variable))
 head(dvpred)
 @
+\subsubsection{Simple bivariate plot.}
 Now we can do seperate-axis comparisons of DV and PRED.
 <<groupLogLog,fig=TRUE>>=
 print(xyplot(
@@ -156,7 +172,7 @@ print(xyplot(
 	}
 ))
 @
-
+\subsubsection{Aggregate data across subjects, within simulations.}
 Our predictions have central tendencies, which can vary by SIM.
 Thus, our metrics as well have central tendencies that vary by SIM.
 We want to represent the variability across SIMS by aggregating within SIM.
@@ -174,7 +190,7 @@ quants <- data.frame(cast(quants,SIM + metric + variable ~ .,fun=quantile,probs=
 head(quants,10)
 @
 Note, again, that DV quantiles are invariant across SIMS.
-
+\subsubsection{Reformat data for bivariate display.}
 We now have a lot of display options.  The simplest is to plot DV~PRED for each quantile and metric.
 Requires slight rearrangement.
 <<logLogByMetric,fig=TRUE>>=
@@ -182,6 +198,9 @@ molten <- melt(quants, measure.var=c('X5.','X50.','X95.'),variable_name='quant')
 head(molten)
 frozen <- data.frame(cast(molten, SIM + metric + quant ~ variable))
 head(frozen)
+@
+\subsubsection{Bivariate display of within-simulation aggregate metrics.}
+<<bivariate>>=
 print(xyplot(
 	log(PRED)~log(DV)|metric,
 	frozen,
@@ -194,11 +213,10 @@ print(xyplot(
 	}
 ))
 @
-
+\subsubsection{Univariate displays.}
 For a better view of the distributions, however, we can work with single-axis plot functions,
 using the molten data.  For faster and clearer plotting, we remove duplicates of DV.
-
-Classic stripplot.
+\subsubsection{Classic stripplot}
 <<stripplot,fig=TRUE>>=
 head(molten)
 molten$SIM <- NULL
@@ -217,8 +235,7 @@ print(stripplot(
 	panel.groups=panel.stripplot
 ))
 @
-
-Needle-in-the-haystack.
+\subsubsection{Needle-in-the-haystack}
 <<haystack,fig=TRUE>>=
 print(stripplot(
 	~value|metric+quant,
@@ -238,78 +255,22 @@ print(stripplot(
 	}
 ))
 @
-
-Haystacks in strips.
+\subsubsection{Haystacks in strips}
 <<strippedHaystack,fig=TRUE>>=
 print(stripplot(
 	quant~value|metric,
 	molten,
 	groups=variable,
-	horizontal=TRUE,#FALSE not supported here
 	auto.key=TRUE,
 	layout=c(1,3),
-	#scales=list(x=list(relation='free')),#does not work
-	panel=panel.superpose,
-	alpha=0.5,
-	panel.groups=function(x,y,type,group.number,col.line,fill,col,...){
-		#browser()
-		strips <- seq(length.out=trunc(max(current.panel.limits()$y)))
-		l <- grid.layout(nrow=max(strips),ncol=1)
-		pushViewport(
-			viewport(
-				layout=l,
-				yscale=current.viewport()$yscale,
-				xscale=current.viewport()$xscale
-			)
-		)
-		lapply(
-			strips,
-			function(strip){
-				#browser()
-				z <- x[y==strip]
-				h <- hist(z,plot=FALSE)
-				bars <- seq(length.out=length(h$mids))
-				view <- viewport(
-					layout.pos.col=1,
-					layout.pos.row=rev(strips)[match(strip,strips)],
-					yscale=c(0,max(h$counts)),
-					xscale=current.viewport()$xscale,
-				)
-				pushViewport(view)
-				if(group.number==1) grid.polyline(
-					x=rep(z,each=2),
-					y=unit(rep(0:1,length.out=length(z)*2),'npc'),
-					id=rep(seq(length.out=length(z)),each=2),
-					gp=gpar(col=col.line),
-					default.units='native'
-				)
-				else lapply(
-					bars,
-					function(b){
-						#browser()
-						grid.rect(
-						x=h$mids[[b]],
-						y=0,
-						default.units='native',
-						width=(h$breaks[-1] - h$breaks[-length(h$breaks)])[[b]],
-						height=h$counts[[b]],
-						just=c('center','bottom'),
-						gp=gpar(
-							col=col.line,
-							fill=fill,
-							alpha=0.5
-						)
-					)}
-				)
-				popViewport()
-			}
-		)
-		popViewport()
+	panel=panel.stratify,
+	panel.levels=function(group.number,...){
+		if(group.number==1)panel.bar(...)
+		else panel.hist(...)
 	}
 ))
 @
-
-Density strip plot.
+\subsubsection{Density stripplot}
 <<boa,fig=TRUE>>=
 print(stripplot(
 	~value|metric+quant,
@@ -325,8 +286,7 @@ print(stripplot(
 	}
 ))
 @
-
-Density variant: multistrip panels.
+\subsubsection{Density variant: multistrip panels}
 <<boa2,fig=TRUE>>=
 print(stripplot(
 	quant~value|metric,
@@ -344,8 +304,7 @@ print(stripplot(
 	}
 ))
 @
-
-Density variant: interchanging the ordinal and the conditional.
+\subsubsection{Density variant: interchanging the ordinal and the conditional}
 <<boa3,fig=TRUE>>=
 print(stripplot(
 	metric~value|quant,
@@ -363,9 +322,9 @@ print(stripplot(
 	}
 ))
 @
-
+\subsubsection{Diamondback: indicating reference regions}
 It is often useful to show some reference region around a reference point estimate.
-Here's one option.  
+Here is one option.  
 <<diamondBack,fig=TRUE>>=
 print(stripplot(
 	metric~value|quant,
@@ -390,11 +349,15 @@ print(stripplot(
 ))
 @
 \section{Bootstrap Estimates of Parameter Uncertainty}
+\subsection{Create directories.}
 <<bootstrap>>=
 getwd()
 dir.create('../nonmem/1005.boot')
 dir.create('../nonmem/1005.boot/data')
 dir.create('../nonmem/1005.boot/ctl')
+@
+\subsection{Create replicate control streams.}
+<<control>>=
 t <- metaSub(
      as.filename('../nonmem/ctl/1005.ctl'),
      names=1:300,
@@ -414,6 +377,9 @@ t <- metaSub(
     out='../nonmem/1005.boot/ctl',
     suffix='.ctl'
  )
+@
+\subsection{Create replicate data sets by resampling original.}
+<<resample>>=
  bootset <- read.csv('../data/ph1/derived/phase1.csv')
  r <- resample(
  	bootset,
@@ -424,6 +390,7 @@ t <- metaSub(
  	stratify='SEX'
  )
 @
+\subsection{Run bootstrap models.}
 Again, model step is commented for safety.  Run manually.
 <<boot>>=
 #NONR(
@@ -436,8 +403,11 @@ Again, model step is commented for safety.  Run manually.
 #     streams='../nonmem/1005.boot/ctl'
 #)   
 @
-When the bootstraps are complete, we return here and summarize. 
-<<more>>=  
+\subsection{Summarize bootstrap models.}
+When the bootstraps are complete, we return here and summarize. If you 
+do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
+<<more>>= 
+#boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
@@ -448,7 +418,7 @@ boot <- rlog(
 head(boot)
 unique(boot$parameter)
 @
-It looks like we have 14 estimated parameters.  We want to map them to the
+It looks like we have 14 estimated parameters.  We will map them to the
 original control stream.
 <<pars>>=
 pars <- paste('P',1:14,sep='')
@@ -475,6 +445,7 @@ any(is.na(as.numeric(boot$value)))
 boot$value <- as.numeric(boot$value)
 head(boot)
 @
+\subsection{Restrict data to 95 percentiles.}
 We did 300 runs.  Min and max are strongly dependent on number of runs, since 
 with an unbounded distribution, (almost) any value is possible with enough sampling.
 We clip to the 95 percentiles, to give distributions that are somewhat more
@@ -490,13 +461,14 @@ boot$upper <- NULL
 boot$lower <- NULL
 head(boot)
 @
+\subsection{Recover parameter metadata from a specially-marked control stream.}
 We want meaningful names for our parameters.  Harvest these from a reviewed control
 stream.
 <<ctl2xml>>=
 stream <- readLines('../nonmem/ctl/1005.ctl')
 tail(stream)
 doc <- ctl2xml(stream)
-doc <- doc[doc!='']
+#doc <- doc[doc!='']
 doc
 pars
 defs <- lookup(pars,within=doc)
@@ -506,14 +478,14 @@ labels
 boot$parameter <- as.character(factor(boot$parameter,levels=pars,labels=labels))
 head(boot)
 @
+\subsection{Create covariate plot.}
 Now we make a covariate plot for clearance.  We will normalize clearance 
 by its median (we also could have used the model estimate).  We need to take 
 cuts of weight, since we can only really show categorically-constrained distributions.
 Male effect is already categorical.  I.e, the reference individual has median
 clearance, is female, and has median weight.
+\subsubsection{Recover original covariates for guidance.}
 <<covs>>=
-cl <- median(boot$value[boot$parameter=='CL'])
-cl
 covariates <- read.csv('../data/ph1/derived/phase1.csv',na.strings='.')
 head(covariates)
 with(covariates,constant(WEIGHT,within=ID))
@@ -524,6 +496,7 @@ wt <- median(covariates$WT)
 wt
 range(covariates$WT)
 @
+\subsubsection{Reproduce the control stream submodel for selective cuts of a continuous covariate.}
 In the model we normalized by 70 kg, so that cut will have null effect.
 Let's try 65, 75, and 85 kg. We have to make a separate column for each
 cut, which is a bit of work. Basically, we make two more copies of our
@@ -538,12 +511,18 @@ head(frozen)
 frozen$WT.CL65 <- (60/70)**frozen$WT.CL
 frozen$WT.CL75 <- (75/70)**frozen$WT.CL
 frozen$WT.CL85 <- (85/70)**frozen$WT.CL
+@
+\subsubsection{Normalize key parameter}
+<<key>>=
+cl <- median(boot$value[boot$parameter=='CL'])
+cl
 frozen$CL <- frozen$CL/cl
 head(frozen)
 frozen$WT.CL <- NULL
 molten <- melt(frozen,id.var='run',na.rm=TRUE)
 head(molten)
 @
+\subsubsection{Plot.}
 Now we plot.  We reverse the variable factor to give us top-down layout
 of strips.
 <<covplot,fig=TRUE>>=
@@ -562,7 +541,7 @@ print(stripplot(
 	panel=panel.covplot
 ))
 @
-
+\subsubsection{Summarize}
 We see that clearance is estimated with good precision.  Ignoring outliers, there 
 is not much effect on clearance of being male, relative to female.  Increasing 
 weight is associated with increasing clearance.  There is a 79 percent probability

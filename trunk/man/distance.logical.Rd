@@ -73,7 +73,7 @@ test$secondDose  <- with(test,ordinal (evid==1, 2,within=id))
 test$lastDose    <- with(test,ordinal (evid==1,-1,within=id))
 test$beforeDose2 <- with(test,distance(evid==1, 2,within=id) < 0)
 test$tafd <- with(test,time - time[ordinal(evid==1,1,within=id)])#time after first dose
-
+test
 #    id time evid secondDose lastDose beforeDose2 tafd
 # 1   1    1    0          4        4        TRUE   -1
 # 2   1    2    1          4        4        TRUE    0

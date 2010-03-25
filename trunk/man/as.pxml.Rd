@@ -1,5 +1,6 @@
 \name{as.pxml.ext}
 \alias{as.pxml.ext}
+\alias{as.pxml}
 \title{Convert a Param File to XML}
 \description{
   Convert the contents of a file to XML, encoding the leading lines as a 'note'

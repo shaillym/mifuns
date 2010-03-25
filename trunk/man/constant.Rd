@@ -1,4 +1,4 @@
-\name{\%nests\%}
+\name{constant}
 \alias{\%nests\%}
 \alias{crosses}
 \alias{\%nested.in\%}

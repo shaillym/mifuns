@@ -284,7 +284,7 @@ as.miTime(-Inf)
 as.miDateTime(Inf) + as.miTime(Inf)
 # Inf
 as.miDateTime(Inf) + as.miTime(-Inf)
-# NA
+# <NA>
 
 #comparison
 as.miTime("08:00") < as.miTime("09:00")

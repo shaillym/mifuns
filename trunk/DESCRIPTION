@@ -1,8 +1,8 @@
 Package: MIfuns
 Type: Package
 Title: Pharmacometric tools for data preparation, analysis, simulation, and reporting
-Version: 3.8.0
-Date: 2010-03-24
+Version: 3.8.1
+Date: 2010-03-25
 Author: MetrumRG <billk@metrumrg.com> , <timb@metrumrg.com>
 Maintainer: Bill Knebel <billk@metrumrg.com>
 Depends: lattice, MASS, methods, reshape

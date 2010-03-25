@@ -3,7 +3,10 @@ clear <- function(x,drop=NULL,...){
 	for(d in drop) x <- sub(d,'',x)
 	x
 }
-ctl2xml <- function(x,...)nest(clear(x,drop=c('^[^;]*','^;','^[^<]*')),tag='document')
+ctl2xml <- function(x,...){
+	doc <- nest(clear(x,drop=c('^[^;]*','^;','^[^<]*')),tag='document')
+	doc[doc!='']
+}
 lookup.one <- function(x,within,by='name',as=NULL,type='parameter',...){
 	if(length(x) !=1)stop('x must have length one')
 	if(is.na(x))return(NA)

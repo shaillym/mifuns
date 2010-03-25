@@ -1,4 +1,4 @@
-\name{body}
+\name{ibw}
 \alias{bmi}
 \alias{bsa}
 \alias{ibw}

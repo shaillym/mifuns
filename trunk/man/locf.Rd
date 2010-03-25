@@ -1,4 +1,4 @@
-\name{impute}
+\name{locf}
 \alias{forbak}
 \alias{bakfor}
 \alias{locf}

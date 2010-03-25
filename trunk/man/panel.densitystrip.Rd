@@ -4,6 +4,7 @@
 \alias{covplot}
 \alias{panel.cuts}
 \alias{panel.ref}
+\alias{unitDensity}
 \title{Display Distributions with Respect to Reference Values}
 \description{
   These are panel functions that compare distributions with respect to 
@@ -16,14 +17,15 @@
 }
 \usage{
 panel.densitystrip(
-    x, 
-    y, 
-    scale = 0.5, 
-    horizontal = TRUE, 
-    groups = NULL,
-    col='grey',
-    border='black',
-    ...
+	x,
+	y,
+	horizontal,
+	col.line,
+	fill,
+	factor,
+	border=col.line,
+	col=fill,
+	...
 )
 panel.ref(
     x, 
@@ -61,40 +63,50 @@ panel.covplot(
     col='white',
     ...
 )
+unitDensity(x,...)
 }
 \arguments{
   \item{x}{ numeric vector }
   \item{y}{ numeric vector }
-  \item{scale}{ relative height of the density polygon }
   \item{horizontal}{ if TRUE, strips run horizontally (x is primary axis) }
-  \item{groups}{ vector/factor for grouping of strips, used by panel.superpose }
+  \item{col.line}{polygon border color if border not specified}
+  \item{fill}{polygon fill color if col not specified}
+  \item{factor}{relative height of the density polygon}
+  \item{border}{polygon border color}
+  \item{panel.levels}{function to pass to panel.levelplot()}
   \item{col}{ 
-  	\code{panel.densitystrip}:polygon fill color; 
+  	\code{panel.density}:polygon fill color; 
 	\code{panel.ref}:reference area fill color;
 	\code{panel.covplot}:color of cut lines	
   }
-  \item{border}{ polygon border color }
   \item{\dots}{ extra arguments passed to other functions }
   \item{rlim}{ length 2 vector: the limits of the shaded region }
   \item{cuts}{ the values at which to divide the primary axis }
+  \item{groups}{ vector/factor for grouping of strips, used by panel.superpose }
   \item{offset}{ distance from nominal value on secondary axis, at which to plot cut statistics}
   \item{format}{ a function to post-process counts of elements between cuts }
   \item{include.range}{ if TRUE, \code{cuts} is supplemented with the range of the data }
   \item{zero.rm}{ If TRUE, zeros are not printed } 
   \item{cex}{ scale factor for text }
   \item{ref}{ position of a black reference line; may be NULL }
-  \item{fill}{ polygon fill color }
   \item{text}{ text color for cut statistics }
   \item{shade}{ reference fill color }
 }
 \details{
-  Unlike \code{panel.densityplot}, \code{panel.densitystrip} has both \code{x}
-  and \code{y} arguments.  Like \code{panel.stripplot} and \code{panel.bwplot},
+  \code{panel.densitystrip} by default just calls panel.levelplot with 
+  \code{panel.density} as a sub-panel function, so the arguments to the later
+  are relevant.
+
+  Unlike \code{panel.densityplot}, \code{panel.density} has both \code{x}
+  and \code{y} arguments.  In \code{panel.stripplot} and \code{panel.bwplot},
   panel data is implicitly subset by the discrete values on the secondary axis.
-  I.e, visual elements are panel subsets.  (The same pertains to 
+  I.e, visual elements are panel subsets.  Here, panel data is explicitly subset
+  using \code{panel.levelplot}.  (The same pertains to 
   \code{panel.cuts}).  Densities are calculated using the default arguments
-  of \code{density()}.  Alternatives will be passed to \code{density()} if
-  supplied.
+  of \code{density()} (alternatives will be passed to \code{density()} if
+  supplied).  \code{unitDensity} rescales densities so that the maximum value is 
+  one.  \code{panel.density} uses 'factor' (traditionally used to control 'jitter')
+  to rescale densities again.
   
   A grouping variable can be used at the "panel subset" level to give the same
   graphical parameters to several subsets, e.g., several polygons can share a color.
@@ -130,6 +142,7 @@ panel.covplot(
 	\itemize{
 		\item{}{\code{\link{densityplot}}}
 		\item{}{\code{\link{bin}}}
+		\item{}{\code{\link{panel.levelplot}}}
 	}
 }
 \examples{

@@ -1,41 +1,18 @@
-panel.densitystrip <- function(
-	x,
-	y,
-	scale=0.5,
-	horizontal=TRUE,
-	groups=NULL,
-	col='grey',
-	border='black',
-	...
-){
-	if (!any(is.finite(x) & is.finite(y))) return()
-	x <- as.numeric(x)
-	y <- as.numeric(y)
-	if(horizontal)dat <- split(data.frame(a=x,b=y),y)
-	else dat <- split(data.frame(a=y,b=x),x)
-	dat <- lapply(
-		dat,
-		function(s,scale,horizontal,...){
-			extra <- list(...)
-			extra <- extra[names(extra) %in% names(formals(density.default))]
-			b <- unique(s$b)
-			a <- s$a
-			d <- do.call(density,c(list(x=a),extra))
-			x <- d$x
-			y <- d$y
-			y <- y/max(y,na.rm=TRUE)
-			y <- y * scale
-			y <- y + b
-			if(horizontal)return(data.frame(x=x,y=y))
-			else return(data.frame(x=y,y=x))
-		},
-		scale=scale,
-		horizontal,
-		...
-	)
-	lapply(dat,function(s,fcol=col,...)with(s,panel.polygon(x,y,col=fcol,border=border,...)),...)
+unitDensity <- function(x,...){
+	res <- safe.call(density.default,x=x,...)
+	res$y <- with(res, y/max(y,na.rm=TRUE))
+	res
 }
-
+panel.densitystrip <- function(x,y,horizontal,col.line,fill,factor,border=col.line,col=fill,...){
+	ordinal <- if(horizontal) x else y
+	level <- if(horizontal) unique(y)[[1]] else unique(x)[[1]]
+	data <- unitDensity(ordinal,...)
+	data$y <- data$y * factor + level
+	if(missing(col))col <- fill
+	if(is.na(col))col <- fill
+	if(horizontal)panel.polygon(x=data$x,y=data$y,border=border,col=col,...)
+	else          panel.polygon(x=data$y,y=data$x,border=border,col=col,...)
+}
 panel.ref <- function(x,y,col='grey90',horizontal,rlim,...){
         x <- as.numeric(x)
         y <- as.numeric(y)
@@ -48,7 +25,6 @@ panel.cuts <- function(
 	y,
 	cuts,
 	horizontal=TRUE,
-	groups=NULL,
 	offset=-0.2,
 	format=function(x)as.numeric(round(x/sum(x)*100)),
 	include.range=TRUE,
@@ -56,50 +32,38 @@ panel.cuts <- function(
 	cex=0.7,
 	...
 ){
-	if (!any(is.finite(x) & is.finite(y))) return()
-	x <- as.numeric(x)
-	y <- as.numeric(y)
-	dat <- data.frame(x=x,y=y)
-	if(!horizontal){
-		z <- x
-		x <- y
-		y <- z
-	}
-	dat <- split(data.frame(x=x,y=y),y)
-	cuts <- cuts[cuts >= min(x,na.rm=TRUE) & cuts <= max(x,na.rm=TRUE)]
-	range <- range(x)
-	if(include.range) cuts <- c(range(x),cuts)
+	ordinal <- if(horizontal) x else y
+	level <- if(horizontal) unique(y)[[1]] else unique(x)[[1]]
+	cuts <- cuts[cuts >= min(ordinal,na.rm=TRUE) & cuts <= max(ordinal,na.rm=TRUE)]
+	if(include.range) cuts <- c(range(ordinal),cuts)
 	cuts <- sort(unique(cuts))
 	midpoints <- (cuts[1:length(cuts)-1] + cuts[-1])/2
-	dat <- lapply(
-		dat,
-		function(s,cuts,offset,format,zero.rm,midpoints,...){
-			y <- unique(s$y)
-			x <- s$x
-			count <- bin(x,breaks=cuts,...)
-			value <- format(count)
-			if(zero.rm)value[value==0] <- NA
-			value <- as.character(value)
-			value[is.na(value)] <- ''
-			y <- y + offset
-			if(horizontal)return(data.frame(x=midpoints,y=y,value=value))
-			else return(data.frame(y=midpoints,x=y,value=value))
-		},
-		cuts=cuts,
-		offset=offset,
-		horizontal=horizontal,
-		format=format,
-		zero.rm=zero.rm,
-		midpoints=midpoints,
+	count <- bin(ordinal,breaks=cuts,...)
+	value <- format(count)
+	if(zero.rm)value[value==0] <- NA
+	value <- as.character(value)
+	value[is.na(value)] <- ''
+	level <- level + offset
+	if(horizontal)ltext(
+		x=midpoints,
+		y=rep(level,length(midpoints)),
+		labels=value,
+		cex=cex,
+		col=col.line,
 		...
 	)
-	lapply(dat,function(s,...)with(s,ltext(x,y,value,cex=cex,...)),...)
+	else ltext(
+		y=midpoints,
+		x=rep(level,length(midpoints)),
+		labels=value,
+		cex=cex,
+		col=col.line,
+		...
+	)	
 }
-
 panel.covplot <- function(
 	x,
 	y,
-	groups=NULL,
 	ref=1,
 	rlim=ref * c(0.75,1.25),
 	cuts=ref * c(0.75,1,1.25),
@@ -114,19 +78,12 @@ panel.covplot <- function(
 	x <- as.numeric(x)
 	y <- as.numeric(y)
 	panel.ref(x,y,rlim=rlim,horizontal=horizontal,col=shade,...)
-	if(!is.null(groups)){
-		panel.superpose(x=x,y=y,groups=groups,horizontal=horizontal,panel.groups=panel.densitystrip,border=border,fill=fill,...)
-		panel.superpose(x=x,y=y,groups=groups,cuts=cuts,horizontal=horizontal,col=text,panel.groups=panel.cuts,...)
-	}
-	else{
-		panel.densitystrip(x,y,horizontal=horizontal,col=fill,border=border,fill=fill,...)
-		panel.cuts(x,y,cuts=cuts,horizontal=horizontal,col=text,...)
-	}
+	panel.levelplot(panel.levels=panel.densitystrip,  x=x,y=y,horizontal=horizontal,border=border,col=fill,...)
+	panel.levelplot(panel.levels=panel.cuts,          x=x,y=y,horizontal=horizontal,cuts=cuts,    col=text,...) 
 	if(horizontal)args <- list(v=cuts,col=col,...)else args<-list(h=cuts,col=col,...)
 	do.call(panel.abline,args)
 	if(horizontal)args <- list(v=ref,...)else args<-list(h=ref,...)
 	do.call(panel.abline,args)
-	
 }
 
 

@@ -11,25 +11,25 @@
   rescaled so that maximum bar height is 1.
 }
 \usage{
-panel.hist(x, y, level, horizontal, col, col.line, fill, factor, font, fontface, alpha = 0.5, offset = -0.5, ...)
-panel.bar(x, y, level, horizontal, col, col.line, fill, factor, font, fontface, alpha = 0.5, ...)
+panel.hist(x,y,level,horizontal,col.line,fill,factor,border=col.line,col=fill,offset=-0.5,font,fontface,...)
+panel.bar(x,y,level,horizontal,col,col.line,fill,factor,font,fontface,...)
 unitHist(x, plot = FALSE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{vector}
   \item{y}{vector}
   \item{level}{the level at which to draw the histogram, typically supplied by panel.stratify()}
   \item{horizontal}{typically TRUE}
-  \item{col}{ignored}
-  \item{col.line}{color for bar borders}
-  \item{fill}{color for bar fill}
+  \item{col}{fill color (ignored for panel.bar)}
+  \item{col.line}{border color if border not supplied}
+  \item{fill}{fill color if col not supplied}
   \item{factor}{factor by which to expand or attenuate bar heights relative to unity}
-  \item{font}{ignored}
-  \item{fontface}{ignored}
-  \item{alpha}{passed to gpar()}
+  \item{border}{border color}
   \item{offset}{amount to raise the base of each bar relative to the level}
   \item{\dots}{passed to other functions}
+  \item{font}{ignored}
+  \item{fontface}{ignored}
+  \item{plot}{passed to hist()}
 }
 \value{
  unitHist returns class histogram with an extra element named 'heights'.  

@@ -5,48 +5,42 @@ function(x,plot=FALSE,...){
 	h
 }
 `panel.hist` <-
-function(x,y,level,horizontal,col,col.line,fill,factor,font,fontface,alpha=0.5,offset=-0.5,...){
+function(x,y,level,horizontal,col.line,fill,factor,border=col.line,col=fill,offset=-0.5,font,fontface,...){
 	ordinal <- if (horizontal) x else y
 	h <- unitHist(ordinal)
 	h$heights <- h$heights * factor
-	if (horizontal) grid.rect(
+	if(missing(col))col <- fill
+	if(is.na(col))col <- fill
+
+	if (horizontal) panel.rect(
 		x=h$mids,
 		y=rep(level+offset,length(h$mids)),
-		default.units='native',
 		width=(h$breaks[-1] - h$breaks[-length(h$breaks)]),
 		height=h$heights,
 		just=c('center','bottom'),
-		gp=gpar(
-			col=col.line,
-			fill=fill,
-			alpha=0.5,
-			...
-		)
+		border=border,
+		col=col,
+		...
 	)
-	else grid.rect(
+	else panel.rect(
 		y=h$mids,
 		x=rep(level+offset,length(h$mids)),
-		default.units='native',
 		height=(h$breaks[-1] - h$breaks[-length(h$breaks)]),
 		width=h$heights,
 		just=c('left','center'),
-		gp=gpar(
-			col=col.line,
-			fill=fill,
-			alpha=0.5,
-			...
-		)
+		border=border,
+		col=col,
+		...
 	)
 }
 `panel.bar` <-
-function(x,y,level,horizontal,col,col.line,fill,factor,font,fontface,alpha=0.5,...){
+function(x,y,level,horizontal,col,col.line,fill,factor,font,fontface,...){
 	if (horizontal)panel.segments(
 		x0=x,
 		y0=rep(level-factor,length(x)),
 		x1=x,
 		y1=rep(level+factor,length(x)),
 		col=col.line,
-		alpha=alpha,
 		...
 	)
 	else panel.segments(
@@ -55,7 +49,6 @@ function(x,y,level,horizontal,col,col.line,fill,factor,font,fontface,alpha=0.5,.
 		x1=rep(level+factor,length(y)),
 		y1=y,
 		col=col.line,
-		alpha=alpha,
 		...
 	)	
 }

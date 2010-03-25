@@ -24,6 +24,8 @@ panel.cuts <- function(
 	x,
 	y,
 	cuts,
+	col.line,
+	text=col.line,
 	horizontal=TRUE,
 	offset=-0.2,
 	format=function(x)as.numeric(round(x/sum(x)*100)),
@@ -49,7 +51,7 @@ panel.cuts <- function(
 		y=rep(level,length(midpoints)),
 		labels=value,
 		cex=cex,
-		col=col.line,
+		col=text,
 		...
 	)
 	else ltext(
@@ -57,7 +59,7 @@ panel.cuts <- function(
 		x=rep(level,length(midpoints)),
 		labels=value,
 		cex=cex,
-		col=col.line,
+		col=text,
 		...
 	)	
 }
@@ -79,7 +81,7 @@ panel.covplot <- function(
 	y <- as.numeric(y)
 	panel.ref(x,y,rlim=rlim,horizontal=horizontal,col=shade,...)
 	panel.levelplot(panel.levels=panel.densitystrip,  x=x,y=y,horizontal=horizontal,border=border,col=fill,...)
-	panel.levelplot(panel.levels=panel.cuts,          x=x,y=y,horizontal=horizontal,cuts=cuts,    col=text,...) 
+	panel.levelplot(panel.levels=panel.cuts,          x=x,y=y,horizontal=horizontal,cuts=cuts,    text=text,...) 
 	if(horizontal)args <- list(v=cuts,col=col,...)else args<-list(h=cuts,col=col,...)
 	do.call(panel.abline,args)
 	if(horizontal)args <- list(v=ref,...)else args<-list(h=ref,...)

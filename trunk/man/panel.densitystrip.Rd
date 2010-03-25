@@ -39,8 +39,9 @@ panel.cuts(
     x, 
     y, 
     cuts, 
+    col.line,
+    text=col.line,
     horizontal = TRUE, 
-    groups = NULL, 
     offset = -0.2, 
     format = function(x) as.numeric(round(x/sum(x) * 100)), 
     include.range = TRUE, 
@@ -51,7 +52,6 @@ panel.cuts(
 panel.covplot(
     x,
     y,
-    groups=NULL,
     ref=1,
     rlim=ref * c(0.75,1.25),
     cuts=ref * c(0.75,1,1.25),
@@ -69,11 +69,13 @@ unitDensity(x,...)
   \item{x}{ numeric vector }
   \item{y}{ numeric vector }
   \item{horizontal}{ if TRUE, strips run horizontally (x is primary axis) }
-  \item{col.line}{polygon border color if border not specified}
+  \item{col.line}{
+  	\code{panel.density}:polygon border color if border not specified;
+  	\code{panel.cuts}:text color if text not specified
+  }
   \item{fill}{polygon fill color if col not specified}
   \item{factor}{relative height of the density polygon}
   \item{border}{polygon border color}
-  \item{panel.levels}{function to pass to panel.levelplot()}
   \item{col}{ 
   	\code{panel.density}:polygon fill color; 
 	\code{panel.ref}:reference area fill color;
@@ -82,14 +84,13 @@ unitDensity(x,...)
   \item{\dots}{ extra arguments passed to other functions }
   \item{rlim}{ length 2 vector: the limits of the shaded region }
   \item{cuts}{ the values at which to divide the primary axis }
-  \item{groups}{ vector/factor for grouping of strips, used by panel.superpose }
+  \item{text}{ text color for cut statistics }
   \item{offset}{ distance from nominal value on secondary axis, at which to plot cut statistics}
   \item{format}{ a function to post-process counts of elements between cuts }
   \item{include.range}{ if TRUE, \code{cuts} is supplemented with the range of the data }
   \item{zero.rm}{ If TRUE, zeros are not printed } 
   \item{cex}{ scale factor for text }
   \item{ref}{ position of a black reference line; may be NULL }
-  \item{text}{ text color for cut statistics }
   \item{shade}{ reference fill color }
 }
 \details{

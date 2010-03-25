@@ -192,11 +192,12 @@ soup$relative <- with(soup,value/mean(value[variable=='CL']))
 soup$grp <- 'depth'
 soup$grp[contains('W',soup$variable)] <- 'width'
 soup$grp[contains('L',soup$variable)] <- 'length'
-stripplot(variable~value,soup,panel=panel.densitystrip)
+stripplot(variable~value,soup,panel=panel.stratify,panel.levels=panel.densitystrip)
 stripplot(
 	variable~relative|sp+sex,
 	soup,
-	panel=panel.densitystrip
+	panel=panel.stratify,
+	panel.levels=panel.densitystrip
 )
 stripplot(
 	variable~relative|sp+sex,

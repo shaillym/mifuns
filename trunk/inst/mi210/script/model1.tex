@@ -44,6 +44,14 @@ Installing SIGCHLD signal handler...Done.
 \subsection{Run NONMEM.}
 Here we comment out the NONMEM run so that it is not run accidentally 
 if the file is sourced.  Run it manually.
+\begin{Schunk}
+\begin{Sinput}
+> getwd()
+\end{Sinput}
+\begin{Soutput}
+[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+\end{Soutput}
+\end{Schunk}
 Covariance succeeded on model 1005.
 \section{Predictive Check}
 \subsection{Create a simulation control stream.}
@@ -76,6 +84,14 @@ Covariance succeeded on model 1005.
 \end{Schunk}
 \subsection{Run the simulation.}
 This run makes the predictions (simulations).
+\begin{Schunk}
+\begin{Sinput}
+> getwd()
+\end{Sinput}
+\begin{Soutput}
+[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+\end{Soutput}
+\end{Schunk}
 \subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
 \begin{Schunk}
@@ -931,6 +947,14 @@ Here is one option.
 \end{Schunk}
 \subsection{Run bootstrap models.}
 Again, model step is commented for safety.  Run manually.
+\begin{Schunk}
+\begin{Sinput}
+> getwd()
+\end{Sinput}
+\begin{Soutput}
+[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+\end{Soutput}
+\end{Schunk}
 \subsection{Summarize bootstrap models.}
 When the bootstraps are complete, we return here and summarize. If you 
 do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.

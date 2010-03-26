@@ -32,6 +32,7 @@ eta.list=paste('ETA',1:10,sep='')
 Here we comment out the NONMEM run so that it is not run accidentally 
 if the file is sourced.  Run it manually.
 <<run>>=
+getwd()
 #NONR(
 #     run=1005,
 #     command=command,
@@ -78,6 +79,7 @@ t <- metaSub(
 \subsection{Run the simulation.}
 This run makes the predictions (simulations).
 <<sim>>=
+getwd()
 #NONR(
 #     run=1105,
 #     command=command,
@@ -392,6 +394,7 @@ t <- metaSub(
 \subsection{Run bootstrap models.}
 Again, model step is commented for safety.  Run manually.
 <<boot>>=
+getwd()
 #NONR(
 #     run=1:300,
 #     command=command,

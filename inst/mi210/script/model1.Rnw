@@ -194,14 +194,14 @@ Note, again, that DV quantiles are invariant across SIMS.
 \subsubsection{Reformat data for bivariate display.}
 We now have a lot of display options.  The simplest is to plot DV~PRED for each quantile and metric.
 Requires slight rearrangement.
-<<logLogByMetric,fig=TRUE>>=
+<<logLogByMetric>>=
 molten <- melt(quants, measure.var=c('X5.','X50.','X95.'),variable_name='quant')
 head(molten)
 frozen <- data.frame(cast(molten, SIM + metric + quant ~ variable))
 head(frozen)
 @
 \subsubsection{Bivariate display of within-simulation aggregate metrics.}
-<<bivariate>>=
+<<bivariate,fig=TRUE>>=
 print(xyplot(
 	log(PRED)~log(DV)|metric,
 	frozen,

@@ -2,7 +2,7 @@
 <nonmem>
 <text><![CDATA[
 /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1001.boot/1001.lst
-2010.01.19.2139.04
+2010.03.26.1108.42
 $PROB RUN# 1001 ESTIMATE PK W/COVARIATE RELATIONSHIPS
 $INPUT C ID DV AMT II ADDL TIME RATE HT WT CLCR SEX AGE
 $DATA  ../../data/1001.csv IGNORE=C 
@@ -31,8 +31,8 @@ $TABLE ID TIME EVID IPRED CWRES NOPRINT ONEHEADER FILE=./1001.tab
 $TABLE ID CL V EVID ETA1 ETA2 NOPRINT ONEHEADER FILE=./1001par.tab
 License Registered to: Metrum Research Group
 Expiration Date:    14 JUL 2010
-Current Date:       19 JAN 2010
-Days until program expires : 175
+Current Date:       26 MAR 2010
+Days until program expires : 108
 1NONLINEAR MIXED EFFECTS MODEL PROGRAM (NONMEM) VERSION 7.1.0
  ORIGINALLY DEVELOPED BY STUART BEAL, LEWIS SHEINER, AND ALISON BOECKMANN
  CURRENT DEVELOPERS ARE ROBERT BAUER, ICON DEVELOPMENT SOLUTIONS,
@@ -161,7 +161,7 @@ Days until program expires : 175
  CUMULATIVE NO. OF FUNC. EVALS.:      158
  PARAMETER: -3.4067E-02  2.9165E-01  4.8363E-01  3.4537E-02  1.8521E-01  1.8302E-01 -1.8048E+00
  GRADIENT:  -1.3034E-01  5.8741E-03  2.3700E-03  2.5132E-02 -2.3471E-03  5.3983E-02  1.2833E-02
- Elapsed estimation time in seconds:     0.30
+ Elapsed estimation time in seconds:     0.37
  
  #TERM:
 0MINIMIZATION SUCCESSFUL
@@ -245,7 +245,7 @@ Days until program expires : 175
  EPS2
 +        0.00E+00  2.22E-02
  
-2010.01.19.2139.05
+2010.03.26.1108.43
 ........................................
 NONMEM run with /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
 ........................................
@@ -307,7 +307,7 @@ i386</result></test></system></tests><checksum><path name="nm">efe2f99e5d35e620e
 <checksum>test/nm.pl</checksum>
 <nonmem version="7" level="1.0" date="08-xx-2009" />
 <meta>nmqual 7.1.x for nonmem 7.1.0</meta>
-</configuration></nmqual><tests on="execution"><environment><variable name="SHELL">/bin/csh</variable><variable name="USER">timb</variable><variable name="PATH">/tmp/826.1.bootstrap.q:/common/sge/bin/darwin-x86:/usr/local/bin:/usr/X11R6/bin:/bin:/sbin:/usr/bin:/bin:/usr/sbin:/sbin</variable></environment><system><test><command>perl -e 'use POSIX; print join qq(,\n),uname'</command><result>Darwin,
+</configuration></nmqual><tests on="execution"><environment><variable name="SHELL">/bin/csh</variable><variable name="USER">timb</variable><variable name="PATH">/tmp/5448.1.all.q:/common/sge/bin/darwin-x86:/usr/local/bin:/usr/X11R6/bin:/bin:/sbin:/usr/bin:/bin:/usr/sbin:/sbin</variable></environment><system><test><command>perl -e 'use POSIX; print join qq(,\n),uname'</command><result>Darwin,
 leopardserver.local,
 9.8.0,
 Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386,

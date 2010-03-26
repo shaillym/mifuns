@@ -15,7 +15,6 @@ nonr <- function(
         boot=FALSE,
         plotfile='../out/*/diagnostics.pdf',
         streams='../ctl',
-        ep=runlog,
         ...
 )NONR(
        run=run,
@@ -32,7 +31,6 @@ nonr <- function(
        boot=boot,
        plotfile=plotfile,
        streams=streams,
-       epilog=ep,
        ...
 )
 
@@ -43,7 +41,7 @@ nonr(1,split=TRUE)
 nonr(1,execute=FALSE)
 nonr(1,compile=FALSE)
 nonr(1:2)
-rlog(1:2,project='../out',out='../out/runlog.csv',append=FALSE)
+rlog(1:2,project='../out',file='../out/runlog.csv',append=FALSE,tool='nm7')
 
 #nix grid
 nonr(1,grid=TRUE)
@@ -58,10 +56,9 @@ nonr(nms,boot=TRUE ,concurrent=FALSE,grid=FALSE)#boot-style directories
 nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE)#concurrent non-grid boots (chatter)
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
-nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#urgent boots
-for(nm in nms)runlog(nm,outfile=file.path('../out',paste(nm,'boot',sep='.'),paste(nm,'lst',sep='.')))
-rlog(nms,project='../out',boot=TRUE,append=FALSE,out='../out/bootlog.csv')
-
+nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE, urgent=TRUE )#urgent boots
+boot <- rlog(nms,project='../out',boot=TRUE,append=FALSE,file='../out/bootlog.csv',tool='nm7')
+head(boot)
 #windows
 nonr(1)
 nonr(1,invisible=TRUE)

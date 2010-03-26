@@ -2,7 +2,7 @@
 <nonmem>
 <text><![CDATA[
 /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1003.lock/1003.lst
-2010.01.19.2136.16
+2010.03.26.1103.54
 $PROB RUN# 1003 ESTIMATE PK W/COVARIATE RELATIONSHIPS
 $INPUT C ID DV AMT II ADDL TIME RATE HT WT CLCR SEX AGE
 $DATA  ../../data/1003.csv IGNORE=C 
@@ -31,8 +31,8 @@ $TABLE ID TIME EVID IPRED CWRES NOPRINT ONEHEADER FILE=./1003.tab
 $TABLE ID CL V EVID ETA1 ETA2 NOPRINT ONEHEADER FILE=./1003par.tab
 License Registered to: Metrum Research Group
 Expiration Date:    14 JUL 2010
-Current Date:       19 JAN 2010
-Days until program expires : 175
+Current Date:       26 MAR 2010
+Days until program expires : 108
 1NONLINEAR MIXED EFFECTS MODEL PROGRAM (NONMEM) VERSION 7.1.0
  ORIGINALLY DEVELOPED BY STUART BEAL, LEWIS SHEINER, AND ALISON BOECKMANN
  CURRENT DEVELOPERS ARE ROBERT BAUER, ICON DEVELOPMENT SOLUTIONS,
@@ -249,7 +249,7 @@ Days until program expires : 175
  EPS2
 +        0.00E+00  1.81E-02
  
-2010.01.19.2136.17
+2010.03.26.1103.55
 ........................................
 NONMEM run with /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
 ........................................
@@ -311,7 +311,7 @@ i386</result></test></system></tests><checksum><path name="nm">efe2f99e5d35e620e
 <checksum>test/nm.pl</checksum>
 <nonmem version="7" level="1.0" date="08-xx-2009" />
 <meta>nmqual 7.1.x for nonmem 7.1.0</meta>
-</configuration></nmqual><tests on="execution"><environment><variable name="SHELL">/bin/csh</variable><variable name="USER">timb</variable><variable name="PATH">/tmp/808.1.all.q:/common/sge/bin/darwin-x86:/usr/local/bin:/usr/X11R6/bin:/bin:/sbin:/usr/bin:/bin:/usr/sbin:/sbin</variable></environment><system><test><command>perl -e 'use POSIX; print join qq(,\n),uname'</command><result>Darwin,
+</configuration></nmqual><tests on="execution"><environment><variable name="SHELL">/bin/csh</variable><variable name="USER">timb</variable><variable name="PATH">/tmp/5420.1.all.q:/common/sge/bin/darwin-x86:/usr/local/bin:/usr/X11R6/bin:/bin:/sbin:/usr/bin:/bin:/usr/sbin:/sbin</variable></environment><system><test><command>perl -e 'use POSIX; print join qq(,\n),uname'</command><result>Darwin,
 leopardserver.local,
 9.8.0,
 Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386,

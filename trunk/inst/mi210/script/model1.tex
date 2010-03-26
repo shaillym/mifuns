@@ -46,6 +46,20 @@ Here we comment out the NONMEM run so that it is not run accidentally
 if the file is sourced.  Run it manually.
 \begin{Schunk}
 \begin{Sinput}
+> #NONR(
+> #     run=1005,
+> #     command=command,
+> #     project='../nonmem',
+> #     grid=TRUE,
+> #     nice=TRUE,
+> #     checkrunno=FALSE,
+> #     cont.cov=cont.cov,
+> #     cat.cov=cat.cov,
+> #     par.list=par.list,
+> #     eta.list=eta.list,
+> #     plotfile='../nonmem/*/diagnostics.pdf',
+> #     streams='../nonmem/ctl'
+> #)
 > getwd()
 \end{Sinput}
 \begin{Soutput}
@@ -86,6 +100,15 @@ Covariance succeeded on model 1005.
 This run makes the predictions (simulations).
 \begin{Schunk}
 \begin{Sinput}
+> #NONR(
+> #     run=1105,
+> #     command=command,
+> #     project='../nonmem',
+> #     grid=TRUE,
+> #     nice=TRUE,
+> #     diag=FALSE,
+> #     streams='../nonmem/ctl'
+> #)
 > getwd()
 \end{Sinput}
 \begin{Soutput}
@@ -949,7 +972,15 @@ Here is one option.
 Again, model step is commented for safety.  Run manually.
 \begin{Schunk}
 \begin{Sinput}
-> getwd()
+> #NONR(
+> #     run=1:300,
+> #     command=command,
+> #     project='../nonmem/1005.boot/',
+> #     boot=TRUE,
+> #     nice=TRUE,
+> #     streams='../nonmem/1005.boot/ctl'
+> #)
+> getwd()  
 \end{Sinput}
 \begin{Soutput}
 [1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"

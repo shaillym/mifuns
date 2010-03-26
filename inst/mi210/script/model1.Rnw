@@ -32,7 +32,6 @@ eta.list=paste('ETA',1:10,sep='')
 Here we comment out the NONMEM run so that it is not run accidentally 
 if the file is sourced.  Run it manually.
 <<run>>=
-getwd()
 #NONR(
 #     run=1005,
 #     command=command,
@@ -46,7 +45,8 @@ getwd()
 #     eta.list=eta.list,
 #     plotfile='../nonmem/*/diagnostics.pdf',
 #     streams='../nonmem/ctl'
-#)     
+#)
+getwd()
 @
 Covariance succeeded on model 1005.
 \section{Predictive Check}
@@ -79,7 +79,6 @@ t <- metaSub(
 \subsection{Run the simulation.}
 This run makes the predictions (simulations).
 <<sim>>=
-getwd()
 #NONR(
 #     run=1105,
 #     command=command,
@@ -88,7 +87,8 @@ getwd()
 #     nice=TRUE,
 #     diag=FALSE,
 #     streams='../nonmem/ctl'
-#)  
+#)
+getwd()
 @
 \subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
@@ -394,7 +394,6 @@ t <- metaSub(
 \subsection{Run bootstrap models.}
 Again, model step is commented for safety.  Run manually.
 <<boot>>=
-getwd()
 #NONR(
 #     run=1:300,
 #     command=command,
@@ -402,7 +401,8 @@ getwd()
 #     boot=TRUE,
 #     nice=TRUE,
 #     streams='../nonmem/1005.boot/ctl'
-#)   
+#)
+getwd()  
 @
 \subsection{Summarize bootstrap models.}
 When the bootstraps are complete, we return here and summarize. If you 

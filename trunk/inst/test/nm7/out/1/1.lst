@@ -2,7 +2,7 @@
 <nonmem>
 <text><![CDATA[
 /Users/timb/project/metrum-mifuns/inst/test/nm7/script/../out/1/1.lst
-2010.01.19.2140.27
+2010.03.26.1111.35
 $PROB RUN# 1 ESTIMATE PK W/COVARIATE RELATIONSHIPS
 $INPUT C ID DV AMT II ADDL TIME RATE HT WT CLCR SEX AGE
 $DATA  ../../data/1.csv IGNORE=C 
@@ -31,8 +31,8 @@ $TABLE ID TIME EVID IPRED CWRES NOPRINT ONEHEADER FILE=./1.tab
 $TABLE ID CL V EVID ETA1 ETA2 NOPRINT ONEHEADER FILE=./1par.tab
 License Registered to: Metrum Research Group
 Expiration Date:    14 JUL 2010
-Current Date:       19 JAN 2010
-Days until program expires : 175
+Current Date:       26 MAR 2010
+Days until program expires : 108
 1NONLINEAR MIXED EFFECTS MODEL PROGRAM (NONMEM) VERSION 7.1.0
  ORIGINALLY DEVELOPED BY STUART BEAL, LEWIS SHEINER, AND ALISON BOECKMANN
  CURRENT DEVELOPERS ARE ROBERT BAUER, ICON DEVELOPMENT SOLUTIONS,
@@ -161,7 +161,7 @@ Days until program expires : 175
  CUMULATIVE NO. OF FUNC. EVALS.:      145
  PARAMETER: -3.6830E-02  2.8576E-01  3.3110E-01  4.6656E-02  3.8624E-01  1.3319E-01 -2.0318E+00
  GRADIENT:  -6.1306E-02 -3.8727E-02  7.4950E-04  7.9084E-03  5.9836E-03  1.6205E-02 -6.6210E-03
- Elapsed estimation time in seconds:     0.30
+ Elapsed estimation time in seconds:     0.29
  
  #TERM:
 0MINIMIZATION SUCCESSFUL
@@ -245,7 +245,7 @@ Days until program expires : 175
  EPS2
 +        0.00E+00  1.41E-02
  
-2010.01.19.2140.28
+2010.03.26.1111.36
 ........................................
 NONMEM run with /common/NONMEM/nm7_osx2/test/nm7_osx2.pl
 ........................................

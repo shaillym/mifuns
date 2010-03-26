@@ -44,7 +44,7 @@ nonr(1,split=TRUE)
 nonr(1,execute=FALSE)
 nonr(1,compile=FALSE)
 nonr(1:2)
-rlog(1:2,project='../out',out='../out/runlog.csv',append=FALSE)
+rlog(1:2,project='../out',file='../out/runlog.csv',append=FALSE)
 
 #nix grid
 nonr(1,grid=TRUE)
@@ -60,7 +60,8 @@ nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE)#concurrent non-grid boots (chatter)
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE, urgent=TRUE)#urgent boots
-rlog(nms,project='../out',boot=TRUE,append=FALSE,out='../out/bootlog.csv')
+boot <- rlog(1001,project='../out',boot=TRUE,append=FALSE,file='../out/bootlog.csv')
+head(boot)
 #windows
 nonr(1)
 nonr(1,invisible=TRUE)

@@ -41,7 +41,7 @@ runNonmem(
 	streams = project,
 	ctlfile = filename(streams,run,'.ctl'),
 	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
-	background = FALSE,
+	sync=if(boot)'n'else'y',
 	...
 )
 }
@@ -79,7 +79,7 @@ runNonmem(
   \item{streams}{where to find control streams}
   \item{ctlfile}{the original control stream}
   \item{remove}{regular expressions for files to purge}
-  \item{background}{whether to run the command in the background}
+  \item{sync}{whether the R process should wait for the run to complete}
   \item{\dots}{extra arguments for other functions}
 }
 \value{Used for side effects}

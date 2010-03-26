@@ -104,7 +104,7 @@ as.unilog.runlog <- function(x,tool='nm7',...){
 	if(!nrow(x))return(unilog())
 	regular <- c('prob','min','cov','mvof')
 	if(!all(regular %in% names(x)))stop('runlog must have prob, min, cov, mvof')
-	if(!'run' %in% names(x))x$run <- sub('^(\\w+).*$','\\1',x$prob)
+	if(!'run' %in% names(x))x$run <- sub('(^\\$PROB(LEM)? +(RUN#? *)?)([^ ]+)(.*$)','\\4',x$prob)
 	others <- setdiff(names(x),c(regular,'run'))
 	spec <- c(regular,others,'run')
 	x <- x[,spec]

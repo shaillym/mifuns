@@ -108,6 +108,7 @@ with(phase1,DV[SIM==2 & SUBJ==12])
 pred <- scan('../nonmem/1105/1105.tab')
 nrow(phase1)
 length(pred)
+@ 
 \subsection{Combine the original data and the simulation data.}
 <<combine>>=
 phase1$PRED <- pred
@@ -397,7 +398,6 @@ Again, model step is commented for safety.  Run manually.
 #     project='../nonmem/1005.boot/',
 #     boot=TRUE,
 #     nice=TRUE,
-#     diag=FALSE,
 #     streams='../nonmem/1005.boot/ctl'
 #)   
 @

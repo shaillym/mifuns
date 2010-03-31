@@ -30,7 +30,7 @@ This script runs NONMEM models for the phase1 data.
 > library(MIfuns)
 \end{Sinput}
 \begin{Soutput}
-MIfuns 3.8.1 loaded
+MIfuns 3.9 loaded
 Installing SIGCHLD signal handler...Done.
 \end{Soutput}
 \begin{Sinput}
@@ -991,7 +991,6 @@ When the bootstraps are complete, we return here and summarize. If you
 do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 \begin{Schunk}
 \begin{Sinput}
-> #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 > boot <- rlog(
 + 	run=1:300,
 + 	project='../nonmem/1005.boot',
@@ -999,6 +998,7 @@ do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 + 	append=FALSE,
 + 	tool='nm7'
 + )
+> boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
@@ -1442,6 +1442,58 @@ of strips.
 \end{Sinput}
 \end{Schunk}
 \includegraphics{model1-covplot}
+Alternatively, we could use groups to collapse the continuous strips into a single band.
+\begin{Schunk}
+\begin{Sinput}
+> levels(molten$variable)
+\end{Sinput}
+\begin{Soutput}
+[1] "CL"      "Male.CL" "WT.CL65" "WT.CL75" "WT.CL85"
+\end{Soutput}
+\begin{Sinput}
+> print(stripplot(
++ 	factor(factor(
++ 		variable,
++ 		levels= c(
++ 			"WT.CL85",
++ 			"WT.CL75",
++ 			"WT.CL65",
++ 			"Male.CL",
++ 			"CL"
++ 		),
++ 		labels=c(
++ 			'WT.CL',
++ 			'WT.CL',
++ 			'WT.CL',
++ 			'Male.CL',
++ 			'CL'
++ 		))
++ 	)~value,
++ 	molten,
++ 	groups=factor(
++ 		variable,
++ 		levels= c(
++ 			"WT.CL85",
++ 			"WT.CL75",
++ 			"WT.CL65",
++ 			"Male.CL",
++ 			"CL"
++ 		),
++ 		labels=c(
++ 			'85 kg',
++ 			'75 kg',
++ 			'65 kg',
++ 			'male',
++ 			'CL'
++ 		)
++ 	),
++ 	panel=panel.covplot,
++ 	auto.key=TRUE,
++ 	alpha=0.7
++ ))
+\end{Sinput}
+\end{Schunk}
+\includegraphics{model1-groupcov}
 \subsubsection{Summarize}
 We see that clearance is estimated with good precision.  Ignoring outliers, there 
 is not much effect on clearance of being male, relative to female.  Increasing 

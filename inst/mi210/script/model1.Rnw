@@ -408,7 +408,6 @@ getwd()
 When the bootstraps are complete, we return here and summarize. If you 
 do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 <<more>>= 
-#boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
@@ -416,6 +415,7 @@ boot <- rlog(
 	append=FALSE,
 	tool='nm7'
 )
+boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 head(boot)
 unique(boot$parameter)
 @
@@ -539,6 +539,50 @@ print(stripplot(
 	)~value,
 	molten,
 	panel=panel.covplot
+))
+@
+Alternatively, we could use groups to collapse the continuous strips into a single band.
+<<groupcov,fig=TRUE>>=
+levels(molten$variable)
+print(stripplot(
+	factor(factor(
+		variable,
+		levels= c(
+			"WT.CL85",
+			"WT.CL75",
+			"WT.CL65",
+			"Male.CL",
+			"CL"
+		),
+		labels=c(
+			'WT.CL',
+			'WT.CL',
+			'WT.CL',
+			'Male.CL',
+			'CL'
+		))
+	)~value,
+	molten,
+	groups=factor(
+		variable,
+		levels= c(
+			"WT.CL85",
+			"WT.CL75",
+			"WT.CL65",
+			"Male.CL",
+			"CL"
+		),
+		labels=c(
+			'85 kg',
+			'75 kg',
+			'65 kg',
+			'male',
+			'CL'
+		)
+	),
+	panel=panel.covplot,
+	auto.key=TRUE,
+	alpha=0.7
 ))
 @
 \subsubsection{Summarize}

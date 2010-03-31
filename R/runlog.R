@@ -32,30 +32,37 @@ as.unilog.lst <- function(file,run,tool,...){
 as.unilog.pxml <- function(x,run,tool='nm7',...){
 	if(is.null(x))return(unilog())
 	est <- paste(x,collapse='\n')
-	est <- gsub('<SIGMA\\(([0-9]+),([0-9]+)\\)>',"<SIGMA row='\\1' col='\\2'>",est)
-	est <- gsub('</SIGMA\\(([0-9]+),([0-9]+)\\)>',"</SIGMA>",est)
-	est <- gsub('<OMEGA\\(([0-9]+),([0-9]+)\\)>',"<OMEGA row='\\1' col='\\2'>",est)
-	est <- gsub('</OMEGA\\(([0-9]+),([0-9]+)\\)>',"</OMEGA>",est)
-	est <- gsub('<SIGMA\\(([0-9]+),([0-9]+)\\)>',"<SIGMA row='\\1' col='\\2'>",est)
-	est <- gsub('<THETA([0-9]+)>',"<THETA id='\\1'>",est)
-	est <- gsub('</THETA([0-9]+)>',"</THETA>",est)
+	est <- gsub('\\(|\\)','',est)
+	est <- gsub(',','.',est)
 	tree <- xmlParse(est,asText=TRUE)
-	par <- xpathSApply(tree,"//ITERATION[@key='-1000000000']/text()",fun=xmlValue)
-	se  <- xpathSApply(tree,"//ITERATION[@key='-1000000001']/text()",fun=xmlValue)
-	if(is.null(se))se <- rep(Inf,length(par))
-	prse <- signif(digits=3, 100 * as.numeric(se)/as.numeric(par))
+	xmlValue.NULL <- function(x,...)NA
+	p <- do.call(
+		rbind,
+		xpathApply(
+			tree,
+			"/param/*[ITERATION]",
+			fun=function(x)data.frame(
+				stringsAsFactors=FALSE,
+				parameter=xmlName(x),
+				estimate=xmlValue(getNodeSet(x,"ITERATION[@key='-1000000000']/text()")[[1]]),
+				se=xmlValue(getNodeSet(x,"ITERATION[@key='-1000000001']/text()")[[1]])
+			)
+		)
+	)
+	p$prse <- with(p, signif(digits=3, 100 * as.numeric(se)/as.numeric(estimate)))
+	p$se <- NULL
 	free(tree)
-	mvof <- par[[length(par)]]
-	prse <- prse[-length(par)]
-	prse <- as.character(prse)
-	par  <- par[-length(par)]
-	p <- data.frame(estimate=par,prse=prse,parameter=paste('P',1:length(par),sep=''),stringsAsFactors=FALSE)
-	pmelt <- melt(p,id.var='parameter',variable_name='moment')
-	pmelt$tool <- tool
-	pmelt$run <- run
-	pmelt <- pmelt[,c('tool','run','parameter','moment','value')]
-	mvof <- data.frame(stringsAsFactors=FALSE,tool=tool, run=run, parameter='ofv',moment='minimum',value=mvof)
-	uni <- rbind(pmelt,mvof)
+	p$prse <- as.character(p$prse)
+	uni <- melt(p,id.var='parameter',variable_name='moment')
+	uni$tool <- tool
+	uni$run <- run
+	uni[] <- lapply(uni,as.character)
+	uni <- uni[,c('tool','run','parameter','moment','value')]
+	uni <- sort(as.keyed(uni, c('tool','run','parameter','moment')))
+	uni <- uni[!(uni$parameter == 'OBJ' & uni$moment=='prse'),]
+	uni$parameter[uni$parameter=='OBJ'] <- 'ofv'
+	uni$moment[uni$parameter=='ovf'] <- 'minimum'
+	row.names(uni) <- NULL
 	uni
 }
 as.unilog.run <- function(

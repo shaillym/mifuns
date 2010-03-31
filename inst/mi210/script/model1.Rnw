@@ -408,6 +408,7 @@ getwd()
 When the bootstraps are complete, we return here and summarize. If you 
 do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 <<more>>= 
+#boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
@@ -415,16 +416,14 @@ boot <- rlog(
 	append=FALSE,
 	tool='nm7'
 )
-boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
 head(boot)
 unique(boot$parameter)
+text2decimal(unique(boot$parameter))
 @
 It looks like we have 14 estimated parameters.  We will map them to the
 original control stream.
 <<pars>>=
-pars <- paste('P',1:14,sep='')
-pars
-boot <- boot[boot$parameter %in% pars,]
+boot <- boot[!is.na(text2decimal(boot$parameter)),]
 head(boot)
 unique(boot$moment)
 unique(boot$value[boot$moment=='prse'])
@@ -436,7 +435,7 @@ boot$moment <- NULL
 unique(boot$tool)
 boot$tool <- NULL
 head(boot)
-unique(boot$value[boot$parameter %in% c('P10','P12','P13')])
+unique(boot$value[boot$parameter %in% c('OMEGA2.1','OMEGA3.1','OMEGA3.2')])
 unique(boot$parameter[boot$value=='0'])
 @
 Off-diagonals (and only off-diagonals) are noninformative.
@@ -470,12 +469,11 @@ stream <- readLines('../nonmem/ctl/1005.ctl')
 tail(stream)
 doc <- ctl2xml(stream)
 doc
-pars
-defs <- lookup(pars,within=doc)
-defs
-labels <- lookup(pars,within=doc,as='label')
-labels
-boot$parameter <- as.character(factor(boot$parameter,levels=pars,labels=labels))
+params <- unique(boot[,'parameter',drop=FALSE])
+params$defs <- lookup(params$parameter,within=doc)
+params$labels <- lookup(params$parameter,within=doc,as='label')
+params
+boot$parameter <- lookup(boot$parameter,within=doc,as='label')
 head(boot)
 @
 \subsection{Create covariate plot.}

@@ -15,23 +15,23 @@ $ERROR
  IPRE=F
 
 $THETA 
-(0,10,50)     ;CL        <parameter name='P1' label='CL'>clearance</parameter>
-(0,10,100)    ;V         <parameter name='P2' label='V2'>central volume</parameter>
-(0,0.2, 5)    ;KA        <parameter name='P3' label='Ka'>absorption constant</parameter>
-(0,10,50)     ;Q         <parameter name='P4' label='Q' >intercompartmental clearance</parameter>
-(0,100,1000)  ;V3        <parameter name='P5' label='V3'>peripheral volume</parameter>
-(0,1,2)       ;SEX       <parameter name='P6' label='Male.CL'>male effect on clearance</parameter>
-(0,0.75,3)    ;WT on CL  <parameter name='P7' label='WT.CL'>weight effect on clearance</parameter>
+(0,10,50)     ;CL        <parameter name='THETA1' label='CL'>clearance</parameter>
+(0,10,100)    ;V         <parameter name='THETA2' label='V2'>central volume</parameter>
+(0,0.2, 5)    ;KA        <parameter name='THETA3' label='Ka'>absorption constant</parameter>
+(0,10,50)     ;Q         <parameter name='THETA4' label='Q' >intercompartmental clearance</parameter>
+(0,100,1000)  ;V3        <parameter name='THETA5' label='V3'>peripheral volume</parameter>
+(0,1,2)       ;SEX       <parameter name='THETA6' label='Male.CL'>male effect on clearance</parameter>
+(0,0.75,3)    ;WT on CL  <parameter name='THETA7' label='WT.CL'>weight effect on clearance</parameter>
 
 $OMEGA 0.09 0.09 0.09 ;0.09 0.09
-;<parameter name='P8' label='IIV.CL'>interindividual variability on clearance</parameter>
-;<parameter name='P9' label='CL.V2'>covariance of clearance and central volume</parameter>
-;<parameter name='P10' label='IIV.V2'>interindividual variability on central volume</parameter>
-;<parameter name='P11' label='CL.Ka'>covariance of clearance and Ka</parameter>
-;<parameter name='P12' label='V2.Ka'>covariance of central volume and Ka</parameter>
-;<parameter name='P13' label='IIV.Ka'>interindividual variability on Ka</parameter>
+;<parameter name='OMEGA1.1' label='IIV.CL'>interindividual variability on clearance</parameter>
+;<parameter name='OMEGA2.1' label='CL.V2'>covariance of clearance and central volume</parameter>
+;<parameter name='OMEGA2.2' label='IIV.V2'>interindividual variability on central volume</parameter>
+;<parameter name='OMEGA3.1' label='CL.Ka'>covariance of clearance and Ka</parameter>
+;<parameter name='OMEGA3.2' label='V2.Ka'>covariance of central volume and Ka</parameter>
+;<parameter name='OMEGA3.3' label='IIV.Ka'>interindividual variability on Ka</parameter>
 $SIGMA 0.09 ;0.1
-;<parameter name='P14' label='ERR'>proportional error</parameter>
+;<parameter name='SIGMA1.1' label='ERR'>proportional error</parameter>
 $ESTIMATION MAXEVAL=9999 PRINT=5 NOABORT METHOD=1 INTER MSFO=./1005.msf
 $COV PRINT=E
 $TABLE NOPRINT FILE=./1005.tab ONEHEADER ID AMT TIME EVID PRED IPRE CWRES

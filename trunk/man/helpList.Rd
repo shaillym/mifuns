@@ -57,6 +57,7 @@ Functions defined by MIfuns
 \item \link{as.flag.flag} convert flag to flag
 \item \link{as.keyed} convert to keyed
 \item \link{as.keyed.data.frame} convert data frame to keyed
+\item \link{as.matrix.halfmatrix} convert a vector to a symmetric matrix
 \item \link{as.miDate} convert to miDate
 \item \link{as.miDate.miDate} convert miDate to miDate
 \item \link{as.miDate.character} convert character to miDate
@@ -208,6 +209,7 @@ Functions defined by MIfuns
 \item \link{nocb} impute NA with next observation carried backward
 \item \link{ord} generic
 \item \link{ord.matrix} compute the order of a symmetric matrix
+\item \link{ord.halfmatrix} compute the order of a half matrix
 \item \link{ordinal} generic
 \item \link{ordinal.logical} repeat for each element the position of the n-th TRUE element (usually, within levels of an index)
 \item \link{packageCheck} load a package and run package-level examples

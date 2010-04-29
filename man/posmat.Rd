@@ -10,12 +10,13 @@ toward zero.  The off-diagonals are reduced by 3 percent as necessary
 until the determinant is positive.
 }
 \usage{
-posmat(x)
+posmat(x,...)
 }
 \arguments{
   \item{x}{
 matrix with only positive diagonal elements
 }
+\item{\dots}{extra arguments, ignored}
 }
 \value{
 matrix

@@ -66,16 +66,30 @@ riwish <- function(s,df,prec){
    t(S)%*%S
 }
 half <- function(x,...)UseMethod('half')
-half.matrix <- function(x) {
+half.matrix <- function(x,...) {
     if(!isSymmetric(x))stop('matrix is not symmetric')
-    d <- dim(x)[[1]]
+    d <- ord(x)
     dex <- data.frame(row=rep(1:d,each=d),col=rep(1:d,d))
     dex <- dex[dex$col <= dex$row,]
     x <- x[as.matrix(dex)]
     names(x) <- do.call(paste,c(dex,list(sep='.')))
-    x
+    structure(x,class='halfmatrix')
 }
-posmat <- function(x) {
+ord.halfmatrix <- function(x,...){
+	ord <- -0.5+sqrt(0.25+2*length(x))
+	if(as.integer(ord)!=ord)stop('invalid length for half matrix')
+	ord
+}
+as.matrix.halfmatrix <- function(x,...){
+	d <- ord.halfmatrix(x)
+	y <- matrix(nrow=d,ncol=d)
+	dex <- data.frame(row=rep(1:d,each=d),col=rep(1:d,d))
+    dex <- dex[dex$col <= dex$row,]
+    y[as.matrix(dex)] <- x
+    y[is.na(y)] <- t(y)[is.na(y)]
+    y  
+}
+posmat <- function(x,...) {
      if(any(diag(x) <=0)) stop("matrix cannot be made positive definite")
      if(!is.square(x))stop('x is not square')
 	 sign <- sign(x)

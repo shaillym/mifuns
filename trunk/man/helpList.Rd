@@ -11,18 +11,18 @@ Functions defined by MIfuns
 \item \link{\%nests\%} test whether a nests b
 \item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule.
 \item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
-\item \link{CheckPositiveMatrix} determine if omega matrix is positive, definite (\code{SimulationFromFile})
-\item \link{CheckPositiveVector} determine if omega matrix is positive, definite (\code{SimulationFromFile})
-\item \link{CreateParametersForSimulation} generate nsim sets of model parameters for simulation based on the results of a (final) model
+%\item \link{CheckPositiveMatrix} determine if omega matrix is positive, definite (\code{SimulationFromFile})
+%\item \link{CheckPositiveVector} determine if omega matrix is positive, definite (\code{SimulationFromFile})
+%\item \link{CreateParametersForSimulation} generate nsim sets of model parameters for simulation based on the results of a (final) model
 \item \link{NONR} run NONMEM and create diagnostic plots
-\item \link{Omega.MtoV} convert matrix containing omega estimates into a vector of omega estimates
-\item \link{Omega.VtoM} convert vector containing lower block omega estimates into a full matrix of omega estimates
+%\item \link{Omega.MtoV} convert matrix containing omega estimates into a vector of omega estimates
+%\item \link{Omega.VtoM} convert vector containing lower block omega estimates into a full matrix of omega estimates
 \item \link{Ops.keyed} use concise syntax to join data frames
 \item \link{PLOTR} create diagnostic plots for NONMEM runs
-\item \link{SimulateOmega} generate omega values for simulation
+%\item \link{SimulateOmega} generate omega values for simulation
 \item \link{Tmax} calculate the time associated with the maximum concentration for each subject
 \item \link{Tmin} calculate the time associated with the minimum concentration for each subject
-\item \link{TruncateParametersForSimulation} truncate a set of parameters for simulation according to a user-defined set a boundaries
+%\item \link{TruncateParametersForSimulation} truncate a set of parameters for simulation according to a user-defined set a boundaries
 \item \link{[.comment} subset a comment
 \item \link{[.flag} subset a flag
 \item \link{[.keyed} subset a keyed data frame
@@ -165,12 +165,16 @@ Functions defined by MIfuns
 \item \link{getTabs} return the observation rows (EVID==0) corresponding to the specified filename (internal)
 \item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)
 \item \link{groupnames} construct a single vector of group names from possibly multiple indicies to the plotting data set (internal)
+\item \link{half} generic
+\item \link{half.matrix} vectorize the lower triangular portion of a symmetric matrix
 \item \link{hash} prepend a character to each line of output
 \item \link{hide} generic
 \item \link{hide.data.frame} comment out the specified rows of a data frame, appending a flag that suggests the reason
 \item \link{ibw} calculate ideal body weight
 \item \link{ind.cwres} compute conditional weighted residuals (internal)
 \item \link{is.cwres.readable.file} compute conditional weighted residuals (internal)
+\item \link{is.square} generic
+\item \link{is.square.matrix} test whether a matrix is square
 \item \link{ke} calculate elimination constant
 \item \link{key} return the key of a keyed data frame
 \item \link{key<-} assign a key
@@ -202,6 +206,8 @@ Functions defined by MIfuns
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
 \item \link{nocb} impute NA with next observation carried backward
+\item \link{ord} generic
+\item \link{ord.matrix} compute the order of a symmetric matrix
 \item \link{ordinal} generic
 \item \link{ordinal.logical} repeat for each element the position of the n-th TRUE element (usually, within levels of an index)
 \item \link{packageCheck} load a package and run package-level examples
@@ -218,6 +224,7 @@ Functions defined by MIfuns
 \item \link{plus.keyed} produce and outer join of keyed data frames
 \item \link{plus.rigged} merge an nm object with a rigged data frame
 \item \link{predoseDv} generic
+\item \link{posmat} coerce a matrix to be positive definite
 \item \link{predoseDv.nm} DV is defined before the first record within SUBJ where EVID is 1
 \item \link{prev} calculate the previous element for each element of x
 \item \link{print.comment} print comment
@@ -242,7 +249,7 @@ Functions defined by MIfuns
 \item \link{rig} generic
 \item \link{rig.nm} generate extra rows, spaced across each subject's timecourse, for obtaining model predictions in NONMEM (EVID==2)
 \item \link{rinvchisq} generate inverse chi-square distribution
-\item \link{rinvgamma} generate inverse gamma distribution given n, df, and sigma estimate
+%\item \link{rinvgamma} generate inverse gamma distribution given n, df, and sigma estimate
 \item \link{riwish} generate inverse Wishart distribution
 \item \link{rlog} generate a combined run log for multiple NONMEM runs
 \item \link{runCommand} issue the system call that invokes NONMEM (internal)
@@ -252,6 +259,9 @@ Functions defined by MIfuns
 \item \link{safe.call} call a function, passing only those extra arguments that the function accepts
 \item \link{seq.miTemporal} generate miTemporal sequence
 \item \link{setCwres} append conditional weighted residuals to an appropriate file
+\item \link{shuffle} move columns in a data frame
+\item \link{simpar} generate deviates of a set of model parameters for simulation
+\item \link{simblock} generate deviates of the elements of a variance-covariance matrix
 \item \link{sort.keyed} sort a keyed data frame
 \item \link{sorted} check whether a x is sorted on the specified columns
 \item \link{sqrtm} support \code{compute.cwres}

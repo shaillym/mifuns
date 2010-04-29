@@ -12,6 +12,6 @@ I want to ....
 \item \link[=rlog]{Generate} a combined run log from multiple NONMEM runs
 \item \link[=resample.data.frame]{Create} replicate datasets by stratified sampling with replacement    
 \item \link[=metaSub.character]{Make} multiple, systematic substitutions in text files
-\item \link[=CreateParametersForSimulation]{Create} parameters for simulation from uncertainity
+\item \link[=simpar]{Create} parameters for simulation from uncertainity
 }
 }

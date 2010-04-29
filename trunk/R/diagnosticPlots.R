@@ -102,6 +102,7 @@ function (data, dvname='DV', group=NULL, model=NULL, ...)
     },
   	scales=list(y=list(relation="free")),
   	main=paste(model,"\nNormal Q-Q Plot Residuals",groupSubtitle(group)),
+	qtype=7,
 	...
   )
   #QQ-Res

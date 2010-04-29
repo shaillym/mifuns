@@ -3,7 +3,8 @@
 	project=getwd(), 
 	rundir=filename(project,run),
 	grp = NULL, 
-	plotfile=plotfilename(run,project,grp),
+	onefile=TRUE,
+	plotfile=plotfilename(run,project,grp,onefile),
 	logtrans = FALSE, 
 	dvname = 'DV', 
 	epilog=NULL,
@@ -42,7 +43,7 @@
     
     #open device
     plotfile <- star(plotfile,run)
-    safe.call(pdf,file=plotfile,...)
+    safe.call(pdf,file=plotfile,onefile=onefile,...)
 
     #make plots
     lapply(diagnosticPlots(synthesis, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
@@ -301,8 +302,9 @@ plotfilename=function(
 	run,
 	dir=getwd(),
 	grp=NULL,
+	onefile=TRUE,
 	stem='DiagnosticPlotReview',
-	pext='.pdf',
+	pext=if(onefile)'.pdf' else '_%03d.pdf',
 	...
 )filename(
 	dir,

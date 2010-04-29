@@ -10,8 +10,9 @@ plotfilename(
 	run,
 	dir=getwd(),
 	grp=NULL,
+	onefile=TRUE,
 	stem='DiagnosticPlotReview',
-	pext='.pdf',
+	pext=if(onefile)'.pdf' else '_%03d.pdf',
 	...
 )
 }
@@ -20,6 +21,7 @@ plotfilename(
   \item{run}{run name}
   \item{dir}{directory name}
   \item{grp}{filename modifiers, see NONR}
+  \item{onefile}{includes a counter if FALSE}
   \item{stem}{filename stem}
   \item{pext}{extension, typ. pdf}
   \item{\dots}{ignored}

@@ -69,8 +69,10 @@ function (
 	  if(rundir!=final(rundir))purge.dir(rundir)
 	  dir.create(rundir, showWarnings = FALSE)
 	  dname <- getdname(ctlfile)
-	  if(!file.exists(resolve(dname,rundir)))warning(paste(dname,'not visible from',rundir))
-	  if(!file.exists(resolve(dname,rundir)))return()
+	  if(!file.exists(resolve(dname,rundir))){
+		  warning(paste(dname,'not visible from',rundir),call.=FALSE,immediate.=TRUE)
+		  return()
+	  }
 	  file.copy(ctlfile, file.path(rundir,basename(ctlfile)), overwrite = TRUE)
   }
   #Run NONMEM.

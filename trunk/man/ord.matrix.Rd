@@ -42,6 +42,5 @@ ord(diag(4))
 ord(half(diag(4))
 ord(half.matrix(1:10))
 }
-}
 \keyword{ manip }
 

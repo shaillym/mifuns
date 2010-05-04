@@ -12,7 +12,7 @@ plotfilename(
 	grp=NULL,
 	onefile=TRUE,
 	stem='DiagnosticPlotReview',
-	pext=if(onefile)'.pdf' else '_%03d.pdf',
+	pext=if(onefile) '.pdf' else '_\%03d.pdf',
 	...
 )
 }

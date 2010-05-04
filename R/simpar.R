@@ -76,7 +76,7 @@ half.matrix <- function(x,...) {
     structure(x,class='halfmatrix')
 }
 ord.halfmatrix <- function(x,...){
-	ord <- -0.5+sqrt(0.25+2*length(x))
+	ord <- sqrt(0.25+2*length(x))-0.5
 	if(as.integer(ord)!=ord)stop('invalid length for half matrix')
 	ord
 }

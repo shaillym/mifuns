@@ -22,9 +22,9 @@ extractPath(x)
 resolve(file,dir)
 scavenge(expr,lines)
 extfile(ctlfile,dir,extreg,...)
-tabfile(ctlfile,dir,tabreg='(?<!par)\\.tab',...)
-parfile(ctlfile,dir,parreg='par\\.tab',...)
-msffile(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)
+tabfile(ctlfile,dir,tabreg='(?<!par)\\\\.tab',...)
+parfile(ctlfile,dir,parreg='par\\\\.tab',...)
+msffile(ctlfile,dir,msfreg='^(?!\\\\$MSFI).*\\\\.msf',...)
 }
 
 \arguments{

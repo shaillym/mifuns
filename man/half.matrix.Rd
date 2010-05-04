@@ -15,7 +15,7 @@ converts a halfmatrix-like vector to a symmetric matrix.
 }
 \usage{
 \method{half}{matrix}(x,...)
-\method{as.matrix}{halfmatrix}(x,...
+\method{as.matrix}{halfmatrix}(x,...)
 }
 \arguments{
   \item{x}{symmetric matrix (half) or halfmatrix equivalent (as.matrix)}

@@ -324,10 +324,7 @@ C     open files here, if necessary
 	 NTH, NETA, and NEPS, should be changed respectively.  These
 	 vales are found  in the DATA statement below.   Please note  that
 	 the 3rd and 4th lines of
-	 code should be one line with the '...' removed from each line,
-	 reading:  \code{"     COMMON /ROCM6/
-	   THETAF(40),OMEGAF(30,30),SIGMAF(30,30) %"
-	 }.   NOTE: Files 51, 53, 55
+	 code should be one line with the '...' removed from each line.   NOTE: Files 51, 53, 55
 	 and 57 are not used in the CWRES calculation and can be removed
 	 from the NONMEM model file if problems arise due to failure of the
 	 \$COV step in a NONMEM run.

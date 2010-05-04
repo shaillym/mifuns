@@ -80,6 +80,7 @@ ord.halfmatrix <- function(x,...){
 	if(as.integer(ord)!=ord)stop('invalid length for half matrix')
 	ord
 }
+print.halfmatrix <- function(x,...)print(unclass(x))
 as.matrix.halfmatrix <- function(x,...){
 	d <- ord.halfmatrix(x)
 	y <- matrix(nrow=d,ncol=d)

@@ -223,7 +223,7 @@ as.character(as.miDateTime(0))
 format(as.miTime(30000),format="\%H")
 # "08"
 format(as.miDate("1970-01-01"),format="\%d\%b\%y")
-# 01Jan70
+# "01Jan70"
 format(as.miDateTime("1970-01-02 23:30"),format="[\%d/\%m/\%y \%H:\%M:\%S]")
 # "[02/01/70 23:30:00]"
 format(as.miTime(1))
@@ -237,7 +237,7 @@ seq(from=as.miTime("8:00"),to=as.miTime("12:00"))
 seq(from=as.miDate("2008-01-01"),to=as.miDate("2008-01-04"))
 # 2008-01-01 2008-01-02 2008-01-03 2008-01-04
 seq(from=as.miDateTime("2008-01-01 12:00"),to=as.miDateTime("2008-01-04 12:30"))
-# 01/01/2008 12:00 01/02/2008 12:00 01/03/2008 12:00 01/04/2008 12:00
+# 2008-01-01 12:00 2008-01-02 12:00 2008-01-03 12:00 2008-01-04 12:00
 
 #interconversion
 as.miTime(as.miDate("2008-10-14"))
@@ -251,7 +251,7 @@ as.miDate(as.miDateTime("2008-10-14 08:00"))
 as.miDateTime(as.miTime(6000000))
 # 1970-01-01 10:40
 as.miDateTime(as.miDate("2008-10-14"))
-# 10/14/2008 00:00
+# 2008-10-14 00:00
 
 #intercoversion from other systems
 as.miDate(as.Date('1970-01-01'))
@@ -300,7 +300,7 @@ max(as.miDate(c("1970-01-01","1980-01-01","1975-01-01")))
 
 #operations
 as.miDateTime(0) + as.miTime(60)
-# 01/01/1970 00:01
+# 1970-01-01 00:01
 as.miTime(60) + as.miDateTime(0)
 # 00:01
 

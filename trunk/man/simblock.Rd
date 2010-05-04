@@ -9,7 +9,7 @@
 simblock(n, df, cov)
 }
 \arguments{
-  \item{b}{the number of simulations that will be performed}
+  \item{n}{the number of simulations that will be performed}
   \item{df}{vector of degrees of freedom of block elements}
   \item{cov}{variance-covariance matrix}
 }

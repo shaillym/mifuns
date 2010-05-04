@@ -1,5 +1,7 @@
 \name{half.matrix}
 \alias{half.matrix}
+\alias{print.halfmatrix}
+\alias{as.matrix.halfmatrix}
 \alias{half}
 \title{
 Interconvert Between a Symmetric Matrix and a Triangular Matrix
@@ -16,12 +18,8 @@ converts a halfmatrix-like vector to a symmetric matrix.
 \method{as.matrix}{halfmatrix}(x,...
 }
 \arguments{
-  \item{x}{
-symmetric matrix (half) or halfmatrix equivalent (as.matrix)
-}
-  \item{\dots}{
-extra arguments, ignored
-}
+  \item{x}{symmetric matrix (half) or halfmatrix equivalent (as.matrix)}
+  \item{\dots}{extra arguments, ignored}
 }
 \details{
 It is an error if \code{x} is a matrix but not symmetric. If \code{x} is a 
@@ -40,9 +38,8 @@ or matrix (as.matrix)
 }
 \examples{
 half(diag(3))
-as.matrix(half(diag(3))
+as.matrix(half(diag(3)))
 as.matrix.halfmatrix(1:15)
-}
 }
 \keyword{ manip }
 

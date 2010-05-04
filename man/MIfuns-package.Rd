@@ -32,8 +32,8 @@ I want to ....
     \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 3.9.1\cr
-Date: \tab 2010-03-30\cr
+Version: \tab 4.0\cr
+Date: \tab 2010-05-04\cr
 License: \tab GPL\cr
 }
 
@@ -41,7 +41,7 @@ License: \tab GPL\cr
   
   \author{
     Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and
-    others). Maintainer: Bill Knebel <billk@metrumrg.com>
+    others). Maintainer: Tim Bergsma <timb@metrumrg.com>
   }
   
   \references{

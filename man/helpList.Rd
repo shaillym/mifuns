@@ -11,18 +11,11 @@ Functions defined by MIfuns
 \item \link{\%nests\%} test whether a nests b
 \item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule.
 \item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
-%\item \link{CheckPositiveMatrix} determine if omega matrix is positive, definite (\code{SimulationFromFile})
-%\item \link{CheckPositiveVector} determine if omega matrix is positive, definite (\code{SimulationFromFile})
-%\item \link{CreateParametersForSimulation} generate nsim sets of model parameters for simulation based on the results of a (final) model
 \item \link{NONR} run NONMEM and create diagnostic plots
-%\item \link{Omega.MtoV} convert matrix containing omega estimates into a vector of omega estimates
-%\item \link{Omega.VtoM} convert vector containing lower block omega estimates into a full matrix of omega estimates
 \item \link{Ops.keyed} use concise syntax to join data frames
 \item \link{PLOTR} create diagnostic plots for NONMEM runs
-%\item \link{SimulateOmega} generate omega values for simulation
 \item \link{Tmax} calculate the time associated with the maximum concentration for each subject
 \item \link{Tmin} calculate the time associated with the minimum concentration for each subject
-%\item \link{TruncateParametersForSimulation} truncate a set of parameters for simulation according to a user-defined set a boundaries
 \item \link{[.comment} subset a comment
 \item \link{[.flag} subset a flag
 \item \link{[.keyed} subset a keyed data frame
@@ -196,7 +189,6 @@ Functions defined by MIfuns
 \item \link{moot} generic
 \item \link{moot.nm} identify moot rows (rows not influencing NONMEM estimates)
 \item \link{msffile} extract msffile specification from a control stream
-\item \link{myriwish} support \code{\link{SimulateOmega}} (internal)
 \item \link{naInContext} display rows of data with missing values, as well as other rows with the same key
 \item \link{naKeys} detect rows for which one or more key fields is NA
 \item \link{nest} nest an XML fragment in a parent element
@@ -231,6 +223,7 @@ Functions defined by MIfuns
 \item \link{prev} calculate the previous element for each element of x
 \item \link{print.comment} print comment
 \item \link{print.flag} print flag
+\item \link{print.halfmatrix} print halfmatrix
 \item \link{print.keyed.summary} print keyed summary
 \item \link{print.miTemporal} print miTemporal
 \item \link{print.nm.summary} print nm summary

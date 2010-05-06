@@ -11,12 +11,12 @@ possibly standard errrors.  This function plots the parameter estimates vs. iter
 indicated.
 }
 \usage{
-xyplot.ext(
-	run, 
+\method{xyplot}{ext}(
+	x, 
+	data = read.table(file, skip = 1, header = TRUE, check.names = FALSE), 
 	project = getwd(), 
-	rundir = filename(project, run), 
-	file = filename(rundir, run, ".ext"), 
-	x = read.table(file, skip = 1, header = TRUE, check.names = FALSE), 
+	rundir = filename(project, x), 
+	file = filename(rundir, x, ".ext"), 
 	as.table = TRUE, 
 	auto.key = TRUE, 
 	layout = c(1, 4), 
@@ -37,11 +37,11 @@ xyplot.ext(
 )
 }
 \arguments{
-  \item{run}{run name (number)}
+  \item{x}{run name (number)}
+  \item{data}{a data.frame representing an .ext file}
   \item{project}{parent of run directory}
   \item{rundir}{run directory}
   \item{file}{path to .ext file}
-  \item{x}{a data.frame representing an .ext file}
   \item{as.table}{passed to xyplot}
   \item{auto.key}{passed to xyplot}
   \item{layout}{passed to xyplot}
@@ -52,14 +52,17 @@ xyplot.ext(
   \item{\dots}{passed to xyplot}
 }
 \details{
-If x is supplied, preceding arguments are irrelevant.  x is reshaped,
-and passed to xyplot with remaining arguments, all of which may be overridden.
+If \code{data} is supplied, \code{x,project,rundir,file} are irrelevant. 
+\code{data} is reshaped, and passed to xyplot with remaining arguments, 
+all of which may be overridden.
 }
 \value{
 a trellis object
 }
 \references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
+\note{Even though \code{xyplot.ext} looks like a method, it will be more common
+to call it directly, as in the examples.}
 \seealso{ 
 	\itemize{
 		\item{}{\code{\link{as.pxml.ext}}}
@@ -80,9 +83,9 @@ ext <- c(
 	'  -1000000001  6.28499E-01  7.36368E-03  1.25313E+00  0.00000E+00  5.44628E-01  0.'
 )
 file <- textConnection(ext)
-x <- read.table(file, skip = 1, header = TRUE, check.names = FALSE)
+data <- read.table(file, skip = 1, header = TRUE, check.names = FALSE)
 close(file)
-xyplot.ext(x)
+xyplot.ext(data=data)
 }
 \keyword{ manip }
 

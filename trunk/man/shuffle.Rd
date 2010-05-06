@@ -34,7 +34,7 @@ mifuns.googlecode.com
 Tim Bergsma
 }
 \seealso{
-	itemize{
+	\itemize{
 		\item{}{\code{\link{match}}}
 	}
 }

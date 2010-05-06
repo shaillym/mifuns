@@ -1,10 +1,10 @@
 xyplot.ext <-
 function(
-	run,
+	x,
+	data=read.table(file,skip=1,header=TRUE,check.names=FALSE),
 	project=getwd(),
-	rundir=filename(project,run),
-	file=filename(rundir,run,'.ext'),
-	x=read.table(file,skip=1,header=TRUE,check.names=FALSE),
+	rundir=filename(project,x),
+	file=filename(rundir,x,'.ext'),
 	as.table=TRUE,
 	auto.key=TRUE,
 	layout=c(1,4),
@@ -17,8 +17,9 @@ function(
 	},
 	...
 ){
-	x <- x[x$ITERATION > -1000000002,]
-	y <- melt(x,id='ITERATION')
+	data <- data[data$ITERATION > -1000000002,]
+	y <- melt(data,id='ITERATION')
+	variable <- ''# to suppress R CMD check warning
 	z <- cast(y,variable~ITERATION)
 	z <- data.frame(z,check.names=FALSE)
 	if(!'-1000000001'%in% names(z))z[,'-1000000001'] <- 0

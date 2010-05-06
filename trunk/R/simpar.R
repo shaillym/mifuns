@@ -81,6 +81,9 @@ ord.halfmatrix <- function(x,...){
 	ord
 }
 print.halfmatrix <- function(x,...)print(unclass(x))
+as.halfmatrix <- function(x,...)UseMethod('as.halfmatrix')
+as.halfmatrix.halfmatrix <- function(x,...)x
+as.halfmatrix.default <- function(x,...)half(as.matrix.halfmatrix(x))
 as.matrix.halfmatrix <- function(x,...){
 	d <- ord.halfmatrix(x)
 	y <- matrix(nrow=d,ncol=d)

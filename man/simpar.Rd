@@ -83,7 +83,7 @@ number before filtering by \code{min} and \code{max}.
 \seealso{ 
 	\itemize{
 		\item{}{\code{\link{posmat}}}
-		\item{}{\code{\link{simblock}})
+		\item{}{\code{\link{simblock}}}
 	}
 }
 \examples{

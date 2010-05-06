@@ -2,6 +2,9 @@
 \alias{half.matrix}
 \alias{print.halfmatrix}
 \alias{as.matrix.halfmatrix}
+\alias{as.halfmatrix}
+\alias{as.halfmatrix.halfmatrix}
+\alias{as.halfmatrix.default}
 \alias{half}
 \title{
 Interconvert Between a Symmetric Matrix and a Triangular Matrix
@@ -16,6 +19,8 @@ converts a halfmatrix-like vector to a symmetric matrix.
 \usage{
 \method{half}{matrix}(x,...)
 \method{as.matrix}{halfmatrix}(x,...)
+\method{as.halfmatrix}{halfmatrix}(x,...)
+\method{as.halfmatrix}{default}(x,...)
 }
 \arguments{
   \item{x}{symmetric matrix (half) or halfmatrix equivalent (as.matrix)}
@@ -24,7 +29,9 @@ converts a halfmatrix-like vector to a symmetric matrix.
 \details{
 It is an error if \code{x} is a matrix but not symmetric. If \code{x} is a 
 vector of appropriate length it can be converted to a symmetric matrix by specifying the method
-explicitly, even if \code{x} is not classed as halfmatrix:  \code{as.matrix.halfmatrix(x)}.
+explicitly, even if \code{x} is not classed as halfmatrix:  
+\code{as.matrix.halfmatrix(x)}.
+\code{x} can also be converted to halfmatrix explicitly.
 }
 \value{
 vector with as many elements as a triangular matrix corresponding to x (half), 
@@ -40,6 +47,8 @@ or matrix (as.matrix)
 half(diag(3))
 as.matrix(half(diag(3)))
 as.matrix.halfmatrix(1:15)
+as.matrix(as.halfmatrix(1:15))
+as.halfmatrix(1:10)
 }
 \keyword{ manip }
 

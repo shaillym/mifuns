@@ -48,6 +48,9 @@ Functions defined by MIfuns
 \item \link{as.flag} convert to flag
 \item \link{as.flag.default} convert default to flag
 \item \link{as.flag.flag} convert flag to flag
+\item \link{as.halfmatrix} generic
+\item \link{as.halfmatrix.halfmatrix} preserve halfmatrix
+\item \link{as.halfmatrix.default} convert a vector to halfmatrix
 \item \link{as.keyed} convert to keyed
 \item \link{as.keyed.data.frame} convert data frame to keyed
 \item \link{as.matrix.halfmatrix} convert a vector to a symmetric matrix

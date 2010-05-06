@@ -10,9 +10,6 @@
 \alias{print.miTemporal}
 \alias{seq.miTemporal}
 \alias{rep.miTemporal}
-
-
-
 \title{ Support for miTemporal Classes }
 \description{
   These functions support classes miTemporal, miTime, miDate, and miDateTime

@@ -28,6 +28,7 @@ character
 \seealso{
 	\itemize{
 		\item{}{\code{\link{as.xml}}}
+		\item{}{\code{\link{xyplot.ext}}}
 	}
 }
 \examples{

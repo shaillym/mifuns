@@ -64,10 +64,12 @@ s}
 }
 \references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
-\seealso{ 
-	\code{\link{miTemporal}}, 
-	\code{\link{seq.default}}, 
-	\code{\link{strftime}},
+\seealso{
+	\itemize{
+		item{}{\code{\link{miTemporal}}} 
+		item{}{\code{\link{seq.default}}}
+		item{}{\code{\link{strftime}}}
+	}
 }
 \examples{
 

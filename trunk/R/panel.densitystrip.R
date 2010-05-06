@@ -29,7 +29,7 @@ panel.cuts <- function(
 	text=col.line,
 	horizontal=TRUE,
 	offset=-0.2,
-	format=function(x)as.numeric(round(x/sum(x)*100)),
+	format=function(x,...)as.numeric(round(x/sum(x)*100)),
 	include.range=TRUE,
 	zero.rm=TRUE,
 	cex=0.7,
@@ -42,7 +42,7 @@ panel.cuts <- function(
 	cuts <- sort(unique(cuts))
 	midpoints <- (cuts[1:length(cuts)-1] + cuts[-1])/2
 	count <- bin(ordinal,breaks=cuts,...)
-	value <- format(count)
+	value <- format(count,...)
 	if(zero.rm)value[value==0] <- NA
 	value <- as.character(value)
 	value[is.na(value)] <- ''

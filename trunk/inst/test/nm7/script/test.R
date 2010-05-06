@@ -59,6 +59,10 @@ nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE, urgent=TRUE )#urgent boots
 boot <- rlog(nms,project='../out',boot=TRUE,append=FALSE,file='../out/bootlog.csv',tool='nm7')
 head(boot)
+
 #windows
 nonr(1)
 nonr(1,invisible=TRUE)
+
+#plotting
+xyplot.ext(1005,project='../out')

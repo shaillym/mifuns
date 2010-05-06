@@ -287,6 +287,7 @@ Functions defined by MIfuns
 \item \link{xtfrm.comment} produce a numeric vector that sorts in the same order as comment
 \item \link{xtfrm.flag} produce a numeric vector that sorts in the same order as flag
 \item \link{xtfrm.miTemporal} produce a numeric vector that sorts in the same order as miTemporal
+\item \link{xyplot.ext} plot the parameter search history for a NONMEM7 run
 \item \link{zeroAmt} generic
 \item \link{zeroAmt.nm} AMT is zero where EVID is 1
 \item \link{zeroDv} generic

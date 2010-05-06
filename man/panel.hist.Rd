@@ -38,6 +38,10 @@ unitHist(x, plot = FALSE, ...)
 }
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
-\seealso{\code{\link{panel.stratify}}}
+\seealso{
+	\itemize{
+		\item{}{\code{\link{panel.stratify}}}
+	}
+}
 \keyword{ manip }
 

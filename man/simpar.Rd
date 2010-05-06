@@ -81,8 +81,10 @@ matrix, with column names indicating parameters, and row names indicating set
 number before filtering by \code{min} and \code{max}.
 }
 \seealso{ 
-	\code{\link{posmat}}, 
-	\code{\link{simblock}}
+	\itemize{
+		\item{}{\code{\link{posmat}}}
+		\item{}{\code{\link{simblock}})
+	}
 }
 \examples{
 set.seed(10)

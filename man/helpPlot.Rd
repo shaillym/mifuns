@@ -14,5 +14,6 @@ I want to ....
 \item \link[=nm]{Create} and manipulate 'nm' objects
 \item \link[=nmPlots]{Characterize} 'nm' objects with diagnostic plots
 \item \link[=plot.nm]{Plot} 'nm' objects
+\item \link[=xyplot.ext]{Plot} the parameter search history for a NONMEM7 run
 }
 }

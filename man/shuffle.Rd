@@ -34,7 +34,9 @@ mifuns.googlecode.com
 Tim Bergsma
 }
 \seealso{
-\code{\link{match}}
+	itemize{
+		\item{}{\code{\link{match}}}
+	}
 }
 \examples{
 head(Theoph)

@@ -278,6 +278,7 @@ Functions defined by MIfuns
 \item \link{unconditional.default} return an all-TRUE logical vector of length nrow(x)
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
+\item \link{unique.miTemporal} find unique elements of a temporal vector
 \item \link{unitHist} calculate univariate histogram architecture with maximum height equal to 1
 \item \link{unitDensity} calculate univariate density with maximum equal to 1
 \item \link{unilog} create a zero-row unilog

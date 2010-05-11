@@ -44,6 +44,7 @@ panel.cuts(
     text=col.line,
     horizontal = TRUE, 
     offset = -0.2, 
+    increment = 0,
     format = function(x,...) as.numeric(round(x/sum(x) * 100)), 
     include.range = TRUE, 
     zero.rm = TRUE, 
@@ -88,6 +89,7 @@ unitDensity(x,...)
   \item{cuts}{ the values at which to divide the primary axis }
   \item{text}{ text color for cut statistics }
   \item{offset}{ distance from nominal value on secondary axis, at which to plot cut statistics}
+  \item{increment}{ distance from nominal value on primary axis, at which to plot cut statistics}
   \item{format}{ a function to post-process counts of elements between cuts (should accept \dots) }
   \item{include.range}{ if TRUE, \code{cuts} is supplemented with the range of the data }
   \item{zero.rm}{ If TRUE, zeros are not printed } 

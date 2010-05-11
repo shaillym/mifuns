@@ -23,6 +23,7 @@
 \alias{as.miDateTime.POSIXlt}
 \alias{as.miDateTime.chron}
 \alias{as.miTime.times}
+\alias{unique.miTemporal}
 
 \title{Temporal Classes with Selective Defaults}
 \description{
@@ -59,6 +60,7 @@ as.miDateTime(x, ...)
 \method{format}{miTime}(x, format = "\%H:\%M", mark=TRUE,...)
 \method{format}{miDate}(x, format = "\%Y-\%m-\%d", mark=TRUE,...)
 \method{format}{miDateTime}(x, format = "\%Y-\%m-\%d \%H:\%M", mark=TRUE,...)
+\method{unique}{miTemporal}(x, incomparables=FALSE,...)
 }
 
 \arguments{
@@ -69,6 +71,7 @@ as.miDateTime(x, ...)
   	midnight}
   \item{format}{ character, as per \code{\link{strftime}} }
   \item{mark}{boolean: mark times with dangling seconds using '+'}
+  \item{incomparables}{passed to \code{unique}}
   }
 \details{
   Creating a temporal object with these methods ultimately calls one of the 
@@ -307,5 +310,9 @@ as.miTime(60) + as.miDateTime(0)
 #unary operations
 -as.miTime(1)
 # 23:59+
+
+#sorting
+sort(unique(as.miTime(c(180,120,60))))
+# 00:01 00:02 00:03
 }
 \keyword{ manip }

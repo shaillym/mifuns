@@ -1,7 +1,7 @@
 as.numeric.chartime <- function(x,format,...)as.numeric(unclass(as.POSIXct(strptime(x,format),tz='GMT')))
 as.chartime <- function(x,...)UseMethod('as.chartime')
 as.chartime.numeric <- function(x,format,mark=TRUE,...){
-	y <- as.character(strftime(as.POSIXct(x,origin='1970-01-01'),format))
+	y <- as.character(strftime(as.POSIXct(x,tz='GMT',origin='1970-01-01'),format))
 	y[is.infinite(x)] <- x[is.infinite(x)]
 	z <- rep('',length(y))
 	if(mark){
@@ -90,3 +90,4 @@ as.miDateTime.POSIXlt <- function(x,...)as.miDateTime(as.POSIXct(x))
 as.miTime.times <- function(x,...)as.miTime(as.numeric(x)*86400)
 as.miDate.dates <- function(x,...)as.miDate(as.numeric(x)*86400)
 as.miDateTime.chron <- function(x,...)as.miDateTime(as.numeric(x)*86400)
+unique.miTemporal <- function(x, incomparables=FALSE,...)unique.numeric_version(x,incomparables,...)

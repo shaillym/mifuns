@@ -29,6 +29,7 @@ panel.cuts <- function(
 	text=col.line,
 	horizontal=TRUE,
 	offset=-0.2,
+	increment=0,
 	format=function(x,...)as.numeric(round(x/sum(x)*100)),
 	include.range=TRUE,
 	zero.rm=TRUE,
@@ -47,6 +48,7 @@ panel.cuts <- function(
 	value <- as.character(value)
 	value[is.na(value)] <- ''
 	level <- level + offset
+	midpoints <- midpoints + increment
 	if(horizontal)ltext(
 		x=midpoints,
 		y=rep(level,length(midpoints)),

@@ -1,7 +1,7 @@
 as.numeric.chartime <- function(x,format,...)as.numeric(unclass(as.POSIXct(strptime(x,format),tz='GMT')))
 as.chartime <- function(x,...)UseMethod('as.chartime')
 as.chartime.numeric <- function(x,format,mark=TRUE,...){
-	y <- as.character(strftime(as.POSIXct(x,tz='GMT',origin='1970-01-01'),format))
+	y <- strftime(as.POSIXct(x,tz='GMT',origin='1970-01-01'),format=format,tz='GMT')
 	y[is.infinite(x)] <- x[is.infinite(x)]
 	z <- rep('',length(y))
 	if(mark){

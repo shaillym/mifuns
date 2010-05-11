@@ -126,7 +126,7 @@
      
 }
 \value{Used for side effects.}
-\references{http://metruminstitute.org; mifuns.googlecode.com}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

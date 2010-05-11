@@ -137,7 +137,7 @@ unitDensity(x,...)
 \value{
   Panel functions are used for side-effects.
 }
-\references{ http://metruminstitute.org; http://mifuns.googlecode.com }
+\references{ http://mifuns.googlecode.com }
 \author{ Tim Bergsma }
 \seealso{
 	\itemize{

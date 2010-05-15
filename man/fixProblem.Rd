@@ -34,7 +34,7 @@ msffile(ctlfile,dir,msfreg='^(?!\\\\$MSFI).*\\\\.msf',...)
   \item{dir}{a directory}
   \item{expr}{a regular expression to locate relevant lines}
   \item{lines}{lines in which to search for expr}
-  \item{ctlfile}{path to the control stream}
+  \item{ctlfile}{character vector representing the control stream}
   \item{extreg}{a regular expression to locate an arbitrary file}
   \item{tabreg}{a regular expression to locate the .TAB file}
   \item{parreg}{a regular expression to locate the par.TAB file}

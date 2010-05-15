@@ -1,59 +1,50 @@
-\name{distance.logical}
-\alias{distance.logical}
-\alias{distance}
-\alias{ordinal}
-\alias{enth}
-\alias{ordinal.logical}
+\name{nth}
 \alias{first}
-\alias{first.logical}
-\alias{unconditional}
-\alias{unconditional.default}
-\alias{unconditional.data.frame}
-\alias{where}
-\alias{where.logical}
+\alias{lag}
+\alias{before}
+\alias{at}
+\alias{after}
 
-\title{ Analyze Postions in a Condition.}
+\title{Identify Elements Within Cells Meeting Some Instance of a Condition}
 \description{
-  For a \code{logical} vector, detect the n-th \code{TRUE} element, optionally for each
-  level of the index \code{within}.  Analyze all elements with respect to 
-  the detected element(s).
+	Within each level of \code{within}, find the $n^th$ element for which
+	\code{where} is \code{TRUE}, and repeat it at all positions in the level.
 }
 \usage{
-%distance(x, ...)
-%ordinal(x, ...)
-\method{first}{logical}(x, within = rep(1, length(x)),...)
-\method{ordinal}{logical}(x, n = 1, within = rep(1, length(x)),...)
-\method{distance}{logical}(x, n = 1, within = rep(1, length(x)),...)
-\method{where}{logical}(x, n = 1, within = rep(1,length(x)),...)
-\method{unconditional}{default}(x,...)
-\method{unconditional}{data.frame}(x,...)
+first(x,where=rep(TRUE,length(x)),within=rep(1,length(x)),...)
+nth(x,where=rep(TRUE,length(x)),n=1,within=rep(1,length(x)),...)
+lag(where,n=1,within=rep(1,length(where)),...)
+before(where,n=1,within=rep(1,length(where)),...)
+at(where,n=1,within=rep(1,length(where)),...)
+after(where,n=1,within=rep(1,length(where)),...)
 }
 \arguments{
-  \item{x}{ a condition (\code{logical} vector). }
-  \item{n}{ an integer giving the instance of interest (of \code{TRUE} within \code{x}). }
-  \item{within}{ a vector or list of vectors serving as an index to \code{x}. }
+  \item{x}{ vector }
+  \item{where}{ vector, coerced to logical }
+  \item{n}{ an integer giving the instance of interest }
+  \item{within}{ a vector or list of vectors serving as an index }
   \item{\dots}{ ignored arguments. }
 
 }
 \details{
-  \code{first.logical()} returns, for each element in \code{x}, (a copy of) the position 
-  of the first occurence of \code{TRUE}, optionally within the index (\code{within}).
+  \code{first} returns, for each position in \code{x}, the element corresponding to 
+  the first instance of \code{TRUE} in \code{where}, optionally nested within the index (\code{within}).
   
-  \code{ordinal.logical()} is a generalization operating on the n-th element,
-  rather than the first element.  \code{n} can be 0, returning all \code{NA}, or negative,
-  which counts instances of \code{TRUE} from the end of the vector. \code{enth} is an
-  alias for ordinal that perhaps more-readily suggests the concept "n-th".
+  \code{nth} is a generalization operating on the n-th instance,rather than the first.  
+  \code{n} can be 0, returning all \code{NA}, or negative,
+  which counts instances of \code{TRUE} from the end of \code{where}.
   
-  \code{distance.logical()} merely subtracts the \code{ordinal} of \code{x} from positions in \code{x}: giving the 
-  (signed) distance of each element in \code{x} from the n-th \code{TRUE} (optionally within 
-  levels of \code{within}).
+  One of \code{x} or \code{where} must be specified.  If \code{x} is missing, positions of 
+  elements in \code{where} are used.  \code{where} by default is an all TRUE vector as long
+  as \code{x}.
   
-  \code{where.logical()} identifies the n-th \code{TRUE} \code{within} each level, returning \code{logical}.
-  
-  \code{unconditional()} constructs an all-\code{TRUE} \code{logical} vector of appropriate length.
+  \code{lag} merely subtracts, from positions in \code{where}, the positions corresponding to $n^th$ TRUE 
+  (optionally within levels of \code{within}). \code{before}, \code{at}, and \code{after} test
+  whether lag is less than, equal to, or greater than zero.
 }
 \value{
-  \code{integer} (except \code{where.logical()}: \code{logical})
+	vector of same class as x, if supplied, else of class integer (or logical for \code{before},
+	\code{at}, and \code{after}).
 }
 \references{http://metruminstitute.org}
 \author{Tim Bergsma}
@@ -69,10 +60,10 @@ test <- data.frame(
 	time=c(1,2,3,4,5,1,2,3,4,5),
 	evid=c(0,1,0,1,0,1,0,1,0,1)
 )
-test$secondDose  <- with(test,ordinal (evid==1, 2,within=id))
-test$lastDose    <- with(test,ordinal (evid==1,-1,within=id))
-test$beforeDose2 <- with(test,distance(evid==1, 2,within=id) < 0)
-test$tafd <- with(test,time - time[ordinal(evid==1,1,within=id)])#time after first dose
+test$secondDose  <- with(test,nth(where=evid==1, n=2,within=id))
+test$lastDose    <- with(test,nth(where=evid==1,n=-1,within=id))
+test$beforeDose2 <- with(test,before(where=evid==1, n=2,within=id))
+test$tafd <- with(test,time - first(time,where=evid==1,within=id)])#time after first dose
 test
 #    id time evid secondDose lastDose beforeDose2 tafd
 # 1   1    1    0          4        4        TRUE   -1

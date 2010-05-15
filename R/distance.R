@@ -1,46 +1,39 @@
-#first.logical returns the position of the first TRUE in a vector, 'within' each level,
+#first returns  the first element in a vector, 'within' each level, where condition is TRUE,
 #repeated for each element sharing the level
-first <- function(x,...)UseMethod('first')
-first.logical <- function(x,within=rep(1,length(x)),...){
-	x <- as.logical(x)
-	len <- length(x)
+first <- function(x,where=rep(TRUE,length(x)),within=rep(1,length(x)),...){
+	if(missing(x))if(missing(where))stop('one of x or where must be specified')
+	if(missing(x))x <- seq(length.out=length(where))
+	where <- as.logical(where)
+	if(length(where)!=length(x))warning('where is repeated to match length x')
+	where <- rep(where,length.out=length(x))
 	if (!is.list(within))within <- list(within)
 	check <- sapply(within,length)
-	if(any(check!=len))stop('All indicies must have same length as x.')
+	if(any(check!=length(x)))stop('All indicies must have same length as x.')
 	na <- sapply(within,function(x)any(is.na(x)))
 	if(any(na))warning('within has NA')
 	unidex <- as.numeric(factor(do.call(paste,within)))
-	match(paste(unidex,rep(TRUE,len)),paste(unidex,x))
+	x[match(paste(unidex,rep(TRUE,len)),paste(unidex,x))]
 }
-#ordinal.logical returns the position of the nth TRUE in a vector, 'within' each level,
+#nth returns the nth element in x where where is TRUE, 'within' each level,
 #repeated for each element sharing the level. Negative values count from the end of the vector.
-ordinal <- function(x,...)UseMethod('ordinal')
-enth <- ordinal
-ordinal.logical <- function(x,n=1,within=rep(1,length(x)),...){
+nth <- function(x,where=rep(TRUE,length(x)),n=1,within=rep(1,length(x)),...){
 	n=as.integer(n)
 	if(length(n)!=1)stop('n must have length one')
-	x <- as.logical(x)
-	len <- length(x)
+	if(missing(x))if(missing(where))stop('one of x or where must be specified')
+	if(missing(x))x <- seq(length.out=length(where))
+	where <- as.logical(where)
+	if(length(where)!=length(x))warning('where is repeated to match length x')
+	where <- rep(where,length.out=length(x))
 	if(!is.list(within))within <- list(within)
-	if(n==0)return(rep(NA,len))
-	if(n<0)return(rev(len + 1 - ordinal(rev(x),-n,lapply(within,rev))))
-	nominal <- first(x,within)
-	if(n==1)return(nominal)
-	x[unique(nominal)] <- FALSE
-	ordinal(x,n-1,within)
+	if(n==0)return(rep(NA,length(x)))
+	if(n<0)return(rev(nth(x=rev(x),where=rev(where),n=-n,within=lapply(within,rev))))
+	if(n==1)return(first(x=x,where=where,within=within))
+	where[unique(first(where=where,within=within))] <- FALSE
+	nth(x=x,where=where,n=n-1,within=within)
 }
 
-#distance.logical returns the difference of ordinal.logical and the vector indicies.
-distance <- function(x,...)UseMethod('distance')
-distance.logical <- function(x,n=1,within=rep(1,length(x)),...){
-	#if(length(x)==0)return(NA)
-	1:length(x) - ordinal(x,n,within)
-}
+lag <- function(where,n=1,within=rep(1,length(where)),...)1:length(where)-nth(where=as.logical(where),n=n,within=within)
+before <- function(where,n=1,within=rep(1,lenth(where)))lag(where=where,n=n,within=within)<0
+at <- function(where,n=1,within=rep(1,lenth(where)))lag(where=where,n=n,within=within)==0
+after <- function(where,n=1,within=rep(1,lenth(where)))lag(where=where,n=n,within=within)>0
 
-#where.logical returns a logical evaluating for the nth 'TRUE' in x 'within' each level.
-where <- function(x,...)UseMethod('where')
-where.logical <- function(x,n=1,within=rep(1,length(x)),...)distance(x,n,within)==0
-
-unconditional <- function(x,...)UseMethod('unconditional')
-unconditional.default <- function(x,...)rep(TRUE,length(x))
-unconditional.data.frame <- function(x,...)rep(TRUE,nrow(x))

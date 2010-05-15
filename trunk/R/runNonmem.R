@@ -43,13 +43,13 @@ function (
   rundir <- star(rundir,run)
   ctlfile <- star(ctlfile,run)
   outfile <- star(outfile,run)
-  tabfile <- tabfile(ctlfile,dir=final(rundir),...)
-  parfile <- parfile(ctlfile,dir=final(rundir),...)
-  msffile <- msffile(ctlfile,dir=final(rundir),...)
   if(!file.exists(ctlfile))message(paste(ctlfile,'was not found'))
   if(!file.exists(ctlfile))return()
   control <- explicitPath(readLines(ctlfile))
   if (checkrunno) writeLines(control <- fixFile(fixProblem(control,run),run),con=ctlfile)
+  tabfile <- tabfile(control,dir=final(rundir),...)
+  parfile <- parfile(control,dir=final(rundir),...)
+  msffile <- msffile(control,dir=final(rundir),...)
   script <- NULL
   epimatch <- try(match.fun(epilog),silent=TRUE)
   if(is.function(epimatch))epilog <- epimatch
@@ -206,7 +206,7 @@ function (
 	  x <- lines[grep(expr,lines,ignore.case=TRUE, perl=TRUE)]
 	  if(length(x))return(x[[1]]) else return('')
   }
-  extfile <- function(ctlfile,dir,extreg,...)resolve(extractPath(scavenge(extreg,explicitPath(readLines(ctlfile)))),dir)  
+  extfile <- function(ctlfile,dir,extreg,...)resolve(extractPath(scavenge(extreg,ctlfile)),dir)  
   tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)extfile(ctlfile,dir,extreg=tabreg,...)
   parfile <- function(ctlfile,dir,parreg='par\\.tab',...)extfile(ctlfile,dir,extreg=parreg,...)
   msffile <- function(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)extfile(ctlfile,dir,extreg=msfreg,...)

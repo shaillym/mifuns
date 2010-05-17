@@ -34,8 +34,8 @@ nth <- function(x,where=rep(TRUE,length(x)),within=rep(1,length(x)),n=1,...){
 last <- function(x,where=rep(TRUE,length(x)),within=rep(1,length(x)),n=-1,...)nth(x=x,where=where,within=within,n=-1,...)
 
 #logicals
-lag.logical <- function(   where,within=rep(1,length(where)),n=1,...)1:length(where)-nth(where=where,within=within,n=n,...)
-before <- function(where,within=rep(1,length(where)),n=1,...)lag.logical(where=where,within=within,n=n,...)<0
-at <- function(    where,within=rep(1,length(where)),n=1,...)lag.logical(where=where,within=within,n=n,...)==0
-after <- function( where,within=rep(1,length(where)),n=1,...)lag.logical(where=where,within=within,n=n,...)>0
+distance <- function(where,within=rep(1,length(where)),n=1,...)1:length(where)-nth(where=where,within=within,n=n,...)
+before   <- function(where,within=rep(1,length(where)),n=1,...)distance(where=where,within=within,n=n,...)<0
+at       <- function(where,within=rep(1,length(where)),n=1,...)distance(where=where,within=within,n=n,...)==0
+after    <- function(where,within=rep(1,length(where)),n=1,...)distance(where=where,within=within,n=n,...)>0
 

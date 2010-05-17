@@ -9,7 +9,7 @@
 
 \title{Identify Elements Within Cells Meeting Some Instance of a Condition}
 \description{
-	Within each level of \code{within}, find the $n^th$ element for which
+	Within each level of \code{within}, find the \eqn{n^th} element for which
 	\code{where} is \code{TRUE}, and repeat it at all positions in the level.
 }
 \usage{
@@ -33,7 +33,7 @@ after(   where,within=rep(1,length(where)),n=1,...)
   \code{first} returns, for each position in \code{x}, the element corresponding to 
   the first instance of \code{TRUE} in \code{where}, optionally nested within the index (\code{within}).
   
-  \code{nth} is a generalization operating on the $n^th$ instance,rather than the first.  
+  \code{nth} is a generalization operating on the \eqn{n^th} instance,rather than the first.  
   \code{n} can be 0, returning all \code{NA}, or negative,
   which counts instances of \code{TRUE} from the end of \code{where}.
   

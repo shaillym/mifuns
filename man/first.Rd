@@ -2,7 +2,7 @@
 \alias{first}
 \alias{nth}
 \alias{last}
-\alias{lag.logical}
+\alias{distance}
 \alias{before}
 \alias{at}
 \alias{after}
@@ -16,10 +16,10 @@
 first(x,where=rep(TRUE,length(x)),within=rep(1,length(x)),...)
 last (x,where=rep(TRUE,length(x)),within=rep(1,length(x)),n=-1,...)
 nth  (x,where=rep(TRUE,length(x)),within=rep(1,length(x)),n=1,...)
-\method{lag}{logical}(   where,within=rep(1,length(where)),n=1,...)
-before(where,within=rep(1,length(where)),n=1,...)
-at(    where,within=rep(1,length(where)),n=1,...)
-after( where,within=rep(1,length(where)),n=1,...)
+distance(where,within=rep(1,length(where)),n=1,...)
+before(  where,within=rep(1,length(where)),n=1,...)
+at(      where,within=rep(1,length(where)),n=1,...)
+after(   where,within=rep(1,length(where)),n=1,...)
 }
 \arguments{
   \item{x}{ vector }
@@ -44,9 +44,9 @@ after( where,within=rep(1,length(where)),n=1,...)
   
   \code{last} is a convenience wrapper for \code{nth} that silently coerces n to -1.
   
-  \code{lag.logical} merely subtracts, from positions in \code{where}, the positions corresponding to $n^th$ TRUE 
+  \code{distance} merely subtracts, from positions in \code{where}, the positions corresponding to $n^th$ TRUE 
   (optionally within levels of \code{within}). \code{before}, \code{at}, and \code{after} test
-  whether lag is less than, equal to, or greater than zero.
+  whether distance is less than, equal to, or greater than zero.
 }
 \value{
 	vector of same class as x, if supplied, else of class integer (or logical for \code{before},

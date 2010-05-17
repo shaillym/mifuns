@@ -133,7 +133,7 @@ Functions defined by MIfuns
 \item \link{deranged.data.frame} instantiate records implied by range data
 \item \link{deranged.keyed} instantiate records implied by range data
 \item \link{diagnosticPlots} create standard diagnostic plots
-\item \link{lag} calculate the position of each element of a logical vector relative to the n-th TRUE element (usually, within levels of an index)
+\item \link{distance} calculate the position of each element of a logical vector relative to the $n^th$ TRUE element (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
 \item \link{episcript} run a script in an environment that defines the the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
@@ -175,7 +175,6 @@ Functions defined by MIfuns
 \item \link{ke} calculate elimination constant
 \item \link{key} return the key of a keyed data frame
 \item \link{key<-} assign a key
-\item \link{lag.logical} find the difference between each element's position and the $n^th$ position where an element is TRUE
 \item \link{last} repeat, for each element, the last element where a condition is TRUE (usually, within levels of an index)
 \item \link{latest} identify the latest of each set of variants
 \item \link{lbm} calculate lean body mass

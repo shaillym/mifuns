@@ -27,6 +27,7 @@ Functions defined by MIfuns
 \item \link{accept} document the acceptance of an R installation
 \item \link{acceptance} display the acceptance documentation for an R installation
 \item \link{acr} calculate accumulation ratio
+\item \link{after} test whether elements occur after some condition is TRUE
 \item \link{aggregate.keyed} aggregate a keyed data frame
 \item \link{and.keyed} produce inner join of two keyed data frames
 \item \link{as.character.comment} convert comment to character
@@ -88,6 +89,7 @@ Functions defined by MIfuns
 \item \link{as.xml.character} convert character to XML
 \item \link{as.xml.data.frame} convert data.frame to XML
 \item \link{as.xml.default} convert arbitrary object to XML
+\item \link{at} test whether elements occur where some condition is TRUE
 \item \link{attribute} encode an attribute for an XML open tag
 \item \link{auc} calculate area under the curve
 \item \link{aug} add named elements to an object
@@ -99,6 +101,7 @@ Functions defined by MIfuns
 \item \link{badII} generic
 \item \link{badII.nm} II is greater than 0 where ADDL is NA or 0 (unless SS > 0)
 \item \link{bakfor} impute NAs using last observation carried forward after next observation carried backward
+\item \link{before} test whether elements occur before some condition is TRUE
 \item \link{bin} calculate bin limits for x and place each value in a bin, returning the number of values in each bin
 \item \link{bmi} calculate body mass index
 \item \link{bracket} create an XML tag
@@ -130,10 +133,8 @@ Functions defined by MIfuns
 \item \link{deranged.data.frame} instantiate records implied by range data
 \item \link{deranged.keyed} instantiate records implied by range data
 \item \link{diagnosticPlots} create standard diagnostic plots
-\item \link{distance} generic
-\item \link{distance.logical} calculate the position of each element of a logical vector relative to the n-th TRUE element (usually, within levels of an index)
+\item \link{lag} calculate the position of each element of a logical vector relative to the n-th TRUE element (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
-\item \link{enth} alias for ordinal
 \item \link{episcript} run a script in an environment that defines the the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
 \item \link{extfile} extract arbitrary file specification from a control stream
@@ -144,8 +145,7 @@ Functions defined by MIfuns
 \item \link{falseDv} generic
 \item \link{falseDv.nm} DV is defined where EVID is not 0
 \item \link{filename} generate standard file name (internal)
-\item \link{first} generic
-\item \link{first.logical} repeat for each element the position of the first TRUE element (usually, within levels of an index)
+\item \link{first} repeat, for each element, the first element where a condition is TRUE (usually, within levels of an index)
 \item \link{fixedwidth} convert to fixed-width format
 \item \link{fixedwidth} convert a data.frame to fixed-width format
 \item \link{fixProblem} rewrite run name in control stream PROBLEM statement
@@ -175,6 +175,8 @@ Functions defined by MIfuns
 \item \link{ke} calculate elimination constant
 \item \link{key} return the key of a keyed data frame
 \item \link{key<-} assign a key
+\item \link{lag.logical} find the difference between each element's position and the $n^th$ position where an element is TRUE
+\item \link{last} repeat, for each element, the last element where a condition is TRUE (usually, within levels of an index)
 \item \link{latest} identify the latest of each set of variants
 \item \link{lbm} calculate lean body mass
 \item \link{left.keyed} produce left join of two keyed data frames
@@ -205,8 +207,7 @@ Functions defined by MIfuns
 \item \link{ord} generic
 \item \link{ord.matrix} compute the order of a symmetric matrix
 \item \link{ord.halfmatrix} compute the order of a half matrix
-\item \link{ordinal} generic
-\item \link{ordinal.logical} repeat for each element the position of the n-th TRUE element (usually, within levels of an index)
+\item \link{nth} repeat, for each element, the $n^th^ element where a condition is TRUE  (usually, within levels of an index)
 \item \link{packageCheck} load a package and run package-level examples
 \item \link{panel.bar} for each level, plot vertical (or horizontal) bars corresponding to x (y).
 \item \link{panel.covplot} plot distributions with respect to reference values; i.e. combine panel.cuts, panel.densitystrip, and panel.ref
@@ -273,9 +274,6 @@ Functions defined by MIfuns
 \item \link{text2decimal} convert mixed text to decimal
 \item \link{tmax} calculate the time of the maximum concentration
 \item \link{transform.keyed} transform a keyed data frame, preserving class
-\item \link{unconditional} generic
-\item \link{unconditional.data.frame} return an all-TRUE logical vector of length nrow(x)
-\item \link{unconditional.default} return an all-TRUE logical vector of length nrow(x)
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
 \item \link{unique.miTemporal} find unique elements of a temporal vector
@@ -284,8 +282,6 @@ Functions defined by MIfuns
 \item \link{unilog} create a zero-row unilog
 \item \link{nmVersion} extract NONMEM version specification from configuration file
 \item \link{variants} locate variants of a file in distinctive subdirectories
-\item \link{where} generic
-\item \link{where.logical} return a logical vector identifying the n-th TRUE element in x (usually, within levels of an index)
 \item \link{win} identify Windows platforms (internal)
 \item \link{write.nm} write an nm object to file
 \item \link{xtfrm.comment} produce a numeric vector that sorts in the same order as comment

@@ -133,7 +133,7 @@ Functions defined by MIfuns
 \item \link{deranged.data.frame} instantiate records implied by range data
 \item \link{deranged.keyed} instantiate records implied by range data
 \item \link{diagnosticPlots} create standard diagnostic plots
-\item \link{distance} calculate the position of each element of a logical vector relative to the $n^th$ TRUE element (usually, within levels of an index)
+\item \link{distance} calculate the position of each element of a logical vector relative to the \eqn{n^th} TRUE element (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
 \item \link{episcript} run a script in an environment that defines the the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
@@ -206,7 +206,7 @@ Functions defined by MIfuns
 \item \link{ord} generic
 \item \link{ord.matrix} compute the order of a symmetric matrix
 \item \link{ord.halfmatrix} compute the order of a half matrix
-\item \link{nth} repeat, for each element, the $n^th^ element where a condition is TRUE  (usually, within levels of an index)
+\item \link{nth} repeat, for each element, the \eqn{n^th} element where a condition is TRUE  (usually, within levels of an index)
 \item \link{packageCheck} load a package and run package-level examples
 \item \link{panel.bar} for each level, plot vertical (or horizontal) bars corresponding to x (y).
 \item \link{panel.covplot} plot distributions with respect to reference values; i.e. combine panel.cuts, panel.densitystrip, and panel.ref

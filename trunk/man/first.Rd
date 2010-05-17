@@ -1,6 +1,8 @@
-\name{nth}
+\name{first}
 \alias{first}
-\alias{lag}
+\alias{nth}
+\alias{last}
+\alias{lag.logical}
 \alias{before}
 \alias{at}
 \alias{after}
@@ -12,17 +14,18 @@
 }
 \usage{
 first(x,where=rep(TRUE,length(x)),within=rep(1,length(x)),...)
-nth(x,where=rep(TRUE,length(x)),n=1,within=rep(1,length(x)),...)
-lag(where,n=1,within=rep(1,length(where)),...)
-before(where,n=1,within=rep(1,length(where)),...)
-at(where,n=1,within=rep(1,length(where)),...)
-after(where,n=1,within=rep(1,length(where)),...)
+last (x,where=rep(TRUE,length(x)),within=rep(1,length(x)),n=-1,...)
+nth  (x,where=rep(TRUE,length(x)),within=rep(1,length(x)),n=1,...)
+\method{lag}{logical}(   where,within=rep(1,length(where)),n=1,...)
+before(where,within=rep(1,length(where)),n=1,...)
+at(    where,within=rep(1,length(where)),n=1,...)
+after( where,within=rep(1,length(where)),n=1,...)
 }
 \arguments{
   \item{x}{ vector }
   \item{where}{ vector, coerced to logical }
-  \item{n}{ an integer giving the instance of interest }
   \item{within}{ a vector or list of vectors serving as an index }
+  \item{n}{ an integer giving the instance of interest }
   \item{\dots}{ ignored arguments. }
 
 }
@@ -30,15 +33,18 @@ after(where,n=1,within=rep(1,length(where)),...)
   \code{first} returns, for each position in \code{x}, the element corresponding to 
   the first instance of \code{TRUE} in \code{where}, optionally nested within the index (\code{within}).
   
-  \code{nth} is a generalization operating on the n-th instance,rather than the first.  
+  \code{nth} is a generalization operating on the $n^th$ instance,rather than the first.  
   \code{n} can be 0, returning all \code{NA}, or negative,
   which counts instances of \code{TRUE} from the end of \code{where}.
   
   One of \code{x} or \code{where} must be specified.  If \code{x} is missing, positions of 
-  elements in \code{where} are used.  \code{where} by default is an all TRUE vector as long
-  as \code{x}.
+  elements in \code{where} are used as \code{x}.  \code{where} by default is an all TRUE vector as long
+  as \code{x}.  If \code{where} is shorter than \code{x}, it is replicated to length of \code{x} with
+  warning.
   
-  \code{lag} merely subtracts, from positions in \code{where}, the positions corresponding to $n^th$ TRUE 
+  \code{last} is a convenience wrapper for \code{nth} that silently coerces n to -1.
+  
+  \code{lag.logical} merely subtracts, from positions in \code{where}, the positions corresponding to $n^th$ TRUE 
   (optionally within levels of \code{within}). \code{before}, \code{at}, and \code{after} test
   whether lag is less than, equal to, or greater than zero.
 }
@@ -55,6 +61,10 @@ after(where,n=1,within=rep(1,length(where)),...)
 }
 
 \examples{
+first(1:10)
+first(1:10,within=rep(1:2,each=5))
+last( 1:10,within=rep(1:2,each=5))
+first(1:10,where=0:1,within=rep(1:2,each=5))
 test <- data.frame(
 	id=c(1,1,1,1,1,2,2,2,2,2),
 	time=c(1,2,3,4,5,1,2,3,4,5),
@@ -63,7 +73,7 @@ test <- data.frame(
 test$secondDose  <- with(test,nth(where=evid==1, n=2,within=id))
 test$lastDose    <- with(test,nth(where=evid==1,n=-1,within=id))
 test$beforeDose2 <- with(test,before(where=evid==1, n=2,within=id))
-test$tafd <- with(test,time - first(time,where=evid==1,within=id)])#time after first dose
+test$tafd        <- with(test,time - first(time,where=evid==1,within=id))#time after first dose
 test
 #    id time evid secondDose lastDose beforeDose2 tafd
 # 1   1    1    0          4        4        TRUE   -1

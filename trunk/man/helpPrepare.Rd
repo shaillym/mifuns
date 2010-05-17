@@ -24,7 +24,7 @@ I want to ....
 \item \link[=as.comment]{Create} and manipulate 'comment' objects
 \item \link[=as.flag]{Create} and manipulate 'flags'
 \item \link[=contains]{Test} a character vector for occurences of a pattern
-\item \link[=distance]{Analyze} positions in a condition; make 'vertical' inferences
+\item \link[=first]{Analyze} repeat elements selected with respect to a condition and an index
 \item \link[=as.keyed]{Create} and manipulate keyed data frames
 \item \link[=Ops.keyed]{Join} keyed data frames
 \item \link[=nm]{Create} and manipulate 'nm' objects

@@ -39,7 +39,7 @@ zeroDv.nm <- function(x,...){
 predoseDv <- function(x,...)UseMethod('predoseDv')
 predoseDv.nm <- function(x,...){
 	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
-	with(x,!is.na(DV) & distance(EVID %in% c(1,4),within=SUBJ) < 0)
+	with(x,!is.na(DV) & before(EVID %in% c(1,4),within=SUBJ))
 }
 
 badAmt <- function(x,...)UseMethod('badAmt')
@@ -63,7 +63,7 @@ zeroAmt.nm <- function(x,...){
 noPk <- function(x,...)UseMethod('noPk')
 noPk.nm <- function(x,...){
 	if(!'EVID' %in% names(x))return(rep(FALSE,nrow(x)))
-	with(x,is.na(first(EVID==0,within=SUBJ)))
+	with(x,is.na(first(where=EVID==0,within=SUBJ)))
 }
 
 badII <- function(x,...)UseMethod('badII')
@@ -193,22 +193,19 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	#Relativize to earliest value.
 	
 	x <- sort(x) #NAs will be last
-	#x <- within(x,TIME <- signif(TIME - TIME[first(!is.na(TIME),within=ID)],7))#issues innocuous but irritating warning in R CMD check
-	x$TIME <- signif(x$TIME - x$TIME[first(!is.na(x$TIME),within=x$ID)],7)
+	x$TIME <- signif(x$TIME - first(x$TIME,where=!is.na(x$TIME),within=x$ID),7)
 	
 	#PRIME
 	#If data set contains AMT, prime can be calculated as the first non(commented) dose at any
 	#given time within Subject.
 	prime <- logical(0)
-	#if('AMT' %in% names(x))prime <- with(x,where(!is.na(AMT) & !C,within=list(ID,TIME)))
-	if('AMT' %in% names(x))prime <- where(!is.na(x$AMT) & !x$C,within=list(x$ID,x$TIME))
+	if('AMT' %in% names(x))prime <- at(!is.na(x$AMT) & !x$C,within=list(x$ID,x$TIME))
 	prime[is.na(prime)] <- FALSE
 	
 	#TAFD
 	#Time After First Dose. The time of the first defined amount per subject is a local origin.
 	#Domain is active records.  Range is all records.
-	#if(length(prime))x <- within(x,TAFD <- signif(TIME - TIME[first(prime,within=ID)],6))
-	if(length(prime))x$TAFD <- x$TAFD <- signif(x$TIME - x$TIME[first(prime,within=x$ID)],6)
+	if(length(prime))x$TAFD <- x$TAFD <- signif(x$TIME - first(x$TIME,where=prime,within=x$ID),6)
 	
 	#TAD
 	#Time After Dose.  
@@ -228,13 +225,13 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 		z							
 	}
 	s <- suppressWarnings
-	if(length(prime))x$TAD <- signif(x$TIME - x$TIME[s(first(prime & !x$C,within=list(x$ID,cumsum(prime))))],5)
+	if(length(prime))x$TAD <- signif(x$TIME - s(first(x$TIME,where=prime & !x$C,within=list(x$ID,cumsum(prime)))),5)
 	if(length(prime) & all(c('ADDL','II') %in% names(x)))x$TAD <- signif(
 		x$TIME - tMostRecentDose(
 			x$TIME,#ceiling reference
-			x$TIME[s(first(prime            ,    within=list(x$ID,cumsum(prime))))], # most recent dose record
-			x$ADDL[s(first(!is.na(x$ADDL) & !x$C,within=list(x$ID,cumsum(prime))))], # most recent ADDL value
-			  x$II[s(first(!is.na(x$II)   & !x$C,within=list(x$ID,cumsum(prime))))]  # most recent II value
+			s(first(x$TIME, where=prime            ,    within=list(x$ID,cumsum(prime)))), # most recent dose record
+			s(first(x$ADDL, where=!is.na(x$ADDL) & !x$C,within=list(x$ID,cumsum(prime)))), # most recent ADDL value
+			s(first(x$II,   where=!is.na(x$II)   & !x$C,within=list(x$ID,cumsum(prime))))  # most recent II value
 		),
 		5
 	)	
@@ -260,7 +257,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	#LDOS
 	#AMT from prime records is carried forward.
 	#Domain is active prime records.  Range is all records.
-	if(length(prime))x$LDOS <- x$AMT[s(first(prime & !x$C,within=list(x$ID,cumsum(prime))))]
+	if(length(prime))x$LDOS <- s(first(x$AMT,where=prime & !x$C,within=list(x$ID,cumsum(prime))))
 	
 	#MDV
 	if('DV' %in% names(x))x$MDV <- as.flag(as.numeric(is.na(x$DV)))

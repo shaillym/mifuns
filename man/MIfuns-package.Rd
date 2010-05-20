@@ -19,6 +19,7 @@ I want to ....
 \item \link[=helpModel]{model data in NONMEM}
 \item \link[=helpSimulate]{conduct simulations}
 \item \link[=helpVisualize]{create plots of model inputs or outputs}
+\item \link[=helpQuantify]{calculate statistics}
 \item \link[=helpReport]{generate report material}
 \item \link[=helpAdminister]{perform related filesystem tasks}
 \item \link[=helpList]{see a list of available functions}

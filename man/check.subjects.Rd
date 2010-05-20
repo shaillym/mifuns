@@ -1,20 +1,18 @@
 \name{check.subjects}
 \alias{check.subjects}
-\title{Summarize Columns in a Data.frame}
+\title{Summarize Columns of Subject Data}
 \description{
   This function checks for missing data, numeric data, ranges, etc.
   It is a tool developed to review data that has been read into R.
 }
 \usage{
-check.subjects(IDname, data)
+check.subjects(x,subject,...)
 }
 \arguments{
-  \item{IDname}{subject identifier in the data}
-  \item{data}{data.frame}
+  \item{x}{data.frame}
+  \item{subject}{subject identifier in the data (column name)}
 }
-\value{
-  A summary of each column in the \code{data} by \code{IDname} is output.
- }
+\value{summary of each column in \code{x} by \code{subject}}
 \references{mifuns.googlecode.com}
-\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\author{Leonid Gibianski, modified by Tim Bergsma}
 \keyword{manip}

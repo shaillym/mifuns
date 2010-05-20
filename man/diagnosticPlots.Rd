@@ -32,24 +32,24 @@
   )
 }
 \arguments{
-  \item{data}{A data.frame, typically created by dataSynthesis().}
-  \item{dvname}{Name of the dependent variable to use as a label for the diagnostic plots.}
-  \item{group}{Optionally, a column name in \code{data} used to condition the output of diagnosticPlots().}
+	\item{data}{a data.frame, typically created by \code{dataSynthesis}}
+  \item{dvname}{name of the dependent variable to use as a label for the diagnostic plots}
+  \item{group}{optionally, a column name in \code{data} used to condition the output of \code{diagnosticPlots}}
   \item{model}{If supplied, this text argument will be prepended to the figure titles.}
-  \item{cont.cov}{As defined for PLOTR.}
-  \item{cat.cov}{As defined for PLOTR.}
-  \item{par.list}{As defined for PLOTR.}
-  \item{eta.list}{As defined for PLOTR.}
+  \item{cont.cov}{as defined for \code{PLOTR}}
+  \item{cat.cov}{as defined for \code{PLOTR}}
+  \item{par.list}{as defined for \code{PLOTR}}
+  \item{eta.list}{as defined for \code{PLOTR}}
   \item{\dots}{ignored arguments}
 }
 \details{
-PLOTR() passes the result of dataSynthesis() to these functions and prints the
+	\code{PLOTR} passes the result of \code{dataSynthesis} to these functions and prints the
 resulting lists (of trellis objects) on the open device.
 }
 \value{
 a list of trellis objects
 }
-\references{http://metruminstitute.org; mifuns.googlecode.com}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

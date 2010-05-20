@@ -1,7 +1,7 @@
 \name{strain}
 \alias{strain}
 
-\title{Reduce x to Those Elements that Occur in Options }
+\title{Reduce x to Those Elements that Occur in Options}
 \description{
  a helper function that filters x on options
 }

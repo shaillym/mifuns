@@ -1,16 +1,16 @@
 \name{dataFormat}
 \alias{dataFormat}
 
-\title{Integrate NONMEM Data for Plotting.}
+\title{Integrate NONMEM Data for Plotting}
 \description{
- Integrates data.frames representing standard NONMEM output and the source dataset.
+ Integrates data.frames representing standard NONMEM output and the source data.
 }
 \usage{
 dataFormat(
 	tabfile, 
 	covfile, 
 	parfile, 
-	dvname = "DV", 
+	dvname = 'DV', 
 	logtrans = FALSE, 
 	grp = NULL, 
 	grpnames = NULL, 
@@ -25,23 +25,23 @@ dataFormat(
 }
 
 \arguments{
-  \item{tabfile}{data.frame for *.TAB}
+	\item{tabfile}{data.frame for \file{*.TAB}}
   \item{covfile}{data.frame for underlying dataset,one record per ID}
-  \item{parfile}{data.frame for *par.TAB}
-  \item{dvname}{see PLOTR}
-  \item{logtrans}{see PLOTR}
-  \item{grp}{see PLOTR}
-  \item{grpnames}{see PLOTR}
-  \item{cont.cov}{see PLOTR}
-  \item{cat.cov}{see PLOTR}
-  \item{par.list}{see PLOTR}
-  \item{eta.list}{see PLOTR}
-  \item{missing}{see PLOTR}
-  \item{run}{see PLOTR}
-  \item{\dots}{passed to synthesis()}
+  \item{parfile}{data.frame for \file{*par.TAB}}
+  \item{dvname}{see \code{PLOTR}}
+  \item{logtrans}{see \code{PLOTR}}
+  \item{grp}{see \code{PLOTR}}
+  \item{grpnames}{see \code{PLOTR}}
+  \item{cont.cov}{see \code{PLOTR}}
+  \item{cat.cov}{see \code{PLOTR}}
+  \item{par.list}{see \code{PLOTR}}
+  \item{eta.list}{see \code{PLOTR}}
+  \item{missing}{see \code{PLOTR}}
+  \item{run}{see \code{PLOTR}}
+  \item{\dots}{passed to \code{synthesis}}
 }
 \details{
-  Called by dataSynthesis, and in turn calls synthesis().
+	Called by \code{dataSynthesis}, and in turn calls \code{synthesis}.
 }
 \value{data.frame}
 \references{mifuns.googlecode.com}

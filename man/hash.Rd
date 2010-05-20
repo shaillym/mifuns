@@ -1,6 +1,6 @@
 \name{hash}
 \alias{hash}
-\title{Supply comment characters with output}
+\title{Supply Comment Characters with Output}
 \description{
   Any expression that generates output can be wrapped in a call to hash().  The usual
   output will be returned, with a hash character at the start of each line.
@@ -18,11 +18,11 @@ hash(x,char='#')
 \value{
 used for side effects
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \section{Warning}{
-  Don't "hash" an expression that directly or indirectly calls a function being
-  debugged.  The debug output will be 'sunk' to a connection.  If you get in 
+	Don't \dQuote{hash} an expression that directly or indirectly calls a function being
+  debugged.  The debug output will be \sQuote(sunk) to a connection.  If you get in 
   this situation, recover by typing \code{sink(NULL)} until output is restored.
 }
 \seealso{

@@ -10,19 +10,19 @@
 \method{fixedwidth}{data.frame}(x, ...)
 }
 \arguments{
-  \item{x}{ a data.frame }
-  \item{\dots}{ extra arguments, ignored }
+  \item{x}{a data.frame}
+  \item{\dots}{extra arguments, ignored}
 }
 \details{
-  There does not seem to be a way to get write.table to produce fixed-width output.
+  There does not seem to be a way to get \code{write.table} to produce fixed-width output.
   \code{fixedwidth.data.frame} gives essentially the same result as 
   \code{print.data.frame}.  Columns and headers are padded, suitable for output
-  to a file using the defaults for write.table (sep=' ').
+  to a file using the defaults for \code{write.table} (\code{sep=' '}).
 }
 \value{
-  data.frame; all columns are \code{character}
+  data.frame; all columns are character
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -32,5 +32,5 @@
 \examples{
 	head(Theoph)
 }
-\keyword{ manip }
+\keyword{manip}
 

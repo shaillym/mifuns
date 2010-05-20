@@ -3,7 +3,7 @@
 
 \title{Sequentially Left-join an Arbitrary Number of Data Frames, Picking Up Novel Columns}
 \description{
- Integrates specified columns from among a list of data frames.
+ Integrates specified columns from among a list of data.frames.
 }
 \usage{
 synthesis(x, key = character(0), frames, ...)
@@ -16,7 +16,7 @@ synthesis(x, key = character(0), frames, ...)
   \item{\dots}{ignored}
 }
 \details{
-  For each data frame, sought columns as well as key columns are preserved,
+  For each data.frame, sought columns as well as key columns are preserved,
   and the result is left-joined to the previous result (if any) after removing
   duplicate rows.
 }

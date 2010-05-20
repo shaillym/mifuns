@@ -4,7 +4,7 @@
 \title{Develop a Value for a Compiler Resource on the Grid}
 \description{
 License management under Sun Grid Engine may require an argument to \code{qsub}
-of, e.g., '-l compile=1' (in the case where the compiler is 'ifort'). This function
+of, e.g., \sQuote{-l compile=1} (in the case where the compiler is \sQuote{ifort}). This function
 calculates that value flexibly.
 }
 \usage{

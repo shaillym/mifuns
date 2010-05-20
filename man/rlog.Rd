@@ -1,6 +1,6 @@
 \name{rlog}
 \alias{rlog}
-\title{Generate a combined run log from multiple NONMEM runs}
+\title{Generate a Combined Run Log from Multiple NONMEM Runs}
 \description{
   Generates a combined run log across specified runs.  Appends/overwrites 
   existing file.  Attempts to purge certain files in run directory.  
@@ -21,38 +21,38 @@ rlog(
 )
 }
 \arguments{
-  \item{run}{ vector of control stream names (numbers)}
-  \item{boot}{Were these runs in '.boot' directories?}
+  \item{run}{vector of control stream names (numbers)}
+  \item{boot}{Were these runs in \file{.boot} directories?}
   \item{project}{path to the directory containing run subdirectories}
-  \item{append}{TRUE: append file; FALSE: overwrite file}
-  \item{tool}{'nm6' or 'nm7': controls methodology}
+  \item{append}{\code{TRUE}: append file; \code{FALSE}: overwrite file}
+  \item{tool}{\sQuote{nm6} or \sQuote{nm7}: controls methodology}
   \item{file}{The run-generic output file to write. See details.}
   \item{rundir}{path to run subdirectory}
   \item{nmlog}{The run-specific input file to read (nm6 only). See details.}
   \item{nmout}{The run-specific NONMEM output file to read (nm7 only). See details.}
-  \item{pattern}{Search patterns for files to delete (regular expressions).}
+  \item{pattern}{search patterns for files to delete (regular expressions)}
   \item{\dots}{passed to other functions}
 }
 
 \details{
-  rundir, nmlog, and nmout can be vector; or scalar, in which case they may 
-  contain '*', to be replaced with run names on a per-run basis. 
+	\code{rundir}, \code{nmlog}, and \code{nmout} can be vector; or scalar, in which case they may 
+	contain \sQuote{*}, to be replaced with run names on a per-run basis. 
   
-  To suppress file deletion, supply a zero-length argument such as NULL for 
-  'pattern'.
+	To suppress file deletion, supply a zero-length argument such as \code{NULL} for 
+	\code{pattern}.
   
-  To suppress log creation on disk, supply a zero length argument for 'file'.
+	To suppress log creation on disk, supply a zero length argument for \code{file}.
 }
 \value{
-  Combined runlog is returned invisibly in the 'unilog' format.  Side effect: if
-  file is specified, 'runlog' format is written to disk.
+  Combined runlog is returned invisibly in the unilog format.  Side effect: if
+  \code{file} is specified, runlog format is written to disk.
 }
-\references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
-\author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
+\references{mifuns.googlecode.com}
+\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{as.unilog.run}}}
 		\item{}{\code{\link{as.runlog.file}}}
 	}
 }
-\keyword{ manip }
+\keyword{manip}

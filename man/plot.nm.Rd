@@ -1,7 +1,7 @@
 \name{plot.nm}
 \alias{plot.nm}
-\title{Plot An NM Object}
-\description{This specializes the generic \code{plot} for \code{nm} objects. 
+\title{Plot An Object of Class nm}
+\description{This specializes the generic \code{plot} for nm objects. 
 Standard arguments are derived and passed, together with extra arguments, 
 to a suite of diagnostic plots \code{nmPlots}.
 }
@@ -35,8 +35,8 @@ everything that is non-structural. By default, covariates with 7 or more unique
 values are continuous, and the rest are categorical. But you can reallocate, 
 even assigning the same column as both categorical and continuous.
 }
-\value{Returns a list of \code{trellis} objects, which are plotted by default.}
-\references{http://metruminstitute.org}
+\value{a list of \code{trellis} objects}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

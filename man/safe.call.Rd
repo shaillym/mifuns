@@ -2,7 +2,7 @@
 \alias{safe.call}
 \title{Call a Function Safely}
 \description{
- Some functions do not accept extra arguments.  safe.call() passes only those
+Some functions do not accept extra arguments.  \code{safe.call} passes only those
  arguments that will be recognized.
 }
 \usage{

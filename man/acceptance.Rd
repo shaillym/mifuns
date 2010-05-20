@@ -1,8 +1,8 @@
 \name{acceptance}
 \alias{acceptance}
-\title{List the history of acceptance.}
+\title{List the History of Acceptance.}
 \description{
- This function reads "accept.xml" in .Library, if it exists, and prints it
+ This function reads \file{accept.xml} in \file{.Library}, if it exists, and prints it
  with the default method.
 }
 \usage{
@@ -12,10 +12,10 @@ acceptance()
   Data is displayed as xml markup.
 }
 \value{
- an object of class XMLNode
+ an object of class \code{XMLNode}
   ...
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -23,5 +23,5 @@ acceptance()
 		\item{}{\code{\link{packageCheck}}}
 	}
 }
-\keyword{ manip}
+\keyword{manip}
 

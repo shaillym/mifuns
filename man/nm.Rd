@@ -6,27 +6,25 @@
 \alias{read.nm}
 \alias{write.nm}
 
-
-\title{Create and Manipulate NM Objects}
+\title{Create and Manipulate nm Objects}
 \description{
-Objects of class \code{nm} are intended to support analysis using the software
-NONMEM ((c), Icon Development Solutions). \code{nm()} gives a zero-row \code{data.frame} with
+Objects of class \dfn{nm} are intended to support analysis using the software
+NONMEM ((c), Icon Development Solutions). \code{nm()} gives a zero-row data.frame with
 suitable columns and column classes (essentially, a template for dataset construction).  
-\code{as.nm()} and \code{as.nm.data.frame} construct an
-\code{nm} object from an existing object.  The read and write methods are wrappers
-for \code{.csv} equivalents.  \code{merge.nm()} coerces its result using \code{as.nm()}, guaranteeing
+\code{as.nm} and \code{as.nm.data.frame} construct an
+nm object from an existing object.  The read and write methods are wrappers
+for \code{.csv} equivalents.  \code{merge.nm} coerces its result using \code{as.nm}, guaranteeing
 a consistent left hand object when using \code{Ops.keyed}.
 }
 \usage{
 nm()
-%as.nm(x, ...)
 \method{as.nm}{data.frame}(x, ...)
 \method{merge}{nm}(x, y, ...)
 read.nm(x)
 write.nm(x, file, na = ".", row.names = FALSE, quote = FALSE, ...)
 }
 \arguments{
-  \item{x}{\code{data.frame} or \code{nm}}
+  \item{x}{data.frame or nm}
   \item{y}{right merge argument}
   \item{\dots}{extra arguments, ignored or passed to \code{write.csv}}
   \item{file}{passed to \code{write.csv}}
@@ -36,11 +34,11 @@ write.nm(x, file, na = ".", row.names = FALSE, quote = FALSE, ...)
 }
 
 \details{
-\code{as.nm.data.frame()} is the only method that creates an \code{nm} classification.  It 
-alone enforces all qualities of class \code{nm}.
+\code{as.nm.data.frame} is the only method that creates an nm classification.  It 
+alone enforces all qualities of class nm.
 \itemize{
   \item \code{SUBJ} must be present and defined, even for commented records. ID is (re)calculated as \code{as.numeric(factor(SUBJ))}.
-  \item \code{C} (class \code{comment}) will be created if not present.
+  \item \code{C} (class:  comment) will be created if not present.
   \item \code{NA} \code{C} will be imputed \code{FALSE}.
   \item Every active (non-commented) source record should define exactly one of \code{HOUR} or \code{DATETIME}.
   \item \code{HOUR} is taken to represent relative accumulation of hours from arbitrary origin.
@@ -70,7 +68,7 @@ alone enforces all qualities of class \code{nm}.
 \code{write.nm} is used for side effects. Others return an object with class 
 \code{c('nm','keyed','data.frame')}.
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \note{
 In the examples below, note that assembly chains beginning with \code{nm()} will 

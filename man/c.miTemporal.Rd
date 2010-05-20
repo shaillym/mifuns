@@ -10,7 +10,7 @@
 \alias{print.miTemporal}
 \alias{seq.miTemporal}
 \alias{rep.miTemporal}
-\title{ Support for miTemporal Classes }
+\title{Support for miTemporal Classes}
 \description{
   These functions support classes miTemporal, miTime, miDate, and miDateTime
   (and related functions).  They are mostly S3 methods for base R generics.
@@ -30,37 +30,37 @@ as.chartime(x, ...)
 }
 
 \arguments{
-  \item{\dots}{ arguments to c(), or passed to other functions }
-  \item{recursive}{ same meaning as for c() }
-  \item{x}{ object of class miTemporal }
-  \item{drop}{ same meaning as for '[' and '[[' }
-  \item{value}{ value to be assigned, as for '[<-' }
-  \item{format}{ input or output format describing character time (see \code{\link{strftime}} }
-  \item{mark}{boolean: mark times with dangling seconds using '+'}
-  \item{from}{ as for \code{\link{seq.default}} }
-  \item{to}{ as for \code{\link{seq.default}} }
-  \item{by}{ as for \code{\link{seq.default}} }
-  \item{length.out}{ as for \code{\link{seq.default}} }
-  \item{along.with}{ as for \code{\link{seq.default}} }
-s}
+  \item{\dots}{arguments to \code{c}, or passed to other functions}
+  \item{recursive}{same meaning as for \code{c}}
+  \item{x}{object of class miTemporal}
+  \item{drop}{same meaning as for \sQuote{[} and \sQuote{[[}}
+  \item{value}{value to be assigned, as for \sQuote{[<-}}
+  \item{format}{input or output format describing character time (see \code{\link{strftime}}}
+  \item{mark}{boolean: mark times with dangling seconds using \sQuote{+}}
+  \item{from}{as for \code{\link{seq.default}}}
+  \item{to}{as for \code{\link{seq.default}}}
+  \item{by}{as for \code{\link{seq.default}}}
+  \item{length.out}{as for \code{\link{seq.default}}}
+  \item{along.with}{as for \code{\link{seq.default}}}
+}
 \details{
-  Normally you shouldn't need to worry about these functions.  c() and the '[' 
+  Normally you shouldn't need to worry about these functions.  \code{c} and the \sQuote{[} 
   variants exist just so that class information is not lost on invocation of the 
-  generic.  as.character.miTemporal() and print.miTemporal() just call format().
-  'chartime' variants are used internally by other functions.  seq.miTemporal() 
-  requires 'from' and 'to', sets smart defaults for 'by' (if null), and preserves
-  class information, relative to seq.default().
+  generic.  \code{as.character.miTemporal} and \code{print.miTemporal} just call \code{format}.
+  \code{chartime} variants are used internally by other functions.  \code{seq.miTemporal} 
+  requires \code{from} and \code{to}, sets smart defaults for \code{by} (if \code{null}), and preserves
+  class information, relative to \code{seq.default}.
 }
 \value{
-  \item{print}{an invisible object with same class as x}
+	\item{print}{an invisible object with same class as \code{x}}
   \item{as.chartime}{generic: does not return}
   \item{as.chartime.numeric}{character (time)}
   \item{as.numeric.chartime}{numeric (seconds)}
   \item{as.character.miTemporal}{character (time)}
-  \item{others}{object with same class as x}
+  \item{others}{object with same class as \code{x}}
 }
-\references{ http://mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \seealso{
 	\itemize{
 		item{}{\code{\link{miTemporal}}} 
@@ -125,4 +125,4 @@ as.miDateTime(as.miDateTime(0))
 rep(as.miTime(86340),2)
 # 23:59 23:59
 }
-\keyword{ manip }
+\keyword{manip}

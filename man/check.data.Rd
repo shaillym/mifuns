@@ -1,6 +1,6 @@
 \name{check.data}
 \alias{check.data}
-\title{Summarize columns in a data set}
+\title{Summarize Columns in a Data.frame}
 \description{
   This function checks for missing data, numeric data, ranges, etc.
   It is a tool developed to review data that has been read into R.
@@ -9,12 +9,12 @@
 check.data(IDname, data)
 }
 \arguments{
-  \item{IDname}{subject identifier in the data.}
-  \item{data}{name of R object}
+  \item{IDname}{subject identifier in the data}
+  \item{data}{data.frame}
 }
 \value{
   A summary of each column in the \code{data} by \code{IDname} is output.
-  }
-\references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
-\author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\keyword{ manip }
+ }
+\references{mifuns.googlecode.com}
+\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\keyword{manip}

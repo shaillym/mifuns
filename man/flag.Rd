@@ -50,7 +50,7 @@ are welcome to impute \code{NA}s as 0. Methods are defined for common classes.
 \code{f()} is an alias to \code{as.flag()}.
 }
 \value{flag}
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \examples{
 hide(Theoph,where=Theoph$conc < 1,why='BLQ')

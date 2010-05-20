@@ -25,45 +25,45 @@ as.file.runlog(x, file = "NonmemRunLog.csv", header = FALSE, quote = FALSE, na =
 }
 \arguments{
   \item{x}{data.frame in runlog or unilog format}
-  \item{file}{file name for metadata file, e.g. NonmemRunLog.csv, 3.lst}
-  \item{header}{whether to include colum names in output}
+  \item{file}{file name for metadata file, e.g. \file{NonmemRunLog.csv}, \file{3.lst}}
+  \item{header}{whether to include column names in output}
   \item{quote}{whether to quote cell contents}
-  \item{na}{string to represent NA in output}
+  \item{na}{string to represent \code{NA} in output}
   \item{\dots}{passed arguments}
   \item{run}{name (number) of the model run corresponding to the data}
-  \item{tool}{the tool that created the metadata:  currently 'nm6' or 'nm7'}
+  \item{tool}{the tool that created the metadata:  currently \sQuote{nm6} or \sQuote{nm7}}
 }
 
 \details{
   These functions are not typically needed by the user, since \code{rlog} 
   serves as an interface.
   
-  Metadata may reside in 'lst' files (NONMEM primary output), in NonmemRunLog
-  files (created for NONMEM6 by MIfuns INFN routine) or in 'ext' files (NONMEM7
-  secondary output).  as.unilog.lst(), as.runlog.file(), and as.pxml.ext() 
-  (documented elsewhere) read these formats.  'pxml' is an internal xml format
-  produced by as.pxml.ext() and converted to unilog by as.unilog.pxml().
+  Metadata may reside in \file{lst} files (NONMEM primary output), in \file{NonmemRunLog}
+  files (created for NONMEM6 by MIfuns INFN routine) or in \file{ext} files (NONMEM7
+  secondary output).  \code{as.unilog.lst}, \code{as.runlog.file}, and \code{as.pxml.ext} 
+  (documented elsewhere) read these formats.  \emph{pxml} is an internal xml format
+  produced by \code{as.pxml.ext} and converted to unilog by \code{as.unilog.pxml}.
   
-  The 'runlog' format by convention has the columns: prob, moment, min, 
-  cov, mvof, p1...pn, and (possibly) run. p1 through pn are an arbitrary number
-  of parameters for that run.  The others give, respectively, the problem statement,
+  The \dfn{runlog} format by convention has the columns: \code{prob, moment, min, 
+  cov, mvof, p1...pn,} and (possibly) \code{run}. \code{p1} through \code{pn} are (an arbitrary number
+  of) parameters for that run.  The others give, respectively, the problem statement,
   a flag to identify relative standard error percent, minimization status, covariance
   status, minimum value of the objective function, and run name (number).  The primary
   values for each variable are given in a single record.  Where available, a 
-  second record gives PRSE, with non-informative entries as necessary.  Usually the
+  second record gives \sQuote{PRSE}, with non-informative entries as necessary.  Usually the
   header is not present in files.
   
-  The 'unilog' format is fully normalized.  It has the columns: tool, run, parameter,
-  moment, value.  Moment is, for instance, 'estimate' or 'prse'.  Typically 
+  The \dfn{unilog} format is fully normalized.  It has the columns: \code{tool, run, parameter,
+  moment, value}.  Moment is, for instance, \sQuote{estimate} or \sQuote{prse}.  Typically 
   all cells are filled and meaningful.  The value column is handled as text for
-  maximum compatibility across data types.  The term 'parameter' is used informally:
-  several items typically captured are not really parameters per se.
+  maximum compatibility across data types.  The term \sQuote{parameter} is used informally:
+  several items typically captured are not really parameters \emph{per se}.
   
-  Unilog and runlog formats are interchangeable with as.runlog.unilog() and 
-  as.unilog.runlog().  as.file.runlog() creates the traditional disk file from the 
+  Unilog and runlog formats are interconvertible via \code{as.runlog.unilog} and 
+  \code{as.unilog.runlog}.  \code{as.file.runlog} creates the traditional disk file from the 
   runlog format; writing unilog to disk is left to conventional strategies. 
   
-  runlog() and unilog() return zero-row data.frames with the corresponding formats.
+  \code{runlog} and \code{unilog} return zero-row data.frames with the corresponding formats.
 }
 \value{
 \code{as.file.runlog} is used for side effects.  All others return data.frame
@@ -115,5 +115,5 @@ rlg
 as.runlog.unilog(unip)
 as.unilog.runlog(rlg)
 }
-\keyword{ manip }
+\keyword{manip}
 

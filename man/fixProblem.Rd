@@ -36,36 +36,36 @@ msffile(ctlfile,dir,msfreg='^(?!\\\\$MSFI).*\\\\.msf',...)
   \item{lines}{lines in which to search for expr}
   \item{ctlfile}{character vector representing the control stream}
   \item{extreg}{a regular expression to locate an arbitrary file}
-  \item{tabreg}{a regular expression to locate the .TAB file}
-  \item{parreg}{a regular expression to locate the par.TAB file}
-  \item{msfreg}{a regular expression to locate the .MSF file}
+  \item{tabreg}{a regular expression to locate the \file{.TAB} file}
+  \item{parreg}{a regular expression to locate the \file{par.TAB} file}
+  \item{msfreg}{a regular expression to locate the \file{.MSF} file}
   \item{\dots}{ignored}
 }
 \details{
-fixProblem() tries to substitute the run name in the NONMEM \$PROBLEM statement
+\code{fixProblem} tries to substitute the run name in the NONMEM \$PROBLEM statement
 with the current run name.  It looks for PROB or PROBLEM, and then RUN or RUN\# 
 (optional).  The next space delimited word is replaced.
 
-fixFiles() tries to replace the run name in filenames ending in .msf, par.tab,
-or .tab.  Currently it relies on dirname() and basename(), which use 
-the same file separator on 'Nix and Windows.  basename() fails if there is no 
-path separator, e.g. FILE=40.tab.  fixFiles() pre-processes its argument with
-explicitPath as a work-around.  Lines containing MSFI will be coerced to explicit
+\code{fixFiles} tries to replace the run name in filenames ending in \file{.msf}, \file{par.tab},
+or \file{.tab}.  Currently it relies on \code{dirname} and \code{basename}, which use 
+the same file separator on 'Nix and Windows.  \code{basename} fails if there is no 
+path separator, e.g., \code{FILE=40.tab}.  \code{fixFiles} pre-processes its argument with
+\code{explicitPath}, as a work-around.  Lines containing \sQuote{MSFI} will be coerced using explicit
 paths, but will not otherwise be substituted.
 
-explicitPath() finds lines that contain .tab or .msf but not '/'.  It tries to 
-place './' before run.msf or run.tab.
+\code{explicitPath} finds lines that contain \file{.tab} or \file{.msf} but not \sQuote{/}.  It tries to 
+place \sQuote{./} before \file{run.msf} or \file{run.tab}.
 
-extractPath() isolates the file portion of a line of text.  It consists of a sequence
-of nonspace characters following MSF=, MSFO=, or FILE=.  Spaces may occur
-before and after the equality sign.  This function is currently used by runNonmem()
+\file{extractPath} isolates the file portion of a line of text.  The file portion consists of a sequence
+of nonspace characters following \sQuote{MSF=}, \sQuote{MSFO=}, or \sQuote{FILE=}.  Spaces may occur
+before and after the equality sign.  This function is currently used by \code{runNonmem}
 to locate the tabfile, parfile, and msffile.
 
-resolve() does nothing to absolute filepaths in 'file', but expresses others (those
-beginning with '.') relative to 'dir'.
+\code{resolve} does nothing to absolute filepaths in \code{file}, but expresses others (those
+beginning with \sQuote{.}) relative to \code{dir}.
 
-tabfile(), parfile(), and msffile() calculate corresponding filepaths from their
-arguments, relying on extfile() as the common engine.
+\code{tabfile}, \code{parfile}, and \code{msffile} calculate corresponding filepaths from their
+arguments, relying on \code{extfile} as the common engine.
 }
 \value{character}
 \references{mifuns.googlecode.com}

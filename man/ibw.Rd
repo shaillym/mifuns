@@ -4,7 +4,7 @@
 \alias{ibw}
 \alias{lbm}
 \alias{crcl}
-\title{ Calculate Various Clinical Indicators}
+\title{Calculate Various Clinical Indicators}
 \description{
   Calculate body mass index, body surface area, ideal body weight, 
   lean body mass, or creatinine clearance using common equations.
@@ -17,20 +17,22 @@ ibw(ht, male, floor = FALSE)
 crcl(age, wt, male, scr)
 }
 \arguments{
-  \item{wt}{ Weight (actually, mass) in kilograms. }
-  \item{ht}{ Height in centimeters. }
-  \item{age}{ Age in years. }
-  \item{male}{A logical indicating sex: TRUE indicates male.}
-  \item{floor}{ If TRUE, "inches over 5 feet" is not allowed to be negative. }
-  \item{scr}{ serum creatinine in mg/dL. }
+  \item{wt}{weight (actually, mass) in kilograms}
+  \item{ht}{height in centimeters}
+  \item{age}{age in years}
+  \item{male}{logical indicating sex: \code{TRUE} indicates male}
+  \item{floor}{if \code{TRUE}, \dQuote{inches over 5 feet} is not allowed to be negative.}
+  \item{scr}{serum creatinine in mg/dL}
 }
 \details{
-	Units of return values are as follows....
-	bmi - kg/m\^2
-	bsa - m\^2
-	lbm - kg 
-	ibw - kg
-	crcl - mL/min
+	Units of return values:
+	\describe{
+		\item{bmi}{kg/m\^2}
+		\item{bsa}{m\^2}
+		\item{lbm}{kg}
+		\item{ibw}{kg}
+		\item{crcl}{mL/min}
+	}
 }
 \value{
   Numeric.  
@@ -44,7 +46,7 @@ crcl(age, wt, male, scr)
 		\item{crcl}{\url{http://en.wikipedia.org/wiki/Renal_function}}
 	}
 }
-\author{ Tim Bergsma}
+\author{Tim Bergsma}
 \examples{
 bmi(70,160)
 bsa(70,160)
@@ -52,5 +54,5 @@ lbm(70,160,TRUE)
 ibw(160,TRUE)
 crcl(35,70,TRUE,1.0)
 }
-\keyword{ manip }
+\keyword{manip}
 

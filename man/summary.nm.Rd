@@ -49,8 +49,8 @@ Development Solutions).
 \method{print}{nm.summary}(x, ...)
 }
 \arguments{
-  \item{x}{object of class \code{nm}}
-  \item{object}{object of class \code{nm}}
+  \item{x}{object of class nm}
+  \item{object}{object of class nm}
   \item{by}{character: column names in \code{object} on which to table row counts}
   \item{\dots}{extra arguments, ignored}
 }
@@ -66,15 +66,16 @@ Development Solutions).
    \item{noPk}{rows where \code{EVID} is never 0 within SUBJ}
    \item{badII}{\code{II} is greater than 0 where \code{ADDL} is \code{NA} or 0 (unless SS > 0)}
    \item{summary}{all of the above, plus some other diagnostics (see value)}
-   \item{print}{pretty-printing for return value of \code{summary()}}
+   \item{print}{pretty-printing for return value of \code{summary}}
 }
 }
 \value{
-  \code{logical} of length \code{nrow(x)} unless otherwise stated.  
+  logical of length \code{nrow(x)} unless otherwise stated.  
 
-  \code{print()} method used for side effects
+  \code{print} method used for side effects.
 
-  \code{summary()} method: class \code{nm.summary}
+  \code{summary} method: class nm.summary.
+  
   \item{rows}{\code{nrow(x)}}
   \item{records}{number of active (non-commented) rows}
   \item{comments}{number of commented rows}
@@ -93,7 +94,7 @@ Development Solutions).
   \item{badII}{as defined, active rows}
   \item{table}{counts of active rows tabled by \code{by}, if supplied}
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

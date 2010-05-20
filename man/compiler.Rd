@@ -4,7 +4,7 @@
 \title{Extract the Compiler Name from an NMQual Configuration File}
 \description{
    This function reads the configuration file and extracts the last path element of 
-   the first space-delimited component of the 'nmtran' instruction, typically a
+   the first space-delimited component of the \sQuote{nmtran} instruction, typically a
    compiler name.
 }
 \usage{
@@ -25,7 +25,7 @@ compiler(config, pathsep = "/", ...)
 	}
 }
 \examples{
-#compiler('../NONMEM/nm6osx1/test/config.xml'))
+\dontrun{compiler('../NONMEM/nm6osx1/test/config.xml'))}
 }
 \keyword{manip}
 

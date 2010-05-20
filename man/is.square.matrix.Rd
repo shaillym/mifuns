@@ -21,14 +21,14 @@ extra arguments, ignored
 \value{
 logical
 }
-\references{ http://mifuns.googlecode.com }
-\author{ Tim Bergsma }
-\seealso{ 
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
+\seealso{
 	\code{\link{ord.matrix}}, 
 	\code{\link{isSymmetric.matrix}}
 }
 \examples{
 is.square(diag(3))
 }
-\keyword{ manip }
+\keyword{manip}
 

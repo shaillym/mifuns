@@ -2,7 +2,7 @@
 \alias{Tmax}
 \title{Calculate Tmax}
 \description{
- Calculate the time associated with the maximum concentration for each subject
+ Calculate the Time Associated with the Maximum Concentration for each Subject
 }
 \usage{
 Tmax(data, id = "ID", dv = "DV", time = "TIME")
@@ -14,10 +14,9 @@ Tmax(data, id = "ID", dv = "DV", time = "TIME")
   \item{dv}{dependent variable used to calculate Tmax present in \code{data}}	
 }
 \details{
-The Tmax() function performs the calculation based on the variables id, time, and dv present in the R data object
+	The \code{Tmax} function performs the calculation based on the variables \code{id}, \code{time}, and \code{dv} present in the R data object.
 }
-\value{
-  one Tmax is returned for each subject }
-\references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
-\author{ Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others). }
-\keyword{ manip }
+\value{One Tmax is returned for each subject.}
+\references{mifuns.googlecode.com}
+\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\keyword{manip}

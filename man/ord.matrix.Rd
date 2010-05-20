@@ -30,9 +30,9 @@ explicitly, even if \code{x} is not classed as halfmatrix:  \code{ord.halfmatrix
 \value{
 scalar numeric
 }
-\references{ http://mifuns.googlecode.com }
-\author{ Tim Bergsma }
-\seealso{ 
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
+\seealso{
 	\code{\link{is.square.matrix}}, 
 	\code{\link{isSymmetric.matrix}}
 	\code{\link{half.matrix}}
@@ -42,5 +42,5 @@ ord(diag(4))
 ord(half(diag(4)))
 ord.halfmatrix(1:10)
 }
-\keyword{ manip }
+\keyword{manip}
 

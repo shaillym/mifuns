@@ -4,10 +4,10 @@
 \alias{unitHist}
 \title{Plot Histograms Flexibly}
 \description{
-  histogram() and panel.histogram() in lattice are univariate.  Here,
-  we present a bivariate histogram panel function for use, e.g., with stripplot().
-  panel.bar() adds line segments, appropriate for reference lines in a histogram.
-  unitHist() calls hist() but returns histogram specifications that have been
+  \code{histogram} and \code{panel.histogram} in lattice are univariate.  Here,
+  we present a bivariate histogram panel function for use, e.g., with \code{stripplot}.
+  \code{panel.bar} adds line segments, appropriate for reference lines in a histogram.
+  \code{unitHist} calls \code{hist} but returns histogram specifications that have been
   rescaled so that maximum bar height is 1.
 }
 \usage{
@@ -18,22 +18,22 @@ unitHist(x, plot = FALSE, ...)
 \arguments{
   \item{x}{vector}
   \item{y}{vector}
-  \item{level}{the level at which to draw the histogram, typically supplied by panel.stratify()}
-  \item{horizontal}{typically TRUE}
-  \item{col}{fill color (ignored for panel.bar)}
-  \item{col.line}{border color if border not supplied}
-  \item{fill}{fill color if col not supplied}
+  \item{level}{the level at which to draw the histogram, typically supplied by \code{panel.stratify}}
+  \item{horizontal}{typically \code{TRUE}}
+  \item{col}{fill color (ignored for \code{panel.bar})}
+  \item{col.line}{border color if \code{border} not supplied}
+  \item{fill}{fill color if \code{col} not supplied}
   \item{factor}{factor by which to expand or attenuate bar heights relative to unity}
   \item{border}{border color}
   \item{offset}{amount to raise the base of each bar relative to the level}
   \item{\dots}{passed to other functions}
   \item{font}{ignored}
   \item{fontface}{ignored}
-  \item{plot}{passed to hist()}
+  \item{plot}{passed to \code{hist}}
 }
 \value{
- unitHist returns class histogram with an extra element named 'heights'.  
- 'heights' is proportional to density, but normalized relative to maximum density.
+\code{unitHist} returns class histogram with an extra element named \sQuote{heights}.  
+\sQuote{heights} is proportional to density, but normalized relative to maximum density.
  Panel functions are used for side effects.
 }
 \references{mifuns.googlecode.com}
@@ -43,5 +43,5 @@ unitHist(x, plot = FALSE, ...)
 		\item{}{\code{\link{panel.stratify}}}
 	}
 }
-\keyword{ manip }
+\keyword{manip}
 

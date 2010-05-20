@@ -9,7 +9,7 @@
 config(dir, ...)
 }
 \arguments{
-  \item{dir}{directory in which to find 'config.xml'}
+  \item{dir}{directory in which to find \file{config.xml}}
   \item{\dots}{ignored}
 }
 \value{character}

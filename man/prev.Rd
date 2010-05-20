@@ -2,23 +2,19 @@
 \alias{maxChar}
 \alias{prev}
 \alias{runhead}
-\alias{sorted}
-\title{Check Some Properties of Vectors and Data.frames}
+\title{Check Some Properties of Vectors}
 \description{
 	\code{maxChar} returns the number of printed characters for the widest element of \code{x}.
 	\code{prev} calculates the previous element for each element in \code{x}.
 	\code{runhead} determines whether each element is the \sQuote{head} (start) of a run.
-	\code{sorted} checks whether \code{x} (data.frame) is sorted on the columns specified.
 }
 \usage{
 maxChar(x)
 prev(x)
 runhead(x)
-sorted(x, on)
 }
 \arguments{
-	\item{x}{a data.frame for \code{sorted}; otherwise a vector}
-	\item{on}{a character vector of column names in \code{x}.}
+	\item{x}{vector}
 }
 \details{
 	If you forget to \code{round} or \code{signif} a numeric column, you may get more digits
@@ -36,11 +32,10 @@ sorted(x, on)
 	\code{maxChar}: a scalar integer
 	\code{prev}: a vector of the same class
 	\code{runhead}: a vector of logicals
-	\code{sorted}: a scalar logical
 }
 \author{Tim Bergsma}
 \note{
-	\code{NA}s in the argument to \code{runhead} give surprising but reasonable results. It cannot
+\code{NA}s in the argument to \code{runhead} give surprising but reasonable results. It cannot
 be known whether they are the heads of runs, nor can it be known whether values
 immediately following them are heads of runs.  To treat \code{NA}s deterministically,
 convert to some definite value first.
@@ -49,7 +44,6 @@ convert to some definite value first.
 maxChar(c(1.2,1.234))
 prev(c(1,2,NA,3,3,NA,4))
 runhead(c(1,2,NA,3,3,NA,4))
-sorted(Theoph,on="Subject")#FALSE: note ordered factor.
 }
 \keyword{manip}
 

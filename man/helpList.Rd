@@ -1,10 +1,8 @@
 \name{helpList} 
 \alias{helpList} 
 \docType{package} 
-\title{
-Functions defined by MIfuns
-}
-\description{Exhaustive list of functions (etc.) defined by MIfuns.}
+\title{Functions defined by \pkg{MIfuns}}
+\description{Exhaustive list of functions defined by \pkg{MIfuns}.}
 \details{
 \itemize{
 \item \link{[.comment} subset a comment
@@ -105,7 +103,7 @@ Functions defined by MIfuns
 \item \link{c.flag} combine flag
 \item \link{c.miTemporal} combine miTemporal
 \item \link{cavg} calculate average concentration
-\item \link{check.data} check for missing data, numeric data, ranges, etc.
+\item \link{check.subjects} check for missing data, numeric data, ranges, etc.
 \item \link{clear} drop regular patterns from a character vector
 \item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
 \item \link{cmax} calculate maximum steady-state concentration
@@ -262,7 +260,6 @@ Functions defined by MIfuns
 \item \link{simpar} generate deviates of a set of model parameters for simulation
 \item \link{simblock} generate deviates of the elements of a variance-covariance matrix
 \item \link{sort.keyed} sort a keyed data frame
-\item \link{sorted} check whether a x is sorted on the specified columns
 \item \link{sqrtm} support \code{compute.cwres}
 \item \link{stableMerge}produce a left join, with strict error checking
 \item \link{star} replace asterisk in x with y (internal)

@@ -16,9 +16,9 @@ detailed analysis logs.
 I want to ....
 \itemize{
 \item \link[=helpPrepare]{prepare or manipulate data}
-\item \link[=helpAnalyze]{model data in NONMEM}
+\item \link[=helpModel]{model data in NONMEM}
 \item \link[=helpSimulate]{conduct simulations}
-\item \link[=helpPlot]{create diagnostic plots}
+\item \link[=helpVisualize]{create plots of model inputs or outputs}
 \item \link[=helpReport]{generate report material}
 \item \link[=helpAdminister]{perform related filesystem tasks}
 \item \link[=helpList]{see a list of available functions}

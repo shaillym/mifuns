@@ -1,12 +1,12 @@
-\name{check.data}
-\alias{check.data}
+\name{check.subjects}
+\alias{check.subjects}
 \title{Summarize Columns in a Data.frame}
 \description{
   This function checks for missing data, numeric data, ranges, etc.
   It is a tool developed to review data that has been read into R.
 }
 \usage{
-check.data(IDname, data)
+check.subjects(IDname, data)
 }
 \arguments{
   \item{IDname}{subject identifier in the data}

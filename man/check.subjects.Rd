@@ -6,7 +6,7 @@
   It is a tool developed to review data that has been read into R.
 }
 \usage{
-check.subjects(x,subject,...)
+check.subjects(x,subject)
 }
 \arguments{
   \item{x}{data.frame}

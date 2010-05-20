@@ -2,7 +2,7 @@
 \alias{helpVector}
 \docType{package}
 \title{\pkg{MIfuns}: Working with Vectors}
-\description{Tools for processing vectors.}.
+\description{Tools for processing vectors.}
 \details{
 I want to ....
 \itemize{

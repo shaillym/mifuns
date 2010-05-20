@@ -1,30 +1,30 @@
 `check.subjects` <-
-function(IDname,data){
-   columnNames <- names(data)
-   print(paste(length(data[,IDname]),"records from",length(unique(data[,IDname])),"patients"))
+function(x,subject){
+   columnNames <- names(x)
+   print(paste(length(x[,subject]),"records from",length(unique(x[,subject])),"subjects"))
    for(columnName in columnNames) {
-     if( any(is.na(data[,columnName]))) {
-       temp <- data[,c(IDname,columnName)]
+     if( any(is.na(x[,columnName]))) {
+       temp <- x[,c(subject,columnName)]
        names(temp) <- c("ID","value")
        nsubAll <- length(unique(temp$ID))
        nsubNA <- length(unique(temp$ID[is.na(temp$value)]))
        nsub   <- length(unique(temp$ID[!is.na(temp$value)]))
        if(nsubAll == nsub + nsubNA){
           print(paste(columnName,": ",nsubNA, " (",round(100*nsubNA/nsub,1),
-             "%) of patients have only missing values",sep=""))
+             "%) of subjects have only missing values",sep=""))
        }else{
         print(paste(columnName,": ",nsubAll-nsubNA," (",
-                 round(100*(nsubAll-nsubNA)/nsubAll,1),"%) of patients have all data;",sep=""))
+                 round(100*(nsubAll-nsubNA)/nsubAll,1),"%) of subjects have all x;",sep=""))
         print(paste("       ",nsubAll-nsub," (",round(100*(nsubAll-nsub)/nsubAll,1),
-             "%) of patients have only missing values;",sep=""))
+             "%) of subjects have only missing values;",sep=""))
         print(paste("       ",nsubNA+nsub -nsubAll," (",round(100*(nsubNA+nsub -nsubAll)/nsubAll,1),
-                 "%) of patients have some missing values",sep=""))
+                 "%) of subjects have some missing values",sep=""))
        }  
      }
    }
 
    for(columnName in columnNames) {
-     temp <- data[,columnName]
+     temp <- x[,columnName]
      temp <- temp[!is.na(temp)]
      if( any(is.na(as.double(as.character(temp))))) {
        print(paste(columnName,"is not a numeric variable"))
@@ -40,15 +40,15 @@ function(IDname,data){
      }
    }
 
-   columnNames <- columnNames[columnNames != IDname]
+   columnNames <- columnNames[columnNames != subject]
    for(columnName in columnNames) {
-       temp <- data[,c(IDname,columnName)]
+       temp <- x[,c(subject,columnName)]
        names(temp) <- c("ID","value")
        temp <- temp[!is.na(temp$value),]
        if(length(unique(temp$ID)) != length(unique(paste(temp$ID,temp$value))) ) {
-          print(paste(columnName,": vary with time within some patients"))
+          print(paste(columnName,": vary with time within some subjects"))
        } else {
-                print(paste(columnName,": constant within all patients"))       
+                print(paste(columnName,": constant within all subjects"))       
        }
    }
 }

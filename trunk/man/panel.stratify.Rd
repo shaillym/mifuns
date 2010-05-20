@@ -2,9 +2,9 @@
 \alias{panel.stratify}
 \title{Handle Each Level of a Stripplot Separately}
 \description{
-  Just as panel.superpose handles each group of data separately, panel.stratify
-  handles each 'level' of data separately.  Typically, levels are the unique
-  values of y (horizontal==TRUE) that result from a call to stripplot or bwplot.
+Just as \code{panel.superpose} handles each group of data separately, \code{panel.stratify}
+handles each \sQuote{level} of data separately.  Typically, levels are the unique
+values of \code{y} (\code{horizontal==TRUE}) that result from a call to \code{stripplot} or \code{bwplot}.
   The default panel functions treat all levels simultaneously.  Plotting some 
   transformation of the data (e.g. density polygons for each level) is much easier if 
   the levels are presented individually.
@@ -13,7 +13,7 @@
 panel.stratify(
 	x, 
 	y, 
-	type = "p", 
+	type = 'p', 
 	groups = NULL, 
 	pch = if (is.null(groups)) 
 	plot.symbol$pch else superpose.symbol$pch, 
@@ -31,7 +31,7 @@ panel.stratify(
 	fill = if (is.null(groups)) plot.symbol$fill else superpose.symbol$fill, 
 	lwd = if (is.null(groups)) plot.line$lwd else superpose.line$lwd, 
 	horizontal = FALSE, 
-	panel.levels = "panel.xyplot", 
+	panel.levels = 'panel.xyplot', 
 	..., 
 	jitter.x = FALSE, 
 	jitter.y = FALSE, 
@@ -40,40 +40,40 @@ panel.stratify(
 )
 }
 \arguments{
-  \item{x}{See panel.xyplot}
-  \item{y}{See panel.xyplot}
-  \item{type}{See panel.xyplot}
-  \item{groups}{See panel.xyplot}
-  \item{pch}{See panel.xyplot}
-  \item{col}{See panel.xyplot}
-  \item{col.line}{See panel.xyplot}
-  \item{col.symbol}{See panel.xyplot}
-  \item{font}{See panel.xyplot}
-  \item{fontfamily}{See panel.xyplot}
-  \item{fontface}{See panel.xyplot}
-  \item{lty}{See panel.xyplot}
-  \item{cex}{See panel.xyplot}
-  \item{fill}{See panel.xyplot}
-  \item{lwd}{See panel.xyplot}
-  \item{horizontal}{See panel.xyplot}
+  \item{x}{See \code{panel.xyplot}}
+  \item{y}{See \code{panel.xyplot}}
+  \item{type}{See \code{panel.xyplot}}
+  \item{groups}{See \code{panel.xyplot}}
+  \item{pch}{See \code{panel.xyplot}}
+  \item{col}{See \code{panel.xyplot}}
+  \item{col.line}{See \code{panel.xyplot}}
+  \item{col.symbol}{See \code{panel.xyplot}}
+  \item{font}{See \code{panel.xyplot}}
+  \item{fontfamily}{See \code{panel.xyplot}}
+  \item{fontface}{See \code{panel.xyplot}}
+  \item{lty}{See \code{panel.xyplot}}
+  \item{cex}{See \code{panel.xyplot}}
+  \item{fill}{See \code{panel.xyplot}}
+  \item{lwd}{See \code{panel.xyplot}}
+  \item{horizontal}{See \code{panel.xyplot}}
   \item{panel.levels}{a function to handle each unique level of the data}
-  \item{\dots}{See panel.xyplot}
-  \item{jitter.x}{See panel.xyplot}
-  \item{jitter.y}{See panel.xyplot}
-  \item{factor}{See panel.xyplot}
-  \item{amount}{See panel.xyplot}
+  \item{\dots}{See \code{panel.xyplot}}
+  \item{jitter.x}{See \code{panel.xyplot}}
+  \item{jitter.y}{See \code{panel.xyplot}}
+  \item{factor}{See \code{panel.xyplot}}
+  \item{amount}{See \code{panel.xyplot}}
 }
 \details{
-  panel.stratify is defined almost identically to panel.xyplot.  panel.levels
-  is analogous to panel.groups.  panel.levels may want to handle special cases
-  of col, which may be missing if groups is NULL and may be NA if groups is 
-  not NULL (set to NA by panel.superpose).
+\code{panel.stratify} is defined almost identically to \code{panel.xyplot}.  \code{panel.levels}
+is analogous to \code{panel.groups}.  \code{panel.levels} may want to handle special cases
+of \code{col}, which may be missing if \code{groups} is \code{NULL} and may be \code{NA} if \code{groups} is 
+not \code{NULL} (set to \code{NA} by \code{panel.superpose}).
   
-  x and y are split into subsets by whichever of them represents levels (y if 
-  horizontal is TRUE, x otherwise).  Corresponding subsets of x and y are 
-  forwarded one at a time, along with the other arguments, to panel.levels.  
-  Additionally, the current value of 'level' as well as the complete vector of 
-  'levels' are available to panel.levels.
+\code{x} and \code{y} are split into subsets by whichever of them represents levels (\code{y} if 
+  \code{horizontal} is \code{TRUE}, \code{x} otherwise).  Corresponding subsets of \code{x} and \code{y} are 
+  forwarded one at a time, along with the other arguments, to \code{panel.levels}.  
+  Additionally, the current value of \code{level} as well as the complete vector of 
+  \code{levels} are available to \code{panel.levels}.
 }
 \value{used for side effects}
 \references{mifuns.googlecode.com}

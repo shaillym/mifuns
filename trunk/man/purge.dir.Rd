@@ -14,9 +14,9 @@ purge.dir(dir, nice = FALSE)
   \item{nice}{whether to purge system files}
 }
 \details{
-  If 'nice' is TRUE, system files are not removed (as defined for all.files in dir()).
+	If \code{nice==TRUE}, system files (as defined for \code{all.files} in \code{dir}) are not removed.
 }
-\value{Used for side effects.}
+\value{used for side effects.}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{

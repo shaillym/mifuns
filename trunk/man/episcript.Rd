@@ -14,7 +14,7 @@ episcript(script, ...)
   \item{script}{path for an R script}
   \item{\dots}{variables with which to populate the script's environment}
 }
-\value{Used for side effects}
+\value{used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{

@@ -23,7 +23,7 @@ nmVersion(config, ...)
 	}
 }
 \examples{
-#nmVersion('../NONMEM/nm6osx1/test/config.xml'))
+	\dontrun{nmVersion('../NONMEM/nm6osx1/test/config.xml'))}
 }
 
 

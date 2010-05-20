@@ -1,9 +1,9 @@
 \name{simblock}
 \alias{simblock}
-\title{Generate omega values for simulation}
+\title{Generate random effect deviates for simulation}
 \description{
   Generate random effect values given the number of simulations, degrees of freedom, and
-  a variance covariance matrix (block).
+  a variance-covariance matrix (block).
 }
 \usage{
 simblock(n, df, cov)
@@ -20,11 +20,11 @@ simblock(n, df, cov)
  matrix, with one row per simulation and one column per element in the corresponding
 triangular version of \code{cov}. 
 }
-\references{ MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
-\author{ Developed by Metrum Institute (Leonid Gibianski, Bill Knebel, Tim Bergsma). }
+\references{mifuns.googlecode.com}
+\author{Developed by Metrum Institute (Leonid Gibianski, Bill Knebel, Tim Bergsma).}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{simpar}}}
 	}
 }
-\keyword{ manip }
+\keyword{manip}

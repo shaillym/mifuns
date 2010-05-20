@@ -30,16 +30,15 @@ converts a halfmatrix-like vector to a symmetric matrix.
 It is an error if \code{x} is a matrix but not symmetric. If \code{x} is a 
 vector of appropriate length it can be converted to a symmetric matrix by specifying the method
 explicitly, even if \code{x} is not classed as halfmatrix:  
-\code{as.matrix.halfmatrix(x)}.
-\code{x} can also be converted to halfmatrix explicitly.
+\code{as.matrix.halfmatrix(x)}.  \code{x} can also be converted to halfmatrix explicitly.
 }
 \value{
-vector with as many elements as a triangular matrix corresponding to x (half), 
-or matrix (as.matrix)
+vector with as many elements as a triangular matrix corresponding to \code{x} 
+(except \code{as.matrix} returns matrix)
 }
-\references{ http://mifuns.googlecode.com }
-\author{ Tim Bergsma }
-\seealso{ 
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
+\seealso{
 	\code{\link{ord.matrix}}, 
 	\code{\link{isSymmetric.matrix}}
 }
@@ -50,5 +49,5 @@ as.matrix.halfmatrix(1:15)
 as.matrix(as.halfmatrix(1:15))
 as.halfmatrix(1:10)
 }
-\keyword{ manip }
+\keyword{manip}
 

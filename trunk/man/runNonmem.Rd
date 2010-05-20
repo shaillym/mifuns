@@ -4,7 +4,7 @@
 \title{Process a Request for NONMEM Invocation}
 \description{
  The heart of NONR, this function handles file-level details and dispatches 
- the other major functions, especially runCommand and PLOTR.
+ the other major functions, especially \code{runCommand} and \code{PLOTR}.
 }
 \usage{
 runNonmem(
@@ -75,14 +75,14 @@ runNonmem(
   \item{plotfile}{see PLOTR}
   \item{runext}{an extension for the run directory}
   \item{rundir}{the directory in which run will occur}
-  \item{outfile}{see dataSynthesis}
+  \item{outfile}{see \code{dataSynthesis}}
   \item{streams}{where to find control streams}
   \item{ctlfile}{the original control stream}
   \item{remove}{regular expressions for files to purge}
   \item{sync}{whether the R process should wait for the run to complete}
   \item{\dots}{extra arguments for other functions}
 }
-\value{Used for side effects}
+\value{used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{

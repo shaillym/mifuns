@@ -3,7 +3,7 @@
 
 \title{Identify Unix-like Platforms}
 \description{
- Tells whether the platform OS is of type 'unix'
+ Tells whether the platform OS is of type 'unix'.
 }
 \usage{
 nix()

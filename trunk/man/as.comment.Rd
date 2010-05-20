@@ -15,10 +15,10 @@
 \alias{xtfrm.comment}
 
 \title{Create and Manipulate Comment Objects}
-\description{Some conventions include the use of 'C' or '.' as the 
-first element in a row. 'C' is typically used to identify a row to be 
-ignored ("commented-out"). Here, a comment is really a logical that should 
-never be \code{NA}, and prints as 'C' or '.' (\code{TRUE,FALSE}).
+\description{Some conventions include the use of \sQuote{C} or \sQuote{.} as the 
+first element in a row. \sQuote{C} is typically used to identify a row to be 
+ignored \dQuote{commented-out}. Here, a comment is really a logical that should 
+never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FALSE}}).
 }
 
 \usage{
@@ -36,19 +36,19 @@ never be \code{NA}, and prints as 'C' or '.' (\code{TRUE,FALSE}).
 }
 
 \arguments{
-  \item{x}{the comment object, or something coercible to \code{logical}}
+  \item{x}{the comment object, or something coercible to logical}
   \item{\dots}{extra arguments, generally ignored}
   \item{drop}{coerce to lowest possible dimension}
   \item{row.names}{row names for the result}
-  \item{optional}{optional to use the object name as the column name?}
+  \item{optional}{Optional to use the object name as the column name?}
   \item{recursive}{unused, present for historical reasons}
-  \item{where}{\code{logical} with length \code{nrow(x)}, indicating rows to hide}
+  \item{where}{logical with length \code{nrow(x)}, indicating rows to hide}
   \item{why}{a column name suggesting the reason for hiding}
 }
 
 \details{
-Objects of class \code{comment} can be used exactly like \code{logical}s, but look like
-traditional comments.  \code{hide.data.frame()} implements consistent
+Objects of class comment can be used exactly like logicals, but look like
+traditional comments.  \code{hide.data.frame} implements consistent
 commenting of rows, including a reason for the comment.
 }
 \value{\code{comment}, or \code{data.frame} for \code{hide.data.frame()}}

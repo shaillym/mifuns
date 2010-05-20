@@ -3,7 +3,7 @@
 
 \title{Build Commands to Invoke NONMEM}
 \description{
- Formats a set of commandlines, suitable for submission to a command shell, to
+ Format a set of commandlines, suitable for submission to a command shell, to
  operate the renamed copy of 'nm.pl' in an NMQual-mediated NONMEM installation.
 }
 \usage{
@@ -21,7 +21,7 @@ nm.pl(
 }
 
 \arguments{
-  \item{command}{path for the installation-specific variant of nm.pl}
+  \item{command}{path for the installation-specific variant of \file{nm.pl}}
   \item{infile}{path for a control stream}
   \item{outfile}{path for output}
   \item{perl}{how to invoke Perl on this system}
@@ -32,7 +32,7 @@ nm.pl(
   \item{\dots}{ignored}
 }
 \details{
-  If split is TRUE, two commands are returned, having the mode flags 'c' and 'e', respectively.
+	If \code{split} is \code{TRUE}, two commands are returned, having the mode flags \sQuote{c} and \sQuote{e}, respectively.
 }
 \value{character}
 \references{mifuns.googlecode.com}

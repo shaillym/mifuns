@@ -1,6 +1,6 @@
 \name{attribute}
 \alias{attribute}
-\title{ Encode an Attribute for an XML Open Tag }
+\title{Encode an Attribute for an XML Open Tag}
 \description{
   Encode an attribute for an XML open tag, in the form \code{" tag='x'"}.
 }
@@ -15,8 +15,8 @@ attribute(x, tag, ...)
 \value{
 character
 }
-\references{ mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{bracket}}}
@@ -25,5 +25,5 @@ character
 \examples{
 attribute(letters,'letter')
 }
-\keyword{ manip }
+\keyword{manip}
 

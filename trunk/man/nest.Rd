@@ -18,8 +18,8 @@ nest(x, tag, ...)
 \value{
   character
 }
-\references{ mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{bracket}}}
@@ -30,5 +30,5 @@ nest(x, tag, ...)
 \examples{
 nest('some xml',tag='content')
 }
-\keyword{ manip }
+\keyword{manip}
 

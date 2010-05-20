@@ -2,14 +2,12 @@
 \alias{getPars}
 
 \title{Return the Non-duplicated (ID) Rows Corresponding to the Specified Filename}
-\description{
- Useful for retrieving parameters that are constant within subject.
-}
+\description{Useful for retrieving parameters that are constant within subject.}
 \usage{
 getPars(file)
 }
 \arguments{
-  \item{file}{path for a file, typ. *par.TAB}
+	\item{file}{path for a file, typcally \file{*par.TAB}}
 }
 \value{data.frame}
 \references{mifuns.googlecode.com}

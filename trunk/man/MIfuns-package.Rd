@@ -2,18 +2,15 @@
 \alias{MIfuns-package}
 \alias{MIfuns}
 \docType{package}
-\title{
-Pharmacometric tools for data preparation, analysis, simulation, and reporting
-}
+\title{Pharmacometric Tools for Data Preparation, Analysis, Simulation, and Reporting}
 \description{
-Pharmacometric tools for common data preparation tasks, stratified
+This package includes pharmacometric tools for common data preparation tasks, stratified
 bootstrap resampling of data sets, NONMEM control stream
 creation/editing, NONMEM model execution, creation of standard and
-user-defined diagnostic plots,  execution and summary of bootstrap and
+user-defined diagnostic plots, execution and summary of bootstrap and
 predictive check results, implementation of simulations from posterior
-parameter distributions, reporting of output tables and creation of a
-detailed analysis log. All functions are considered stable unless marked
-as beta.
+parameter distributions, reporting of output tables, and creation of
+detailed analysis logs.
 }
 \details{
 I want to ....
@@ -25,25 +22,20 @@ I want to ....
 \item \link[=helpReport]{generate report material}
 \item \link[=helpAdminister]{perform related filesystem tasks}
 \item \link[=helpList]{see a list of available functions}
-
-}
-
-    
-    \tabular{ll}{
+}  
+\tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
 Version: \tab 4.0.4\cr
 Date: \tab 2010-05-15\cr
 License: \tab GPL\cr
 }
-
-  }
+}
   
   \author{
     Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and
     others). Maintainer: Tim Bergsma <timb@metrumrg.com>
-  }
+ }
   
-  \references{
-    MIfuns package available from Metrum Institute website (\code{http://metruminstitute.org/}). }
+  \references{mifuns.googlecode.com}
   \keyword{manip}

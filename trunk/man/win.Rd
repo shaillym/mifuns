@@ -3,7 +3,7 @@
 
 \title{Identify Windows Platforms}
 \description{
- Tells whether the platform OS is of type 'windows'
+	Tells whether the platform OS is of type \code{windows}
 }
 \usage{
 win()

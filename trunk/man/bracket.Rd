@@ -9,18 +9,18 @@ bracket(x, close = FALSE, ...)
 }
 \arguments{
   \item{x}{an element name}
-  \item{close}{whether the tag is a close tag.  FALSE by default.}
-  \item{\dots}{Name-value pairs of attributes for an open tag.}
+  \item{close}{whether the tag is a close tag; \code{FALSE} by default}
+  \item{\dots}{name-value pairs of attributes for an open tag}
 }
 \details{
   \code{close} can be a vector.  An attempt will be made to supress attributes
-  for 'close' tags.
+  for \sQuote{close} tags.
 }
 \value{
  character
 }
-\references{ mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{attribute}}}
@@ -30,5 +30,5 @@ bracket(x, close = FALSE, ...)
 \examples{
 bracket(rep('name',2),close=FALSE:TRUE,row=1,col=2)
 }
-\keyword{ manip }
+\keyword{manip}
 

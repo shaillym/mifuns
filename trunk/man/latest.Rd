@@ -10,13 +10,13 @@ Subdirectories}
 latest(x)
 }
 \arguments{
-  \item{x}{character vector of file paths of the form 'path/file/var1/file'}
+	\item{x}{character vector of file paths of the form \file{path/file/var1/file}}
 }
 \value{
  character
 }
-\references{ mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{variants}}}
@@ -30,5 +30,5 @@ latest(
 	)
 )
 }
-\keyword{ manip }
+\keyword{manip}
 

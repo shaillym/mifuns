@@ -62,16 +62,16 @@ upper limit for parameter estimates
 If \code{min} or \code{max} are non-default (see below), you may want to set \code{nsim} 
 marginally higher allow for dropped sets.
 
-\code{covar} is coerced to matrix using as.matrix().
+\code{covar} is coerced to matrix using \code{as.matrix}.
 
-If code{omega} and \code{sigma} are not lists, they are coerced using list().  Then
-each element is coerced using as.matrix().
+If \code{omega} and \code{sigma} are not lists, they are coerced using \code{list}.  Then
+each element is coerced using \code{as.matrix}.
 
 By default, each element in  \code{odf} and \code{sdf} will be the length 
 (number of elements) in the corresponding matrix.
 
 \code{min} and \code{max} may be given as scalar values, in which case they 
-apply to all parameters (as do the defaults).  Alternatively, the first n limits
+apply to all parameters (as do the defaults).  Alternatively, the first \eqn{n} limits
 may be specified as a vector, in which case the remaining (if any) will be the default.
 If any simulated parameter does not fall between its limits, inclusive, the entire
 parameter set (row) is dropped from the result.
@@ -80,7 +80,7 @@ parameter set (row) is dropped from the result.
 matrix, with column names indicating parameters, and row names indicating set
 number before filtering by \code{min} and \code{max}.
 }
-\seealso{ 
+\seealso{
 	\itemize{
 		\item{}{\code{\link{posmat}}}
 		\item{}{\code{\link{simblock}}}
@@ -103,5 +103,5 @@ simpar(
     max=rep(90,3)
 )
 }
-\keyword{ manip }
+\keyword{manip}
 

@@ -1,6 +1,6 @@
 \name{bin}
 \alias{bin}
-\title{ Calculate Bin Sizes and Limits for a Vector (beta)}
+\title{Calculate Bin Sizes and Limits for a Vector}
 \description{
 Given a numeric vector, calculate bin limits, place each value in a bin, and
 return the number of values in each bin.
@@ -16,13 +16,13 @@ bin(
 )
 }
 \arguments{
-  \item{x}{A vector of numeric values, to be placed in bins.}
-  \item{population}{A vector of numeric values serving as the reference
-  population for constructing bins.}
-  \item{breaks}{Bin limits (boundaries) to pass to cut().}
-  \item{include.lowest}{Limit qualifier to pass to cut().}
-  \item{probs}{Default probabilities for calculating breaks.}
-  \item{\dots}{Other arguments to pass to quantile() and cut().}
+  \item{x}{a vector of numeric values, to be placed in bins}
+  \item{population}{a vector of numeric values serving as the reference
+  population for constructing bins}
+  \item{breaks}{bin limits (boundaries) to pass to \code{cut}}
+  \item{include.lowest}{limit qualifier to pass to \code{cut}}
+  \item{probs}{default probabilities for calculating breaks}
+  \item{\dots}{other arguments to pass to quantile() and \code{cut}}
 }
 \details{
 By default, the population used to calculate bin limits is the same as the

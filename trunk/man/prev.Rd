@@ -3,12 +3,12 @@
 \alias{prev}
 \alias{runhead}
 \alias{sorted}
-\title{Check Some Properties of Vectors and Data Frames (beta)}
+\title{Check Some Properties of Vectors and Data.frames}
 \description{
-maxChar() returns the number of printed characters for the widest element of x.
-prev() calculates the previous element for each element in x.
-runhead() determines whether each element is the "head" (start) of a run.
-sorted() checks whether x (data.frame) is sorted on the columns specified.
+	\code{maxChar} returns the number of printed characters for the widest element of \code{x}.
+	\code{prev} calculates the previous element for each element in \code{x}.
+	\code{runhead} determines whether each element is the \sQuote{head} (start) of a run.
+	\code{sorted} checks whether \code{x} (data.frame) is sorted on the columns specified.
 }
 \usage{
 maxChar(x)
@@ -17,32 +17,32 @@ runhead(x)
 sorted(x, on)
 }
 \arguments{
-  \item{x}{a data.frame for sorted(); otherwise a vector.}
-  \item{on}{a character vector of column names in x.}
+	\item{x}{a data.frame for \code{sorted}; otherwise a vector}
+	\item{on}{a character vector of column names in \code{x}.}
 }
 \details{
-If you forget to round() or signif() a numeric column, you may get more digits
-than desired in your output file; maxChar() can warn you.  See examples.
+	If you forget to \code{round} or \code{signif} a numeric column, you may get more digits
+	than desired in your output file; \code{maxChar} can warn you.  See examples.
 
-prev() is used by runhead. Note that there is no element previous to the first
-element in a vector, so prev() returns NA in that position.
+	\code{prev} is used by \code{runhead}. Note that there is no element previous to the first
+	element in a vector, so \code{prev} returns \code{NA} in that position.
 
-If a 'run' is a sequence (possibly of length one) of identical successive values
-in a vector, runhead determines whether an element is the first in such a sequence.
-Note that by definition, the first element is the start of a run; Thus runhead()
-returns TRUE in that position, even though prev() returns NA.
+	If a \sQuote{run} is a sequence (possibly of length one) of identical successive values
+	in a vector, \code{runhead} determines whether an element is the first in such a sequence.
+	Note that by definition, the first element is the start of a run; thus \code{runhead}
+	returns \code{TRUE} in that position, even though \code{prev} returns \code{NA}.
 }
 \value{
-maxChar(): an atomic integer
-prev(): a vector of the same class
-runhead(): a vector of logicals
-sorted(): an atomic logical
+	\code{maxChar}: a scalar integer
+	\code{prev}: a vector of the same class
+	\code{runhead}: a vector of logicals
+	\code{sorted}: a scalar logical
 }
 \author{Tim Bergsma}
 \note{
-NAs in the argument to runhead() give surprising but reasonable results. It cannot
+	\code{NA}s in the argument to \code{runhead} give surprising but reasonable results. It cannot
 be known whether they are the heads of runs, nor can it be known whether values
-immediately following them are heads of runs.  To treat NAs deterministically,
+immediately following them are heads of runs.  To treat \code{NA}s deterministically,
 convert to some definite value first.
 }
 \examples{

@@ -10,7 +10,7 @@ getTabs(file)
 }
 
 \arguments{
-  \item{file}{path for a file, typ. *.TAB}
+	\item{file}{path for a file, typically \file{*.TAB}}
 }
 \value{data.frame}
 \references{mifuns.googlecode.com}

@@ -7,27 +7,20 @@ Functions defined by MIfuns
 \description{Exhaustive list of functions (etc.) defined by MIfuns.}
 \details{
 \itemize{
-\item \link{\%nested.in\%} test whether a is nested in b
-\item \link{\%nests\%} test whether a nests b
-\item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule.
-\item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
-\item \link{NONR} run NONMEM and create diagnostic plots
-\item \link{Ops.keyed} use concise syntax to join data frames
-\item \link{PLOTR} create diagnostic plots for NONMEM runs
-\item \link{Tmax} calculate the time associated with the maximum concentration for each subject
-\item \link{Tmin} calculate the time associated with the minimum concentration for each subject
 \item \link{[.comment} subset a comment
 \item \link{[.flag} subset a flag
 \item \link{[.keyed} subset a keyed data frame
 \item \link{[.miTemporal} subset a miTemporal object
-\item \link{[<-.miTemporal} assign to a miTemporal object
 \item \link{[[.comment} select element from a comment
 \item \link{[[.flag} select element from a flag
 \item \link{[[.miTemporal} select element from a miTemporal object
+\item \link{[<-.miTemporal} assign to a miTemporal object
+\item \link{\%nested.in\%} test whether a is nested in b
+\item \link{\%nests\%} test whether a nests b
 \item \link{accept} document the acceptance of an R installation
 \item \link{acceptance} display the acceptance documentation for an R installation
 \item \link{acr} calculate accumulation ratio
-\item \link{after} test whether elements occur after some condition is TRUE
+\item \link{after} test whether elements occur after some condition is \code{TRUE}
 \item \link{aggregate.keyed} aggregate a keyed data frame
 \item \link{and.keyed} produce inner join of two keyed data frames
 \item \link{as.character.comment} convert comment to character
@@ -50,25 +43,25 @@ Functions defined by MIfuns
 \item \link{as.flag.default} convert default to flag
 \item \link{as.flag.flag} convert flag to flag
 \item \link{as.halfmatrix} generic
-\item \link{as.halfmatrix.halfmatrix} preserve halfmatrix
 \item \link{as.halfmatrix.default} convert a vector to halfmatrix
+\item \link{as.halfmatrix.halfmatrix} preserve halfmatrix
 \item \link{as.keyed} convert to keyed
 \item \link{as.keyed.data.frame} convert data frame to keyed
 \item \link{as.matrix.halfmatrix} convert a vector to a symmetric matrix
 \item \link{as.miDate} convert to miDate
-\item \link{as.miDate.miDate} convert miDate to miDate
 \item \link{as.miDate.character} convert character to miDate
+\item \link{as.miDate.Date} convert Date to miDate
 \item \link{as.miDate.dates} convert dates (chron) to miDate
 \item \link{as.miDate.miDate} convert miDate to miDate
 \item \link{as.miDate.numeric} convert numeric to miDate
 \item \link{as.miDateTime} convert to miDateTime
-\item \link{as.miDateTime.POSIXct} convert POSIXct to miDateTime
-\item \link{as.miDateTime.POSIXlt} convert POSIXlt to miDateTime
 \item \link{as.miDateTime.character} convert character to miDateTime
 \item \link{as.miDateTime.chron} convert chron to miDateTime
 \item \link{as.miDateTime.miDate} convert miDate to miDateTime
 \item \link{as.miDateTime.miDateTime} convert miDateTime to miDateTime
 \item \link{as.miDateTime.numeric} convert numeric to miDateTime
+\item \link{as.miDateTime.POSIXct} convert POSIXct to miDateTime
+\item \link{as.miDateTime.POSIXlt} convert POSIXlt to miDateTime
 \item \link{as.miTime} convert to miTime
 \item \link{as.miTime.character} convert character to miTime
 \item \link{as.miTime.miTime} convert miTime to miTime
@@ -84,14 +77,16 @@ Functions defined by MIfuns
 \item \link{as.runlog.unilog} convert unilog to runlog
 \item \link{as.unilog.lst} convert nonmem output (.lst) to unilog
 \item \link{as.unilog.pxml} convert nonmem output (.ext) to unilog
+\item \link{as.unilog.run} convert run to unilog
 \item \link{as.unilog.runlog} convert runlog to unilog
 \item \link{as.xml} convert object to XML
 \item \link{as.xml.character} convert character to XML
 \item \link{as.xml.data.frame} convert data.frame to XML
 \item \link{as.xml.default} convert arbitrary object to XML
-\item \link{at} test whether elements occur where some condition is TRUE
+\item \link{at} test whether elements occur where some condition is \code{TRUE}
 \item \link{attribute} encode an attribute for an XML open tag
 \item \link{auc} calculate area under the curve
+\item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule
 \item \link{aug} add named elements to an object
 \item \link{backtrans} backtransform cols in x, returning x
 \item \link{badAmt} generic
@@ -101,7 +96,7 @@ Functions defined by MIfuns
 \item \link{badII} generic
 \item \link{badII.nm} II is greater than 0 where ADDL is NA or 0 (unless SS > 0)
 \item \link{bakfor} impute NAs using last observation carried forward after next observation carried backward
-\item \link{before} test whether elements occur before some condition is TRUE
+\item \link{before} test whether elements occur before some condition is \code{TRUE}
 \item \link{bin} calculate bin limits for x and place each value in a bin, returning the number of values in each bin
 \item \link{bmi} calculate body mass index
 \item \link{bracket} create an XML tag
@@ -110,8 +105,9 @@ Functions defined by MIfuns
 \item \link{c.flag} combine flag
 \item \link{c.miTemporal} combine miTemporal
 \item \link{cavg} calculate average concentration
-\item \link{clear} drop regular patterns from a character vector
 \item \link{check.data} check for missing data, numeric data, ranges, etc.
+\item \link{clear} drop regular patterns from a character vector
+\item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
 \item \link{cmax} calculate maximum steady-state concentration
 \item \link{cmin} calculate minimum steady-state concentration
 \item \link{compileflag} calculate compiler flag for qsub
@@ -133,7 +129,7 @@ Functions defined by MIfuns
 \item \link{deranged.data.frame} instantiate records implied by range data
 \item \link{deranged.keyed} instantiate records implied by range data
 \item \link{diagnosticPlots} create standard diagnostic plots
-\item \link{distance} calculate the position of each element of a logical vector relative to the \eqn{n^th} TRUE element (usually, within levels of an index)
+\item \link{distance} calculate the position of each element of a logical vector relative to the \eqn{n^{th}}{n^th} \code{TRUE} element (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
 \item \link{episcript} run a script in an environment that defines the the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
@@ -145,11 +141,11 @@ Functions defined by MIfuns
 \item \link{falseDv} generic
 \item \link{falseDv.nm} DV is defined where EVID is not 0
 \item \link{filename} generate standard file name (internal)
-\item \link{first} repeat, for each element, the first element where a condition is TRUE (usually, within levels of an index)
+\item \link{first} repeat, for each element, the first element where a condition is \code{TRUE} (usually, within levels of an index)
 \item \link{fixedwidth} convert to fixed-width format
-\item \link{fixedwidth} convert a data.frame to fixed-width format
-\item \link{fixProblem} rewrite run name in control stream PROBLEM statement
+\item \link{fixedwidth.data.frame} convert a data.frame to fixed-width format
 \item \link{fixFile} rewrite run name in control stream file specifications
+\item \link{fixProblem} rewrite run name in control stream PROBLEM statement
 \item \link{forbak} impute NAs using last observation carried forward and then next observation carried backward
 \item \link{format.comment} format comment 
 \item \link{format.flag} format flag
@@ -158,9 +154,9 @@ Functions defined by MIfuns
 \item \link{format.miTime} format miTime
 \item \link{getCovs} return non-commented non-duplicated rows of a NONMEM data set (internal)
 \item \link{getCwres} return the conditional weighted residuals pertinent to a given run (internal, expects cwtab1.deriv)
+\item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)
 \item \link{getPars} return the non-duplicated (ID) rows corresponding to the specified filename (internal)
 \item \link{getTabs} return the observation rows (EVID==0) corresponding to the specified filename (internal)
-\item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)
 \item \link{groupnames} construct a single vector of group names from possibly multiple indicies to the plotting data set (internal)
 \item \link{half} generic
 \item \link{half.matrix} vectorize the lower triangular portion of a symmetric matrix
@@ -175,7 +171,7 @@ Functions defined by MIfuns
 \item \link{ke} calculate elimination constant
 \item \link{key} return the key of a keyed data frame
 \item \link{key<-} assign a key
-\item \link{last} repeat, for each element, the last element where a condition is TRUE (usually, within levels of an index)
+\item \link{last} repeat, for each element, the last element where a condition is \code{TRUE} (usually, within levels of an index)
 \item \link{latest} identify the latest of each set of variants
 \item \link{lbm} calculate lean body mass
 \item \link{left.keyed} produce left join of two keyed data frames
@@ -200,28 +196,32 @@ Functions defined by MIfuns
 \item \link{nm} give a zero-row data frame with suitable columns and column classes; i.e. a template for NMTRAN data sets
 \item \link{nm.pl} prepare commandlines for nm.pl
 \item \link{nmPlots} a list of functions that plot nm objects
+\item \link{nmVersion} extract NONMEM version specification from configuration file
+\item \link{nocb} impute NA with next observation carried backward
+\item \link{NONR} run NONMEM and create diagnostic plots
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
-\item \link{nocb} impute NA with next observation carried backward
+\item \link{nth} repeat, for each element, the \eqn{n^{th}}{n^th} element where a condition is \code{TRUE}  (usually, within levels of an index)
+\item \link{Ops.keyed} use concise syntax to join data frames
 \item \link{ord} generic
-\item \link{ord.matrix} compute the order of a symmetric matrix
 \item \link{ord.halfmatrix} compute the order of a half matrix
-\item \link{nth} repeat, for each element, the \eqn{n^th} element where a condition is TRUE  (usually, within levels of an index)
+\item \link{ord.matrix} compute the order of a symmetric matrix
 \item \link{packageCheck} load a package and run package-level examples
 \item \link{panel.bar} for each level, plot vertical (or horizontal) bars corresponding to x (y).
 \item \link{panel.covplot} plot distributions with respect to reference values; i.e. combine panel.cuts, panel.densitystrip, and panel.ref
 \item \link{panel.cuts} for each level, plot percent observations in each vertical category defined by cuts
 \item \link{panel.densitystrip} for each level, plot a filled polygon representing smoothed density of the distribution
-\item \link{panel.stratify} handle strips (levels) of data one at a time
 \item \link{panel.hist} for each level, plot a histogram
 \item \link{panel.ref} plot a reference region in a stripplot
+\item \link{panel.stratify} handle strips (levels) of data one at a time
 \item \link{parfile} extract parfile specification from a control stream
 \item \link{plot.nm} generate standard plots for an nm object using \code{\link{nmPlots}}
 \item \link{plotfilename} make a name for a diagnostic plot file
+\item \link{PLOTR} create diagnostic plots for NONMEM runs
 \item \link{plus.keyed} produce and outer join of keyed data frames
 \item \link{plus.rigged} merge an nm object with a rigged data frame
-\item \link{predoseDv} generic
 \item \link{posmat} coerce a matrix to be positive definite
+\item \link{predoseDv} generic
 \item \link{predoseDv.nm} DV is defined before the first record within SUBJ where EVID is 1
 \item \link{prev} calculate the previous element for each element of x
 \item \link{print.comment} print comment
@@ -251,10 +251,11 @@ Functions defined by MIfuns
 \item \link{riwish} generate inverse Wishart distribution
 \item \link{rlog} generate a combined run log for multiple NONMEM runs
 \item \link{runCommand} issue the system call that invokes NONMEM (internal)
+\item \link{runhead} determine whether each element is the start of a run
 \item \link{runlog} create a zero-row runlog
 \item \link{runNonmem} process a request for NONMEM invocation
-\item \link{runhead} determine whether each element is the start of a run
 \item \link{safe.call} call a function, passing only those extra arguments that the function accepts
+\item \link{scavenge} find an expression in lines of text
 \item \link{seq.miTemporal} generate miTemporal sequence
 \item \link{setCwres} append conditional weighted residuals to an appropriate file
 \item \link{shuffle} move columns in a data frame
@@ -272,13 +273,15 @@ Functions defined by MIfuns
 \item \link{tabfile} extract tabfile specification from a control stream
 \item \link{text2decimal} convert mixed text to decimal
 \item \link{tmax} calculate the time of the maximum concentration
+\item \link{Tmax} calculate the time associated with the maximum concentration for each subject
+\item \link{Tmin} calculate the time associated with the minimum concentration for each subject
 \item \link{transform.keyed} transform a keyed data frame, preserving class
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
-\item \link{unique.miTemporal} find unique elements of a temporal vector
-\item \link{unitHist} calculate univariate histogram architecture with maximum height equal to 1
-\item \link{unitDensity} calculate univariate density with maximum equal to 1
 \item \link{unilog} create a zero-row unilog
+\item \link{unique.miTemporal} find unique elements of a temporal vector
+\item \link{unitDensity} calculate univariate density with maximum equal to 1
+\item \link{unitHist} calculate univariate histogram architecture with maximum height equal to 1
 \item \link{nmVersion} extract NONMEM version specification from configuration file
 \item \link{variants} locate variants of a file in distinctive subdirectories
 \item \link{win} identify Windows platforms (internal)

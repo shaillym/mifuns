@@ -5,8 +5,8 @@
 \alias{as.xml.data.frame}
 \title{Represent an Object as XML}
 \description{
-  \code{as.xml} is generic, with a default method and methods for \code{character}
-  and \code{data.frame}.  The intent is to convert text-like objects to informal
+  \code{as.xml} is generic, with a default method and methods for character
+  and data.frame.  The intent is to convert text-like objects to informal
   XML that can be navigated with XPath expressions, e.g. using package XML.
 }
 \usage{
@@ -17,11 +17,11 @@
 \arguments{
   \item{x}{an object to convert}
   \item{tag}{an XML element name for open and close tags in which to enclose 
-  members of x; can be a vector}
-  \item{keyname}{an XML element name to hold each value of each column in x}
+  members of \code{x}; can be a vector}
+  \item{keyname}{an XML element name to hold each value of each column in \code{x}}
   \item{key}{a vector of unique identifiers to distinguish each value of each column
-  in x}
-  \item{\dots}{name/value pairs to construct attributes in the 'open' tags 
+  in \code{x}}
+  \item{\dots}{name/value pairs to construct attributes in the \sQuote{open} tags 
   (ignored for the data.frame method)}
 }
 \details{
@@ -33,14 +33,14 @@
   recycling rules apply, as for \code{paste}.
   
   The data.frame method calls the character method on each of its columns, passing
-  'keyname' and 'keys' as 'tag' and 'key', respectively.  'keys' should generally
+  \code{keyname} and \code{keys} as \code{tag} and \code{key}, respectively.  \code{keys} should generally
   be unique.  Note that the columns have no parent: supply one manually with \code{nest},
   if necessary.
 }
 \value{
 character
 }
-\references{ mifuns.googlecode.com }
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -50,5 +50,5 @@ character
 \examples{
 nest(as.xml(head(Theoph)),tag='frame')
 }
-\keyword{ manip }
+\keyword{manip}
 

@@ -16,12 +16,12 @@ indicated.
 	data = read.table(file, skip = 1, header = TRUE, check.names = FALSE), 
 	project = getwd(), 
 	rundir = filename(project, x), 
-	file = filename(rundir, x, ".ext"), 
+	file = filename(rundir, x, '.ext'), 
 	as.table = TRUE, 
 	auto.key = TRUE, 
 	layout = c(1, 4), 
-	scales = list(relation = "free"), 
-	type = "l", 
+	scales = list(relation = 'free'), 
+	type = 'l', 
 	panel = panel.superpose, 
 	panel.groups = function(
 		x, 
@@ -30,7 +30,7 @@ indicated.
 		type, 
 		...
 	){
-		if (group.number == 3) type <- "p"
+		if (group.number == 3) type <- 'p'
 		panel.xyplot(x = x, y = y, type = type, ...)
 	}, 
 	...
@@ -38,32 +38,32 @@ indicated.
 }
 \arguments{
   \item{x}{run name (number)}
-  \item{data}{a data.frame representing an .ext file}
+  \item{data}{a data.frame representing an \code{*.ext} file}
   \item{project}{parent of run directory}
   \item{rundir}{run directory}
-  \item{file}{path to .ext file}
-  \item{as.table}{passed to xyplot}
-  \item{auto.key}{passed to xyplot}
-  \item{layout}{passed to xyplot}
-  \item{scales}{passed to xyplot}
-  \item{type}{passed to xyplot}
-  \item{panel}{passed to xyplot}
-  \item{panel.groups}{passed to xyplot}
-  \item{\dots}{passed to xyplot}
+  \item{file}{path to \code{.ext} file}
+  \item{as.table}{passed to \code{xyplot}}
+  \item{auto.key}{passed to \code{xyplot}}
+  \item{layout}{passed to \code{xyplot}}
+  \item{scales}{passed to \code{xyplot}}
+  \item{type}{passed to \code{xyplot}}
+  \item{panel}{passed to \code{xyplot}}
+  \item{panel.groups}{passed to \code{xyplot}}
+  \item{\dots}{passed to \code{xyplot}}
 }
 \details{
 If \code{data} is supplied, \code{x,project,rundir,file} are irrelevant. 
-\code{data} is reshaped, and passed to xyplot with remaining arguments, 
+\code{data} is reshaped, and passed to \code{xyplot} with remaining arguments, 
 all of which may be overridden.
 }
 \value{
 a trellis object
 }
-\references{ http://mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \note{Even though \code{xyplot.ext} looks like a method, it will be more common
 to call it directly, as in the examples.}
-\seealso{ 
+\seealso{
 	\itemize{
 		\item{}{\code{\link{as.pxml.ext}}}
 	}
@@ -87,5 +87,5 @@ data <- read.table(file, skip = 1, header = TRUE, check.names = FALSE)
 close(file)
 xyplot.ext(data=data)
 }
-\keyword{ manip }
+\keyword{manip}
 

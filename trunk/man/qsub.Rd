@@ -11,16 +11,16 @@ qsub(command, ...)
 }
 
 \arguments{
-  \item{command}{}
-  \item{\dots}{}
+  \item{command}{character}
+  \item{\dots}{extra arguments}
 }
 \details{
-  This is almost a wrapper, except that it does not actually make the system() call.
-  All argument values are character.  Values are concatenated using paste(), with 
+  This is almost a wrapper, except that it does not actually make the system call.
+  All argument values are character.  Values are concatenated using \code{paste}, with 
   the usual effects if any arguments have length greater than one.  Arguments
   may be used more than once, and will be represented in the order received.
   Passing NA results in the argument instance being dropped.  Use an empty string
-  as the value for a flag that does not take a value, e.g. 'soft'. Quote the '@'
+  as the value for a flag that does not take a value, e.g. \sQuote{soft}. Quote the \sQuote{@}
   argument in backticks.
 }
 \value{character}

@@ -3,7 +3,7 @@
 \alias{as.pxml}
 \title{Convert a Param File to XML}
 \description{
-  Convert the contents of a file to XML, encoding the leading lines as a 'note'
+  Convert the contents of a file to XML, encoding the leading lines as a \sQuote{note}
   element and the following lines as a table.
 }
 \usage{
@@ -11,20 +11,20 @@ as.pxml.ext(file, lead = 1, tag = "param", ...)
 }
 \arguments{
   \item{file}{path to a parameter file}
-  \item{lead}{number of leading 'note' lines}
+  \item{lead}{number of leading \sQuote{note} lines}
   \item{tag}{name for the enclosing element}
   \item{\dots}{ignored}
 }
 \details{
-  The 'note' and 'body' are identified, and coerced using 'as.xml'.  The result
-  is nested in an element with the name specified by 'tag'.  The first column
-  of 'body' is used as the key.
+  The \sQuote{note} and \sQuote{body} are identified, and coerced using \code{as.xml}.  The result
+  is nested in an element with the name specified by \code{tag}.  The first column
+  of \sQuote{body} is used as the key.
 }
 \value{
 character
 }
-\references{ mifuns.googlecode.com }
-\author{ Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Tim Bergsma}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{as.xml}}}
@@ -50,5 +50,5 @@ pxml <- as.pxml.ext(file)
 close(file)
 pxml
 }
-\keyword{ manip }
+\keyword{manip}
 

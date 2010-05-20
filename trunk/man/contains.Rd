@@ -7,16 +7,16 @@ contains(pattern, text, ...)
 }
 \arguments{
   \item{pattern}{regular expression}
-  \item{text}{\code{character} vector}
-  \item{\dots}{extra arguments to regexpr()}
+  \item{text}{character vector}
+  \item{\dots}{extra arguments to \code{regexpr}}
 }
 \details{
-  Each element of text is tested for pattern, and returns \code{TRUE} if pattern matches.
+	Each element of \code{text} is tested for \code{pattern}, and returns \code{TRUE} if \code{pattern} matches.
 }
 \value{
-\code{logical} vector as long as \code{text}
+logical vector as long as \code{text}
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

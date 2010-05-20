@@ -3,17 +3,17 @@
 
 \title{Purge Files}
 \description{
- If dir is a directory, remove files matching the pattern.
+	If \code{dir} is a directory, remove files matching the pattern.
 }
 \usage{
-purge.files(pattern, dir = ".")
+purge.files(pattern, dir = '.')
 }
 
 \arguments{
   \item{pattern}{a regular expression}
   \item{dir}{a directory path}
 }
-\value{used for side effects.}
+\value{used for side effects}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{

@@ -1,10 +1,9 @@
 \name{getdname}
 \alias{getdname}
 
-\title{Extract the Path and File from the DATA Block in the Control Stream 
-Associated with a Filename}
+\title{Extract the Path and File from the DATA Block in the Control Stream Associated with a Filename}
 \description{
- Extracts the data path from the control stream, e.g. for use with getCovs().
+	Extracts the data path from the control stream, e.g., for use with \code{getCovs}.
 }
 \usage{
 getdname(filename)

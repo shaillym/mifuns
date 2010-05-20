@@ -10,7 +10,7 @@ setCwres(cwres, file)
 }
 
 \arguments{
-  \item{cwres}{vector of cwres values}
+  \item{cwres}{vector of conditional weighted residuals}
   \item{file}{file to append}
 }
 \value{Used for side effects}

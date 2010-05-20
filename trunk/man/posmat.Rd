@@ -21,13 +21,13 @@ matrix with only positive diagonal elements
 \value{
 matrix
 }
-\references{ http://mifuns.googlecode.com }
-\author{ Leonid Gibianski, modified by Tim Bergsma }
+\references{mifuns.googlecode.com}
+\author{Leonid Gibianski, modified by Tim Bergsma}
 
 \examples{
 posmat(matrix(c(10.00006,20.00006,-30,40),2,2))
 posmat(matrix(rep(100,4),2,2))
 }
 
-\keyword{ manip }
+\keyword{manip}
 

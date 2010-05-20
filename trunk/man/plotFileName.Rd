@@ -21,11 +21,11 @@ plotfilename(
   \item{run}{run name}
   \item{dir}{directory name}
   \item{grp}{filename modifiers, see NONR}
-  \item{onefile}{includes a counter if FALSE}
+  \item{onefile}{includes a counter if \code{FALSE}}
   \item{stem}{filename stem}
-  \item{pext}{extension, typ. pdf}
+  \item{pext}{extension, typically \sQuote{pdf}}
   \item{\dots}{ignored}
- }
+}
 \value{character}
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}

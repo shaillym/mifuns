@@ -3,8 +3,8 @@
 
 \title{Return the Conditional Weighted Residuals Pertinent to a Given Run}
 \description{
- Locates cwtab1.deriv and calls compute.cwres().  Then returns the CWRES column
- from 'cwtab1'.
+	Locates \file{cwtab1.deriv} and calls \code{compute.cwres}.  Then returns the CWRES column
+	from \file{cwtab1}.
 }
 \usage{
 getCwres(directory)

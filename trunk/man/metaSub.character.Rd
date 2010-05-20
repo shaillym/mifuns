@@ -6,17 +6,17 @@
 \alias{metaSub}
 \title{Create Replicate Text files with Systematic Substitutions}
 \description{
-	\code{metaSub()} is generic.  A method is defined for character; 
+	\code{metaSub} is generic.  A method is defined for character; 
 	a convenience wrapper is provided for passing names of text files to be 
 	read and then resampled.
 	
-	\code{metaSub()} collapses a character vector to one line of text.  
+	\code{metaSub} collapses a character vector to one line of text.  
 	The vector is replicated as many times as there are elements in \code{names}, 
 	with flexible substitution of text fragments.  If \code{out} is supplied, the 
 	replicates are saved as text files identified with \code{names}
 	and a \code{suffix}.
 	
-	\code{metaSub.filename()} will process multiple filenames, if x is as long as names. 
+	\code{metaSub.filename} will process multiple filenames, if \code{x} is as long as \code{names}. 
 }
 \usage{
 	\method{as.filename}{character}(x, ...)
@@ -34,23 +34,29 @@
 }
 
 \arguments{
-  \item{x}{Atomic character, or (second form) filename(s). Multi-element character
+  \item{x}{scalar character, or (second form) filename(s). Multi-element character
   will be collapsed to one element, with newline as the separator.}
-  \item{names}{A list of (unique) names for resulting output elements.
+
+  \item{names}{a list of (unique) names for resulting output elements.
   A vector of names will be coerced to character and to list.}
+
   \item{pattern}{a character vector of text fragments to replace, optionally
-  encoded as regular expressions (fixed==FALSE, See ?gsub, ?regex).  Can also be
-  a list. See details.}
+  encoded as regular expressions (\code{fixed==FALSE}, See \code{?gsub}, \code{?regex}).  Can also be a list. See details.}
+
   \item{replacement}{A character vector of substitutions for patterns. 
-  The wildcard "*" is available to represent the corresponding value
+  The wildcard \sQuote{*} is available to represent the corresponding value
   of \code{names}.  Can also be a list with as many elements as \code{pattern}
   (see details).  Expressions are supported (see details).}
-  \item{out}{A (path and) directory in which to write the resulting 
-  control streams.}
-  \item{suffix}{A file extension for filenames, if \code{out} is suppied.}
-  \item{fixed}{Passed to gsub: use FALSE if \code{pattern} contains 
-  regular expressions. Atomic, or same length as \code{pattern}.}
-  \item{\dots}{Extra arguments, available to expressions or passed to gsub().}
+
+  \item{out}{(path and) directory in which to write the resulting 
+  control streams}
+
+  \item{suffix}{file extension for filenames, if \code{out} is suppied}
+
+  \item{fixed}{passed to \code{gsub}: use \code{FALSE} if \code{pattern} contains 
+  regular expressions. Scalar, or same length as \code{pattern}.}
+
+  \item{\dots}{extra arguments, available to expressions or passed to \code{gsub}}
 }
 \details{
 	Typical usages are
@@ -58,12 +64,12 @@
 		metaSub(x, names, ...)
 		metaSub(as.filename(x), names, ...)
 	}
-	Replacement is performed by \code{gsub()}, so an element of \code{pattern} 
+	Replacement is performed by \code{gsub}, so an element of \code{pattern} 
 	will be replaced everywhere it occurs in a line.
 	
 	if \code{pattern} or \code{replacement} is a list, each element should 
 	be of length one, or as long as \code{names}.  In the latter case, 
-	substitutions can be specific on a per-name basis.  The wild card "*" is
+	substitutions can be specific on a per-name basis.  The wild card \sQuote{*} is
 	still available.
 	
 	It is necessary that \code{pattern} and \code{replacement} be of the 
@@ -73,23 +79,21 @@
 	
 	An expression can be specified for \code{replacement} itself, or one of 
 	its pattern-wise elements, or one of the name-wise elements of a pattern-wise
-	element.  Expressions are evaluated in an environment containing "name"
-	(same meaning as "*" above) and all other \dots arguments. This is useful
+	element.  Expressions are evaluated in an environment containing \dQuote{name}
+	(same meaning as \sQuote{*} above) and all other \dots arguments. This is useful
 	if extra arguments have a dimension indexed, at least loosely, by \code{names}.
 	The evaluated expression is treated as character, and wildcard substitution
-	is attempted. Use \code{\*} for a literal asterisk: in R: "\\*".
+	is attempted. Use \code{\*} for a literal asterisk: in R: \code{\\*}.
 	
 	NOTE:  be very careful not to have trailing commas in your lists!  An 
 	error results that is very hard to track.  e.g. \code{c(a,b,c,)}.
 }
 \value{
 	an invisible named character vector.
-	If \code{out} is supplied, Elements are written as files with corresponding
+	If \code{out} is supplied, elements are written as files with corresponding
 	names.
 }
-\note{ In previous package versions, metaSub was resample.character, etc.}
-\references{This package developed under the auspices of Metrum Institute,
-	http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -186,4 +190,4 @@ d <- metaSub(
 )
 cat(d[[2]])
 }
-\keyword{ manip }
+\keyword{manip}

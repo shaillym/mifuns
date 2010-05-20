@@ -17,7 +17,7 @@ aug(x, ...)
 \value{
 like \code{x}
 }
-\references{http://metruminstitute.org}
+\references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

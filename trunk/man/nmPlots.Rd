@@ -1,6 +1,6 @@
 \name{nmPlots}
 \alias{nmPlots}
-\title{An Extensible List of Diagnostic Plots for NM Objects }
+\title{An Extensible List of Diagnostic Plots for nm Objects}
 \description{Default diagnostics for plotting an \code{nm} object.
 \describe{
 \item{kinetics}{dose and concentration data}
@@ -12,7 +12,7 @@
 }
 \details{
 \code{plot.nm} preprocesses an \code{nm} dataset and passes it to a subset of \code{nmPlots}. 
-Extra arguments can be passed to \code{plot.nm()} to exert fine control on the end results.
+Extra arguments can be passed to \code{plot.nm} to exert fine control on the end results.
 }
 \seealso{
 	\itemize{

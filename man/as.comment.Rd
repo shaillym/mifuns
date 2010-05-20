@@ -18,7 +18,7 @@
 \description{Some conventions include the use of \sQuote{C} or \sQuote{.} as the 
 first element in a row. \sQuote{C} is typically used to identify a row to be 
 ignored \dQuote{commented-out}. Here, a comment is really a logical that should 
-never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FALSE}}).
+never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FALSE}).
 }
 
 \usage{

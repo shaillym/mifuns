@@ -21,8 +21,8 @@ used for side effects
 \references{mifuns.googlecode.com}
 \author{Tim Bergsma}
 \section{Warning}{
-	Don't \dQuote{hash} an expression that directly or indirectly calls a function being
-  debugged.  The debug output will be \sQuote(sunk) to a connection.  If you get in 
+  Don't \dQuote{hash} an expression that directly or indirectly calls a function being
+  debugged.  The debug output will be \sQuote{sunk} to a connection.  If you get in 
   this situation, recover by typing \code{sink(NULL)} until output is restored.
 }
 \seealso{

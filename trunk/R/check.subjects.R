@@ -1,4 +1,4 @@
-`check.data` <-
+`check.subjects` <-
 function(IDname,data){
    columnNames <- names(data)
    print(paste(length(data[,IDname]),"records from",length(unique(data[,IDname])),"patients"))

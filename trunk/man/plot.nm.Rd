@@ -41,6 +41,7 @@ even assigning the same column as both categorical and continuous.
 \seealso{
 	\itemize{
 		\item{}{\code{\link{nmPlots}}}
+		\item{}{\code{\link{as.nm}}}
 	}
 }
 \keyword{manip}

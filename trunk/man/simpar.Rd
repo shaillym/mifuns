@@ -27,36 +27,16 @@ simpar(
 )
 }
 \arguments{
-  \item{nsim}{
-scalar numeric specifying the number of sets to attempt
-}
-  \item{theta}{
-vector of point estimates of fixed effect parameters
-}
-  \item{covar}{
-variance-covariance matrix for fixed effect parameters
-}
-  \item{omega}{
-list of variance-covariance matrices for first level random effects
-}
-  \item{sigma}{
-list of variance-covariance matrices for second level random effects
-}
-  \item{odf}{
-vector of omega degrees of freedom, one per matrix
-}
-  \item{sdf}{
-vector of sigma degrees of freedom, one per matrix
-}
-  \item{digits}{
-number of significant digits to include in output
-}
-  \item{min}{
-lower limit for parameter estimates
-}
-  \item{max}{
-upper limit for parameter estimates
-}
+  \item{nsim}{scalar numeric specifying the number of sets to attempt}
+  \item{theta}{vector of point estimates of fixed effect parameters}
+  \item{covar}{variance-covariance matrix for fixed effect parameters}
+  \item{omega}{list of variance-covariance matrices for first level random effects}
+  \item{sigma}{list of variance-covariance matrices for second level random effects}
+  \item{odf}{vector of omega degrees of freedom, one per matrix}
+  \item{sdf}{vector of sigma degrees of freedom, one per matrix}
+  \item{digits}{number of significant digits to include in output}
+  \item{min}{lower limit for parameter estimates}
+  \item{max}{upper limit for parameter estimates}
 }
 \details{
 If \code{min} or \code{max} are non-default (see below), you may want to set \code{nsim} 
@@ -84,6 +64,7 @@ number before filtering by \code{min} and \code{max}.
 	\itemize{
 		\item{}{\code{\link{posmat}}}
 		\item{}{\code{\link{simblock}}}
+		\item{}{\code{\link{as.matrix.halfmatrix}}}
 	}
 }
 \examples{

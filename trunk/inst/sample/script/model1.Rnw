@@ -22,31 +22,31 @@ This script runs NONMEM models for the phase1 data.
 <<model>>=
 getwd()
 library(MIfuns)
-command <- '/usr/local/nm7_osxi/test/nm7_osxi.pl'
+command <- '/common/NONMEM/nm7_osx1/test/nm7_osx1.pl'
 cat.cov='SEX'
 cont.cov=c('HEIGHT','WEIGHT','AGE')
 par.list=c('CL','Q','KA','V','V2','V3')
 eta.list=paste('ETA',1:10,sep='')
 @
 \subsection{Run NONMEM.}
-Here we comment out the NONMEM run so that it is not run accidentally 
-if the file is sourced.  Run it manually.
+To force a re-run of this model, delete 1005/diagnostics.pdf.
 <<run>>=
-#NONR(
-#     run=1005,
-#     command=command,
-#     project='../nonmem',
-#     grid=TRUE,
-#     nice=TRUE,
-#     checkrunno=FALSE,
-#     cont.cov=cont.cov,
-#     cat.cov=cat.cov,
-#     par.list=par.list,
-#     eta.list=eta.list,
-#     plotfile='../nonmem/*/diagnostics.pdf',
-#     streams='../nonmem/ctl'
-#)
+if(!file.exists('../nonmem/1005/diagnostics.pdf'))NONR(
+     run=1005,
+     command=command,
+     project='../nonmem',
+     grid=TRUE,
+     nice=TRUE,
+     checkrunno=FALSE,
+     cont.cov=cont.cov,
+     cat.cov=cat.cov,
+     par.list=par.list,
+     eta.list=eta.list,
+     plotfile='../nonmem/*/diagnostics.pdf',
+     streams='../nonmem/ctl'
+)
 getwd()
+while(!file.exists('../nonmem/1005/diagnostics.pdf')){}
 @
 Covariance succeeded on model 1005.
 \section{Predictive Check}
@@ -79,16 +79,17 @@ t <- metaSub(
 \subsection{Run the simulation.}
 This run makes the predictions (simulations).
 <<sim>>=
-#NONR(
-#     run=1105,
-#     command=command,
-#     project='../nonmem',
-#     grid=TRUE,
-#     nice=TRUE,
-#     diag=FALSE,
-#     streams='../nonmem/ctl'
-#)
+if(!file.exists('../nonmem/1105/1105.ext'))NONR(
+     run=1105,
+     command=command,
+     project='../nonmem',
+     grid=TRUE,
+     nice=TRUE,
+     diag=FALSE,
+     streams='../nonmem/ctl'
+)
 getwd()
+while(!file.exists('../nonmem/1105/1105.ext')){}
 @
 \subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
@@ -101,7 +102,7 @@ records
 phase1 <- phase1[rep(1:records,500),]
 nrow(phase1)
 phase1$SIM <- rep(1:500,each=records)
-head(phase1,300)
+#head(phase1,300)
 with(phase1,DV[SIM==1 & SUBJ==12])
 with(phase1,DV[SIM==2 & SUBJ==12])
 @
@@ -392,23 +393,25 @@ t <- metaSub(
  )
 @
 \subsection{Run bootstrap models.}
-Again, model step is commented for safety.  Run manually.
+To force a re-run of bootstraps, delete log.csv.
 <<boot>>=
-#NONR(
-#     run=1:300,
-#     command=command,
-#     project='../nonmem/1005.boot/',
-#     boot=TRUE,
-#     nice=TRUE,
-#     streams='../nonmem/1005.boot/ctl'
-#)
+if(!file.exists('../nonmem/1005.boot/CombRunLog.csv'))NONR(
+     run=1:300,
+     command=command,
+     project='../nonmem/1005.boot/',
+     boot=TRUE,
+     nice=TRUE,
+     streams='../nonmem/1005.boot/ctl'
+)
 getwd()  
 @
 \subsection{Summarize bootstrap models.}
 When the bootstraps are complete, we return here and summarize. If you 
 do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 <<more>>= 
-#boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
+#boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+#wait for bootstraps to finish
+while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.ext'))))){}
 boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
@@ -539,50 +542,6 @@ print(stripplot(
 	panel=panel.covplot
 ))
 @
-Alternatively, we could use groups to collapse the continuous strips into a single band.
-<<groupcov,fig=TRUE>>=
-levels(molten$variable)
-print(stripplot(
-	factor(factor(
-		variable,
-		levels= c(
-			"WT.CL85",
-			"WT.CL75",
-			"WT.CL65",
-			"Male.CL",
-			"CL"
-		),
-		labels=c(
-			'WT.CL',
-			'WT.CL',
-			'WT.CL',
-			'Male.CL',
-			'CL'
-		))
-	)~value,
-	molten,
-	groups=factor(
-		variable,
-		levels= c(
-			"WT.CL85",
-			"WT.CL75",
-			"WT.CL65",
-			"Male.CL",
-			"CL"
-		),
-		labels=c(
-			'85 kg',
-			'75 kg',
-			'65 kg',
-			'male',
-			'CL'
-		)
-	),
-	panel=panel.covplot,
-	auto.key=TRUE,
-	alpha=0.7
-))
-@
 \subsubsection{Summarize}
 We see that clearance is estimated with good precision.  Ignoring outliers, there 
 is not much effect on clearance of being male, relative to female.  Increasing 
@@ -590,19 +549,3 @@ weight is associated with increasing clearance.  There is a 79 percent probabili
 that an 85 kg person will have at least 25 percent greater clearance than a 70 kg
 person.
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

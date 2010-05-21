@@ -24,17 +24,17 @@ This script runs NONMEM models for the phase1 data.
 > getwd()
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+[1] "/Users/timb/project/metrum-mifuns/inst/sample/script"
 \end{Soutput}
 \begin{Sinput}
 > library(MIfuns)
 \end{Sinput}
 \begin{Soutput}
-MIfuns 3.9.1 loaded
+MIfuns 4.0.4 loaded
 Installing SIGCHLD signal handler...Done.
 \end{Soutput}
 \begin{Sinput}
-> command <- '/usr/local/nm7_osxi/test/nm7_osxi.pl'
+> command <- '/common/NONMEM/nm7_osx1/test/nm7_osx1.pl'
 > cat.cov='SEX'
 > cont.cov=c('HEIGHT','WEIGHT','AGE')
 > par.list=c('CL','Q','KA','V','V2','V3')
@@ -42,29 +42,31 @@ Installing SIGCHLD signal handler...Done.
 \end{Sinput}
 \end{Schunk}
 \subsection{Run NONMEM.}
-Here we comment out the NONMEM run so that it is not run accidentally 
-if the file is sourced.  Run it manually.
+To force a re-run of this model, delete 1005/diagnostics.pdf.
 \begin{Schunk}
 \begin{Sinput}
-> #NONR(
-> #     run=1005,
-> #     command=command,
-> #     project='../nonmem',
-> #     grid=TRUE,
-> #     nice=TRUE,
-> #     checkrunno=FALSE,
-> #     cont.cov=cont.cov,
-> #     cat.cov=cat.cov,
-> #     par.list=par.list,
-> #     eta.list=eta.list,
-> #     plotfile='../nonmem/*/diagnostics.pdf',
-> #     streams='../nonmem/ctl'
-> #)
+> if(!file.exists('../nonmem/1005/diagnostics.pdf'))NONR(
++      run=1005,
++      command=command,
++      project='../nonmem',
++      grid=TRUE,
++      nice=TRUE,
++      checkrunno=FALSE,
++      cont.cov=cont.cov,
++      cat.cov=cat.cov,
++      par.list=par.list,
++      eta.list=eta.list,
++      plotfile='../nonmem/*/diagnostics.pdf',
++      streams='../nonmem/ctl'
++ )
 > getwd()
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+[1] "/Users/timb/project/metrum-mifuns/inst/sample/script"
 \end{Soutput}
+\begin{Sinput}
+> while(!file.exists('../nonmem/1005/diagnostics.pdf')){}
+\end{Sinput}
 \end{Schunk}
 Covariance succeeded on model 1005.
 \section{Predictive Check}
@@ -100,20 +102,23 @@ Covariance succeeded on model 1005.
 This run makes the predictions (simulations).
 \begin{Schunk}
 \begin{Sinput}
-> #NONR(
-> #     run=1105,
-> #     command=command,
-> #     project='../nonmem',
-> #     grid=TRUE,
-> #     nice=TRUE,
-> #     diag=FALSE,
-> #     streams='../nonmem/ctl'
-> #)
+> if(!file.exists('../nonmem/1105/1105.ext'))NONR(
++      run=1105,
++      command=command,
++      project='../nonmem',
++      grid=TRUE,
++      nice=TRUE,
++      diag=FALSE,
++      streams='../nonmem/ctl'
++ )
 > getwd()
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+[1] "/Users/timb/project/metrum-mifuns/inst/sample/script"
 \end{Soutput}
+\begin{Sinput}
+> while(!file.exists('../nonmem/1105/1105.ext')){}
+\end{Sinput}
 \end{Schunk}
 \subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
@@ -155,312 +160,7 @@ Now we fetch the results and integrate them with the other data.
 \end{Soutput}
 \begin{Sinput}
 > phase1$SIM <- rep(1:500,each=records)
-> head(phase1,300)
-\end{Sinput}
-\begin{Soutput}
-    SUBJ  TIME      DV SIM
-2      1  0.00      NA   1
-3      1  0.25   0.363   1
-4      1  0.50   0.914   1
-5      1  1.00   1.120   1
-6      1  2.00   2.280   1
-7      1  3.00   1.630   1
-8      1  4.00   2.040   1
-9      1  6.00   1.610   1
-10     1  8.00   2.730   1
-11     1 12.00   3.090   1
-12     1 18.00   2.590   1
-13     1 24.00   1.470   1
-14     1 48.00   0.974   1
-15     1 72.00   0.892   1
-17     2  0.00      NA   1
-18     2  0.25   1.550   1
-19     2  0.50   3.510   1
-20     2  1.00  11.400   1
-21     2  2.00  19.100   1
-22     2  3.00  13.300   1
-23     2  4.00  19.100   1
-24     2  6.00  14.100   1
-25     2  8.00   6.820   1
-26     2 12.00   7.290   1
-27     2 18.00   8.410   1
-28     2 24.00   4.370   1
-29     2 48.00   1.900   1
-30     2 72.00   0.933   1
-32     3  0.00      NA   1
-33     3  0.25   4.790   1
-34     3  0.50  13.100   1
-35     3  1.00  15.000   1
-36     3  2.00  22.400   1
-37     3  3.00  22.000   1
-38     3  4.00  30.300   1
-39     3  6.00  23.700   1
-40     3  8.00  15.600   1
-41     3 12.00  11.500   1
-42     3 18.00   8.000   1
-43     3 24.00   4.750   1
-44     3 48.00   1.800   1
-45     3 72.00   0.523   1
-47     4  0.00      NA   1
-48     4  0.25  38.300   1
-49     4  0.50  61.400   1
-50     4  1.00  76.000   1
-51     4  2.00 148.000   1
-52     4  3.00 200.000   1
-53     4  4.00 142.000   1
-54     4  6.00 142.000   1
-55     4  8.00 211.000   1
-56     4 12.00 136.000   1
-57     4 18.00  88.400   1
-58     4 24.00  79.300   1
-59     4 48.00  24.300   1
-60     4 72.00  19.000   1
-62     5  0.00      NA   1
-63     5  0.25  56.200   1
-64     5  0.50  86.500   1
-65     5  1.00 119.000   1
-66     5  2.00 150.000   1
-67     5  3.00 233.000   1
-68     5  4.00 195.000   1
-69     5  6.00 181.000   1
-70     5  8.00 328.000   1
-71     5 12.00 133.000   1
-72     5 18.00 105.000   1
-73     5 24.00  66.400   1
-74     5 48.00  25.800   1
-75     5 72.00  16.000   1
-77     6  0.00      NA   1
-78     6  0.25   0.818   1
-79     6  0.50   1.190   1
-80     6  1.00   2.470   1
-81     6  2.00   3.540   1
-82     6  3.00   3.200   1
-83     6  4.00   0.438   1
-84     6  6.00   1.970   1
-85     6  8.00   2.340   1
-86     6 12.00   4.080   1
-87     6 18.00   1.590   1
-88     6 24.00   2.400   1
-89     6 48.00   0.455   1
-90     6 72.00   0.676   1
-92     7  0.00      NA   1
-93     7  0.25   1.660   1
-94     7  0.50   2.020   1
-95     7  1.00   5.850   1
-96     7  2.00   8.440   1
-97     7  3.00   9.810   1
-98     7  4.00   8.750   1
-99     7  6.00   8.150   1
-100    7  8.00   7.890   1
-101    7 12.00   7.780   1
-102    7 18.00   6.480   1
-103    7 24.00   3.690   1
-104    7 48.00   0.890   1
-107    8  0.00      NA   1
-108    8  0.25   5.190   1
-109    8  0.50  11.600   1
-110    8  1.00  18.000   1
-111    8  2.00  33.800   1
-112    8  3.00  43.600   1
-113    8  4.00  32.900   1
-114    8  6.00  21.500   1
-115    8  8.00  29.100   1
-116    8 12.00  27.600   1
-117    8 18.00  20.600   1
-118    8 24.00  12.000   1
-119    8 48.00   4.720   1
-120    8 72.00   2.470   1
-122    9  0.00      NA   1
-123    9  0.25  14.000   1
-124    9  0.50  31.100   1
-125    9  1.00  67.000   1
-126    9  2.00  66.200   1
-127    9  3.00  75.400   1
-128    9  4.00  79.800   1
-129    9  6.00  97.200   1
-130    9  8.00  70.900   1
-131    9 12.00  40.800   1
-132    9 18.00  37.000   1
-133    9 24.00  16.800   1
-134    9 48.00   8.130   1
-135    9 72.00   2.870   1
-137   10  0.00      NA   1
-138   10  0.25  62.400   1
-139   10  0.50  83.200   1
-140   10  1.00 156.000   1
-141   10  2.00 197.000   1
-142   10  3.00 294.000   1
-143   10  4.00 209.000   1
-144   10  6.00 237.000   1
-145   10  8.00 139.000   1
-146   10 12.00 104.000   1
-147   10 18.00  69.800   1
-148   10 24.00  73.600   1
-149   10 48.00  17.400   1
-150   10 72.00   5.590   1
-152   11  0.00      NA   1
-155   11  1.00   1.180   1
-156   11  2.00   3.000   1
-157   11  3.00   2.450   1
-158   11  4.00   2.210   1
-159   11  6.00   1.690   1
-160   11  8.00   1.010   1
-161   11 12.00   1.080   1
-162   11 18.00   0.569   1
-164   11 48.00   0.307   1
-165   11 72.00   0.449   1
-167   12  0.00      NA   1
-168   12  0.25   2.260   1
-169   12  0.50   2.830   1
-170   12  1.00   8.730   1
-171   12  2.00  19.300   1
-172   12  3.00  15.200   1
-173   12  4.00  16.200   1
-174   12  6.00   8.830   1
-175   12  8.00  12.900   1
-176   12 12.00  12.700   1
-177   12 18.00   7.140   1
-178   12 24.00   5.740   1
-179   12 48.00   1.980   1
-180   12 72.00   0.791   1
-182   13  0.00      NA   1
-183   13  0.25   6.170   1
-184   13  0.50   5.190   1
-185   13  1.00  15.500   1
-186   13  2.00  15.600   1
-187   13  3.00  21.100   1
-188   13  4.00  30.600   1
-189   13  6.00  25.200   1
-190   13  8.00  11.900   1
-191   13 12.00  13.300   1
-192   13 18.00  11.800   1
-193   13 24.00   8.070   1
-194   13 48.00   3.460   1
-195   13 72.00   2.230   1
-197   14  0.00      NA   1
-198   14  0.25  27.400   1
-199   14  0.50  29.900   1
-200   14  1.00  74.200   1
-201   14  2.00  82.800   1
-202   14  3.00 102.000   1
-203   14  4.00  67.600   1
-204   14  6.00  50.700   1
-205   14  8.00  45.700   1
-206   14 12.00  32.500   1
-207   14 18.00  27.500   1
-208   14 24.00  11.200   1
-209   14 48.00   5.900   1
-210   14 72.00   2.060   1
-212   15  0.00      NA   1
-213   15  0.25  47.500   1
-214   15  0.50  95.900   1
-215   15  1.00 192.000   1
-216   15  2.00 380.000   1
-217   15  3.00 412.000   1
-218   15  4.00 340.000   1
-219   15  6.00 281.000   1
-220   15  8.00 419.000   1
-221   15 12.00 271.000   1
-222   15 18.00 167.000   1
-223   15 24.00 127.000   1
-224   15 48.00  49.600   1
-225   15 72.00  16.900   1
-227   16  0.00      NA   1
-228   16  0.25   1.020   1
-230   16  1.00   0.683   1
-231   16  2.00   1.730   1
-232   16  3.00   2.320   1
-233   16  4.00   2.530   1
-234   16  6.00   2.280   1
-235   16  8.00   0.565   1
-236   16 12.00   0.704   1
-237   16 18.00   0.644   1
-239   16 48.00   1.030   1
-242   17  0.00      NA   1
-243   17  0.25   2.100   1
-244   17  0.50   5.400   1
-245   17  1.00  10.600   1
-246   17  2.00  17.100   1
-247   17  3.00  14.000   1
-248   17  4.00  25.200   1
-249   17  6.00  22.000   1
-250   17  8.00  15.600   1
-251   17 12.00  11.800   1
-252   17 18.00   6.020   1
-253   17 24.00   4.630   1
-254   17 48.00   2.770   1
-255   17 72.00   0.693   1
-257   18  0.00      NA   1
-258   18  0.25   2.470   1
-259   18  0.50   8.210   1
-260   18  1.00  13.300   1
-261   18  2.00  15.000   1
-262   18  3.00  29.100   1
-263   18  4.00  22.600   1
-264   18  6.00  23.100   1
-265   18  8.00  16.100   1
-266   18 12.00   9.970   1
-267   18 18.00   7.750   1
-268   18 24.00   6.210   1
-269   18 48.00   2.160   1
-270   18 72.00   1.320   1
-272   19  0.00      NA   1
-273   19  0.25  15.300   1
-274   19  0.50  35.200   1
-275   19  1.00  88.400   1
-276   19  2.00 129.000   1
-277   19  3.00 137.000   1
-278   19  4.00 123.000   1
-279   19  6.00 129.000   1
-280   19  8.00  83.700   1
-281   19 12.00  77.500   1
-282   19 18.00  70.100   1
-283   19 24.00  35.200   1
-284   19 48.00   8.860   1
-285   19 72.00   4.060   1
-287   20  0.00      NA   1
-288   20  0.25  26.200   1
-289   20  0.50  70.700   1
-290   20  1.00 111.000   1
-291   20  2.00 119.000   1
-292   20  3.00 156.000   1
-293   20  4.00 117.000   1
-294   20  6.00 162.000   1
-295   20  8.00 169.000   1
-296   20 12.00  81.400   1
-297   20 18.00  82.000   1
-298   20 24.00  52.900   1
-299   20 48.00  17.100   1
-300   20 72.00   5.440   1
-302   21  0.00      NA   1
-303   21  0.25   0.841   1
-304   21  0.50   3.530   1
-305   21  1.00   5.630   1
-306   21  2.00   4.350   1
-307   21  3.00   8.570   1
-308   21  4.00   6.260   1
-309   21  6.00   6.810   1
-310   21  8.00   5.150   1
-311   21 12.00   4.770   1
-312   21 18.00   3.950   1
-313   21 24.00   4.260   1
-314   21 48.00   0.933   1
-315   21 72.00   0.404   1
-317   22  0.00      NA   1
-318   22  0.25   6.700   1
-319   22  0.50  10.900   1
-320   22  1.00  19.400   1
-321   22  2.00  25.500   1
-322   22  3.00  34.400   1
-323   22  4.00  27.100   1
-324   22  6.00  23.400   1
-325   22  8.00  17.600   1
-326   22 12.00  14.400   1
-327   22 18.00   6.130   1
-328   22 24.00   6.660   1
-329   22 48.00   1.360   1
-\end{Soutput}
-\begin{Sinput}
+> #head(phase1,300)
 > with(phase1,DV[SIM==1 & SUBJ==12])
 \end{Sinput}
 \begin{Soutput}
@@ -922,7 +622,7 @@ Here is one option.
 > getwd()
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+[1] "/Users/timb/project/metrum-mifuns/inst/sample/script"
 \end{Soutput}
 \begin{Sinput}
 > dir.create('../nonmem/1005.boot')
@@ -969,21 +669,21 @@ Here is one option.
 \end{Sinput}
 \end{Schunk}
 \subsection{Run bootstrap models.}
-Again, model step is commented for safety.  Run manually.
+To force a re-run of bootstraps, delete log.csv.
 \begin{Schunk}
 \begin{Sinput}
-> #NONR(
-> #     run=1:300,
-> #     command=command,
-> #     project='../nonmem/1005.boot/',
-> #     boot=TRUE,
-> #     nice=TRUE,
-> #     streams='../nonmem/1005.boot/ctl'
-> #)
+> if(!file.exists('../nonmem/1005.boot/CombRunLog.csv'))NONR(
++      run=1:300,
++      command=command,
++      project='../nonmem/1005.boot/',
++      boot=TRUE,
++      nice=TRUE,
++      streams='../nonmem/1005.boot/ctl'
++ )
 > getwd()  
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/project/metrum-mifuns/inst/mi210/script"
+[1] "/Users/timb/project/metrum-mifuns/inst/sample/script"
 \end{Soutput}
 \end{Schunk}
 \subsection{Summarize bootstrap models.}
@@ -991,7 +691,9 @@ When the bootstraps are complete, we return here and summarize. If you
 do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 \begin{Schunk}
 \begin{Sinput}
-> #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE) 
+> #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+> #wait for bootstraps to finish
+> while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.ext'))))){}
 > boot <- rlog(
 + 	run=1:300,
 + 	project='../nonmem/1005.boot',
@@ -1410,58 +1112,6 @@ of strips.
 \end{Sinput}
 \end{Schunk}
 \includegraphics{model1-covplot}
-Alternatively, we could use groups to collapse the continuous strips into a single band.
-\begin{Schunk}
-\begin{Sinput}
-> levels(molten$variable)
-\end{Sinput}
-\begin{Soutput}
-[1] "CL"      "Male.CL" "WT.CL65" "WT.CL75" "WT.CL85"
-\end{Soutput}
-\begin{Sinput}
-> print(stripplot(
-+ 	factor(factor(
-+ 		variable,
-+ 		levels= c(
-+ 			"WT.CL85",
-+ 			"WT.CL75",
-+ 			"WT.CL65",
-+ 			"Male.CL",
-+ 			"CL"
-+ 		),
-+ 		labels=c(
-+ 			'WT.CL',
-+ 			'WT.CL',
-+ 			'WT.CL',
-+ 			'Male.CL',
-+ 			'CL'
-+ 		))
-+ 	)~value,
-+ 	molten,
-+ 	groups=factor(
-+ 		variable,
-+ 		levels= c(
-+ 			"WT.CL85",
-+ 			"WT.CL75",
-+ 			"WT.CL65",
-+ 			"Male.CL",
-+ 			"CL"
-+ 		),
-+ 		labels=c(
-+ 			'85 kg',
-+ 			'75 kg',
-+ 			'65 kg',
-+ 			'male',
-+ 			'CL'
-+ 		)
-+ 	),
-+ 	panel=panel.covplot,
-+ 	auto.key=TRUE,
-+ 	alpha=0.7
-+ ))
-\end{Sinput}
-\end{Schunk}
-\includegraphics{model1-groupcov}
 \subsubsection{Summarize}
 We see that clearance is estimated with good precision.  Ignoring outliers, there 
 is not much effect on clearance of being male, relative to female.  Increasing 
@@ -1469,19 +1119,3 @@ weight is associated with increasing clearance.  There is a 79 percent probabili
 that an 85 kg person will have at least 25 percent greater clearance than a 70 kg
 person.
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

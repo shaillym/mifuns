@@ -281,9 +281,11 @@ dataSynthesis <- function(
 ){
     #cleanup arguments
     force(datfile)
+    if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
+    if (!file.exists(ctlfile)) stop(paste(ctlfile,'does not exist.'))
+    ctlfile <- readLines(ctlfile)#switch from file name to file content
     tabfile <- tabfile(ctlfile,dir=rundir,...)
     parfile <- parfile(ctlfile,dir=rundir,...)
-    if (!file.exists(outfile)) stop(paste(outfile,'does not exist.'))
     if (!file.exists(tabfile)) stop(paste(tabfile,'does not exist.'))
     if (!file.exists(parfile)) stop(paste(parfile,'does not exist.'))
 

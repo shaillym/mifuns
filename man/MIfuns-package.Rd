@@ -2,7 +2,7 @@
 \alias{MIfuns-package}
 \alias{MIfuns}
 \docType{package}
-\title{Pharmacometric Tools for Data Preparation, Analysis, Simulation, and Reporting}
+\title{Pharmacometric Tools for Data Preparation, Modeling, Simulation, and Reporting}
 \description{
 This package includes pharmacometric tools for common data preparation tasks, stratified
 bootstrap resampling of data sets, NONMEM control stream
@@ -13,6 +13,8 @@ parameter distributions, reporting of output tables, and creation of
 detailed analysis logs.
 }
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item \link[=helpPrepare]{prepare or manipulate data}
@@ -28,15 +30,12 @@ I want to ....
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
 Version: \tab 4.0.4\cr
-Date: \tab 2010-05-15\cr
+Date: \tab 2010-05-21\cr
 License: \tab GPL\cr
 }
 }
   
-  \author{
-    Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and
-    others). Maintainer: Tim Bergsma <timb@metrumrg.com>
- }
+  \author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, Leonid Gibianski, others). Maintainer: Tim Bergsma <timb@metrumrg.com>}
   
-  \references{mifuns.googlecode.com}
+  \references{http://mifuns.googlecode.com}
   \keyword{manip}

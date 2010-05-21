@@ -11,7 +11,7 @@
 \description{
 These functions calculate steady-state properties from the parameters of a 
 one-compartment pharmacokinetic model, assuming all doses occur in the post-
-distribution phase (tau >>> tmax).
+distribution phase (tau >> tmax).
 }
 \usage{
 acr(cl, v, tau, ...)
@@ -33,8 +33,8 @@ auc(cl, dose, ...)
   \item{\dots}{other arguments, ignored}
 }
 \details{
-	\code{acr} calculates accumulation ratio (unitless, called by \code{css}).
-	\code{ke} calculates the elimination constant (\eqn{h^{-1}}{h^-1}, called by \code{css}).
+\code{acr} calculates accumulation ratio (unitless, called by \code{css}).
+\code{ke} calculates the elimination constant (\eqn{h^{-1}}{h^-1}, called by \code{css}).
 \code{css} calculates steady-state compartment concentration (dose units per L) 
 at a given time.  \code{cavg} calculates average concentration over dosing interval.
 \code{cmin} and \code{cmax} calculate minimum and maximum steady-state concentrations; they

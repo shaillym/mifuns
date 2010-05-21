@@ -6,7 +6,7 @@
   \code{dv} using the trapezoidal rule. 
  }
 \usage{
-AUC(data, time = "TIME", id = "ID", dv = "DV")
+AUC(data, time = 'TIME', id = 'ID', dv = 'DV')
 }
 \arguments{
   \item{data}{data.frame containing the data to use for the AUC calculation}
@@ -20,6 +20,6 @@ AUC(data, time = "TIME", id = "ID", dv = "DV")
 \value{
   One area under the dv-time curve is returned for each subject.
 }
-\references{mifuns.googlecode.com}
-\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\references{\url{http://mifuns.googlecode.com}}
+\author{Leonid Gibianski}
 \keyword{manip}

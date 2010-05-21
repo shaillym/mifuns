@@ -1,9 +1,11 @@
 \name{helpStrategic}
 \alias{helpStrategic}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Strategic Data Manipulation}
+\title{MIfuns: Strategic Data Manipulation}
 \description{Tools for strategic data manipulation.}
 \details{
+\link[=MIfuns]{MIfuns} > \link[=helpPrepare]{Data}
+
 I want to ....
 \itemize{
 \item \link[=reapply]{Apply} a function across cells of an indexed vector, giving an identically-indexed result

@@ -1,9 +1,11 @@
 \name{helpReport}
 \alias{helpReport}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns}: Reporting}
+\title{MIfuns: Reporting}
 \description{Tools for summarizing and reporting pharmacometric analyses.}
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item \link[=lookup]{Lookup} some other form of parameter names

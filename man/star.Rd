@@ -14,7 +14,7 @@ star(x, y)
   \item{y}{character}
 }
 \value{character}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

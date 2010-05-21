@@ -83,7 +83,7 @@ runNonmem(
   \item{\dots}{extra arguments for other functions}
 }
 \value{used for side effects}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

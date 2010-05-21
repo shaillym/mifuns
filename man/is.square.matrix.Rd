@@ -1,9 +1,7 @@
 \name{is.square.matrix}
 \alias{is.square.matrix}
 \alias{is.square}
-\title{
-Test Whether a Matrix is Square
-}
+\title{Test Whether a Matrix is Square}
 \description{
 A matrix is square if its dimensions are equal.
 }
@@ -21,7 +19,7 @@ extra arguments, ignored
 \value{
 logical
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\code{\link{ord.matrix}}, 

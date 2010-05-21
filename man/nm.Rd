@@ -9,11 +9,11 @@
 \title{Create and Manipulate nm Objects}
 \description{
 Objects of class \dfn{nm} are intended to support analysis using the software
-NONMEM ((c), Icon Development Solutions). \code{nm()} gives a zero-row data.frame with
+NONMEM ((c), Icon Development Solutions). \code{nm} gives a zero-row data.frame with
 suitable columns and column classes (essentially, a template for dataset construction).  
 \code{as.nm} and \code{as.nm.data.frame} construct an
 nm object from an existing object.  The read and write methods are wrappers
-for \code{.csv} equivalents.  \code{merge.nm} coerces its result using \code{as.nm}, guaranteeing
+for \file{.csv} equivalents.  \code{merge.nm} coerces its result using \code{as.nm}, guaranteeing
 a consistent left hand object when using \code{Ops.keyed}.
 }
 \usage{
@@ -21,7 +21,7 @@ nm()
 \method{as.nm}{data.frame}(x, ...)
 \method{merge}{nm}(x, y, ...)
 read.nm(x)
-write.nm(x, file, na = ".", row.names = FALSE, quote = FALSE, ...)
+write.nm(x, file, na = '.', row.names = FALSE, quote = FALSE, ...)
 }
 \arguments{
   \item{x}{data.frame or nm}
@@ -68,15 +68,15 @@ alone enforces all qualities of class nm.
 \code{write.nm} is used for side effects. Others return an object with class 
 \code{c('nm','keyed','data.frame')}.
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \note{
-In the examples below, note that assembly chains beginning with \code{nm()} will 
-have class \code{nm} for every sub-result.  This requires more evaluations of \code{as.nm()}
+In the examples below, note that assembly chains beginning with \code{nm} will 
+have class \code{nm} for every sub-result.  This requires more evaluations of \code{as.nm}
 but is useful if later operations depend on imputed or calculated variables.
-Note, for example, that \code{-.moot()} only makes sense if the left operand already
-resolves to class \code{nm}, since currently \code{moot.nm()} is the only method defined for
-generic \code{moot()}.
+Note, for example, that \code{-.moot} only makes sense if the left operand already
+resolves to class \code{nm}, since currently \code{moot.nm} is the only method defined for
+generic \code{moot}.
 }
 \seealso{
 	\itemize{

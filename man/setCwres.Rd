@@ -14,7 +14,7 @@ setCwres(cwres, file)
   \item{file}{file to append}
 }
 \value{Used for side effects}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

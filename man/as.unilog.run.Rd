@@ -24,7 +24,7 @@ as.unilog.run(
   \item{run}{name of the NONMEM run, typically integer}
   \item{outfile}{path for the NONMEM output file, typically \file{run.lst}}
   \item{extfile}{path for the NONMEM estimates, by default \file{run.ext}}
-  \item{tool}{currently 'nm7'}
+  \item{tool}{currently \sQuote{nm7}}
   \item{\dots}{passed to other functions}
 }
 \details{
@@ -37,7 +37,7 @@ as.unilog.run(
 \value{
   data.frame with columns \emph{tool, run, parameter, moment, value}.
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

@@ -1,9 +1,11 @@
 \name{helpDataFrame}
 \alias{helpDataFrame}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Working with Data Frames}
+\title{MIfuns: Working with Data Frames}
 \description{Tools for processing data.frames.}
 \details{
+\link[=MIfuns]{MIfuns} > \link[=helpPrepare]{Data}
+
 I want to ....
 \itemize{
 \item \link[=shuffle]{Move} columns in a data frame

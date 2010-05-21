@@ -96,7 +96,7 @@ as.miDateTime(x, ...)
   \item{as.miDate}{object with class \code{c('miDate','miTemporal','numeric')}}
   \item{as.miDateTime}{object with class \code{c('miDateTime','miTemporal','numeric')}}
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

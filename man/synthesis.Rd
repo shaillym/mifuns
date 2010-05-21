@@ -21,7 +21,7 @@ synthesis(x, key = character(0), frames, ...)
   duplicate rows.
 }
 \value{data.frame}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

@@ -12,8 +12,8 @@
   stream.
 }
 \usage{
-lookup(    x, within, by = "name", as = NULL, type = "parameter", ...)
-lookup.one(x, within, by = "name", as = NULL, type = "parameter", ...)
+lookup(    x, within, by = 'name', as = NULL, type = 'parameter', ...)
+lookup.one(x, within, by = 'name', as = NULL, type = 'parameter', ...)
 ctl2xml(   x, ...)
 clear(     x, drop = NULL, ...)
 }
@@ -25,7 +25,7 @@ clear(     x, drop = NULL, ...)
   value of the element (if any) is returned.}
   \item{type}{the element type to seek in \sQuote{within}}
   \item{\dots}{passed to other functions}
-  \item{drop}{for clear(): a vector of patterns to be replaced sequentially with
+  \item{drop}{for \code{clear}: a vector of patterns to be replaced sequentially with
   \code{''} (nothing)}
 }
 \details{
@@ -56,7 +56,7 @@ clear(     x, drop = NULL, ...)
 All these functions return character.  \code{lookup} returns a vector of names 
 corresponding to x, but having some other form (representing some other attribute).
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \examples{
 codes <- c(

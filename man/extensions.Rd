@@ -17,10 +17,6 @@ These are special preparations of nm objects or their sources.  Proxy methods
 for \code{Ops.keyed} are techniques for dynamic preparation.
 }
 \usage{
-%moot(x, ...)
-%rig(x, ...)
-%deranged(x, ...)
-
 \method{moot}{nm}(x, scope = x$EVID == 2, disregard = c('TIME', 'DATETIME', 'DATE', 'TAFD', 'TAD','HOUR'), ...)
 \method{rig}{nm}(x, n = 50, dateTime = FALSE, noDups = FALSE, ...)
 \method{deranged}{keyed}(x, ...)
@@ -95,7 +91,7 @@ timecourse (i.e., \sQuote{rigging}). \code{as.rigged} returns a list of class \c
 \code{deranged} returns keyed data.frame.
 
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

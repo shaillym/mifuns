@@ -1,6 +1,6 @@
 \name{accept}
 \alias{accept}
-\title{Document acceptance of an R installation}
+\title{Document Acceptance of an R Installation}
 \description{
   Execution of \code{accept} is a procedural act pertininent to installation qualification.
   The function logs an act of acceptance of the current installation, noting the 
@@ -42,14 +42,14 @@ accept(
   if it does.  In addition to the acceptor's login and the time, names and 
   versions of any contingent packages are stored.
   
-  If installMissing is \code{TRUE}, an attempt will be made to install packages not in
-  the default library (\file{.Library}), before loading is attempted.
+  If \code{installMissing} is \code{TRUE}, an attempt will be made to install packages not in
+  the default library (\code{.Library}), before loading is attempted.
 }
 \value{
   an invisible named vector of version identifiers, where the names are package
   names.
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

@@ -2,9 +2,7 @@
 \alias{simpar}
 \alias{CreateParametersForSimulation}
 \alias{TruncateParametersForSimulation}
-\title{
-Create Parameters for Simulation with Uncertainty
-}
+\title{Create Parameters for Simulation with Uncertainty}
 \description{
 Given the parameter estimates of a mixed effect model, this function generates
 sets of parameters for simulation.  Each set takes into account the relevant
@@ -40,7 +38,7 @@ simpar(
 }
 \details{
 If \code{min} or \code{max} are non-default (see below), you may want to set \code{nsim} 
-marginally higher allow for dropped sets.
+marginally higher to allow for dropped sets.
 
 \code{covar} is coerced to matrix using \code{as.matrix}.
 

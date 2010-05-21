@@ -1,7 +1,7 @@
 \name{backtrans}
 \alias{backtrans}
 
-\title{Back-transform Columns in a Data.frame}
+\title{Back-transform Columns in a Data Frame}
 \description{
  Exponentiate presumably log-transformed columns in a data.frame.
 }

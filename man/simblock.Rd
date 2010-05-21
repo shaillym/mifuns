@@ -1,6 +1,6 @@
 \name{simblock}
 \alias{simblock}
-\title{Generate random effect deviates for simulation}
+\title{Generate Random Effect Deviates for Simulation}
 \description{
   Generate random effect values given the number of simulations, degrees of freedom, and
   a variance-covariance matrix (block).
@@ -20,8 +20,8 @@ simblock(n, df, cov)
  matrix, with one row per simulation and one column per element in the corresponding
 triangular version of \code{cov}. 
 }
-\references{mifuns.googlecode.com}
-\author{Developed by Metrum Institute (Leonid Gibianski, Bill Knebel, Tim Bergsma).}
+\references{\url{http://mifuns.googlecode.com}}
+\author{written by Leonid Gibiansky; modified by Tim Bergsma.}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{simpar}}}

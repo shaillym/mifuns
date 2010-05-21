@@ -7,7 +7,7 @@
 }
 \usage{
 rlog(
-  	run, 
+	run, 
 	boot = FALSE, 
 	project = getwd(), 
 	append = TRUE,
@@ -47,8 +47,8 @@ rlog(
   Combined runlog is returned invisibly in the unilog format.  Side effect: if
   \code{file} is specified, runlog format is written to disk.
 }
-\references{mifuns.googlecode.com}
-\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\references{\url{http://mifuns.googlecode.com}}
+\author{written by Bill Knebel; modified by Tim Bergsma.}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{as.unilog.run}}}

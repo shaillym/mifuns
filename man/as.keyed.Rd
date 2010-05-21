@@ -23,7 +23,6 @@ take advantage of this information.
 \usage{
 \method{[}{keyed}(x, ...)
 \method{aggregate}{keyed}(x, by=x[,setdiff(key(x),across),drop=FALSE], FUN, across=character(0), ...)
-%as.keyed(x, ...)
 \method{as.keyed}{data.frame}(x, key, ...)
 dupKeys(x, ...)
 key(x, ...)
@@ -34,7 +33,6 @@ naKeys(x, ...)
 \method{sort}{keyed}(x, decreasing = FALSE, ...)
 \method{summary}{keyed}(object, ...)
 \method{transform}{keyed}(`_data`, ...)
-%uniKey(x, ...)
 \method{uniKey}{keyed}(x,key=NULL,...)
 }
 \arguments{
@@ -96,7 +94,7 @@ Most functions and methods documented here return objects with class
 \code{naKeys} and \code{dupKeys} return logical vectors as long as \code{nrow(x)}.
 
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

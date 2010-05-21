@@ -27,11 +27,11 @@ crcl(age, wt, male, scr)
 \details{
 	Units of return values:
 	\describe{
-		\item{bmi}{kg/m\^2}
-		\item{bsa}{m\^2}
+		\item{bmi}{\eqn{kg/m^2}}
+		\item{bsa}{\eqn{m^2}}
 		\item{lbm}{kg}
 		\item{ibw}{kg}
-		\item{crcl}{mL/min}
+		\item{crcl}{\eqn{mL/min}}
 	}
 }
 \value{

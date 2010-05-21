@@ -22,7 +22,6 @@ imputation as necessary.
 \usage{
 \method{[}{flag}(x, ..., drop = TRUE)
 \method{[[}{flag}(x, ..., drop = TRUE)
-%as.flag(x, ...)
 f(x, ...)
 \method{as.character}{flag}(x, ...)
 \method{as.data.frame}{flag}(x, row.names = NULL, optional = FALSE, ...)
@@ -47,10 +46,10 @@ f(x, ...)
 Typically a flag takes on the values of zero and 1, and is used
 to indicate the presence of a particular condition.  Other functions
 are welcome to impute \code{NA}s as 0. Methods are defined for common classes.  
-\code{f()} is an alias to \code{as.flag()}.
+\code{f} is an alias to \code{as.flag}.
 }
 \value{flag}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \examples{
 hide(Theoph,where=Theoph$conc < 1,why='BLQ')

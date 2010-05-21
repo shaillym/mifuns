@@ -15,7 +15,7 @@ filename(dir, run = NULL, ext = NULL)
   \item{ext}{file extension}
 }
 \value{character}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

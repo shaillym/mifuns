@@ -27,7 +27,7 @@
 		pattern = NULL,
 		replacement = NULL, 
 		out = NULL, 
-		suffix = ".txt", 
+		suffix = '.txt', 
 		fixed = TRUE, 
 		...
 	)
@@ -83,7 +83,7 @@
 	(same meaning as \sQuote{*} above) and all other \dots arguments. This is useful
 	if extra arguments have a dimension indexed, at least loosely, by \code{names}.
 	The evaluated expression is treated as character, and wildcard substitution
-	is attempted. Use \code{\*} for a literal asterisk: in R: \code{\\*}.
+	is attempted. Use \code{\*} for a literal asterisk: in R: \code{\\\\*}.
 	
 	NOTE:  be very careful not to have trailing commas in your lists!  An 
 	error results that is very hard to track.  e.g. \code{c(a,b,c,)}.
@@ -93,7 +93,7 @@
 	If \code{out} is supplied, elements are written as files with corresponding
 	names.
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -108,50 +108,50 @@ e <- metaSub(
 	ctl,
 	names=1:3,
 	pattern=c(
-		"PROBLEM 8",
-		"data8.csv",
-		"8.MSF"
+		'PROBLEM 8',
+		'data8.csv',
+		'8.MSF'
 	),
 	replacement=c(
-		"PROBLEM *",
-		"*.csv",
-		"*.MSF"
+		'PROBLEM *',
+		'*.csv',
+		'*.MSF'
 	),
-	out=".",
-	suffix=".ctl"
+	out='.',
+	suffix='.ctl'
 )
 t <- metaSub(
 	ctl,
-	names=c("test1","test2"),
-	pattern=c("PROBLEM 8","data8.csv","METH=0"),
-	replacement=c("PROBLEM *","*.csv","METH=1"),
+	names=c('test1','test2'),
+	pattern=c('PROBLEM 8','data8.csv','METH=0'),
+	replacement=c('PROBLEM *','*.csv','METH=1'),
 )
 
 t <- metaSub(
 	ctl,
-	names=c("test1","test2"),
+	names=c('test1','test2'),
 	pattern=c(
-		"PROBLEM 8",
-		"data8.csv",
-		"METH=0"
+		'PROBLEM 8',
+		'data8.csv',
+		'METH=0'
 	),
 	replacement=list(
-		"PROBLEM *",
-		"*.csv",
-		c("METH=1","METH=2")
+		'PROBLEM *',
+		'*.csv',
+		c('METH=1','METH=2')
 	),
-	out=".",
-	suffix=".ctl"
+	out='.',
+	suffix='.ctl'
 )
 #just a file copy...
-metaSub(as.filename("1.ctl"),names="4",out=".",suffix=".ctl")
+metaSub(as.filename('1.ctl'),names='4',out='.',suffix='.ctl')
 
 #using a (nonsense) replacement expression...
 options <- data.frame(var=c(8,9),alt=c(10,11))
 a <- metaSub(
 	ctl,
 	names=rownames(options),
-	pattern="9999", 
+	pattern='9999', 
 	replacement=expression(
 		options$var[rownames(options)==name]
 	),
@@ -164,11 +164,11 @@ b <- metaSub(
 	ctl,
 	names=rownames(options),
 	pattern=list(
-		"PRINT=2",
-		"9999"
+		'PRINT=2',
+		'9999'
 	), 
 	replacement=list(
-		"PRINT=3",
+		'PRINT=3',
 		expression(options$var[rownames(options)==name])
 	),
 	options=options
@@ -179,7 +179,7 @@ cat(b[[2]])
 d <- metaSub(
 	ctl,
 	names=rownames(options),
-	pattern="9999",
+	pattern='9999',
 	replacement=list(	#so that replacement is as long as pattern
 		list(			#with different options for each 'name'
 			expression(options$var[rownames(options)==name]),

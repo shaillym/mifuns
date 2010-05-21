@@ -47,7 +47,7 @@ crosses(a,b)
 }
 
 \examples{
-CO2[,c("Type","Treatment")] \%nests\% CO2$Plant #TRUE
+CO2[,c('Type','Treatment')] \%nests\% CO2$Plant #TRUE
 CO2$Plant \%nested.in\% CO2$Type #TRUE
 with(CO2,constant(list(Type,Treatment),within=Plant)) #TRUE
 with(ChickWeight,constant(Diet,within=Chick)) #TRUE

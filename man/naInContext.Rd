@@ -29,7 +29,7 @@ naInContext(x, context, search)
 \examples{
 test <- Theoph
 test$conc[[5]] <- NA
-naInContext(test, context="Subject", search="conc")
+naInContext(test, context='Subject', search='conc')
 }
 \keyword{manip}
 

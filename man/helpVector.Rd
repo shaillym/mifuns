@@ -1,9 +1,11 @@
 \name{helpVector}
 \alias{helpVector}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Working with Vectors}
+\title{MIfuns: Working with Vectors}
 \description{Tools for processing vectors.}
 \details{
+\link[=MIfuns]{MIfuns} > \link[=helpPrepare]{Data}
+
 I want to ....
 \itemize{
 \item \link[=text2decimal]{Convert} mixed text to decimal

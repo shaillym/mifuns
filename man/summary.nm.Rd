@@ -27,15 +27,6 @@ These methods test data set features related to use with NONMEM software((c) Ico
 Development Solutions).
 }
 \usage{
-%badAmt(x, ...)
-%badDv(x, ...)
-%badII(x, ...)
-%falseAmt(x, ...)
-%falseDv(x, ...)
-%noPk(x, ...)
-%predoseDv(x, ...)
-%zeroAmt(x, ...)
-%zeroDv(x, ...)
 \method{badAmt}{nm}(x, ...)
 \method{badDv}{nm}(x, ...)
 \method{badII}{nm}(x, ...)
@@ -94,7 +85,7 @@ Development Solutions).
   \item{badII}{as defined, active rows}
   \item{table}{counts of active rows tabled by \code{by}, if supplied}
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

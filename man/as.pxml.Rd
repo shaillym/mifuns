@@ -7,7 +7,7 @@
   element and the following lines as a table.
 }
 \usage{
-as.pxml.ext(file, lead = 1, tag = "param", ...)
+as.pxml.ext(file, lead = 1, tag = 'param', ...)
 }
 \arguments{
   \item{file}{path to a parameter file}
@@ -23,7 +23,7 @@ as.pxml.ext(file, lead = 1, tag = "param", ...)
 \value{
 character
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

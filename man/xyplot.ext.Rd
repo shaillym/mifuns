@@ -1,8 +1,6 @@
 \name{xyplot.ext}
 \alias{xyplot.ext}
-\title{
-Plot the Parameter Search History for a NONMEM7 Run
-}
+\title{Plot the Parameter Search History for a NONMEM 7 Run}
 \description{
 NONMEM7 produces, for run \code{n}, the file \code{n.ext}, containing the values
 of parameter estimates at specified iterations. Terminal estimates are included, and
@@ -27,7 +25,7 @@ indicated.
 		x, 
 		y, 
 		group.number, 
-		type, 
+		type,
 		...
 	){
 		if (group.number == 3) type <- 'p'
@@ -59,7 +57,7 @@ all of which may be overridden.
 \value{
 a trellis object
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \note{Even though \code{xyplot.ext} looks like a method, it will be more common
 to call it directly, as in the examples.}

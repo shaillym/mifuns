@@ -18,6 +18,6 @@ The \code{Tmin} function performs the calculation based on the variables \code{i
 }
 \value{
   One Tmin is returned for each subject}
-\references{mifuns.googlecode.com}
-\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\references{\url{http://mifuns.googlecode.com}}
+\author{Leonid Gibianski}
 \keyword{manip}

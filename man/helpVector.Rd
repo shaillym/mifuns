@@ -1,7 +1,7 @@
 \name{helpVector}
 \alias{helpVector}
 \docType{package}
-\title{\pkg{MIfuns}: Working with Vectors}
+\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Working with Vectors}
 \description{Tools for processing vectors.}
 \details{
 I want to ....

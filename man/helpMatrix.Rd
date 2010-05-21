@@ -1,7 +1,7 @@
 \name{helpMatrix}
 \alias{helpMatrix}
 \docType{package}
-\title{\pkg{MIfuns}: Working with Matrices}
+\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Working with Matrices}
 \description{Tools for processing matrices.}
 \details{
 I want to ....

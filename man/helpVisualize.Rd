@@ -1,7 +1,7 @@
 \name{helpVisualize}
 \alias{helpVisualize}
 \docType{package}
-\title{\pkg{MIfuns}: Plotting}
+\title{\link[=MIfuns]{MIfuns}: Plotting}
 \description{Tools for creating plots.}
 \details{
 I want to ....

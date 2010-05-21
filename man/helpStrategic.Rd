@@ -1,8 +1,8 @@
 \name{helpStrategic}
 \alias{helpStrategic}
 \docType{package}
-\title{\pkg{MIfuns}: Data Preparation}
-\description{Tools for strategic data manipulations.}
+\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Strategic Data Manipulation}
+\description{Tools for strategic data manipulation.}
 \details{
 I want to ....
 \itemize{

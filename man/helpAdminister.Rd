@@ -1,7 +1,7 @@
 \name{helpAdminister}
 \alias{helpAdminister}
 \docType{package}
-\title{\pkg{MIfuns}: Administrative}
+\title{\link[=MIfuns]{MIfuns}: Administrative}
 \description{Tools for administrative tasks.}
 
 \details{

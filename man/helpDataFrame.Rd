@@ -1,7 +1,7 @@
 \name{helpDataFrame}
 \alias{helpDataFrame}
 \docType{package}
-\title{\pkg{MIfuns}: Working with Data Frames}
+\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Working with Data Frames}
 \description{Tools for processing data.frames.}
 \details{
 I want to ....

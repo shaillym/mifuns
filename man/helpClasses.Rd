@@ -1,8 +1,8 @@
 \name{helpClasses}
 \alias{helpClasses}
 \docType{package}
-\title{\pkg{MIfuns}: Data Preparation}
-\description{Classes for building feature-rich tables.}
+\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Data Classes}
+\description{Classes for building feature-rich data.}
 \details{
 I want to ....
 \itemize{

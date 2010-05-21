@@ -16,7 +16,7 @@ contains(pattern, text, ...)
 \value{
 logical vector as long as \code{text}
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -25,13 +25,13 @@ logical vector as long as \code{text}
 }
 \examples{
 contains(
-	'glu',
-	c(
-		'glucose',
-		'glucuronidase',
-		'glucogen',
-		'fibrogen'
-	)
+  'glu',
+  c(
+    'glucose',
+    'glucuronidase',
+    'glucogen',
+    'fibrogen'
+  )
 )
 }
 \keyword{manip}

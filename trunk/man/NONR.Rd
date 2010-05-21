@@ -12,7 +12,7 @@
   run a user-written script.
  }
 \usage{
-  NONR(
+NONR(
 	run, 
 	command, 
 	project = getwd(), 
@@ -53,7 +53,7 @@
 
   \item{command}{
   path for a script to run NONMEM, e.g., 
-  \code{command="C:/nm6/test/nm6.pl"}.  The script is assumed to be an NMQual-generated
+  \code{command='C:/nm6/test/nm6.pl'}.  The script is assumed to be an NMQual-generated
   wrapper for NONMEM execution, but may also be arbitrarily defined by the user
   (\code{udef=TRUE}).  In the former case, appropriate arguments and modifiers are added
   to build a typical NMQual commandline (\code{nm.pl}), conditionally wrapped in the arguments for
@@ -196,8 +196,8 @@ run in \code{project}, attaching an appropriate extension if necessary (\file{.b
 bootstrap runs, \file{.lock} for grid runs). It looks for \code{<run>.ctl} in \code{project},
 cleans it up as necessary, and writes it to the subdirectory, in which context
 NONMEM is invoked (using \code{runCommand}).  The output of NONMEM will be 
-\code{<run>.lst} in the subdirectory.  Files matching patterns in \code{runNonmem:remove} will
-be removed.  A \code{*.lock} directory, if any, will be converted to \sQuote{*}.  Attempts 
+\file{<run>.lst} in the subdirectory.  Files matching patterns in \code{runNonmem:remove} will
+be removed.  A \file{*.lock} directory, if any, will be converted to \sQuote{*}.  Attempts 
 will be made to run \code{PLOTR} and \code{epilog}.  Then a \sQuote{complete} message is printed.
 
 File names and locations can be manipulated somewhat, i.e., by over-riding
@@ -252,9 +252,8 @@ File names and locations can be manipulated somewhat, i.e., by over-riding
  \code{PLOTR}.  Mechanisms and expectations are somewhat different for NONMEM7.
 }
 
- \references{mifuns.googlecode.com}
- \author{Developed by
- Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+ \references{\url{http://mifuns.googlecode.com}}
+ \author{written by Bill Knebel; modified by Tim Bergsma.}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{runNonmem}}}

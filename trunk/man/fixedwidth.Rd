@@ -22,7 +22,7 @@
 \value{
   data.frame; all columns are character
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

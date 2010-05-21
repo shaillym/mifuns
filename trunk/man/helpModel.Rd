@@ -1,10 +1,12 @@
 \name{helpModel}
 \alias{helpModel}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns}: Modeling}
+\title{MIfuns: Modeling}
 \description{Tools for preparing, executing, and analyzing models.}
 
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item \link[=helpPrepare]{Assemble} an analysis data set

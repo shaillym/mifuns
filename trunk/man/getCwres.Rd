@@ -14,7 +14,7 @@ getCwres(directory)
   \item{directory}{NONMEM run directory}
 }
 \value{numeric}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

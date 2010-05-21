@@ -20,7 +20,7 @@ of the original index.  Regardless of the length of the value of \code{FUN}, the
 length of the value of reapply is always identical to that of \code{x}.
 }
 \value{vector}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \examples{
 theoph <- Theoph[c(1,12,2,13,3,14),]

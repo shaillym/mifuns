@@ -1,8 +1,6 @@
 \name{posmat}
 \alias{posmat}
-\title{
-Coerce a Matrix to be Positive Definite
-}
+\title{Coerce a Matrix to be Positive Definite}
 \description{
 For a square matrix with an all-positive diagonal, elements are limited to 
 6 significant digits by rounding the diagonal and shrinking off diagonal elements
@@ -21,7 +19,7 @@ matrix with only positive diagonal elements
 \value{
 matrix
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Leonid Gibianski, modified by Tim Bergsma}
 
 \examples{

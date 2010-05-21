@@ -17,7 +17,7 @@ aug(x, ...)
 \value{
 like \code{x}
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

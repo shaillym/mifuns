@@ -22,7 +22,7 @@ bin(
   \item{breaks}{bin limits (boundaries) to pass to \code{cut}}
   \item{include.lowest}{limit qualifier to pass to \code{cut}}
   \item{probs}{default probabilities for calculating breaks}
-  \item{\dots}{other arguments to pass to quantile() and \code{cut}}
+  \item{\dots}{other arguments to pass to \code{quantile} and \code{cut}}
 }
 \details{
 By default, the population used to calculate bin limits is the same as the

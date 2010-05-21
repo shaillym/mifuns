@@ -72,17 +72,17 @@ unitDensity(x,...)
   \item{y}{numeric}
   \item{horizontal}{if \code{TRUE}, strips run horizontally (x is primary axis)}
   \item{col.line}{
-  	  \code{panel.density}:polygon border color if \code{border} not specified;
-  	  \code{panel.cuts}:text color if \code{text} not specified
+  	  \code{panel.density}: polygon border color if \code{border} not specified;
+  	  \code{panel.cuts}: text color if \code{text} not specified
  }
   \item{fill}{polygon fill color if \code{col} not specified}
   \item{factor}{relative height of the density polygon}
   \item{border}{polygon border color}
   \item{col}{
-  	\code{panel.density}:polygon fill color; 
-	\code{panel.ref}:reference area fill color;
-	\code{panel.covplot}:color of cut lines	
-	\code{panel.cuts}:ignored	
+  	\code{panel.density}: polygon fill color; 
+	\code{panel.ref}: reference area fill color;
+	\code{panel.covplot}: color of cut lines	
+	\code{panel.cuts}: ignored	
  }
   \item{\dots}{extra arguments passed to other functions}
   \item{rlim}{length 2 vector: the limits of the shaded region}
@@ -130,14 +130,14 @@ unitDensity(x,...)
   
   Formally, these panel functions are alternatives to \code{panel.stripplot}, and thus
   can be passed to \code{stripplot}. \code{xyplot} gives similar 
-  results, and \code{bwplot()} seems to give identical results.
+  results, and \code{bwplot} seems to give identical results.
   
   
 }
 \value{
   uused for side-effects
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

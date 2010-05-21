@@ -9,8 +9,8 @@ to a suite of diagnostic plots \code{nmPlots}.
 \method{plot}{nm}(
 	x, 
 	which = NULL, 
-	dvname = "DV", 
-	ivname = "AMT", 
+	dvname = 'DV', 
+	ivname = 'AMT', 
 	covariates = NULL, 
 	categorical = NULL, 
 	continuous = NULL, 
@@ -36,7 +36,7 @@ values are continuous, and the rest are categorical. But you can reallocate,
 even assigning the same column as both categorical and continuous.
 }
 \value{a list of \code{trellis} objects}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

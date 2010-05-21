@@ -17,7 +17,7 @@ purge.dir(dir, nice = FALSE)
 	If \code{nice==TRUE}, system files (as defined for \code{all.files} in \code{dir}) are not removed.
 }
 \value{used for side effects.}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

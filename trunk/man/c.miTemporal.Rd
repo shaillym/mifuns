@@ -35,7 +35,7 @@ as.chartime(x, ...)
   \item{x}{object of class miTemporal}
   \item{drop}{same meaning as for \sQuote{[} and \sQuote{[[}}
   \item{value}{value to be assigned, as for \sQuote{[<-}}
-  \item{format}{input or output format describing character time (see \code{\link{strftime}}}
+  \item{format}{input or output format describing character time (see \code{\link{strftime}})}
   \item{mark}{boolean: mark times with dangling seconds using \sQuote{+}}
   \item{from}{as for \code{\link{seq.default}}}
   \item{to}{as for \code{\link{seq.default}}}
@@ -59,13 +59,13 @@ as.chartime(x, ...)
   \item{as.character.miTemporal}{character (time)}
   \item{others}{object with same class as \code{x}}
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		item{}{\code{\link{miTemporal}}} 
-		item{}{\code{\link{seq.default}}}
-		item{}{\code{\link{strftime}}}
+		\item{}{\code{\link{miTemporal}}} 
+		\item{}{\code{\link{seq.default}}}
+		\item{}{\code{\link{strftime}}}
 	}
 }
 \examples{
@@ -90,19 +90,19 @@ c(as.miDateTime(0),as.miDateTime(86500))
 # 1970-01-01 00:00  1970-01-02 00:01+
 
 #subset
-as.miTime(c("08:00","09:00"))[2]
+as.miTime(c('08:00','09:00'))[2]
 # 09:00
-as.miDate(c("2008-01-01","2008-01-04"))[2]
+as.miDate(c('2008-01-01','2008-01-04'))[2]
 # 2008-01-04
-as.miDateTime(c("2008-01-01 12:00","2008-01-04 12:30"))[2]
+as.miDateTime(c('2008-01-01 12:00','2008-01-04 12:30'))[2]
 # 2008-01-04 12:30
 
 #element selection
-as.miTime(c("08:00","09:00"))[[2]]
+as.miTime(c('08:00','09:00'))[[2]]
 # 09:00
-as.miDate(c("2008-01-01","2008-01-04"))[[2]]
+as.miDate(c('2008-01-01','2008-01-04'))[[2]]
 # 2008-01-04
-as.miDateTime(c("2008-01-01 12:00","2008-01-04 12:30"))[[2]]
+as.miDateTime(c('2008-01-01 12:00','2008-01-04 12:30'))[[2]]
 # 2008-01-04 12:30
 
 #assignment

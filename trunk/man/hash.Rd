@@ -2,7 +2,7 @@
 \alias{hash}
 \title{Supply Comment Characters with Output}
 \description{
-  Any expression that generates output can be wrapped in a call to hash().  The usual
+  Any expression that generates output can be wrapped in a call to \code{hash}.  The usual
   output will be returned, with a hash character at the start of each line.
 }
 \usage{
@@ -18,7 +18,7 @@ hash(x,char='#')
 \value{
 used for side effects
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \section{Warning}{
   Don't \dQuote{hash} an expression that directly or indirectly calls a function being

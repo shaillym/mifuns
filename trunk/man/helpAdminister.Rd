@@ -1,10 +1,12 @@
 \name{helpAdminister}
 \alias{helpAdminister}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns}: Administrative}
+\title{MIfuns: Administrative}
 \description{Tools for administrative tasks.}
 
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item \link[=CLNR]{Delete} files and directories; log what was deleted to a text file

@@ -14,7 +14,7 @@ purge.files(pattern, dir = '.')
   \item{dir}{a directory path}
 }
 \value{used for side effects}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

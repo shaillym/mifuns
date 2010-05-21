@@ -18,6 +18,6 @@ rinvchisq(n, df, cov)
 \value{
  The \code{rinvchisq} function returns \code{n} parameter deviates for use as simulation parameters.
 }
-\references{mifuns.googlecode.com}
-\author{Developed by Metrum Institute (Bill Knebel, Tim Bergsma, and others).}
+\references{\url{http://mifuns.googlecode.com}}
+\author{written by Leonid Gibianski; modified by Tim Bergsma.}
 \keyword{utilities}

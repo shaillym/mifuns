@@ -2,9 +2,7 @@
 \alias{ord.matrix}
 \alias{ord.halfmatrix}
 \alias{ord}
-\title{
-Give the Order of a Symmetric Matrix or Half Matrix
-}
+\title{Give the Order of a Symmetric Matrix or Half Matrix}
 \description{
 The dimensions of a symmetric matrix are equal; this value is, by definition,
 the order of the matrix.  For class \code{halfmatrix}, the order is found using
@@ -30,7 +28,7 @@ explicitly, even if \code{x} is not classed as halfmatrix:  \code{ord.halfmatrix
 \value{
 scalar numeric
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\code{\link{is.square.matrix}}, 

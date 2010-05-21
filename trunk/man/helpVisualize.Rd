@@ -1,9 +1,11 @@
 \name{helpVisualize}
 \alias{helpVisualize}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns}: Plotting}
+\title{MIfuns: Plotting}
 \description{Tools for creating plots.}
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item \link[=PLOTR]{Create} diagnostic plots for finished model runs

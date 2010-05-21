@@ -15,7 +15,7 @@ episcript(script, ...)
   \item{\dots}{variables with which to populate the script's environment}
 }
 \value{used for side effects}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

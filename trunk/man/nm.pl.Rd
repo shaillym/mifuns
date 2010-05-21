@@ -4,7 +4,7 @@
 \title{Build Commands to Invoke NONMEM}
 \description{
  Format a set of commandlines, suitable for submission to a command shell, to
- operate the renamed copy of 'nm.pl' in an NMQual-mediated NONMEM installation.
+ operate the renamed copy of \sQuote{nm.pl} in an NMQual-mediated NONMEM installation.
 }
 \usage{
 nm.pl(
@@ -35,7 +35,7 @@ nm.pl(
 	If \code{split} is \code{TRUE}, two commands are returned, having the mode flags \sQuote{c} and \sQuote{e}, respectively.
 }
 \value{character}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

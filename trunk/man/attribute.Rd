@@ -2,7 +2,7 @@
 \alias{attribute}
 \title{Encode an Attribute for an XML Open Tag}
 \description{
-  Encode an attribute for an XML open tag, in the form \code{" tag='x'"}.
+  Encode an attribute for an XML open tag, in the form \code{tag='x'}.
 }
 \usage{
 attribute(x, tag, ...)
@@ -15,7 +15,7 @@ attribute(x, tag, ...)
 \value{
 character
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

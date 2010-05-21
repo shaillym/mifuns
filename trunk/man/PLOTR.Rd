@@ -9,7 +9,7 @@
   following a NONMEM run. Plots use the \code{pdf} device. 
 }
 \usage{
-  PLOTR(
+PLOTR(
 	run, 
 	project=getwd(), 
 	rundir=filename(project,run),
@@ -123,7 +123,7 @@
      
 }
 \value{Used for side effects.}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

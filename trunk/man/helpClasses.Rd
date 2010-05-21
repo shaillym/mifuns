@@ -1,9 +1,11 @@
 \name{helpClasses}
 \alias{helpClasses}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Data Classes}
+\title{MIfuns: Data Classes}
 \description{Classes for building feature-rich data.}
 \details{
+\link[=MIfuns]{MIfuns} > \link[=helpPrepare]{Data}
+
 I want to ....
 \itemize{
 \item \link[=as.comment]{Create} and manipulate comment objects

@@ -1,9 +1,11 @@
 \name{helpSimulate}
 \alias{helpSimulate}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns}: Simulation}
+\title{MIfuns: Simulation}
 \description{Tools for conducting simulations.}
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item \link[=resample.data.frame]{Create} replicate datasets by stratified sampling with replacement    

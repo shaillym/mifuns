@@ -18,10 +18,10 @@ runlog()
 unilog()
 as.runlog.file(file, ...)
 as.unilog.lst(file, run, tool, ...)
-as.unilog.pxml(x, run, tool = "nm7", ...)
-as.unilog.runlog(x, tool = "nm7", ...)
+as.unilog.pxml(x, run, tool = 'nm7', ...)
+as.unilog.runlog(x, tool = 'nm7', ...)
 as.runlog.unilog(x, ...)
-as.file.runlog(x, file = "NonmemRunLog.csv", header = FALSE, quote = FALSE, na = ".", ...)
+as.file.runlog(x, file = 'NonmemRunLog.csv', header = FALSE, quote = FALSE, na = '.', ...)
 }
 \arguments{
   \item{x}{data.frame in runlog or unilog format}
@@ -69,7 +69,7 @@ as.file.runlog(x, file = "NonmemRunLog.csv", header = FALSE, quote = FALSE, na =
 \code{as.file.runlog} is used for side effects.  All others return data.frame
 in the runlog or unilog format.
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \note{
 These functions are not vectorized: their first arguments are expected to 

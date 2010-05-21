@@ -1,9 +1,11 @@
 \name{helpPrepare}
 \alias{helpPrepare}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns}: Data Preparation}
+\title{MIfuns: Data Preparation}
 \description{Tools for preparing pharmacometric analysis data sets.}
 \details{
+\link[=MIfuns]{MIfuns}
+
 I want to ....
 \itemize{
 \item work with \link[=helpVector]{vectors}    

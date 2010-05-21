@@ -8,7 +8,7 @@
    compiler name.
 }
 \usage{
-compiler(config, pathsep = "/", ...)
+compiler(config, pathsep = '/', ...)
 }
 
 \arguments{
@@ -17,7 +17,7 @@ compiler(config, pathsep = "/", ...)
   \item{\dots}{ignored}
 }
 \value{character}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

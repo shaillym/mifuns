@@ -1,8 +1,6 @@
 \name{shuffle}
 \alias{shuffle}
-\title{
-Move the columns of a data.frame relative to each other.
-}
+\title{Move the Columns of a Data Frame Relative to Each Other}
 \description{
 It can be tedious to reorder the columns in a data.frame.  This function lets
 you move specific columns relative to some other named column.
@@ -21,7 +19,7 @@ shuffle(x, who, after = NA)
 \value{
 data.frame: a variant of x
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{
 Tim Bergsma
 }

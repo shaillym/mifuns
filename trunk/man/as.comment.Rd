@@ -24,12 +24,10 @@ never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FA
 \usage{
 \method{[}{comment}(x, ..., drop = TRUE)
 \method{[[}{comment}(x, ..., drop = TRUE)
-%as.comment(x, ...)
 \method{as.comment}{default}(x, ...)
 \method{as.data.frame}{comment}(x, row.names = NULL, optional = FALSE, ...)
 \method{c}{comment}(..., recursive = FALSE)
 \method{format}{comment}(x, ...)
-%hide(x, ...)
 \method{hide}{data.frame}(x, where, why, ...)
 \method{print}{comment}(x, ...)
 \method{rep}{comment}(x, ...)
@@ -48,10 +46,10 @@ never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FA
 
 \details{
 Objects of class comment can be used exactly like logicals, but look like
-traditional comments.  \code{hide.data.frame} implements consistent
+conventional comments.  \code{hide.data.frame} implements consistent
 commenting of rows, including a reason for the comment.
 }
-\value{\code{comment}, or \code{data.frame} for \code{hide.data.frame()}}
+\value{comment, or data.frame for \code{hide.data.frame}}
 \examples{
 hide(Theoph, where=Theoph$conc < 1,why='BLQ')
 }

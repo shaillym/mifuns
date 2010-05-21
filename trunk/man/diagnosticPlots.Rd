@@ -7,29 +7,29 @@
   Create diagnostic plots from a data set.
 }
 \usage{
-  diagnosticPlots(
-        data, 
+diagnosticPlots(
+	data, 
 	dvname='DV', 
 	group=NULL, 
 	model=NULL, 
 	...
-  )
+)
 
-  covariatePlots(
+covariatePlots(
 	data,
 	cont.cov=NULL, 
 	cat.cov=NULL,
 	par.list=NULL, 
 	eta.list=NULL, 
 	...
-  )
+)
 
-  cwresPlots(
+cwresPlots(
 	data,
 	cont.cov=NULL, 
 	cat.cov=NULL,
 	...
-  )
+)
 }
 \arguments{
 	\item{data}{a data.frame, typically created by \code{dataSynthesis}}
@@ -49,7 +49,7 @@ resulting lists (of trellis objects) on the open device.
 \value{
 a list of trellis objects
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

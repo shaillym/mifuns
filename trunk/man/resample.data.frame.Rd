@@ -68,7 +68,7 @@
 	A list of data.frames, or if \code{out} is supplied, an invisible list of
 	the numbers of rows of each data.frame written to file.
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
@@ -77,15 +77,15 @@
 	}
 }
 \examples{
-b <- resample(Theoph,key="Subject",names=1:3)
+b <- resample(Theoph,key='Subject',names=1:3)
 d <- resample(
 	Theoph,
-	key="Subject",
+	key='Subject',
 	rekey=TRUE,
 	names=1:3,
-	out=".",
+	out='.',
 	stratify=Theoph$Dose < mean(Theoph$Dose)
 )
-e <- resample(as.csv.filename("1.csv"),names="theoph")
+e <- resample(as.csv.filename('1.csv'),names='theoph')
 }
 \keyword{manip}

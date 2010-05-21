@@ -1,9 +1,11 @@
 \name{helpPharmacometric}
 \alias{helpPharmacometric}
 \docType{package}
-\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Pharmacometrics}
+\title{MIfuns: Pharmacometrics}
 \description{Tools for investigating pharmacometric properties.}
 \details{
+\link[=MIfuns]{MIfuns} > \link[=helpPrepare]{Data}
+
 I want to ....
 \itemize{
 \item \link[=ibw]{Calculate} various clinical measurements, e.g., body size

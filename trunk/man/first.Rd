@@ -52,7 +52,7 @@ after(   where,within=rep(1,length(where)),n=1,...)
 	vector of same class as \code{x}, if supplied, else of class integer (or logical for \code{before},
 	\code{at}, and \code{after}).
 }
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

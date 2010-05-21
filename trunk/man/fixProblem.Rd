@@ -68,7 +68,7 @@ beginning with \sQuote{.}) relative to \code{dir}.
 arguments, relying on \code{extfile} as the common engine.
 }
 \value{character}
-\references{mifuns.googlecode.com}
+\references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

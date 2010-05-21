@@ -1,7 +1,7 @@
 \name{helpPrepare}
 \alias{helpPrepare}
 \docType{package}
-\title{\pkg{MIfuns}: Data Preparation}
+\title{\link[=MIfuns]{MIfuns}: Data Preparation}
 \description{Tools for preparing pharmacometric analysis data sets.}
 \details{
 I want to ....

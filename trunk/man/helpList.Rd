@@ -1,8 +1,8 @@
 \name{helpList} 
 \alias{helpList} 
 \docType{package} 
-\title{Functions defined by \pkg{MIfuns}}
-\description{Exhaustive list of functions defined by \pkg{MIfuns}.}
+\title{Functions defined by \link[=MIfuns]{MIfuns}}
+\description{Exhaustive list of functions defined by \link[=MIfuns]{MIfuns}.}
 \details{
 \itemize{
 \item \link{[.comment} subset a comment

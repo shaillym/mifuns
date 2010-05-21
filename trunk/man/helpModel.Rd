@@ -1,7 +1,7 @@
 \name{helpModel}
 \alias{helpModel}
 \docType{package}
-\title{\pkg{MIfuns}: Modeling}
+\title{\link[=MIfuns]{MIfuns}: Modeling}
 \description{Tools for preparing, executing, and analyzing models.}
 
 \details{

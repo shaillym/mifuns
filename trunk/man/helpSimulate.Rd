@@ -1,7 +1,7 @@
 \name{helpSimulate}
 \alias{helpSimulate}
 \docType{package}
-\title{\pkg{MIfuns}: Simulation}
+\title{\link[=MIfuns]{MIfuns}: Simulation}
 \description{Tools for conducting simulations.}
 \details{
 I want to ....

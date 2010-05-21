@@ -1,7 +1,7 @@
 \name{helpReport}
 \alias{helpReport}
 \docType{package}
-\title{\pkg{MIfuns}: Reporting}
+\title{\link[=MIfuns]{MIfuns}: Reporting}
 \description{Tools for summarizing and reporting pharmacometric analyses.}
 \details{
 I want to ....

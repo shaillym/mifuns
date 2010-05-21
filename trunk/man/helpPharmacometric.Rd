@@ -1,7 +1,7 @@
 \name{helpPharmacometric}
 \alias{helpPharmacometric}
 \docType{package}
-\title{\pkg{MIfuns}: Pharmacometrics}
+\title{\link[=MIfuns]{MIfuns} \link[=helpPrepare]{Data}: Pharmacometrics}
 \description{Tools for investigating pharmacometric properties.}
 \details{
 I want to ....

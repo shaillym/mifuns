@@ -1,7 +1,7 @@
 \name{helpQuantify}
 \alias{helpQuantify}
 \docType{package}
-\title{\pkg{MIfuns}: Statistics}
+\title{\link[=MIfuns]{MIfuns}: Statistics}
 \description{Tools for calculating statistics.}
 \details{
 I want to ....

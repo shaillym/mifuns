@@ -2,7 +2,7 @@ library(MIfuns)
 getwd()#...MIfuns/inst/test/nm6/script
 nonr <- function(
         run,
-        command='/common/NONMEM/nm7_osx2/test/nm7_osx2.pl',
+        command='/common/NONMEM/nm7_osx1/test/nm7_osx1.pl',
 	dvname='Response',
 	grp='SEX',
 	grpnames=c('female','male'),
@@ -65,4 +65,6 @@ nonr(1)
 nonr(1,invisible=TRUE)
 
 #plotting
-xyplot.ext(1005,project='../out')
+pdf('../out/1003/profile.pdf')
+xyplot.ext(1003,project='../out')
+dev.off()

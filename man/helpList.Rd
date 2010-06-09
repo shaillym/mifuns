@@ -261,6 +261,7 @@
 \item \link{shuffle} move columns in a data frame
 \item \link{simpar} generate deviates of a set of model parameters for simulation
 \item \link{simblock} generate deviates of the elements of a variance-covariance matrix
+\item \link{snap} coerce values to nearest of candidates
 \item \link{sort.keyed} sort a keyed data frame
 \item \link{sqrtm} support \code{compute.cwres}
 \item \link{stableMerge}produce a left join, with strict error checking

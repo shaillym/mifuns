@@ -9,5 +9,6 @@
 I want to ....
 \itemize{
 \item \link[=bin]{Assign} values in a vector to quantile bins
+\item \link[=snap]{Coerce} values to nearest of candidates
 }
 }

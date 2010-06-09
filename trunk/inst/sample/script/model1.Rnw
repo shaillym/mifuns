@@ -509,7 +509,7 @@ clearance <- boot[boot$parameter %in% c('CL','WT.CL','Male.CL'),]
 head(clearance)
 frozen <- data.frame(cast(clearance,run~parameter))
 head(frozen)
-frozen$WT.CL65 <- (60/70)**frozen$WT.CL
+frozen$WT.CL65 <- (65/70)**frozen$WT.CL
 frozen$WT.CL75 <- (75/70)**frozen$WT.CL
 frozen$WT.CL85 <- (85/70)**frozen$WT.CL
 @

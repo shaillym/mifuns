@@ -214,7 +214,9 @@
 \item \link{panel.hist} for each level, plot a histogram
 \item \link{panel.ref} plot a reference region in a stripplot
 \item \link{panel.stratify} handle strips (levels) of data one at a time
+\item \link{params} list documented model parameters
 \item \link{parfile} extract parfile specification from a control stream
+\item \link{partab} construct a model parameter table
 \item \link{plot.nm} generate standard plots for an nm object using \code{\link{nmPlots}}
 \item \link{plotfilename} make a name for a diagnostic plot file
 \item \link{PLOTR} create diagnostic plots for NONMEM runs

@@ -8,6 +8,7 @@ ctl2xml <- function(x,...){
 	doc[doc!='']
 }
 lookup.one <- function(x,within,by='name',as=NULL,type='parameter',...){
+	stopifnot(length(x)==1,length(by)==1,length(as)<=1)
 	if(length(x) !=1)stop('x must have length one')
 	if(is.na(x))return(NA)
 	if(length(by)!=1)stop('by must have length one')

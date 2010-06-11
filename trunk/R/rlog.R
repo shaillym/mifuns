@@ -1,7 +1,7 @@
 `rlog` <-function(
   	run, 
-	boot=FALSE, 
 	project=getwd(), 
+	boot=FALSE, 
 	append=TRUE,
 	tool='nm6',
 	file=filename(project,'CombRunLog.csv'),
@@ -12,7 +12,7 @@
 ...
 ){
   if(length(run)!=length(unique(run)))stop('run must not contain duplicates')
-  if(!append) if(file.exists(file)) file.remove(file)
+  if(!append)if(length(file))if(file.exists(file)) file.remove(file)
   specialize <- function(path,run,nm){
   		if(!length(path) %in% c(0,1,length(run)))stop(paste('length of',nm, 'must be 0, 1, or same as run'))
   		if(!length(path))return(path)

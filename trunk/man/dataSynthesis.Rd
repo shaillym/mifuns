@@ -36,7 +36,7 @@
 \arguments{
   \item{run}{a control stream name, typically integer}
  
-  \item{project}{the directory containing the NONMEM control (\file{*.ctl}) streams}
+  \item{project}{the directory containing the NONMEM run directories}
 
   \item{dvname}{name of the dependent variable to use as a label for the diagnostic plots; Default: DV}
 

@@ -8,8 +8,8 @@
 \usage{
 rlog(
 	run, 
-	boot = FALSE, 
 	project = getwd(), 
+	boot = FALSE, 
 	append = TRUE,
 	tool = 'nm6',
 	file = filename(project,'CombRunLog.csv'),
@@ -21,9 +21,9 @@ rlog(
 )
 }
 \arguments{
-  \item{run}{vector of control stream names (numbers)}
-  \item{boot}{Were these runs in \file{.boot} directories?}
+  \item{run}{vector of run names (numbers)}
   \item{project}{path to the directory containing run subdirectories}
+  \item{boot}{Were these runs in \file{.boot} directories?}
   \item{append}{\code{TRUE}: append file; \code{FALSE}: overwrite file}
   \item{tool}{\sQuote{nm6} or \sQuote{nm7}: controls methodology}
   \item{file}{The run-generic output file to write. See details.}

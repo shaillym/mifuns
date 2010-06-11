@@ -47,6 +47,7 @@ function(
 	as <- as[as %in% names(all)]
 	all <- all[match(c(by,as),names(all))]
 	all <- all[match(x,all[[by]]),]
+	row.names(all) <- NULL
 	all
 }
 

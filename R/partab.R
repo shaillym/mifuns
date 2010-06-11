@@ -17,7 +17,7 @@ function(
     pattern = NULL, 
     ...
 ){
-	stopifnot(length(run)==1,length(as.label)==length(as))
+	stopifnot(length(run)==1)
 	log <- rlog(run=run,boot=boot,append=FALSE,tool=tool,file=NULL,rundir=rundir,nmlog=nmlog,nmout=nmout,pattern=NULL,...)
 	log <- data.frame(cast(log,...~moment))
 	log[] <- lapply(log,as.character)

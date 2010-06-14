@@ -342,7 +342,7 @@ nmPlots <- list(
 		molten <- melt(data,id.var=c('C','ID','TIME','set'),measure.var=categorical)
 		molten$value <- as.factor(molten$value)
 		stripplot(
-			value ~ TIME | set + variable,
+			as.character(value) ~ TIME | set + variable,
 			data=molten,
 			#groups=ifelse(molten$C,'commented','active'),
 			groups=ID,
@@ -351,10 +351,10 @@ nmPlots <- list(
 			as.table=as.table,
 			type=type,
 			scales=list(relation='free'),
-			prepanel=function(x,y)prepanel.default.bwplot(x,factor(y)),
+			#prepanel=function(x,y)prepanel.default.bwplot(x,factor(y)),
 			panel=panel.superpose,
 			panel.groups=function(x,y,col,col.line,...){
-				y <- factor(y)
+				#y <- factor(y)
 				defined <- !is.na(y) & is.finite(x)
 				panel.stripplot(x[defined],y[defined],col=col,col.line=col.line,...)
 				panel.rug(x=x[!defined],y=y[!defined], col=col.line,...)

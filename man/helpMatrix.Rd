@@ -8,6 +8,6 @@
 
 I want to ....
 \itemize{
-\item \link[=half.matrix]{Interconvert} between square matrices and triangular matrices 
+\item \link[=half.matrix]{interconvert} between square matrices and triangular matrices 
 }
 }

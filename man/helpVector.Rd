@@ -8,10 +8,10 @@
 
 I want to ....
 \itemize{
-\item \link[=text2decimal]{Convert} mixed text to decimal
-\item \link[=contains]{Test} a character vector for occurences of a pattern
-\item \link[=forbak]{Impute} missing vector values
-\item \link[=runhead]{Check} some properties of vectors
-\item \link[=miTemporal]{Create} date, time, and date-time objects
+\item \link[=text2decimal]{convert} mixed text to decimal
+\item \link[=contains]{test} a character vector for occurences of a pattern
+\item \link[=forbak]{impute} missing vector values
+\item \link[=runhead]{check} some properties of vectors
+\item \link[=miTemporal]{create} date, time, and date-time objects
 }
 }

@@ -9,11 +9,11 @@
 
 I want to ....
 \itemize{
-\item \link[=helpPrepare]{Assemble} an analysis data set
-\item \link[=metaSub.character]{Make} multiple, systematic substitutions in text files, e.g., control streams
-\item \link[=NONR]{Run} NONMEM and create diagnostic plots
-\item \link[=compute.cwres]{Compute} conditional weighted residuals in NONMEM 6
-\item \link[=helpVisualize]{Visualize} model results
+\item \link[=helpPrepare]{assemble} an analysis data set
+\item \link[=metaSub.character]{make} multiple, systematic substitutions in text files, e.g., control streams
+\item \link[=NONR]{run} NONMEM and create diagnostic plots
+\item \link[=compute.cwres]{compute} conditional weighted residuals in NONMEM 6, etc.
+\item \link[=helpVisualize]{visualize} model results
 }
 }
 

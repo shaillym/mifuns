@@ -8,11 +8,11 @@
 
 I want to ....
 \itemize{
-\item \link[=ibw]{Calculate} various clinical measurements, e.g., body size
-\item \link[=css]{Calculate} one-compartment model properties
-\item \link[=check.subjects]{Summarize} a table of subject data
-\item \link[=Tmax]{Calculate} Tmax
-\item \link[=Tmin]{Calculate} Tmin
-\item \link[=AUC]{Calculate} AUC
+\item \link[=ibw]{calculate} various clinical measurements, e.g., body size
+\item \link[=css]{calculate} one-compartment model properties
+\item \link[=check.subjects]{summarize} a table of subject data
+\item \link[=Tmax]{calculate} Tmax
+\item \link[=Tmin]{calculate} Tmin
+\item \link[=AUC]{calculate} AUC
 }
 }

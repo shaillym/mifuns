@@ -13,7 +13,6 @@ parameter distributions, reporting of output tables, and creation of
 detailed analysis logs.
 }
 \details{
-\link[=MIfuns]{MIfuns}
 
 I want to ....
 \itemize{

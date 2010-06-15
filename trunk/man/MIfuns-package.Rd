@@ -17,20 +17,20 @@ detailed analysis logs.
 
 I want to ....
 \itemize{
-\item \link[=helpPrepare]{prepare or manipulate data}
-\item \link[=helpModel]{model data in NONMEM}
-\item \link[=helpSimulate]{conduct simulations}
-\item \link[=helpVisualize]{create plots of model inputs or outputs}
-\item \link[=helpQuantify]{calculate statistics}
-\item \link[=helpReport]{generate report material}
-\item \link[=helpAdminister]{perform related filesystem tasks}
-\item \link[=helpList]{see a list of available functions}
+\item \link[=helpPrepare]{prepare} or manipulate data
+\item \link[=helpModel]{model} data in NONMEM
+\item \link[=helpSimulate]{simulate} from existing models
+\item \link[=helpVisualize]{plot} model inputs or outputs
+\item \link[=helpQuantify]{calculate} general statistics
+\item \link[=helpReport]{report} modeling and simulation results systematically
+\item \link[=helpAdminister]{administer} related files and file systems
+\item \link[=helpList]{list} all functions
 }  
 \tabular{ll}{
 Package: \tab MIfuns\cr
 Type: \tab Package\cr
-Version: \tab 4.0.7\cr
-Date: \tab 2010-06-14\cr
+Version: \tab 4.0.8\cr
+Date: \tab 2010-06-15\cr
 License: \tab GPL\cr
 }
 }

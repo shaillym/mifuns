@@ -8,8 +8,8 @@
 
 I want to ....
 \itemize{
-\item \link[=shuffle]{Move} columns in a data frame
-\item \link[=fixedwidth]{Format} a data.frame as fixed-width
-\item \link[=aug]{Add} named elements to a data.frame or list
+\item \link[=shuffle]{move} columns in a data frame
+\item \link[=fixedwidth]{format} a data.frame as fixed-width
+\item \link[=aug]{add} named elements to a data.frame or list
 }
 }

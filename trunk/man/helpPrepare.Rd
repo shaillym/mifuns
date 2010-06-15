@@ -11,8 +11,8 @@ I want to ....
 \item work with \link[=helpVector]{vectors}    
 \item work with \link[=helpDataFrame]{data.frames}
 \item work with \link[=helpMatrix]{matrices}
-\item \link[=helpClasses]{Use} classes specialized for data assembly
+\item \link[=helpClasses]{use} classes specialized for data assembly
 \item \link[=helpPharmacometric]{investigate} pharmacometric properties
-\item \link[=helpStrategic]{Perform} strategic data manipulations
+\item \link[=helpStrategic]{perform} strategic data manipulations
 }
 }

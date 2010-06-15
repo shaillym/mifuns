@@ -30,7 +30,7 @@
 	}
 }
 \examples{
-	head(Theoph)
+	fixedwidth(head(Theoph))
 }
 \keyword{manip}
 

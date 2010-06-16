@@ -27,9 +27,9 @@ library(MIfuns)
 @
 Read dosing, pk, and demographic data.
 <<read>>=
-dose <- read.csv('../data/ph1/source/dose.csv',na.strings='.',stringsAsFactors=FALSE)
-pk   <- read.csv('../data/ph1/source/pk.csv',na.strings='.',stringsAsFactors=FALSE)
-dem  <- read.csv('../data/ph1/source/dem.csv',na.strings='.',stringsAsFactors=FALSE)
+dose <- read.csv('../data/source/dose.csv',na.strings='.',stringsAsFactors=FALSE)
+pk   <- read.csv('../data/source/pk.csv',na.strings='.',stringsAsFactors=FALSE)
+dem  <- read.csv('../data/source/dem.csv',na.strings='.',stringsAsFactors=FALSE)
 @
 Groom the dose data
 <<dose>>=
@@ -99,7 +99,7 @@ head(phase1)
 @
 We create a file using write.nm to format NAs specially, etc.
 <<write>>=
-write.nm(phase1,file='../data/ph1/derived/phase1.csv')
+write.nm(phase1,file='../data/derived/phase1.csv')
 @
 \end{document}
 

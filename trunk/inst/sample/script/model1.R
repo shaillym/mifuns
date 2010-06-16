@@ -109,20 +109,7 @@ head(phase1)
 
 
 ###################################################
-### chunk number 8: predDv
-###################################################
-library(lattice)
-#print(xyplot(PRED~DV,phase1,panel=function(...){panel.xyplot(...);panel.abline(a=0,b=1)}))
-
-
-###################################################
-### chunk number 9: logpreddv
-###################################################
-#print(xyplot(log(PRED)~log(DV),phase1,panel=function(...){panel.xyplot(...);panel.abline(a=0,b=1)}))
-
-
-###################################################
-### chunk number 10: subject
+### chunk number 8: subject
 ###################################################
 library(reshape)
 head(phase1)
@@ -131,54 +118,35 @@ head(subject)
 
 
 ###################################################
-### chunk number 11: metrics
+### chunk number 9: metrics
 ###################################################
 metrics <- function(x)list(min=min(x), med=median(x), max=max(x))
 
 
 ###################################################
-### chunk number 12: cast
+### chunk number 10: cast
 ###################################################
 subject <- data.frame(cast(subject, SUBJ + SIM + variable ~ .,fun=metrics))
 head(subject)
 
 
 ###################################################
-### chunk number 13: repeat
+### chunk number 11: metrics
 ###################################################
-dvpred <- melt(subject,measure.var=c('min','med','max'),variable_name='metric')
-head(dvpred)
-dvpred <- data.frame(cast(dvpred, SUBJ + SIM + metric ~ variable))
-head(dvpred)
+metr <- melt(subject,measure.var=c('min','med','max'),variable_name='metric')
+head(metr)
 
 
 ###################################################
-### chunk number 14: groupLogLog
+### chunk number 12: acrossSubject
 ###################################################
-print(xyplot(
-	log(PRED)~log(DV),
-	dvpred,
-	groups=metric,
-	auto.key=TRUE,
-	panel=function(...){
-		panel.xyplot(...)
-		panel.abline(a=0,b=1)
-	}
-))
-
-
-###################################################
-### chunk number 15: acrossSubject
-###################################################
-head(dvpred)
-quants <- melt(dvpred,measure.var=c('DV','PRED'))
-head(quants)
-quants <- data.frame(cast(quants,SIM + metric + variable ~ .,fun=quantile,probs=c(0.05,0.50,0.95)))
+head(metr)
+quants <- data.frame(cast(metr,SIM + metric + variable ~ .,fun=quantile,probs=c(0.05,0.50,0.95)))
 head(quants,10)
 
 
 ###################################################
-### chunk number 16: logLogByMetric
+### chunk number 13: logLogByMetric
 ###################################################
 molten <- melt(quants, measure.var=c('X5.','X50.','X95.'),variable_name='quant')
 head(molten)
@@ -187,7 +155,7 @@ head(frozen)
 
 
 ###################################################
-### chunk number 17: bivariate
+### chunk number 14: bivariate
 ###################################################
 print(xyplot(
 	log(PRED)~log(DV)|metric,
@@ -203,7 +171,7 @@ print(xyplot(
 
 
 ###################################################
-### chunk number 18: stripplot
+### chunk number 15: stripplot
 ###################################################
 head(molten)
 molten$SIM <- NULL
@@ -224,106 +192,10 @@ print(stripplot(
 
 
 ###################################################
-### chunk number 19: haystack
-###################################################
-print(stripplot(
-	~value|metric+quant,
-	molten,
-	groups=variable,
-	horizontal=TRUE,
-	auto.key=TRUE,
-	panel=panel.superpose,
-	alpha=0.5,
-	panel.groups=function(x,type,group.number,col.line,fill,col,...){
-		#browser()
-		view <- viewport(xscale=current.viewport()$xscale,yscale=c(0,max(hist(x,plot=FALSE)$density)))
-		pushViewport(view)
-		if(group.number==1) panel.abline(v=x,col=col.line)
-		else panel.histogram(x,breaks=NULL,col=fill,border=col.line,...)
-		popViewport()
-	}
-))
-
-
-###################################################
-### chunk number 20: strippedHaystack
+### chunk number 16: diamondBack
 ###################################################
 print(stripplot(
 	quant~value|metric,
-	molten,
-	groups=variable,
-	auto.key=TRUE,
-	layout=c(1,3),
-	panel=panel.stratify,
-	alpha=0.5,
-	panel.levels=function(group.number,...){
-		if(group.number==1)panel.bar(...)
-		else panel.hist(...)
-	}
-))
-
-
-###################################################
-### chunk number 21: boa
-###################################################
-print(stripplot(
-	~value|metric+quant,
-	molten,
-	groups=variable,
-	auto.key=TRUE,
-	panel=panel.stratify,
-	alpha=0.5,
-	panel.levels = function(group.number,x,y,font,col,col.line,...){
-		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
-		else panel.densitystrip(x=x,y=y,col.line=col.line,...)
-	}
-))
-
-
-###################################################
-### chunk number 22: boa2
-###################################################
-print(stripplot(
-	quant~value|metric,
-	molten,
-	groups=variable,
-	auto.key=TRUE,
-	panel=panel.stratify,
-	alpha=0.5,
-	layout=c(1,3),
-	#scales=list(relation='free'),
-	panel.levels = function(x,y,group.number,col,col.line,fill,font,...){
-		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+1,col=col.line,...)
-		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
-	}
-))
-
-
-###################################################
-### chunk number 23: boa3
-###################################################
-print(stripplot(
-	metric~value|quant,
-	molten,
-	groups=variable,
-	horizontal=TRUE,
-	auto.key=TRUE,
-	panel=panel.stratify,
-	alpha=0.5,
-	layout=c(1,3),
-	scales=list(relation='free'),
-	panel.levels = function(x,y,group.number,col,col.line,fill,font,...){
-		if(group.number==1)panel.segments(x0=x,x1=x,y0=y,y1=y+0.5,col=col.line,...)
-		else panel.densitystrip(x=x,y=y,col=fill,border=col.line,...)
-	}
-))
-
-
-###################################################
-### chunk number 24: diamondBack
-###################################################
-print(stripplot(
-	metric~value|quant,
 	molten,
 	groups=variable,
 	auto.key=TRUE,
@@ -345,7 +217,7 @@ print(stripplot(
 
 
 ###################################################
-### chunk number 25: bootstrap
+### chunk number 17: bootstrap
 ###################################################
 getwd()
 dir.create('../nonmem/1005.boot')
@@ -354,7 +226,7 @@ dir.create('../nonmem/1005.boot/ctl')
 
 
 ###################################################
-### chunk number 26: control
+### chunk number 18: control
 ###################################################
 t <- metaSub(
      as.filename('../nonmem/ctl/1005.ctl'),
@@ -378,7 +250,7 @@ t <- metaSub(
 
 
 ###################################################
-### chunk number 27: resample
+### chunk number 19: resample
 ###################################################
  bootset <- read.csv('../data/ph1/derived/phase1.csv')
  r <- resample(
@@ -392,7 +264,7 @@ t <- metaSub(
 
 
 ###################################################
-### chunk number 28: boot
+### chunk number 20: boot
 ###################################################
 if(!file.exists('../nonmem/1005.boot/CombRunLog.csv'))NONR(
      run=1:300,
@@ -406,7 +278,7 @@ getwd()
 
 
 ###################################################
-### chunk number 29: more
+### chunk number 21: more
 ###################################################
 #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 #wait for bootstraps to finish
@@ -424,7 +296,7 @@ text2decimal(unique(boot$parameter))
 
 
 ###################################################
-### chunk number 30: pars
+### chunk number 22: pars
 ###################################################
 boot <- boot[!is.na(text2decimal(boot$parameter)),]
 head(boot)
@@ -433,7 +305,7 @@ unique(boot$value[boot$moment=='prse'])
 
 
 ###################################################
-### chunk number 31: drop
+### chunk number 23: drop
 ###################################################
 boot <- boot[boot$moment=='estimate',]
 boot$moment <- NULL
@@ -445,7 +317,7 @@ unique(boot$parameter[boot$value=='0'])
 
 
 ###################################################
-### chunk number 32: off
+### chunk number 24: off
 ###################################################
 boot <- boot[!boot$value=='0',]
 any(is.na(as.numeric(boot$value)))
@@ -454,7 +326,7 @@ head(boot)
 
 
 ###################################################
-### chunk number 33: clip
+### chunk number 25: clip
 ###################################################
 boot$upper <- with(boot,reapply(value,INDEX=parameter,FUN=quantile,probs=0.975))
 boot$lower <- with(boot,reapply(value,INDEX=parameter,FUN=quantile,probs=0.025))
@@ -468,7 +340,7 @@ head(boot)
 
 
 ###################################################
-### chunk number 34: ctl2xml
+### chunk number 26: ctl2xml
 ###################################################
 stream <- readLines('../nonmem/ctl/1005.ctl')
 tail(stream)
@@ -483,7 +355,7 @@ head(boot)
 
 
 ###################################################
-### chunk number 35: covs
+### chunk number 27: covs
 ###################################################
 covariates <- read.csv('../data/ph1/derived/phase1.csv',na.strings='.')
 head(covariates)
@@ -497,20 +369,20 @@ range(covariates$WT)
 
 
 ###################################################
-### chunk number 36: cuts
+### chunk number 28: cuts
 ###################################################
 head(boot) 
 clearance <- boot[boot$parameter %in% c('CL','WT.CL','Male.CL'),]
 head(clearance)
 frozen <- data.frame(cast(clearance,run~parameter))
 head(frozen)
-frozen$WT.CL65 <- (60/70)**frozen$WT.CL
+frozen$WT.CL65 <- (65/70)**frozen$WT.CL
 frozen$WT.CL75 <- (75/70)**frozen$WT.CL
 frozen$WT.CL85 <- (85/70)**frozen$WT.CL
 
 
 ###################################################
-### chunk number 37: key
+### chunk number 29: key
 ###################################################
 cl <- median(boot$value[boot$parameter=='CL'])
 cl
@@ -522,7 +394,7 @@ head(molten)
 
 
 ###################################################
-### chunk number 38: covplot
+### chunk number 30: covplot
 ###################################################
 levels(molten$variable)
 print(stripplot(

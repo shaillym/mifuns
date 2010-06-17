@@ -440,9 +440,14 @@ boot$CI <- with(boot, paste(sep='','(',lo,',',hi,')'))
 names(boot)[names(boot)=='parameter'] <- 'name'
 tab <- stableMerge(tab,boot[,c('name','CI')])
 tab$name <- NULL
+
+
+###################################################
+### chunk number 32: 
+###################################################
 latex(
 	tab,
-	file='../report/table/p1005.tex',
+	file='',
 	rowname=NULL,
 	caption='Parameter Estimates from Population Pharmacokinetic Model Run 1005',
 	caption.lot='Model 10o5 Parameters',

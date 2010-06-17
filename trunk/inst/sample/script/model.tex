@@ -5,7 +5,7 @@
 \begin{document}
 \vspace*{2cm}
 \begin{center}
-{\Huge MI210}\\
+{\Large MIfuns Sample Script}\\
 \vspace{1.5cm}
 {\Large Phase I Modeling}\\
 ~\\
@@ -16,7 +16,7 @@ Tim Bergsma\\
 \newpage
 
 \section{Purpose}
-This script runs NONMEM models for the phase1 data.
+This script runs NONMEM models and diagnostics for sample phase1 data.
 \section{Model Development}
 \subsection{Set up for NONMEM run.}
 \begin{Schunk}
@@ -1017,16 +1017,30 @@ person.
 > names(boot)[names(boot)=='parameter'] <- 'name'
 > tab <- stableMerge(tab,boot[,c('name','CI')])
 > tab$name <- NULL
-> latex(
-+ 	tab,
-+ 	file='../report/table/p1005.tex',
-+ 	rowname=NULL,
-+ 	caption='Parameter Estimates from Population Pharmacokinetic Model Run 1005',
-+ 	caption.lot='Model 10o5 Parameters',
-+ 	label='p1005',
-+ 	where='ht',
-+ 	table.env=FALSE
-+ )
 \end{Sinput}
 \end{Schunk}
-\end{document}
+% latex.default(tab, file = "", rowname = NULL, caption = "Parameter Estimates from Population Pharmacokinetic Model Run 1005",      caption.lot = "Model 10o5 Parameters", label = "p1005", where = "ht",      table.env = FALSE) 
+%
+\begin{table}[ht]
+ \caption[Model 10o5 Parameters]{Parameter Estimates from Population Pharmacokinetic Model Run 1005\label{p1005}} 
+ \begin{center}
+ \begin{tabular}{lllll}\hline\hline
+\multicolumn{1}{c}{parameter}&\multicolumn{1}{c}{model}&\multicolumn{1}{c}{estimate}&\multicolumn{1}{c}{prse}&\multicolumn{1}{c}{CI}\tabularnewline
+\hline
+CL/F ($\theta_1$)&$CL/F \sim \theta_6^{MALE} * (WT/70)^{\theta_7}$&8.58 $L/h$&9.51&(7.14,9.89)\tabularnewline
+Vc/F ($\theta_2$)&$Vc/F \sim (WT/70)^{1}$&21.6 $L$&9.33&(18.5,25.4)\tabularnewline
+Ka ($\theta_3$)&&0.0684 $h^{-1}$&8.04&(0.0586,0.0793)\tabularnewline
+Q/F ($\theta_4$)&&3.78 $L/h$&13.5&(3.03,4.83)\tabularnewline
+Vp/F ($\theta_5$)&&107 $L$&15.7&(85.7,148)\tabularnewline
+Male.CL ($\theta_6$)&&0.999&13.7&(0.799,1.31)\tabularnewline
+WT.CL ($\theta_7$)&&1.67&21.9&(1.03,2.34)\tabularnewline
+$\Omega^{1.1}CL/F$&&0.196 (\%CV=44.3)&23.1&(0.115,0.26)\tabularnewline
+$\Omega^{2.2}Vc/F$&&0.129 (\%CV=35.9)&30.4&(0.0623,0.181)\tabularnewline
+$\Omega^{3.3}Ka$&&0.107 (\%CV=32.7)&25.2&(0.0638,0.157)\tabularnewline
+$\sigma^{1.1}prop$&&0.0671 (\%CV=25.9)&11.4&(0.055,0.0796)\tabularnewline
+\hline
+\end{tabular}
+
+\end{center}
+
+\end{table}\end{document}

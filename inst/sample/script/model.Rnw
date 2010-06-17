@@ -79,7 +79,7 @@ t <- metaSub(
 \subsection{Run the simulation.}
 This run makes the predictions (simulations).
 <<sim>>=
-if(!file.exists('../nonmem/1105/1105.ext'))NONR(
+if(!file.exists('../nonmem/1105/1105.lst'))NONR(
      run=1105,
      command=command,
      project='../nonmem',
@@ -89,7 +89,7 @@ if(!file.exists('../nonmem/1105/1105.ext'))NONR(
      streams='../nonmem/ctl'
 )
 getwd()
-while(!file.exists('../nonmem/1105/1105.ext')){}
+while(!file.exists('../nonmem/1105/1105.lst')){}
 @
 \subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
@@ -297,14 +297,18 @@ do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 <<more>>= 
 #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 #wait for bootstraps to finish
-while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.ext'))))){}
-boot <- rlog(
+while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
+if(file.exists('../nonmem/1005.boot/log.csv')){
+    boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+}else{
+    boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
 	boot=TRUE,
 	append=FALSE,
 	tool='nm7'
-)
+    )
+}
 head(boot)
 unique(boot$parameter)
 text2decimal(unique(boot$parameter))
@@ -401,7 +405,7 @@ frozen$WT.CL85 <- (85/70)**frozen$WT.CL
 @
 \subsubsection{Normalize key parameter}
 <<key>>=
-cl <- median(boot$value[boot$parameter=='CL'])
+cl <- median(boot$value[boot$parameter=='CL/F'])
 cl
 frozen$CL <- frozen$CL/cl
 head(frozen)
@@ -453,7 +457,7 @@ tab$root <- NULL
 #cor <- signif(half(cov2cor(as.matrix(as.halfmatrix(omegablock))))[[2]],3)
 #tab$estimate[offdiag] <- paste(sep='',tab$estimate[offdiag],' (COR=',cor,')')
 tab$model[is.na(tab$model)] <- ''
-boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7')
+boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7',boot=TRUE)
 boot <- data.frame(cast(boot,...~moment))
 boot[] <- lapply(boot,as.character)
 boot <- boot[contains('THETA|OMEGA|SIGMA',boot$parameter),c('parameter','estimate')]
@@ -473,35 +477,4 @@ latex(
 	table.env=FALSE
 )
 @
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \end{document}

@@ -62,7 +62,7 @@ t <- metaSub(
 ###################################################
 ### chunk number 4: sim
 ###################################################
-if(!file.exists('../nonmem/1105/1105.ext'))NONR(
+if(!file.exists('../nonmem/1105/1105.lst'))NONR(
      run=1105,
      command=command,
      project='../nonmem',
@@ -72,13 +72,13 @@ if(!file.exists('../nonmem/1105/1105.ext'))NONR(
      streams='../nonmem/ctl'
 )
 getwd()
-while(!file.exists('../nonmem/1105/1105.ext')){}
+while(!file.exists('../nonmem/1105/1105.lst')){}
 
 
 ###################################################
 ### chunk number 5: fetch
 ###################################################
-phase1 <- read.csv('../data/ph1/derived/phase1.csv',na.strings='.')
+phase1 <- read.csv('../data/derived/phase1.csv',na.strings='.')
 head(phase1)
 phase1 <- phase1[is.na(phase1$C),c('SUBJ','TIME','DV')]
 records <- nrow(phase1)
@@ -229,11 +229,11 @@ dir.create('../nonmem/1005.boot/ctl')
 ### chunk number 18: control
 ###################################################
 t <- metaSub(
-     as.filename('../nonmem/ctl/1005.ctl'),
+     clear(readLines('../nonmem/ctl/1005.ctl'),';.+',fixed=FALSE),
      names=1:300,
      pattern=c(
          '1005',
-         '../../data/ph1/derived/phase1.csv',
+         '../../data/derived/phase1.csv',
          '$COV',
          '$TABLE'
      ),
@@ -252,7 +252,7 @@ t <- metaSub(
 ###################################################
 ### chunk number 19: resample
 ###################################################
- bootset <- read.csv('../data/ph1/derived/phase1.csv')
+ bootset <- read.csv('../data/derived/phase1.csv')
  r <- resample(
  	bootset,
  	names=1:300,
@@ -282,7 +282,7 @@ getwd()
 ###################################################
 #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 #wait for bootstraps to finish
-while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.ext'))))){}
+while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
 boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
@@ -357,7 +357,7 @@ head(boot)
 ###################################################
 ### chunk number 27: covs
 ###################################################
-covariates <- read.csv('../data/ph1/derived/phase1.csv',na.strings='.')
+covariates <- read.csv('../data/derived/phase1.csv',na.strings='.')
 head(covariates)
 with(covariates,constant(WEIGHT,within=ID))
 covariates <- unique(covariates[,c('ID','WEIGHT')])
@@ -410,5 +410,46 @@ print(stripplot(
 	molten,
 	panel=panel.covplot
 ))
+
+
+###################################################
+### chunk number 31: params
+###################################################
+library(Hmisc)
+tab <- partab(1005,'../nonmem',tool='nm7',as=c('label','latex','model','estimate','unit','prse'))
+tab$estimate <- as.character(signif(as.numeric(tab$estimate),3))
+tab$estimate <- ifelse(is.na(tab$unit),tab$estimate,paste(tab$estimate, tab$unit))
+tab$unit <- NULL
+tab$label <- ifelse(is.na(tab$latex),tab$label,paste(tab$label, ' (',tab$latex,')',sep=''))
+tab$latex <- NULL
+names(tab)[names(tab)=='label'] <- 'parameter'
+tab$root <- signif(sqrt(as.numeric(tab$estimate)),3)
+tab$estimate <- ifelse(contains('Omega|sigma',tab$parameter),paste(tab$estimate,' (\\%CV=',tab$root*100,')',sep=''),tab$estimate)
+tab$root <- NULL
+#offdiag <- contains('2.1',tab$parameter)
+#tab$estimate[offdiag] <- text2decimal(tab$estimate[offdiag])
+#omegablock <- text2decimal(tab$estimate[contains('Omega..(1|2)',tab$parameter)])
+#cor <- signif(half(cov2cor(as.matrix(as.halfmatrix(omegablock))))[[2]],3)
+#tab$estimate[offdiag] <- paste(sep='',tab$estimate[offdiag],' (COR=',cor,')')
+tab$model[is.na(tab$model)] <- ''
+boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7')
+boot <- data.frame(cast(boot,...~moment))
+boot[] <- lapply(boot,as.character)
+boot <- boot[contains('THETA|OMEGA|SIGMA',boot$parameter),c('parameter','estimate')]
+boot$estimate <- as.numeric(boot$estimate)
+boot <- data.frame(cast(boot,parameter~.,value='estimate',fun=function(x)list(lo=as.character(signif(quantile(x,probs=0.05),3)),hi=as.character(signif(quantile(x,probs=0.95),3)))))
+boot$CI <- with(boot, paste(sep='','(',lo,',',hi,')'))
+names(boot)[names(boot)=='parameter'] <- 'name'
+tab <- stableMerge(tab,boot[,c('name','CI')])
+latex(
+	tab,
+	file='../report/table/p1005.tex',
+	rowname=NULL,
+	caption='Parameter Estimates from Population Pharmacokinetic Model Run 1005',
+	caption.lot='Model 10o5 Parameters',
+	label='p1005',
+	where='ht',
+	table.env=FALSE
+)
 
 

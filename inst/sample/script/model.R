@@ -283,13 +283,18 @@ getwd()
 #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 #wait for bootstraps to finish
 while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
-boot <- rlog(
+if(file.exists('../nonmem/1005.boot/log.csv')){
+    boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+}else{
+    boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',
 	boot=TRUE,
 	append=FALSE,
 	tool='nm7'
-)
+    )
+    write.csv(boot, '../nonmem/1005.boot/log.csv')
+}
 head(boot)
 unique(boot$parameter)
 text2decimal(unique(boot$parameter))
@@ -372,9 +377,10 @@ range(covariates$WT)
 ### chunk number 28: cuts
 ###################################################
 head(boot) 
-clearance <- boot[boot$parameter %in% c('CL','WT.CL','Male.CL'),]
+unique(boot$parameter)
+clearance <- boot[boot$parameter %in% c('CL/F','WT.CL','Male.CL'),]
 head(clearance)
-frozen <- data.frame(cast(clearance,run~parameter))
+frozen <- data.frame(cast(clearance,run~parameter),check.names=FALSE)
 head(frozen)
 frozen$WT.CL65 <- (65/70)**frozen$WT.CL
 frozen$WT.CL75 <- (75/70)**frozen$WT.CL
@@ -384,9 +390,10 @@ frozen$WT.CL85 <- (85/70)**frozen$WT.CL
 ###################################################
 ### chunk number 29: key
 ###################################################
-cl <- median(boot$value[boot$parameter=='CL'])
+cl <- median(boot$value[boot$parameter=='CL/F'])
 cl
-frozen$CL <- frozen$CL/cl
+head(frozen)
+frozen[['CL/F']] <- frozen[['CL/F']]/cl
 head(frozen)
 frozen$WT.CL <- NULL
 molten <- melt(frozen,id.var='run',na.rm=TRUE)
@@ -397,19 +404,8 @@ head(molten)
 ### chunk number 30: covplot
 ###################################################
 levels(molten$variable)
-print(stripplot(
-	factor(
-		variable,levels= c(
-			"WT.CL85",
-			"WT.CL75",
-			"WT.CL65",
-			"Male.CL",
-			"CL"
-		)
-	)~value,
-	molten,
-	panel=panel.covplot
-))
+molten$variable <- factor(molten$variable,levels=rev(levels(molten$variable)))
+print(stripplot(variable~value,molten,panel=panel.covplot))
 
 
 ###################################################
@@ -432,7 +428,9 @@ tab$root <- NULL
 #cor <- signif(half(cov2cor(as.matrix(as.halfmatrix(omegablock))))[[2]],3)
 #tab$estimate[offdiag] <- paste(sep='',tab$estimate[offdiag],' (COR=',cor,')')
 tab$model[is.na(tab$model)] <- ''
-boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7')
+#boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7',boot=TRUE)
+boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+boot <- boot[boot$moment=='estimate',]
 boot <- data.frame(cast(boot,...~moment))
 boot[] <- lapply(boot,as.character)
 boot <- boot[contains('THETA|OMEGA|SIGMA',boot$parameter),c('parameter','estimate')]
@@ -441,6 +439,7 @@ boot <- data.frame(cast(boot,parameter~.,value='estimate',fun=function(x)list(lo
 boot$CI <- with(boot, paste(sep='','(',lo,',',hi,')'))
 names(boot)[names(boot)=='parameter'] <- 'name'
 tab <- stableMerge(tab,boot[,c('name','CI')])
+tab$name <- NULL
 latex(
 	tab,
 	file='../report/table/p1005.tex',

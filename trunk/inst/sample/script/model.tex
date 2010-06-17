@@ -542,23 +542,35 @@ do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 > #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 > #wait for bootstraps to finish
 > while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
-> boot <- rlog(
+> if(file.exists('../nonmem/1005.boot/log.csv')){
++     boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
++ }else{
++     boot <- rlog(
 + 	run=1:300,
 + 	project='../nonmem/1005.boot',
 + 	boot=TRUE,
 + 	append=FALSE,
 + 	tool='nm7'
-+ )
++     )
++     write.csv(boot, '../nonmem/1005.boot/log.csv')
++ }
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-  tool run parameter   moment                                            value
-1  nm7   1      prob     text 1 phase1 2 CMT like 1004 but diff. initial on V3
-2  nm7   1       min   status                                                0
-3  nm7   1       ofv estimate                                 2760.84241850239
-4  nm7   1  OMEGA1.1 estimate                                         0.188595
-5  nm7   1  OMEGA1.1     prse                                             <NA>
-6  nm7   1  OMEGA2.1 estimate                                                0
+  X tool run parameter   moment
+1 1  nm7   1      prob     text
+2 2  nm7   1       min   status
+3 3  nm7   1       ofv estimate
+4 4  nm7   1  OMEGA1.1 estimate
+5 5  nm7   1  OMEGA1.1     prse
+6 6  nm7   1  OMEGA2.1 estimate
+                                             value
+1 1 phase1 2 CMT like 1004 but diff. initial on V3
+2                                                0
+3                                 2760.84241850239
+4                                         0.188595
+5                                             <NA>
+6                                                0
 \end{Soutput}
 \begin{Sinput}
 > unique(boot$parameter)
@@ -583,13 +595,13 @@ original control stream.
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-  tool run parameter   moment    value
-4  nm7   1  OMEGA1.1 estimate 0.188595
-5  nm7   1  OMEGA1.1     prse     <NA>
-6  nm7   1  OMEGA2.1 estimate        0
-7  nm7   1  OMEGA2.1     prse     <NA>
-8  nm7   1  OMEGA2.2 estimate 0.112992
-9  nm7   1  OMEGA2.2     prse     <NA>
+  X tool run parameter   moment    value
+4 4  nm7   1  OMEGA1.1 estimate 0.188595
+5 5  nm7   1  OMEGA1.1     prse     <NA>
+6 6  nm7   1  OMEGA2.1 estimate        0
+7 7  nm7   1  OMEGA2.1     prse     <NA>
+8 8  nm7   1  OMEGA2.2 estimate 0.112992
+9 9  nm7   1  OMEGA2.2     prse     <NA>
 \end{Soutput}
 \begin{Sinput}
 > unique(boot$moment)
@@ -619,13 +631,13 @@ prse, and therefore moment, is noninformative for these bootstraps.
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-   run parameter     value
-4    1  OMEGA1.1  0.188595
-6    1  OMEGA2.1         0
-8    1  OMEGA2.2  0.112992
-10   1  OMEGA3.1         0
-12   1  OMEGA3.2         0
-14   1  OMEGA3.3 0.0854714
+    X run parameter     value
+4   4   1  OMEGA1.1  0.188595
+6   6   1  OMEGA2.1         0
+8   8   1  OMEGA2.2  0.112992
+10 10   1  OMEGA3.1         0
+12 12   1  OMEGA3.2         0
+14 14   1  OMEGA3.3 0.0854714
 \end{Soutput}
 \begin{Sinput}
 > unique(boot$value[boot$parameter %in% c('OMEGA2.1','OMEGA3.1','OMEGA3.2')])
@@ -654,13 +666,13 @@ Off-diagonals (and only off-diagonals) are noninformative.
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-   run parameter      value
-4    1  OMEGA1.1  0.1885950
-8    1  OMEGA2.2  0.1129920
-14   1  OMEGA3.3  0.0854714
-16   1  SIGMA1.1  0.0640717
-18   1    THETA1  7.9889300
-20   1    THETA2 19.8920000
+    X run parameter      value
+4   4   1  OMEGA1.1  0.1885950
+8   8   1  OMEGA2.2  0.1129920
+14 14   1  OMEGA3.3  0.0854714
+16 16   1  SIGMA1.1  0.0640717
+18 18   1    THETA1  7.9889300
+20 20   1    THETA2 19.8920000
 \end{Soutput}
 \end{Schunk}
 \subsection{Restrict data to 95 percentiles.}
@@ -688,13 +700,13 @@ scale independent.
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-   run parameter      value       upper       lower
-4    1  OMEGA1.1  0.1885950  0.28599012  0.10657525
-8    1  OMEGA2.2  0.1129920  0.19930930  0.05290951
-14   1  OMEGA3.3  0.0854714  0.16658800  0.05277859
-16   1  SIGMA1.1  0.0640717  0.08328707  0.05422743
-18   1    THETA1  7.9889300 10.18006750  6.90182250
-20   1    THETA2 19.8920000 26.29300250 17.74395750
+    X run parameter      value       upper       lower
+4   4   1  OMEGA1.1  0.1885950  0.28599012  0.10657525
+8   8   1  OMEGA2.2  0.1129920  0.19930930  0.05290951
+14 14   1  OMEGA3.3  0.0854714  0.16658800  0.05277859
+16 16   1  SIGMA1.1  0.0640717  0.08328707  0.05422743
+18 18   1    THETA1  7.9889300 10.18006750  6.90182250
+20 20   1    THETA2 19.8920000 26.29300250 17.74395750
 \end{Soutput}
 \begin{Sinput}
 > boot$upper <- NULL
@@ -702,13 +714,13 @@ scale independent.
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-   run parameter      value
-4    1  OMEGA1.1  0.1885950
-8    1  OMEGA2.2  0.1129920
-14   1  OMEGA3.3  0.0854714
-16   1  SIGMA1.1  0.0640717
-18   1    THETA1  7.9889300
-20   1    THETA2 19.8920000
+    X run parameter      value
+4   4   1  OMEGA1.1  0.1885950
+8   8   1  OMEGA2.2  0.1129920
+14 14   1  OMEGA3.3  0.0854714
+16 16   1  SIGMA1.1  0.0640717
+18 18   1    THETA1  7.9889300
+20 20   1    THETA2 19.8920000
 \end{Soutput}
 \end{Schunk}
 \subsection{Recover parameter metadata from a specially-marked control stream.}
@@ -771,13 +783,13 @@ stream.
 > head(boot)
 \end{Sinput}
 \begin{Soutput}
-   run           parameter      value
-4    1 $\\Omega^{1.1}CL/F$  0.1885950
-8    1 $\\Omega^{2.2}Vc/F$  0.1129920
-14   1   $\\Omega^{3.3}Ka$  0.0854714
-16   1 $\\sigma^{1.1}prop$  0.0640717
-18   1                CL/F  7.9889300
-20   1                Vc/F 19.8920000
+    X run           parameter      value
+4   4   1 $\\Omega^{1.1}CL/F$  0.1885950
+8   8   1 $\\Omega^{2.2}Vc/F$  0.1129920
+14 14   1   $\\Omega^{3.3}Ka$  0.0854714
+16 16   1 $\\sigma^{1.1}prop$  0.0640717
+18 18   1                CL/F  7.9889300
+20 20   1                Vc/F 19.8920000
 \end{Soutput}
 \end{Schunk}
 \subsection{Create covariate plot.}
@@ -853,39 +865,48 @@ effectively reproducing the submodel from the control stream.
 > head(boot) 
 \end{Sinput}
 \begin{Soutput}
-   run           parameter      value
-4    1 $\\Omega^{1.1}CL/F$  0.1885950
-8    1 $\\Omega^{2.2}Vc/F$  0.1129920
-14   1   $\\Omega^{3.3}Ka$  0.0854714
-16   1 $\\sigma^{1.1}prop$  0.0640717
-18   1                CL/F  7.9889300
-20   1                Vc/F 19.8920000
+    X run           parameter      value
+4   4   1 $\\Omega^{1.1}CL/F$  0.1885950
+8   8   1 $\\Omega^{2.2}Vc/F$  0.1129920
+14 14   1   $\\Omega^{3.3}Ka$  0.0854714
+16 16   1 $\\sigma^{1.1}prop$  0.0640717
+18 18   1                CL/F  7.9889300
+20 20   1                Vc/F 19.8920000
 \end{Soutput}
 \begin{Sinput}
-> clearance <- boot[boot$parameter %in% c('CL','WT.CL','Male.CL'),]
+> unique(boot$parameter)
+\end{Sinput}
+\begin{Soutput}
+ [1] "$\\Omega^{1.1}CL/F$" "$\\Omega^{2.2}Vc/F$" "$\\Omega^{3.3}Ka$"  
+ [4] "$\\sigma^{1.1}prop$" "CL/F"                "Vc/F"               
+ [7] "Ka"                  "Q/F"                 "Vp/F"               
+[10] "Male.CL"             "WT.CL"              
+\end{Soutput}
+\begin{Sinput}
+> clearance <- boot[boot$parameter %in% c('CL/F','WT.CL','Male.CL'),]
 > head(clearance)
 \end{Sinput}
 \begin{Soutput}
-   run parameter    value
-28   1   Male.CL 1.182580
-30   1     WT.CL 1.308790
-59   2   Male.CL 0.956565
-61   2     WT.CL 2.369810
-90   3   Male.CL 0.937231
-92   3     WT.CL 1.885930
+    X run parameter    value
+18 18   1      CL/F 7.988930
+28 28   1   Male.CL 1.182580
+30 30   1     WT.CL 1.308790
+49 49   2      CL/F 7.636730
+59 59   2   Male.CL 0.956565
+61 61   2     WT.CL 2.369810
 \end{Soutput}
 \begin{Sinput}
-> frozen <- data.frame(cast(clearance,run~parameter))
+> frozen <- data.frame(cast(clearance,run~parameter),check.names=FALSE)
 > head(frozen)
 \end{Sinput}
 \begin{Soutput}
-  run  Male.CL   WT.CL
-1   1 1.182580 1.30879
-2  10 0.836765 1.85115
-3 100 0.916888 1.63059
-4 101 1.121880 1.58567
-5 102 1.003720 1.32105
-6 103 0.966337 1.69517
+  run    CL/F  Male.CL   WT.CL
+1   1 7.98893 1.182580 1.30879
+2   2 7.63673 0.956565 2.36981
+3   3 9.15198 0.937231 1.88593
+4   4 9.56138 1.028670 1.47186
+5   5 8.36964 0.914796 1.97656
+6   6 9.09701 1.079030 1.16319
 \end{Soutput}
 \begin{Sinput}
 > frozen$WT.CL65 <- (65/70)**frozen$WT.CL
@@ -896,11 +917,116 @@ effectively reproducing the submodel from the control stream.
 \subsubsection{Normalize key parameter}
 \begin{Schunk}
 \begin{Sinput}
-> cl <- median(boot$value[boot$parameter=='CL'])
+> cl <- median(boot$value[boot$parameter=='CL/F'])
 > cl
 \end{Sinput}
 \begin{Soutput}
-[1] NA
+[1] 8.56139
 \end{Soutput}
 \begin{Sinput}
-> frozen$CL <- frozen$CL/cl
+> head(frozen)
+\end{Sinput}
+\begin{Soutput}
+  run    CL/F  Male.CL   WT.CL   WT.CL65  WT.CL75  WT.CL85
+1   1 7.98893 1.182580 1.30879 0.9075635 1.094499 1.289313
+2   2 7.63673 0.956565 2.36981 0.8389352 1.177625 1.584253
+3   3 9.15198 0.937231 1.88593 0.8695648 1.138960 1.442193
+4   4 9.56138 1.028670 1.47186 0.8966618 1.106883 1.330787
+5   5 8.36964 0.914796 1.97656 0.8637440 1.146104 1.467795
+6   6 9.09701 1.079030 1.16319 0.9174092 1.083560 1.253376
+\end{Soutput}
+\begin{Sinput}
+> frozen[['CL/F']] <- frozen[['CL/F']]/cl
+> head(frozen)
+\end{Sinput}
+\begin{Soutput}
+  run      CL/F  Male.CL   WT.CL   WT.CL65  WT.CL75  WT.CL85
+1   1 0.9331347 1.182580 1.30879 0.9075635 1.094499 1.289313
+2   2 0.8919965 0.956565 2.36981 0.8389352 1.177625 1.584253
+3   3 1.0689830 0.937231 1.88593 0.8695648 1.138960 1.442193
+4   4 1.1168023 1.028670 1.47186 0.8966618 1.106883 1.330787
+5   5 0.9776029 0.914796 1.97656 0.8637440 1.146104 1.467795
+6   6 1.0625623 1.079030 1.16319 0.9174092 1.083560 1.253376
+\end{Soutput}
+\begin{Sinput}
+> frozen$WT.CL <- NULL
+> molten <- melt(frozen,id.var='run',na.rm=TRUE)
+> head(molten)
+\end{Sinput}
+\begin{Soutput}
+  run variable     value
+1   1     CL/F 0.9331347
+2   2     CL/F 0.8919965
+3   3     CL/F 1.0689830
+4   4     CL/F 1.1168023
+5   5     CL/F 0.9776029
+6   6     CL/F 1.0625623
+\end{Soutput}
+\end{Schunk}
+\subsubsection{Plot.}
+Now we plot.  We reverse the variable factor to give us top-down layout
+of strips.
+\begin{Schunk}
+\begin{Sinput}
+> levels(molten$variable)
+\end{Sinput}
+\begin{Soutput}
+[1] "CL/F"    "Male.CL" "WT.CL65" "WT.CL75" "WT.CL85"
+\end{Soutput}
+\begin{Sinput}
+> molten$variable <- factor(molten$variable,levels=rev(levels(molten$variable)))
+> print(stripplot(variable~value,molten,panel=panel.covplot))
+\end{Sinput}
+\end{Schunk}
+\includegraphics{model-covplot}
+\subsubsection{Summarize}
+We see that clearance is estimated with good precision.  Ignoring outliers, there 
+is not much effect on clearance of being male, relative to female.  Increasing 
+weight is associated with increasing clearance.  There is a 79 percent probability
+that an 85 kg person will have at least 25 percent greater clearance than a 70 kg
+person.
+\section{Parameter Table}
+\begin{Schunk}
+\begin{Sinput}
+> library(Hmisc)
+> tab <- partab(1005,'../nonmem',tool='nm7',as=c('label','latex','model','estimate','unit','prse'))
+> tab$estimate <- as.character(signif(as.numeric(tab$estimate),3))
+> tab$estimate <- ifelse(is.na(tab$unit),tab$estimate,paste(tab$estimate, tab$unit))
+> tab$unit <- NULL
+> tab$label <- ifelse(is.na(tab$latex),tab$label,paste(tab$label, ' (',tab$latex,')',sep=''))
+> tab$latex <- NULL
+> names(tab)[names(tab)=='label'] <- 'parameter'
+> tab$root <- signif(sqrt(as.numeric(tab$estimate)),3)
+> tab$estimate <- ifelse(contains('Omega|sigma',tab$parameter),paste(tab$estimate,' (\\%CV=',tab$root*100,')',sep=''),tab$estimate)
+> tab$root <- NULL
+> #offdiag <- contains('2.1',tab$parameter)
+> #tab$estimate[offdiag] <- text2decimal(tab$estimate[offdiag])
+> #omegablock <- text2decimal(tab$estimate[contains('Omega..(1|2)',tab$parameter)])
+> #cor <- signif(half(cov2cor(as.matrix(as.halfmatrix(omegablock))))[[2]],3)
+> #tab$estimate[offdiag] <- paste(sep='',tab$estimate[offdiag],' (COR=',cor,')')
+> tab$model[is.na(tab$model)] <- ''
+> #boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7',boot=TRUE)
+> boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+> boot <- boot[boot$moment=='estimate',]
+> boot <- data.frame(cast(boot,...~moment))
+> boot[] <- lapply(boot,as.character)
+> boot <- boot[contains('THETA|OMEGA|SIGMA',boot$parameter),c('parameter','estimate')]
+> boot$estimate <- as.numeric(boot$estimate)
+> boot <- data.frame(cast(boot,parameter~.,value='estimate',fun=function(x)list(lo=as.character(signif(quantile(x,probs=0.05),3)),hi=as.character(signif(quantile(x,probs=0.95),3)))))
+> boot$CI <- with(boot, paste(sep='','(',lo,',',hi,')'))
+> names(boot)[names(boot)=='parameter'] <- 'name'
+> tab <- stableMerge(tab,boot[,c('name','CI')])
+> tab$name <- NULL
+> latex(
++ 	tab,
++ 	file='../report/table/p1005.tex',
++ 	rowname=NULL,
++ 	caption='Parameter Estimates from Population Pharmacokinetic Model Run 1005',
++ 	caption.lot='Model 10o5 Parameters',
++ 	label='p1005',
++ 	where='ht',
++ 	table.env=FALSE
++ )
+\end{Sinput}
+\end{Schunk}
+\end{document}

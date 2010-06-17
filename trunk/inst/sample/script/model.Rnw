@@ -308,6 +308,7 @@ if(file.exists('../nonmem/1005.boot/log.csv')){
 	append=FALSE,
 	tool='nm7'
     )
+    write.csv(boot, '../nonmem/1005.boot/log.csv')
 }
 head(boot)
 unique(boot$parameter)
@@ -395,9 +396,10 @@ weight effect columns, and raise our normalized cuts to those powers,
 effectively reproducing the submodel from the control stream.
 <<cuts>>=
 head(boot) 
-clearance <- boot[boot$parameter %in% c('CL','WT.CL','Male.CL'),]
+unique(boot$parameter)
+clearance <- boot[boot$parameter %in% c('CL/F','WT.CL','Male.CL'),]
 head(clearance)
-frozen <- data.frame(cast(clearance,run~parameter))
+frozen <- data.frame(cast(clearance,run~parameter),check.names=FALSE)
 head(frozen)
 frozen$WT.CL65 <- (65/70)**frozen$WT.CL
 frozen$WT.CL75 <- (75/70)**frozen$WT.CL
@@ -407,7 +409,8 @@ frozen$WT.CL85 <- (85/70)**frozen$WT.CL
 <<key>>=
 cl <- median(boot$value[boot$parameter=='CL/F'])
 cl
-frozen$CL <- frozen$CL/cl
+head(frozen)
+frozen[['CL/F']] <- frozen[['CL/F']]/cl
 head(frozen)
 frozen$WT.CL <- NULL
 molten <- melt(frozen,id.var='run',na.rm=TRUE)
@@ -418,19 +421,8 @@ Now we plot.  We reverse the variable factor to give us top-down layout
 of strips.
 <<covplot,fig=TRUE>>=
 levels(molten$variable)
-print(stripplot(
-	factor(
-		variable,levels= c(
-			"WT.CL85",
-			"WT.CL75",
-			"WT.CL65",
-			"Male.CL",
-			"CL"
-		)
-	)~value,
-	molten,
-	panel=panel.covplot
-))
+molten$variable <- factor(molten$variable,levels=rev(levels(molten$variable)))
+print(stripplot(variable~value,molten,panel=panel.covplot))
 @
 \subsubsection{Summarize}
 We see that clearance is estimated with good precision.  Ignoring outliers, there 
@@ -457,7 +449,9 @@ tab$root <- NULL
 #cor <- signif(half(cov2cor(as.matrix(as.halfmatrix(omegablock))))[[2]],3)
 #tab$estimate[offdiag] <- paste(sep='',tab$estimate[offdiag],' (COR=',cor,')')
 tab$model[is.na(tab$model)] <- ''
-boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7',boot=TRUE)
+#boot <- rlog(1:300,project='../nonmem/1005.boot',tool='nm7',boot=TRUE)
+boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
+boot <- boot[boot$moment=='estimate',]
 boot <- data.frame(cast(boot,...~moment))
 boot[] <- lapply(boot,as.character)
 boot <- boot[contains('THETA|OMEGA|SIGMA',boot$parameter),c('parameter','estimate')]
@@ -466,6 +460,7 @@ boot <- data.frame(cast(boot,parameter~.,value='estimate',fun=function(x)list(lo
 boot$CI <- with(boot, paste(sep='','(',lo,',',hi,')'))
 names(boot)[names(boot)=='parameter'] <- 'name'
 tab <- stableMerge(tab,boot[,c('name','CI')])
+tab$name <- NULL
 latex(
 	tab,
 	file='../report/table/p1005.tex',

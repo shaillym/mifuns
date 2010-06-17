@@ -102,7 +102,7 @@ Covariance succeeded on model 1005.
 This run makes the predictions (simulations).
 \begin{Schunk}
 \begin{Sinput}
-> if(!file.exists('../nonmem/1105/1105.ext'))NONR(
+> if(!file.exists('../nonmem/1105/1105.lst'))NONR(
 +      run=1105,
 +      command=command,
 +      project='../nonmem',
@@ -117,14 +117,14 @@ This run makes the predictions (simulations).
 [1] "/Users/timb/project/metrum-mifuns/inst/sample/script"
 \end{Soutput}
 \begin{Sinput}
-> while(!file.exists('../nonmem/1105/1105.ext')){}
+> while(!file.exists('../nonmem/1105/1105.lst')){}
 \end{Sinput}
 \end{Schunk}
 \subsection{Recover and format the original dataset.}
 Now we fetch the results and integrate them with the other data.
 \begin{Schunk}
 \begin{Sinput}
-> phase1 <- read.csv('../data/ph1/derived/phase1.csv',na.strings='.')
+> phase1 <- read.csv('../data/derived/phase1.csv',na.strings='.')
 > head(phase1)
 \end{Sinput}
 \begin{Soutput}
@@ -385,7 +385,7 @@ Requires slight rearrangement.
 + ))
 \end{Sinput}
 \end{Schunk}
-\includegraphics{model1-bivariate}
+\includegraphics{model-bivariate}
 \subsubsection{Univariate displays.}
 For a better view of the distributions, however, we can work with single-axis plot functions,
 using the molten data.  For faster and clearer plotting, we remove duplicates of DV.
@@ -433,7 +433,7 @@ using the molten data.  For faster and clearer plotting, we remove duplicates of
 + ))
 \end{Sinput}
 \end{Schunk}
-\includegraphics{model1-stripplot}
+\includegraphics{model-stripplot}
 \subsubsection{Diamondback: reference regions on density strips}
 Here we show the distribution data as density strips, and indicate reference 
 regions around the point estimates. Here is one option. Also try swapping `quant' and 
@@ -462,7 +462,7 @@ regions around the point estimates. Here is one option. Also try swapping `quant
 + ))
 \end{Sinput}
 \end{Schunk}
-\includegraphics{model1-diamondBack}
+\includegraphics{model-diamondBack}
 \section{Bootstrap Estimates of Parameter Uncertainty}
 \subsection{Create directories.}
 \begin{Schunk}
@@ -482,11 +482,11 @@ regions around the point estimates. Here is one option. Also try swapping `quant
 \begin{Schunk}
 \begin{Sinput}
 > t <- metaSub(
-+      as.filename('../nonmem/ctl/1005.ctl'),
++      clear(readLines('../nonmem/ctl/1005.ctl'),';.+',fixed=FALSE),
 +      names=1:300,
 +      pattern=c(
 +          '1005',
-+          '../../data/ph1/derived/phase1.csv',
++          '../../data/derived/phase1.csv',
 +          '$COV',
 +          '$TABLE'
 +      ),
@@ -505,7 +505,7 @@ regions around the point estimates. Here is one option. Also try swapping `quant
 \subsection{Create replicate data sets by resampling original.}
 \begin{Schunk}
 \begin{Sinput}
->  bootset <- read.csv('../data/ph1/derived/phase1.csv')
+>  bootset <- read.csv('../data/derived/phase1.csv')
 >  r <- resample(
 +  	bootset,
 +  	names=1:300,
@@ -541,4 +541,366 @@ do not have time for bootstraps, use read.csv() on ../nonmem/1005.boot/log.csv.
 \begin{Sinput}
 > #boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 > #wait for bootstraps to finish
-> while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.ext'))))){}
+> while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
+> boot <- rlog(
++ 	run=1:300,
++ 	project='../nonmem/1005.boot',
++ 	boot=TRUE,
++ 	append=FALSE,
++ 	tool='nm7'
++ )
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+  tool run parameter   moment                                            value
+1  nm7   1      prob     text 1 phase1 2 CMT like 1004 but diff. initial on V3
+2  nm7   1       min   status                                                0
+3  nm7   1       ofv estimate                                 2760.84241850239
+4  nm7   1  OMEGA1.1 estimate                                         0.188595
+5  nm7   1  OMEGA1.1     prse                                             <NA>
+6  nm7   1  OMEGA2.1 estimate                                                0
+\end{Soutput}
+\begin{Sinput}
+> unique(boot$parameter)
+\end{Sinput}
+\begin{Soutput}
+ [1] "prob"     "min"      "ofv"      "OMEGA1.1" "OMEGA2.1" "OMEGA2.2"
+ [7] "OMEGA3.1" "OMEGA3.2" "OMEGA3.3" "SIGMA1.1" "THETA1"   "THETA2"  
+[13] "THETA3"   "THETA4"   "THETA5"   "THETA6"   "THETA7"  
+\end{Soutput}
+\begin{Sinput}
+> text2decimal(unique(boot$parameter))
+\end{Sinput}
+\begin{Soutput}
+ [1]  NA  NA  NA 1.1 2.1 2.2 3.1 3.2 3.3 1.1 1.0 2.0 3.0 4.0 5.0 6.0 7.0
+\end{Soutput}
+\end{Schunk}
+It looks like we have 14 estimated parameters.  We will map them to the
+original control stream.
+\begin{Schunk}
+\begin{Sinput}
+> boot <- boot[!is.na(text2decimal(boot$parameter)),]
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+  tool run parameter   moment    value
+4  nm7   1  OMEGA1.1 estimate 0.188595
+5  nm7   1  OMEGA1.1     prse     <NA>
+6  nm7   1  OMEGA2.1 estimate        0
+7  nm7   1  OMEGA2.1     prse     <NA>
+8  nm7   1  OMEGA2.2 estimate 0.112992
+9  nm7   1  OMEGA2.2     prse     <NA>
+\end{Soutput}
+\begin{Sinput}
+> unique(boot$moment)
+\end{Sinput}
+\begin{Soutput}
+[1] "estimate" "prse"    
+\end{Soutput}
+\begin{Sinput}
+> unique(boot$value[boot$moment=='prse'])
+\end{Sinput}
+\begin{Soutput}
+[1] NA
+\end{Soutput}
+\end{Schunk}
+prse, and therefore moment, is noninformative for these bootstraps.
+\begin{Schunk}
+\begin{Sinput}
+> boot <- boot[boot$moment=='estimate',]
+> boot$moment <- NULL
+> unique(boot$tool)
+\end{Sinput}
+\begin{Soutput}
+[1] "nm7"
+\end{Soutput}
+\begin{Sinput}
+> boot$tool <- NULL
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+   run parameter     value
+4    1  OMEGA1.1  0.188595
+6    1  OMEGA2.1         0
+8    1  OMEGA2.2  0.112992
+10   1  OMEGA3.1         0
+12   1  OMEGA3.2         0
+14   1  OMEGA3.3 0.0854714
+\end{Soutput}
+\begin{Sinput}
+> unique(boot$value[boot$parameter %in% c('OMEGA2.1','OMEGA3.1','OMEGA3.2')])
+\end{Sinput}
+\begin{Soutput}
+[1] "0"
+\end{Soutput}
+\begin{Sinput}
+> unique(boot$parameter[boot$value=='0'])
+\end{Sinput}
+\begin{Soutput}
+[1] "OMEGA2.1" "OMEGA3.1" "OMEGA3.2"
+\end{Soutput}
+\end{Schunk}
+Off-diagonals (and only off-diagonals) are noninformative.
+\begin{Schunk}
+\begin{Sinput}
+> boot <- boot[!boot$value=='0',]
+> any(is.na(as.numeric(boot$value)))
+\end{Sinput}
+\begin{Soutput}
+[1] FALSE
+\end{Soutput}
+\begin{Sinput}
+> boot$value <- as.numeric(boot$value)
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+   run parameter      value
+4    1  OMEGA1.1  0.1885950
+8    1  OMEGA2.2  0.1129920
+14   1  OMEGA3.3  0.0854714
+16   1  SIGMA1.1  0.0640717
+18   1    THETA1  7.9889300
+20   1    THETA2 19.8920000
+\end{Soutput}
+\end{Schunk}
+\subsection{Restrict data to 95 percentiles.}
+We did 300 runs.  Min and max are strongly dependent on number of runs, since 
+with an unbounded distribution, (almost) any value is possible with enough sampling.
+We clip to the 95 percentiles, to give distributions that are somewhat more
+scale independent.
+\begin{Schunk}
+\begin{Sinput}
+> boot$upper <- with(boot,reapply(value,INDEX=parameter,FUN=quantile,probs=0.975))
+> boot$lower <- with(boot,reapply(value,INDEX=parameter,FUN=quantile,probs=0.025))
+> nrow(boot)
+\end{Sinput}
+\begin{Soutput}
+[1] 3300
+\end{Soutput}
+\begin{Sinput}
+> boot <- boot[with(boot, value < upper & value > lower),]
+> nrow(boot)
+\end{Sinput}
+\begin{Soutput}
+[1] 3124
+\end{Soutput}
+\begin{Sinput}
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+   run parameter      value       upper       lower
+4    1  OMEGA1.1  0.1885950  0.28599012  0.10657525
+8    1  OMEGA2.2  0.1129920  0.19930930  0.05290951
+14   1  OMEGA3.3  0.0854714  0.16658800  0.05277859
+16   1  SIGMA1.1  0.0640717  0.08328707  0.05422743
+18   1    THETA1  7.9889300 10.18006750  6.90182250
+20   1    THETA2 19.8920000 26.29300250 17.74395750
+\end{Soutput}
+\begin{Sinput}
+> boot$upper <- NULL
+> boot$lower <- NULL
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+   run parameter      value
+4    1  OMEGA1.1  0.1885950
+8    1  OMEGA2.2  0.1129920
+14   1  OMEGA3.3  0.0854714
+16   1  SIGMA1.1  0.0640717
+18   1    THETA1  7.9889300
+20   1    THETA2 19.8920000
+\end{Soutput}
+\end{Schunk}
+\subsection{Recover parameter metadata from a specially-marked control stream.}
+We want meaningful names for our parameters.  Harvest these from a reviewed control
+stream.
+\begin{Schunk}
+\begin{Sinput}
+> stream <- readLines('../nonmem/ctl/1005.ctl')
+> tail(stream)
+\end{Sinput}
+\begin{Soutput}
+[1] ";<parameter name='SIGMA1.1' label='$\\sigma^{1.1}prop$'>proportional error</parameter>"
+[2] ""                                                                                      
+[3] "$ESTIMATION MAXEVAL=9999 PRINT=5 NOABORT METHOD=1 INTER MSFO=./1005.msf"               
+[4] "$COV PRINT=E"                                                                          
+[5] "$TABLE NOPRINT FILE=./1005.tab ONEHEADER ID AMT TIME EVID PRED IPRE CWRES"             
+[6] "$TABLE NOPRINT FILE=./1005par.tab ONEHEADER ID TIME CL Q V2 V3 KA ETA1 ETA2 ETA3"      
+\end{Soutput}
+\begin{Sinput}
+> doc <- ctl2xml(stream)
+> doc
+\end{Sinput}
+\begin{Soutput}
+ [1] "<document>"                                                                                                                                                 
+ [2] "<parameter name='THETA1' latex='$\\theta_1$' unit='$L/h$'    label='CL/F' model='$CL/F \\sim \\theta_6^{MALE} * (WT/70)^{\\theta_7}$'>clearance</parameter>"
+ [3] "<parameter name='THETA2' latex='$\\theta_2$' unit='$L$'      label='Vc/F' model='$Vc/F \\sim (WT/70)^{1}$'   >central volume</parameter>"                   
+ [4] "<parameter name='THETA3' latex='$\\theta_3$' unit='$h^{-1}$' label='Ka'                                     >absorption constant</parameter>"               
+ [5] "<parameter name='THETA4' latex='$\\theta_4$' unit='$L/h$'    label='Q/F'                                    >intercompartmental clearance</parameter>"      
+ [6] "<parameter name='THETA5' latex='$\\theta_5$' unit='$L$'      label='Vp/F'                                   >peripheral volume</parameter>"                 
+ [7] "<parameter name='THETA6' latex='$\\theta_6$'                 label='Male.CL'                                >male effect on clearance</parameter>"          
+ [8] "<parameter name='THETA7' latex='$\\theta_7$'                 label='WT.CL'                                  >weight effect on clearance</parameter>"        
+ [9] "<parameter name='OMEGA1.1' label='$\\Omega^{1.1}CL/F$'>interindividual variability on clearance</parameter>"                                                
+[10] "<parameter name='OMEGA2.2' label='$\\Omega^{2.2}Vc/F$'>interindividual variability on central volume</parameter>"                                           
+[11] "<parameter name='OMEGA3.3' label='$\\Omega^{3.3}Ka$'>interindividual variability on Ka</parameter>"                                                         
+[12] "<parameter name='SIGMA1.1' label='$\\sigma^{1.1}prop$'>proportional error</parameter>"                                                                      
+[13] "</document>"                                                                                                                                                
+\end{Soutput}
+\begin{Sinput}
+> params <- unique(boot[,'parameter',drop=FALSE])
+> params$defs <- lookup(params$parameter,within=doc)
+> params$labels <- lookup(params$parameter,within=doc,as='label')
+> params
+\end{Sinput}
+\begin{Soutput}
+   parameter                                          defs              labels
+4   OMEGA1.1      interindividual variability on clearance $\\Omega^{1.1}CL/F$
+8   OMEGA2.2 interindividual variability on central volume $\\Omega^{2.2}Vc/F$
+14  OMEGA3.3             interindividual variability on Ka   $\\Omega^{3.3}Ka$
+16  SIGMA1.1                            proportional error $\\sigma^{1.1}prop$
+18    THETA1                                     clearance                CL/F
+20    THETA2                                central volume                Vc/F
+22    THETA3                           absorption constant                  Ka
+24    THETA4                  intercompartmental clearance                 Q/F
+26    THETA5                             peripheral volume                Vp/F
+28    THETA6                      male effect on clearance             Male.CL
+30    THETA7                    weight effect on clearance               WT.CL
+\end{Soutput}
+\begin{Sinput}
+> boot$parameter <- lookup(boot$parameter,within=doc,as='label')
+> head(boot)
+\end{Sinput}
+\begin{Soutput}
+   run           parameter      value
+4    1 $\\Omega^{1.1}CL/F$  0.1885950
+8    1 $\\Omega^{2.2}Vc/F$  0.1129920
+14   1   $\\Omega^{3.3}Ka$  0.0854714
+16   1 $\\sigma^{1.1}prop$  0.0640717
+18   1                CL/F  7.9889300
+20   1                Vc/F 19.8920000
+\end{Soutput}
+\end{Schunk}
+\subsection{Create covariate plot.}
+Now we make a covariate plot for clearance.  We will normalize clearance 
+by its median (we also could have used the model estimate).  We need to take 
+cuts of weight, since we can only really show categorically-constrained distributions.
+Male effect is already categorical.  I.e, the reference individual has median
+clearance, is female, and has median weight.
+\subsubsection{Recover original covariates for guidance.}
+\begin{Schunk}
+\begin{Sinput}
+> covariates <- read.csv('../data/derived/phase1.csv',na.strings='.')
+> head(covariates)
+\end{Sinput}
+\begin{Soutput}
+     C ID TIME SEQ EVID  AMT    DV SUBJ HOUR TAFD  TAD LDOS MDV HEIGHT WEIGHT
+1    C  1 0.00   0    0   NA 0.000    1 0.00 0.00   NA   NA   0    174   74.2
+2 <NA>  1 0.00   1    1 1000    NA    1 0.00 0.00 0.00 1000   1    174   74.2
+3 <NA>  1 0.25   0    0   NA 0.363    1 0.25 0.25 0.25 1000   0    174   74.2
+4 <NA>  1 0.50   0    0   NA 0.914    1 0.50 0.50 0.50 1000   0    174   74.2
+5 <NA>  1 1.00   0    0   NA 1.120    1 1.00 1.00 1.00 1000   0    174   74.2
+6 <NA>  1 2.00   0    0   NA 2.280    1 2.00 2.00 2.00 1000   0    174   74.2
+  SEX  AGE DOSE FED SMK DS CRCN predose zerodv
+1   0 29.1 1000   1   0  0 83.5       1      1
+2   0 29.1 1000   1   0  0 83.5       0      0
+3   0 29.1 1000   1   0  0 83.5       0      0
+4   0 29.1 1000   1   0  0 83.5       0      0
+5   0 29.1 1000   1   0  0 83.5       0      0
+6   0 29.1 1000   1   0  0 83.5       0      0
+\end{Soutput}
+\begin{Sinput}
+> with(covariates,constant(WEIGHT,within=ID))
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+> covariates <- unique(covariates[,c('ID','WEIGHT')])
+> head(covariates)
+\end{Sinput}
+\begin{Soutput}
+   ID WEIGHT
+1   1   74.2
+16  2   80.3
+31  3   94.2
+46  4   85.2
+61  5   82.8
+76  6   63.9
+\end{Soutput}
+\begin{Sinput}
+> covariates$WT <- as.numeric(covariates$WEIGHT)
+> wt <- median(covariates$WT)
+> wt
+\end{Sinput}
+\begin{Soutput}
+[1] 81
+\end{Soutput}
+\begin{Sinput}
+> range(covariates$WT)
+\end{Sinput}
+\begin{Soutput}
+[1]  61 117
+\end{Soutput}
+\end{Schunk}
+\subsubsection{Reproduce the control stream submodel for selective cuts of a continuous covariate.}
+In the model we normalized by 70 kg, so that cut will have null effect.
+Let's try 65, 75, and 85 kg. We have to make a separate column for each
+cut, which is a bit of work. Basically, we make two more copies of our
+weight effect columns, and raise our normalized cuts to those powers, 
+effectively reproducing the submodel from the control stream.
+\begin{Schunk}
+\begin{Sinput}
+> head(boot) 
+\end{Sinput}
+\begin{Soutput}
+   run           parameter      value
+4    1 $\\Omega^{1.1}CL/F$  0.1885950
+8    1 $\\Omega^{2.2}Vc/F$  0.1129920
+14   1   $\\Omega^{3.3}Ka$  0.0854714
+16   1 $\\sigma^{1.1}prop$  0.0640717
+18   1                CL/F  7.9889300
+20   1                Vc/F 19.8920000
+\end{Soutput}
+\begin{Sinput}
+> clearance <- boot[boot$parameter %in% c('CL','WT.CL','Male.CL'),]
+> head(clearance)
+\end{Sinput}
+\begin{Soutput}
+   run parameter    value
+28   1   Male.CL 1.182580
+30   1     WT.CL 1.308790
+59   2   Male.CL 0.956565
+61   2     WT.CL 2.369810
+90   3   Male.CL 0.937231
+92   3     WT.CL 1.885930
+\end{Soutput}
+\begin{Sinput}
+> frozen <- data.frame(cast(clearance,run~parameter))
+> head(frozen)
+\end{Sinput}
+\begin{Soutput}
+  run  Male.CL   WT.CL
+1   1 1.182580 1.30879
+2  10 0.836765 1.85115
+3 100 0.916888 1.63059
+4 101 1.121880 1.58567
+5 102 1.003720 1.32105
+6 103 0.966337 1.69517
+\end{Soutput}
+\begin{Sinput}
+> frozen$WT.CL65 <- (65/70)**frozen$WT.CL
+> frozen$WT.CL75 <- (75/70)**frozen$WT.CL
+> frozen$WT.CL85 <- (85/70)**frozen$WT.CL
+\end{Sinput}
+\end{Schunk}
+\subsubsection{Normalize key parameter}
+\begin{Schunk}
+\begin{Sinput}
+> cl <- median(boot$value[boot$parameter=='CL'])
+> cl
+\end{Sinput}
+\begin{Soutput}
+[1] NA
+\end{Soutput}
+\begin{Sinput}
+> frozen$CL <- frozen$CL/cl

@@ -17,7 +17,7 @@ function(
 	contingencies=c(
 		"akima",
 		"boot",
-	s	"coda",
+		"coda",
 		"chron",
 		"foreign",
 		"fork",

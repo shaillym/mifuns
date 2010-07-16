@@ -29,6 +29,7 @@ function(nsim,theta,covar,omega,sigma,odf=NULL,sdf=NULL,digits=4,min=-Inf,max=In
   sig <- lapply(1:length(sdf),function(x)list(n=nsim,df=sdf[[x]],cov=sigma[[x]]))
   omg <- do.call(cbind,lapply(omg,function(x)do.call(simblock,x)))
   sig <- do.call(cbind,lapply(sig,function(x)do.call(simblock,x)))
+  dimnames(mvr) <- dimnames(omg) <- dimnames(sig) <- list(NULL,NULL)
   dimnames(mvr)[[2]] <- paste('TH',seq(length.out=dim(mvr)[[2]]),sep='.')
   dimnames(mvr)[[1]] <- seq(length.out=dim(mvr)[[1]])
   dimnames(omg)[[2]] <- unlist(sapply(seq(length.out=length(omega)),function(x)paste('OM',x,names(half(omega[[x]])),sep='.')))

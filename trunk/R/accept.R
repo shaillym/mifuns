@@ -17,7 +17,7 @@ function(
 	contingencies=c(
 		"akima",
 		"boot",
-		"coda",
+	s	"coda",
 		"chron",
 		"foreign",
 		"fork",
@@ -41,7 +41,7 @@ function(
 			installed <- installed.packages(lib.loc=.Library)[,1]
 			missing <- setdiff(contingencies,installed)
 			if(length(missing))try(
-				install.packages(missing,lib=.Library)
+				install.packages(missing,lib=.Library,type='source')
 			)
 		}
 		check <- sapply(contingencies,packageCheck,lib.loc=.Library)

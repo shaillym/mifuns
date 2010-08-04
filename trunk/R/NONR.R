@@ -17,7 +17,7 @@ function (
 	diag = !boot, 
 	fdata = TRUE, 
 	logtrans = FALSE,
-	nice= FALSE, 
+	nice= TRUE, 
 	epilog = NULL, 
 	dvname = NULL, 
 	grp = NULL, 

@@ -109,7 +109,7 @@ PLOTR(
   The \dots argument can be used creatively, with appropriate caution.
   Extra arguments are generally passed to secondary functions that accept them, 
   and even some that don't.  All the lattice plotting functions accept extra 
-  arguments, so you may be able to modify the the diagnostic plots judiciously
+  arguments, so you may be able to modify the diagnostic plots judiciously
   (with the caviat that the same arguments will be passed to \code{diagnosticPlots}, 
   \code{covariatePlots(}, and \code{cwresPlots}). \code{pdf} technically does not accept extra 
   arguments, but any specified argument that it does accept will be passed.  

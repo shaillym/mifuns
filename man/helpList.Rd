@@ -131,7 +131,7 @@
 \item \link{diagnosticPlots} create standard diagnostic plots
 \item \link{distance} calculate the position of each element of a logical vector relative to the \eqn{n^{th}}{n^th} \code{TRUE} element (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
-\item \link{episcript} run a script in an environment that defines the the passed arguments
+\item \link{episcript} run a script in an environment that defines the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
 \item \link{extfile} extract arbitrary file specification from a control stream
 \item \link{extractPath} isolate file path from surrounding text (MSF, TAB files).

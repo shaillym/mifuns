@@ -30,7 +30,7 @@ NONR(
 	diag = !boot, 
 	fdata = TRUE, 
 	logtrans = FALSE,
-	nice= FALSE, 
+	nice= TRUE, 
 	epilog = NULL, 
 	dvname = NULL, 
 	grp = NULL, 
@@ -147,10 +147,8 @@ NONR(
 
   \item{nice}{whether the NONMEM run directory, based on \code{run}, is
   deleted or simply emptied prior to the execution of NONMEM. If
-  \code{nice=TRUE}, standard NONMEM files (\file{cwtab1}, \file{*.ctl}, \file{*.lst}, etc.)
-  are deleted but non-standard files/directories are not deleted prior
-  to a NONMEM execution. Using \code{nice=TRUE} will preserve \code{.svn}
-  directories. Default: \code{FALSE}} 
+  \code{nice=TRUE} (default), hidden files (as defined for \code{all.files} in 
+  the function \code{dir}) are not deleted, e.g., any \code{.svn} directory.} 
 
   \item{epilog}{
   user-defined function or script to call at end of NONR or PLOTR.
@@ -205,7 +203,7 @@ File names and locations can be manipulated somewhat, i.e., by over-riding
 \code{ctlfile}, and \code{remove}.
 }
 
-\value{sed for side effects}
+\value{used for side effects}
 \note{
   Specific control stream syntax is expected
   when running \code{NONR} and the other functions present in the MIfuns package.

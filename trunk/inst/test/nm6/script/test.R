@@ -51,17 +51,19 @@ nonr(1,grid=TRUE)
 nonr(1,grid=TRUE,execute=FALSE)
 nonr(1,grid=TRUE,compile=FALSE)
 nms <- 1001:1003
-nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE)#conventional
-nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE )#unnecessary chaining
-nonr(nms,boot=FALSE,concurrent=TRUE ,grid=FALSE)#cross-chatter on stdout
-nonr(nms,boot=FALSE,concurrent=TRUE ,grid=TRUE )#conventional grid
+nonr(nms,boot=FALSE,concurrent=FALSE,grid=FALSE,diag=FALSE,sync='n')#conventional
+nonr(nms,boot=FALSE,concurrent=FALSE,grid=TRUE,diag=FALSE,sync='n')#unnecessary chaining
+nonr(nms,boot=FALSE,concurrent=TRUE ,grid=FALSE,diag=FALSE,sync='n')#cross-chatter on stdout
+nonr(nms,boot=FALSE,concurrent=TRUE ,grid=TRUE)#conventional grid
 nonr(nms,boot=TRUE ,concurrent=FALSE,grid=FALSE)#boot-style directories
-nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE )#chained boots
+nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE)#chained boots, cursor returns
+nonr(nms,boot=TRUE ,concurrent=FALSE,grid=TRUE,sync='y')#strictly chained boots, cursor returns
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=FALSE)#concurrent non-grid boots (chatter)
-nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots
+nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE )#conventional boots, cursor does not return
 nonr(nms,boot=TRUE ,concurrent=TRUE ,grid=TRUE, urgent=TRUE)#urgent boots
-boot <- rlog(1001,project='../out',boot=TRUE,append=FALSE,file='../out/bootlog.csv')
+boot <- rlog(1001:1003,project='../out',boot=TRUE,append=FALSE,file='../out/bootlog.csv')
 head(boot)
 #windows
 nonr(1)
 nonr(1,invisible=TRUE)
+

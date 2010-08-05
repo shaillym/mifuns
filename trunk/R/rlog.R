@@ -9,7 +9,8 @@
 	nmlog = file.path(rundir,'NonmemRunLog.csv'),
 	nmout = filename(rundir,run,'.lst'),
 	pattern=if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
-...
+	test='FILE10',
+        ...
 ){
   if(length(run)!=length(unique(run)))stop('run must not contain duplicates')
   if(!append)if(length(file))if(file.exists(file)) file.remove(file)
@@ -28,7 +29,7 @@
   		lapply(
   			rundir,
   			function(dir,pattern){
-  				lapply(
+  				if(!file.exists(filename(dir,test)))lapply(
   					pattern,
   					purge.files,
   					dir=dir

@@ -17,6 +17,7 @@ rlog(
 	nmlog = file.path(rundir,'NonmemRunLog.csv'),
 	nmout = filename(rundir,run,'.lst'),
 	pattern = if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
+	test='FILE10',
 	...
 )
 }
@@ -31,6 +32,7 @@ rlog(
   \item{nmlog}{The run-specific input file to read (nm6 only). See details.}
   \item{nmout}{The run-specific NONMEM output file to read (nm7 only). See details.}
   \item{pattern}{search patterns for files to delete (regular expressions)}
+  \item{test}{the name of a file whose presence in the run directory indicates the run is still in progress}
   \item{\dots}{passed to other functions}
 }
 
@@ -42,6 +44,8 @@ rlog(
 	\code{pattern}.
   
 	To suppress log creation on disk, supply a zero length argument for \code{file}.
+	
+	If \code{test} is present, rlog assumes the run is in progress and does not attempt file deletion.
 }
 \value{
   Combined runlog is returned invisibly in the unilog format.  Side effect: if

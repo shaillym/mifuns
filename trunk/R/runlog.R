@@ -116,7 +116,9 @@ as.unilog.runlog <- function(x,tool='nm7',...){
 	spec <- c(regular,others,'run')
 	x <- x[,spec]
 	x$tool <- tool
-	x$moment <- as.character(factor(x$moment,levels=c('','RSE'),labels=c('estimate','prse')))
+	#x$moment <- as.character(factor(x$moment,levels=c('','RSE'),labels=c('estimate','prse')))
+	x$moment[is.na(x$moment)] <- 'estimate'
+	x$moment[x$moment=='RSE'] <- 'prse'
 	x[] <- sapply(x,as.character)
 	rmelt <- melt(x,id.var=c('tool','run','moment'),variable_name='parameter',na.rm=TRUE)
 	rmelt$parameter <- as.character(rmelt$parameter)
@@ -135,7 +137,7 @@ as.runlog.file <- function(file,...){
 		message(paste('not found:',file))
 		return(runlog())
 	}
-	r <- read.csv(file,header=FALSE,na.strings=c('.','NA'),as.is=TRUE,...)
+	r <- read.csv(file,header=FALSE,na.strings=c('.','NA',''),as.is=TRUE,...)
 	names(r)[1:5] <- c('prob','moment','min','cov','mvof')
 	last <- ncol(r)
 	if(!any(is.na(r[[last]])))if(

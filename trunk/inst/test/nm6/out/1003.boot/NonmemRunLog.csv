@@ -1,4 +1,2 @@
-RUN# 1003 ESTIMATE PK W/COVARIATE RELATIONSHIPS                                                     ,,  0,  0,  0.5276137E+03,  0.1140E+02,  0.9348E+02,  0.5984E-01, -0.3310E-02,  0.3011E-01,  0.4227E-01,  0.1811E-01, ,
-RUN# 1003 ESTIMATE PK W/COVARIATE RELATIONSHIPS                                                     ,RSE,,,,0,0,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00,  0.0000E+00, ,
 
-
+RUN# 1003 ESTIMATE PK W/COVARIATE RELATIONSHIPS                                                     ,,  0,  0,   0.527614E+03,  0.1140E+02,  0.9348E+02,  0.5984E-01, -0.3310E-02,  0.3011E-01,  0.4227E-01,  0.1811E-01

@@ -5,7 +5,7 @@ C Generates a running table file to summarize the output of NONMEM runs.
       DOUBLE PRECISION THETA
       REAL DATREC
       DIMENSION THETA(*),DATREC(*),INDXS(*)
-      include '/path/to/nonmem/SIZES'
+      include '/common/NONMEM/nm6osx6/SIZES'
       common /cm1/ ntheta,nth
       common /cm2/ neta,neps,nre2
 	common /cm34/ ie

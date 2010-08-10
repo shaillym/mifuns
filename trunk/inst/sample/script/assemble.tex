@@ -5,9 +5,9 @@
 \begin{document}
 \vspace*{2cm}
 \begin{center}
-{\Huge MI210}\\
+{\Large MIfuns Sample}\\
 \vspace{1.5cm}
-{\Large Phase I Assembly}\\
+{\Large Phase 1 Data Assembly}\\
 ~\\
 \today\\
 ~\\
@@ -15,7 +15,7 @@ Tim Bergsma\\
 \end{center}
 \newpage
 
-This script assembles phase 1 data.
+This script assembles simulated phase 1 data.
 
 Make sure you are in the script directory, where this files resides.
 \begin{Schunk}
@@ -32,21 +32,14 @@ Load the MIfuns package.
 > library(MIfuns)
 \end{Sinput}
 \begin{Soutput}
-MIfuns 4.0.4 loaded
+MIfuns 4.0.11 loaded
 Installing SIGCHLD signal handler...Done.
 \end{Soutput}
-\end{Schunk}
-Read dosing, pk, and demographic data.
-\begin{Schunk}
-\begin{Sinput}
-> dose <- read.csv('../data/ph1/source/dose.csv',na.strings='.',stringsAsFactors=FALSE)
-> pk   <- read.csv('../data/ph1/source/pk.csv',na.strings='.',stringsAsFactors=FALSE)
-> dem  <- read.csv('../data/ph1/source/dem.csv',na.strings='.',stringsAsFactors=FALSE)
-\end{Sinput}
 \end{Schunk}
 Groom the dose data
 \begin{Schunk}
 \begin{Sinput}
+> dose <- read.csv('../data/source/dose.csv',na.strings='.',stringsAsFactors=FALSE)
 > head(dose)
 \end{Sinput}
 \begin{Soutput}
@@ -73,6 +66,7 @@ Looks okay.
 Groom the demographic data.
 \begin{Schunk}
 \begin{Sinput}
+> dem  <- read.csv('../data/source/dem.csv',na.strings='.',stringsAsFactors=FALSE)
 > head(dem)
 \end{Sinput}
 \begin{Soutput}
@@ -99,6 +93,7 @@ Looks okay.  Note that DOSE is a treatment group, not an actual dose.
 Groom the pk data.
 \begin{Schunk}
 \begin{Sinput}
+> pk   <- read.csv('../data/source/pk.csv',na.strings='.',stringsAsFactors=FALSE)
 > head(pk)
 \end{Sinput}
 \begin{Soutput}
@@ -128,6 +123,45 @@ Groom the pk data.
 \end{Sinput}
 \begin{Soutput}
 SUBJ~HOUR
+1 NA keys
+2 duplicate keys
+unsorted
+\end{Soutput}
+\begin{Sinput}
+> pk[naKeys(pk),]
+\end{Sinput}
+\begin{Soutput}
+    SUBJ HOUR  DV
+561   40   NA 100
+\end{Soutput}
+\begin{Sinput}
+> pk[dupKeys(pk),]
+\end{Sinput}
+\begin{Soutput}
+    SUBJ HOUR   DV
+560   40   72 35.5
+562   40   72   NA
+\end{Soutput}
+\begin{Sinput}
+> bad <- pk[with(pk,is.na(HOUR) |is.na(DV)),]
+> bad
+\end{Sinput}
+\begin{Soutput}
+    SUBJ HOUR  DV
+561   40   NA 100
+562   40   72  NA
+\end{Soutput}
+\begin{Sinput}
+> pk <- pk - bad
+\end{Sinput}
+\begin{Soutput}
+dropping 2 of 562 rows matching on SUBJ, HOUR, DV
+\end{Soutput}
+\begin{Sinput}
+> summary(pk)
+\end{Sinput}
+\begin{Soutput}
+SUBJ~HOUR
 0 NA keys
 0 duplicate keys
 \end{Soutput}
@@ -148,7 +182,7 @@ The plus operator means ``outer join'' or ``full merge'' when the arguments are 
 The pipe operator means ``left join'' (merge, all.x=TRUE) when the arguments are ``keyed'' data.frames.
 \begin{Schunk}
 \begin{Sinput}
-> phase1 <- 
+> dat <- 
 + 	nm() + 
 + 	aug(dose,SEQ=1,EVID=1) + 
 + 	aug(pk,  SEQ=0,EVID=0) | 
@@ -160,7 +194,7 @@ outer join of 40 rows and 560 rows on SUBJ, SEQ, HOUR, EVID
 left join of 600 rows and 40 rows on SUBJ
 \end{Soutput}
 \begin{Sinput}
-> summary(phase1)
+> summary(dat)
 \end{Sinput}
 \begin{Soutput}
             value
@@ -187,8 +221,8 @@ See ?zeroDv
 We comment-out these records.
 \begin{Schunk}
 \begin{Sinput}
-> phase1 <- hide(phase1, where=predoseDv(phase1), why='predose')
-> summary(phase1)
+> dat <- hide(dat, where=predoseDv(dat), why='predose')
+> summary(dat)
 \end{Sinput}
 \begin{Soutput}
             value
@@ -213,8 +247,8 @@ badII           0
 We still have some zero DV that are not predose.  We comment those as well.
 \begin{Schunk}
 \begin{Sinput}
-> phase1 <- hide(phase1, where=zeroDv(phase1), why='zerodv')
-> summary(phase1)
+> dat <- hide(dat, where=zeroDv(dat), why='zerodv')
+> summary(dat)
 \end{Sinput}
 \begin{Soutput}
             value
@@ -235,23 +269,31 @@ zeroAmt         0
 noPk            0
 badII           0
 \end{Soutput}
+\begin{Sinput}
+> head(dat)
+\end{Sinput}
+\begin{Soutput}
+  C SUBJ TIME SEQ HOUR EVID ID  AMT TAFD  TAD LDOS    DV MDV HEIGHT WEIGHT SEX
+1 C    1 0.00   0 0.00    0  1   NA 0.00   NA   NA 0.000   0    174   74.2   0
+2 .    1 0.00   1 0.00    1  1 1000 0.00 0.00 1000    NA   1    174   74.2   0
+3 .    1 0.25   0 0.25    0  1   NA 0.25 0.25 1000 0.363   0    174   74.2   0
+4 .    1 0.50   0 0.50    0  1   NA 0.50 0.50 1000 0.914   0    174   74.2   0
+5 .    1 1.00   0 1.00    0  1   NA 1.00 1.00 1000 1.120   0    174   74.2   0
+6 .    1 2.00   0 2.00    0  1   NA 2.00 2.00 1000 2.280   0    174   74.2   0
+   AGE DOSE FED SMK DS CRCN predose zerodv
+1 29.1 1000   1   0  0 83.5       1      1
+2 29.1 1000   1   0  0 83.5       0      0
+3 29.1 1000   1   0  0 83.5       0      0
+4 29.1 1000   1   0  0 83.5       0      0
+5 29.1 1000   1   0  0 83.5       0      0
+6 29.1 1000   1   0  0 83.5       0      0
+\end{Soutput}
 \end{Schunk}
 We could rearrange columns for convenience and clarity.
 \begin{Schunk}
 \begin{Sinput}
-> spec <- c('C','ID','TIME','SEQ','EVID','AMT','DV')
-> spec <- c(spec, setdiff(names(phase1),spec))
-> spec
-\end{Sinput}
-\begin{Soutput}
- [1] "C"       "ID"      "TIME"    "SEQ"     "EVID"    "AMT"     "DV"     
- [8] "SUBJ"    "HOUR"    "TAFD"    "TAD"     "LDOS"    "MDV"     "HEIGHT" 
-[15] "WEIGHT"  "SEX"     "AGE"     "DOSE"    "FED"     "SMK"     "DS"     
-[22] "CRCN"    "predose" "zerodv" 
-\end{Soutput}
-\begin{Sinput}
-> phase1 <- phase1[,spec]
-> head(phase1)
+> dat <- shuffle(dat,c('C','ID','TIME','SEQ','EVID','AMT','DV'))
+> head(dat)
 \end{Sinput}
 \begin{Soutput}
   C ID TIME SEQ EVID  AMT    DV SUBJ HOUR TAFD  TAD LDOS MDV HEIGHT WEIGHT SEX
@@ -273,7 +315,7 @@ We could rearrange columns for convenience and clarity.
 We create a file using write.nm to format NAs specially, etc.
 \begin{Schunk}
 \begin{Sinput}
-> write.nm(phase1,file='../data/ph1/derived/phase1.csv')
+> write.nm(dat,file='../data/derived/phase1.csv')
 \end{Sinput}
 \end{Schunk}
 \end{document}

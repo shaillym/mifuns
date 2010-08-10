@@ -11,77 +11,76 @@ library(MIfuns)
 
 
 ###################################################
-### chunk number 3: read
+### chunk number 3: dose
 ###################################################
-dose <- read.csv('../data/ph1/source/dose.csv',na.strings='.',stringsAsFactors=FALSE)
-pk   <- read.csv('../data/ph1/source/pk.csv',na.strings='.',stringsAsFactors=FALSE)
-dem  <- read.csv('../data/ph1/source/dem.csv',na.strings='.',stringsAsFactors=FALSE)
-
-
-###################################################
-### chunk number 4: dose
-###################################################
+dose <- read.csv('../data/source/dose.csv',na.strings='.',stringsAsFactors=FALSE)
 head(dose)
 dose <- as.keyed(dose, key=c('SUBJ','HOUR'))
 summary(dose)
 
 
 ###################################################
-### chunk number 5: dem
+### chunk number 4: dem
 ###################################################
+dem  <- read.csv('../data/source/dem.csv',na.strings='.',stringsAsFactors=FALSE)
 head(dem)
 dem <- as.keyed(dem, key='SUBJ')
 summary(dem)
 
 
 ###################################################
-### chunk number 6: pk
+### chunk number 5: pk
 ###################################################
+pk   <- read.csv('../data/source/pk.csv',na.strings='.',stringsAsFactors=FALSE)
 head(pk)
 pk <- as.keyed(pk, key=c('SUBJ','HOUR'))
 head(pk)
 summary(pk)
+pk[naKeys(pk),]
+pk[dupKeys(pk),]
+bad <- pk[with(pk,is.na(HOUR) |is.na(DV)),]
+bad
+pk <- pk - bad
+summary(pk)
 
 
 ###################################################
-### chunk number 7: assemble
+### chunk number 6: assemble
 ###################################################
-phase1 <- 
+dat <- 
 	nm() + 
 	aug(dose,SEQ=1,EVID=1) + 
 	aug(pk,  SEQ=0,EVID=0) | 
 	dem
 
-summary(phase1)
+summary(dat)
 
 
 ###################################################
-### chunk number 8: hide
+### chunk number 7: hide
 ###################################################
-phase1 <- hide(phase1, where=predoseDv(phase1), why='predose')
-summary(phase1)
+dat <- hide(dat, where=predoseDv(dat), why='predose')
+summary(dat)
 
 
 ###################################################
-### chunk number 9: zerodv
+### chunk number 8: zerodv
 ###################################################
-phase1 <- hide(phase1, where=zeroDv(phase1), why='zerodv')
-summary(phase1)
+dat <- hide(dat, where=zeroDv(dat), why='zerodv')
+summary(dat)
+head(dat)
 
 
 ###################################################
-### chunk number 10: spec
+### chunk number 9: spec
 ###################################################
-spec <- c('C','ID','TIME','SEQ','EVID','AMT','DV')
-spec <- c(spec, setdiff(names(phase1),spec))
-spec
-phase1 <- phase1[,spec]
-head(phase1)
+dat <- shuffle(dat,c('C','ID','TIME','SEQ','EVID','AMT','DV'))
+head(dat)
 
 
 ###################################################
-### chunk number 11: write
+### chunk number 10: write
 ###################################################
-write.nm(phase1,file='../data/ph1/derived/phase1.csv')
+write.nm(dat,file='../data/derived/phase1.csv')
 
 

@@ -419,7 +419,7 @@ tab$unit <- NULL
 tab$label <- ifelse(is.na(tab$latex),tab$label,paste(tab$label, ' (',tab$latex,')',sep=''))
 tab$latex <- NULL
 names(tab)[names(tab)=='label'] <- 'parameter'
-tab$root <- signif(sqrt(as.numeric(tab$estimate)),3)
+tab$root <- signif(sqrt(exp(as.numeric(tab$estimate))-1),3)
 tab$estimate <- ifelse(contains('Omega|sigma',tab$parameter),paste(tab$estimate,' (\\%CV=',tab$root*100,')',sep=''),tab$estimate)
 tab$root <- NULL
 #offdiag <- contains('2.1',tab$parameter)

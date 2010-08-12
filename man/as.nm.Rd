@@ -1,4 +1,4 @@
-\name{nm}
+\name{as.nm}
 \alias{nm}
 \alias{as.nm}
 \alias{as.nm.data.frame}

@@ -21,6 +21,7 @@ read.nm <- function(
 	if(!is.integer(tran$ID))warning('ID is not integer')
 	if('DATETIME' %in% names(tran))tran$DATETIME <- as.miDateTime(tran$DATETIME)
 	for(f in flags)tran[[f]] <- as.flag(tran[[f]])
+	class(tran) <- c('nm',class(tran))
 	tran
 }
 

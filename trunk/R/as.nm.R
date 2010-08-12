@@ -16,12 +16,12 @@ read.nm <- function(
 		key=key
 	)
 	if('C' %in% names(tran))tran$C <- as.comment(!is.na(tran$C))
-	if('SEQ' %in% names(tran))tran$SEQ <- as.flag(tran$SEQ)
+	if('SEQ' %in% names(tran))tran$SEQ <- as.flag(as.numeric(tran$SEQ))
 	if(any(naKeys(tran) & !tran$C))warning('file has na Keys')
 	if(any(dupKeys(tran)))warning('file has duplicate keys')
 	if(!is.integer(tran$ID))warning('ID is not integer')
 	if('DATETIME' %in% names(tran))tran$DATETIME <- as.miDateTime(tran$DATETIME)
-	for(f in flags)tran[[f]] <- as.flag(tran[[f]])
+	for(f in flags)tran[[f]] <- as.flag(as.numeric(tran[[f]]))
 	class(tran) <- c('nm',class(tran))
 	tran
 }

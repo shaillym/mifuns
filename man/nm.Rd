@@ -13,24 +13,29 @@ NONMEM ((c), Icon Development Solutions). \code{nm} gives a zero-row data.frame 
 suitable columns and column classes (essentially, a template for dataset construction).  
 \code{as.nm} and \code{as.nm.data.frame} construct an
 nm object from an existing object.  The read and write methods are wrappers
-for \file{.csv} equivalents.  \code{merge.nm} coerces its result using \code{as.nm}, guaranteeing
+for \file{.csv} equivalents. \code{read.nm} reconstitutes classes for flags, 
+DATETIME, and C.  \code{merge.nm} coerces its result using \code{as.nm}, guaranteeing
 a consistent left hand object when using \code{Ops.keyed}.
 }
 \usage{
 nm()
 \method{as.nm}{data.frame}(x, ...)
 \method{merge}{nm}(x, y, ...)
-read.nm(x)
+read.nm(x,na.strings='.',as.is=TRUE,key=key(nm()),flags=character(0),...)
 write.nm(x, file, na = '.', row.names = FALSE, quote = FALSE, ...)
 }
 \arguments{
   \item{x}{data.frame or nm}
   \item{y}{right merge argument}
+  \item{na.strings}{passed to \code{read.csv}}
+  \item{as.is}{passed to \code{read.csv}}
+  \item{key}{passed to \code{as.keyed}}
+  \item{flags}{character vector naming colums to convert using \code{as.flag}}
   \item{\dots}{extra arguments, ignored or passed to \code{write.csv}}
   \item{file}{passed to \code{write.csv}}
   \item{na}{passed to \code{write.csv}}
   \item{row.names}{passed to \code{write.csv}}
-  \item{quote}{passed to \code{write.csv}} 
+  \item{quote}{passed to \code{write.csv}}  
 }
 
 \details{
@@ -52,7 +57,7 @@ alone enforces all qualities of class nm.
   \item \code{TAFD} (time after first dose), \code{TAD} (time since most recent dose), and \code{LDOS} (most recent dose) will be calculated if \code{AMT} is present.
   \item \code{TAD} will consider \code{ADDL} and \code{II} if present.
   \item \code{NA} flags will be imputed as zero.
-  \item \code{MDV} (missing dependent value) will be calculated if \code{DV} is present.
+  \item \code{MDV} (missing dependent value) will be calculated if \code{DV} is present, preserving non-NA MDV, if present.
   \item resulting column order will lead with \code{C} followed by key columns.
 }
 

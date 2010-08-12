@@ -17,9 +17,11 @@ read.nm <- function(
 	)
 	if('C' %in% names(tran))tran$C <- as.comment(!is.na(tran$C))
 	if('SEQ' %in% names(tran))tran$SEQ <- as.flag(as.numeric(tran$SEQ))
+	if('ID' %in% names(tran))tran$ID <- as.numeric(tran$ID)
+	if('MDV' %in% names(tran))tran$MDV <- as.flag(as.numeric(tran$ID))
 	if(any(naKeys(tran) & !tran$C))warning('file has na Keys')
 	if(any(dupKeys(tran)))warning('file has duplicate keys')
-	if(!is.integer(tran$ID))warning('ID is not integer')
+	#if(!is.integer(tran$ID))warning('ID is not integer')
 	if('DATETIME' %in% names(tran))tran$DATETIME <- as.miDateTime(tran$DATETIME)
 	for(f in flags)tran[[f]] <- as.flag(as.numeric(tran[[f]]))
 	class(tran) <- c('nm',class(tran))
@@ -254,7 +256,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	
 	#MDV
 	if('DV' %in% names(x)){
-		if(!'MDV' %in% names(x))x$MDV <- NA
+		if(!'MDV' %in% names(x))x$MDV <- as.flag(as.numeric(NA))
 		x$MDV[is.na(x$MDV)] <- as.flag(as.numeric(is.na(x$DV[is.na(x$MDV)])))
 	}
 	

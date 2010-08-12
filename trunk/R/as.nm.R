@@ -1,22 +1,27 @@
-read.nm <- function(x){
-	tran <- as.keyed(read.csv(x,na='.',as.is=TRUE),key=key(nm()))
-	#miscol <- setdiff(names(nm()),names(tran))
-	#if(length(miscol))stop(paste('file is missing columns ',paste(miscol,collapse=', ')))
-	tran$C <- as.comment(!is.na(tran$C))
+read.nm <- function(
+	x,
+	na.strings='.',
+	as.is=TRUE,
+	key=key(nm()),
+	flags=character(0),
+	...
+){
+	tran <- as.keyed(
+		read.csv(
+			x,
+			na.strings=na.strings,
+			as.is=as.is,
+			...
+		),
+		key=key
+	)
+	if('C' %in% names(tran))tran$C <- as.comment(!is.na(tran$C))
 	if(any(naKeys(tran) & !tran$C))warning('file has na Keys')
 	if(any(dupKeys(tran)))warning('file has duplicate keys')
-	if(!is.integer(tran$ID))stop('ID should be integer')
-	if('DATETIME' %in% names(tran)){
-		tran$DATETIME <- as.miDateTime(tran$DATETIME)
-		tran$TIME[!is.na(tran$DATETIME)] <- NA
-	}
-	a <- tran[!is.na(tran$TIME),]
-	b <- tran[is.na(tran$TIME),]
-	key(b) <- c('SUBJ','DATETIME','SEQ')
-	x <- nm()
-	if(nrow(a)) x <- x + a
-	if(nrow(b)) x <- x + b
-	x
+	if(!is.integer(tran$ID))warning('ID is not integer')
+	if('DATETIME' %in% names(tran))tran$DATETIME <- as.miDateTime(tran$DATETIME)
+	for(f in flags)tran[[f]] <- as.flag(tran[[f]])
+	tran
 }
 
 badDv <- function(x,...)UseMethod('badDv')
@@ -152,7 +157,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	x$ID <- as.numeric(factor(x$SUBJ))
 	
 	#Comment will be imputed if not present.
-	if(!'C' %in% names(x))x$C <- rep(FALSE,nrow(x))
+	if(!'C' %in% names(x))x$C <- rep(FALSE,nrow(x)) #syntax supports zero-row data.frame
 	x$C <- as.comment(x$C)
 	#Comment cannot be NA
 	x$C[is.na(x$C)] <- FALSE
@@ -173,7 +178,7 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	if(!constant(datetime,within=subj))stop(paste('Both HOUR and DATETIME defined for SUBJ',subj[crosses(datetime,subj)][[1]]))
 	#Coerce even in commented records
 	#HOUR is received as-is, taken to represent relative accumulation of hours from arbitrary origin.
-	x$TIME <- rep(NA,nrow(x))
+	x$TIME <- rep(NA,nrow(x))  #syntax supports zero-row data.frame
 	if('HOUR' %in% names(x)) x$TIME <- x$HOUR
 	#DATETIME is understood as seconds, coercible to miDateTime.
 	if('DATETIME' %in% names(x))x$DATETIME <- as.miDateTime(x$DATETIME)	
@@ -237,22 +242,8 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	)	
 	#Impute flags.  Check whether merge drops flag status.
 	flags <- names(x)[sapply(names(x),function(col)inherits(x[[col]],'flag'))]
-	x <- as.keyed(
-		cbind(
-			x[,names(x)[!names(x) %in% flags],drop=FALSE],
-			data.frame(
-				lapply(
-					x[,flags,drop=FALSE],
-					function(col){
-						col[is.na(col)] <- 0
-						return(col)
-					}
-				)
-			)			
-		)[names(x)],
-		key=key(x)
-	)
-	#for(f in flags)x[[f]][is.na(x[[f]])] <- 0
+	#x <- as.keyed(cbind(x[,names(x)[!names(x) %in% flags],drop=FALSE],data.frame(lapply(x[,flags,drop=FALSE],function(col){col[is.na(col)] <- 0;return(col)})))[names(x)],key=key(x))
+	for(f in flags)x[[f]][is.na(x[[f]])] <- 0
 		
 	#LDOS
 	#AMT from prime records is carried forward.
@@ -260,12 +251,17 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	if(length(prime))x$LDOS <- s(first(x$AMT,where=prime & !x$C,within=list(x$ID,cumsum(prime))))
 	
 	#MDV
-	if('DV' %in% names(x))x$MDV <- as.flag(as.numeric(is.na(x$DV)))
+	if('DV' %in% names(x)){
+		if(!'MDV' %in% names(x))x$MDV <- NA
+		x$MDV[is.na(x$MDV)] <- as.flag(as.numeric(is.na(x$DV[is.na(x$MDV)])))
+	}
 	
 	#Order
-	nonkey <- setdiff(setdiff(names(x),key(x)),'C')
+	#nonkey <- setdiff(setdiff(names(x),key(x)),'C')
+	#x <- x[c('C',key(x),nonkey)]
+	x <- shuffle(x,'C')
+	x <- shuffle(x,key(x),after='C')
 	row.names(x) <- NULL
-	x <- x[c('C',key(x),nonkey)]
 	if(!inherits(x,'nm'))class(x) <- c('nm',class(x))
 	x
 }

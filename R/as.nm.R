@@ -2,7 +2,7 @@ read.nm <- function(
 	x,
 	na.strings='.',
 	as.is=TRUE,
-	key=key(nm()),
+	key=c('SUBJ','TIME','SEQ'),
 	flags=character(0),
 	...
 ){

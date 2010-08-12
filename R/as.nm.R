@@ -16,6 +16,7 @@ read.nm <- function(
 		key=key
 	)
 	if('C' %in% names(tran))tran$C <- as.comment(!is.na(tran$C))
+	if('SEQ' %in% names(tran))tran$C <- as.flag(tran$SEQ)
 	if(any(naKeys(tran) & !tran$C))warning('file has na Keys')
 	if(any(dupKeys(tran)))warning('file has duplicate keys')
 	if(!is.integer(tran$ID))warning('ID is not integer')

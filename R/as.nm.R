@@ -256,8 +256,8 @@ merge.nm <- function(x,y,...)as.nm(merge(data.frame(x),y,...))
 	
 	#MDV
 	if('DV' %in% names(x)){
-		if(!'MDV' %in% names(x))x$MDV <- as.flag(as.numeric(NA))
-		x$MDV[is.na(x$MDV)] <- as.flag(as.numeric(is.na(x$DV[is.na(x$MDV)])))
+		if(!'MDV' %in% names(x))x$MDV <- as.numeric(NA)
+		x$MDV[is.na(x$MDV)] <- as.numeric(is.na(x$DV[is.na(x$MDV)]))
 	}
 	
 	#Order

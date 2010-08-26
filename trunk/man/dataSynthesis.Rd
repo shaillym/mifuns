@@ -9,7 +9,8 @@
   commented.  The second two files are limited to the first record per ID. Columns 
   to scavenge are supplied by \code{grp, cont.cov, cat.cov, par.list, and eta.list}.
   All \file{TAB} file columns are returned, plus first instance of \sQuote{scavenge} columns from 
-  either the parent data set or the \file{par} file (in that order) unless already present.
+  either the \file{par} file or the parent data set (in that order) unless already present. Exception:
+  \code{par.list} and \code{eta.list} items are not sought in the underlying dataset.
  
 }
 \usage{

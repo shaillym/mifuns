@@ -52,8 +52,11 @@
   		run,
   		function(r,filelist,...)as.unilog.run(
   			r,
-  			outfile=filelist[[as.character(r)]],tool=tool,...),
-  			filelist = nmout,
+  			outfile=filelist[[as.character(r)]],
+  			tool=tool,
+  			...
+  		),
+  		filelist = nmout,
   		...
   )
   if(length(file)){

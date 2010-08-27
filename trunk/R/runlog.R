@@ -58,10 +58,18 @@ as.unilog.pxml <- function(x,run,tool='nm7',...){
 	uni$run <- run
 	uni[] <- lapply(uni,as.character)
 	uni <- uni[,c('tool','run','parameter','moment','value')]
-	uni <- sort(as.keyed(uni, c('tool','run','parameter','moment')))
+	uni$word <- sub('\\d.*','',uni$parameter)
+	uni$number <- suppressWarnings(text2decimal(uni$parameter))
+	known <- c('OBJ','THETA','OMEGA','SIGMA')
+	uni$word[!uni$word %in% known] <- 'OTHER'
+	uni$word <- factor(uni$word,levels=c(known,'OTHER'))
+	uni <- sort(as.keyed(uni, c('tool','run','word','number','moment')))
+	uni$word <- NULL
+	uni$number <- NULL
+	key(uni) <- c('tool','run','parameter','moment')
 	uni <- uni[!(uni$parameter == 'OBJ' & uni$moment=='prse'),]
 	uni$parameter[uni$parameter=='OBJ'] <- 'ofv'
-	uni$moment[uni$parameter=='ovf'] <- 'minimum'
+	uni$moment[uni$parameter=='ofv'] <- 'minimum'
 	row.names(uni) <- NULL
 	uni
 }

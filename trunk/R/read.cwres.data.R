@@ -4,16 +4,6 @@
 function (filename, old.file.convention = FALSE, est.tab.suffix = ".est", 
     deriv.tab.suffix = ".deriv", ...) 
 {
-    setClass(
-    	"nm.data", 
-    	representation(
-    		data = "data.frame", 
-    		eta = "data.frame", 
-    		theta = "data.frame", 
-    		omega = "data.frame", 
-    		sigma = "data.frame"
-    	)
-    )
     tables.read <- FALSE
     if (old.file.convention) {
         if ((is.cwres.readable.file(paste(filename, ".50", sep = ""))) && 

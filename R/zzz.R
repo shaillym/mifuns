@@ -1,4 +1,4 @@
-.First.lib <-function(lib,pkg)
+.onLoad <-function(lib,pkg)
 {
     ver <- as.character(
     	read.dcf(
@@ -11,10 +11,4 @@
 	)
     )
     cat("MIfuns", ver, "loaded\n")
-    if(.Platform$OS.type == 'unix'){
-	    library(fork)
-	    require(XML)
-	    handleSIGCLD()
-    }
-    library(MASS) 
 }

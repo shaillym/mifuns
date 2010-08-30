@@ -1,4 +1,4 @@
-.onLoad <-function(lib,pkg)
+.onAttach <-function(lib,pkg)
 {
     ver <- as.character(
     	read.dcf(

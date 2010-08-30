@@ -1,4 +1,4 @@
-.onAttach <-function(lib,pkg)
+.onLoad <-function(lib,pkg)
 {
     setClass(
     	"nm.data", 

@@ -1,6 +1,6 @@
 .onLoad <-function(lib,pkg)
 {
-    setClass(
+    methods::setClass(
     	"nm.data", 
     	representation(
     		data = "data.frame", 

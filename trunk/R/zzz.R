@@ -1,4 +1,4 @@
 .onAttach <-function(lib,pkg)
 {
-    cat('MIfuns',packageDescription('MIfuns',fields='Version'),'\n')
+    cat('MIfuns',utils::packageDescription('MIfuns',fields='Version'),'\n')
 }

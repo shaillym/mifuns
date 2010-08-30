@@ -10,5 +10,5 @@
 		"Version"
 	)
     )
-    print("MIfuns", ver, "loaded\n")
+    paste("MIfuns", ver, "loaded\n")
 }

@@ -10,5 +10,5 @@
 		"Version"
 	)
     )
-    cat("MIfuns", ver, "loaded\n")
+    print("MIfuns", ver, "loaded\n")
 }

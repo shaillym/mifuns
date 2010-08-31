@@ -1,3 +1,0 @@
-= Dependencies =
-
- * Packages required by MIfuns: plyr, reshape, XML, fork (*nix only)

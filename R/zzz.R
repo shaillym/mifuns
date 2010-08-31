@@ -2,7 +2,7 @@
 {
     methods::setClass(
     	"nm.data", 
-    	representation(
+    	methods::representation(
     		data = "data.frame", 
     		eta = "data.frame", 
     		theta = "data.frame", 

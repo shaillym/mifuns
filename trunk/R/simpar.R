@@ -26,6 +26,7 @@ function(nsim,theta,covar,omega,sigma,odf=NULL,sdf=NULL,digits=4,min=-Inf,max=In
   if(any(sdf < sapply(sigma,length)))stop('sdf[n] is less than number of elements in corresponding matrix')
   library(MASS)
   mvr <- mvrnorm(nsim,theta,covar)
+  if(nsim==1)mvr <- t(as.matrix(mvr))
   omg <- lapply(1:length(odf),function(x)list(n=nsim,df=odf[[x]],cov=omega[[x]]))
   sig <- lapply(1:length(sdf),function(x)list(n=nsim,df=sdf[[x]],cov=sigma[[x]]))
   omg <- do.call(cbind,lapply(omg,function(x)do.call(simblock,x)))
@@ -39,10 +40,12 @@ function(nsim,theta,covar,omega,sigma,odf=NULL,sdf=NULL,digits=4,min=-Inf,max=In
   dimnames(sig)[[1]] <- seq(length.out=dim(sig)[[1]])
   sim <- cbind(mvr,omg,sig)
   sim <- round(signif(sim,digits),6)
-  sim <- sim[apply(t(t(sim)-min)>=0,MARGIN=1,all),]
-  sim <- sim[apply(t(t(sim)-max)<=0,MARGIN=1,all),]
+  sim <- sim[apply(t(t(sim)-min)>=0,MARGIN=1,all),,drop=FALSE]
+  if(dim(sim)[[1]]==0)return(sim)
+  sim <- sim[apply(t(t(sim)-max)<=0,MARGIN=1,all),,drop=FALSE]
   sim
 }
+
 is.square <- function(x,...)UseMethod('is.square')
 is.square.matrix <- function(x,...)dim(x)[[1]]==dim(x)[[2]]
 ord <- function(x,...)UseMethod('ord')
@@ -96,7 +99,7 @@ as.matrix.halfmatrix <- function(x,...){
     y  
 }
 posmat <- function(x,...) {
-     if(any(diag(x) <=0)) stop("matrix cannot be made positive definite")
+     if(any(diag(x) <=0)) stop("matrix cannot be made positive-definite")
      if(!is.square(x))stop('x is not square')
 	 sign <- sign(x)
 	 x <- abs(x)

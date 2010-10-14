@@ -8,7 +8,6 @@ function(
 	rekey=FALSE, 
 	out=NULL, 
 	stratify=NULL, 
-	seed=0,
 	ext='.csv',
 	row.names=FALSE,
 	quote=FALSE,
@@ -16,7 +15,6 @@ function(
 	replace=TRUE,
 	...
 ){
-set.seed(seed)
 dat <- x
 if(!is.null(out))out <- sub("/$","",out)
 if(is.null(key))dat$resample.rownames <- rownames(dat)

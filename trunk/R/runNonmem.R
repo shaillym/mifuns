@@ -43,8 +43,7 @@ function (
   rundir <- star(rundir,run)
   ctlfile <- star(ctlfile,run)
   outfile <- star(outfile,run)
-  if(!file.exists(ctlfile))message(paste(ctlfile,'was not found'))
-  if(!file.exists(ctlfile))return()
+  if(!file.exists(ctlfile))stop(ctlfile,' was not found')
   control <- explicitPath(readLines(ctlfile))
   if (checkrunno) writeLines(control <- fixFile(fixProblem(control,run),run),con=ctlfile)
   tabfile <- tabfile(control,dir=final(rundir),...)
@@ -69,10 +68,7 @@ function (
 	  if(rundir!=final(rundir))purge.dir(rundir)
 	  dir.create(rundir, showWarnings = FALSE)
 	  dname <- getdname(ctlfile)
-	  if(!file.exists(resolve(dname,rundir))){
-		  warning(paste(dname,'not visible from',rundir),call.=FALSE,immediate.=TRUE)
-		  return()
-	  }
+	  if(!file.exists(resolve(dname,rundir)))stop(dname,' not visible from ',rundir,call.=FALSE)
 	  file.copy(ctlfile, file.path(rundir,basename(ctlfile)), overwrite = TRUE)
   }
   #Run NONMEM.
@@ -105,12 +101,18 @@ function (
 	  }
 	
 	  #Diagnostics
-	  #try(runlog(run=run,outfile=outfile,...))
 	  if(!udef)
 	   if(nmVersion(config(dirname(command))) < 7)
-	    try(setCwres(cwres=getCwres(directory=final(rundir)),file=tabfile))
-	   #else(try(runlog(run=run,outfile=outfile,...)))
-	  if(diag)try(
+	    tryCatch(
+    		setCwres(
+    			cwres=getCwres(
+    				directory=final(rundir)
+    			),
+    			file=tabfile
+    		),
+    		error=function(e)print(e$message)
+    	    )
+	  if(diag)tryCatch(
 		PLOTR(
 			run=run,
 			project=project,
@@ -128,9 +130,10 @@ function (
 			rundir=final(rundir),
 			plotfile=plotfile,
 			...
-		)
+		),
+		errror=function(e)print(e$message)
 	  )
-	  if (!is.null(epilog))if(is.function(epilog))try(
+	  if (!is.null(epilog))if(is.function(epilog))tryCatch(
 		  epilog(
 			run=run,
 			project=project,
@@ -148,10 +151,10 @@ function (
 			rundir=final(rundir),
 			...,
 			script=script
-		)
+		),
+		error=function(e)print(e$message)
 	  )
-	
-	  message(paste("Run ", run, " complete.", sep = ""))
+	  message("Run ", run, " complete.")
   }
 }
 
@@ -204,9 +207,15 @@ function (
   resolve <- function(file,dir)ifelse(contains('^\\.',file),file.path(dir,file),file)
   scavenge <- function(expr,lines){
 	  x <- lines[grep(expr,lines,ignore.case=TRUE, perl=TRUE)]
-	  if(length(x))return(x[[1]]) else return('')
+	  if(!length(x))stop('expression ',expr,'not found',call.=FALSE)
+	  x[[1]]
   }
-  extfile <- function(ctlfile,dir,extreg,...)resolve(extractPath(scavenge(extreg,ctlfile)),dir)  
+  extfile <- function(ctlfile,dir,extreg,...){
+  	  x <- scavenge(extreg,ctlfile)
+  	  x <- extractPath(x)
+  	  x <- resolve(x,dir)
+  	  x
+  }
   tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)extfile(ctlfile,dir,extreg=tabreg,...)
   parfile <- function(ctlfile,dir,parreg='par\\.tab',...)extfile(ctlfile,dir,extreg=parreg,...)
   msffile <- function(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)extfile(ctlfile,dir,extreg=msfreg,...)

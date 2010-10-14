@@ -11,23 +11,23 @@ as.pxml.ext <- function(file,lead=1,tag='param',...){
 	nest(tag='param',x=c(note,body))
 }
 as.unilog.lst <- function(file,run,tool,...){
-	if(!inherits(file,'connection'))if(!file.exists(file)){
-		message(paste('not found:',file))
-		return(unilog())
-	}
+	if(!inherits(file,'connection'))if(!file.exists(file))stop('not found: ',file,call. = FALSE)
 	lines <- readLines(file)
 	prob <- grep(pattern='^\\$PROB',lines,value=TRUE)[[1]]
 	prob <- sub('\\$(PROB|PROBLEM) *','',prob,ignore.case=TRUE)
 	prob <- gsub(',',';',prob)
 	min <- 0**length(grep('MINIMIZATION SUCCESSFUL',lines))
-	data.frame(
+	datafile <- getdname(file)
+	res <- data.frame(
 		stringsAsFactors=FALSE,
 		tool=rep(tool,2),
 		run=rep(run,2),
-		parameter=c('prob','min'),
-		moment=c('text','status'),
+		parameter=c('prob','min','data'),
+		moment=c('text','status','filename'),
 		value=c(prob,min)
 	)
+	if(tool=='nm6') res$min <- NULL
+	res
 }
 as.unilog.pxml <- function(x,run,tool='nm7',...){
 	library(XML)
@@ -50,8 +50,8 @@ as.unilog.pxml <- function(x,run,tool='nm7',...){
 			)
 		)
 	)
-	p$prse <- with(p, signif(digits=3, 100 * as.numeric(se)/as.numeric(estimate)))
-	p$se <- NULL
+	p$prse <- with(p, signif(digits=3, 100 * as.numeric(se)/abs(as.numeric(estimate))))
+	#p$se <- NULL
 	free(tree)
 	p$prse <- as.character(p$prse)
 	uni <- melt(p,id.var='parameter',variable_name='moment')
@@ -76,20 +76,19 @@ as.unilog.pxml <- function(x,run,tool='nm7',...){
 }
 as.unilog.run <- function(
 	run,
+	logfile='NonmemRunLog.csv',
 	outfile=paste(run,'lst',sep='.'),
 	extfile=file.path(
 		dirname(outfile),
 		paste(run,'ext',sep='.')
 	),
-	tool='nm7',
+	tool='nm6',
 	...
 ){
-	pxml <- as.pxml.ext(extfile)	
-	uni <- rbind(
-		as.unilog.lst(file=outfile,run=run,tool=tool,...),
-		as.unilog.pxml(pxml,run=run,tool=tool,...)
-	)
-	uni	
+	pars <- if(tool=='nm6')as.unilog.runlog(as.runlog.file(logfile))
+		else if(tool=='nm7')as.unilog.pxml(as.pxml.ext(extfile))
+	other <- as.unilog.lst(file=outfile,run=run,tool=tool,...),
+	rbind(pars,other)
 }
 #runlog has implicit columns:
 #run, problem, rseflag, min, cov, mvof, p1...pn, run, (precent)

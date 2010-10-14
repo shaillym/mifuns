@@ -30,7 +30,6 @@
   \item{stratify}{A list of factors, the interactions of which will be the levels of 
   	  stratification.  Each factor must have the same length as \code{nrow(x)}.  Or a character vector
   of names in \code{names(x)}.}
-  \item{seed}{a number to use as the seed for the random number generator}
   \item{ext}{a file extension}
   \item{row.names}{passed to \code{write.table}}
   \item{quote}{passed to \code{write.table}}

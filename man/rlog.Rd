@@ -18,7 +18,6 @@ rlog(
 	nmlog = file.path(rundir,'NonmemRunLog.csv'),
 	nmout = filename(rundir,run,'.lst'),
 	pattern = if(boot)c('^F','^nonmem.exe','^P','^O','^Run') else '^FD',
-	test='FILE10',
 	...
 )
 }
@@ -33,8 +32,7 @@ rlog(
   \item{nmlog}{The run-specific input file to read (nm6 only). See details.}
   \item{nmout}{The run-specific NONMEM output file to read (nm7 only). See details.}
   \item{pattern}{search patterns for files to delete (regular expressions)}
-  \item{test}{the name of a file whose presence in the run directory indicates the run is still in progress}
-  \item{\dots}{passed to other functions}
+  \item{\dots}{passed to other functions, such as \code{runstate}}
 }
 
 \details{
@@ -58,6 +56,7 @@ rlog(
 	\itemize{
 		\item{}{\code{\link{as.unilog.run}}}
 		\item{}{\code{\link{as.runlog.file}}}
+		\item{}{\code{\link{runstate}}}
 	}
 }
 \keyword{manip}

@@ -11,6 +11,7 @@
 \usage{
 as.unilog.run(
 	run,
+	logfile='NonmemRunLog.csv',
 	outfile=paste(run,'lst',sep='.'),
 	extfile=file.path(
 		dirname(outfile),

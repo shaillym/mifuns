@@ -5,8 +5,8 @@ Version: 4.0.18
 Date: 2010-08-31
 Author: Metrum Institute (http://metruminstitute.org): Bill Knebel, Leonid Gibianski, Tim Bergsma
 Maintainer: Tim Bergsma <timb@metrumrg.com>
-Depends: reshape, methods
-Suggests: lattice, XML, fork, MASS 
+Depends: reshape, methods, lattice
+Suggests: XML, fork, MASS, ggplot2
 Description: 
  Pharmacometric tools for common data preparation tasks, stratified 
  bootstrap resampling of data sets, NONMEM control stream creation/editing, 

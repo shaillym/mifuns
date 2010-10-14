@@ -463,7 +463,7 @@ latex(
 	file='',
 	rowname=NULL,
 	caption='Parameter Estimates from Population Pharmacokinetic Model Run 1005',
-	caption.lot='Model 10o5 Parameters',
+	caption.lot='Model 1005 Parameters',
 	label='p1005',
 	where='ht',
 	table.env=FALSE

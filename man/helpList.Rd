@@ -168,7 +168,10 @@
 \item \link{hash} prepend a character to each line of output
 \item \link{hide} generic
 \item \link{hide.data.frame} comment out the specified rows of a data frame, appending a flag that suggests the reason
+\item \link{hidden} generic
+\item \link{hidden.data.frame} show commented rows of a data frame
 \item \link{ibw} calculate ideal body weight
+\item \link{iterations} retrieve iteration statistics from NONMEM output file
 \item \link{ind.cwres} compute conditional weighted residuals (internal)
 \item \link{inner} generic
 \item \link{inner.data.frame} reduce columns to inner quantiles by imputing NA
@@ -209,6 +212,8 @@
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
 \item \link{nth} repeat, for each element, the \eqn{n^{th}}{n^th} element where a condition is \code{TRUE}  (usually, within levels of an index)
+\item \link{omegacor} convert omega covariance in NONMEM output to correlation matrix
+\item \link{only} repeat, for each element, the only element where a condition is \code{TRUE} (usually, within levels of an index)
 \item \link{Ops.keyed} use concise syntax to join data frames
 \item \link{ord} generic
 \item \link{ord.halfmatrix} compute the order of a half matrix
@@ -280,6 +285,7 @@
 \item \link{star} replace asterisk in x with y (internal)
 \item \link{strain} reduce x to those elements that occur in options (internal)
 \item \link{summary.keyed} summarize a keyed data frame
+\item \link{summary.hidden.data.frame} summarize hidden rows of a data frame
 \item \link{summary.nm} summarize an nm object
 \item \link{synthesis} sequentially left-join an arbitrary number of data frames, picking up novel columns (internal)
 \item \link{tabfile} extract tabfile specification from a control stream

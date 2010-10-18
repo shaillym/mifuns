@@ -12,7 +12,7 @@
 Create, Manipulate, Read, and Write NONMEM Control Streams
 }
 \description{
-This family of functions constitutes the class \code{nmcontrol}: an object
+This family of functions implements the class \code{nmcontrol}: an object
 model of the NONMEM control stream.  \code{nmcontrol} models a control stream
 as a list of records; each record is a character vector. The read and write 
 functions (not generic) convert \code{nmcontrol} to and from file format.  The 
@@ -54,7 +54,7 @@ write.nmcontrol(
   \item{sep}{passed to \code{write}}
 }
 \details{
-Conveniently, the record indicator in NONMEM control stream syntax is the 
+Serendipitously, the record indicator in NONMEM control stream syntax is the 
 same as the element selector in R list syntax: \$.  The convention is that names
 of elements in \code{nmcontrol} (lower case) are converted to record types (upper case)
 in the control stream.  The user is free to add, delete, rearrange, and edit

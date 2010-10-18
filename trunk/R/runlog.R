@@ -91,7 +91,7 @@ as.unilog.run <- function(
 	rbind(pars,other)
 }
 #runlog has implicit columns:
-#run, problem, rseflag, min, cov, mvof, p1...pn, run, (precent)
+#run, problem, rseflag, min, cov, mvof, p1...pn, run, (percent)
 as.runlog.unilog <- function(x,...){
 	if(!nrow(x))return(runlog())
 	x$tool <- NULL

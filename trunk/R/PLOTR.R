@@ -39,7 +39,11 @@
     par.list <- strain(par.list,available)
     eta.list <- strain(eta.list,available)
     
-    
+    listfilename <- file.path(rundir,paste(sep='',run,'.lst'))
+    listfile <- readLines(listfilename)
+    iterations <- iterations(listfile)
+    it.dat <- melt(iterations,measure.var=names(its)[contains('X',names(its))])
+
     #open device
     plotfile <- star(plotfile,run)
     safe.call(pdf,file=plotfile,onefile=onefile,...)
@@ -48,7 +52,9 @@
     lapply(diagnosticPlots(data, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
     lapply(covariatePlots(data,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(data,cont.cov,cat.cov,...),print)
-    
+    xyplot(value~iteration|variable,it.dat,subset=course=='parameter',type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free')))
+    xyplot(value~iteration|variable,it.dat,subset=course=='gradient',type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free')))
+
     #cleanup
     dev.off()
     unlink(filename(rundir,ext='_syn.csv'))

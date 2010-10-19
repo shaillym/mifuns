@@ -18,15 +18,19 @@
   	length(nmout)==length(run)
   )
   state <- sapply(rundir,function(dir)runstate(rundir=dir,...),...)
-  run <- run[state=='done']
-  rundir <- rundir[state=='done']
-  nmout <- nmout[state=='done']
-  nmlog <- nmlog[state=='done']
+  #run <- run[state=='done']
+  #rundir <- rundir[state=='done']
+  #nmout <- nmout[state=='done']
+  #nmlog <- nmlog[state=='done']
   if(!append)if(length(file))if(file.exists(file)) file.remove(file)
   specialize <- function(path,run,nm){
-  		if(!length(path) %in% c(0,1,length(run)))stop('length of' ,nm, ' must be 0, 1, or same as run',call.=FALSE))
+  		if(
+  			!length(path) %in% c(0,1,length(run))
+  		)stop(
+  			'length of' ,nm, ' must be 0, 1, or same as run',call.=FALSE
+  		)
   		if(!length(path))return(path)
-  		if(length(path)==1) path <- sapply(run,function(r)gsub('*',r,path,fixed=TRUE))
+  		if(length(path)==1) path <- sapply(run,function(x)gsub('*',x,path,fixed=TRUE))
   		names(path) <- run
   		path
   }
@@ -36,7 +40,7 @@
   #cleanup
   if(length(pattern)){
   		lapply(
-  			rundir,
+  			rundir[state=='done'],
   			function(dir,pattern)lapply(
   				pattern,
   				purge.files,
@@ -46,11 +50,17 @@
   		)
   }
   unilist <- lapply(
-  	run,
-  	as.unilog.run,
+  	seq(length.out=length(run)),
+  	function(index,run,nmlog,nmout,tool)as.unilog.run(
+  		run=run[[index]],
+  		logfile=nmlog[[index]],
+  		outfile=nmout[[index]],
+  		tool=tool
+  	),
+  	run=run,
+  	nmlog=nmlog,
+  	nmout=nmout,
   	tool=tool,
-  	logfile=nmlog[[as.character(r)]],
-  	outfile=nmout[[as.character(r)]],
   	...
   )
   if(length(file)){

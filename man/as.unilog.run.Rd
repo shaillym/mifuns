@@ -17,12 +17,13 @@ as.unilog.run(
 		dirname(outfile),
 		paste(run,'ext',sep='.')
 	),
-	tool='nm7',
+	tool='nm6',
 	...
 )
 }
 \arguments{
   \item{run}{name of the NONMEM run, typically integer}
+  \item{logfile}{path for the NONMEM run log file}
   \item{outfile}{path for the NONMEM output file, typically \file{run.lst}}
   \item{extfile}{path for the NONMEM estimates, by default \file{run.ext}}
   \item{tool}{currently \sQuote{nm7}}

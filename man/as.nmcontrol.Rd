@@ -26,8 +26,8 @@ vector into records and storing as a list.
 \method{as.list}{nmcontrol}(x, ...)
 \method{as.nmcontrol}{character}(
 	x, 
-	pattern = "^[[:blank:]]*\\$([^ ]+).*", 
-	name = "\\1", 
+	pattern = "^[[:blank:]]*\\\\$([^ ]+).*", 
+	name = "\\\\1", 
 	...
 )
 \method{format}{nmcontrol}(x, ...)
@@ -46,7 +46,7 @@ write.nmcontrol(
   \item{x}{an nmcontrol object (or analogous character vector)}
   \item{\dots}{extra arguments passed to other functions}
   \item{pattern}{regular expression for first line of a control record}
-  \item{name}{regular expression (relative to \code{pattern} giving the name of the control record}
+  \item{name}{regular expression (relative to \code{pattern}) giving the name of the control record}
   \item{con}{a connection or the name of a file to open}
   \item{file}{passed to \code{write}}
   \item{ncolumns}{passed to \code{write}}
@@ -76,8 +76,6 @@ appear in list order.
 	\itemize{
 		\item{}{\code{\link{write}}}
 	}
-}
-\examples{
 }
 \keyword{manip}
 

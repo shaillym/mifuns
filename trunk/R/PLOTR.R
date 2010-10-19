@@ -42,7 +42,7 @@
     listfilename <- file.path(rundir,paste(sep='',run,'.lst'))
     listfile <- readLines(listfilename)
     iterations <- iterations(listfile)
-    it.dat <- melt(iterations,measure.var=names(its)[contains('X',names(its))])
+    it.dat <- melt(iterations,measure.var=names(iterations)[contains('X',names(iterations))])
 
     #open device
     plotfile <- star(plotfile,run)
@@ -52,8 +52,8 @@
     lapply(diagnosticPlots(data, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
     lapply(covariatePlots(data,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(data,cont.cov,cat.cov,...),print)
-    xyplot(value~iteration|variable,it.dat,subset=course=='parameter',type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free')))
-    xyplot(value~iteration|variable,it.dat,subset=course=='gradient',type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free')))
+    xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free')))
+    xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free')))
 
     #cleanup
     dev.off()
@@ -287,10 +287,10 @@ dataSynthesis <- function(
     #cleanup arguments
     force(datfile)
     if (!file.exists(outfile))stop(outfile,' does not exist.',call.=FALSE)
-    if (!file.exists(ctlfile))stop(ctlfile,'does not exist.'.call.=FALSE)
+    if (!file.exists(ctlfile))stop(ctlfile,'does not exist.',.call.=FALSE)
     ctlfile <- readLines(ctlfile)#switch from file name to file content
     tabfile <- tryCatch(tabfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *.tab in control stream',call.=FALSE))
-    parfile <- tryCatch(parfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *par.tab in control stream',call.=FALSE)
+    parfile <- tryCatch(parfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *par.tab in control stream',call.=FALSE))
     
     #acquire data
     tabdata <- getTabs(tabfile)  

@@ -87,7 +87,7 @@ as.unilog.run <- function(
 ){
 	pars <- if(tool=='nm6')as.unilog.runlog(as.runlog.file(logfile))
 		else if(tool=='nm7')as.unilog.pxml(as.pxml.ext(extfile))
-	other <- as.unilog.lst(file=outfile,run=run,tool=tool,...),
+	other <- as.unilog.lst(file=outfile,run=run,tool=tool,...)
 	rbind(pars,other)
 }
 #runlog has implicit columns:
@@ -107,7 +107,8 @@ as.runlog.unilog <- function(x,...){
 	scalar <- scalar[,c('run','precedent','prob','min','cov','mvof')]
 	poly <- x[!x$parameter %in% regular,]
 	pars <- unique(poly$parameter)
-	if(!all(poly$moment %in% c('estimate','prse')))stop('parameter moments should be estimate or prse')
+	#if(!all(poly$moment %in% c('estimate','prse')))stop('parameter moments should be estimate or prse')
+	poly <- poly[poly$moment %in% c('estimate','prse'),]
 	poly <- data.frame(cast(poly, run + precedent + moment ~ parameter))
 	integral <- stableMerge(poly,scalar)
 	integral <- integral[,c('prob','moment','min','cov','mvof',pars,'run')]
@@ -115,7 +116,7 @@ as.runlog.unilog <- function(x,...){
 	integral	
 }
 #runlog is orthogonal and has header prob,moment,min,cov,mvof,P1 ... Pn, [run]
-as.unilog.runlog <- function(x,tool='nm7',...){
+as.unilog.runlog <- function(x,tool='nm6',...){
 	if(!nrow(x))return(unilog())
 	regular <- c('prob','min','cov','mvof')
 	if(!all(regular %in% names(x)))stop('runlog must have prob, min, cov, mvof')

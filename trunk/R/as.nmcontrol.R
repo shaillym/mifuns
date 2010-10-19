@@ -2,15 +2,29 @@ as.nmcontrol <-
 function(x,...)UseMethod('as.nmcontrol')
 
 as.character.nmcontrol <-
-function(x,...)unlist(
-	lapply(
-		seq(length.out=length(x)),
-		function(rec,...)c(
-			if(!is.na(names(x)[[rec]]))paste(sep='','$',toupper(names(x)[[rec]])) else NULL,
-			as.character(x[[rec]])
+function(x,...){
+	recname <- function(x,rec)if(
+		!is.na(
+			names(x)[[rec]]
+		)
+	)paste(
+		sep='',
+		'$',
+		toupper(names(x)[[rec]])
+	) else NULL
+	
+	unlist(
+		lapply(
+			seq(length.out=length(x)),
+			function(rec,...){
+				dat <- as.character(x[[rec]])
+				nm <- recname(x,rec)
+				if(length(dat))dat[[1]] <- paste(nm,dat[[1]])
+				dat
+			}
 		)
 	)
-)
+}
 
 as.list.nmcontrol <-
 function(x,...)unclass(x)

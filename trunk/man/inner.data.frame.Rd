@@ -13,17 +13,17 @@ cells within columns that represent extreme quantiles. By default, the
 }
 \usage{
 \method{inner}{data.frame}(
-	x, 
-	prob = 0.95, 
-	tail = 0.5 * (1 - prob), 
-	lo = tail, 
-	hi = prob + tail, 
-	include.lowest = TRUE, 
-	include.highest = TRUE, 
-	key = characters(0), 
-	fun.aggregate=mean,
-	na.rm=TRUE,
-	fill=NA,
+	x,
+	prob=0.95,
+	tail=0.5*(1-prob),
+	lo=tail,
+	hi=prob+tail,
+	include.lowest=TRUE,
+	include.highest=TRUE,
+	preserve=character(0),
+	id.var=character(0),
+	measure.var=setdiff(names(x),c(preserve,id.var)),
+	na.rm=FALSE,
 	...
 )
 }

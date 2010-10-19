@@ -250,7 +250,7 @@
 \item \link{qsub} prepare commandlines for qsub
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
-\item \link{read.nmmcontrol} read a NONMEM control stream, converting to modifiable object
+\item \link{read.nmcontrol} read a NONMEM control stream, converting to modifiable object
 \item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag
@@ -304,7 +304,7 @@
 \item \link{variants} locate variants of a file in distinctive subdirectories
 \item \link{win} identify Windows platforms (internal)
 \item \link{write.nm} write an nm object to file
-\item \link{write.nmmcontrol} write an nmcontrol object to file
+\item \link{write.nmcontrol} write an nmcontrol object to file
 \item \link{xtfrm.comment} produce a numeric vector that sorts in the same order as comment
 \item \link{xtfrm.flag} produce a numeric vector that sorts in the same order as flag
 \item \link{xtfrm.miTemporal} produce a numeric vector that sorts in the same order as miTemporal

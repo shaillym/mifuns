@@ -107,7 +107,8 @@ xtfrm.comment <- function(x)as.numeric(x)
 	y <- x[x$C,]
 	y		
 }
-summary.hidden.data.frame <- function(x,...){
+summary.hidden.data.frame <- function(object,...){
+	x <- object
 	if('hidden.scope' %in% names(x))stop('hidden.scope is a reserved column name')
 	hideflags <- x[
 		,

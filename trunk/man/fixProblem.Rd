@@ -125,17 +125,9 @@ resolve('./file.ext',dir='project/pk')
 resolve('../file.ext',dir='project/pk/')
 scavenge('.tab',lines=c('text file.TAB','text file.csv'))
 ctlfile <- c('text file=../100.tab etc','text file=../100par.tab etc','text file=../100.msf etc')
-f <- textConnection(ctlfile)
-tabfile(f,dir='projectdir/100')
-close(f)
-
-f <- textConnection(ctlfile)
-parfile(f,dir='projectdir/100')
-close(f)
-
-f <- textConnection(ctlfile)
-msffile(f,dir='projectdir/100')
-close(f)
+tabfile(ctlfile,dir='projectdir/100')
+parfile(ctlfile,dir='projectdir/100')
+msffile(ctlfile,dir='projectdir/100')
 }		
 \keyword{manip}
 

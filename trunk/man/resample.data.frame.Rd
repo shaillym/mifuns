@@ -14,9 +14,20 @@
 \usage{
 	\method{as.csv.filename}{character}(x, ...)
 	\method{resample}{csv.filename}(x, ...)
-	\method{resample}{data.frame}(x, names, key = NULL, rekey =
-      FALSE, out = NULL, stratify = NULL, seed = 0,ext='.csv',
-      row.names=FALSE, quote=FALSE, sep=',',replace=TRUE,...)
+	\method{resample}{data.frame}(
+	x, 
+	names, 
+	key = NULL, 
+	rekey =FALSE, 
+	out = NULL, 
+	stratify = NULL, 
+	ext='.csv',
+	row.names=FALSE, 
+	quote=FALSE, 
+	sep=',',
+	replace=TRUE,
+	...
+)
 }
 
 \arguments{

@@ -35,12 +35,12 @@ never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FA
 \method{print}{comment}(x, ...)
 \method{rep}{comment}(x, ...)
 \method{hidden}{data.frame}(x, ...)
-\method{summary}{hidden.data.frame}(x, ...)
+\method{summary}{hidden.data.frame}(object, ...)
 }
 
 \arguments{
   \item{x}{the comment object, or something coercible to logical 
-        (data.frame for \code{hidden.data.frame} and \code{summary.hidden.data.frame})}
+        (data.frame for \code{hidden.data.frame})}
   \item{\dots}{extra arguments, generally ignored}
   \item{drop}{coerce to lowest possible dimension}
   \item{row.names}{row names for the result}
@@ -48,6 +48,7 @@ never be \code{NA}, and prints as \sQuote{C} or \sQuote{.} (\code{TRUE},\code{FA
   \item{recursive}{unused, present for historical reasons}
   \item{where}{logical with length \code{nrow(x)}, indicating rows to hide}
   \item{why}{a column name suggesting the reason for hiding}
+  \item{object}{hidden.data.frame}
 }
 
 \details{

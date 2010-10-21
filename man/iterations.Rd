@@ -101,7 +101,7 @@ lst <- c(
 )
 iterations <- iterations(lst)
 iterations
-it.dat <- melt(i,measure.var=names(iterations)[contains('X',names(iterations))])
+it.dat <- melt(iterations,measure.var=names(iterations)[contains('X',names(iterations))])
 xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free')))
 xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free')))
 

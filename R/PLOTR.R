@@ -52,8 +52,8 @@
     lapply(diagnosticPlots(data, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
     lapply(covariatePlots(data,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(data,cont.cov,cat.cov,...),print)
-    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free'))))
-    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free'))))
+    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],main= paste('Model',run,'parameter search'),type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free'))))
+    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,main= paste('Model',run,'gradient search'),type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free'))))
 
     #cleanup
     dev.off()
@@ -134,7 +134,10 @@ getCovs <- function(file,dir){
 	    here <- getwd()
 	    setwd(dir)
 	    tryCatch( 
-	    	covdata <- read.table(file = file, header = TRUE, as.is = TRUE, sep = ','),
+	    	suppressWarnings(
+	    		covdata <- read.table(file = file, header = TRUE, as.is = TRUE, sep = ',')
+	    	),
+	    	error=function(e)stop(file,' not visible from ',dir,call.=FALSE),
 	    	finally=setwd(here)
 	    )	    
 	    if('C' %in% names(covdata))covdata <- covdata[covdata$C != 'C',]
@@ -148,7 +151,7 @@ getCovs <- function(file,dir){
 getPars <- function(file){
 	    if (!file.exists(file))stop(file,' does not exist.',call.=FALSE)
 	    f <- read.table(file = file, header = TRUE, skip = 1)
-	    if(!'ID' %in% names(f))stop('ID not a column in ',f,call.=FALSE)
+	    if(!'ID' %in% names(f))stop('ID not a column in ',file,call.=FALSE)
             f <- f[!duplicated(f$ID),]
     	    if(!nrow(f))stop(file,' has no rows',call.=FALSE)
 	    return(f)
@@ -157,6 +160,7 @@ getPars <- function(file){
 #scavenges the data set name/path from the control stream
 getdname <- function(filename){
 	    datamod <- '^\\$DATA +([^ ]+).*$'
+	    if(!file.exists(filename))stop(filename,' not found',call.=FALSE)
 	    control <- scan(file = filename, what = '', comment.char = '', allowEscapes = TRUE, sep = '\n', quiet = TRUE)
 	    dablock <- grep('\\$DATA', control, value = TRUE)
 	    datfile <- sub(datamod, '\\1', dablock)

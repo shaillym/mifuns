@@ -52,8 +52,8 @@
     lapply(diagnosticPlots(data, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
     lapply(covariatePlots(data,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(data,cont.cov,cat.cov,...),print)
-    xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free')))
-    xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free')))
+    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free'))))
+    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free'))))
 
     #cleanup
     dev.off()

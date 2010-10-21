@@ -8,7 +8,7 @@
 \description{
 \code{inner} is generic.  \code{inner.data.frame} imputes \code{NA} for
 cells within columns that represent extreme quantiles. By default, the
-\sQuote{inner} 95 percent of each column is preserved. Requires \pkg{reshape}.
+\sQuote{inner} 95 percent of each column is preserved.
 
 }
 \usage{

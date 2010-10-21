@@ -95,8 +95,10 @@ runstate <- function(
 	#FCON: nm/ABLOCK.f
 	#FILE10: nm/BLKDAT.f
 	#OUTPUT: nm/BEGIN.f
+	if(!missing(run))if(length(run)!=1)stop('run must be scalar',call.=FALSE)
+	if(!missing(project))if(length(project)!=1)stop('project must be scalar',call.=FALSE)
+	if(!missing(rundir))if(length(rundir)!=1)stop('rundir must be scalar',call.=FALSE)
 	stopifnot(
-		length(run)==1,
 		length(queued)==length(testfile),
 		length(compiled)==length(testfile),
 		length(running)==length(testfile),

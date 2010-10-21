@@ -20,13 +20,13 @@ as.unilog.lst <- function(file,run,tool,...){
 	datafile <- getdname(file)
 	res <- data.frame(
 		stringsAsFactors=FALSE,
-		tool=rep(tool,2),
-		run=rep(run,2),
+		tool=rep(tool,3),
+		run=rep(run,3),
 		parameter=c('prob','min','data'),
 		moment=c('text','status','filename'),
-		value=c(prob,min)
+		value=c(prob,min,datafile)
 	)
-	if(tool=='nm6') res$min <- NULL
+	if(tool=='nm6') res <- res[res$parameter!='min',]
 	res
 }
 as.unilog.pxml <- function(x,run,tool='nm7',...){
@@ -68,7 +68,7 @@ as.unilog.pxml <- function(x,run,tool='nm7',...){
 	uni$word <- NULL
 	uni$number <- NULL
 	key(uni) <- c('tool','run','parameter','moment')
-	uni <- uni[!(uni$parameter == 'OBJ' & uni$moment=='prse'),]
+	uni <- uni[!(uni$parameter == 'OBJ' & uni$moment %in% c('prse','se')),]
 	uni$parameter[uni$parameter=='OBJ'] <- 'ofv'
 	uni$moment[uni$parameter=='ofv'] <- 'minimum'
 	row.names(uni) <- NULL
@@ -85,8 +85,14 @@ as.unilog.run <- function(
 	tool='nm6',
 	...
 ){
-	pars <- if(tool=='nm6')as.unilog.runlog(as.runlog.file(logfile))
-		else if(tool=='nm7')as.unilog.pxml(as.pxml.ext(extfile))
+	pars <- if(tool=='nm6')as.unilog.runlog(
+		as.runlog.file(logfile)
+	)else if(tool=='nm7')as.unilog.pxml(
+		x=as.pxml.ext(extfile),
+		run=run,
+		tool=tool,
+		...
+	)
 	other <- as.unilog.lst(file=outfile,run=run,tool=tool,...)
 	rbind(pars,other)
 }

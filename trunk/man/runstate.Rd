@@ -55,4 +55,7 @@ runstate(
 		\item{}{\code{\link{rlog}}}
 	}
 }
+\example{
+runstate(1)
+}
 \keyword{manip}

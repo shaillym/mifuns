@@ -89,6 +89,12 @@ test
 # 8   2    3    1          8       10       FALSE    2
 # 9   2    4    0          8       10       FALSE    3
 # 10  2    5    1          8       10       FALSE    4
+only(
+	1:9,
+	where= c(0,1,0,  1,0,1,  0,0,0),
+	within=c(1,1,1,  2,2,2,  3,3,3)
+)
+#[1]  2  2  2 NA NA NA NA NA NA
 }
 \keyword{manip}
 

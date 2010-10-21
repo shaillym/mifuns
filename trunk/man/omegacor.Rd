@@ -31,7 +31,7 @@ correlation matrix
 		\item{}{\code{\link{cov2cor}}}
 	}
 }
-\example{
+\examples{
 lst <- c(
 'THETA - VECTOR OF FIXED EFFECTS PARAMETERS   *********',
 '',

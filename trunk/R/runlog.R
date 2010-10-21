@@ -1,6 +1,6 @@
 as.pxml.ext <- function(file,lead=1,tag='param',...){
 	if(!inherits(file,'connection'))if(!file.exists(file)){
-		message(paste('not found:',file))
+		message(file, ' not found')
 		return(NULL)
 	}
 	x <- readLines(file)
@@ -11,7 +11,7 @@ as.pxml.ext <- function(file,lead=1,tag='param',...){
 	nest(tag='param',x=c(note,body))
 }
 as.unilog.lst <- function(file,run,tool,...){
-	if(!inherits(file,'connection'))if(!file.exists(file))stop('not found: ',file,call. = FALSE)
+	if(!inherits(file,'connection'))if(!file.exists(file))stop(file,' not found',call. = FALSE)
 	lines <- readLines(file)
 	prob <- grep(pattern='^\\$PROB',lines,value=TRUE)[[1]]
 	prob <- sub('\\$(PROB|PROBLEM) *','',prob,ignore.case=TRUE)
@@ -149,7 +149,7 @@ as.unilog.runlog <- function(x,tool='nm6',...){
 }
 as.runlog.file <- function(file,...){
 	if(!inherits(file,'connection'))if(!file.exists(file)){
-		message(paste('not found:',file))
+		message(file, 'not found')
 		return(runlog())
 	}
 	r <- read.csv(file,header=FALSE,na.strings=c('.','NA',''),as.is=TRUE,...)

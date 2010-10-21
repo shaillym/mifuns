@@ -46,6 +46,12 @@ function (
   if(!file.exists(ctlfile))stop(ctlfile,' was not found')
   control <- explicitPath(readLines(ctlfile))
   if (checkrunno) writeLines(control <- fixFile(fixProblem(control,run),run),con=ctlfile)
+  tabfile <- ''
+  parfile <- ''
+  msffile <- ''
+  tabfile <- tryCatch(tabfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.tab in control stream',call.=FALSE))
+  parfile <- tryCatch(parfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *par.tab in control stream',call.=FALSE))
+  msffile <- tryCatch(msffile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *msf in control stream',call.=FALSE))
   tabfile <- tabfile(control,dir=final(rundir),...)
   parfile <- parfile(control,dir=final(rundir),...)
   msffile <- msffile(control,dir=final(rundir),...)

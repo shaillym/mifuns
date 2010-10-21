@@ -102,26 +102,3 @@ before   <- function(where,within,n=1,...)distance(where=where,within=within,n=n
 at       <- function(where,within,n=1,...)distance(where=where,within=within,n=n) == 0
 after    <- function(where,within,n=1,...)distance(where=where,within=within,n=n) > 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

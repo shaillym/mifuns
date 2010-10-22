@@ -1,8 +1,5 @@
 as.pxml.ext <- function(file,lead=1,tag='param',...){
-	if(!inherits(file,'connection'))if(!file.exists(file)){
-		message(file, ' not found')
-		return(NULL)
-	}
+	if(!inherits(file,'connection'))if(!file.exists(file))stop(file, ' not found',call.=FALSE)
 	x <- readLines(file)
 	head <- seq(length.out=lead)
 	note <- as.xml(x[head],tag='note')
@@ -148,10 +145,7 @@ as.unilog.runlog <- function(x,tool='nm6',...){
 	rmelt
 }
 as.runlog.file <- function(file,...){
-	if(!inherits(file,'connection'))if(!file.exists(file)){
-		message(file, 'not found')
-		return(runlog())
-	}
+	if(!inherits(file,'connection'))if(!file.exists(file))stop(file, ' not found',call.=FALSE)
 	r <- read.csv(file,header=FALSE,na.strings=c('.','NA',''),as.is=TRUE,...)
 	names(r)[1:5] <- c('prob','moment','min','cov','mvof')
 	last <- ncol(r)

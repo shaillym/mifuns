@@ -190,17 +190,7 @@ groupnames <- function(data,grp,grpnames=NULL,run){
 		)
 	   nlevs <- length(levels(result))
 	   if(!is.null(grpnames))if(length(grpnames)==nlevs)levels(result) <- grpnames
-	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(
-		   paste(
-  			"Run", 
-			run, 
-			"has",
-			nlevs,
-			"grouping levels but",
-			length(grpnames),
-			"grpnames (ignored)." 
-		)
-	  )
+	   if(!is.null(grpnames))if(length(grpnames)!=nlevs)warning(call.=FALSE,immediate.=TRUE,'Run ',run,' has ',nlevs,' grouping levels but ',length(grpnames),' grpnames (ignored).' )
 	  result
 }
 
@@ -293,8 +283,8 @@ dataSynthesis <- function(
     if (!file.exists(outfile))stop(outfile,' does not exist.',call.=FALSE)
     if (!file.exists(ctlfile))stop(ctlfile,'does not exist.',.call.=FALSE)
     ctlfile <- readLines(ctlfile)#switch from file name to file content
-    tabfile <- tryCatch(tabfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *.tab in control stream',call.=FALSE))
-    parfile <- tryCatch(parfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *par.tab in control stream',call.=FALSE))
+    tabfile <- tryCatch(tabfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *.tab in control stream for run ',run,call.=FALSE))
+    parfile <- tryCatch(parfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *par.tab in control stream for run ',run,call.=FALSE))
     
     #acquire data
     tabdata <- getTabs(tabfile)  

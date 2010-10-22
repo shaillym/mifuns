@@ -70,13 +70,13 @@ function (
             if (pid == 0) {
                 tryCatch(
                 	do.call("runNonmem", args),
-                	error=function(e)print(e$message)
+                	error=function(e)warning(e$message,call.=FALSE,immediate.=TRUE)
                 )
                 exit()
             }
         } else tryCatch(
         		do.call('runNonmem', args),
-        		error=function(e)print(e$message)
+        		error=function(e)warning(e$message,call.=FALSE,immediate.=TRUE)
         	)
     }
     message("NONR complete.")

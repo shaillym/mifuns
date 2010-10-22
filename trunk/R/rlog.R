@@ -51,18 +51,25 @@
   }
   unilist <- lapply(
   	seq(length.out=length(run)),
-  	function(index,run,nmlog,nmout,tool)as.unilog.run(
-  		run=run[[index]],
-  		logfile=nmlog[[index]],
-  		outfile=nmout[[index]],
-  		tool=tool
-  	),
+  	function(index,run,nmlog,nmout,tool){
+  		res <- try(
+  			as.unilog.run(
+  				run=run[[index]],
+  				logfile=nmlog[[index]],
+  				outfile=nmout[[index]],
+  				tool=tool
+  			)
+  		)
+  		if(inherits(res,'try-error'))return(NULL)
+  		res
+  	},
   	run=run,
   	nmlog=nmlog,
   	nmout=nmout,
   	tool=tool,
   	...
   )
+  unilist <- unilist[sapply(unilist,function(r)!is.null(r))]
   if(length(file)){
   	runloglist <- lapply(unilist,as.runlog.unilog)
   	lapply(

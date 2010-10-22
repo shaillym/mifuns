@@ -49,12 +49,12 @@ function (
   tabfile <- ''
   parfile <- ''
   msffile <- ''
-  tabfile <- tryCatch(tabfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.tab in run ',run, ' control stream',call.=FALSE,immediate.=TRUE))
-  parfile <- tryCatch(parfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.tab in run ',run, ' control stream',call.=FALSE,immediate.=TRUE))
-  msffile <- tryCatch(msffile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.tab in run ',run, ' control stream',call.=FALSE,immediate.=TRUE))
-  tabfile <- tabfile(control,dir=final(rundir),...)
-  parfile <- parfile(control,dir=final(rundir),...)
-  msffile <- msffile(control,dir=final(rundir),...)
+  tryCatch(tabfile <- tabfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.tab in control stream for run ',run,call.=FALSE,immediate.=TRUE))
+  tryCatch(parfile <- parfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *par.tab in control stream for run ', run,call.=FALSE,immediate.=TRUE))
+  tryCatch(msffile <- msffile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.msf in control stream for run ',run,call.=FALSE,immediate.=TRUE))
+  #tabfile <- tabfile(control,dir=final(rundir),...)
+  #parfile <- parfile(control,dir=final(rundir),...)
+  #msffile <- msffile(control,dir=final(rundir),...)
   script <- NULL
   epimatch <- try(match.fun(epilog),silent=TRUE)
   if(is.function(epimatch))epilog <- epimatch
@@ -118,7 +118,7 @@ function (
     			),
     			file=tabfile
     		),
-    		error=function(e)print(e$message)
+    		error=function(e)warning(e$message,call.=FALSE,immediate.=TRUE)
     	    )
 	  if(diag)tryCatch(
 		PLOTR(
@@ -139,7 +139,7 @@ function (
 			plotfile=plotfile,
 			...
 		),
-		error=function(e)print(e$message)
+		error=function(e)warning(e$message,call.=FALSE,immediate.=TRUE)
 	  )
 	  if (!is.null(epilog))if(is.function(epilog))tryCatch(
 		  epilog(
@@ -160,7 +160,7 @@ function (
 			...,
 			script=script
 		),
-		error=function(e)print(e$message)
+		error=function(e)warning(e$message,call.=FALSE,immediate.=TRUE)
 	  )
 	  message("Run ", run, " complete.")
   }
@@ -224,9 +224,18 @@ function (
   	  x <- resolve(x,dir)
   	  x
   }
-  tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)extfile(ctlfile,dir,extreg=tabreg,...)
-  parfile <- function(ctlfile,dir,parreg='par\\.tab',...)extfile(ctlfile,dir,extreg=parreg,...)
-  msffile <- function(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)extfile(ctlfile,dir,extreg=msfreg,...)
+  tabfile <- function(ctlfile,dir,tabreg='(?<!par)\\.tab',...)tryCatch(
+  	extfile(ctlfile,dir,extreg=tabreg,...),
+  	error=function(e)stop('cannot locate *.tab in control stream for ',dir,call.=FALSE)
+  ) 
+  parfile <- function(ctlfile,dir,parreg='par\\.tab',...)tryCatch(
+  	extfile(ctlfile,dir,extreg=parreg,...),
+  	error=function(e)stop('cannot locate *par.tab in control stream for ',dir,call.=FALSE)
+  )
+  msffile <- function(ctlfile,dir,msfreg='^(?!\\$MSFI).*\\.msf',...)tryCatch(
+  	extfile(ctlfile,dir,extreg=msfreg,...),
+  	error=function(e)stop('cannot locate *.msf in control stream for ',dir,call.=FALSE)
+  )
 	  
 	  
 	  

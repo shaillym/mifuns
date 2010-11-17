@@ -14,6 +14,7 @@
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99,
+	estimated = NULL,
 	...
 ){
     
@@ -41,9 +42,12 @@
     
     listfilename <- file.path(rundir,paste(sep='',run,'.lst'))
     listfile <- readLines(listfilename)
-    iterations <- iterations(listfile)
-    it.dat <- melt(iterations,measure.var=names(iterations)[contains('X',names(iterations))])
-
+    iterations <- try(iterations(listfile))
+    it.dat <- NULL
+    if(inherits(iterations,'data.frame'))try(it.dat <- melt(iterations,measure.var=names(iterations)[contains('X',names(iterations))]))
+    estimated <- list(...)$estimated
+    if(!is.null(estimated))try(levels(it.dat$variable) <- estimated)
+    
     #open device
     plotfile <- star(plotfile,run)
     safe.call(pdf,file=plotfile,onefile=onefile,...)
@@ -52,8 +56,24 @@
     lapply(diagnosticPlots(data, dvname=dvname, group='grpnames', model= paste('Model',run),...),print)
     lapply(covariatePlots(data,cont.cov,cat.cov,par.list,eta.list,...),print)
     lapply(cwresPlots(data,cont.cov,cat.cov,...),print)
-    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],main= paste('Model',run,'parameter search'),type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free'))))
-    print(xyplot(value~iteration|variable,it.dat[it.dat$course=='gradient',] ,main= paste('Model',run,'gradient search'),type='l',ylab='gradient',as.table=TRUE,scales=list(y=list(relation='free'))))
+    if(!is.null(it.dat))try(print(xyplot(value~iteration|variable,it.dat[it.dat$course=='parameter',],main= paste('Model',run,'parameter search'),type='l',ylab='scaled parameter',as.table=TRUE,scales=list(y=list(relation='free')))))
+    if(!is.null(it.dat))try(
+    	print(
+		xyplot(
+			value~iteration|variable,
+			it.dat[it.dat$course=='gradient',] ,
+			main= paste('Model',run,'gradient search'),
+			type='l',
+			ylab='gradient',
+			as.table=TRUE,
+			scales=list(y=list(relation='free')),
+			panel=function(...){
+				panel.abline(h=0)
+				panel.xyplot(...)
+			}
+		)
+	)
+)
 
     #cleanup
     dev.off()

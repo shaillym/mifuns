@@ -52,7 +52,7 @@ By default, each element in  \code{odf} and \code{sdf} will be the length
 apply to all parameters (as do the defaults).  Alternatively, the first \eqn{n} limits
 may be specified as a vector, in which case the remaining (if any) will be the default.
 If any simulated parameter does not fall between its limits, inclusive, the entire
-parameter set (row) is dropped from the result.
+parameter set (row) is dropped from the result, with warning.
 }
 \value{
 matrix, with column names indicating parameters, and row names indicating set
@@ -66,7 +66,7 @@ number before filtering by \code{min} and \code{max}.
 	}
 }
 \examples{
-set.seed(10)
+set.seed(100)
 simpar(
     nsim=10,
     theta=c(13,75,1),

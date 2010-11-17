@@ -1,6 +1,7 @@
 iterations <-
 function(x,...){
 	nodes <- grepl('ITERATION NO.:',x)
+	if(sum(nodes)==0)stop('no iterations found')
 	first <- first(where=nodes)
 	second <- nth(where=nodes, n=2)
 	period <- unique(second-first)

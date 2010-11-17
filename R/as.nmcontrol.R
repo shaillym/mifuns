@@ -1,7 +1,7 @@
-as.nmcontrol <-
-function(x,...)UseMethod('as.nmcontrol')
+as.nmctl <-
+function(x,...)UseMethod('as.nmctl')
 
-as.character.nmcontrol <-
+as.character.nmctl <-
 function(x,...){
 	recname <- function(x,rec)if(
 		!is.na(
@@ -19,17 +19,17 @@ function(x,...){
 			function(rec,...){
 				dat <- as.character(x[[rec]])
 				nm <- recname(x,rec)
-				if(length(dat))dat[[1]] <- paste(nm,dat[[1]])
+				if(length(dat))dat[[1]] <- paste(sep='',nm,dat[[1]])
 				dat
 			}
 		)
 	)
 }
 
-as.list.nmcontrol <-
+as.list.nmctl <-
 function(x,...)unclass(x)
 
-as.nmcontrol.character <-
+as.nmctl.character <-
 function(
 	x,
 	pattern='^[[:blank:]]*\\$([^ ]+).*',
@@ -56,7 +56,7 @@ function(
 			nm <- names(dat)[[rec]]
 			rec <- dat[[rec]]
 			if(!is.na(nm))rec[[1]] <- sub(
-				paste(sep='','\\$',nm,' *'),
+				paste(sep='','\\$',nm),
 				'',
 				rec[[1]],
 				ignore.case=TRUE
@@ -66,27 +66,31 @@ function(
 		dat=y
 	)
 	names(y) <- nms
-	y <- sapply(y,function(r)if(r[[1]]=='')r[-1]else r)
-	class(y) <- c('nmcontrol',class(y))
+	#y <- sapply(y,function(r)if(r[[1]]=='')r[-1]else r,simplify=FALSE)
+	class(y) <- c('nmctl',class(y))
 	y
 }
 
-format.nmcontrol <-
+format.nmctl <-
 function(x,...)as.character(x,...)
 
-print.nmcontrol <-
+print.nmctl <-
 function(x,...)print(format(x,...))
 
-read.nmcontrol <-
-function(con,...)as.nmcontrol(readLines(con,...),...)
+read.nmctl <-
+function(con,...)as.nmctl(readLines(con,...),...)
 
-write.nmcontrol <-
-function(x, file='data',ncolumns=1,append=FALSE, sep=" ",...)write(
-	format(x),
-	file=file,
-	ncolumns=ncolumns,
-	append=append, 
-	sep=sep,
-	...
-)
+write.nmctl <-
+function(x, file='data',ncolumns=1,append=FALSE, sep=" ",...){
+	out <- format(x)
+	if(maxChar(clear(out,drop=';.*'))>80)warning('80 character limit exceeded')
+	write(
+		out,
+		file=file,
+		ncolumns=ncolumns,
+		append=append, 
+		sep=sep,
+		...
+	)
+}
 

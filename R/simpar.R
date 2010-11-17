@@ -24,7 +24,6 @@ function(nsim,theta,covar,omega,sigma,odf=NULL,sdf=NULL,digits=4,min=-Inf,max=In
   if(length(sdf)!=length(sigma))stop('length sdf differs from length sigma')
   if(any(odf < sapply(omega,length)))stop('odf[n] is less than number of elements in corresponding matrix')
   if(any(sdf < sapply(sigma,length)))stop('sdf[n] is less than number of elements in corresponding matrix')
-  library(MASS)
   mvr <- mvrnorm(nsim,theta,covar)
   if(nsim==1)mvr <- t(as.matrix(mvr))
   omg <- lapply(1:length(odf),function(x)list(n=nsim,df=odf[[x]],cov=omega[[x]]))
@@ -34,15 +33,28 @@ function(nsim,theta,covar,omega,sigma,odf=NULL,sdf=NULL,digits=4,min=-Inf,max=In
   dimnames(mvr) <- dimnames(omg) <- dimnames(sig) <- list(NULL,NULL)
   dimnames(mvr)[[2]] <- paste('TH',seq(length.out=dim(mvr)[[2]]),sep='.')
   dimnames(mvr)[[1]] <- seq(length.out=dim(mvr)[[1]])
-  dimnames(omg)[[2]] <- unlist(sapply(seq(length.out=length(omega)),function(x)paste('OM',x,names(half(omega[[x]])),sep='.')))
+  impliedNames <- function(x){#converts a vector of block sizes to implied full-block names
+	   vars <- sum(x)
+	   crit <- cumsum(x)-x+1 
+	   diag <- diag(rep(crit,x))
+	   good <- outer(colSums(diag),rowSums(diag),FUN='==')
+	   half <- half(good)
+	   names(half[half])
+  }
+  dimnames(omg)[[2]] <- paste(sep='','OM',impliedNames(sapply(omega,ord)))
   dimnames(omg)[[1]] <- seq(length.out=dim(omg)[[1]])
-  dimnames(sig)[[2]] <- unlist(sapply(seq(length.out=length(sigma)),function(x)paste('SG',x,names(half(sigma[[x]])),sep='.')))
+  dimnames(sig)[[2]] <- paste(sep='','SG',impliedNames(sapply(sigma,ord)))
   dimnames(sig)[[1]] <- seq(length.out=dim(sig)[[1]])
   sim <- cbind(mvr,omg,sig)
   sim <- round(signif(sim,digits),6)
   sim <- sim[apply(t(t(sim)-min)>=0,MARGIN=1,all),,drop=FALSE]
-  if(dim(sim)[[1]]==0)return(sim)
+  if(dim(sim)[[1]]==0){
+  	  warning(nsim,' of ',nsim,' rows dropped',call.=FALSE,immediate.=TRUE)
+  	  return(sim)
+  }
   sim <- sim[apply(t(t(sim)-max)<=0,MARGIN=1,all),,drop=FALSE]
+  loss <- nsim - nrow(sim)
+  if(loss)warning(loss,' of ',nsim,' rows dropped',call.=FALSE,immediate.=TRUE)
   sim
 }
 

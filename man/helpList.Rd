@@ -26,7 +26,7 @@
 \item \link{as.character.comment} convert comment to character
 \item \link{as.character.flag} convert flag to character
 \item \link{as.character.miTemporal} convert miTemporal to character
-\item \link{as.character.nmcontrol} convert nmcontrol to character
+\item \link{as.character.nmctl} convert nmctl to character
 \item \link{as.chartime} convert to time (generic, internal)
 \item \link{as.chartime.numeric} convert numeric to time
 \item \link{as.comment} convert to comment
@@ -48,7 +48,7 @@
 \item \link{as.halfmatrix.halfmatrix} preserve halfmatrix
 \item \link{as.keyed} convert to keyed
 \item \link{as.keyed.data.frame} convert data frame to keyed
-\item \link{as.list.nmcontrol} convert nmcontrol to list
+\item \link{as.list.nmctl} convert nmctl to list
 \item \link{as.matrix.halfmatrix} convert a vector to a symmetric matrix
 \item \link{as.miDate} convert to miDate
 \item \link{as.miDate.character} convert character to miDate
@@ -72,8 +72,8 @@
 \item \link{as.moot} convert to moot
 \item \link{as.nm} convert to nm (NMTRAN-ready NONMEM data set)
 \item \link{as.nm.data.frame} convert data frame to nm
-\item \link{as.nmcontrol} convert to nmcontrol
-\item \link{as.nmcontrol.character} convert character to nmcontrol
+\item \link{as.nmctl} convert to nmctl
+\item \link{as.nmctl.character} convert character to nmctl
 \item \link{as.numeric.chartime} convert chartime to numeric
 \item \link{as.pxml.ext} convert a param file to XML
 \item \link{as.rigged} convert to rigged
@@ -156,7 +156,7 @@
 \item \link{format.miDate} format miDate
 \item \link{format.miDateTime} format miDateTime
 \item \link{format.miTime} format miTime
-\item \link{format.nmcontrol} format nmcontrol
+\item \link{format.nmctl} format nmctl
 \item \link{getCovs} return non-commented non-duplicated rows of a NONMEM data set (internal)
 \item \link{getCwres} return the conditional weighted residuals pertinent to a given run (internal, expects cwtab1.deriv)
 \item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)
@@ -244,13 +244,13 @@
 \item \link{print.keyed.summary} print keyed summary
 \item \link{print.miTemporal} print miTemporal
 \item \link{print.nm.summary} print nm summary
-\item \link{print.nmcontrol} print nmcontrol
+\item \link{print.nmctl} print nmctl
 \item \link{purge.dir} purge a directory (internal)
 \item \link{purge.files} purge files (internal)
 \item \link{qsub} prepare commandlines for qsub
 \item \link{read.cwres.data} compute conditional weighted residuals (internal)
 \item \link{read.nm} read a csv file and try to transform to nm
-\item \link{read.nmcontrol} read a NONMEM control stream, converting to modifiable object
+\item \link{read.nmctl} read a NONMEM control stream, converting to modifiable object
 \item \link{reapply} apply a function across cells of an indexed vector, giving an identically-indexed result
 \item \link{rep.comment} repeat comment
 \item \link{rep.flag} repeat flag
@@ -304,7 +304,7 @@
 \item \link{variants} locate variants of a file in distinctive subdirectories
 \item \link{win} identify Windows platforms (internal)
 \item \link{write.nm} write an nm object to file
-\item \link{write.nmcontrol} write an nmcontrol object to file
+\item \link{write.nmctl} write an nmctl object to file
 \item \link{xtfrm.comment} produce a numeric vector that sorts in the same order as comment
 \item \link{xtfrm.flag} produce a numeric vector that sorts in the same order as flag
 \item \link{xtfrm.miTemporal} produce a numeric vector that sorts in the same order as miTemporal

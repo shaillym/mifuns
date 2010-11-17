@@ -27,7 +27,6 @@ as.unilog.lst <- function(file,run,tool,...){
 	res
 }
 as.unilog.pxml <- function(x,run,tool='nm7',...){
-	library(XML)
 	if(is.null(x))return(unilog())
 	est <- paste(x,collapse='\n')
 	est <- gsub('\\(|\\)','',est)
@@ -99,7 +98,7 @@ as.runlog.unilog <- function(x,...){
 	if(!nrow(x))return(runlog())
 	x$tool <- NULL
 	x$precedent <- with(x,reapply(value,INDEX=list(run,parameter,moment),FUN=function(x)1:length(x)))
-	regular <- c('prob','min','cov','ofv')
+	regular <- c('prob','min','cov','ofv','data')
 	scalar <- x[x$parameter %in% regular,]
 	scalar$moment <- NULL
 	if(any(duplicated(scalar[,c('run','precedent','parameter')])))stop('prob, min, cov, ofv should be unique within run')
@@ -107,14 +106,14 @@ as.runlog.unilog <- function(x,...){
 	scalar <- data.frame(cast(scalar,run + precedent ~ parameter))
 	names(scalar)[names(scalar)=='ofv'] <- 'mvof'
 	for(col in regular)if(!col %in% names(scalar))scalar[[col]] <- NA
-	scalar <- scalar[,c('run','precedent','prob','min','cov','mvof')]
+	scalar <- scalar[,c('run','precedent','prob','min','cov','mvof','data')]
 	poly <- x[!x$parameter %in% regular,]
 	pars <- unique(poly$parameter)
 	#if(!all(poly$moment %in% c('estimate','prse')))stop('parameter moments should be estimate or prse')
 	poly <- poly[poly$moment %in% c('estimate','prse'),]
 	poly <- data.frame(cast(poly, run + precedent + moment ~ parameter))
 	integral <- stableMerge(poly,scalar)
-	integral <- integral[,c('prob','moment','min','cov','mvof',pars,'run')]
+	integral <- integral[,c('prob','moment','min','cov','mvof',pars,'run','data')]
 	integral$moment <- factor(integral$moment,levels=c('estimate','prse'),labels=c('','RSE'))
 	integral	
 }

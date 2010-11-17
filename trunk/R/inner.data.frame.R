@@ -16,7 +16,6 @@ function(
 	na.rm=FALSE,
 	...
 ){
-	library(reshape)
 	stopifnot(
 		is.numeric(prob), prob <=1, prob >=0, 
 		is.numeric(tail), tail <=1, tail >=0,

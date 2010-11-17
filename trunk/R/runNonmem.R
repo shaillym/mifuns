@@ -44,8 +44,15 @@ function (
   ctlfile <- star(ctlfile,run)
   outfile <- star(outfile,run)
   if(!file.exists(ctlfile))stop(ctlfile,' not found')
-  control <- explicitPath(readLines(ctlfile))
-  if (checkrunno) writeLines(control <- fixFile(fixProblem(control,run),run),con=ctlfile)
+  control <- read.nmctl(ctlfile)
+  outputdomain <- names(control) =='table' | contains('est',names(control))
+  control[outputdomain] <- lapply(control[outputdomain],explicitPath)
+  if (checkrunno) {
+  	  problemdomain <- contains('prob',names(control))
+  	  control[problemdomain] <- lapply(control[problemdomain],fixProblem,run=run)
+  	  control[outputdomain] <- lapply(control[outputdomain],fixFile,run=run)
+  	  write.nmctl(control,file=ctlfile)
+  }
   tabfile <- ''
   parfile <- ''
   msffile <- ''
@@ -192,12 +199,12 @@ function (
 	)
 	try(source(script))
   }
-  fixProblem <- function(x,run)sub('(^\\$PROB(LEM)? +(RUN#? *)?)([^ ]+)(.*$)',paste(sep='','\\1',run,'\\5'),x,ignore.case=TRUE)
+  fixProblem <- function(x,run)sub('(^ *(RUN#? *)?)([^ ]+)(.*$)',paste(sep='','\\1',run,'\\5'),x,ignore.case=TRUE)
   fixFile <- function(x,run){
         x <- explicitPath(x)
 	risk <- grep('\\bTAB\\b|\\bMSF\\b',x,ignore.case=TRUE)
-        except <- grep('\\bMSFI\\b',x,ignore.case=TRUE)
-        risk <- setdiff(risk,except)
+        #except <- grep('\\bMSFI\\b',x,ignore.case=TRUE)
+        #risk <- setdiff(risk,except)
         dir <- dirname(x)
 	base <- basename(x)
 	base <- sub('^[^.(par)]+',run,base)

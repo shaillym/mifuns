@@ -26,6 +26,7 @@ PLOTR(
 	par.list = NULL, 
 	eta.list = NULL, 
 	missing = -99,
+	estimated = NULL,
 	...
 )
 }
@@ -95,6 +96,9 @@ PLOTR(
 
   \item{missing}{numeric item that defines value used to represent
   missing items in the NONMEM data file. Default value is '-99'.}
+
+  \item{estimated}{character vector of names for items that NONMEM estimates.  Used
+  to annotate parameter and gradient search plots.}
 
   \item{\dots}{additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to \code{pdf}.  You can also pass

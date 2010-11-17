@@ -181,7 +181,6 @@ boot <- boot[
 ]
 
 #plot using panel.covplot().
-library(lattice)
 stripplot(
 	variable~value,
 	boot,
@@ -198,7 +197,6 @@ stripplot(
 )
 
 #variations
-library(MASS)
 data(crabs)
 soup <- melt(crabs,id.var=c('sp','sex','index'))
 soup$relative <- with(soup,value/mean(value[variable=='CL']))

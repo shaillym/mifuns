@@ -188,6 +188,7 @@
 \item \link{locf} impute NA using last observation carried forward
 \item \link{lookup} translate among parameter attributes (vector)
 \item \link{lookup.one} translate among parameter attributes (scalar)
+\item \link{map} map one set of values to another
 \item \link{maxChar} return the number of printed characters for the widest element of x
 \item \link{merge.keyed} merge keyed data frames, preserving attributes
 \item \link{merge.nm} merge nm objects

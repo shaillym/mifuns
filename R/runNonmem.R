@@ -56,6 +56,7 @@ function (
   tabfile <- ''
   parfile <- ''
   msffile <- ''
+  control <- as.character(control[outputdomain])
   tryCatch(tabfile <- tabfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.tab in control stream for run ',run,call.=FALSE,immediate.=TRUE))
   tryCatch(parfile <- parfile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *par.tab in control stream for run ', run,call.=FALSE,immediate.=TRUE))
   tryCatch(msffile <- msffile(control,dir=final(rundir),...),error=function(e)warning('cannot locate *.msf in control stream for run ',run,call.=FALSE,immediate.=TRUE))

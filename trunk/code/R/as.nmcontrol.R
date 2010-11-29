@@ -3,27 +3,15 @@ function(x,...)UseMethod('as.nmctl')
 
 as.character.nmctl <-
 function(x,...){
-	recname <- function(x,rec)if(
-		!is.na(
-			names(x)[[rec]]
-		)
-	)paste(
-		sep='',
-		'$',
-		toupper(names(x)[[rec]])
-	) else NULL
-	
-	unlist(
-		lapply(
-			seq(length.out=length(x)),
-			function(rec,...){
-				dat <- as.character(x[[rec]])
-				nm <- recname(x,rec)
-				if(length(dat))dat[[1]] <- paste(sep='',nm,dat[[1]])
-				dat
-			}
-		)
-	)
+	order <- sapply(x,length)
+	recnums <- 1:length(x)
+	record <- rep(recnums,order)
+	flag <- runhead(record)
+	content <- as.character(unlist(x))
+	nms <- toupper(names(x))
+	content[flag] <- paste(paste(sep='','$',nms),content[flag])
+	content[flag] <- sub(' $','',content[flag])
+	content
 }
 
 as.list.nmctl <-
@@ -32,43 +20,21 @@ function(x,...)unclass(x)
 as.nmctl.character <-
 function(
 	x,
-	pattern='^[[:blank:]]*\\$([^ ]+).*',
-	name='\\1',
+	pattern='^ *\\$([^ ]+)( .*)?$',
+	head='\\1',
+	tail='\\2',
 	...
 ){
-	flag <- cumsum(contains(pattern,x))
-	y <- split(x,flag)
-	
-	nms <- sapply(
-		y,
-		function(z){
-			if(contains(pattern,z[[1]])){
-				tolower(sub(pattern,name,z[[1]]))
-			}else{
-			 NA
-			}
-		}
-	)
-	names(y) <- nms
-	y <- lapply(
-		1:length(y),
-		function(rec,dat){
-			nm <- names(dat)[[rec]]
-			rec <- dat[[rec]]
-			if(!is.na(nm))rec[[1]] <- sub(
-				paste(sep='','\\$',nm),
-				'',
-				rec[[1]],
-				ignore.case=TRUE
-			)
-			rec
-		},
-		dat=y
-	)
-	names(y) <- nms
-	#y <- sapply(y,function(r)if(r[[1]]=='')r[-1]else r,simplify=FALSE)
-	class(y) <- c('nmctl',class(y))
-	y
+	flag <- contains(pattern,x)
+	nms <- sub(pattern,head,x)
+	nms <- nms[flag]
+	nms <- tolower(nms)
+	content <- sub(pattern,tail,x)
+	content[flag] <- sub('^ ','',content[flag])
+	content <- split(content,cumsum(flag))	
+	names(content) <- nms
+	class(content) <- c('nmctl',class(content))
+	content
 }
 
 format.nmctl <-

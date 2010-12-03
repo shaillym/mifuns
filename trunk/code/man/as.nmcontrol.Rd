@@ -25,9 +25,10 @@ vector into records and storing as a list.
 \method{as.character}{nmctl}(x, ...)
 \method{as.list}{nmctl}(x, ...)
 \method{as.nmctl}{character}(
-	x, 
-	pattern = "^[[:blank:]]*\\\\$([^ ]+).*", 
-	name = "\\\\1", 
+	x,
+	pattern='^ *\\$([^ ]+)( .*)?$',
+	head='\\1',
+	tail='\\2',
 	...
 )
 \method{format}{nmctl}(x, ...)
@@ -46,7 +47,8 @@ write.nmctl(
   \item{x}{an nmctl object (or analogous character vector)}
   \item{\dots}{extra arguments passed to other functions}
   \item{pattern}{regular expression for first line of a control record}
-  \item{name}{regular expression (relative to \code{pattern}) giving the name of the control record}
+  \item{head}{regular expression (relative to \code{pattern}) giving the name of the control record}
+  \item{tail}{regular expression (relative to \code{pattern}) giving the balance of the control record}
   \item{con}{a connection or the name of a file to open}
   \item{file}{passed to \code{write}}
   \item{ncolumns}{passed to \code{write}}

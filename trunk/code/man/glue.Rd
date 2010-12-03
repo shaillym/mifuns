@@ -8,7 +8,7 @@
 	\code{paste} with an empty string separator.
 }
 \usage{
-glue <- function(...,sep='',collapse=NULL)
+glue(...,sep='',collapse=NULL)
 }
 \arguments{
   \item{\dots}{one or more R objects, to be converted to character vectors.}

@@ -129,3 +129,6 @@ posmat <- function(x,...) {
 	 diag(y) <- diagonal
 	 if(det(x)>0) x else posmat(y)
 }
+offdiag <- function(x,...)UseMethod('offdiag')
+offdiag.halfmatrix <- function(x,...)x[sapply(strsplit(names(x),'\\.'),`[`,1)!=sapply(strsplit(names(x),'\\.'),`[`,2)]
+

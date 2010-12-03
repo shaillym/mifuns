@@ -26,9 +26,9 @@ vector into records and storing as a list.
 \method{as.list}{nmctl}(x, ...)
 \method{as.nmctl}{character}(
 	x,
-	pattern='^ *\\$([^ ]+)( .*)?$',
-	head='\\1',
-	tail='\\2',
+	pattern='^ *\\\\$([^ ]+)( .*)?$',
+	head='\\\\1',
+	tail='\\\\2',
 	...
 )
 \method{format}{nmctl}(x, ...)

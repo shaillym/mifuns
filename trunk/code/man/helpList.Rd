@@ -214,6 +214,8 @@
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
 \item \link{nth} repeat, for each element, the \eqn{n^{th}}{n^th} element where a condition is \code{TRUE}  (usually, within levels of an index)
+\item \link{offdiag} generic
+\item \link{offdiag.halfmatrix} select just the off-diagonal elements of a halfmatrix
 \item \link{omegacor} convert omega covariance in NONMEM output to correlation matrix
 \item \link{only} repeat, for each element, the only element where a condition is \code{TRUE} (usually, within levels of an index)
 \item \link{Ops.keyed} use concise syntax to join data frames

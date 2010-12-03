@@ -9,7 +9,7 @@ function(x,...){
 	flag <- runhead(record)
 	content <- as.character(unlist(x))
 	nms <- toupper(names(x))
-	content[flag] <- paste(paste(sep='','$',nms),content[flag])
+	content[flag] <- paste(glue('$',nms),content[flag])
 	content[flag] <- sub(' $','',content[flag])
 	content
 }

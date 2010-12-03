@@ -15,11 +15,11 @@
 	minimized=invisible,
 	invisible=FALSE,
 	split=grid,
-	N=paste('Run',run,if(split)c('c','e') else NULL,sep=''),
+	N=glue('Run',run,if(split)c('c','e') else NULL),
 	o=rdir,
 	e=rdir,
 	L=if(split)c(compileflag(compiler(config(dirname(command)))),NA)else NA,
-	hold_jid=if(split)c(NA,paste('Run',run,'c',sep=''))else NA,
+	hold_jid=if(split)c(NA,glue('Run',run,'c'))else NA,
 	V='',
 	j='y',
 	q=if(split)
@@ -72,7 +72,7 @@ qsub <- function(
 	)
 	args <- list(...)
 	args <- args[names(args) %in% range]
-	if(length(args))names(args) <- paste(sep='','-',names(args))	
+	if(length(args))names(args) <- glue('-',names(args))	
 	vectors <- c(as.list(names(args)),args)
 	vectors <- vectors[t(matrix(seq(length.out=length(vectors)),ncol=2))]
 	string <- do.call(paste,vectors)

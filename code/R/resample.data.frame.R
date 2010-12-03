@@ -45,8 +45,8 @@ doName <- function(name,replace,...) {
         sample.dataset$resample.rownames <- NULL
         if (is.null(out)) 
             return(sample.dataset)
-        write.table(sample.dataset, file = paste(out, "/", name, 
-            ext, sep = ""), row.names = row.names, quote = quote, sep=sep,...)
+        write.table(sample.dataset, file = glue(out, "/", name, 
+            ext), row.names = row.names, quote = quote, sep=sep,...)
         return(nrow(sample.dataset))
 }
 invisible(lapply(as.list(as.character(names)), doName, replace=replace,...))

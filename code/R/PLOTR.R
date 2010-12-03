@@ -117,7 +117,7 @@ safe.call <- function(what,...){
 }
 
 #creates a filepath from dir,run, and extension
-filename <- function(dir,run=NULL,ext=NULL)file.path(dir,paste(run,ext,sep=''))
+filename <- function(dir,run=NULL,ext=NULL)file.path(dir,glue(run,ext))
 
 #calculates a vector of cwres
 getCwres <- function(directory){
@@ -341,12 +341,11 @@ plotfilename=function(
 	...
 )filename(
 	dir,
-	paste(
+	glue(
 		stem,
 		paste(grp,collapse=''),
 		'_',
-		run,
-		sep=''
+		run
 	),
 	pext
 )

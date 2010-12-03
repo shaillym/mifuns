@@ -41,9 +41,9 @@ function(nsim,theta,covar,omega,sigma,odf=NULL,sdf=NULL,digits=4,min=-Inf,max=In
 	   half <- half(good)
 	   names(half[half])
   }
-  dimnames(omg)[[2]] <- paste(sep='','OM',impliedNames(sapply(omega,ord)))
+  dimnames(omg)[[2]] <- glue('OM',impliedNames(sapply(omega,ord)))
   dimnames(omg)[[1]] <- seq(length.out=dim(omg)[[1]])
-  dimnames(sig)[[2]] <- paste(sep='','SG',impliedNames(sapply(sigma,ord)))
+  dimnames(sig)[[2]] <- glue('SG',impliedNames(sapply(sigma,ord)))
   dimnames(sig)[[1]] <- seq(length.out=dim(sig)[[1]])
   sim <- cbind(mvr,omg,sig)
   sim <- round(signif(sim,digits),6)

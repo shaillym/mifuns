@@ -21,8 +21,8 @@ as.nmctl.character <-
 function(
 	x,
 	pattern='^ *\\$([^ ]+)( .*)?$',
-	head='\\1',
-	tail='\\2',
+	head='\\\\1',
+	tail='\\\\2',
 	...
 ){
 	flag <- contains(pattern,x)

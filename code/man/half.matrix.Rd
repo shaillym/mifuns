@@ -5,6 +5,7 @@
 \alias{as.halfmatrix}
 \alias{as.halfmatrix.halfmatrix}
 \alias{as.halfmatrix.default}
+\alias{offdiag}
 \alias{offdiag.halfmatrix}
 \alias{half}
 \title{Interconvert Between a Symmetric Matrix and a Triangular Matrix}

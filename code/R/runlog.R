@@ -49,14 +49,16 @@ as.unilog.pxml <- function(x,run,tool='nm7',...){
 			)
 		)
 	)
+	cov <- as.integer(any(!is.na(p$se)))
 	p$prse <- with(p, signif(digits=3, 100 * as.numeric(se)/abs(as.numeric(estimate))))
 	#p$se <- NULL
 	free(tree)
 	p$prse <- as.character(p$prse)
 	uni <- melt(p,id.var='parameter',variable_name='moment')
+	uni[] <- lapply(uni,as.character)
+	uni <- rbind(uni,data.frame(stringsAsFactors=FALSE,parameter='cov',moment='status',value=as.character(cov)))
 	uni$tool <- tool
 	uni$run <- run
-	uni[] <- lapply(uni,as.character)
 	uni <- uni[,c('tool','run','parameter','moment','value')]
 	uni$word <- sub('\\d.*','',uni$parameter)
 	uni$number <- suppressWarnings(text2decimal(uni$parameter))

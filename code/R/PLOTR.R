@@ -179,12 +179,12 @@ getPars <- function(file){
 
 #scavenges the data set name/path from the control stream
 getdname <- function(filename){
-	    datamod <- '^\\$DATA +([^ ]+).*$'
 	    if(!file.exists(filename))stop(filename,' not found',call.=FALSE)
-	    control <- scan(file = filename, what = '', comment.char = '', allowEscapes = TRUE, sep = '\n', quiet = TRUE)
-	    dablock <- grep('\\$DATA', control, value = TRUE)
-	    datfile <- sub(datamod, '\\1', dablock)
-	    return(datfile)
+	    control <- read.nmctl(filename)
+            if(!'data' %in% names(control))stop('data record not found in control stream')
+            control$data <- sub('^ +','',control$data)#remove any leading spaces
+            control$data <- control$data[!control$data=='']#remove any blank lines
+            sub('^([^ ]+).*$','\\1',control$data[[1]])#take first line up to first space
 }
 
 #finds the tab file and reduces it to observation rows
@@ -302,9 +302,10 @@ dataSynthesis <- function(
     force(datfile)
     if (!file.exists(outfile))stop(outfile,' does not exist.',call.=FALSE)
     if (!file.exists(ctlfile))stop(ctlfile,'does not exist.',.call.=FALSE)
-    ctlfile <- readLines(ctlfile)#switch from file name to file content
-    tabfile <- tryCatch(tabfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *.tab in control stream for run ',run,call.=FALSE))
-    parfile <- tryCatch(parfile(ctlfile,dir=rundir,...),error=function(e)stop('cannot locate *par.tab in control stream for run ',run,call.=FALSE))
+    ctlfile <- read.nmctl(ctlfile)#switch from file name to file content
+    outputrecords <- as.character(ctlfile[names(ctlfile)=='table'])
+    tabfile <- tryCatch(tabfile(outputrecords,dir=rundir,...),error=function(e)stop('cannot locate *.tab in control stream for run ',run,call.=FALSE))
+    parfile <- tryCatch(parfile(outputrecords,dir=rundir,...),error=function(e)stop('cannot locate *par.tab in control stream for run ',run,call.=FALSE))
     
     #acquire data
     tabdata <- getTabs(tabfile)  

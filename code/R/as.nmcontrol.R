@@ -31,7 +31,8 @@ function(
 	nms <- tolower(nms)
 	content <- sub(pattern,tail,x)
 	content[flag] <- sub('^ ','',content[flag])
-	content <- split(content,cumsum(flag))	
+	content <- split(content,cumsum(flag))
+	content[['0']] <- NULL	
 	names(content) <- nms
 	class(content) <- c('nmctl',class(content))
 	content

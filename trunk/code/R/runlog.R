@@ -95,7 +95,7 @@ as.unilog.run <- function(
 		...
 	)
 	requested <- 'cov' %in% names(read.nmctl(outfile))
-	if(tool=='nm7')if(!requested) pars <- within(pars, value[parameter=='cov' & moment='status'] <- '0'		
+	if(tool=='nm7')if(!requested) pars <- within(pars, value[parameter=='cov' & moment=='status'] <- '0'		
 	other <- as.unilog.lst(file=outfile,run=run,tool=tool,...)
 	rbind(pars,other)
 }

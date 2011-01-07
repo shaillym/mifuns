@@ -7,6 +7,8 @@
 \alias{print.nmctl}
 \alias{read.nmctl}
 \alias{write.nmctl}
+\alias{[.nmctl}
+\alias{[[.nmctl}
 
 \title{
 Create, Manipulate, Read, and Write NONMEM Control Streams
@@ -42,7 +44,10 @@ write.nmctl(
 	sep = " ", 
 	...
 )
+\method{[}{nmctl}(x, ..., drop = TRUE)
+\method{[[}{nmctl}(x, ..., drop = TRUE)
 }
+
 \arguments{
   \item{x}{an nmctl object (or analogous character vector)}
   \item{\dots}{extra arguments passed to other functions}
@@ -54,6 +59,7 @@ write.nmctl(
   \item{ncolumns}{passed to \code{write}}
   \item{append}{passed to \code{write}}
   \item{sep}{passed to \code{write}}
+  \item{drop}{coerce to lowest possible dimension}
 }
 \details{
 Serendipitously, the record indicator in NONMEM control stream syntax is the 

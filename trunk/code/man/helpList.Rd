@@ -11,9 +11,11 @@
 \item \link{[.flag} subset a flag
 \item \link{[.keyed} subset a keyed data frame
 \item \link{[.miTemporal} subset a miTemporal object
+\item \link{[.nmctl} subset a control stream object
 \item \link{[[.comment} select element from a comment
 \item \link{[[.flag} select element from a flag
 \item \link{[[.miTemporal} select element from a miTemporal object
+\item \link{[[.nmctl} select element from a control stream object
 \item \link{[<-.miTemporal} assign to a miTemporal object
 \item \link{\%nested.in\%} test whether a is nested in b
 \item \link{\%nests\%} test whether a nests b
@@ -214,6 +216,7 @@
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ
 \item \link{nth} repeat, for each element, the \eqn{n^{th}}{n^th} element where a condition is \code{TRUE}  (usually, within levels of an index)
+\item \link{nxt} calculate the next element for each element of x
 \item \link{offdiag} generic
 \item \link{offdiag.halfmatrix} select just the off-diagonal elements of a halfmatrix
 \item \link{omegacor} convert omega covariance in NONMEM output to correlation matrix

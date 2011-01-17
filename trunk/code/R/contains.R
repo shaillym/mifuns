@@ -8,18 +8,17 @@ function(pattern,text,...){
 function(x)as.numeric(sub("[^0-9.+-]*([+|-]?[0-9]+\\.?[0-9]*).*","\\1",as.character(x)))
 
 reapply <- 
-function (x, INDEX, FUN, ...,simplify=TRUE) 
+function (x, INDEX, FUN, ...) 
 {
+    if(!is.list(INDEX)) INDEX <- list(INDEX)
+    INDEX <- lapply(INDEX,function(x)as.integer(factor(x)))
+    INDEX <- as.integer(do.call(interaction,c(INDEX,drop=TRUE)))
     form <- tapply(x, INDEX)
-    calc <- tapply(x, INDEX, FUN, ...,simplify=simplify)
+    calc <- tapply(x, INDEX, FUN, ...,simplify=FALSE)
     need <- table(form)
     calc <- lapply(
-    	seq(
-    		length.out=length(calc)
-    	),
-    	function(cell)if(
-    		!as.character(cell) %in% names(need)
-    	) return(calc[[cell]]) else rep(
+    	seq_along(calc),
+    	function(cell)rep(
     		calc[[cell]],
     		length.out=need[[
     			as.character(cell)
@@ -29,16 +28,12 @@ function (x, INDEX, FUN, ...,simplify=TRUE)
 	grps <- split(form,form)
 	grps <- lapply(
 		grps, 
-		function(grp)seq(
-			length.out=length(grp)
-		)
+		seq_along
 	)
 	elem <- unsplit(grps,form)
 	sapply(
-		seq(
-			length.out=length(form)
-		),
-		function(i)calc[[
+		seq_along(form),
+		function(i)if(is.na(form[[i]])) NA else calc[[
 			form[[i]]
 		]][[
 			elem[[i]]

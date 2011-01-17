@@ -165,7 +165,7 @@
 \item \link{getPars} return the non-duplicated (ID) rows corresponding to the specified filename (internal)
 \item \link{getTabs} return the observation rows (EVID==0) corresponding to the specified filename (internal)
 \item \link{glue} paste with no separator
-\item \link{groupnames} construct a single vector of group names from possibly multiple indicies to the plotting data set (internal)
+\item \link{groupnames} construct a single vector of group names from possibly multiple indices to the plotting data set (internal)
 \item \link{half} generic
 \item \link{half.matrix} vectorize the lower triangular portion of a symmetric matrix
 \item \link{hash} prepend a character to each line of output

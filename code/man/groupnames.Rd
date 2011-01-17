@@ -4,7 +4,7 @@
 \title{Construct a Single Vector of Group Names from Possibly Multiple Indicies to the Plotting Data Set}
 \description{
  Callers of \code{PLOTR} may wish to group on more than one index.  This function combines
- those indicies into text for a single index vector.
+ those indices into text for a single index vector.
 }
 \usage{
 groupnames(data, grp, grpnames = NULL, run)

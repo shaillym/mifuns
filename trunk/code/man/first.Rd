@@ -40,14 +40,14 @@ after(   where,within,n=1,...)
   
   All of \code{x}, \code{where}, and \code{within} are optional. The \sQuote{scale} of the function
   is set to the longest of the three (member-wise for \code{within} if it is a list).  
-  Missing \code{x} is replaced with position indices.  
+  Missing \code{x} is replaced with the subscripts implied by \sQuote{scale}.  
   Missing \code{where} and \code{within} are replaced with TRUE, repeated to length 'scale'.
   No warnings are given if \code{within} has NA, or list members with different lengths.
   
   \code{first} and \code{last} are convenience wrappers for \code{nth} that set \code{n} to 1 
   and -1, respectively.  \code{only} is like \code{first}, but returns NA if a second instance exists.
   
-  \code{distance} returns all position indices less the nth indices, optionally considering 
+  \code{distance} returns subscripts less the nth subscripts, optionally considering 
   \code{where} and \code{within}. \code{before}, \code{at}, and \code{after} test
   whether distance is less than, equal to, or greater than zero.
 }

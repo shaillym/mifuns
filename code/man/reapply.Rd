@@ -21,6 +21,9 @@ length of the value of reapply is always identical to that of \code{x}.
 \value{an atomic object, typically a vector}
 \references{\url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
+\note{
+	\code{NA} is returned whererever a component of \code{INDEX} is \code{NA}.
+}
 \seealso{
 	\itemize{
 		\item{}{\code{\link{tapply}}}

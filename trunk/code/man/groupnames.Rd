@@ -21,7 +21,7 @@ groupnames(data, grp, grpnames = NULL, run)
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{PLOTR}}}
+		\item \code{\link{PLOTR}}
 	}
 }
 \keyword{manip}

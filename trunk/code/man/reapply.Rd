@@ -26,7 +26,7 @@ length of the value of reapply is always identical to that of \code{x}.
 }
 \seealso{
 	\itemize{
-		\item{}{\code{\link{tapply}}}
+		\item \code{\link{tapply}}
 	}
 }\examples{
 theoph <- Theoph[c(1,12,2,13,3,14),]

@@ -69,7 +69,7 @@ as.miDateTime(x, ...)
   \item{\dots}{other arguments, usually ignored}
   \item{y}{optional time for constructing miDateTime from miDate (defaults to 
   	midnight}
-  \item{format}{character, as per \code{\link{strftime}}}
+  \item{format}{character, as per \code{\link{strftime}}
   \item{mark}{boolean: mark times with dangling seconds using \sQuote{+}}
   \item{incomparables}{passed to \code{unique}}
  }
@@ -100,7 +100,7 @@ as.miDateTime(x, ...)
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{c.miTemporal}}}
+		\item \code{\link{c.miTemporal}}
 	}
 }
 \examples{

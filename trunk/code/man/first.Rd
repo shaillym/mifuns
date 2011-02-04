@@ -59,7 +59,7 @@ after(   where,within,n=1,...)
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{match}}}
+		\item \code{\link{match}}
 	}
 }
 

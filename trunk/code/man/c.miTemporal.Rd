@@ -37,11 +37,11 @@ as.chartime(x, ...)
   \item{value}{value to be assigned, as for \sQuote{[<-}}
   \item{format}{input or output format describing character time (see \code{\link{strftime}})}
   \item{mark}{boolean: mark times with dangling seconds using \sQuote{+}}
-  \item{from}{as for \code{\link{seq.default}}}
-  \item{to}{as for \code{\link{seq.default}}}
-  \item{by}{as for \code{\link{seq.default}}}
-  \item{length.out}{as for \code{\link{seq.default}}}
-  \item{along.with}{as for \code{\link{seq.default}}}
+  \item{from}{as for \code{\link{seq.default}}
+  \item{to}{as for \code{\link{seq.default}}
+  \item{by}{as for \code{\link{seq.default}}
+  \item{length.out}{as for \code{\link{seq.default}}
+  \item{along.with}{as for \code{\link{seq.default}}
 }
 \details{
   Normally you shouldn't need to worry about these functions.  \code{c} and the \sQuote{[} 
@@ -63,9 +63,9 @@ as.chartime(x, ...)
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{miTemporal}}} 
-		\item{}{\code{\link{seq.default}}}
-		\item{}{\code{\link{strftime}}}
+		\item \code{\link{miTemporal}} 
+		\item \code{\link{seq.default}}
+		\item \code{\link{strftime}}
 	}
 }
 \examples{

@@ -282,6 +282,7 @@
 \item \link{runNonmem} process a request for NONMEM invocation
 \item \link{runstate} determine the status of a run
 \item \link{safe.call} call a function, passing only those extra arguments that the function accepts
+\item \link{safeQuote} single-quote unquoted text that contains space
 \item \link{scavenge} find an expression in lines of text
 \item \link{seq.miTemporal} generate miTemporal sequence
 \item \link{setCwres} append conditional weighted residuals to an appropriate file

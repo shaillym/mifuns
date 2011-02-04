@@ -3,7 +3,7 @@ isSubversionedFile <- function(file){
 		is.character(file),
 		length(file)==1
 	)
-	info <- system(paste('svn info',file),intern=TRUE,ignore.stderr=TRUE)
+	info <- system(paste('svn info',safeQuote(file)),intern=TRUE,ignore.stderr=TRUE)
 	as.logical(length(info))
 }
 isSubversioned <- function(x,...)sapply(x,isSubversionedFile)
@@ -15,7 +15,7 @@ svnPropGetFile <- function(file,prop){
 		length(prop)==1
 	)
 	if(!isSubversionedFile(file))return(NA)
-	res <- system(paste("svn propget",prop,file),intern=TRUE)
+	res <- system(paste("svn propget",prop,safeQuote(file)),intern=TRUE)
 	if(length(res))return(res)else(return(''))
 }
 svnPropGet <- function(x,prop,...)sapply(x,svnPropGetFile,prop=prop)
@@ -28,7 +28,7 @@ svnPropSetFile <- function(file,prop,value){
 		length(prop)==1,
 		length(value)==1
 	)
-	system(paste("svn propset",prop,value,file),intern=TRUE)
+	system(paste("svn propset",prop,value,safeQuote(file)),intern=TRUE)
 }
 svnPropSet <- function(x,prop,value,...)sapply(x,svnPropSetFile,prop=prop,value=value)
 svnMimeType <- function(x,...)svnPropGet(x,prop='svn:mime-type')

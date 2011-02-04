@@ -18,7 +18,7 @@ omegacor <- function(
 	all <- unlist(splits)
 	ord <- max(as.numeric(all))
 	nms <- names(half(diag(ord)))
-	nms <- paste(sep='','OMEGA',nms)
+	nms <- glue('OMEGA',nms)
 	val <- with(unilog, estimate[match(nms,parameter)])
 	cov <- as.matrix(as.halfmatrix(val))
 	cor <- cov2cor(cov)

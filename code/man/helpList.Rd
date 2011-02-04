@@ -137,6 +137,7 @@
 \item \link{diagnosticPlots} create standard diagnostic plots
 \item \link{distance} calculate element positions relative to the \eqn{n^{th}}{n^th} \code{TRUE} element positions (usually, within levels of an index)
 \item \link{dupKeys} give a logical index to duplicated rows of a keyed data frame, AND the rows of which they are duplicates
+\item \link{electronicAppendix} create an FDA-style electronic appendix from a subversioned directory
 \item \link{episcript} run a script in an environment that defines the passed arguments
 \item \link{explicitPath} add separators to control stream paths that have none
 \item \link{extfile} extract arbitrary file specification from a control stream
@@ -181,6 +182,8 @@
 \item \link{is.cwres.readable.file} compute conditional weighted residuals (internal)
 \item \link{is.square} generic
 \item \link{is.square.matrix} test whether a matrix is square
+\item \link{isSubversioned} check if files are subversioned
+\item \link{isSubversionedFile} check if one file is subversioned
 \item \link{ke} calculate elimination constant
 \item \link{key} return the key of a keyed data frame
 \item \link{key<-} assign a key
@@ -288,12 +291,20 @@
 \item \link{snap} coerce values to nearest of candidates
 \item \link{sort.keyed} sort a keyed data frame
 \item \link{sqrtm} support \code{compute.cwres}
-\item \link{stableMerge}produce a left join, with strict error checking
+\item \link{stableMerge} produce a left join, with strict error checking
 \item \link{star} replace asterisk in x with y (internal)
 \item \link{strain} reduce x to those elements that occur in options (internal)
 \item \link{summary.keyed} summarize a keyed data frame
 \item \link{summary.hidden.data.frame} summarize hidden rows of a data frame
 \item \link{summary.nm} summarize an nm object
+\item \link{svnIsText} check if subversioned files are text rather than binary
+\item \link{svnMarkAsText} tell Subversion to treat files as text
+\item \link{svnMarkAsNonText} tell Subversion to treat files as binary
+\item \link{svnMimeType} get the Subversion mime-type for files
+\item \link{svnPropGet} get a Subversion property for files
+\item \link{svnPropGetFile} get a Subversion property for one file
+\item \link{svnPropSet} set a subversion property on files
+\item \link{svnPropSetFile} set a Subversion property on a file
 \item \link{synthesis} sequentially left-join an arbitrary number of data frames, picking up novel columns (internal)
 \item \link{tabfile} extract tabfile specification from a control stream
 \item \link{text2decimal} convert mixed text to decimal

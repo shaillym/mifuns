@@ -83,7 +83,7 @@ appear in list order. The write function warns if the 80 character limit is exce
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{write}}}
+		\item \code{\link{write}}
 	}
 }
 \keyword{manip}

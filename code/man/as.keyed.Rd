@@ -98,7 +98,7 @@ Most functions and methods documented here return objects with class
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{Ops.keyed}}}
+		\item \code{\link{Ops.keyed}}
 	}
 }
 \examples{

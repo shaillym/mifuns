@@ -35,7 +35,7 @@ error if \code{from} and \code{to} have different lengths.
 \author{Tim Bergsma}
 \seealso{
 	\itemize{
-		\item{}{\code{\link{match}}}
+		\item \code{\link{match}}
 	}
 }
 \examples{

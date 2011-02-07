@@ -26,10 +26,12 @@ electronicAppendix <- function(
 	local <- file.path(x,files)
 	foreign <- file.path(tmpdir,files)
 	txt <- svnIsText(local)
+	current <- contains('\\.txt',local,ignore.case=TRUE)
 	change <- foreign[ 
 		file.exists(foreign) & 
 		!is.na(txt) & #maybe redundant, as files not subversioned (will have na txt but) will not be exported.
-		txt 
+		txt &
+		!current
 	]
 	append.txt <- function(x)file.rename(x,glue(x,'.txt'))
 	sapply(change,append.txt)

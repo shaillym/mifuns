@@ -1,5 +1,6 @@
 \name{colname<-}
 \alias{colname<-}
+\alias{name<-}
 \alias{name}
 \alias{colname}
 \title{

@@ -24,6 +24,7 @@ accept(
 		'plyr',
 		'R2WinBUGS',
 		'reshape',
+		'reshape2',
 		'SASxport',
 		'survival'
 	),

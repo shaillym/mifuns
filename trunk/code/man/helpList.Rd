@@ -116,6 +116,7 @@
 \item \link{CLNR} delete files and directories and log what was deleted to a text file in the project
 \item \link{cmax} calculate maximum steady-state concentration
 \item \link{cmin} calculate minimum steady-state concentration
+\item \link{colname<-} change identified column names
 \item \link{compileflag} calculate compiler flag for qsub
 \item \link{compiler} extract compiler specification from configuration file
 \item \link{compute.cwres} compute conditional weighted residuals
@@ -208,6 +209,7 @@
 \item \link{msffile} extract msffile specification from a control stream
 \item \link{naInContext} display rows of data with missing values, as well as other rows with the same key
 \item \link{naKeys} detect rows for which one or more key fields is NA
+\item \link{name<-} change identified object names
 \item \link{nest} nest an XML fragment in a parent element
 \item \link{nix} identify Unix-like platforms (internal)
 \item \link{nm} give a zero-row data frame with suitable columns and column classes; i.e. a template for NMTRAN data sets

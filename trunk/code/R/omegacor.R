@@ -12,7 +12,7 @@ omegacor <- function(
 	if(nrow(unilog)==0)stop('no omega estimates found in unilog')
 	if(length(unique(unilog$run))!=1)stop('need exactly one unique value of run')
 	unilog$value <- suppressWarnings(as.numeric(as.character(unilog$value)))
-	unilog <- data.frame(cast(unilog,parameter~moment))
+	unilog <- dcast(unilog,parameter~moment)
 	indices <- as.character(text2decimal(as.character(unilog$parameter)))
 	splits <- strsplit(indices,'.',fixed=TRUE)
 	all <- unlist(splits)

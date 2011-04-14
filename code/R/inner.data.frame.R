@@ -38,7 +38,7 @@ function(
 	)
 	x$inner.rownames <- seq(length.out=nrow(x))
 	ignore <- union(id.var,preserve)
-	molten <- melt(x,id.var=c('inner.rownames',ignore),measure.var=measure.var,variable.name='inner.key')
+	molten <- melt(x,id.var=c('inner.rownames',ignore),measure.var=measure.var,variable_name='inner.key')
 	x$inner.rownames <- NULL
 	molten$lo <- reapply(molten$value,INDEX=molten[,c('inner.key',id.var)],FUN=quantile,probs=lo,na.rm=na.rm)
 	molten$hi <- reapply(molten$value,INDEX=molten[,c('inner.key',id.var)],FUN=quantile,probs=hi,na.rm=na.rm)
@@ -48,7 +48,7 @@ function(
 	if(!include.highest) molten$value[molten$value==molten$hi] <- NA
 	molten$lo <- NULL
 	molten$hi <- NULL
-	frozen <- dcast(molten,inner.rownames + ... ~ inner.key)
+	frozen <- data.frame(check.names=FALSE,cast(molten,inner.rownames + ... ~ inner.key))
 	frozen <- frozen[,intersect(names(x),names(frozen))]
 	frozen
 }

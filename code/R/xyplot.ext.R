@@ -20,8 +20,8 @@ function(
 	data <- data[data$ITERATION > -1000000002,]
 	y <- melt(data,id='ITERATION')
 	variable <- ''# to suppress R CMD check warning
-	z <- dcast(y,variable~ITERATION)
-	#z <- data.frame(z,check.names=FALSE)
+	z <- cast(y,variable~ITERATION)
+	z <- data.frame(z,check.names=FALSE)
 	if(!'-1000000001'%in% names(z))z[,'-1000000001'] <- 0
 	a <- melt(z,id=c('variable','-1000000000','-1000000001'))
 	names(a) <- c('parameter','terminal','error','iteration','estimate')

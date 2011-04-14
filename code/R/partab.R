@@ -19,7 +19,7 @@ function(
 ){
 	stopifnot(length(run)==1)
 	log <- rlog(run=run,boot=boot,append=FALSE,tool=tool,file=NULL,rundir=rundir,nmlog=nmlog,nmout=nmout,pattern=NULL,...)
-	log <- dcast(log,...~moment)
+	log <- data.frame(cast(log,...~moment))
 	log[] <- lapply(log,as.character)
 	names(log)[names(log)=='parameter'] <- by
 	par <- as.data.frame(

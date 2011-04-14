@@ -5,7 +5,7 @@ Version: 4.2.5
 Date: 2011-04-14
 Author: Metrum Institute (http://metruminstitute.org): Bill Knebel, Leonid Gibianski, Tim Bergsma
 Maintainer: Tim Bergsma <timb@metrumrg.com>
-Depends: reshape2, methods, lattice, grid, XML, MASS
+Depends: reshape, methods, lattice, grid, XML, MASS
 Suggests:  chron, fork
 Description: 
  Pharmacometric tools for common data preparation tasks, stratified 

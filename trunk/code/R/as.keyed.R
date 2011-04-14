@@ -79,24 +79,24 @@ aggregate.keyed <- function(
 	if(any(sapply(by,length)!=nrow(x)))stop("all elements of 'by' should have same length as nrow(x)")
 	x <- x[,setdiff(names(x),across)] #drop across, which should be present if in key(x)
 	x <- x[,setdiff(names(x),names(by)),drop=FALSE]#replace cols with by if like-named
-	by <- c(by,list(`.superkey`=rep(1,nrow(x)))) #guarantee a key
+	by <- c(by,list(`_superkey`=rep(1,nrow(x)))) #guarantee a key
 	x <- cbind(by,x)
 	x <- as.keyed(x,names(by))
 	if(!any(dupKeys(x))){
-		key(x) <- setdiff(key(x),'.superkey')
-		x <- x[,setdiff(names(x),'.superkey')]
+		key(x) <- setdiff(key(x),'_superkey')
+		x <- x[,setdiff(names(x),'_superkey')]
 		return(x)
 	}
 	unique <- x[!dupKeys(x),]
 	dups <- x[dupKeys(x),]
-	molten <- melt(dups,id.var=names(by),variable.name='aggregate.keyed.variable')
-	frozen <- dcast(molten,formula=...~aggregate.keyed.variable,fun.aggregate=FUN,...)
+	molten <- melt(dups,id.var=names(by),variable_name='aggregate.keyed.variable')
+	frozen <- cast(molten,formula=...~aggregate.keyed.variable,fun=FUN,...)
 	frozen <- as.keyed(frozen,names(by))
 	#x <- merge(unique,frozen,all=TRUE)
 	x <- as.keyed(rbind(unique,frozen),names(by))
 	sort(x)
-	x[['.superkey']] <- NULL
-	key(x) <- setdiff(key(x),'.superkey')
+	x[['_superkey']] <- NULL
+	key(x) <- setdiff(key(x),'_superkey')
 	if(!length(key(x))){
 		class(x) <- setdiff(class(x),'keyed')
 		key(x) <- NULL

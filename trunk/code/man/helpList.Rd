@@ -161,6 +161,7 @@
 \item \link{format.miDateTime} format miDateTime
 \item \link{format.miTime} format miTime
 \item \link{format.nmctl} format nmctl
+\item \link{ftable2data.frame} convert ftable to data.frame as displayed
 \item \link{getCovs} return non-commented non-duplicated rows of a NONMEM data set (internal)
 \item \link{getCwres} return the conditional weighted residuals pertinent to a given run (internal, expects cwtab1.deriv)
 \item \link{getdname} extract the path and file from the DATA block in the control stream associated with filename (internal)

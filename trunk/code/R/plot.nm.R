@@ -27,13 +27,12 @@ plot.nm <- function(
 	else categorical <- intersect(covariates,categorical)
 	if(is.null(which))which <- names(nmPlots)
 	if(is.null(by))by <- character(0)
-	mins <- dcast(
+	mins <- cast(
 		melt(
 			x,
 			id.var='ID',
 			measure.var='TIME'
 		),
-		formula=...~variable,
 		fun.aggregate=function(x)min(x,na.rm=TRUE)
 	)
 	names(mins) <- c('ID','min')

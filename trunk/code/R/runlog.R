@@ -54,7 +54,7 @@ as.unilog.pxml <- function(x,run,tool='nm7',...){
 	#p$se <- NULL
 	free(tree)
 	p$prse <- as.character(p$prse)
-	uni <- melt(p,id.var='parameter',variable.name='moment')
+	uni <- melt(p,id.var='parameter',variable_name='moment')
 	uni[] <- lapply(uni,as.character)
 	uni <- rbind(uni,data.frame(stringsAsFactors=FALSE,parameter='cov',moment='status',value=as.character(cov)))
 	uni$tool <- tool
@@ -110,7 +110,7 @@ as.runlog.unilog <- function(x,...){
 	scalar$moment <- NULL
 	if(any(duplicated(scalar[,c('run','precedent','parameter')])))stop('prob, min, cov, ofv should be unique within run')
 	if(!all(scalar$moment[scalar$parameter=='ofv'] == 'minimum'))stop('ofv moment should be minimum')
-	scalar <- dcast(scalar,run + precedent ~ parameter)
+	scalar <- data.frame(cast(scalar,run + precedent ~ parameter))
 	names(scalar)[names(scalar)=='ofv'] <- 'mvof'
 	for(col in regular)if(!col %in% names(scalar))scalar[[col]] <- NA
 	scalar <- scalar[,c('run','precedent','prob','min','cov','mvof','data')]
@@ -118,7 +118,7 @@ as.runlog.unilog <- function(x,...){
 	pars <- unique(poly$parameter)
 	#if(!all(poly$moment %in% c('estimate','prse')))stop('parameter moments should be estimate or prse')
 	poly <- poly[poly$moment %in% c('estimate','prse'),]
-	poly <- dcast(poly, run + precedent + moment ~ parameter)
+	poly <- data.frame(cast(poly, run + precedent + moment ~ parameter))
 	integral <- stableMerge(poly,scalar)
 	integral <- integral[,c('prob','moment','min','cov','mvof',pars,'run','data')]
 	integral$moment <- factor(integral$moment,levels=c('estimate','prse'),labels=c('','RSE'))
@@ -138,7 +138,7 @@ as.unilog.runlog <- function(x,tool='nm6',...){
 	x$moment[is.na(x$moment)] <- 'estimate'
 	x$moment[x$moment=='RSE'] <- 'prse'
 	x[] <- sapply(x,as.character)
-	rmelt <- melt(x,id.var=c('tool','run','moment'),variable.name='parameter',na.rm=TRUE)
+	rmelt <- melt(x,id.var=c('tool','run','moment'),variable_name='parameter',na.rm=TRUE)
 	rmelt$parameter <- as.character(rmelt$parameter)
 	rmelt$value <- sub('^ *','',rmelt$value)
 	rmelt$value <- sub(' *$','',rmelt$value)

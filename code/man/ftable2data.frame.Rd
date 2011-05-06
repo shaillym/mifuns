@@ -7,6 +7,7 @@ ftable2data.frame(x,...)
 }
 \arguments{
   \item{x}{ftable}
+  \item{\dots}{ignored}
 }
 \details{
 	\code{as.data.frame.ftable} does indeed convert an \code{ftable} to \code{data.frame},

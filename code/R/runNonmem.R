@@ -80,7 +80,7 @@ function (
 	  if(file.exists(parfile))file.remove(parfile)
 	  if(file.exists(msffile))file.remove(msffile)
 	  purge.dir(final(rundir),nice)
-	  if(rundir!=final(rundir))purge.dir(rundir)
+	  if(rundir!=final(rundir))purge.dir(rundir) #deliberately not "nice"
 	  dir.create(rundir, showWarnings = FALSE)
 	  dname <- getdname(ctlfile)
 	  #The next error trap is redundant: prevents identical trap in getCovs()
@@ -181,7 +181,9 @@ function (
   	if(file_test('-d',dir)){
   		files <- dir(dir,full.names=TRUE,all.files=!nice)
   		files <- files[!files %in% grep('\\.$',files,value=TRUE)]
-  		if(length(files))file.remove(files)
+  		isDir <- file_test('-d',files)
+  		if(length(files[!isDir]))file.remove(files[!isDir])
+  		lapply(files[isDir],purge.dir,nice=nice)
   		if(!nice)unlink(dir, recursive=TRUE)
   	}
   }
@@ -192,7 +194,7 @@ function (
   		if(length(files))file.remove(paste(dir,files,sep='/'))
   	}
   }
-   episcript <- function(script,...){
+  episcript <- function(script,...){
 	 extras <- list(...)
 	 args <- names(extras)
 	 lapply(

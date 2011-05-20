@@ -34,6 +34,7 @@ function (
 	ctlfile = filename(streams,run,'.ctl'),
 	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
 	sync=if(boot)'n'else'y',
+	interface='nm.pl',
 	...
 ){
   #Define some functions.
@@ -104,6 +105,7 @@ function (
 	execute=execute,
 	split=split,
 	sync=sync,
+	interface=interface,
 	...
   )
   #Clean up.
@@ -118,7 +120,7 @@ function (
 	
 	  #Diagnostics
 	  if(!udef)
-	   if(command!='')if(nmVersion(config(dirname(command))) < 7)
+	   if(command!='' & interface=='nm.pl')if(nmVersion(config(dirname(command))) < 7)
 	    tryCatch(
     		setCwres(
     			cwres=getCwres(

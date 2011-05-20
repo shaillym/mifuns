@@ -94,6 +94,7 @@
 \item \link{auc} calculate area under the curve
 \item \link{AUC} calculate the area under the curve for each subject over the time interval for dv using the trapezoidal rule
 \item \link{aug} add named elements to an object
+\item \link{autolog.pl} prepare command lines for autolog.pl.
 \item \link{backtrans} backtransform cols in x, returning x
 \item \link{badAmt} generic
 \item \link{badAmt.nm} AMT is NA where EVID is 1
@@ -217,11 +218,12 @@
 \item \link{nest} nest an XML fragment in a parent element
 \item \link{nix} identify Unix-like platforms (internal)
 \item \link{nm} give a zero-row data frame with suitable columns and column classes; i.e. a template for NMTRAN data sets
-\item \link{nm.pl} prepare commandlines for nm.pl
+\item \link{nm.pl} prepare command lines for nm.pl
 \item \link{nmPlots} a list of functions that plot nm objects
 \item \link{nmVersion} extract NONMEM version specification from configuration file
 \item \link{nocb} impute NA with next observation carried backward
 \item \link{NONR} run NONMEM and create diagnostic plots
+\item \link{NONR72} run NONMEM 7.2.0 or later
 \item \link{nospace} drop spaces from text
 \item \link{noPk} generic
 \item \link{noPk.nm} rows where EVID is never 0 within SUBJ

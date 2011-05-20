@@ -39,7 +39,7 @@ function(x,...){
 		pcue <- parameterCue(i)
 		gcue <- gradientCue(i)
 		pl <- params(paramlines(i,pcue,gcue))
-		gl <- grads(gradientlines(i,cue))
+		gl <- grads(gradientlines(i,gcue))
 		pl <- data.frame(t(pl))
 		gl <- data.frame(t(gl))
 		pl$course <- 'parameter'

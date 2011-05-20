@@ -6,7 +6,6 @@
 \alias{rhs}
 \alias{tos}
 \title{Extract Substring of Wiki Math}
-}
 \description{Extract logical portions of text formatted with wikimath conventions.}
 \usage{
 justUnits(x, ...)

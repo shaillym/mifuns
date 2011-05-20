@@ -1,7 +1,7 @@
 Package: MIfuns
 Type: Package
 Title: Pharmacometric tools for data preparation, modeling, simulation, and reporting
-Version: 4.3.0
+Version: 4.3.1
 Date: 2011-05-19
 Author: Metrum Institute (http://metruminstitute.org): Bill Knebel, Leonid Gibianski, Tim Bergsma
 Maintainer: Tim Bergsma <timb@metrumrg.com>

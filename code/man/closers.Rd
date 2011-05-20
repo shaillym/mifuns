@@ -21,5 +21,4 @@ closers(x, sub, sup, ...)
 		\item \code{\link{wikiparse}}
 	}
 }
-}
 \keyword{manip}

@@ -53,7 +53,6 @@ wiki2plotmath(x,...)
 		\item \code{\link{closers}}
 	}
 }
-}
 \examples{
 wiki <- "V_c /F (L * h^-1 ) ~theta_1 *(WT/70)^theta_2"
 wiki2latex(wiki)

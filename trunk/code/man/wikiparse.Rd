@@ -2,6 +2,7 @@
 \alias{wikiparse}
 \alias{wiki2latex}
 \alias{wiki2plotmath}
+\alias{wikimath}
 \title{Parse Wikimath}
 \description{Parse wikimath, optionally overriding default style arguments.}
 \usage{
@@ -50,7 +51,8 @@ wiki2plotmath(x,...)
 \seealso{
 	\itemize{
 		\item \code{\link{justUnits}}
-		\item \code{\link{closers}}
+  	\item \code{\link{closers}}
+  	\item \code{\link{wikitab}}
 	}
 }
 \examples{

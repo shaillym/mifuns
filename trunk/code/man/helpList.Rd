@@ -336,6 +336,7 @@
 \item \link{wiki2latex} convert wikimath to latex
 \item \link{wiki2plotmath} convert wikimath to plotmath
 \item \link{wikiparse} parse wikimath
+\item \link{wikitab} extract wikimath specification from a control stream
 \item \link{win} identify Windows platforms (internal)
 \item \link{write.nm} write an nm object to file
 \item \link{write.nmctl} write an nmctl object to file

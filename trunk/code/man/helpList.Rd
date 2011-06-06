@@ -298,6 +298,7 @@
 \item \link{seq.miTemporal} generate miTemporal sequence
 \item \link{setCwres} append conditional weighted residuals to an appropriate file
 \item \link{shuffle} move columns in a data frame
+\item \link{sigmacor} convert sigma covariance in NONMEM output to correlation matrix
 \item \link{simpar} generate deviates of a set of model parameters for simulation
 \item \link{simblock} generate deviates of the elements of a variance-covariance matrix
 \item \link{snap} coerce values to nearest of candidates
@@ -328,6 +329,7 @@
 \item \link{uniKey} generic
 \item \link{uniKey.keyed} create a single character vector from all the key columns
 \item \link{unilog} create a zero-row unilog
+\item \link{unilogcor} convert omega or sigma covariance in NONMEM output to correlation matrix
 \item \link{unique.miTemporal} find unique elements of a temporal vector
 \item \link{unitDensity} calculate univariate density with maximum equal to 1
 \item \link{unitHist} calculate univariate histogram architecture with maximum height equal to 1

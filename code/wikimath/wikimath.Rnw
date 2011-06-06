@@ -9,13 +9,16 @@
 \SweaveOpts{eps=false} 
 \SweaveOpts{keep.source=true}
 \begin{document}
+\section*{Wikimath}
 <<handlers,echo=false,results=hide>>=
 library(MIfuns)
 @
+\subsection{writing wikimath expressions}
 Here we define a string of text.
 <<text>>=
 x <- "V_c /F (L * h^-1 ) ~theta_1 *(WT/70)^theta_2"
 @
+\subsection{extracting and supressing elements}
 Now we try x as a column name for a data frame.
 <<data.frame>>=
 d <- data.frame(subject=1,x=2)
@@ -23,11 +26,13 @@ names(d)[2] <- nospace(lhs(noUnits(x)))
 d
 justUnits(x)
 @
+\subsection{identifying related parameters}
 What theta is primarily associated with this equation?
 <<theta>>=
 tos(x)
 text2decimal(tos(x))
 @
+\subsection{rendering in a table}
 Next we try it in a latex table.
 <<latex,results=tex>>=
 library(Hmisc)
@@ -41,9 +46,14 @@ tex <- capture.output(latex(
 ))
 writeLines(tex)
 @
+\subsection{rendering in a figure}
 Finally we try it in a figure.
 <<figure,fig=true>>=
-plot(1:10,1:10,col='white')
-text(5,5,parse(text=wiki2plotmath(noUnits(x))))
+library(lattice)
+print(densityplot(
+  ~cl,
+  data.frame(cl=rnorm(1000,mean=1)),
+  xlab=parse(text=wiki2plotmath(noUnits(x)))
+))
 @
 \end{document}

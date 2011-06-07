@@ -91,7 +91,11 @@ Finally we try it in a figure.
 +   data.frame(cl=rnorm(1000,mean=1)),
 +   xlab=parse(text=wiki2plotmath(noUnits(x)))
 + ))
+> file.remove('Rplots.pdf')
 \end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
 \end{Schunk}
 \includegraphics{wikimath-figure}
 \end{document}

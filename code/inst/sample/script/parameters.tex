@@ -37,6 +37,47 @@ MIfuns 4.3.4
 \begin{Sinput}
 > library(Hmisc)
 > tab <- wikitab(1005,'../nonmem')
+> tab
+\end{Sinput}
+\begin{Soutput}
+   parameter                                   description
+1     THETA1                       apparent oral clearance
+2     THETA2                central volume of distribution
+3     THETA3                      absorption rate constant
+4     THETA4                  intercompartmental clearance
+5     THETA5             peripheral volume of distribution
+6     THETA6                      male effect on clearance
+7     THETA7                    weight effect on clearance
+8   OMEGA1.1      interindividual variability of clearance
+9   OMEGA2.2 interindividual variability of central volume
+10  OMEGA3.3             interindividual variability of Ka
+11  SIGMA1.1                            proportional error
+                                                                model tool  run
+1  CL/F (L/h) ~ theta_1 *  theta_6 ^MALE * (WT/70)^theta_7  * e^eta_1  nm7 1005
+2                          V_c /F (L) ~ theta_2 * (WT/70)^1 * e^eta_2  nm7 1005
+3                                     K_a (h^-1 ) ~ theta_3 * e^eta_3  nm7 1005
+4                                                 Q/F (L/h) ~ theta_4  nm7 1005
+5                                                V_p /F (L) ~ theta_5  nm7 1005
+6                                                 MALE_CL/F ~ theta_6  nm7 1005
+7                                                   WT_CL/F ~ theta_7  nm7 1005
+8                                                IIV_CL/F ~ Omega_1.1  nm7 1005
+9                                              IIV_V_c /F ~ Omega_2.2  nm7 1005
+10                                               IIV_K_a  ~ Omega_3.3  nm7 1005
+11                                               err_prop ~ Sigma_1.1  nm7 1005
+    estimate prse        se
+1    8.57997 9.51  0.815572
+2    21.6409 9.33   2.02017
+3  0.0684281 8.04  0.005504
+4    3.78411 13.5  0.510932
+5    107.375 15.7   16.8257
+6   0.998986 13.7    0.1364
+7    1.67117 21.9  0.366424
+8   0.195776 23.1 0.0451412
+9   0.128574 30.4 0.0391464
+10  0.106528 25.2 0.0268981
+11  0.067111 11.4 0.0076591
+\end{Soutput}
+\begin{Sinput}
 > tab$estimate <- as.character(signif(as.numeric(tab$estimate),3))
 > tab$estimate <- with(tab, paste(estimate,'$',justUnits(model),'$'))
 > tab$name <- with(tab, nospace(noUnits(lhs(model))))

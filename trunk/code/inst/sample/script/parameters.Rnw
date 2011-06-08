@@ -26,6 +26,7 @@ require(MIfuns,lib.loc='~/Rlibs')
 <<params>>=
 library(Hmisc)
 tab <- wikitab(1005,'../nonmem')
+tab
 tab$estimate <- as.character(signif(as.numeric(tab$estimate),3))
 tab$estimate <- with(tab, paste(estimate,'$',justUnits(model),'$'))
 tab$name <- with(tab, nospace(noUnits(lhs(model))))

@@ -21,7 +21,7 @@ This script picks up after model.Rnw to process bootstrap results and make covar
 <<more>>= 
 #wait for bootstraps to finish
 getwd()
-require(MIfuns)
+require(MIfuns,lib.loc='~/Rlibs')
 boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 head(boot)
 unique(boot$parameter)

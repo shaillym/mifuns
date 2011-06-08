@@ -2,7 +2,7 @@
 <nonmem>
 <text><![CDATA[
 /Users/timb/code/inst/sample/script/../nonmem/1105/1105.lst
-2011.06.07.2120.03
+2011.06.08.1123.09
 $PROB 1105 phase1 2 CMT like 1004 but diff. initial on V3
 $INPUT C ID TIME SEQ=DROP EVID AMT DV SUBJ HOUR TAFD TAD LDOS MDV HEIGHT WT SEX AGE DOSE FED
 $DATA ../../data/derived/phase1.csv IGNORE=C
@@ -24,8 +24,8 @@ $SIMULATION ONLYSIM (1968) SUBPROBLEMS=500
 $TABLE DV NOHEADER NOPRINT FILE=./1105.tab FORWARD NOAPPEND
 License Registered to: Metrum Research Group
 Expiration Date:    14 JUL 2011
-Current Date:        7 JUN 2011
-Days until program expires :  37
+Current Date:        8 JUN 2011
+Days until program expires :  36
 1NONLINEAR MIXED EFFECTS MODEL PROGRAM (NONMEM) VERSION 7.1.2
  ORIGINALLY DEVELOPED BY STUART BEAL, LEWIS SHEINER, AND ALISON BOECKMANN
  CURRENT DEVELOPERS ARE ROBERT BAUER, ICON DEVELOPMENT SOLUTIONS,
@@ -3115,7 +3115,7 @@ Days until program expires :  37
  SIMULATION STEP PERFORMED
  SOURCE  1:
     SEED1:    2068107800   SEED2:             0
-2011.06.07.2120.43
+2011.06.08.1123.49
 ........................................
 NONMEM run with /common/NONMEM/nm7_osx1/test/nm7_osx1.pl
 ........................................

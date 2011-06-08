@@ -47,6 +47,6 @@ $TABLE NOPRINT FILE=./1005par.tab ONEHEADER ID TIME CL Q V2 V3 KA ETA1 ETA2 ETA3
 ;<wiki model = 'WT_CL/F ~ theta_7'                                              >weight effect on clearance</wiki>
 ;<wiki model='IIV_CL/F ~ Omega_1.1'                                             >interindividual variability of clearance</wiki>
 ;<wiki model='IIV_V_c /F ~ Omega_2.2'                                           >interindividual variability of central volume</wiki>
-;<wiki model='IIV_K_a  ~ Omega_3.3'                                             >interindividual variability of K_a</wiki>
+;<wiki model='IIV_K_a  ~ Omega_3.3'                                             >interindividual variability of Ka</wiki>
 ;<wiki model='err_prop ~ Sigma_1.1'                                             >proportional error</wiki>
 ;</doc>

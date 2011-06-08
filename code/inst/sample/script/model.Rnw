@@ -43,7 +43,7 @@ NONR(
      eta.list=eta.list,
      plotfile='../nonmem/*/diagnostics.pdf',
      streams='../nonmem/ctl',
-     nochecksum=TRUE
+     checksum=FALSE
 )
 getwd()
 
@@ -88,7 +88,7 @@ NONR(
      nice=TRUE,
      diag=FALSE,
      streams='../nonmem/ctl',
-     nochecksum=TRUE
+     checksum=FALSE
 )
 getwd()
 @
@@ -291,8 +291,16 @@ NONR(
      boot=TRUE,
      nice=TRUE,
      streams='../nonmem/1005.boot/ctl',
-     nochecksum=TRUE
+     checksum=FALSE
 )
-getwd()  
+while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
+boot <- rlog(
+	run=1:300,
+	project='../nonmem/1005.boot',
+	boot=TRUE,
+	append=FALSE,
+	tool='nm7'
+)
+write.csv(boot, '../nonmem/1005.boot/log.csv')  
 @
 \end{document}

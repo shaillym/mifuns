@@ -56,7 +56,7 @@ MIfuns 4.3.3
 +      eta.list=eta.list,
 +      plotfile='../nonmem/*/diagnostics.pdf',
 +      streams='../nonmem/ctl',
-+      nochecksum=TRUE
++      checksum=FALSE
 + )
 > getwd()
 \end{Sinput}
@@ -177,7 +177,7 @@ This run makes the predictions (simulations).
 +      nice=TRUE,
 +      diag=FALSE,
 +      streams='../nonmem/ctl',
-+      nochecksum=TRUE
++      checksum=FALSE
 + )
 > getwd()
 \end{Sinput}
@@ -658,17 +658,11 @@ We also show densityplots of predictions at those quartiles.
 +      boot=TRUE,
 +      nice=TRUE,
 +      streams='../nonmem/1005.boot/ctl',
-+      nochecksum=TRUE
++      checksum=FALSE
 + )
 \end{Sinput}
 \begin{Soutput}
 Installing SIGCHLD signal handler...Done.
 \end{Soutput}
 \begin{Sinput}
-> getwd()  
-\end{Sinput}
-\begin{Soutput}
-[1] "/Users/timb/code/inst/sample/script"
-\end{Soutput}
-\end{Schunk}
-\end{document}
+> while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}

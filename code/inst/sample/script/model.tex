@@ -657,12 +657,19 @@ We also show densityplots of predictions at those quartiles.
 +      project='../nonmem/1005.boot/',
 +      boot=TRUE,
 +      nice=TRUE,
++      grid=FALSE,
++      concurrent=FALSE,
 +      streams='../nonmem/1005.boot/ctl',
 +      checksum=FALSE
 + )
+> boot <- rlog(
++ 	run=1:300,
++ 	project='../nonmem/1005.boot',
++ 	boot=TRUE,
++ 	append=FALSE,
++ 	tool='nm7'
++ )
+> write.csv(boot, '../nonmem/1005.boot/log.csv')  
 \end{Sinput}
-\begin{Soutput}
-Installing SIGCHLD signal handler...Done.
-\end{Soutput}
-\begin{Sinput}
-> while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
+\end{Schunk}
+\end{document}

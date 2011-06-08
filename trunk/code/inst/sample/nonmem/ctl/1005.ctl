@@ -13,7 +13,7 @@ $PK
 $ERROR
  Y=F*EXP(ERR(1)); + ERR(2)
  IPRE=F
-
+;<doc>
 $THETA 
 (0,10,50)     ;CL        <parameter name='THETA1' latex='$\theta_1$' unit='$L/h$'    label='CL/F' model='$CL/F \sim \theta_6^{MALE} * (WT/70)^{\theta_7}$'>clearance</parameter>
 (0,10,100)    ;V         <parameter name='THETA2' latex='$\theta_2$' unit='$L$'      label='Vc/F' model='$Vc/F \sim (WT/70)^{1}$'   >central volume</parameter>
@@ -48,4 +48,5 @@ $TABLE NOPRINT FILE=./1005par.tab ONEHEADER ID TIME CL Q V2 V3 KA ETA1 ETA2 ETA3
 ;<wiki model='IIV_CL/F ~ Omega_1.1'                                             >interindividual variability of clearance</wiki>
 ;<wiki model='IIV_V_c /F ~ Omega_2.2'                                           >interindividual variability of central volume</wiki>
 ;<wiki model='IIV_K_a  ~ Omega_3.3'                                             >interindividual variability of K_a</wiki>
-;<wiki model='err_prop ~ sigma_1.1'                                             >proportional error</wiki>
+;<wiki model='err_prop ~ Sigma_1.1'                                             >proportional error</wiki>
+;</doc>

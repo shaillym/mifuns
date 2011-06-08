@@ -290,10 +290,11 @@ NONR(
      project='../nonmem/1005.boot/',
      boot=TRUE,
      nice=TRUE,
+     grid=FALSE,
+     concurrent=FALSE,
      streams='../nonmem/1005.boot/ctl',
      checksum=FALSE
 )
-while(!(all(file.exists(paste(sep='','../nonmem/1005.boot/',1:300,'.boot/',1:300,'.lst'))))){}
 boot <- rlog(
 	run=1:300,
 	project='../nonmem/1005.boot',

@@ -2,7 +2,7 @@
 <nonmem>
 <text><![CDATA[
 /Users/timb/code/inst/sample/script/../nonmem/1005/1005.lst
-2011.06.07.2119.44
+2011.06.07.2245.15
 $PROB 1005 phase1 2 CMT like 1004 but diff. initial on V3
 $INPUT C ID TIME SEQ=DROP EVID AMT DV SUBJ HOUR TAFD TAD LDOS MDV HEIGHT WT SEX AGE DOSE FED
 $DATA ../../data/derived/phase1.csv IGNORE=C
@@ -222,7 +222,7 @@ Days until program expires :  37
             -4.6731E-02
  GRADIENT:  -9.4356E-03  8.1782E-03  4.5771E-02 -1.9044E-02 -7.8125E-04 -1.0624E-03 -7.2147E-04  3.5290E-03 -2.6681E-03  1.1598E-02
              9.0593E-03
- Elapsed estimation time in seconds:     4.73
+ Elapsed estimation time in seconds:     4.75
  
  #TERM:
 0MINIMIZATION SUCCESSFUL
@@ -241,7 +241,7 @@ Days until program expires :  37
  EPSshrink(%):   8.8722E+00
  
  #TERE:
- Elapsed covariance time in seconds:     6.88
+ Elapsed covariance time in seconds:     6.89
 1
  
  
@@ -563,7 +563,7 @@ Days until program expires :  37
  
          5.84E-02  1.74E-01  2.84E-01  3.85E-01  5.21E-01  6.64E-01  1.08E+00  1.32E+00  1.65E+00  1.80E+00  3.07E+00
  
-2011.06.07.2119.58
+2011.06.07.2245.29
 ........................................
 NONMEM run with /common/NONMEM/nm7_osx1/test/nm7_osx1.pl
 ........................................

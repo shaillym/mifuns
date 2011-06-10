@@ -23,13 +23,13 @@ This script picks up after model.Rnw to process bootstrap results and make a par
 > getwd()
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/code/inst/sample/script"
+[1] "/Users/timb/project/metrum/inst/sample/script"
 \end{Soutput}
 \begin{Sinput}
-> require(MIfuns,lib.loc='~/Rlibs')
+> require(MIfuns)
 \end{Sinput}
 \begin{Soutput}
-MIfuns 4.3.4 
+MIfuns 4.3.5 
 \end{Soutput}
 \end{Schunk}
 \section{Parameter Table}
@@ -80,7 +80,7 @@ MIfuns 4.3.4
 \begin{Sinput}
 > tab$estimate <- as.character(signif(as.numeric(tab$estimate),3))
 > tab$estimate <- with(tab, paste(estimate,'$',justUnits(model),'$'))
-> tab$name <- with(tab, nospace(noUnits(lhs(model))))
+> tab$name <- with(tab, wiki2label(model))
 > tab$root <- signif(sqrt(exp(text2decimal(tab$estimate))-1),3)*100
 > needcv <- contains('OMEGA|SIGMA',tab$parameter)
 > tab <- within(tab, estimate[needcv] <- paste(estimate[needcv],parens(glue('\\%CV=',root[needcv]))))

@@ -22,7 +22,7 @@ Now we try x as a column name for a data frame.
 \begin{Schunk}
 \begin{Sinput}
 > d <- data.frame(subject=1,x=2)
-> names(d)[2] <- nospace(lhs(noUnits(x)))
+> names(d)[2] <- wiki2label(x)
 > d
 \end{Sinput}
 \begin{Soutput}
@@ -40,13 +40,13 @@ Now we try x as a column name for a data frame.
 What theta is primarily associated with this equation?
 \begin{Schunk}
 \begin{Sinput}
-> tos(x)
+> wiki2parameter(x)
 \end{Sinput}
 \begin{Soutput}
 [1] "THETA1"
 \end{Soutput}
 \begin{Sinput}
-> text2decimal(tos(x))
+> text2decimal(wiki2parameter(x))
 \end{Sinput}
 \begin{Soutput}
 [1] 1
@@ -87,15 +87,12 @@ Finally we try it in a figure.
 \begin{Sinput}
 > library(lattice)
 > print(densityplot(
-+   ~cl,
-+   data.frame(cl=rnorm(1000,mean=1)),
-+   xlab=parse(text=wiki2plotmath(noUnits(x)))
++   ~v,
++   data.frame(v=rnorm(1000,mean=1)),
++   main=parse(text=wiki2plotmath(noUnits(x))),
++   xlab='volume (l)'
 + ))
-> file.remove('Rplots.pdf')
 \end{Sinput}
-\begin{Soutput}
-[1] TRUE
-\end{Soutput}
 \end{Schunk}
 \includegraphics{wikimath-figure}
 \end{document}

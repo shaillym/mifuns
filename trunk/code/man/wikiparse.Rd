@@ -66,5 +66,7 @@ wiki2parameter(x,...)
 wiki <- "V_c /F (L * h^-1 ) ~theta_1 *(WT/70)^theta_2"
 wiki2latex(wiki)
 wiki2plotmath(wiki)
+wiki2label(wiki)
+wiki2parameter(wiki)
 }
 \keyword{manip}

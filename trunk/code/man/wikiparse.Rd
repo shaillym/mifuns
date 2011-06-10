@@ -18,7 +18,7 @@ wiki2parameter(x,...)
   \item{x}{character}
   \item{sim}{replaces wikimath tilde}
   \item{dot}{replaces wikimath asterisk}
-  \item{pregreek}{prefixes theta, omega, sigma}
+  \item{pregreek}{prefixes theta, omega, sigma, eta}
   \item{sup}{invokes superscript}
   \item{openSup}{begins superscript content}
   \item{closeSup}{ends superscript content}
@@ -42,7 +42,7 @@ wiki2parameter(x,...)
 	Generally, a representation of the quantity is to the left of a tilde, 
 	optionally with units in parentheses.  To the right of the tilde is a 
 	submodel including relevant parameters and constants.  Parameters are limited
-	to theta, omega, and sigma, which should be subscripted.  The subscript
+	to theta, omega, sigma, and eta, which should be subscripted.  The subscript
 	operator in wikimath is the underscore.  The superscript operator is the
 	"hat". Arithmetic operators generally represent themselves. 
 	

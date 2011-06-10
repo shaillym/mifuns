@@ -24,13 +24,13 @@ This script picks up after model.Rnw to process bootstrap results and make covar
 > getwd()
 \end{Sinput}
 \begin{Soutput}
-[1] "/Users/timb/code/inst/sample/script"
+[1] "/Users/timb/project/metrum/inst/sample/script"
 \end{Soutput}
 \begin{Sinput}
-> require(MIfuns,lib.loc='~/Rlibs')
+> require(MIfuns)
 \end{Sinput}
 \begin{Soutput}
-MIfuns 4.3.4 
+MIfuns 4.3.5 
 \end{Soutput}
 \begin{Sinput}
 > boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
@@ -233,7 +233,7 @@ stream.
 11  0.067111 11.4 0.0076591
 \end{Soutput}
 \begin{Sinput}
-> wiki$name <- nospace(noUnits(lhs(wiki$model)))
+> wiki$name <- wiki2label(wiki$model)
 > wiki$estimate <- as.numeric(wiki$estimate)
 > unique(wiki$parameter)
 \end{Sinput}
@@ -450,7 +450,8 @@ of strips.
 +     data=molten,
 +     panel=panel.covplot,
 +     xlab=parse(text=with(wiki,wiki2plotmath(noUnits(model[name=='CL/F'])))),
-+     main=with(wiki,description[name=='CL/F'])
++     main=with(wiki,description[name=='CL/F']),
++     sub=('(normalized)\n\n\n')
 +   )
 + )
 \end{Sinput}

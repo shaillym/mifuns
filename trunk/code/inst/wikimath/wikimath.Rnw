@@ -51,10 +51,13 @@ Finally we try it in a figure.
 <<figure,fig=true>>= https://stat.ethz.ch/pipermail/r-help/2008-August/171948.html
 library(lattice)
 print(densityplot(
-  ~cl,
-  data.frame(cl=rnorm(1000,mean=1)),
-  xlab=parse(text=wiki2plotmath(noUnits(x)))
+  ~v,
+  data.frame(v=rnorm(1000,mean=1)),
+  main=parse(text=wiki2plotmath(noUnits(x))),
+  xlab='volume (l)'
 ))
-file.remove('Rplots.pdf')
+@
+<<echo=false,results=hide>>=
+if(file.exists('Rplots.pdf'))file.remove('Rplots.pdf')
 @
 \end{document}

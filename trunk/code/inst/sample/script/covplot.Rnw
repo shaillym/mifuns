@@ -21,7 +21,7 @@ This script picks up after model.Rnw to process bootstrap results and make covar
 <<more>>= 
 #wait for bootstraps to finish
 getwd()
-require(MIfuns,lib.loc='~/Rlibs')
+require(MIfuns)
 boot <- read.csv('../nonmem/1005.boot/log.csv',as.is=TRUE)
 head(boot)
 unique(boot$parameter)
@@ -141,7 +141,8 @@ print(
     data=molten,
     panel=panel.covplot,
     xlab=parse(text=with(wiki,wiki2plotmath(noUnits(model[name=='CL/F'])))),
-    main=with(wiki,description[name=='CL/F'])
+    main=with(wiki,description[name=='CL/F']),
+    sub=('(normalized)\n\n\n')
   )
 )
 @

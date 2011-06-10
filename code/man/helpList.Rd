@@ -336,7 +336,9 @@
 \item \link{unitHist} calculate univariate histogram architecture with maximum height equal to 1
 \item \link{nmVersion} extract NONMEM version specification from configuration file
 \item \link{variants} locate variants of a file in distinctive subdirectories
+\item \link{wiki2label} convert wikimath to a label, e.g. CL/F
 \item \link{wiki2latex} convert wikimath to latex
+\item \link{wiki2parameter} convert wikimath to a parameter, e.g. THETA1
 \item \link{wiki2plotmath} convert wikimath to plotmath
 \item \link{wikiparse} parse wikimath
 \item \link{wikitab} extract wikimath specification from a control stream

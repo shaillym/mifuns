@@ -75,7 +75,7 @@ stream.
 <<wiki>>=
 wiki <- wikitab(1005,'../nonmem')
 wiki
-wiki$name <- nospace(noUnits(lhs(wiki$model)))
+wiki$name <- wiki2label(wiki$model)
 wiki$estimate <- as.numeric(wiki$estimate)
 unique(wiki$parameter)
 unique(boot$parameter)

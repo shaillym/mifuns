@@ -29,7 +29,7 @@ tab <- wikitab(1005,'../nonmem')
 tab
 tab$estimate <- as.character(signif(as.numeric(tab$estimate),3))
 tab$estimate <- with(tab, paste(estimate,'$',justUnits(model),'$'))
-tab$name <- with(tab, nospace(noUnits(lhs(model))))
+tab$name <- with(tab, wiki2label(model))
 tab$root <- signif(sqrt(exp(text2decimal(tab$estimate))-1),3)*100
 needcv <- contains('OMEGA|SIGMA',tab$parameter)
 tab <- within(tab, estimate[needcv] <- paste(estimate[needcv],parens(glue('\\%CV=',root[needcv]))))

@@ -31,6 +31,8 @@ closers <- function(x,sub,sup,...){
 }
 wiki2latex    <- function(x,...)wikiparse(x,sim='\\\\sim',dot='\\\\cdot',pregreek = '\\\\',wrap=c('$\\mathrm{','}$'),...)
 wiki2plotmath <- function(x,...)wikiparse(x,sim='%~~%',dot='%.%',sub='',openSub='[',closeSub=']',...)
+wiki2label    <- function(x,...)nospace(noUnits(lhs(x)))
+wiki2parameter<- function(x,...)tos(x)
 wikiparse <- function(
   x,
   sim='~',

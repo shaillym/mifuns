@@ -22,15 +22,15 @@ x <- "V_c /F (L * h^-1 ) ~theta_1 *(WT/70)^theta_2"
 Now we try x as a column name for a data frame.
 <<data.frame>>=
 d <- data.frame(subject=1,x=2)
-names(d)[2] <- nospace(lhs(noUnits(x)))
+names(d)[2] <- wiki2label(x)
 d
 justUnits(x)
 @
 \subsection{identifying related parameters}
 What theta is primarily associated with this equation?
 <<theta>>=
-tos(x)
-text2decimal(tos(x))
+wiki2parameter(x)
+text2decimal(wiki2parameter(x))
 @
 \subsection{rendering in a table}
 Next we try it in a latex table.

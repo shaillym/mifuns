@@ -14,7 +14,6 @@
 #text to be influenced
 #\end{environmentname}
 #Between the \begin and the \end you can put other commands and nested environments. In general, environments can accept arguments as well, but #this feature is not commonly used and so it will be discussed in more advanced parts of the document.
-library(MIfuns)
 is.alpha <- function(x,...){
 	stopifnot(is.character(x))
 	font <- c(letters,LETTERS)

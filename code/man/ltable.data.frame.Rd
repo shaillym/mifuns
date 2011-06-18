@@ -30,7 +30,7 @@
 specified environments, then wraps result in a latex table
 environment.  Result is returned visibly or printed to file
 and returned invisibly.}
-\value{character.}
+\value{character}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{

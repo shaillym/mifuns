@@ -10,7 +10,7 @@ ltable(x, ...)
   \item{\dots}{ignored}
 }
 \details{\code{ltable} is generic.}
-\value{}
+\value{character}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{

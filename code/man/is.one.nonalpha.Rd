@@ -12,14 +12,14 @@ is.one.nonalpha(x, ...)
 \details{Used to help identify proper latex command words.}
 \value{logical}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{is.latex.token}}
 	}
 }
-examples{
+\examples{
 is.one.nonalpha(c(2,'b',23))
 }
-keyword{manip}
+\keyword{manip}
 

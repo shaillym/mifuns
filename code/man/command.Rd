@@ -17,16 +17,16 @@ and the arguments each enclosed in curly braces.  \code{depth}
 spaces are added to the left end of the string.}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{wrap}}
 		item code{link{ltable.data.frame}}
 		item code{link{spaces}}
 	}
 }
-examples{
+\examples{
 command('caption',options='short',args='long')
 }
-keyword{manip}
+\keyword{manip}
 

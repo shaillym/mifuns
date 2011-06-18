@@ -19,14 +19,14 @@ Used for placing lines between sets of rows or columns in a table.
 }
 \value{integer}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{tabular.data.frame}}
 	}
 }
-examples{
+\examples{
 breaks(c(1,1,1,2,2,2,3,3,3))
 }
-keyword{manip}
+\keyword{manip}
 

@@ -10,7 +10,9 @@
 
 #LaTeX environments
 #Environments in LaTeX have a role that is quite similar to commands, but they usually have effect on a wider part of the document. Their syntax #is:
-#\begin{environmentname} #text to be influenced #\end{environmentname}
+#\begin{environmentname}
+#text to be influenced
+#\end{environmentname}
 #Between the \begin and the \end you can put other commands and nested environments. In general, environments can accept arguments as well, but #this feature is not commonly used and so it will be discussed in more advanced parts of the document.
 library(MIfuns)
 is.alpha <- function(x,...){
@@ -96,6 +98,8 @@ row2tabular <- function(x,...){
 }
 align.decimal <- function(x,decimal.mark='.',...){
 	x <- prettyNum(x)
+  nodecimal <- !contains(decimal.mark,x,fixed=TRUE)
+  x[nodecimal] <- glue(x[nodecimal],' ')
 	splits <- strsplit(x,decimal.mark,fixed=TRUE)
 	splits <- lapply(splits,function(x){if(length(x)==1)x[[2]]<-'';x})
 	tails <- sapply(splits,function(x)nchar(x[[2]]))
@@ -113,18 +117,19 @@ ltable.data.frame <- function(
 	cap=caption,
 	cap.top=TRUE,
 	label=NULL,
-	options='!ht',
+	options='!htpb',
 	environments='center',
+  file=NULL,
 	...
 ){
 	x <- tabular(x,...)
 	for (env in environments) x <- wrap(x,env)
+  if (!is.null(label))label <- command('label',args=label)
 	if(!is.null(caption)){
 		caption <- command(
-			paste(
-				'caption',
-				if(!is.null(label))command('label',label) else NULL,
-			)
+      'caption',
+      options=cap,
+      args=paste(caption,label)
 		)
 		x <- c(
 			if(cap.top)caption else NULL,
@@ -137,7 +142,11 @@ ltable.data.frame <- function(
 		'table',
 		options=options
 	)
-	x
+	if(is.null(file))return(x)
+	else {
+		writeLines(x,file)
+		invisible(x)
+	}
 }	
 tabular <- function(x,...)UseMethod('tabular')
 tabular.data.frame <- function(
@@ -157,6 +166,7 @@ tabular.data.frame <- function(
 	na='',
 	monospace=ifelse(sapply(x,is.numeric),TRUE,FALSE),
 	escape='#',
+	trim=TRUE,
 	...
 ){
 	#groom arguments
@@ -166,11 +176,11 @@ tabular.data.frame <- function(
 	colgroups <- rep(colgroups, length.out=ncol(x))
 	rowbreaks <- rep(rowbreaks, length.out=nrow(x)-1)
 	colbreaks <- rep(colbreaks, length.out=ncol(x)-1)
-	stopifnot(charjust %in% c('left','right','center'))
-	stopifnot(numjust %in% c('left','right','center'))
 	stopifnot(length(charjust)==1)
 	stopifnot(length(numjust)==1)	
 	stopifnot(length(escape)==1)	
+	stopifnot(charjust %in% c('left','right','center'))
+	stopifnot(numjust %in% c('left','right','center'))
 	na <- rep(na, length.out=ncol(x))
 	monospace <- as.logical(rep(monospace, length.out=ncol(x)))
 	paralign <- map(paralign,from=c('top','middle','bottom'),to=c('p','m','b'))[[1]]
@@ -183,8 +193,8 @@ tabular.data.frame <- function(
 	justify[!is.na(colwidth)] <- colwidth[!is.na(colwidth)]
 	format <- tabularformat(justify=justify, breaks=colbreaks, walls=walls) #ready
 	header <- row2tabular(names(x)) #ready
-	sapply(names(x)[monospace],function(nm)if(any(contains(escape,x[[nm]],fixed=TRUE)))warning(nm,'contains', escape))
-	x[] <- lapply(seq_along(x),function(col)if(decimal[[col]])align.decimal(x[[col]],...)else format(x[[col]],...))
+	sapply(names(x)[monospace],function(nm)if(any(!is.na(x[[nm]]) & contains(escape,x[[nm]],fixed=TRUE)))warning(nm,'contains', escape))
+	x[] <- lapply(seq_along(x),function(col)if(decimal[[col]])align.decimal(x[[col]],...)else format(x[[col]],trim=trim,...))
 	x[] <- lapply(seq_along(x),function(col)sub('^ *NA *$',na[[col]],x[[col]]))
 	x[] <- lapply(seq_along(x),function(col)if(monospace[[col]])glue('\\verb',escape,x[[col]],escape)else x[[col]])
 	x <- as.matrix(x)

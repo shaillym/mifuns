@@ -23,6 +23,7 @@
 \item \link{acceptance} display the acceptance documentation for an R installation
 \item \link{acr} calculate accumulation ratio
 \item \link{after} test whether elements occur after some condition is \code{TRUE}
+\item \link{align.decimal} align numeric column in latex table on the decimal
 \item \link{aggregate.keyed} aggregate a keyed data frame
 \item \link{and.keyed} produce inner join of two keyed data frames
 \item \link{as.character.comment} convert comment to character
@@ -107,6 +108,7 @@
 \item \link{bin} calculate bin limits for x and place each value in a bin, returning the number of values in each bin
 \item \link{bmi} calculate body mass index
 \item \link{bracket} create an XML tag
+\item \link{breaks} calculate breaks between grouped elements
 \item \link{bsa} calculate body surface area
 \item \link{c.comment} combine comment
 \item \link{c.flag} combine flag
@@ -119,6 +121,7 @@
 \item \link{cmax} calculate maximum steady-state concentration
 \item \link{cmin} calculate minimum steady-state concentration
 \item \link{colname<-} change identified column names
+\item \link{command} generate a latex command
 \item \link{compileflag} calculate compiler flag for qsub
 \item \link{compiler} extract compiler specification from configuration file
 \item \link{compute.cwres} compute conditional weighted residuals
@@ -183,7 +186,10 @@
 \item \link{ind.cwres} compute conditional weighted residuals (internal)
 \item \link{inner} generic
 \item \link{inner.data.frame} reduce columns to inner quantiles by imputing NA
+\item \link{is.alpha} test whether text is letters-only
 \item \link{is.cwres.readable.file} compute conditional weighted residuals (internal)
+\item \link{is.latex.token} test whether text is valid latex command or environment
+\item \link{is.one.nonalpha} test whether text is singular non-letter
 \item \link{is.square} generic
 \item \link{is.square.matrix} test whether a matrix is square
 \item \link{isSubversioned} check if files are subversioned
@@ -194,12 +200,16 @@
 \item \link{key<-} assign a key
 \item \link{last} repeat, for each element, the last element where a condition is \code{TRUE} (usually, within levels of an index)
 \item \link{latest} identify the latest of each set of variants
+\item \link{latex.args} format latex arguments
+\item \link{latex.options} format latex options
 \item \link{lbm} calculate lean body mass
 \item \link{left.keyed} produce left join of two keyed data frames
 \item \link{lhs} extract left-hand side of wikimath
 \item \link{locf} impute NA using last observation carried forward
 \item \link{lookup} translate among parameter attributes (vector)
 \item \link{lookup.one} translate among parameter attributes (scalar)
+\item \link{ltable} convert to a latex table
+\item \link{ltable.data.frame} convert a data.frame to a latex table
 \item \link{map} map one set of values to another
 \item \link{maxChar} return the number of printed characters for the widest element of x
 \item \link{merge.keyed} merge keyed data frames, preserving attributes
@@ -288,6 +298,7 @@
 %\item \link{rinvgamma} generate inverse gamma distribution given n, df, and sigma estimate
 \item \link{riwish} generate inverse Wishart distribution
 \item \link{rlog} generate a combined run log for multiple NONMEM runs
+\item \link{row2tabular} convert a vector to a latex tabular row
 \item \link{runCommand} issue the system call that invokes NONMEM (internal)
 \item \link{runhead} determine whether each element is the start of a run
 \item \link{runlog} create a zero-row runlog
@@ -304,6 +315,7 @@
 \item \link{simblock} generate deviates of the elements of a variance-covariance matrix
 \item \link{snap} coerce values to nearest of candidates
 \item \link{sort.keyed} sort a keyed data frame
+\item \link{spaces} create a string of spaces
 \item \link{sqrtm} support \code{compute.cwres}
 \item \link{stableMerge} produce a left join, with strict error checking
 \item \link{star} replace asterisk in x with y (internal)
@@ -321,6 +333,10 @@
 \item \link{svnPropSetFile} set a Subversion property on a file
 \item \link{synthesis} sequentially left-join an arbitrary number of data frames, picking up novel columns (internal)
 \item \link{tabfile} extract tabfile specification from a control stream
+\item \link{tabular} convert to a latex tabular environment
+\item \link{tabular.data.frame} convert a data.frame to a latex tabular environment
+\item \link{tabularformat} generate a format string for a latex tabular environment
+\item \link{tagvalue} convert a list to a string of delimited tag-value pairs
 \item \link{text2decimal} convert mixed text to decimal
 \item \link{tmax} calculate the time of the maximum concentration
 \item \link{Tmax} calculate the time associated with the maximum concentration for each subject
@@ -343,6 +359,7 @@
 \item \link{wikiparse} parse wikimath
 \item \link{wikitab} extract wikimath specification from a control stream
 \item \link{win} identify Windows platforms (internal)
+\item \link{wrap} wrap text in a latex environment
 \item \link{write.nm} write an nm object to file
 \item \link{write.nmctl} write an nmctl object to file
 \item \link{xtfrm.comment} produce a numeric vector that sorts in the same order as comment

@@ -60,8 +60,8 @@ Rownames are ignored.  If informative, capture them as a column.
 }
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{align.decimal}}
 		item code{link{breaks}}
@@ -70,8 +70,8 @@ seealso{
 		item code{link{wrap}}
 	}
 }
-examples{
+\examples{
 tabular.data.frame(head(Theoph))
 }
-keyword{manip}
+\keyword{manip}
 

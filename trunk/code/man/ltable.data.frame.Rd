@@ -32,14 +32,14 @@ environment.  Result is returned visibly or printed to file
 and returned invisibly.}
 \value{character.}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{tabular.data.frame}}
 	}
 }
-examples{
+\examples{
 ltable(head(Theoph))
 }
-keyword{manip}
+\keyword{manip}
 

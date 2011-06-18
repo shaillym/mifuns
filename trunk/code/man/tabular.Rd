@@ -12,11 +12,11 @@ tabular(x, ...)
 \details{Generic}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{tabular.data.frame}}
 	}
 }
-keyword{manip}
+\keyword{manip}
 

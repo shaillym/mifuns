@@ -14,11 +14,11 @@ tabularformat(justify, breaks, walls)
 \details{Used to set column alignment and aesthetics.}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{tabular.data.frame}}
 	}
 }
-keyword{manip}
+\keyword{manip}
 

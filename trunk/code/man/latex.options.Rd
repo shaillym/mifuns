@@ -14,16 +14,16 @@ optionally with \code{name=} syntax.  List is enclosed in
 square brackets.}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{wrap}}
 		item code{link{command}}
 		item code{link{tagvalue}}
 	}
 }
-examples{
+\examples{
 latex.options(c(ht=2,width=3))
 }
-keyword{manip}
+\keyword{manip}
 

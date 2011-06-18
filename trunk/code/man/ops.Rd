@@ -66,7 +66,7 @@ need for parenthetical grouping of terms (which is available nonetheless).
 Proxy methods have been defined on these operators for class \sQuote{keyed}.  Users
 can implement differing assembly operations by creating additional classes
 and defining proxy methods for them.  \code{plus.rigged} and \code{minus.moot} are 
-examples.  See examples for \code{as.nm}.
+\examples.  See examples for \code{as.nm}.
 }
 \value{keyed data.frame}
 \references{\url{http://mifuns.googlecode.com}}

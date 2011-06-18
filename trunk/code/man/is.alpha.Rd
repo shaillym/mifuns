@@ -13,14 +13,14 @@ is.alpha(x, ...)
 upper or lower case letters.}
 \value{logical}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{is.latex.token}}
 	}
 }
-examples{
+\examples{
 is.alpha(c('aB','a2'))
 }
-keyword{manip}
+\keyword{manip}
 

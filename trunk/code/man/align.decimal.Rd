@@ -18,14 +18,14 @@ align.  Whole numbers without the decimal mark get an
 extra space in its place.}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{tabular.data.frame}}
 	}
 }
-examples{
+\examples{
 align.decimal(c(.12, 1.2, 12.0))
 }
-keyword{manip}
+\keyword{manip}
 

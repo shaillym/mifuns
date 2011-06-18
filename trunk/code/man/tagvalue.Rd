@@ -15,14 +15,14 @@ tagvalue(x, sep = "=", collapse = ",", ...)
 separator.}
 \value{Character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{latex.options}}
 	}
 }
-examples{
+\examples{
 tagvalue(list(a=1,b=2,3))
 }
-keyword{manip}
+\keyword{manip}
 

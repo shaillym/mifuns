@@ -14,15 +14,15 @@ must consist entirely of upper or lower case letters, or must
 be a single non-letter.}
 \value{logical}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{is.alpha}}
 		item code{link{is.one.nonalpha}}
 	}
 }
-examples{
+\examples{
 is.latex.token('2','word','word2')
 }
-keyword{manip}
+\keyword{manip}
 

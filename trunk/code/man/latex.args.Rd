@@ -12,15 +12,15 @@ latex.args(x, ...)
 \details{Each element wrapped in curly braces; elements are strung together.}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{wrap}}
 		item code{link{command}}
 	}
 }
-examples{
+\examples{
 latex.args(c('arg1','arg2'))
 }
-keyword{manip}
+\keyword{manip}
 

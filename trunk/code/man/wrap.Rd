@@ -16,8 +16,8 @@ wrap(x, environment, options = NULL, args = NULL, depth = 0)
 with options and aruments formatted appropriately.}
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
-author{Tim Bergsma}
-seealso{
+\author{Tim Bergsma}
+\seealso{
 	itemize{
 		item code{link{command}}
 		item code{link{latex.args}}
@@ -26,8 +26,8 @@ seealso{
 		item code{link{ltable.data.frame}}
 	}
 }
-examples{
+\examples{
 wrap('Hello','center')
 }
-keyword{manip}
+\keyword{manip}
 

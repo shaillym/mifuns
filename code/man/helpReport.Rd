@@ -17,5 +17,6 @@ I want to ....
 \item \link[=iterations]{list} the iteration statistics in the NONMEM output
 \item \link[=omegacor]{convert} the NONMEM output omega or sigma covariance matrix to correlations
 \item \link[=ftable2data.frame]{reformat} an ftable for printing with latex
+\item \link[=ltable.data.frame]{convert} a data.frame for printing with latex
 }
 }

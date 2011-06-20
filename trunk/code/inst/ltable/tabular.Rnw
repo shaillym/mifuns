@@ -56,9 +56,9 @@ writeLines(ltable(x,grid=TRUE,caption='Decimal Align',
     justify=c('center','left','right','decimal')
 ))
 <<results=tex>>=
-writeLines(ltable(x,grid=TRUE,caption='No Monospace',
+writeLines(ltable(x,grid=TRUE,caption='Not Verbatim',
     justify=c('center','left','right','decimal'),
-    monospace=FALSE
+    verbatim=FALSE
 ))
 <<results=tex>>=
 writeLines(ltable(x,grid=TRUE,caption='Custom Column Width',

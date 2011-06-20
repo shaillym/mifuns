@@ -163,7 +163,7 @@ tabular.data.frame <- function(
 	colwidth=NA,
 	paralign='top',
 	na='',
-	monospace=ifelse(sapply(x,is.numeric),TRUE,FALSE),
+	verbatim=ifelse(sapply(x,is.numeric),TRUE,FALSE),
 	escape='#',
 	trim=TRUE,
 	...
@@ -181,7 +181,7 @@ tabular.data.frame <- function(
 	stopifnot(charjust %in% c('left','right','center'))
 	stopifnot(numjust %in% c('left','right','center'))
 	na <- rep(na, length.out=ncol(x))
-	monospace <- as.logical(rep(monospace, length.out=ncol(x)))
+	verbatim <- as.logical(rep(verbatim, length.out=ncol(x)))
 	paralign <- map(paralign,from=c('top','middle','bottom'),to=c('p','m','b'))[[1]]
 	colwidth <- rep(colwidth, length.out=ncol(x))
 	colwidth <- sub('^',glue(paralign,'{'),colwidth)
@@ -192,10 +192,10 @@ tabular.data.frame <- function(
 	justify[!is.na(colwidth)] <- colwidth[!is.na(colwidth)]
 	format <- tabularformat(justify=justify, breaks=colbreaks, walls=walls) #ready
 	header <- row2tabular(names(x)) #ready
-	sapply(names(x)[monospace],function(nm)if(any(!is.na(x[[nm]]) & contains(escape,x[[nm]],fixed=TRUE)))warning(nm,'contains', escape))
+	sapply(names(x)[verbatim],function(nm)if(any(!is.na(x[[nm]]) & contains(escape,x[[nm]],fixed=TRUE)))warning(nm,'contains', escape))
 	x[] <- lapply(seq_along(x),function(col)if(decimal[[col]])align.decimal(x[[col]],...)else format(x[[col]],trim=trim,...))
 	x[] <- lapply(seq_along(x),function(col)sub('^ *NA *$',na[[col]],x[[col]]))
-	x[] <- lapply(seq_along(x),function(col)if(monospace[[col]])glue('\\verb',escape,x[[col]],escape)else x[[col]])
+	x[] <- lapply(seq_along(x),function(col)if(verbatim[[col]])glue('\\verb',escape,x[[col]],escape)else x[[col]])
 	x <- as.matrix(x)
 	x <- apply(x,1,row2tabular) #ready
 	# we now have a format string, a header, and all rows as character vector

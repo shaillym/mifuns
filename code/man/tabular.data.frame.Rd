@@ -18,7 +18,7 @@
 	colwidth = NA, 
 	paralign = "top", 
 	na = "", 
-	monospace = ifelse(sapply(x, is.numeric), TRUE, FALSE), 
+	verbatim = ifelse(sapply(x, is.numeric), TRUE, FALSE), 
 	escape = "#", 
 	trim = TRUE, 
 	...
@@ -41,7 +41,7 @@
   \item{colwidth}{manual specification of column width. (vector of length nrow(x).) Overrides \code{justify} where not NA.}
   \item{paralign}{used with colwidth to align paragraphs: top, middle, or bottom.}
   \item{na}{string to replace NA elements}
-  \item{monospace}{whether to use fixed width font for numeric fields.  Makes sense for decimal justification.}
+  \item{verbatim}{whether to use verbatim environment for numeric fields.  Makes sense for decimal justification; interacts with \code{trim} and \code{justify}.}
   \item{escape}{symbol used by `verb' command as delimiter.  A warning is issued if it is found in non-NA text.}
   \item{trim}{passed to the format command: true by default, so that 
   alignment is the responsibility of just the tabular environment arguments}

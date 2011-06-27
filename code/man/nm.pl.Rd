@@ -59,11 +59,10 @@ autolog.pl(
 	and output file paths as in \code{nm.pl}. \code{autolog.pl} does not 
 	support \code{checksum}. By default, \code{autolog.pl} expects a config
 	file called \sQuote{log.xml} in the same directory as \code{command}; it also
-	assumes the mode is \sQuote{run}.
+	assumes the mode is \sQuote{run}.  See also \url{http://nmqual.googlecode.com}.
 }
 \value{character}
 \references{\url{http://mifuns.googlecode.com}}
-\references{\url{http://nmqual.googlecode.com}}
 \author{Tim Bergsma}
 \seealso{
 	\itemize{

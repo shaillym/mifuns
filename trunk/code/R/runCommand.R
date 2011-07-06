@@ -1,6 +1,7 @@
 `runCommand` <-
   function (
   	command,
+  	...,
 	run,
 	rdir,
 	boot,
@@ -58,8 +59,7 @@
   	perl=perl,
   	split=split,
   	compile=compile,
-  	execute=execute,
-  	...
+  	execute=execute
   )
   if(grid) command <- qsub(command,N=N,o=o,e=e,l=L,hold_jid=hold_jid,V=V,j=j,q=q,sync=sync,shell=shell,b=b,cwd=cwd,...)
   if(background) command <- paste(command,'&')

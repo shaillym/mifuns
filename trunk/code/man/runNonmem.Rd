@@ -84,7 +84,7 @@ runNonmem(
   \item{sync}{whether the R process should wait for the run to complete}
   \item{interface}{the name of a function to prepare NONMEM command lines}
   \item{\dots}{extra arguments for other functions}
-  \item{perm.cond}{passed to PLOTR; defined here to prevent partial matching of \code{pe} argument to \code{qsub}
+  \item{perm.cond}{passed to PLOTR; defined here to prevent partial matching of \code{pe} argument to \code{qsub}}
 }
 \value{used for side effects}
 \references{\url{http://mifuns.googlecode.com}}

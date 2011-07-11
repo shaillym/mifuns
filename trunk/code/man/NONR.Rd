@@ -44,8 +44,17 @@ NONR(
 	missing = -99, 
 	...
 )
-NONR72(...,interface='autolog.pl')
-}
+NONR72 <- function(
+	...,
+	interface='autolog.pl',
+	split=FALSE,
+	q='all.q'
+)NONR(
+	...,
+	interface=interface,
+	split=split,
+	q=q
+)}
 
 \arguments{
 

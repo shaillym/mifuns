@@ -44,17 +44,13 @@ NONR(
 	missing = -99, 
 	...
 )
-NONR72 <- function(
+NONR72(
 	...,
 	interface='autolog.pl',
 	split=FALSE,
 	q='all.q'
-)NONR(
-	...,
-	interface=interface,
-	split=split,
-	q=q
-)}
+)
+}
 
 \arguments{
 
@@ -185,6 +181,7 @@ NONR72 <- function(
   \item{eta.list}{passed to \code{PLOTR}}
   \item{missing}{passed to \code{PLOTR}}
   \item{interface}{the name of a function to prepare NONMEM command lines}
+  \item{q}{choice of queue, passed to \code{qsub}}
   \item{\dots}{additional arguments passed to functions that accept them. For example,
   you can pass \code{onefile=FALSE} to \code{pdf}, called by \code{PLOTR}.  You can also pass
   additional lattice arguments to modify the diagnostic plots.  

@@ -40,7 +40,12 @@ runNonmem(
 	outfile = filename(rundir,run,'.lst'),
 	streams = project,
 	ctlfile = filename(streams,run,'.ctl'),
-	remove  = c('^F[ISRC]','^OU','^nonmem.exe','^nul$',if(fdata)c('^FD','^PR')),
+	remove = c(
+		"^F[ISRCMP]","^OU","^nonmem", "^nul$",
+		"WK","LNK$","fort","^nm","lnk$","set$",
+		"^gar","INT","^temp","^tr","^new",
+		if(fdata)c('^FD','^PR')
+	),
 	sync=if(boot)'n'else'y',
 	interface='nm.pl',
 	...,

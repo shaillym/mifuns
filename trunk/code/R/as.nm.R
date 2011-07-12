@@ -28,15 +28,15 @@ read.nm <- function(
 	tran
 }
 naKeys.nm <- function(x,...){
-	res <- naKeys.default(x)
-	res[x$C] <- FALSE
+	res <- !x$C #if records are commented, they're not na keys
+	res[!x$C] <- naKeys.default(x[!x$C,]) #if not commented, then evaluated
 	res
 
 }
 
 dupKeys.nm <- function(x,...){
-	res <- dupKeys.default(x)
-	res[x$C] <- FALSE
+	res <- !x$C #if records are commented, they're not dup keys
+	res[!x$C] <- dupKeys.default(x) #if not commented, then evaluated
 	res
 
 }

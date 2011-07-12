@@ -36,7 +36,7 @@ naKeys.nm <- function(x,...){
 
 dupKeys.nm <- function(x,...){
 	res <- !x$C #if records are commented, they're not dup keys
-	res[!x$C] <- dupKeys.default(x) #if not commented, then evaluated
+	res[!x$C] <- dupKeys.default(x[!x$C,]) #if not commented, then evaluated
 	res
 
 }

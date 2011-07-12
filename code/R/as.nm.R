@@ -61,7 +61,7 @@ zeroDv.nm <- function(x,...){
 predoseDv <- function(x,...)UseMethod('predoseDv')
 predoseDv.nm <- function(x,...){
 	if(!all(c('DV','EVID') %in% names(x)))return(rep(FALSE,nrow(x)))
-	relevant <- with(x,before(EVID %in% c(1,4),where=!C,within=SUBJ)) #NA if condition never matches (no doses)
+	relevant <- with(x,before(EVID %in% c(1,4) & !C,within=SUBJ)) #NA if condition never matches (no doses)
 	relevant[is.na(relevant)] <- TRUE # if no doses, DV is predose.
 	!is.na(x$DV) & relevant & !x$C
 

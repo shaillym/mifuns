@@ -61,13 +61,12 @@ Rownames are ignored.  If informative, capture them as a column.
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
-\seealso{
-	itemize{
-		item code{link{align.decimal}}
-		item code{link{breaks}}
-		item code{link{row2tabular}}
-		item code{link{tabularformat}}
-		item code{link{wrap}}
+\seealso{	\itemize{
+			\item \code{\link{align.decimal}}
+			\item \code{\link{breaks}}
+			\item \code{\link{row2tabular}}
+			\item \code{\link{tabularformat}}
+			\item \code{\link{wrap}}
 	}
 }
 \examples{

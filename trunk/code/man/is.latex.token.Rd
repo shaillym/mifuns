@@ -15,10 +15,9 @@ be a single non-letter.}
 \value{logical}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
-\seealso{
-	itemize{
-		item code{link{is.alpha}}
-		item code{link{is.one.nonalpha}}
+\seealso{	\itemize{
+			\item \code{\link{is.alpha}}
+			\item \code{\link{is.one.nonalpha}}
 	}
 }
 \examples{

@@ -15,9 +15,8 @@ tabularformat(justify, breaks, walls)
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
-\seealso{
-	itemize{
-		item code{link{tabular.data.frame}}
+\seealso{	\itemize{
+			\item \code{\link{tabular.data.frame}}
 	}
 }
 \keyword{manip}

@@ -20,9 +20,8 @@ Used for placing lines between sets of rows or columns in a table.
 \value{integer}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
-\seealso{
-	itemize{
-		item code{link{tabular.data.frame}}
+\seealso{	\itemize{
+			\item \code{\link{tabular.data.frame}}
 	}
 }
 \examples{

@@ -13,9 +13,8 @@ ltable(x, ...)
 \value{character}
 \references{url{http://mifuns.googlecode.com}}
 \author{Tim Bergsma}
-\seealso{
-	itemize{
-		item code{link{ltable.data.frame}}
+\seealso{	\itemize{
+			\item \code{\link{ltable.data.frame}}
 	}
 }
 \keyword{manip}

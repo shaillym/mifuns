@@ -45,9 +45,35 @@ NONR(
 	...
 )
 NONR72(
+	run, 
+	command, 
+	project = getwd(), 
+	boot = FALSE,
+	grid = boot, 
+	concurrent = grid,
+	urgent = !boot,
+	udef= FALSE, 
+	invisible=udef,
+	compile = TRUE,
+	execute = TRUE,
+	split = FALSE,
+	checkrunno = TRUE, 
+	checksum = TRUE, 
+	diag = !boot, 
+	fdata = TRUE, 
+	logtrans = FALSE,
+	nice= TRUE, 
+	epilog = NULL, 
+	dvname = NULL, 
+	grp = NULL, 
+	grpnames = NULL, 
+	cont.cov = NULL, 
+	cat.cov = NULL, 
+	par.list = NULL, 
+	eta.list = NULL, 
+	missing = -99, 
 	...,
 	interface='autolog.pl',
-	split=FALSE,
 	q='all.q'
 )
 }

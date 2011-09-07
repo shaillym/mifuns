@@ -11,6 +11,8 @@ user-defined diagnostic plots, execution and summary of bootstrap and
 predictive check results, implementation of simulations from posterior
 parameter distributions, reporting of output tables, and creation of
 detailed analysis logs.
+
+Deprecated.  Please see the replacement package \pkg{metrumrg}.
 }
 \details{
 

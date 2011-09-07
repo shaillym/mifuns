@@ -13,7 +13,5 @@ Description:
  NONMEM model execution, creation of standard and user-defined diagnostic plots,  
  execution and summary of bootstrap and predictive check results, implementation 
  of simulations from posterior parameter distributions, reporting of output 
- tables and creation of a detailed analysis log.
- 
- Deprecated.  Please see replacement package \pkg{metrumrg}.
+ tables and creation of a detailed analysis log.  Deprecated.  Please see replacement package \pkg{metrumrg}.
 License: GPL

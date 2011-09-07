@@ -1,8 +1,8 @@
 Package: MIfuns
 Type: Package
 Title: Pharmacometric tools for data preparation, modeling, simulation, and reporting
-Version: 5.0
-Date: 2011-09-06
+Version: 5.1
+Date: 2011-09-07
 Author: Metrum Institute (http://metruminstitute.org): Bill Knebel, Leonid Gibianski, Tim Bergsma
 Maintainer: Tim Bergsma <timb@metrumrg.com>
 Depends: reshape, methods, lattice, grid, XML, MASS
@@ -14,4 +14,6 @@ Description:
  execution and summary of bootstrap and predictive check results, implementation 
  of simulations from posterior parameter distributions, reporting of output 
  tables and creation of a detailed analysis log.
+ 
+ Deprecated.  Please see replacement package \pkg{metrumrg}.
 License: GPL

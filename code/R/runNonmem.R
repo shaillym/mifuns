@@ -207,7 +207,9 @@ function (
   	if(file_test('-d',dir)){
   		files <- dir(dir)
   		files <- grep(pattern,files,value=TRUE,ignore.case=TRUE)
-  		if(length(files))file.remove(paste(dir,files,sep='/'))
+  		#if(length(files))file.remove(paste(dir,files,sep='/'))
+  		lapply(files[file_test('-f',files)],function(file)file.remove(paste(dir,file,sep='/')))
+  		lapply(files[file_test('-d',files)],function(file)purge.dir(paste(dir,file,sep='/')))     
   	}
   }
   episcript <- function(script,...){
